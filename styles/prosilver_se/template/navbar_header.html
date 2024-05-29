@@ -1,0 +1,210 @@
+<div class="navbar nav-m1" role="navigation">
+
+	<div id="main-m" class="main-m-lewa-prawa">
+	
+		<div id="m-lewa" class="main-m-lewa-prawa">
+		
+			<div id="m-home" class="main-m-item">
+				<div class="main-m-top" id="thegate">
+					<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->thegate-top<!-- ELSE -->thegate-all<!-- ENDIF -->"></a>
+					<!-- IF S_REGISTERED_USER -->
+						<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}#ugh<!-- ELSE -->{U_INDEX}#ugh<!-- ENDIF -->' class="thegate-bottom"></a>
+					<!-- ENDIF -->
+				</div>
+			</div>
+
+		</div>
+		
+		<div id="m-naj-s" class="main-m-lewa-prawa">
+			<div id="m-srodek" class="main-m-lewa-prawa">
+				<div id="m-name" class="main-m-item menu-toggle<!-- IF TOTAL_POSTS or TOTAL_MESSAGES or TOTAL_TOPICS or TOTAL_USERS or TOTAL_REPORTS or (TOTAL and SCRIPT_NAME == 'mcp') or (not S_IS_BOT and S_DISPLAY_REPLY_INFO) or (SCRIPT_NAME == 'viewforum' and (S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS)) or (not S_IS_BOT and (U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_BUMP_TOPIC or U_EMAIL_TOPIC or U_PRINT_TOPIC or S_DISPLAY_TOPIC_TOOLS)) or (not S_IS_BOT and (U_WATCH_FORUM_LINK or U_MARK_TOPICS)) or SEARCH_MATCHES or .notification_list or (TOTAL_MESSAGES or S_VIEW_MESSAGE) or .attachrow and NUM_ATTACHMENTS --> show-name-bottom-list<!-- ENDIF -->">
+					<!-- INCLUDE show_name.html -->
+				</div>
+			</div>
+			
+			<div id="m-pagination" class="main-m-lewa-prawa">
+				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
+			</div>
+		</div>	
+		
+		<div id="m-prawa" class="main-m-lewa-prawa">
+		
+			<form action="{U_SEARCH}" method="get" id="search">
+				<fieldset>
+					<div id="m-search-box" class="main-m-item search-box" role="search">
+						<div class="main-m-top">
+							<a class="search-box-hide"><div class="fa fa-compress"></div></a>
+							<input name="keywords" id="keywords_top" accesskey="s" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search tiny" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
+							<button class="fa fa-search fa-2x" type="submit" id="search_but_top" title="{L_SEARCH}"></button>
+						</div>						
+					</div>					
+				</fieldset>
+			</form>
+			
+			<div id ="m-feed" class="main-m-item menu-toggle">
+				<div class="main-m-top menu-devil">
+					<a id="m-feed-icon" ><div class="fa fa-history fa-2x"></div></a>
+				</div>
+				
+				<div class="main-m-bottom menu-all">
+					<div class="m-list" id="lista-top-five"></div>
+				</div>
+				
+			</div>
+				
+			<!-- IF S_USER_LOGGED_IN -->
+			<div id="m-feed-topics" class="main-m-item menu-toggle">
+					<div class="main-m-top menu-devil">
+						<!-- IF S_LOAD_UNREADS -->
+						<a href="{U_SEARCH_UNREAD}" id="m-feed-topics-unread" class="m-labeled-box">
+							<div class="fa fa-inbox"></div>
+							<!-- IF L_AB_UNREAD > 0 --><div class="m-labeled-box-bg"><strong>{L_AB_UNREAD}</strong></div><!-- ENDIF -->
+						</a>
+						<!-- ENDIF -->
+					</div>
+					<div class="main-m-bottom menu-all">
+						<div>
+							<a href="{U_SEARCH_SELF}">{L_AB_MINE}</a><span>&nbsp; &dagger; &nbsp;</span>
+							<a href="{U_SEARCH_ACTIVE_TOPICS}">{L_AB_ACTIVE}</a><span>&nbsp; &dagger; &nbsp;</span>
+							<a href="{U_SEARCH_NEW}">{L_AB_NEW}</a>
+						</div>
+					</div>
+			</div>
+			<!-- ENDIF -->
+		
+			<!-- IF S_REGISTERED_USER -->
+					
+				<!-- IF S_NOTIFICATIONS_DISPLAY -->
+				<div id="m-notify" class="main-m-item menu-toggle">
+					<div class="main-m-top menu-devil">
+						<a id="notification_list_button" class="m-labeled-box">
+							<!-- IF NOTIFICATIONS_COUNT > 0 -->
+								<div class="fa fa-bell"></div>
+								<div class="m-labeled-box-bg"><strong>{NOTIFICATIONS_COUNT}</strong></div>
+							<!-- ELSE -->
+								<div class="fa fa-bell-o"></div>
+							<!-- ENDIF -->
+						</a>
+					</div>
+					<!-- INCLUDE notification_dropdown.html -->
+				</div>
+				<!-- ENDIF -->
+				
+				<!-- IF S_DISPLAY_PM -->
+					<div id="m-pm" class="main-m-item">
+						<div class="main-m-top">
+							<a href="{U_PRIVATEMSGS}" class="m-labeled-box">
+								<!-- IF PRIVATE_MESSAGE_COUNT > 0 -->
+									<div class="fa fa-envelope"></div>
+									<div class="m-labeled-box-bg"><strong>{PRIVATE_MESSAGE_COUNT}</strong></div>
+								<!-- ELSE -->
+									<div class="fa fa-envelope-o"></div>
+								<!-- ENDIF -->
+							</a>
+						</div>
+					</div>
+				<!-- ENDIF -->
+				
+			<!-- ENDIF -->
+			
+			<!-- IF SCRIPT_NAME == 'insane' -->
+				<div id="m-tagi" class="main-m-item menu-toggle">
+					<div class="main-m-top menu-devil">
+						<a><div class="fa fa-tags fa-lg"></div></a>
+					</div>
+					<div class="main-m-bottom menu-all" id="m-tagi-lista">
+						
+							<div class="m-list-title">
+								<h3><a href="{RH_TOPICTAGS_TAGCLOUD_LINK}"><div class="fa fa-tag fa-lg"></div>{RH_TOPICTAGS_TAGCLOUD_TAG_COUNT}</a></h3>
+							</div>
+						
+						<!-- IF S_USER_LOGGED_IN && SCRIPT_NAME != 'posting' -->
+							<div id="m-tagowarka" class="m-list-title">
+								<div ng-app="rhTopicTagsInputApp2" ng-controller="rhTopicTagsInputCtrl2">
+									<div id="m-tagowarka_ui" class="m-list-all">
+										<div class="m-list-left">
+											<div id="rhTopicTagsInputApp2Scope" class="rh_topictags_tags"></div>
+											<tags-input ng-model="tags" id="tagSearchClickInput" add-on-comma="false" replace-spaces-with-dashes="false" placeholder="wpisz tagi" tabindex="2" enable-editing-last-tag="true" min-length="2" allowed-tags-pattern="{RH_TOPICTAGS_ALLOWED_TAGS_REGEX}">
+												<auto-complete source="loadTags($query)"></auto-complete>
+											</tags-input>
+											<input type="hidden" name="rh_topictags" id="rh_topictags" value="{[{ jsonRep2 }]}"></input>
+										</div>
+										<a href="" onclick="tagSearchClick(); return false;" class="m-list-right" title="Szukaj po tagach"><div class="fa fa-search fa-2x"></div></a>
+										
+										<script>
+										function tagSearchClick() {
+											if (String(document.getElementById('rh_topictags').value) != "[]" & String(document.getElementById('rh_topictags').value) != "{[{ jsonRep2 }]}" )
+												location.href='/app.php/tag/'+String(document.getElementById('rh_topictags').value).replace('[','').replace(']','').replace(/ /g,'+');
+											else
+												document.getElementById("tagSearchClickInput").focus();
+										}
+										</script>
+									</div>
+								</div>
+							</div>
+						<!-- ENDIF -->
+						
+							<!-- IF .rh_topictags_tags -->
+							<div class="rh_topictags_tagcloud">
+									<!-- BEGIN rh_topictags_tags -->
+									<div class="flex <!-- IF rh_topictags_tags.S_ROW_COUNT is odd -->m-row1<!-- ELSE -->m-row2<!-- ENDIF --> m-list-all">
+										<a href="{rh_topictags_tags.LINK}" class="{rh_topictags_tags.CSS_CLASS} m-list-left m-list-left-top">{rh_topictags_tags.NAME}</a>
+										<!-- IF RH_TOPICTAGS_TAGCLOUD_SHOW_COUNT --><span class="rh_topictags_count m-list-right m-list-right-bottom">{rh_topictags_tags.COUNT}</span><!-- ENDIF -->
+									</div>
+									<!-- END rh_topictags_tags -->
+							</div>
+							<!-- ENDIF -->
+						
+					</div>
+				</div>
+			<!-- ENDIF -->
+			
+			<!-- IF S_REGISTERED_USER -->
+			
+				<div id="m-ksywa" class="main-m-item menu-toggle header-profile">
+					<div class="main-m-top menu-devil">
+						<a class="header-avatar">
+							<!-- IF CURRENT_USER_AVATAR -->
+								<div id="m-avatar">{CURRENT_USER_AVATAR}</div>
+							<!-- ELSE -->
+								<div class="fa fa-user-circle-o fa-2x"></div>
+							<!-- ENDIF -->
+						</a>
+					</div>
+					<div class="main-m-bottom menu-all">
+						<!-- IF U_RESTORE_PERMISSIONS --><a href="{U_RESTORE_PERMISSIONS}"><div class="fa fa-user-times fa-lg"></div>&nbsp;&nbsp;{L_RESTORE_PERMISSIONS}</a><!-- ENDIF -->
+						<a href="{{ U_SENKY_NOTES }}"><div class="fa fa-pencil-square-o fa-lg"></div>&nbsp;&nbsp;{{ lang('NOTES') }}</a>
+						<a href="{U_PROFILE}" title="{L_PROFILE}"><div class="fa fa-cogs fa-lg"></div>&nbsp;&nbsp;{L_PROFILE}</a>
+						<a href="{U_USER_PROFILE}" title="{L_READ_PROFILE}"><div class="fa fa-id-card-o fa-lg"></div>&nbsp;&nbsp;{L_READ_PROFILE}</a>
+						<!-- IF S_DISPLAY_MEMBERLIST --><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}"><div class="fa fa-users fa-lg"></div>&nbsp;&nbsp;{L_MEMBERLIST}</a><!-- ENDIF -->
+						<!-- IF U_TEAM --><a href="{U_TEAM}"><div class="fa fa-shield fa-lg"></div>&nbsp;&nbsp;{L_THE_TEAM}</a><!-- ENDIF -->
+						<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x"><div class="fa fa-sign-out fa-lg"></div>&nbsp;&nbsp;{L_LOGIN_LOGOUT}</a>
+						<!-- IF U_MCP --><a href="{U_MCP}" title="{L_MCP}"><div class="fa fa-wrench fa-lg"></div>&nbsp;&nbsp;{L_MCP_SHORT}</a><!-- ENDIF -->
+						<!-- IF U_ACP --><a href="{U_ACP}" title="{L_ACP}"><div class="fa fa-unlock-alt fa-lg"></div>&nbsp;&nbsp;{L_ACP_SHORT}</a><!-- ENDIF -->
+					</div>
+				</div>
+			
+			<!-- ENDIF -->
+	
+			<!-- IF not S_REGISTERED_USER -->
+			<div id="m-akt-top" class="main-m-item">
+				<div class="main-m-top">
+					<a href="{U_SEARCH_ACTIVE_TOPICS}" id="m-aktywne-tematy" class="m-labeled-box">
+						<div class="fa fa-inbox"></div>
+						<div class="m-labeled-box-bg"><strong>{L_AB_TOPICS}</strong></div>
+					</a>
+				</div>
+			</div>
+			
+			<div id="m-logged-out" class="main-m-item">
+				<div class="main-m-top" id="m-login">
+						<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT} &frasl; {L_REGISTER}" accesskey="x"><div class="fa fa-sign-in fa-2x"></div></a>
+				</div>
+			</div>
+			<!-- ENDIF -->
+	
+		</div>
+
+	</div>
+
+</div>

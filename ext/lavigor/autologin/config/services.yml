@@ -1,0 +1,7 @@
+services:
+    lavigor.autologin.listener:
+        class: lavigor\autologin\event\listener
+        arguments:
+            - @user
+        tags:
+            - { name: event.listener }

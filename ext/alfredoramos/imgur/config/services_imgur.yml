@@ -1,0 +1,3 @@
+services:
+    alfredoramos.imgur.j0k3r.imgur.client:
+        class: Imgur\Client

@@ -1,0 +1,28 @@
+<form method="post" action="{U_QR_ACTION}" id="qr_postform" class="brutalform">
+<!-- EVENT quickreply_editor_panel_before -->
+	<div class="panel">
+		<div class="inner">
+				<fieldset class="fields1">
+					<!-- EVENT quickreply_editor_subject_before -->
+					<!-- EVENT quickreply_editor_message_before -->
+					<div id="message-box">
+						<textarea style="height: 9em;" id="message" name="message" rows="7" cols="76" tabindex="1" class="inputbox"></textarea>
+					</div>
+					<!-- EVENT quickreply_editor_message_after -->
+				</fieldset>
+				<fieldset class="submit-buttons">
+					{S_FORM_TOKEN}
+					{QR_HIDDEN_FIELDS}
+					<div class="fbr">
+						<div class="fbr-left">
+							<input type="submit" tabindex="2" name="post" value="{L_SUBMIT}" class="button" />
+						</div>
+						<div class="fbr-right">
+							<input type="submit" accesskey="f" tabindex="3" name="preview" value="{L_FULL_EDITOR}" class="button1" id="qr_full_editor" />
+						</div>
+					</div>
+				</fieldset>
+		</div>
+	</div>
+<!-- EVENT quickreply_editor_panel_after -->
+</form>

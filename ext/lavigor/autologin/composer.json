@@ -1,0 +1,39 @@
+{
+    "name": "lavigor/autologin",
+    "type": "phpbb-extension",
+    "description": "Makes user logged in after registration/activation by user.",
+    "version": "1.0.0",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "autologin",
+        "auto",
+        "login"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Igor Lavrov",
+            "homepage": "https://github.com/lavigor",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.6"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "Autologin",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.6"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/autologin",
+            "filename": "version_check"
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{% include 'overall_header.html' %}
+
+<h1>{{ lang('SETTINGS') }}</h1>
+
+{% if IMGUR_AUTH_URL %}
+<div class="errorbox notice">
+	<p>
+		{{ lang('ACP_IMGUR_AUTH_EXPLAIN') }}<br />
+		<a href="{{ IMGUR_AUTH_URL }}" target="_blank" rel="nofollow noreferrer noopener">
+			<code><strong>{{ IMGUR_AUTH_URL }}</strong></code>
+		</a>
+	</p>
+</div>
+{% endif %}
+
+<form id="acp_board" method="POST" action="{{ U_ACTION }}">
+	<fieldset>
+		<dl>
+			<dt>
+				<label for="imgur_client_id">{{ lang('ACP_IMGUR_CLIENT_ID') }}{{ lang('COLON') }}</label>
+			</dt>
+			<dd>
+				<input type="text" id="imgur_client_id" name="imgur_client_id" value="{% if IMGUR_CLIENT_ID %}{{ IMGUR_CLIENT_ID }}{% endif %}" required="required" autocomplete="off" />
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>
+				<label for="imgur_client_secret">{{ lang('ACP_IMGUR_CLIENT_SECRET') }}{{ lang('COLON') }}</label>
+			</dt>
+			<dd>
+				<input type="password" id="imgur_client_secret" name="imgur_client_secret" value="{% if IMGUR_CLIENT_SECRET %}{{ IMGUR_CLIENT_SECRET }}{% endif %}" required="required" autocomplete="off" />
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>
+				<label for="imgur_album">{{ lang('ACP_IMGUR_ALBUM') }}{{ lang('COLON') }}</label>
+				<br /><span>{{ lang('ACP_IMGUR_ALBUM_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="text" id="imgur_album" name="imgur_album" value="{% if IMGUR_ALBUM %}{{ IMGUR_ALBUM }}{% endif %}" autocomplete="off" />
+			</dd>
+		</dl>
+
+		{% if IMGUR_AUTH_URL %}
+		<dl>
+			<dt>
+				<label for="imgur_pin">{{ lang('ACP_IMGUR_PIN') }}{{ lang('COLON') }}</label>
+				<br /><span>{{ lang('ACP_IMGUR_PIN_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="text" id="imgur_pin" name="imgur_pin" autocomplete="off" />
+			</dd>
+		</dl>
+		{% endif %}
+
+		<p class="submit-buttons">
+			<input type="submit" name="submit" class="button1" value="{{ lang('SUBMIT') }}" />
+			<input type="reset" class="button1" value="{{ lang('RESET') }}" />
+		</p>
+
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+
+{% include 'overall_footer.html' %}

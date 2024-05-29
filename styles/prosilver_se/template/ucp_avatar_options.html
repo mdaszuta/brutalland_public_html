@@ -1,0 +1,59 @@
+<div class="panel fbr-settings-panel">
+	<div class="inner">
+	<!-- IF not S_AVATARS_ENABLED -->
+		<p class="fbr-m-info">{L_AVATAR_FEATURES_DISABLED}</p>
+	<!-- ENDIF -->
+
+	<fieldset>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+		<div class="fbr">
+			<div class="fbr-left"><label>{L_CURRENT_IMAGE}</label><br /><span>{L_AVATAR_EXPLAIN}</span></div>
+			<div class="fbr-right"><!-- IF AVATAR -->{AVATAR}<!-- ELSE --><div class="fa fa-user-circle-o"></div><!-- ENDIF --></div>
+		</div>
+		<!-- IF AVATAR -->
+		<label for="avatar_delete">
+			<div class="fbr">
+				<div class="fbr-left"><input type="checkbox" name="avatar_delete" id="avatar_delete" /></div>
+				<div class="fbr-right">{L_DELETE_AVATAR}</div>
+			</div>
+		</label>
+		<!-- ENDIF -->
+	</fieldset>
+	
+	<hr class="dashed" />
+	
+	<fieldset style="display:none;">
+		<div class="fbr">
+			<div class="fbr-left"><label>{L_AVATAR_TYPE}</label></div>
+			<div class="fbr-right">
+				<select name="avatar_driver" id="avatar_driver" data-togglable-settings="true">
+					<!-- BEGIN avatar_drivers -->
+					<option value="{avatar_drivers.DRIVER}"<!-- IF avatar_drivers.SELECTED --> selected="selected"<!-- ENDIF --> data-toggle-setting="#avatar_option_{avatar_drivers.DRIVER}">{avatar_drivers.L_TITLE}</option>
+					<!-- END avatar_drivers -->
+				</select>
+			</div>
+		</div>
+	</fieldset>
+	<div id="avatar_options">
+	<!-- BEGIN avatar_drivers -->
+		<div id="avatar_option_{avatar_drivers.DRIVER}">
+			<noscript>
+				<h3 class="avatar_section_header">{avatar_drivers.L_TITLE}</h3>
+			</noscript>
+
+			<fieldset>
+				{avatar_drivers.OUTPUT}
+			</fieldset>
+		</div>
+	<!-- END avatar_drivers -->
+	</div>
+<!-- IF not S_GROUP_MANAGE -->
+	<fieldset class="submit-buttons flex-box-form">
+		<div class="flex-box-o">
+			<div class="flex-box"><input type="submit" name="submit" value="{L_SUBMIT}" class="button" /></div>
+			<div class="flex-box fb-c"><input type="reset" value="{L_RESET}" name="reset" class="button2" /></div>
+		</div>
+	</fieldset>
+<!-- ENDIF -->
+	</div>
+</div>

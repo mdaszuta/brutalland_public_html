@@ -1,0 +1,35 @@
+{
+    "name": "cabot/quickreplytoggle",
+    "type": "phpbb-extension",
+    "description": "Add a button to show/hide the quick reply.",
+    "homepage": "http://cabotweb.fr",
+    "version": "1.0.2",
+    "keywords": [
+        "phpbb",
+        "extension"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "cabot",
+            "homepage": "http://cabotweb.fr",
+            "role": "SushiMaker"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "composer/installers": "~1.0",
+        "phpbb/phpbb": ">=3.1"
+    },
+    "extra": {
+        "display-name": "Quick Reply Toggle",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/quick_reply_toggle",
+            "filename": "version_check"
+        }
+    }
+}

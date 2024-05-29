@@ -1,0 +1,13 @@
+{% if postrow.S_MARKPOSTUNREAD_ALLOWED %}
+<li>
+	{% if S_MARKPOSTUNREAD_31X %}
+	<a href="{{ postrow.U_MARKPOSTUNREAD }}" title="{L_MARKPOSTUNREAD_MARK_UNREAD}">
+		<div class="fa fa-bookmark fa-2x"></div>&nbsp;
+	</a>
+	{% else %}
+	<a href="{{ postrow.U_MARKPOSTUNREAD }}" title="{{ lang('MARKPOSTUNREAD_MARK_UNREAD') }}">
+		<div class="fa fa-bookmark fa-2x"></div>&nbsp;
+	</a>
+	{% endif %}
+</li>
+{% endif %}

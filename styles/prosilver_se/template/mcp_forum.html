@@ -1,0 +1,143 @@
+<!-- INCLUDE mcp_header.html -->
+
+<!-- DEFINE $CUSTOM_FIELDSET_CLASS = 'forum-selection2' -->
+<!-- INCLUDE jumpbox.html -->
+
+<h2>{L_FORUM}{L_COLON} <a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+
+<form method="post" id="mcp" action="{S_MCP_ACTION}">
+
+<div class="panel">
+	<div class="inner">
+
+	<!-- IF .topicrow -->
+		<ul class="topiclist<!-- IF S_MERGE_SELECT --> missing-column<!-- ENDIF -->">
+			<li class="header">
+				<dl class="icon">
+					<dt><div class="list-inner">{L_TOPICS}</div></dt>
+					<!-- IF not S_MERGE_SELECT --><dd class="mark">{L_MARK}</dd><!-- ENDIF -->
+					<dd class="lastpost">
+						<span>
+							<span class="lastpost-poster">{L_LAST_POST}</span>
+							<span class="lastpost-time"></span>
+						</span>
+					</dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist cplist<!-- IF S_MERGE_SELECT --> missing-column<!-- ENDIF -->">
+
+		<!-- BEGIN topicrow -->
+		<li class="row<!-- IF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
+			
+			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
+				<div class="main-rowlist" onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'">
+				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{L_VIEW_TOPIC}">
+					
+					<!-- IF not S_IS_BOT --><!-- IF topicrow.REPLIES -->
+						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
+					<!-- ENDIF --><!-- ENDIF -->
+					<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
+					<div class="list-inner">
+						<!-- EVENT topiclist_row_prepend -->
+						<!-- IF topicrow.S_SELECT_TOPIC --><a href="{topicrow.U_SELECT_TOPIC}" class="topictitle">[ {L_SELECT_MERGE} ]</a>&nbsp;&nbsp; <!-- ENDIF -->
+						<!-- EVENT mcp_forum_topic_title_before -->
+						<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<!-- EVENT mcp_forum_topic_title_after -->
+
+						<!-- IF .topicrow.pagination -->
+						<div class="pagination">
+							<ul>
+							<!-- BEGIN pagination -->
+								<!-- IF topicrow.pagination.S_IS_PREV -->
+								<!-- ELSEIF topicrow.pagination.S_IS_CURRENT --><li class="active"><span>{topicrow.pagination.PAGE_NUMBER}</span></li>
+								<!-- ELSEIF topicrow.pagination.S_IS_ELLIPSIS --><li class="ellipsis"><span>{L_ELLIPSIS}</span></li>
+								<!-- ELSEIF topicrow.pagination.S_IS_NEXT -->
+								<!-- ELSE --><li><a href="{topicrow.pagination.PAGE_URL}">{topicrow.pagination.PAGE_NUMBER}</a></li>
+								<!-- ENDIF -->
+							<!-- END pagination -->
+							</ul>
+						</div>
+						<!-- ENDIF -->
+						
+						<br />
+						
+						<div class="lastpost responsive-show" style="display: none;">
+							<span>
+								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
+								<span class="lastpost-time">{topicrow.LAST_POST_TIME}</span>
+							</span>
+						</div>
+
+						<div class="responsive-hide">
+							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
+							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_DELETED or topicrow.S_POSTS_DELETED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.DELETED_IMG}</a> <!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+							<!-- IF topicrow.S_MOVED_TOPIC and S_CAN_DELETE -->&nbsp;<a href="{topicrow.U_DELETE_TOPIC}" class="topictitle">[ {L_DELETE_SHADOW_TOPIC} ]</a><!-- ENDIF -->
+						</div>
+						
+						<!-- EVENT topiclist_row_append -->
+					</div>
+				</dt>
+				</div>
+				<!-- IF not S_MERGE_SELECT -->
+				<dd class="mark">
+					<!-- IF not topicrow.S_MOVED_TOPIC --><input onclick="event.cancelBubble=true" type="checkbox" name="topic_id_list[]" value="{topicrow.TOPIC_ID}"<!-- IF topicrow.S_TOPIC_CHECKED --> checked="checked"<!-- ENDIF --> /><!-- ELSE -->&nbsp;<!-- ENDIF -->
+				</dd>
+				<!-- ENDIF -->
+				
+				<dd class="lastpost">
+					<span><dfn>{L_LAST_POST}</dfn>
+						<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
+						<span class="lastpost-time">{topicrow.LAST_POST_TIME}</span>
+					</span>
+				</dd>
+			</dl>
+		</li>
+		<!-- END topicrow -->
+		</ul>
+	<!-- ELSE -->
+		<ul class="topiclist">
+			<li><p class="notopics">{L_NO_TOPICS}</p></li>
+		</ul>
+	<!-- ENDIF -->
+
+	<fieldset class="display-options">
+		<label>{L_DISPLAY_TOPICS}{L_COLON} {S_SELECT_SORT_DAYS}</label>
+		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+		<label>{S_SELECT_SORT_DIR}</label>
+		<input type="submit" name="sort" value="{L_GO}" class="button2" />
+	</fieldset>
+
+	</div>
+</div>
+
+<fieldset class="display-actions">
+	<!-- IF not S_MERGE_SELECT -->
+	<select name="action">
+		<option value="" selected="selected">{L_SELECT_ACTION}</option>
+		<!-- IF S_CAN_DELETE --><option value="delete_topic">{L_DELETE}</option><!-- ENDIF -->
+		<!-- IF S_CAN_RESTORE --><option value="restore_topic">{L_RESTORE}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MERGE --><option value="merge_topics">{L_MERGE}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MOVE --><option value="move">{L_MOVE}</option><!-- ENDIF -->
+		<!-- IF S_CAN_FORK --><option value="fork">{L_FORK}</option><!-- ENDIF -->
+		<!-- IF S_CAN_LOCK --><option value="lock">{L_LOCK}</option><option value="unlock">{L_UNLOCK}</option><!-- ENDIF -->
+		<!-- IF S_CAN_SYNC --><option value="resync">{L_RESYNC}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MAKE_NORMAL --><option value="make_normal">{L_MAKE_NORMAL}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MAKE_STICKY --><option value="make_sticky">{L_MAKE_STICKY}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MAKE_ANNOUNCE -->
+			<option value="make_announce">{L_MAKE_ANNOUNCE}</option>
+			<option value="make_global">{L_MAKE_GLOBAL}</option>
+		<!-- ENDIF -->
+	</select>
+	<input class="button2" type="submit" value="{L_SUBMIT}" />
+	<div>
+		<a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a>
+	</div>
+	<!-- ENDIF -->
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

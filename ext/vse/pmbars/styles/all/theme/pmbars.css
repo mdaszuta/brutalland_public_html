@@ -1,0 +1,16 @@
+.pmbars-inner {
+	width: 0;
+	height: 100%;
+	border: 0;
+	border-radius: 3px;
+	background: url('images/stripes.png') repeat;
+	display: inline-block;
+}
+
+.pmbars-normal-bar {
+	background-color: #32D635;
+}
+
+.pmbars-danger-bar {
+	background-color: #b10000;
+}

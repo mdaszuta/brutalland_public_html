@@ -1,0 +1,57 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- INCLUDE forumlist_body.html -->
+
+<a id="ugh" class="anchor"></a>
+
+<!-- IF SCRIPT_NAME == 'INSANE' -->
+
+	<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+		<form method="post" action="{S_LOGIN_ACTION}" class="headerspace">
+		<h3><a href="{U_LOGIN_LOGOUT}" class="button2">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp;&nbsp;<a href="{U_REGISTER}" class="button2">{L_REGISTER}</a><!-- ENDIF --></h3>
+			<fieldset class="quick-login">
+				<label for="username"><span>{L_USERNAME}{L_COLON}</span> <input type="text" tabindex="1" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></label>
+				<label for="password"><span>{L_PASSWORD}{L_COLON}</span> <input type="password" tabindex="2" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" autocomplete="off" /></label>
+				<!-- IF U_SEND_PASSWORD -->
+					<a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a>
+				<!-- ENDIF -->
+				<!-- IF S_AUTOLOGIN_ENABLED -->
+					<span class="responsive-hide">|</span> <label for="autologin"><input type="checkbox" checked="checked" tabindex="4" name="autologin" id="autologin" title="{L_LOG_ME_IN}" /></label>
+				<!-- ENDIF -->
+				<input type="submit" tabindex="5" name="login" value="{L_LOGIN}" class="button2" />
+				{S_LOGIN_REDIRECT}
+			</fieldset>
+		</form>
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<!-- EVENT index_body_stat_blocks_before -->
+
+<div class="forabg" id="view_staty">
+
+		<a href="{U_STATY_COLLAPSE_URL}" class="collapse-btn collapse-<!-- IF S_STATY_HIDDEN -->show<!-- ELSE -->hide<!-- ENDIF -->" data-hidden="{S_STATY_HIDDEN}" data-ajax="phpbb_collapse" data-overlay="true" title="{L_COLLAPSIBLE_CATEGORIES_TITLE}" style="display: none; line-height: 0;"></a>
+
+	<!-- IF S_DISPLAY_ONLINE_LIST -->
+		<div class="stat-block online-list">
+			<p>
+				<!-- EVENT index_body_block_online_prepend -->
+				<!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}"><!-- ENDIF -->{TOTAL_USERS_ONLINE}<!-- IF U_VIEWONLINE --></a><!-- ENDIF --> ({L_ONLINE_EXPLAIN})<br /><span class="record-users">{RECORD_USERS}<br /></span> <!-- IF S_USER_LOGGED_IN --><br />{LOGGED_IN_USER_LIST}<!-- ENDIF -->
+				<!-- EVENT index_body_block_online_append -->
+			</p>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF NEWEST_USER -->
+		<div class="stat-block statistics">
+			<p>
+				<!-- EVENT index_body_block_stats_prepend -->
+				{TOTAL_POSTS} &nbsp; {TOTAL_TOPICS} &nbsp; {TOTAL_USERS}<!-- IF S_USER_LOGGED_IN --> &nbsp; {NEWEST_USER}<!-- ENDIF -->
+			</p>
+		</div>
+	<!-- ENDIF -->
+</div>
+
+<!-- EVENT index_body_stat_blocks_after -->
+
+<!-- INCLUDE overall_footer.html -->

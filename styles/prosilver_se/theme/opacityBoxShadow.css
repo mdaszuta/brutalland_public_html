@@ -1,0 +1,273 @@
+.fb-l span,
+.lastpost .fa-fast-forward,
+.phantom-label,
+.post-buttons #post_b_2,
+.brutalform-label{
+	opacity: 0;
+}
+
+.fa-search-user,
+.post-buttons,
+.copyright{
+	opacity:0.15;
+}
+
+#m-name .m-labeled-box-button .fa{
+	opacity:0.25;
+}
+
+#nav-footer,
+.mark_read,
+.to-searched-post,
+.ajaxshoutbox_delete .fa-remove{
+	opacity: 0.3;
+}
+
+.m-labeled-box-button .fa,
+.post-number,
+#m-ksywa .main-m-bottom a .fa{
+	opacity: 0.4;
+}
+
+#m-home .main-m-top,
+#m-name .main-m-top,
+#m-pagination .pagination,
+#m-feed .main-m-top,
+#m-feed-topics .main-m-top,
+#m-tagi .main-m-top,
+#m-search-box .main-m-top,
+#m-notify .main-m-top,
+#m-pm .main-m-top,
+#m-ksywa .main-m-top,
+#m-aktywne-tematy .main-m-top,
+#m-logged-out .main-m-top,
+.topic-forumtitle,
+.post-buttons #post_b_1:hover ~ #post_b_2,
+.post-buttons #post_b_2:hover,
+#page-header,
+ul.button,
+.pagination,
+.nav-up,
+.nav-down{
+	opacity: 0.5;
+}
+
+.pagination li.active span,
+#m-notify .m-list-left-bottom,
+#cp-main .notifications_time,
+.main-m-top .m-labeled-box .fa,
+.unreadpost .post-number,
+.fa-exclamation-triangle,
+.fa-bar-chart,
+.fa-recycle,
+.f-tags-i,
+#darken{
+	opacity: 0.6;
+}
+
+.topic-reply-counter.unread,
+.search-box-hide .fa,
+#page-header:hover,
+.copyright:hover{
+	opacity: 0.7;
+}
+
+.post-buttons:hover,
+.mark_read:hover,
+.ajaxshoutbox_delete .fa-remove:hover,
+.fa-exclamation-triangle:hover,
+.fa-bar-chart:hover,
+.fa-recycle:hover,
+.f-tags-i:hover{
+	opacity: 0.9;
+}
+.main-m-top:hover ~ .main-m-bottom,
+#main-m .main-m-bottom:hover{
+	//opacity: 1;
+}
+
+fieldset .flex-box-o:hover .fb-l span,
+li.row:hover .topic-reply-counter.unread,
+#top-site-menu,
+#m-name.show-name-bottom-list .main-m-top,
+#m-home:hover .main-m-top,
+#m-name:hover .main-m-top,
+#m-pagination:hover .pagination,
+.pagination:hover,
+#m-feed:hover .main-m-top,
+#m-feed-topics:hover .main-m-top,
+#m-tagi:hover .main-m-top,
+#m-search-box:hover .main-m-top,
+.search-box-hide:hover .fa,
+#m-notify:hover .main-m-top,
+#m-pm:hover .main-m-top,
+#m-ksywa:hover .main-m-top,
+#m-aktywne-tematy:hover .main-m-top,
+#m-logged-out:hover .main-m-top,
+.lastpost:hover .fa-fast-forward,
+.fbr:hover .phantom-label,
+.fa-search-user:hover,
+.search.post:hover .to-searched-post,
+.post-number:hover,
+#m-ksywa .main-m-bottom a:hover .fa,
+.brutalform-box:focus ~ .brutalform-label,
+.brutalform select:hover ~ .brutalform-label,
+.brutalform .brutalform-timezone-select:hover ~ .brutalform-label,
+.brutalform .inputbox:focus ~ .brutalform-label,
+.brutalform select:focus ~ .brutalform-label,
+.brutalform .brutalform-timezone-select:focus ~ .brutalform-label,
+#page-footer #nav-footer:hover,
+.contact-box-all .m-labeled-box-button:hover .fa,
+.nav-down:hover,
+.nav-up:hover{
+	opacity: 1;
+}
+
+.brutalform-explanation{
+	opacity: 0;
+	
+	//visibility: hidden;
+	//display: none;
+}
+
+.brutalform-box:hover .brutalform-explanation,
+.brutalform .inputbox:hover ~ .brutalform-explanation,
+.brutalform .inputbox:focus ~ .brutalform-explanation{
+	opacity: 1;
+	padding-bottom: 15px;
+	z-index: 3;
+	
+	//visibility: visible;
+	//display: flex;
+}
+
+@media (hover:hover){
+	#top-site-menu:hover{ opacity: 1; }
+}
+
+#m-search-box ::placeholder, .pagination ::placeholder { opacity: 1; }
+
+/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
+
+#quick-login-panel .close{
+	opacity: 1 !important;
+}
+
+/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
+
+/* RESPONSIVE */ /* RESPONSIVE */ /* RESPONSIVE */
+
+@media only screen and (max-width:860px), only screen and (max-device-width:860px){
+
+	.post-buttons #post_b_2{
+		opacity: 0.8;
+	}
+	
+}
+
+@media (max-width: 700px), (max-device-width:700px){
+
+	.lastpost .fa-fast-forward{
+		opacity: 0.2;
+	}
+
+}
+
+/* RESPONSIVE */ /* RESPONSIVE */ /* RESPONSIVE */
+
+/* TRANSITIONS START */ /* TRANSITIONS START */ /* TRANSITIONS START */
+
+.fb-l span,
+fieldset .flex-box-o:hover .fb-l span{
+	-webkit-transition: opacity 0.35s ease-out; transition: opacity 0.35s ease-out;
+}
+
+#top-site-menu{
+	-webkit-transition: opacity 0.25s ease-out; transition: opacity 0.25s ease-out;
+}
+
+#m-home .main-m-top,
+#m-name .main-m-top,
+#m-pagination .main-m-top,
+#m-feed .main-m-top,
+#m-feed-topics .main-m-top,
+#m-tagi .main-m-top,
+#m-search-box .main-m-top,
+.search-box-hide .fa,
+#m-notify .main-m-top,
+#m-pm .main-m-top,
+#m-ksywa .main-m-top,
+#m-aktywne-tematy .main-m-top,
+#m-logged-out .main-m-top,
+.lastpost .fa-fast-forward,
+.phantom-label,
+.fa-search-user,
+.pagination,
+.search.post:hover .to-searched-post,
+.post-number:hover,
+.post-buttons:hover,
+.mark_read:hover,
+.ajaxshoutbox_delete .fa-remove:hover,
+.fa-exclamation-triangle:hover,
+.fa-bar-chart:hover,
+.fa-recycle:hover,
+.f-tags-i:hover,
+#m-ksywa .main-m-bottom a .fa,
+#m-ksywa .main-m-bottom a:hover .fa,
+.contact-box-all .m-labeled-box-button .fa,
+.contact-box-all .m-labeled-box-button:hover .fa{
+	-webkit-transition: opacity 0.75s ease-out; transition: opacity 0.75s ease-out;
+	-webkit-transition-delay: 0.1s; transition-delay: 0.1s;
+}
+
+.post-number,
+.post-buttons,
+.post-buttons #post_b_1:hover ~ #post_b_2,
+.post-buttons #post_b_2:hover,
+.mark_read,
+.ajaxshoutbox_delete .fa-remove,
+.fa-exclamation-triangle,
+.fa-bar-chart,
+.fa-recycle,
+.f-tags-i{
+	-webkit-transition: opacity 0.75s ease-out; transition: opacity 0.75s ease-out;
+	-webkit-transition-delay: 666666s; transition-delay: 666666s;
+}
+
+.to-searched-post,
+.brutalform-label,
+.brutalform-explanation{
+	-moz-transition: opacity 0.75s ease-in-out; -webkit-transition: opacity 0.75s ease-in-out; transition: opacity 0.75s ease-in-out;
+	-moz-transition-delay: 0.35s; -webkit-transition-delay: 0.35s; transition-delay: 0.35s;
+}
+
+.brutalform-box:hover .brutalform-explanation,
+.brutalform-box:focus ~ .brutalform-label,
+.brutalform .inputbox:hover ~ .brutalform-explanation,
+.brutalform select:hover ~ .brutalform-label,
+.brutalform .brutalform-timezone-select:hover ~ .brutalform-label,
+.brutalform .inputbox:focus ~ .brutalform-explanation,
+.brutalform .inputbox:focus ~ .brutalform-label,
+.brutalform select:focus ~ .brutalform-label,
+.brutalform .brutalform-timezone-select:focus ~ .brutalform-label{
+	-moz-transition: opacity 0.25s ease-in-out; -webkit-transition: opacity 0.25s ease-in-out; transition: opacity 0.25s ease-in-out;
+	-moz-transition-delay: 0.15s; -webkit-transition-delay: 0.15s; transition-delay: 0.15s;
+}
+
+#page-header{
+	-webkit-transition: opacity 5s ease-out; transition: opacity 5s ease-out;
+	-webkit-transition-delay: 4s; transition-delay: 4s;
+}
+
+#page-header:hover{
+	-webkit-transition: opacity 5s ease-out; transition: opacity 5s ease-out;
+	-webkit-transition-delay: 4s; transition-delay: 4s;
+}
+
+#nav-footer{
+	-webkit-transition: opacity 1.6s ease-out; transition: opacity 1.6s ease-out;
+}
+
+.copyright{
+	-moz-transition: opacity 1.25s ease-out; -webkit-transition: opacity 1.25s ease-out; transition: opacity 1.25s ease-out; -o-transition: opacity 1.25s ease-out;
+}

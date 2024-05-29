@@ -1,0 +1,22 @@
+imports:
+    - { resource: services_imgur.yml }
+
+services:
+    alfredoramos.imgur.listener:
+        class: alfredoramos\imgur\event\listener
+        arguments:
+            - '@config'
+            - '@template'
+            - '@routing.helper'
+        tags:
+            - { name: event.listener }
+
+    alfredoramos.imgur.controller:
+        class: alfredoramos\imgur\controller\imgur
+        arguments:
+            - '@config'
+            - '@request'
+            - '@controller.helper'
+            - '@filesystem'
+            - '@language'
+            - '@alfredoramos.imgur.j0k3r.imgur.client'

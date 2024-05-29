@@ -1,0 +1,37 @@
+<!-- INCLUDE overall_header.html -->
+
+<div class="panel cp-panel bg3">
+	<div class="inner">
+	
+	<div id="tabs" data-skip-responsive="true">
+		<ul>
+			<!-- BEGIN l_block1 -->
+			<li class="tab<!-- IF l_block1.S_SELECTED --> activetab<!-- ENDIF -->"><a href="{l_block1.U_TITLE}">{l_block1.L_TITLE}</a></li>
+			<!-- END l_block1 -->
+		</ul>
+	</div>
+
+	<div id="navigation" role="navigation">
+		<ul>
+		<!-- BEGIN l_block1 -->
+		<!-- IF l_block1.S_SELECTED -->
+			<!-- BEGIN l_block2 -->
+			<!-- IF l_block1.l_block2.S_SELECTED -->
+			<li class="tab activetab" id="active-subsection"><a href="{l_block1.l_block2.U_TITLE}">{l_block1.l_block2.L_TITLE}<!-- IF l_block1.l_block2.ADD_ITEM --> ({l_block1.l_block2.ADD_ITEM})<!-- ENDIF --></a></li>
+			<!-- ELSE -->
+			<li class="tab"><a href="{l_block1.l_block2.U_TITLE}">{l_block1.l_block2.L_TITLE}<!-- IF l_block1.l_block2.ADD_ITEM --> ({l_block1.l_block2.ADD_ITEM})<!-- ENDIF --></a></li>
+			<!-- ENDIF -->
+			<!-- END l_block2 -->
+		<!-- ENDIF -->
+		<!-- END l_block1 -->
+		</ul>
+	</div>
+
+	<div id="cp-main" class="mcp-main panel-container">
+		<!-- IF MESSAGE -->
+		<div class="content">
+			<h2 class="message-title">{L_MESSAGE}</h2>
+			<p class="error">{MESSAGE}</p>
+			<p><!-- BEGIN return_links -->{return_links.MESSAGE_LINK}<br /><br /><!-- END return_links --></p>
+		</div>
+		<!-- ENDIF -->

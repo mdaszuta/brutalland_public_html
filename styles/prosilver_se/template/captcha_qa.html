@@ -1,0 +1,24 @@
+<!-- IF S_TYPE == 1 -->
+<div class="panel captcha-panel" id="captcha-panel-reg">
+	<div class="inner">
+	<fieldset class="fields2">
+<!-- ENDIF -->
+
+	<div class="fbr">
+		<div class="fbr-left">
+			<label id="captcha-qa-label">{QA_CONFIRM_QUESTION}</label>
+		</div>
+		<div class="fbr-right">
+			<div class="captcha brutalform-box">
+				<input type="text" tabindex="{$CAPTCHA_TAB_INDEX}" name="qa_answer" id="answer" size="25" placeholder="{L_CONFIRM_QUESTION_EXP}" class="inputbox" />
+				<input type="hidden" name="qa_confirm_id" id="qa_confirm_id" value="{QA_CONFIRM_ID}" />
+				<span class="brutalform-explanation">{L_CONFIRM_QUESTION_EXPLAIN}</span>
+			</div>
+		</div>
+	</div>
+
+<!-- IF S_TYPE == 1 -->
+	</fieldset>
+	</div>
+</div>
+<!-- ENDIF -->

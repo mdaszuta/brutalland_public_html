@@ -1,0 +1,32 @@
+{
+    "name": "volksdevil/activitybuttons",
+    "type": "phpbb-extension",
+    "description": "Adds a responsive button menu for your users to view new posts, active topics, unread topics. And shows buttons for guests to either login or register. 2.0.0 adds a counter to the Unread posts button.",
+    "homepage": "http://www.CorradoG60.com",
+    "version": "2.0.0",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Neil Riley",
+            "username": "Volksdevil",
+            "email": "",
+            "homepage": "http://www.CorradoG60.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1"
+    },
+    "extra": {
+        "display-name": "Activity Buttons",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.x"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/activity_links",
+            "filename": "version_check"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+services:
+    volksdevil.activitybuttons.listener:
+        class: volksdevil\activitybuttons\event\listener
+        arguments:
+            - @auth
+            - @config
+            - @template
+            - @dbal.conn
+            - @request
+            - @user
+            - @path_helper
+        tags:
+           - { name: event.listener }

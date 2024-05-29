@@ -1,0 +1,60 @@
+{% if FOLDER_PERCENT %}
+<script>
+
+(function($) {  // Avoid conflicts with other libraries
+
+	'use strict';
+
+	// Feature detect sessionStorage
+	// https://mathiasbynens.be/notes/localstorage-pattern
+	var storage = (function() {
+		var uid = new Date();
+		var storage;
+		var result;
+		try {
+			(storage = window.sessionStorage).setItem(uid, uid);
+			result = storage.getItem(uid) == uid;
+			storage.removeItem(uid);
+			return result && storage;
+		} catch (exception) {}
+	}());
+
+	// Stylize bar and animate on first load using sessionStorage
+	$.fn.showBar = function() {
+
+		var settings = {
+			percent: {{ FOLDER_PERCENT }},
+			dangerZone: 80,
+			speed: 1000
+		};
+
+		this.addClass((settings.percent > settings.dangerZone) ? 'pmbars-danger-bar' : 'pmbars-normal-bar');
+
+		if (storage && storage.getItem('pmbar')) {
+			this.css('width', settings.percent + '%');
+		} else {
+			this.animate({
+				width: settings.percent + '%'
+			}, settings.speed, function() {
+				if (storage) storage.setItem('pmbar', 'pmbar');
+			});
+		}
+
+		return this;
+	};
+
+	// Insert pmbar object into DOM
+	var $outer = $('<div class="pmbars-outer" />');
+	var $inner = $('<div class="pmbars-inner" />');
+
+	$('#viewfolder')
+		.find('p')
+		.filter(':first')
+		.after($outer)
+	;
+	$inner.appendTo($outer).showBar();
+
+})(jQuery);
+
+</script>
+{% endif %}

@@ -1,0 +1,11 @@
+services:
+    rxu.FirstPostOnEveryPage.listener:
+        class: rxu\FirstPostOnEveryPage\event\listener
+        arguments:
+            - @dbal.conn
+            - @auth
+            - @request
+            - @template
+            - @user
+        tags:
+            - { name: event.listener }

@@ -1,0 +1,36 @@
+{
+    "name": "rmcgirr83/topfive",
+    "type": "phpbb-extension",
+    "description": "Displays statistics of the latest new posts, new users and most active users on the boards index page.",
+    "homepage": "https://github.com/RMcGirr83/topfive",
+    "version": "1.1.0",
+    "time": "2016-03-09",
+    "keywords": [
+        "phpbb",
+        "extension",
+        "top five"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Rich McGirr",
+            "homepage": "https://www.phpbb.com/customise/db/author/rmcgirr83/contributions",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "phpbb/phpbb": ">=3.1.2"
+    },
+    "extra": {
+        "display-name": "Top Five",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.2"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/topfiveext",
+            "filename": "version_check"
+        }
+    }
+}

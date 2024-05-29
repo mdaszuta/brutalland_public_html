@@ -1,0 +1,652 @@
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.09 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.22 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.41 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.24 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.21 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.20 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.28 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.30 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.20 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.30 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.27 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.20 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.29 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.20 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.11 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.15 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.13 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.18 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.11 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.19 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.13 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.64 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.20 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.20 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\default_data_type_ids.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 29.48 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\default_data_type_ids.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\default_data_type_ids.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\default_data_type_ids; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\report_id_auto_increment.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\report_id_auto_increment; Time: 0.07 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\report_id_auto_increment.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\report_id_auto_increment.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\report_id_auto_increment; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320b1.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\v320b1.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\v320b1; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320b1.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\v320b1.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\v320b1; Time: 0.02 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320b2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\remote_upload_validation.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\remote_upload_validation.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\remote_upload_validation; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320b2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\remote_upload_validation.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\remote_upload_validation.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\remote_upload_validation; Time: 0.05 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320b2.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\v320b2.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\v320b2; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320b2.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\v320b2.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\v320b2; Time: 0.03 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc1.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\v320rc1.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\v320rc1; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc1.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\v320rc1.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\v320rc1; Time: 0.01 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\increase_size_of_emotion.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v3110.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v3110rc1.
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v31x\v3110rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\increase_size_of_emotion.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v3110.
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v31x\v3110
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\increase_size_of_emotion.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\increase_size_of_emotion.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\increase_size_of_emotion; Time: 0.12 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\increase_size_of_emotion.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\increase_size_of_emotion.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\increase_size_of_emotion; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\remove_duplicate_migrations.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\remove_duplicate_migrations.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\remove_duplicate_migrations; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\remove_duplicate_migrations.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\remove_duplicate_migrations.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\remove_duplicate_migrations; Time: 0.01 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\add_log_time_index.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\add_log_time_index.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\add_log_time_index; Time: 0.07 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\add_log_time_index.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\add_log_time_index.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\add_log_time_index; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\add_help_phpbb.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\add_help_phpbb; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\add_help_phpbb; Time: 0.01 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\add_help_phpbb; Time: 0.02 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\add_help_phpbb; Time: 0.05 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\add_help_phpbb.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\add_help_phpbb.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\add_help_phpbb; Time: 0.18 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\v320rc2.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\v320rc2; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320rc2.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\v320rc2.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\v320rc2; Time: 0.02 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\cookie_notice.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\cookie_notice; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\cookie_notice.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\cookie_notice.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\cookie_notice; Time: 0.01 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v320\v320.
+[INFO] Installed Schema: \phpbb\db\migration\data\v320\v320; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320a2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\font_awesome_update
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\report_id_auto_increment
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\icons_alt
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remove_profilefield_wlm
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\allowed_schemes_links
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320b2
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\text_reparser
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\dev
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\announce_global_permission
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\v320rc1
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v320\remote_upload_validation
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v320\v320.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v320\v320.
+[INFO] Installed Data: \phpbb\db\migration\data\v320\v320; Time: 0.01 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Schema: \phpbb\viglink\migrations\viglink_data.
+[INFO] Installed Schema: \phpbb\viglink\migrations\viglink_data; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data; Time: 0.02 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data; Time: 0.01 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data; Time: 0.03 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data; Time: 0.02 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data; Time: 0.05 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data; Time: 0.02 seconds
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data.
+[INFO] Installed Data: \phpbb\viglink\migrations\viglink_data; Time: 0.26 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_data
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_cron.
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_cron
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_data
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_cron
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_ask_admin.
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data_v2.
+[DEBUG] Installing Schema: \phpbb\viglink\migrations\viglink_data_v2.
+[INFO] Installed Schema: \phpbb\viglink\migrations\viglink_data_v2; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_data
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_cron
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_ask_admin.
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data_v2.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data_v2.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data_v2; Time: 0.03 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_data
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_cron
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_ask_admin.
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_data_v2.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_data_v2.
+[INFO] Installed Data: \phpbb\viglink\migrations\viglink_data_v2; Time: 0.06 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_data
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_cron
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_ask_admin.
+[DEBUG] Installing Schema: \phpbb\viglink\migrations\viglink_ask_admin.
+[INFO] Installed Schema: \phpbb\viglink\migrations\viglink_ask_admin; Time: 0.00 seconds
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_data
+[DEBUG] Migration already effectively installed (skipped): \phpbb\viglink\migrations\viglink_cron
+[DEBUG] Apply dependencies of \phpbb\viglink\migrations\viglink_ask_admin.
+[DEBUG] Installing Data: \phpbb\viglink\migrations\viglink_ask_admin.
+[INFO] Installed Data: \phpbb\viglink\migrations\viglink_ask_admin; Time: 0.04 seconds
