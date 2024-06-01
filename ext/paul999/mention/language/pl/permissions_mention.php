@@ -1,13 +1,16 @@
 <?php
 /**
  *
- * Change Post Time [English]
+ * phpBB mentions. An extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2015 javiexin ( www.exincastillos.es )
- * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
- * @author Javier Lopez (javiexin)
+ * @copyright (c) 2016, paul999, https://www.phpbbextensions.io
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
  */
 
+/**
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -34,10 +37,9 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
-$lang = array_merge($lang, array(
-	'JX_CHANGE_POST_TIME'				=> 'Change post time',
-	'JX_CHANGE_POST_TIME_DATE'			=> 'YYYY-MM-DD',
-	'JX_CHANGE_POST_TIME_TIME'			=> 'HH:MM',
+$lang = array_merge(
+	$lang, array(
+		'ACL_U_CAN_MENTION'      => 'Can use the mention system',
 
-	'LOG_MCP_JX_CHANGE_POSTTIME'		=> '<strong>Changed post #%4$s time in topic “%1$s”</strong><br />» from %2$s to %3$s',
-));
+	)
+);

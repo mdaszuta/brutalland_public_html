@@ -1,12 +1,13 @@
 <?php
+
 /**
- *
- * Change Post Time [English]
- *
- * @copyright (c) 2015 javiexin ( www.exincastillos.es )
- * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
- * @author Javier Lopez (javiexin)
- */
+*
+*
+* @package - Search User Topics
+* @copyright (c) 2015 RMcGirr83
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 if (!defined('IN_PHPBB'))
 {
@@ -29,15 +30,12 @@ if (empty($lang) || !is_array($lang))
 // You do not need this where single placeholders are used, e.g. 'Message %d' is fine
 // equally where a string contains only two placeholders which are used to wrap text
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
-//
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
-//
 
 $lang = array_merge($lang, array(
-	'JX_CHANGE_POST_TIME'				=> 'Change post time',
-	'JX_CHANGE_POST_TIME_DATE'			=> 'YYYY-MM-DD',
-	'JX_CHANGE_POST_TIME_TIME'			=> 'HH:MM',
-
-	'LOG_MCP_JX_CHANGE_POSTTIME'		=> '<strong>Changed post #%4$s time in topic “%1$s”</strong><br />» from %2$s to %3$s',
+	'SEARCH_USER_TOPICS'	=> 'Pokaż tematy założone przez użytkownika',
+	'TOPICS_PER_DAY'		=> '%.2f tematów dziennie',
+	'TOPICS_PERCENT'		=> '%.2f%% wszystkich tematów',
+	'SUT_TOTAL_TOPICS'		=> 'Tematy',
 ));

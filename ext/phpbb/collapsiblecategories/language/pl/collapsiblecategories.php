@@ -1,13 +1,16 @@
 <?php
 /**
  *
- * Change Post Time [English]
+ * Collapsible Categories extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2015 javiexin ( www.exincastillos.es )
- * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
- * @author Javier Lopez (javiexin)
+ * @copyright (c) 2015 phpBB Limited <https://www.phpbb.com>
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
  */
 
+/**
+* DO NOT CHANGE
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -35,9 +38,5 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'JX_CHANGE_POST_TIME'				=> 'Change post time',
-	'JX_CHANGE_POST_TIME_DATE'			=> 'YYYY-MM-DD',
-	'JX_CHANGE_POST_TIME_TIME'			=> 'HH:MM',
-
-	'LOG_MCP_JX_CHANGE_POSTTIME'		=> '<strong>Changed post #%4$s time in topic “%1$s”</strong><br />» from %2$s to %3$s',
+	'COLLAPSIBLE_CATEGORIES_TITLE'		=> 'Ukryj/pokaż kategorię',
 ));

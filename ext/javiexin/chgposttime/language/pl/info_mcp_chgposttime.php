@@ -35,9 +35,9 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'JX_CHANGE_POST_TIME'				=> 'Change post time',
-	'JX_CHANGE_POST_TIME_DATE'			=> 'YYYY-MM-DD',
-	'JX_CHANGE_POST_TIME_TIME'			=> 'HH:MM',
+	'JX_CHANGE_POST_TIME'				=> 'Zmień datę publikacji postu',
+	'JX_CHANGE_POST_TIME_DATE'			=> 'RRRR-MM-DD',
+	'JX_CHANGE_POST_TIME_TIME'			=> 'GG:MM',
 
-	'LOG_MCP_JX_CHANGE_POSTTIME'		=> '<strong>Changed post #%4$s time in topic “%1$s”</strong><br />» from %2$s to %3$s',
+	'LOG_MCP_JX_CHANGE_POSTTIME'		=> '<strong>Zmienił datę publikacji #%4$s postu w temacie “%1$s”</strong><br />» z %2$s na %3$s',
 ));

@@ -24,9 +24,9 @@ if (empty($lang) || !is_array($lang))
  * language items (That are directly needed by the notification system) in this file.
  */
  
-$notification_mention_string = '<div class="notifications_reference">%2$s</div>Mentioned by %1$s';
+$notification_mention_string = '<div class="notifications_reference">%2$s</div>oznaczenie %1$s';
  
 $lang = array_merge($lang, array(
 	'MENTION_MENTION_NOTIFICATION'	=> $notification_mention_string,
-	'NOTIFICATION_TYPE_MENTION'     => 'Someone mentioned me'
+	'NOTIFICATION_TYPE_MENTION'     => 'Wspomniano cię'
 ));

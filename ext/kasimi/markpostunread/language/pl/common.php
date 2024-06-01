@@ -20,15 +20,15 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	// Viewtopic
-	'MARKPOSTUNREAD_MARK_UNREAD'			=> 'Mark post unread',
-	'MARKPOSTUNREAD_MARKED_UNREAD'			=> 'Post successfully marked unread.',
+	'MARKPOSTUNREAD_MARK_UNREAD'			=> 'Oznacz post jako nieprzeczytany',
+	'MARKPOSTUNREAD_MARKED_UNREAD'			=> '<p class="fbr-m-info">Post oznaczony jako nieprzeczytany<p>',
 	'MARKPOSTUNREAD_REDIRECT_FORMAT'		=> '%s<br /><br />%s<br /><br />%s',
 
 	// Navbar
-	'MARKPOSTUNREAD_UNREAD_NUM_MAX'			=> 'Unread posts in over %1$d topics',
+	'MARKPOSTUNREAD_UNREAD_NUM_MAX'			=> 'Nowe posty w ponad %1$d tematach',
 	'MARKPOSTUNREAD_UNREAD_NUM'				=> array(
-		0 => 'No unread posts',
-		1 => 'Unread posts in %1$d topic',
-		2 => 'Unread posts in %1$d topics',
+		0 => 'Brak nowych postów',
+		1 => 'Nowe posty w %1$d temacie',
+		2 => 'Nowe posty w %1$d tematach',
 	),
 ));

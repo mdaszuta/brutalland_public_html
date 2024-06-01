@@ -1,0 +1,8 @@
+Subject: Wspomniano o Tobie
+
+"{USERNAME}" in "{TOPIC_TITLE}" at "{SITENAME}".
+
+Aby zobaczyć post, w którym o Tobie wspomniano użyj poniższego linka:
+{U_LINK_TO_TOPIC}
+
+{EMAIL_SIG}
