@@ -263,7 +263,6 @@ class pagination
 			$tpl_prefix . 'TOTAL_PAGES'		=> $total_pages,
 			$tpl_prefix . 'CURRENT_PAGE'	=> $on_page,
 			$tpl_prefix . 'PAGE_NUMBER'		=> $this->on_page($num_items, $per_page, $start),
-			$tpl_prefix . 'PAGE_NUMBER_S'	=> $this->get_on_page($per_page, $start),
 		);
 
 		if ($tpl_block_name)
