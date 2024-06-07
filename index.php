@@ -75,7 +75,7 @@ if (($mark_notification = $request->variable('mark_notification', 0)))
 
 display_forums('', $config['load_moderators']);
 
-/** $order_legend = ($config['legend_sort_groupname']) ? 'group_name' : 'group_legend';
+$order_legend = ($config['legend_sort_groupname']) ? 'group_name' : 'group_legend';
 // Grab group details for legend display
 if ($auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))
 {
@@ -100,7 +100,7 @@ else
 }
 $result = $db->sql_query($sql);
 
-// @var \phpbb\group\helper $group_helper 
+/** @var \phpbb\group\helper $group_helper */
 $group_helper = $phpbb_container->get('group_helper');
 
 $legend = array();
@@ -121,7 +121,6 @@ while ($row = $db->sql_fetchrow($result))
 $db->sql_freeresult($result);
 
 $legend = implode($user->lang['COMMA_SEPARATOR'], $legend);
-**/
 
 // Generate birthday list if required ...
 $birthdays = $birthday_list = array();
@@ -206,7 +205,7 @@ $template->assign_vars(array(
 	'TOTAL_USERS'	=> $user->lang('TOTAL_USERS', (int) $config['num_users']),
 	'NEWEST_USER'	=> $user->lang('NEWEST_USER', get_username_string('full', $config['newest_user_id'], $config['newest_username'], $config['newest_user_colour'])),
 
-//	'LEGEND'		=> $legend,
+	'LEGEND'		=> $legend,
 	'BIRTHDAY_LIST'	=> (empty($birthday_list)) ? '' : implode($user->lang['COMMA_SEPARATOR'], $birthday_list),
 
 	'FORUM_IMG'				=> $user->img('forum_read', 'NO_UNREAD_POSTS'),

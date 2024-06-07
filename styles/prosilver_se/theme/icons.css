@@ -9,7 +9,6 @@
 .icon-pm						{ background-image: url("./images/icon_pm.gif"); }
 
 /* Profile & navigation icons */
-.imageset.icon_contact		{ background-image: url("./images/icon_contact.png"); }
 
 a.top, a.top2 { background-image: url("./images/icon_back_top.png"); }
 a.top:hover, a.top2:hover { background-image: url("./images/icon_back_top_2.png"); }
