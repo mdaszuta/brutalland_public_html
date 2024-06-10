@@ -13,8 +13,6 @@ body{padding:0;}
 #cp-main .forabg, #cp-main .forumdb, #cp-main .post, #cp-main .panel{border-radius:7px;}
 .logo{display:none;float:none;padding:10px;}
 .headerbar + .navbar{margin-top:-5px;}
-.responsive-search{display:block !important;}
-.responsive-search a{display:block;width:16px;height:22px;text-indent:99px;overflow:hidden;background-position:50% 50%;background-repeat:no-repeat;text-decoration:none;}
 //li.header dt{text-align:center;text-transform:none;line-height:1em;font-size:1.2em;padding-bottom:4px;}
 //ul.topiclist li.header dt, ul.topiclist li.header dt .list-inner{margin-right:0 !important;padding-right:0;}
 ul.topiclist li.header dd{display:none !important;}

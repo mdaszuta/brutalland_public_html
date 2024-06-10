@@ -8,11 +8,6 @@
 	<!-- ENDIF -->
 
 	<!-- EVENT forumlist_body_category_header_before -->
-
-	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW or forumrow.S_NO_CAT -->
-		<a class="category<!-- IF forumrow.S_FORUM_HIDDEN --> hidden-category<!-- ENDIF -->" id="category{{ forumrow.FORUM_ID }}" style="display: none; height: 0"></a>
-	<!-- ENDIF -->
-
 	
 	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW or forumrow.S_NO_CAT  -->
 		<div class="forabg">
@@ -32,12 +27,6 @@
 						</dd>
 					</dl>
 					<!-- EVENT forumlist_body_category_header_row_append -->
-					<!-- IF not S_IS_BOT -->
-						<a href="{forumrow.U_COLLAPSE_URL}"
-						   class="collapse-btn collapse-<!-- IF forumrow.S_FORUM_HIDDEN -->show<!-- ELSE -->hide<!-- ENDIF -->"
-						   data-hidden="{{ forumrow.S_FORUM_HIDDEN }}" data-ajax="phpbb_collapse" data-overlay="true"
-						   title="{{ lang('COLLAPSIBLE_CATEGORIES_TITLE') }}" style="display: none; line-height: 0;"></a>
-					<!-- ENDIF -->
 				</li>
 			</ul>
 			<ul class="topiclist forums">

@@ -85,6 +85,7 @@ table.table1 tbody tr.bg3,
 /* TEXT-TRANSFORMS */
 
 #m-name .m-list,
+#m-feed-topics,
 .m-labeled-box-bg strong,
 #m-ksywa .main-m-bottom a,
 .pagination,
@@ -143,11 +144,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 #ToTop,
 #OnBottom{
 	font: normal normal normal 14px/1 FontAwesome;
-}
-
-.nav-up,
-.nav-down{
-	font: normal normal 25px/25px sans-serif;
 }
 
 .spoilbtn{

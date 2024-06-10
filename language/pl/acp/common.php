@@ -9,6 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2015-02-02 21:45:45 Zespół Olympus.pl $
+* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -107,6 +108,8 @@ $lang = array_merge($lang, array(
 	'ACP_GROUPS_MANAGEMENT'			=> 'Zarządzanie grupą',
 	'ACP_GROUPS_PERMISSIONS'		=> 'Uprawnienia globalne grup',
 	'ACP_GROUPS_POSITION'			=> 'Pozycjonowanie grup',
+	
+	'ACP_HELP_PHPBB'			=> 'Wsparcie phpBB',
 
 	'ACP_ICONS'					=> 'Ikony tematu',
 	'ACP_ICONS_SMILIES'			=> 'Ikony/emotikony',
@@ -167,7 +170,6 @@ $lang = array_merge($lang, array(
 	'ACP_SEARCH_SETTINGS'		=> 'Wyszukiwanie',
 
 	'ACP_SECURITY_SETTINGS'		=> 'Zabezpieczenia',
-	'ACP_SEND_STATISTICS'		=> 'Informacje statystyczne',
 	'ACP_SERVER_CONFIGURATION'	=> 'Konfiguracja serwera',
 	'ACP_SERVER_SETTINGS'		=> 'Serwer',
 	'ACP_SIGNATURE_SETTINGS'	=> 'Podpisy',
@@ -224,6 +226,19 @@ $lang = array_merge($lang, array(
 	'ADM_LOGGED_OUT'		=> 'Wylogowano z panelu administracji',
 
 	'BACK'					=> 'Wstecz',
+	
+	'CANNOT_CHANGE_FILE_GROUP'	=> 'Nie można zmienić pliku grupy',
+	'CANNOT_CHANGE_FILE_PERMISSIONS'	=> 'Nie można zmienić uprawnień pliku',
+	'CANNOT_COPY_FILES'		=> 'Nie można skopiować plików',
+	'CANNOT_CREATE_SYMLINK'	=> 'Nie można utworzyć symlinku',
+	'CANNOT_DELETE_FILES'	=> 'Nie można usunąć plików w systemie',
+	'CANNOT_DUMP_FILE'		=> 'Nie można zrzucić pliku',
+	'CANNOT_MIRROR_DIRECTORY'	=> 'Nie można skopiować folderu',
+	'CANNOT_RENAME_FILE'	=> 'Nie można zmienić nazwy pliku w systemie',
+	'CANNOT_TOUCH_FILES'	=> 'Nie można stwierdzić czy plik istnieje w systemie',
+
+	'CONTAINER_EXCEPTION' => 'phpBB encountered an error building the container due to an installed extension. For this reason, all extensions have been temporarily disabled. Please try purging your forum cache. All extensions will automatically be re-enabled once the container error is resolved. If this error continues, please visit <a href="https://www.phpbb.com/support">phpBB.com</a> for support.',
+	'EXCEPTION' => 'Wyjątek',
 
 	'COLOUR_SWATCH'			=> 'Wybierz kolor',
 	'CONFIG_UPDATED'		=> 'Konfiguracja została zmieniona.',
@@ -231,6 +246,7 @@ $lang = array_merge($lang, array(
 	'CRON_NO_SUCH_TASK'		=> 'Nie można znaleźć zadania „%s”.',
 	'CRON_NO_TASK'			=> 'Nie ma potrzeby uruchamiania zadań teraz.',
 	'CRON_NO_TASKS'			=> 'Nie znaleziono zadań.',
+	'CURRENT_VERSION'		=> 'Zainstalowana wersja',
 
 	'DEACTIVATE'				=> 'Dezaktywuj',
 	'DIRECTORY_DOES_NOT_EXIST'	=> 'Podana ścieżka „%s” nie istnieje.',
@@ -255,7 +271,8 @@ $lang = array_merge($lang, array(
 	'INSTALL'				=> 'Instaluj',
 	'IP'					=> 'Adres IP',
 	'IP_HOSTNAME'			=> 'Adresy IP lub nazwy serwerów',
-
+	
+	'LATEST_VERSION'		=> 'Najnowsza wersja',
 	'LOAD_NOTIFICATIONS'			=> 'Wyświetlaj powiadomienia',
 	'LOAD_NOTIFICATIONS_EXPLAIN'	=> 'Wyświetla wykaz powiadomień na każdej stronie – zazwyczaj w nagłówku.',
 	'LOGGED_IN_AS'			=> 'Zalogowany użytkownik:',
@@ -287,8 +304,10 @@ $lang = array_merge($lang, array(
 	'PERMISSIONS_TRANSFERRED'			=> 'Uprawnienia skopiowane',
 	'PERMISSIONS_TRANSFERRED_EXPLAIN'	=> 'Obecnie masz takie same uprawnienia, jak %1$s. Możesz przeglądać witrynę z uprawnieniami tego użytkownika, ale nie masz dostępu do panelu administracji, ponieważ uprawnienia administratora nie zostały skopiowane. Możesz <a href="%2$s"><strong>przywrócić swoje uprawnienia</strong></a> w każdej chwili.',
 	'PROCEED_TO_ACP'					=> '%sPrzejdź do panelu administracji%s',
-
+	
+	'RELEASE_ANNOUNCEMENT'		=> 'Ogłoszenie',
 	'REMIND'							=> 'Przypomnij',
+	'REPARSE_LOCK_ERROR'				=> 'Reparsowanie jest aktualnie wykonywane przez inny proces.',
 	'RESYNC'							=> 'Synchronizuj',
 
 	'RUNNING_TASK'			=> 'Uruchamianie zadania: %s.',
@@ -309,6 +328,10 @@ $lang = array_merge($lang, array(
 	'UCP'					=> 'Panel zarządzania kontem',
 	'USERNAMES_EXPLAIN'		=> 'Każdą nazwę użytkownika wpisz w osobnym wierszu.',
 	'USER_CONTROL_PANEL'	=> 'Panel zarządzania kontem',
+	
+	'UPDATE_NEEDED'			=> 'Forum nie jest aktualne.',
+	'UPDATE_NOT_NEEDED'		=> 'Forum jest aktualne.',
+	'UPDATES_AVAILABLE'		=> 'Dostępne są aktualizacje:',
 
 	'WARNING'				=> 'Ostrzeżenie',
 ));
@@ -420,6 +443,11 @@ $lang = array_merge($lang, array(
 	'VALUE'						=> 'Wartość',
 	'VERSIONCHECK_FAIL'			=> 'Nie udało się uzyskać informacji o ostatniej wersji.',
 	'VERSIONCHECK_FORCE_UPDATE'	=> 'Sprawdź wersję',
+	'VERSION_CHECK'				=> 'Sprawdź wersję',
+	'VERSION_CHECK_EXPLAIN'		=> 'Sprawdź czy posiadasz aktualną wersję skryptu phpBB.',
+	'VERSION_NOT_UP_TO_DATE_ACP'	=> 'Twoja wersja skryptu phpBB jest nieaktualna.<br />Kliknij poniższy link, aby dowiedzieć się więcej o najnowszej wersji phpBB oraz jak przeprowadzić aktualizację.',
+	'VERSION_NOT_UP_TO_DATE_TITLE'	=> 'Twoja wersja skryptu phpBB jest nieaktualna.',
+	'VERSION_UP_TO_DATE_ACP'	=> 'Posiadasz najnowszą wersję skryptu phpBB. Nie trzeba jej aktualizować.',
 	'VIEW_ADMIN_LOG'			=> 'Dziennik administratorów',
 	'VIEW_INACTIVE_USERS'		=> 'Lista nieaktywnych użytkowników',
 
@@ -452,16 +480,18 @@ $lang = array_merge($lang, array(
 	'USER_IS_INACTIVE'		=> 'Użytkownik jest nieaktywny',
 ));
 
-// Send statistics page
+// Help support phpBB page
 $lang = array_merge($lang, array(
 	'EXPLAIN_SEND_STATISTICS'	=> 'Wyślij informacje o swoim serwerze i konfiguracji witryny do phpBB w celu analiz statystycznych. Wszystkie informacje mogące zidentyfikować ciebie i twoją witrynę zostaną usunięte. Wszystkie dane są całkowicie <strong>anonimowe</strong>. Będą pomocne nam w podjęciu decyzji o kierunku rozwoju phpBB. Statystyki są dostępne publicznie. Udostępniamy je również programistom projektu PHP – języka, na którego bazie oparte jest phpBB.',
 	'EXPLAIN_SHOW_STATISTICS'	=> 'Używając poniższego przycisku, możesz zobaczyć podgląd wszystkich wysyłanych danych.',
 	'DONT_SEND_STATISTICS'		=> 'Jeśli nie chcesz wysyłać danych statystycznych do phpBB, wróć do panelu administracji.',
 	'GO_ACP_MAIN'				=> 'Przejdź do strony startowej panelu administracji',
 	'HIDE_STATISTICS'			=> 'Ukryj szczegóły',
-	'SEND_STATISTICS'			=> 'Wyślij',
+	'SEND_STATISTICS'			=> 'Informacje statystyczne',
+	'SEND_STATISTICS_LONG'		=> 'Wyślij informacje statystyczne',
 	'SHOW_STATISTICS'			=> 'Wyświetl szczegóły',
 	'THANKS_SEND_STATISTICS'	=> 'Dziękujemy za wysłanie informacji.',
+	'FAIL_SEND_STATISTICS'		=> 'Nie udało się wysłać informacji.',
 ));
 
 // Log Entries
@@ -792,7 +822,8 @@ $lang = array_merge($lang, array(
 	'LOG_WORD_DELETE'		=> '<strong>Usunięto cenzurę słowa</strong><br />» %s',
 	'LOG_WORD_EDIT'			=> '<strong>Edytowano cenzurowane słowo</strong><br />» %s',
 
-	'LOG_EXT_ENABLE'	=> '<strong>Rozszerzenie włączone</strong><br />» %s',
-	'LOG_EXT_DISABLE'	=> '<strong>Rozszerzenie wyłączone</strong><br />» %s',
+	'LOG_EXT_ENABLE'	=> '<strong>Włączono rozszerzenie</strong><br />» %s',
+	'LOG_EXT_DISABLE'	=> '<strong>Wyłączono rozszerzenie</strong><br />» %s',
 	'LOG_EXT_PURGE'		=> '<strong>Dane rozszerzenia zostały usunięte</strong><br />» %s',
+	'LOG_EXT_UPDATE'    => '<strong>Zaktualizowano rozszerzenie</strong><br />» %s',
 ));

@@ -1,0 +1,29 @@
+.nav-up, .nav-down {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	right: 0%;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+	font: normal normal 25px/25px sans-serif;
+	opacity: .5;
+	padding: 3px;
+	margin-bottom: 5px;
+	width: 25px;
+	height: 25px;
+}
+
+.nav-up {
+	bottom: 40px;
+}
+
+.nav-down {
+	bottom: 5px;
+}
+
+.nav-down:hover,
+.nav-up:hover {
+	opacity: 1;
+	box-shadow: 0 5px 0.5em -1px #666;
+}

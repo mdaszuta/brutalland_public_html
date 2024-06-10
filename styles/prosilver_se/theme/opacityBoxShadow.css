@@ -46,9 +46,7 @@
 .post-buttons #post_b_2:hover,
 #page-header,
 ul.button,
-.pagination,
-.nav-up,
-.nav-down{
+.pagination{
 	opacity: 0.5;
 }
 
@@ -117,9 +115,7 @@ li.row:hover .topic-reply-counter.unread,
 .brutalform select:focus ~ .brutalform-label,
 .brutalform .brutalform-timezone-select:focus ~ .brutalform-label,
 #page-footer #nav-footer:hover,
-.contact-box-all .m-labeled-box-button:hover .fa,
-.nav-down:hover,
-.nav-up:hover{
+.contact-box-all .m-labeled-box-button:hover .fa{
 	opacity: 1;
 }
 

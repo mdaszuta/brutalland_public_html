@@ -55,35 +55,7 @@ jQuery(function($) {
 		});
 	};
 
-	$('.postbody').on('click', '.post-number', function(e) {
-		e.preventDefault();
-		$(this).toClipboard({
-			text: function() {
-				return $(this).find('a').get(0).href;
-			},
-			success: function(text) {
-				$(this).tooltip({
-					text		: postNumbers.lang.copied,
-					speedIn		: 100,
-					alive		: 500,
-					speedOut	: 1000
-				});
-			},
-			error: function(text) {
-				var $input = $('<input>', {
-					type		: 'text',
-					value		: text,
-					css			: { width: '100%' }
-				});
-				phpbb.alert(postNumbers.lang.copyManually, $input);
-				setTimeout(function() {
-					$input.focus().select();
-				}, 1);
-			}
-		});
-	});
-	
-	$('.author-postnumber-mobile').on('click', '.post-number', function(e) {
+	$('.postbody,.author-postnumber-mobile').on('click', '.post-number', function(e) {
 		e.preventDefault();
 		$(this).toClipboard({
 			text: function() {

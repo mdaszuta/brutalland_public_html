@@ -4,7 +4,7 @@
 $dbms = 'phpbb\\db\\driver\\mysqli';
 $dbhost = 'localhost';
 $dbport = '';
-$dbname = 'forum_brutalland';
+$dbname = 'forum_brutalland_local';
 $dbuser = 'root';
 $dbpasswd = '';
 $table_prefix = 'phpbb_';

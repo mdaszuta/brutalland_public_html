@@ -38,9 +38,9 @@ if (empty($lang) || !is_array($lang))
 // Merge the following language entries into the lang array
 
 $lang = array_merge($lang, array(
-	'AB_ACTIVE'		=> 'active',
-	'AB_TOPICS'		=> 'news', // no capital!
-	'AB_MINE'		=> 'mine',
-	'AB_NEW'		=> 'new',
-	'AB_UNREAD'		=> '',
+	'AB_ACTIVE'		=> 'Active',
+	'AB_TOPICS'		=> 'Active topics', // no capital!
+	'AB_MINE'		=> 'Mine',
+	'AB_NEW'		=> 'New',
+	'AB_UNREAD'		=> 'Unread',
 ));

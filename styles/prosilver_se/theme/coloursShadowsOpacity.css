@@ -463,9 +463,7 @@ blockquote.uncited,
 blockquote blockquote.uncited,
 .codebox,
 .member-search.panel,
-.phpbb_alert,
-.nav-up,
-.nav-down{
+.phpbb_alert{
 	border-radius: 5px;
 }
 
@@ -526,9 +524,7 @@ li:not(.header) .lastpost,
 .rozwijany-box-devil,
 #picture-box-all a,
 #list-box-all a,
-#abbc3_buttons .fa,
-.nav-up,
-.nav-down{
+#abbc3_buttons .fa{
 	cursor: pointer;
 }
 

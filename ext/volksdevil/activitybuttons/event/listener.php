@@ -119,7 +119,7 @@ class listener implements EventSubscriberInterface
 	// Count Unread Posts
 
 			$this->template->assign_vars(array(
-			'L_AB_UNREAD'=> $this->user->lang['AB_UNREAD'] . '' . $unread_posts,
+			'L_AB_UNREAD'=> /**$this->user->lang['AB_UNREAD'] . '&nbsp;(' . */$unread_posts/** . ')'*/,
 			));
 		}
 	}

@@ -422,11 +422,6 @@ blockquote blockquote.uncited,
 .panel-container:not(#cp-main) .panel li.row.bg1{ box-shadow:0 1px 1px -1px #ee0000, inset 0 4px 9px rgba(238, 0, 0, .1); }
 .panel-container:not(#cp-main) .panel li.row.bg2{ box-shadow:0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1); }
 
-.nav-up:hover,
-.nav-down:hover{
-	box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
-}
-
 .bg1,
 table.zebra-list tr:nth-child(odd) td,
 ul.zebra-list li:nth-child(odd){
@@ -462,11 +457,6 @@ ul.zebra-list li:nth-child(even):hover{
 
 .phpbb_alert{
 	box-shadow: 0 1px 1px -1px #257EDE, inset 0 4px 9px rgba(37, 126, 222, .1);
-}
-
-.nav-down:hover,
-.nav-up:hover{
-	box-shadow: 0 5px 0.5em -1px #666;
 }
 
 /* RESPONSIVE */

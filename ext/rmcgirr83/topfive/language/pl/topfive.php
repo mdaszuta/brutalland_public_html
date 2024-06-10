@@ -35,9 +35,9 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'TOP_FIVE'			=> 'Top 5',
 	'NEWEST_TOPICS'		=> 'Ostatnie posty',
-	'NO_TOPIC_EXIST'	=> 'Brak postów do wyœwietlenia',
-	'TOP_FIVE_ACTIVE'	=> '',
-	'TOP_FIVE_NEWEST'	=> '',
-	'IN'                => 'w',
+	'NO_TOPIC_EXIST'	=> 'Brak postÃ³w do wyÅ›wietlenia',
+	'TOP_FIVE_ACTIVE'	=> 'Najbardziej aktywni',
+	'TOP_FIVE_NEWEST'	=> 'Ostatnio zarejestrowani',
+	'IN'                => 'W',
 	'BY'                => 'przez:',
 ));

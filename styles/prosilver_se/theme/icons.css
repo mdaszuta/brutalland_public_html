@@ -1,12 +1,8 @@
 .icon-pages						{ background-image: url("./images/icon_pages.gif"); }
 .row .pagination				{ background-image: url("./images/icon_pages.gif"); }
-.icon-sendemail					{ background-image: url("./images/icon_sendemail.gif"); }
-.icon-search, .responsive-search a	{ background-image: url("./images/icon_search.gif"); }
+.icon-search	{ background-image: url("./images/icon_search.gif"); }
 
-.icon-sendemail:hover					{ background-image: url("./images/icon_sendemail_2.gif"); }
-.icon-search:hover, .responsive-search a:hover	{ background-image: url("./images/icon_search_2.gif"); }
-
-.icon-pm						{ background-image: url("./images/icon_pm.gif"); }
+.icon-search:hover	{ background-image: url("./images/icon_search_2.gif"); }
 
 /* Profile & navigation icons */
 
