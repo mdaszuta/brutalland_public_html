@@ -70,7 +70,7 @@ $(document).ready(function(){
 								<a href="<!-- IF top_five_topic.S_UNREAD -->{top_five_topic.U_TOPIC_UNREAD}<!-- ELSE -->{top_five_topic.U_TOPIC}<!-- ENDIF -->" class="flex topictitle<!-- IF top_five_topic.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF --> m-list-left-top">
 									{top_five_topic.TOPIC_TITLE}
 								</a>
-								<span class="flex meta m-list-left-bottom"><a href="{top_five_topic.U_FORUM}" class="topic-forumtitle<!-- IF top_five_topic.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_JUMP_TO} {L_FORUM_S}">{top_five_topic.FORUM_NAME}</a></span>											
+								<span class="flex meta m-list-left-bottom"><a href="{top_five_topic.U_FORUM}" class="topic-forumtitle<!-- IF top_five_topic.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_JUMP_TO} {L_FORUM_SMALL}">{top_five_topic.FORUM_NAME}</a></span>											
 							</div>
 							<span class="flex meta m-list-right" onclick="window.location.href='{top_five_topic.U_TOPIC}'" title="{L_GOTO_LAST_POST}">
 								<div class="m-list-right-top">{top_five_topic.USERNAME_FULL}</div>

@@ -39,7 +39,6 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ALL_AVAILABLE'			=> 'Wszystkie dostępne',
 	'ALL_RESULTS'			=> 'Wszystkie wyniki',
-	'JUST_RESULTS'			=> 'Wyniki wyszukiwania',
 
 	'DISPLAY_RESULTS'		=> 'Wyświetl wyniki jako',
 

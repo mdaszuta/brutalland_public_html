@@ -56,7 +56,6 @@ p.author,
 #remind span,
 #login a,
 #remind a,
-#quick-login-panel span,
 #pmheader-postingbox span,
 .tab > a,
 .fbr-left-big dd,
@@ -64,6 +63,7 @@ dl.details dd,
 dd label,
 .fbr-right label,
 label.fbr-right,
+#quick-login-panel span,
 #quick-login-panel a,
 #quick-login-panel h3{
 	color: #666;
@@ -292,7 +292,7 @@ li.row.bg2{
 }
 
 .pagination li.active span{
-	-webkit-box-shadow: 0 0 0 1px #257EDE inset;
+	//-webkit-box-shadow: 0 0 0 1px #257EDE inset;
 	box-shadow: 0 0 2px #257EDE;
 }
 
@@ -338,29 +338,27 @@ table.table1 tbody tr.bg3:hover{
 .inputbox{
 	outline: 0;
 	box-shadow: 0 1px 1px -1px #ee0000;
-	-webkit-transition: box-shadow 0.5s ease-in-out; transition: box-shadow 0.5s ease-in-out;
+	//-webkit-transition: box-shadow 0.5s ease-in-out;
+	transition: box-shadow 0.5s ease-in-out;
 }
 
 .inputbox:hover{
 	outline: 0;
 	box-shadow: 0 1px 1px -1px #32D635;
-	-webkit-transition: box-shadow 0.5s ease-in-out; transition: box-shadow 0.5s ease-in-out;
+	//-webkit-transition: box-shadow 0.5s ease-in-out;
+	transition: box-shadow 0.5s ease-in-out;
 }
 
 .inputbox:focus{
 	outline: 0;
 	box-shadow: 0 1px 1px -1px #257EDE;
-	-webkit-transition: box-shadow 0.5s ease-in-out; transition: box-shadow 0.5s ease-in-out;
+	//-webkit-transition: box-shadow 0.5s ease-in-out;
+	transition: box-shadow 0.5s ease-in-out;
 }
-
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
-#quick-login-panel {
-	//box-shadow: 0 1px 1px -1px #257EDE, inset 0 -4px 9px rgba(37, 126, 222, .5);
-}
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
 
 #brutalform-drafty-buttons .button2{
-	-webkit-transition: box-shadow 0.75s ease-out; transition: box-shadow 0.75s ease-out;
+	//-webkit-transition: box-shadow 0.75s ease-out;
+	transition: box-shadow 0.75s ease-out;
 }
 
 tags-input .tags,	

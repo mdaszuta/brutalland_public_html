@@ -9,6 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-10-07 18:24:32 Zespół Olympus.pl $
+* @Polska wersja językowa phpbb 3.2.0 -  18.02.2017, Mateusz Dutko (vader)  www.rnavspotters.pl
 */
 
 /**
@@ -80,8 +81,8 @@ $lang = array_merge($lang, array(
 	'ACCOUNT_COPPA'					=> 'Twoje konto zostało utworzone, ale musi zostać zatwierdzone. Więcej informacji znajdziesz w wysłanej do ciebie wiadomości e-mail.',
 	'ACCOUNT_EMAIL_CHANGED'			=> 'Twoje konto zostało zaktualizowane. Ta witryna jednak przy zmianie adresu e-mail wymaga ponownej aktywacji kont poprzez podanie klucza aktywującego. Klucz ten otrzymasz w specjalnej wiadomości na nowy adres e-mail. W niej też znajdziesz dalsze instrukcje.',
 	'ACCOUNT_EMAIL_CHANGED_ADMIN'	=> 'Twoje konto zostało zaktualizowane. Ta witryna przy zmianie adresu e-mail wymaga ponownej aktywacji kont przez administratora. Została już do niego wysłana informacja w tej sprawie. Gdy twoje konto zostanie ponownie aktywowane, otrzymasz stosowne powiadomienie.',
-	'ACCOUNT_INACTIVE'				=> 'Twoje konto zostało utworzone. Ta witryna jednak wymaga aktywacji kont poprzez podanie klucza aktywującego. Klucz ten otrzymasz w specjalnej wiadomości e-mail. W niej też znajdziesz dalsze instrukcje. Dostarczenie wiadomości może zająć dłuższą chwilę w zależności od dostawcy usługi e-mail. W przypadku braku wiadomości, sprawdź katalog przeznaczony na spam.',
-	'ACCOUNT_INACTIVE_ADMIN'		=> 'Twoje konto zostało utworzone. Ta witryna wymaga aktywacji kont przez administratora. Został on już poinformowany o utworzeniu nowego konta. Z chwilą aktywowania konta otrzymasz stosowne powiadomienie.',
+	'ACCOUNT_INACTIVE'				=> 'Twoje konto zostało utworzone. Ta witryna jednak wymaga aktywacji konta poprzez podanie klucza aktywującego. Klucz ten otrzymasz w specjalnej wiadomości e-mail, sprawdź również folder spam. W niej też znajdziesz dalsze instrukcje. Może to chwilę potrwać, prosimy o cierpliwość.',
+	'ACCOUNT_INACTIVE_ADMIN'		=> 'Twoje konto zostało utworzone. Ta witryna wymaga aktywacji konta przez administratora. Został on już poinformowany o utworzeniu nowego konta. Z chwilą aktywowania konta otrzymasz stosowne powiadomienie.',
 	'ACTIVATION_EMAIL_SENT'			=> 'E-mail aktywacyjny został wysłany na twój adres mailowy.',
 	'ACTIVATION_EMAIL_SENT_ADMIN'	=> 'E-mail aktywacyjny został wysłany na adresy mailowe administratorów.',
 	'ADD'							=> 'Dodaj',
@@ -113,7 +114,8 @@ $lang = array_merge($lang, array(
 	'AVATAR_DRIVER_REMOTE_EXPLAIN'	=> 'Odnośnik do awatara znajdującego się na innej stronie internetowej.',
 	'AVATAR_DRIVER_UPLOAD_TITLE'	=> 'Prześlij awatar',
 	'AVATAR_DRIVER_UPLOAD_EXPLAIN'	=> 'Prześlij swój awatar.',
-	'AVATAR_EXPLAIN'				=> 'Maksymalne wymiary<br /><strong>%1$s</strong> x <strong>%2$s</strong><br /><strong>%3$.2f KiB</strong>',
+	'AVATAR_EXPLAIN'		=> 'Maksymalne wymiary<br /><strong>%1$s</strong> x <strong>%2$s</strong><br /><strong>%3$.2f KiB</strong>',
+	'AVATAR_EXPLAIN_NO_FILESIZE'	=> 'Maksymalne wymiary: szerokość – %1$s, wysokość – %2$s.',
 	'AVATAR_FEATURES_DISABLED'		=> 'Funkcje awatarów są wyłączone.',
 	'AVATAR_GALLERY'				=> 'Galeria lokalna',
 	'AVATAR_GENERAL_UPLOAD_ERROR'	=> 'Nie można wysłać awatara do %s.',
@@ -342,6 +344,7 @@ $lang = array_merge($lang, array(
 	'NOTIFICATION_GROUP_MODERATION'						=> 'moderowanie',
 	'NOTIFICATION_GROUP_ADMINISTRATION'					=> 'administracja',
 	'NOTIFICATION_GROUP_POSTING'						=> 'publikowanie',
+	'NOTIFICATION_METHOD_BOARD'							=> 'Powiadamiaj',
 	'NOTIFICATION_METHOD_EMAIL'							=> 'E-mail',
 	'NOTIFICATION_METHOD_JABBER'						=> 'Jabber',
 	'NOTIFICATION_TYPE'									=> 'Typ powiadomienia',
@@ -452,7 +455,7 @@ $lang = array_merge($lang, array(
 	'POST_REPLY_PM'				=> 'Odpowiedz na wiadomość',
 	'PRINT_PM'					=> 'Podgląd wydruku',
 	'PREFERENCES_UPDATED'		=> 'Twoje ustawienia zostały zaktualizowane.',
-	'PROFILE_INFO_NOTICE'		=> 'Te informacje mogą być widoczne dla innych użytkowników. Zachowaj ostrożność przy zamieszczaniu informacji osobistych.',
+	'PROFILE_INFO_NOTICE'		=> 'Te informacje mogą być widoczne dla innych użytkowników. Zachowaj ostrożność przy zamieszczaniu informacji osobistych. Wszystkie pola oznaczone gwiazdką (*) muszą zostać wypełnione.',
 	'PROFILE_UPDATED'			=> 'Twój profil został zaktualizowany.',
 	'PROFILE_AUTOLOGIN_KEYS'	=> 'Dane logowania zapamiętane przez funkcję „Zapamiętaj mnie” są wykorzystywane do automatycznego logowania podczas odwiedzania witryny. Są one usuwane w trakcie wylogowywania, ale tylko z komputera, na którym nastąpiło wylogowanie. Tutaj znajdują się zapamiętane dane logowania utworzone na komputerach używanych do dostępu do tej witryny.',
 	'PROFILE_NO_AUTOLOGIN_KEYS'	=> 'Nie ma zapisanych danych logowania.',

@@ -396,12 +396,12 @@ while ($row = $db->sql_fetchrow($result))
 						preg_match('#p=([0-9]+)#', $row['session_page'], $on_page_p);
 						if (sizeof($on_page) && isset($topic_titles[$on_page[1]]))
 						{
-							$location = sprintf($user->lang['READING_TOPIC_TOPIC'], $forum_data[$forum_id]['forum_name'], $topic_titles[$on_page[1]]);
+							$location = sprintf($user->lang['READING_TOPIC_FORUM'], $forum_data[$forum_id]['forum_name'], $topic_titles[$on_page[1]]);
 							$location_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t=' . $on_page[1]);
 						}
 						else if (sizeof($on_page_p) && isset($topic_post_ids[$on_page_p[1]]))
 						{
-							$location = sprintf($user->lang['READING_TOPIC_TOPIC'], $forum_data[$forum_id]['forum_name'], $topic_titles[$topic_post_ids[$on_page_p[1]]]);
+							$location = sprintf($user->lang['READING_TOPIC_FORUM'], $forum_data[$forum_id]['forum_name'], $topic_titles[$topic_post_ids[$on_page_p[1]]]);
 							$location_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;p=' . $on_page_p[1]);
 						}
 						else

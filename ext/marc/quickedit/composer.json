@@ -1,29 +1,31 @@
 {
-	"name": "marc/quickedit",
-	"type": "phpbb-extension",
-	"description": "Adds quickediting capability to viewtopic.",
-	"homepage": "https://www.m-a-styles.de",
-	"version": "1.0.1",
-	"time": "2015-10-02 08:23:15",
-	"license": "GPL-2.0",
-	"authors": [{
-			"name": "Marc Alexander",
-			"email": "admin@m-a-styles.de",
-			"homepage": "http://www.m-a-styles.de",
-			"role": "Lead Developer"
-		}],
-	"require": {
-		"php": ">=5.3.3"
-	},
-	"extra": {
-		"display-name": "Quickedit",
-		"soft-require": {
-			"phpbb/phpbb": ">=3.1.6,<3.2.*@dev"
-		},
-		"version-check": {
-			"host": "www.m-a-styles.de",
-			"directory": "/updatecheck",
-			"filename": "quickedit.json"
-		}
-	}
+    "name": "marc/quickedit",
+    "type": "phpbb-extension",
+    "description": "Adds quickediting capability to viewtopic.",
+    "homepage": "https://www.m-a-styles.de",
+    "version": "1.0.1",
+    "time": "2015-10-02 08:23:15",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Marc Alexander",
+            "email": "admin@m-a-styles.de",
+            "homepage": "http://www.m-a-styles.de",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "extra": {
+        "display-name": "Quickedit",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.6,<3.2.*@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/quickedit",
+            "filename": "version_check"
+        }
+    }
 }

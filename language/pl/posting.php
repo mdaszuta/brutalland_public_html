@@ -9,6 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-10-07 18:24:32 Zespół Olympus.pl $
+* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -183,8 +184,10 @@ $lang = array_merge($lang, array(
 	'NO_POLL_TITLE'				=> 'Musisz podać tytuł ankiety.',
 	'NO_POST'					=> 'Żądany post nie istnieje.',
 	'NO_POST_MODE'				=> 'Nie podano trybu posta.',
+	'NO_TEMP_DIR'				=> 'Folder tymczasowy nie został znaleziony lub jest niedostępny.',	
 
 	'PARTIAL_UPLOAD'			=> 'Plik został wysłany tylko częściowo.',
+	'PHP_UPLOAD_STOPPED'			=> 'Wysyłanie załącznika zostało zatrzymane.',
 	'PHP_SIZE_NA'				=> 'Plik załącznika ma za duży rozmiar.<br />Nie może przekroczyć maksymalnego rozmiaru zdefiniowanego w ustawieniach.',
 	'PHP_SIZE_OVERRUN'			=> 'Plik załącznika ma za duży rozmiar. Maksymalny rozmiar pliku to %1$d %2$s.<br />Wartość ta jest zapisana w ustawieniach i nie może zostać przekroczona.',
 	'PLACE_INLINE'				=> 'Wstaw w tekst',

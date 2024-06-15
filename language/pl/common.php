@@ -8,7 +8,8 @@
 *
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
-* @Polish locale 2016-01-07 18:24:32 Zespół Olympus.pl $
+* @Polish locale 2014-11-29 18:24:32 Zespół Olympus.pl $
+* @Polska wersja językowa phpbb 3.2.0 -  18.02.2017, Mateusz Dutko (vader)  www.rnavspotters.pl
 */
 
 /**
@@ -83,6 +84,7 @@ $lang = array_merge($lang, array(
 	'ALL_POSTS'						=> 'Wszystkie posty',
 	'ALL_TIMES'						=> 'Strefa czasowa <abbr title="%2$s">%1$s</abbr>',
 	'ALL_TOPICS'					=> 'Wszystkie tematy',
+	'ALT_TEXT'						=> 'Alternatywny tekst',
 	'AND'							=> 'i',
 	'ARE_WATCHING_FORUM'			=> 'Obserwujesz to forum. Będziesz otrzymywać powiadomienia o nowych postach.',
 	'ARE_WATCHING_TOPIC'			=> 'Obserwujesz ten temat. Będziesz otrzymywać powiadomienia o nowych postach.',
@@ -97,6 +99,7 @@ $lang = array_merge($lang, array(
 	'AUTH_PROVIDER_OAUTH_SERVICE_BITLY'						=> 'Bitly',
 	'AUTH_PROVIDER_OAUTH_SERVICE_FACEBOOK'					=> 'Facebook',
 	'AUTH_PROVIDER_OAUTH_SERVICE_GOOGLE'					=> 'Google',
+	'AUTH_PROVIDER_OAUTH_SERVICE_TWITTER'					=> 'Twitter',
 	'AUTH_PROVIDER_OAUTH_TOKEN_ERROR_NOT_STORED'			=> 'Token OAuth nie jest przechowywany.',
 	'AUTH_PROVIDER_OAUTH_TOKEN_ERROR_INCORRECTLY_STORED'	=> 'Token OAuth jest nieprawidłowo przechowywany.',
 	'AVATAR_DISALLOWED_CONTENT'		=> 'Wysyłanie zostało przerwane, ponieważ przesyłany plik został zidentyfikowany jako potencjalnie niebezpieczny.',
@@ -105,11 +108,13 @@ $lang = array_merge($lang, array(
 	'AVATAR_EMPTY_FILEUPLOAD'		=> 'Wysłany plik awatara nie zawiera danych.',
 	'AVATAR_INVALID_FILENAME'		=> '%s jest nieprawidłową nazwą pliku.',
 	'AVATAR_NOT_UPLOADED'			=> 'Nie można wysłać awatara na serwer.',
+	'AVATAR_NO_TEMP_DIR'			=> 'Folder tymczasowy nie został znaleziony lub jest niedostępny.',
 	'AVATAR_NO_SIZE'			=> 'Nie można zidentyfikować wymiarów obrazka. Proszę wprowadzić je ręcznie.',
 	'AVATAR_PARTIAL_UPLOAD'			=> 'Plik został wysłany częściowo.',
 	'AVATAR_PHP_SIZE_NA'			=> 'Rozmiar pliku awatara jest za duży.<br />Nie można zidentyfikować maksymalnego rozmiaru pliku zdefiniowanego w ustawieniach witryny.',
 	'AVATAR_PHP_SIZE_OVERRUN'		=> 'Rozmiar pliku awatara jest za duży. Maksymalny dozwolony rozmiar pliku to %1$d %2$s.<br />Wartość ta jest zdefiniowana w ustawieniach witryny i użytkownik nie może jej zmienić.',
 	'AVATAR_REMOTE_UPLOAD_TIMEOUT'		=> 'Nie można przesłać wybranego awatara, ponieważ upłynął czas żądania.',
+	'AVATAR_PHP_UPLOAD_STOPPED'		=> 'Wysyłanie pliku zostało zatrzymane.',
 	'AVATAR_URL_INVALID'			=> 'Nieprawidłowy adres URL awatara.',
 	'AVATAR_URL_NOT_FOUND'			=> 'Nie znaleziono wybranego pliku.',
 	'AVATAR_WRONG_FILESIZE'			=> 'Plik awatara musi mieć rozmiar mniejszy niż %1$d %2$s.',
@@ -177,6 +182,9 @@ $lang = array_merge($lang, array(
 	'CONTACT'				=> 'Kontakt',
 	'CONTACT_USER'			=> 'Skontaktuj się z %s',
 	'CONTACT_US'			=> 'Kontakt',
+	'COOKIE_CONSENT_INFO'	=> 'Dowiedz się więcej',
+	'COOKIE_CONSENT_MSG'	=> 'Strona ta używa plików cookies (tzw. ciasteczka) w celach statystycznych, reklamowych oraz funkcjonalnych. Warunki przechowywania lub dostępu do plików cookies można określić w ustawieniach przeglądarki internetowej.',
+	'COOKIE_CONSENT_OK'		=> 'Akceptuję!',
 	'COOKIES_DELETED'		=> 'Usunięto wszystkie ciasteczka witryny.',
 	'CURRENT_TIME'			=> 'Dzisiaj jest %s',
 
@@ -245,7 +253,6 @@ $lang = array_merge($lang, array(
 	'FORGOT_PASS'			=> 'Nie pamiętam hasła',
 	'FORM_INVALID'			=> 'Wysyłany formularz był nieprawidłowy. Proszę spróbować ponownie.',
 	'FORUM'					=> 'Forum',
-	'FORUM_S'				=> 'działu',
 	'FORUMS'				=> 'Fora',
 	'FORUMS_MARKED'			=> 'Fora zostały oznaczone jako przeczytane.',
 	'FORUM_CAT'				=> 'Kategoria',
@@ -289,7 +296,6 @@ $lang = array_merge($lang, array(
 	'GB'						=> 'GB',
 	'GIB'						=> 'GiB',
 	'GO'						=> 'Wykonaj',
-	'JUST_OK'					=> 'OK',
 	'GOOGLEPLUS'				=> 'Google+',
 	'GOTO_FIRST_POST'			=> 'Przejdź do pierwszego posta',
 	'GOTO_LAST_POST'			=> 'Przejdź do ostatniego posta',
@@ -346,13 +352,13 @@ $lang = array_merge($lang, array(
 	'INTERESTS'					=> 'Zainteresowania',
 	'INVALID_DIGEST_CHALLENGE'	=> 'Błędna próba uporządkowania MD5.',
 	'INVALID_EMAIL_LOG'			=> '<strong>%s</strong> możliwe, że jest to nieprawidłowy adres e-mail?',
+	'INVALID_FEED_ATTACHMENTS'	=> 'Wybrany kanał informacyjny próbował pobrać załączniki z nieprawidłowymi ograniczeniami.',
 	'INVALID_PLURAL_RULE'		=> 'Wybrana reguła liczby mnogiej jest nieprawidłowa. Prawidłowe wartości zawierają się w przedziale 0 - 15.',
 	'IP'						=> 'IP',
 	'IP_BLACKLISTED'			=> 'Twój adres IP (%1$s) został zablokowany, ponieważ jest na liście niedozwolonych adresów. <a href="%2$s">Szczegóły</a>',
 
 	'JABBER'				=> 'Jabber',
 	'JOINED'				=> 'Rejestracja',
-	'JUMP_PAGE_NR'			=> 'Strona #',
 	'JUMP_PAGE'				=> 'Wprowadź numer strony, do której chcesz przejść',
 	'JUMP_TO'				=> 'Przejdź do',
 	'JUMP_TO_PAGE'			=> 'Przejdź do strony...',
@@ -375,7 +381,6 @@ $lang = array_merge($lang, array(
 	'LOCK_POST_EXPLAIN'					=> 'Zablokuj możliwość zmian posta',
 	'LOCK_TOPIC'						=> 'Zamknij temat',
 	'LOGIN'								=> 'Zaloguj się',
-	'JOIN'								=> 'Dołącz',
 	'LOGIN_CHECK_PM'					=> 'Zaloguj się, by sprawdzić prywatne wiadomości.',
 	'LOGIN_CONFIRMATION'				=> 'Potwierdzenie logowania',
 	'LOGIN_CONFIRM_EXPLAIN'				=> 'Aby zapobiec włamaniom do kont użytkowników, witryna po przekroczeniu dozwolonej liczby prób logowania wymaga wprowadzenia kodu potwierdzającego. Kod jest wyświetlony na znajdującym się poniżej obrazku. Jeśli z jakichś przyczyn nie możesz odczytać poniższego kodu, skontaktuj się z %sadministratorem%s witryny.',
@@ -457,7 +462,6 @@ $lang = array_merge($lang, array(
 	// A, B, C and others replied...
 	'NOTIFICATION_BOOKMARK'				=> 'odpowiedź %1$s',
 	'NOTIFICATION_FORUM'				=> '<em>Forum:</em> %1$',
-	'NOTIFICATION_METHOD_BOARD'			=> 'Powiadamiaj',
 	'NOTIFICATION_GROUP_REQUEST'		=> 'poproszono o przyłączenie do grupy %2$s %1$s',
 	'NOTIFICATION_GROUP_REQUEST_APPROVED'	=> 'zaakceptowano prośbę o przyłączenie do grupy %1$s.',
 	'NOTIFICATION_PM'					=> 'wiadomość %1$s',
@@ -566,7 +570,6 @@ $lang = array_merge($lang, array(
 		2	=> '%d px',
 		3	=> '%d px',
 	),
-	'PLAY_QUICKTIME_FILE'	=> 'Odtwórz plik QuickTime',
 	'PLEASE_WAIT'			=> 'Proszę czekać.',
 	'PM'					=> 'PW',
 	'PM_REPORTED'			=> 'Kliknij, by zobaczyć zgłoszenie',
@@ -618,9 +621,7 @@ $lang = array_merge($lang, array(
 	'READING_GLOBAL_ANNOUNCE'	=> 'Czyta ogłoszenie globalne',
 	'READING_LINK'				=> 'Przechodzi do forum %s',
 	'READING_TOPIC'				=> 'Czyta temat na forum %s',
-	'READING_TOPIC_TOPIC'		=> 'Czyta temat %2$s na forum %1$s',
 	'READ_PROFILE'				=> 'Profil',
-	'SHOW_PROFILE'				=> 'Pokaż profil',
 	'REASON'					=> 'Powód',
 	'RECORD_ONLINE_USERS'		=> 'Najwięcej użytkowników (<strong>%1$s</strong>) było online %2$s',
 	'REDIRECT'					=> 'Przekierowanie',
@@ -644,7 +645,6 @@ $lang = array_merge($lang, array(
 	'REPLY_WITH_QUOTE'			=> 'Odpowiedz z cytatem',
 	'REPLYING_GLOBAL_ANNOUNCE'	=> 'Odpowiada na ogłoszenie globalne',
 	'REPLYING_MESSAGE'			=> 'Odpowiada na wiadomość w %s',
-	'REPLYING_MESSAGE_TOPIC'	=> 'Odpowiada na wiadomość w temacie %2$s na forum %1$s',
 	'REPORT_BY'					=> 'Zgłoszone przez',
 	'REPORT_POST'				=> 'Zgłoś ten post',
 	'REPORTING_POST'			=> 'Zgłasza post',
@@ -696,8 +696,6 @@ $lang = array_merge($lang, array(
 	'SEARCH_USER_POSTS'			=> 'Posty użytkownika',
 	'SECONDS'					=> 's',
 	'SEE_ALL'					=> 'Zobacz wszystkie',
-	'SEE_ALL_NOT'				=> 'Wszystkie powiadomienia',
-	'SEE_ALL_NOT_S'				=> 'Wszystkie',
 	'SELECT'					=> 'Wybierz',
 	'SELECT_ALL_CODE'			=> 'Zaznacz cały',
 	'SELECT_DESTINATION_FORUM'	=> 'Wybierz docelowe forum',
@@ -711,10 +709,13 @@ $lang = array_merge($lang, array(
 	'SKYPE'						=> 'Skype',
 	'SMTP_NO_AUTH_SUPPORT'		=> 'Serwer SMTP nie obsługuje uwierzytelniania.',
 	'SORRY_AUTH_READ'		=> 'Nie masz uprawnień, aby przeglądać to forum.',
+	'SORRY_AUTH_READ_TOPIC'		=> 'Nie masz uprawnień, aby przeglądać ten temat.',
 	'SORRY_AUTH_VIEW_ATTACH'	=> 'Nie masz uprawnień, aby pobrać ten załącznik.',
 	'SORT_BY'					=> 'Sortuj wg',
+	'SORT_DIRECTION'			=> 'Kierunek',
 	'SORT_JOINED'				=> 'Data rejestracji',
 	'SORT_LOCATION'				=> 'Lokalizacja',
+	'SORT_OPTIONS'				=> 'Wyświetl opcje sortowania',
 	'SORT_RANK'					=> 'Ranga',
 	'SORT_POSTS'				=> 'Posty',
 	'SORT_TOPIC_TITLE'			=> 'Tytuł tematu',
@@ -782,7 +783,6 @@ $lang = array_merge($lang, array(
 	'TOPIC_TITLE'		=> 'Tytuł tematu',
 	'TOPIC_UNAPPROVED'	=> 'Ten temat nie został zaakceptowany.',
 	'TOPIC_DELETED'		=> 'Ten temat został usunięty.',
-	'DELETED_IMG'		=> '<div class="fa fa-recycle" title="Ten temat został usunięty"></div>',
 	'TOTAL_ATTACHMENTS'	=> 'Załączniki',
 	'TOTAL_LOGS'		=> array(
 		1	=> 'Wpisy dziennika: %d',
@@ -795,14 +795,11 @@ $lang = array_merge($lang, array(
 		3	=> 'Prywatne wiadomości: %d',
 	),
 	'TOPIC_POLL'		=> 'Ten temat zawiera ankietę.',
-	'REMOVE_RECIPIENT'	=> '<div class="fa fa-remove" title="Usuń odbiorcę"></div>',
-	'POLL_IMG'			=> '<div class="fa fa-bar-chart" title="Ten temat zawiera ankietę"></div>',
 	'TOTAL_POSTS'		=> 'Liczba postów',
 	'TOTAL_POSTS_COUNT'	=> array(
 		2	=> 'Liczba postów: <strong>%d</strong>',
 	),
 	'TOPIC_REPORTED'	=> 'Ten temat został zgłoszony',
-	'REPORTED_IMG'		=> '<div class="fa fa-exclamation-triangle" title="Ten temat został zgłoszony"></div>',
 	'TOTAL_TOPICS'		=> array(
 		2	=> 'Liczba tematów: <strong>%d</strong>',
 	),
@@ -909,6 +906,36 @@ $lang = array_merge($lang, array(
 	'YEAR_MONTH_DAY'	=> 'RRRR-MM-DD',
 	'YES'				=> 'Tak',
 	'YOU_LAST_VISIT'	=> 'Twoja ostatnia wizyta: %s',
+
+	/**
+	* ADDED LANGUAGE
+	*/
+
+	'CONFIRM_QUESTION_EXP'		=> '...',
+	'JUST_RESULTS'				=> 'Wyniki wyszukiwania',
+	'FORUM_SMALL'				=> 'działu',
+	'JUST_OK'					=> 'OK',
+	'JUMP_PAGE_NR'				=> 'Strona #',
+	'JOIN'						=> 'Dołącz',
+	'SHOW_PROFILE'				=> 'Pokaż profil',
+	'SEE_ALL_NOTIFICATIONS'		=> 'Wszystkie',
+	'DELETED_IMG'				=> '<div class="fa fa-recycle" title="Ten temat został usunięty"></div>',
+	'POLL_IMG'					=> '<div class="fa fa-bar-chart" title="Ten temat zawiera ankietę"></div>',
+	'REPORTED_IMG'				=> '<div class="fa fa-exclamation-triangle" title="Ten temat został zgłoszony"></div>',
+	'READING_TOPIC_FORUM'		=> 'Czyta temat %2$s na forum %1$s',
+	'REPLYING_MESSAGE_TOPIC'	=> 'Odpowiada na wiadomość w temacie %2$s na forum %1$s',
+
+	// Info BBCode - unused
+	'ABBC3_INFO_SHOW'	=> '► Informacje:',
+	'ABBC3_INFO_HIDE'	=> '▼ Informacje:',
+	'ABBC3_D_SHOW'		=> '▼ Dyskografia',
+	'ABBC3_D_HIDE'		=> '▲ Dyskografia',
+	'ABBC3_M_SHOW'		=> 'Skład ▼',
+	'ABBC3_M_HIDE'		=> 'Skład ▲',
+
+	/**
+	* END OF ADDED LANGUAGE
+	*/
 
 	'datetime'			=> array(
 		'TODAY'		=> 'dzisiaj',

@@ -179,7 +179,7 @@ function bbspecial(bbcode, bbcodeId) {
 				<a class="fa fa-picture-o"></a>
 			</div>
 			<div id="picture-box-all" class="rozwijany-box-all menu-all">
-				{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before1 %}
+				{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 				{% if S_BBCODE_IMG %}
 					<a accesskey="p" name="addbbcode14" value=" " onclick="bbstyle(14)" title="{{ lang('BBCODE_P_HELP') }}">Wstaw znacznik [img]<div class="fa fa-picture-o"></div>[/img]</a>
 				{% endif %}
@@ -222,8 +222,7 @@ function bbspecial(bbcode, bbcodeId) {
 			{% endif %}
 		</select>
 		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/plain.gif');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
-		
-		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
+
 	{% if loops.custom_tags %}
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
 			{% for custom_tag in loops.custom_tags %}

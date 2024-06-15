@@ -520,10 +520,10 @@ li:not(.header) .lastpost,
 .fa-search,
 .ajaxshoutbox_delete .fa-remove,
 .fa-exclamation-triangle,
-.spoilbtn,
 .rozwijany-box-devil,
 #picture-box-all a,
 #list-box-all a,
+.spoilbtn,
 #abbc3_buttons .fa{
 	cursor: pointer;
 }

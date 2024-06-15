@@ -1,6 +1,6 @@
 <!-- IF S_QUICK_REPLY and S_VIEWTOPIC -->
 <script type="text/javascript">
-$('#qr_postform').before('<div id="reprap" class="panel"><input class="button2" type="submit" value="{LA_SHOW_QR}"></div>').css('display', 'none');
+$('#qr_postform').before('<div id="reprap" class="panel" style="text-align: center;"><input class="button2" type="submit" value="{LA_SHOW_QR}"></div>').css('display', 'none');
 $('#reprap input[type=submit]').click(function(){
 	$(this).parent().toggleClass('ouvert').next('#qr_postform').slideToggle();
 	$('#reprap input[type=submit]').val('{LA_SHOW_QR}');

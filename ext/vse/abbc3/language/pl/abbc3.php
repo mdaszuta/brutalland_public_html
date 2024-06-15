@@ -32,14 +32,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_SHOW'		=> '► Pokaż',
 	'ABBC3_SPOILER_HIDE'		=> '▼ Ukryj',
 
-	// Info BBCode
-	'ABBC3_INFO_SHOW'	=> '► Informacje:',
-	'ABBC3_INFO_HIDE'	=> '▼ Informacje:',
-	'ABBC3_D_SHOW'		=> '▼ Dyskografia',
-	'ABBC3_D_HIDE'		=> '▲ Dyskografia',
-	'ABBC3_M_SHOW'		=> 'Skład ▼',
-	'ABBC3_M_HIDE'		=> 'Skład ▲',
-	
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
 

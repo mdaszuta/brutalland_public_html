@@ -249,7 +249,6 @@ $lang = array_merge($lang, array(
 	'FORGOT_PASS'			=> 'I forgot my password',
 	'FORM_INVALID'			=> 'The submitted form was invalid. Try submitting again.',
 	'FORUM'					=> 'Forum',
-	'FORUM_S'				=> 'forum',
 	'FORUMS'				=> 'Forums',
 	'FORUMS_MARKED'			=> 'Forums have been marked read.',
 	'FORUM_CAT'				=> 'Forum category',
@@ -293,7 +292,6 @@ $lang = array_merge($lang, array(
 	'GB'						=> 'GB',
 	'GIB'						=> 'GiB',
 	'GO'						=> 'Go',
-	'JUST_OK'					=> 'OK',
 	'GOOGLEPLUS'				=> 'Google+',
 	'GOTO_FIRST_POST'			=> 'Go to first post',
 	'GOTO_LAST_POST'			=> 'Go to last post',
@@ -353,7 +351,6 @@ $lang = array_merge($lang, array(
 
 	'JABBER'				=> 'Jabber',
 	'JOINED'				=> 'Joined',
-	'JUMP_PAGE_NR'			=> 'Page #',
 	'JUMP_PAGE'				=> 'Enter the page number you wish to go to',
 	'JUMP_TO'				=> 'Jump to',
 	'JUMP_TO_PAGE'			=> 'Jump to page...',
@@ -376,7 +373,6 @@ $lang = array_merge($lang, array(
 	'LOCK_POST_EXPLAIN'					=> 'Prevent editing',
 	'LOCK_TOPIC'						=> 'Lock topic',
 	'LOGIN'								=> 'Login',
-	'JOIN'								=> 'Join',
 	'LOGIN_CHECK_PM'					=> 'Log in to check your private messages.',
 	'LOGIN_CONFIRMATION'				=> 'Confirmation of login',
 	'LOGIN_CONFIRM_EXPLAIN'				=> 'To prevent brute forcing accounts the board requires you to enter a confirmation code after a maximum amount of failed logins. The code is displayed in the image you should see below. If you are visually impaired or cannot otherwise read this code please contact the %sBoard Administrator%s.', // unused
@@ -558,7 +554,7 @@ $lang = array_merge($lang, array(
 		2	=> 'Online: <strong>%1$d</strong> &#124; %2$s, %3$s and %4$s',
 	),
 	'OPTIONS'					=> 'Options',
-	
+
 	'PAGE_OF'				=> 'Page <strong>%1$d</strong> of <strong>%2$d</strong>',
 	'PAGE_TITLE_NUMBER'		=> 'Page %s',
 	'PASSWORD'				=> 'Password',
@@ -618,9 +614,7 @@ $lang = array_merge($lang, array(
 	'READING_GLOBAL_ANNOUNCE'	=> 'Reading global announcement',
 	'READING_LINK'				=> 'Following forum link %s',
 	'READING_TOPIC'				=> 'Reading topic in %s',
-	'READING_TOPIC_TOPIC'		=> 'Reading topic %2$s in %1$s',
 	'READ_PROFILE'				=> 'Profile',
-	'SHOW_PROFILE'				=> 'Show profile',
 	'REASON'					=> 'Reason',
 	'RECORD_ONLINE_USERS'		=> 'Most users ever online was <strong>%1$s</strong> on %2$s',
 	'REDIRECT'					=> 'Redirect',
@@ -642,7 +636,6 @@ $lang = array_merge($lang, array(
 	'REPLY_WITH_QUOTE'			=> 'Reply with quote',
 	'REPLYING_GLOBAL_ANNOUNCE'	=> 'Replying to global announcement',
 	'REPLYING_MESSAGE'			=> 'Replying to message in %s',
-	'REPLYING_MESSAGE_TOPIC'	=> 'Replying to message in topic %2$s in %1$s',
 	'REPORT_BY'					=> 'Report by',
 	'REPORT_POST'				=> 'Report this post',
 	'REPORTING_POST'			=> 'Reporting post',
@@ -694,8 +687,6 @@ $lang = array_merge($lang, array(
 	'SEARCH_USER_POSTS'			=> 'Search user’s posts',
 	'SECONDS'					=> 'Seconds',
 	'SEE_ALL'					=> 'See All',
-	'SEE_ALL_NOT'				=> 'All notifications',
-	'SEE_ALL_NOT_S'				=> 'All',
 	'SELECT'					=> 'Select',
 	'SELECT_ALL_CODE'			=> 'Select all',
 	'SELECT_DESTINATION_FORUM'	=> 'Please select a destination forum',
@@ -783,7 +774,6 @@ $lang = array_merge($lang, array(
 	'TOPIC_TITLE'		=> 'Topic title',
 	'TOPIC_UNAPPROVED'	=> 'This topic has not been approved.',
 	'TOPIC_DELETED'		=> 'This topic has been deleted.',
-	'DELETED_IMG'		=> '<div class="fa fa-recycle" title="This topic has been deleted"></div>',
 	'TOTAL_ATTACHMENTS'	=> 'Attachment(s)',
 	'TOTAL_LOGS'		=> array(
 		1	=> '%d log',
@@ -794,13 +784,11 @@ $lang = array_merge($lang, array(
 		2	=> '%d private messages in total',
 	),
 	'TOPIC_POLL'		=> 'This topic has a poll.',
-	'POLL_IMG'			=> '<div class="fa fa-bar-chart" title="This topic has a poll"></div>',
 	'TOTAL_POSTS'		=> 'Total posts',
 	'TOTAL_POSTS_COUNT'	=> array(
 		2	=> 'Total posts <strong>%d</strong>',
 	),
 	'TOPIC_REPORTED'	=> 'This topic has been reported',
-	'REPORTED_IMG'		=> '<div class="fa fa-exclamation-triangle" title="This topic has been reported"></div>',
 	'TOTAL_TOPICS'		=> array(
 		2	=> 'Total topics <strong>%d</strong>',
 	),
@@ -817,7 +805,6 @@ $lang = array_merge($lang, array(
 	'UNREAD_MESSAGES'		=> 'Unread messages',
 	'UNREAD_POST'			=> 'Unread post',
 	'UNREAD_POSTS'			=> 'Unread posts',
-	'UNREAD_POSTS_S'		=> 'unread',
 	'UNWATCH_FORUM_CONFIRM'		=> 'Are you sure you wish to unsubscribe from this forum?',
 	'UNWATCH_FORUM_DETAILED'	=> 'Are you sure you wish to unsubscribe from the forum “%s”?',
 	'UNWATCH_TOPIC_CONFIRM'		=> 'Are you sure you wish to unsubscribe from this topic?',
@@ -905,6 +892,36 @@ $lang = array_merge($lang, array(
 	'YEAR_MONTH_DAY'	=> 'YYYY-MM-DD',
 	'YES'				=> 'Yes',
 	'YOU_LAST_VISIT'	=> 'Last visit was: %s',
+
+	/**
+	* ADDED LANGUAGE
+	*/
+
+	'CONFIRM_QUESTION_EXP'		=> '...',
+	'JUST_RESULTS'				=> 'Search results',
+	'FORUM_SMALL'				=> 'forum',
+	'JUST_OK'					=> 'OK',
+	'JUMP_PAGE_NR'				=> 'Page #',
+	'JOIN'						=> 'Join',
+	'SHOW_PROFILE'				=> 'Show profile',
+	'SEE_ALL_NOTIFICATIONS'		=> 'All',
+	'DELETED_IMG'				=> '<div class="fa fa-recycle" title="This topic has been deleted"></div>',
+	'POLL_IMG'					=> '<div class="fa fa-bar-chart" title="This topic has a poll"></div>',
+	'REPORTED_IMG'				=> '<div class="fa fa-exclamation-triangle" title="This topic has been reported"></div>',
+	'READING_TOPIC_FORUM'		=> 'Reading topic %2$s in %1$s',
+	'REPLYING_MESSAGE_TOPIC'	=> 'Replying to message in topic %2$s in %1$s',
+	
+	// Info BBCode - unused
+	'ABBC3_INFO_SHOW'	=> '► Info:',
+	'ABBC3_INFO_HIDE'	=> '▼ Info:',
+	'ABBC3_D_SHOW'		=> '▼ Discography',
+	'ABBC3_D_HIDE'		=> '▲ Discography',
+	'ABBC3_M_SHOW'		=> 'Lineup ▼',
+	'ABBC3_M_HIDE'		=> 'Lineup ▲',
+
+	/**
+	* END OF ADDED LANGUAGE
+	*/
 
 	'datetime'			=> array(
 		'TODAY'		=> 'Today',
