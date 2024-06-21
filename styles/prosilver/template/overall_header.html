@@ -57,6 +57,10 @@
 	<link href="{T_THEME_PATH}/plupload.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 <!-- ENDIF -->
 
+<!-- IF S_COOKIE_NOTICE -->
+	<link href="{T_ASSETS_PATH}/cookieconsent/cookieconsent.min.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<!-- ENDIF -->
+
 <!--[if lte IE 9]>
 	<link href="{T_THEME_PATH}/tweaks.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 <![endif]-->
@@ -72,13 +76,14 @@
 
 <!-- EVENT overall_header_body_before -->
 
-<div id="wrap">
+<div id="wrap" class="wrap">
 	<a id="top" class="anchor" accesskey="t"></a>
 	<div id="page-header">
 		<div class="headerbar" role="banner">
+		<!-- EVENT overall_header_headerbar_before -->
 			<div class="inner">
 
-			<div id="site-description">
+			<div id="site-description" class="site-description">
 				<a id="logo" class="logo" href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->" title="<!-- IF U_SITE_HOME -->{L_SITE_HOME}<!-- ELSE -->{L_INDEX}<!-- ENDIF -->">{SITE_LOGO_IMG}</a>
 				<h1>{SITENAME}</h1>
 				<p>{SITE_DESCRIPTION}</p>
@@ -98,8 +103,10 @@
 				</form>
 			</div>
 			<!-- ENDIF -->
+			<!-- EVENT overall_header_searchbox_after -->
 
 			</div>
+			<!-- EVENT overall_header_headerbar_after -->
 		</div>
 		<!-- EVENT overall_header_navbar_before -->
 		<!-- INCLUDE navbar_header.html -->
@@ -108,7 +115,7 @@
 	<!-- EVENT overall_header_page_body_before -->
 
 	<a id="start_here" class="anchor"></a>
-	<div id="page-body" role="main">
+	<div id="page-body" class="page-body" role="main">
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 		<div id="information" class="rules">
 			<div class="inner">

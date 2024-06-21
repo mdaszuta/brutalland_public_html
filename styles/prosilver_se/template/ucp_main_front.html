@@ -14,13 +14,11 @@
 			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
-					
-	
-					
+
 					<div class="list-inner">
-					
+
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
-						
+
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
 							<ul>
@@ -35,9 +33,9 @@
 							</ul>
 						</div>
 						<!-- ENDIF -->
-						
+
 						<br />
-						
+
 						<div class="lastpost responsive-show" style="display: none;">
 							<span>
 								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
@@ -46,13 +44,11 @@
 								</a>
 							</span>
 						</div>
-						
-						
+
 						<div class="responsive-hide">
 							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
 						</div>
-						
-						
+
 					</div>
 				</dt>
 				</div>
@@ -72,6 +68,7 @@
 
 <!-- EVENT ucp_main_front_user_activity_before -->
 	<dl class="details">
+		<!-- EVENT ucp_main_front_user_activity_prepend -->
 		<div class="fbr">
 			<dt class="fbr-left"><label>{L_JOINED}{L_COLON}</label></dt>
 			<dd class="fbr-right">{JOINED}</dd>
@@ -116,6 +113,7 @@
 			<dd class="fbr-right error">{WARNING_IMG} [{WARNINGS}]</dd>
 		</div>
 		<!-- ENDIF -->
+		<!-- EVENT ucp_main_front_user_activity_append -->
 	</dl>
 <!-- EVENT ucp_main_front_user_activity_after -->
 

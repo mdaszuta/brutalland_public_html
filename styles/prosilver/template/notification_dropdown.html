@@ -4,6 +4,7 @@
 		<div class="header">
 			{L_NOTIFICATIONS}
 			<span class="header_settings">
+				<a href="{U_NOTIFICATION_SETTINGS}">{L_SETTINGS}</a>
 				<!-- IF NOTIFICATIONS_COUNT -->
 					<span id="mark_all_notifications"> &bull; <a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read">{L_MARK_ALL_READ}</a></span>
 				<!-- ENDIF -->
@@ -31,15 +32,16 @@
 						</div>
 					<!-- IF notifications.URL --></a><!-- ENDIF -->
 					<!-- IF notifications.UNREAD -->
-						<a href="{notifications.U_MARK_READ}" class="mark_read icon-mark" data-ajax="notification.mark_read" title="{L_MARK_READ}"></a>
+						<a href="{notifications.U_MARK_READ}" class="mark_read icon-mark" data-ajax="notification.mark_read" title="{L_MARK_READ}">
+							 <i class="icon fa-check-circle icon-xl fa-fw" aria-hidden="true"></i><span class="sr-only">{L_MARK_READ}</span>
+						</a>
 					<!-- ENDIF -->
 				</li>
 			<!-- END notifications -->
 		</ul>
 
 		<div class="footer">
-			<a href="{U_VIEW_ALL_NOTIFICATIONS}" id="n_see"><span>{L_SEE_ALL}</span></a>
-			<a href="{U_NOTIFICATION_SETTINGS}" id="n_set"><div class="fa fa-cog fa-lg"></div></a>
+			<a href="{U_VIEW_ALL_NOTIFICATIONS}"><span>{L_SEE_ALL}</span></a>
 		</div>
 	</div>
 </div>

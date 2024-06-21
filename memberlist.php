@@ -332,7 +332,7 @@ switch ($mode)
 							'USERNAME'			=> get_username_string('username', $row['user_id'], $row['username'], $row['user_colour']),
 							'USER_COLOR'		=> get_username_string('colour', $row['user_id'], $row['username'], $row['user_colour']),
 							'U_VIEW_PROFILE'	=> get_username_string('profile', $row['user_id'], $row['username'], $row['user_colour']),
-							'U_CLICK_LINK' => append_sid($phpbb_root_path . "memberlist.{$phpEx}?mode=viewprofile&amp;u=" . $row['user_id']),
+							'U_CLICK_LINK' 		=> append_sid($phpbb_root_path . "memberlist.{$phpEx}?mode=viewprofile&amp;u=" . $row['user_id']),
 						);
 
 						/**

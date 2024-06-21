@@ -52,14 +52,14 @@ ul.button,
 
 .pagination li.active span,
 #m-notify .m-list-left-bottom,
-#cp-main .notifications_time,
+.cp-main .notifications_time,
 .main-m-top .m-labeled-box .fa,
 .unreadpost .post-number,
 .fa-exclamation-triangle,
 .fa-bar-chart,
 .fa-recycle,
 .f-tags-i,
-#darken{
+.darken{
 	opacity: 0.6;
 }
 
@@ -114,7 +114,7 @@ li.row:hover .topic-reply-counter.unread,
 .brutalform .inputbox:focus ~ .brutalform-label,
 .brutalform select:focus ~ .brutalform-label,
 .brutalform .brutalform-timezone-select:focus ~ .brutalform-label,
-#page-footer #nav-footer:hover,
+.page-footer #nav-footer:hover,
 .contact-box-all .m-labeled-box-button:hover .fa{
 	opacity: 1;
 }

@@ -59,7 +59,7 @@ $(document).ready(function(){
 		<!-- BEGIN member -->
 		<!-- IF not member.GROUP_SPECIAL -->
 			<!-- DEFINE $SHOW_BUTTONS = 1 -->
-		<!-- ENDIF -->		
+		<!-- ENDIF -->
 		<li class="row<!-- IF member.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{member.U_VIEW_GROUP}'">
 			<dl class="flex-2centered">
 				<dt>
@@ -77,11 +77,11 @@ $(document).ready(function(){
 		</ul>
 	<!-- ENDIF -->
 	</div>
-</div>	
+</div>
 
 <!-- IF .pending -->
 <div class="panel">
-	<div class="inner">	
+	<div class="inner">
 		<ul class="topiclist two-columns">
 			<li class="header">
 				<dl class="icon">
@@ -95,7 +95,7 @@ $(document).ready(function(){
 		<!-- BEGIN pending -->
 		<!-- IF not pending.GROUP_SPECIAL -->
 			<!-- DEFINE $SHOW_BUTTONS = 1 -->
-		<!-- ENDIF -->			
+		<!-- ENDIF -->
 		<li class="row<!-- IF pending.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{pending.U_VIEW_GROUP}'">
 			<dl class="flex-2centered">
 				<dt>
@@ -129,7 +129,7 @@ $(document).ready(function(){
 		<!-- BEGIN nonmember -->
 		<!-- IF nonmember.S_CAN_JOIN -->
 			<!-- DEFINE $SHOW_BUTTONS = 1 -->
-		<!-- ENDIF -->		
+		<!-- ENDIF -->
 		<li class="row<!-- IF nonmember.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{nonmember.U_VIEW_GROUP}'">
 			<dl class="flex-2centered">
 				<dt>
@@ -147,7 +147,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 <!-- ENDIF -->
-	
+
 
 	<!-- IF S_CHANGE_DEFAULT or $SHOW_BUTTONS eq 1 -->
 	<fieldset>

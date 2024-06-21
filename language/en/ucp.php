@@ -237,7 +237,10 @@ $lang = array_merge($lang, array(
 	'FOLDER_OPTIONS'			=> 'Folder options',
 	'FOLDER_RENAMED'			=> 'Folder successfully renamed.',
 	'FOLDER_REMOVED'			=> 'Folder successfully removed.',
-	'FOLDER_STATUS_MSG'			=> '%3$d%% of folder is full - %2$d / %1$s',
+	'FOLDER_STATUS_MSG'			=> array(
+		1	=> '%3$d%% of folder is full - %2$d / %1$s',
+		2	=> '%3$d%% of folder is full - %2$d / %1$s',
+	),
 	'FORWARD_PM'				=> 'Forward PM',
 	'FORCE_PASSWORD_EXPLAIN'	=> 'Before you may continue browsing the board you are required to change your password.',
 	'FRIEND_MESSAGE'			=> 'Message from friend',

@@ -43,12 +43,19 @@ ol{list-style-type:decimal;}
 li{display:list-item;}
 ul ul, ol ul{list-style-type:circle;}
 ol ol ul, ol ul ul, ul ol ul, ul ul ul{list-style-type:square;}
-#wrap{max-width:1152px;min-width:625px;padding:15px;}
-@media only screen and (max-width:1220px), only screen and (max-device-width:1220px){#wrap{margin:0 12px;}
+.wrap {
+	max-width: 1152px;
+	min-width: 625px;
+	padding: 15px;
 }
-#page-body{clear:both;}
-#page-footer{clear:both;}
-#page-footer h3{margin-top:20px;}
+@media only screen and (max-width: 1220px), only screen and (max-device-width: 1220px) {
+	.wrap {
+		margin:0 12px;
+	}
+}
+.page-body{clear:both;}
+.page-footer{clear:both;}
+.page-footer h3{margin-top:20px;}
 .logo{float:left;width:auto;padding:10px 13px 0 10px;}
 .logo:hover{text-decoration:none;}
 .headerbar{background:transparent none repeat-x 0 0;margin-bottom:4px;padding:5px;border-radius:7px;}
@@ -142,7 +149,7 @@ table.info td{padding:3px;}
 table.info tbody th{padding:3px;text-align:right;vertical-align:top;font-weight:normal;}
 .forumbg table.table1{margin:0;}
 .forumbg-table > .inner{margin:0 -1px;}
-#color_palette_placeholder table{border-collapse:separate;border-spacing:1px;}
+.color_palette_placeholder table{border-collapse:separate;border-spacing:1px;}
 .column1{float:left;clear:left;width:49%;}
 .column2{float:right;clear:right;width:49%;}
 .left-box{float:left;width:auto;text-align:left;max-width:100%;}
@@ -186,9 +193,37 @@ fieldset.fields1 dl.pmlist > dt{width:auto !important;}
 .phpbb_alert div.alert_text > select,
 .phpbb_alert div.alert_text > textarea,
 .phpbb_alert div.alert_text > input{font-size:1.1em;}
-#darkenwrapper{display:none;position:relative;z-index:44;}
-#darken{position:fixed;left:0;top:0;width:100%;height:100%;opacity:0.5;z-index:45;}
-#loading_indicator{background:center center no-repeat;border-radius:5px;display:none;opacity:0.8;margin-top:-50px;margin-left:-50px;height:50px;width:50px;position:fixed;left:50%;top:50%;z-index:51;}
+
+.darkenwrapper {
+	display: none;
+	position: relative;
+	z-index: 44;
+}
+
+.darken {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+	z-index: 45;
+}
+
+.loading_indicator {
+	background: center center no-repeat;
+	border-radius: 5px;
+	display: none;
+	opacity: 0.8;
+	margin-top: -50px;
+	margin-left: -50px;
+	height: 50px;
+	width: 50px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	z-index: 51;
+}
 #forum-permissions{float:right;width:auto;padding-left:5px;margin-left:5px;margin-top:10px;text-align:right;}
 .copyright{padding:5px;text-align:center;}
 .small{font-size:0.9em !important;}
@@ -208,9 +243,9 @@ form > p.post-notice strong{line-height:20px;}
 .action-bar:after,
 .notification_text:after,
 .tabs-container:after,
-#tabs > ul:after,
-#navigation > ul:after,
-#minitabs > ul:after,
+.tabs > ul:after,
+.navigation > ul:after,
+.minitabs > ul:after,
 .postprofile .avatar-container:after{clear:both;content:'';display:block;}
 .hidden{display:none;}
 .smilies{vertical-align:text-bottom;}
@@ -233,9 +268,6 @@ form > p.post-notice strong{line-height:20px;}
 .notifications_title{font-size:1.2em;}
 li.row .notifications_title strong, .notifications_title strong{font-weight:bold;}
 #quick-links{margin:0 7px 0 0;}
-#quick-links a.responsive-menu-link{display:block;font-size:inherit;line-height:inherit;margin:0;width:auto;}
-#quick-links a.responsive-menu-link:before{font-size:1.455em;line-height:16.5px;}
-.compact #quick-links a.responsive-menu-link{width:0;overflow:hidden;white-space:nowrap;}
 .compact .icon-notification > a > span, .compact .icon-pm > a > span{display:none;}
 .compact .icon-notification > a > strong, .compact .icon-pm > a > strong{padding-left:2px;}
 .dropdown-page-jump .dropdown{top:20px;}
@@ -319,16 +351,7 @@ dd.option{width:125px;line-height:200%;text-align:center;font-size:1.1em;}
 	-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
     padding: 1px;
 }
-#topicreview{
-	//padding-right:5px;
-	overflow:auto;
-	height:300px;
-}
-//#topicreview .postbody{width:auto;float:none;margin:0;height:auto;}
-#topicreview .post{height:auto;}
-#topicreview h2{border-bottom-width:0;}
 .post-ignore .postbody{display:none;}
-#post_details{overflow:auto;max-height:300px;}
 .content{clear:both;min-height:3em;overflow:hidden;line-height:1.4em;font-family:"Lucida Grande", "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;font-size:1em;padding-bottom:1px;}
 .content h2, .panel h2{
 	margin-top:0.5em;margin-bottom:0.5em;padding-bottom:0.5em;
@@ -431,8 +454,6 @@ div.dl_links{display:inline-block;text-transform:none;}
 }
 .ellipsis-text{display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 table.fixed-width-table{table-layout:fixed;}
-.postbody .content::-webkit-scrollbar, #topicreview::-webkit-scrollbar, #post_details::-webkit-scrollbar, .codebox code::-webkit-scrollbar, .attachbox dd::-webkit-scrollbar, .attach-image::-webkit-scrollbar, .dropdown-extended ul::-webkit-scrollbar{width:8px;height:8px;-webkit-appearance:none;background:rgba(0, 0, 0, .1);border-radius:3px;}
-.postbody .content::-webkit-scrollbar-thumb, #topicreview::-webkit-scrollbar-thumb, #post_details::-webkit-scrollbar-thumb, .codebox code::-webkit-scrollbar-thumb, .attachbox dd::-webkit-scrollbar-thumb, .attach-image::-webkit-scrollbar-thumb, .dropdown-extended ul::-webkit-scrollbar-thumb{background:rgba(0, 0, 0, .3);border-radius:3px;}
 #memberlist tr.inactive, #team tr.inactive{font-style:italic;}
 .dropdown-select{padding-right:24px;}
 .icon-button:before{background:transparent 0 0 no-repeat;content:'';display:inline-block;float:right;height:12px;margin:3px 0 0 2px;width:12px;}
@@ -497,45 +518,32 @@ table.fixed-width-table{table-layout:fixed;}
 .report-icon:hover:before{background-position:-165px -21px;}
 .info-icon:before{background-position:-175px 0;}
 .info-icon:hover:before{background-position:-175px -21px;}
-.button.responsive-menu-link:before{background-position:-191px 0;}
-.button.responsive-menu-link:hover:before{background-position:-191px -21px;}
 .post-buttons .dropdown{top:18px;}
 .post-buttons .dropdown a{display:block;font-size:1.2em;text-align:right;}
 .hasjs .postbody .post-buttons{max-width:40%;}
 button::-moz-focus-inner{padding:0;border:0}
-#cp-main .content{padding:0;}
 .panel-container .panel p{font-size:1.1em;}
 .panel-container .panel ol{margin-left:2em;font-size:1.1em;}
 ul.cplist{margin-bottom:5px;}
 .panel-container table.table1{margin-bottom:1em;}
 .panel-container table.table1 tbody th{font-style:italic;background-color:transparent !important;border-bottom:none;}
-#cp-main .postbody h3, #cp-main .box2 h3{margin-top:0;}
 .panel-container .postbody p.author{font-size:1.1em;}
-#cp-main .buttons{margin-left:0;}
 .mcp-main .postbody{width:100%;}
 .tab{display:inline-flex;font-weight:bold;line-height:1.4em;}
-#minitabs .tab{float:right;}
-#minitabs .tab > a{margin-left:2px;}
 .responsive-tab{position:relative;}
 .responsive-tab > a.responsive-tab-link{display:block;font-size:1.6em;position:relative;width:16px;line-height:0.9em;text-decoration:none;}
 .responsive-tab .responsive-tab-link:before{content:'';position:absolute;left:10px;top:7px;height:.125em;width:14px;border-bottom:0.125em solid transparent;border-top:0.375em double transparent;}
-#tabs .dropdown, #navigation  .dropdown, #minitabs .dropdown{top:20px;margin-right:-2px;font-size:1.1em;font-weight:normal;}
-#minitabs .dropdown{margin-right:-4px;}
-#tabs .dropdown-up .dropdown, #navigation .dropdown-up .dropdown, #minitabs .dropdown-up .dropdown{bottom:20px;top:auto;}
-#tabs .dropdown li, #navigation .dropdown li{text-align:right;}
-#minitabs .dropdown li{text-align:left;}
+.navigation .dropdown{top:20px;margin-right:-2px;font-size:1.1em;font-weight:normal;}
+.navigation .dropdown-up .dropdown{bottom:20px;top:auto;}
+.navigation .dropdown li{text-align:right;}
 .cp-mini{margin:10px 15px 10px 5px;max-height:200px;overflow-y:auto;padding:5px 10px;border-radius:7px;}
 dl.mini dt{font-weight:bold;}
 dl.mini dd{padding-top:4px;}
 .friend-online{font-weight:bold;}
 .friend-offline{font-style:italic;}
-#pm-menu{line-height:2.5em;}
 ol.def-rules{padding-left:0;}
 ol.def-rules li{line-height:180%;padding:1px;}
-#gallery label{position:relative;float:left;margin:10px;padding:5px;width:auto;border:1px solid transparent;text-align:center;}
-@media only screen and (max-width:900px), only screen and (max-device-width:900px){.nojs #tabs a span, .nojs #navigation a span, .nojs #minitabs a span{max-width:40px;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.5px;}
-#navigation li:first-child a{border-top-left-radius:5px;border-top-right-radius:5px;}
-#navigation li:last-child a{border-bottom-left-radius:5px;border-bottom-right-radius:5px;}
+@media only screen and (max-width:900px), only screen and (max-device-width:900px){.nojs .navigation a span{max-width:40px;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.5px;}
 }
 fieldset{border-width:0;font-family:Verdana, Helvetica, Arial, sans-serif;font-size:1.1em;}
 input{font-family:Verdana, Helvetica, Arial, sans-serif;}
@@ -560,7 +568,6 @@ dd label{white-space:nowrap;}
 dd select{width:auto;}
 dd select[multiple]{width:100%;}
 dd textarea{width:85%;}
-//#timezone{width:95%;}
 fieldset.quick-login{margin-top:5px;}
 fieldset.quick-login input{width:auto;}
 fieldset.quick-login input.inputbox{width:15%;vertical-align:middle;margin-right:5px;}
@@ -575,9 +582,6 @@ fieldset.display-actions label{white-space:nowrap;padding-right:2px;}
 fieldset.sort-options{line-height:2em;}
 fieldset.forum-selection{margin:5px 0 5px 0;text-align:center;}
 fieldset.forum-selection2{margin:13px 0 3px 0;float:right;}
-#format-buttons{margin:15px 0 2px 0;}
-#format-buttons input, #format-buttons select{vertical-align:middle;}
-#message-box textarea{font-family:"Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;width:450px;height:270px;min-width:100%;max-width:100%;font-size:1.2em;resize:vertical;outline:3px dashed transparent;outline-offset:-4px;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-ms-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;}
 input.medium{width:50%;}
 input.narrow{width:25%;}
 input.tiny{width:150px;}
@@ -709,13 +713,9 @@ dd.profile-warnings{color:#BC2A4D;}
 .responsive-tab .responsive-tab-link:hover:before{border-color:#D31141;}
 dl.mini dt{color:#425067;}
 .current{color:#000000 !important;}
-#gallery label{background:#FFFFFF;border-color:#CCC;}
-#gallery label:hover{background-color:#EEE;}
 option.disabled-option{color:graytext;}
 dd label{color:#333;}
 fieldset.quick-login input.inputbox{background-color:#F2F3F3;}
-#message-box textarea.drag-n-drop{outline-color:rgba(102, 102, 102, 0.5);}
-#message-box textarea.drag-n-drop-highlight{outline-color:rgba(17, 163, 234, 0.5);}
 .inputbox:-moz-placeholder{color:#333333;}
 .inputbox::-webkit-input-placeholder{color:#333333;}
 .inputbox:focus:-moz-placeholder{color:transparent;}
@@ -723,8 +723,6 @@ fieldset.quick-login input.inputbox{background-color:#F2F3F3;}
 input.disabled{color:#666666;}
 .phpbb_alert{background-color:#FFFFFF;border-color:#999999;}
 .phpbb_alert .alert_close{background-image:url("./images/alert_close.png");}
-#darken{background-color:#000000;}
-#loading_indicator{background-color:#000000;background-image:url("./images/loading.gif");}
 
 /*
 .dropdown-extended ul li{border-top-color:#B9B9B9;}
@@ -747,8 +745,8 @@ input.disabled{color:#666666;}
 .dropdown li.separator{border-color:#DCDCDC;}
 .notification_list p.notification-time{color:#4C5D77;}
 li.notification-reported strong, li.notification-disapproved strong{color:#D31141;}
-#attach-panel-multi{display:none;margin-bottom:1em;}
-#file-list td{vertical-align:middle;}
+//.attach-panel-multi{display:none;margin-bottom:1em;}
+//#file-list td{vertical-align:middle;}
 .attach-name{width:50%;}
 .attach-comment{width:30%;}
 .attach-comment .inputbox{resize:vertical;width:100%;}
@@ -756,10 +754,8 @@ li.notification-reported strong, li.notification-disapproved strong{color:#D3114
 .attach-status{width:5%;}
 .attach-filesize, .attach-status{text-align:center;}
 .attach-controls{display:inline-block;float:right;}
-#attach-row-tpl, .nojs .file-inline-bbcode{display:none;}
-#file-total-progress{height:2px;display:block;position:relative;margin:4px -10px -6px -10px;}
+#attach-row-tpl{display:none;}
 .file-progress{background-color:#CCCCCC;display:inline-block;height:8px;width:50px;}
-.file-progress-bar, #file-total-progress-bar{background-color:green;display:block;height:100%;width:0;}
 .file-status.file-working{background:url('./images/plupload/throbber.gif');}
 .file-status.file-uploaded{background:url('./images/plupload/done.gif');}
 .file-status.file-error{background:url('./images/plupload/error.gif');}

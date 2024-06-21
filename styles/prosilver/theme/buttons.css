@@ -2,16 +2,16 @@
 ---------------------------------------- */
 
 .button {
-	cursor: pointer;
 	display: inline-block;
-	height: 18px;
+	padding: 2px 8px;
 	font-size: 1.2em;
+	height: 18px;
+	font-family: "Open Sans", "Droid Sans", Verdana, Arial, Helvetica;
 	white-space: nowrap;
+	cursor: pointer;
 	border: 1px solid transparent;
 	border-radius: 4px;
 	background: transparent none 0 0 repeat-x;
-	padding: 2px 8px;
-	font-family: "Open Sans", "Droid Sans", Verdana, Arial, Helvetica;
 	position: relative;
 	text-decoration: none !important;
 	outline-style: none !important;
@@ -188,8 +188,6 @@ ul.linklist.bulletin > li.small-icon:before {
 .report-icon:hover:before					{ background-position: -165px -21px; }
 .info-icon:before							{ background-position: -175px 0; }
 .info-icon:hover:before						{ background-position: -175px -21px; }
-.button.responsive-menu-link:before			{ background-position: -191px 0; }
-.button.responsive-menu-link:hover:before	{ background-position: -191px -21px; }
 
 /* Responsive buttons in post body */
 .post-buttons .dropdown {

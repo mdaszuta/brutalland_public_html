@@ -25,13 +25,13 @@ select:not(.abbc3_select),
 #top-site-menu,
 .spoilbtn,
 .tytulySD,
-#cp-main .notification_list .notifications,
+.cp-main .notification_list .notifications,
 table.table1 tbody tr.bg3,
 .brutalform .brutalform-go-to-register,
 .brutalform-button-s,
 .brutalform-box .brutalform-label,
 .fbr-left label,
-#page-footer .navbar,
+.page-footer .navbar,
 .username,
 .username-coloured{
 	font-weight: bold;
@@ -54,7 +54,7 @@ a.lastsubject,
 .notifications_reference,
 .notifications_reason,
 .notify-settings,
-#cp-main .notification_list .notifications,
+.cp-main .notification_list .notifications,
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
 .tags input,
@@ -252,10 +252,10 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 /* PSEUDOAVATARY */
 
 #m-notify .fa-user-circle-o,
-#cp-main .notification_list .fa-user-circle-o{
+.cp-main .notification_list .fa-user-circle-o{
 	font-size: 50px;
 }
 
-#cp-main .fa-user-circle-o{
+.cp-main .fa-user-circle-o{
 	font-size: 120px;
 }

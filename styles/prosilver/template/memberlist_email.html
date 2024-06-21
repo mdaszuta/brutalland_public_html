@@ -1,5 +1,7 @@
 <!-- INCLUDE overall_header.html -->
 
+<!-- EVENT memberlist_email_before -->
+
 <!-- IF S_CONTACT_ADMIN-->
 <h2 class="titlespace">{L_CONTACT_ADMIN}</h2>
 <!-- ELSEIF S_SEND_USER -->
@@ -39,7 +41,24 @@
 				<dd><input class="inputbox autowidth" type="text" name="subject" id="subject" size="50" tabindex="1" value="{SUBJECT}" /></dd>
 			</dl>
 		<!-- ELSEIF S_CONTACT_ADMIN-->
-
+			<dl>
+				<dt><label>{L_RECIPIENT}{L_COLON}</label></dt>
+				<dd><strong>{L_ADMINISTRATOR}</strong></dd>
+			</dl>
+			<!-- IF not S_IS_REGISTERED -->
+			<dl>
+				<dt><label for="email">{L_SENDER_EMAIL_ADDRESS}{L_COLON}</label></dt>
+				<dd><input class="inputbox autowidth" type="text" name="email" id="email" size="50" maxlength="100" tabindex="1" value="{EMAIL}" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="name">{L_SENDER_NAME}{L_COLON}</label></dt>
+				<dd><input class="inputbox autowidth" type="text" name="name" id="name" size="50" tabindex="2" value="{NAME}" /></dd>
+			</dl>
+			<!-- ENDIF -->
+			<dl>
+				<dt><label for="subject">{L_SUBJECT}{L_COLON}</label></dt>
+				<dd><input class="inputbox autowidth" type="text" name="subject" id="subject" size="50" tabindex="3" value="{SUBJECT}" /></dd>
+			</dl>
 		<!-- ELSE -->
 			<dl>
 				<dt><label for="email">{L_EMAIL_ADDRESS}{L_COLON}</label></dt>
@@ -55,7 +74,6 @@
 				<dd><select name="lang">{S_LANG_OPTIONS}</select></dd>
 			</dl>
 		<!-- ENDIF -->
-		<!-- IF S_SEND_USER -->
 		<dl>
 			<dt><label for="message">{L_MESSAGE_BODY}{L_COLON}</label><br />
 			<span>{L_EMAIL_BODY_EXPLAIN}</span></dt>
@@ -67,7 +85,6 @@
 			<dd><label for="cc_sender"><input type="checkbox" name="cc_sender" id="cc_sender" value="1" checked="checked" tabindex="5" /> {L_CC_SENDER}</label></dd>
 		</dl>
 		<!-- ENDIF -->
-		<!-- ENDIF -->
 		</fieldset>
 	</div>
 
@@ -77,11 +94,9 @@
 <div class="panel">
 	<div class="inner">
 	<div class="content">
-	<!-- IF S_SEND_USER -->
 		<fieldset class="submit-buttons">
 			<input type="submit" tabindex="6" name="submit" class="button1" value="{L_SEND_EMAIL}" />
 		</fieldset>
-	<!-- ENDIF -->
 	</div>
 	</div>
 {S_FORM_TOKEN}

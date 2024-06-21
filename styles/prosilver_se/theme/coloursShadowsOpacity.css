@@ -2,15 +2,13 @@
 
 html,
 body,
-#wrap,
-#simple-wrap,
-#color_palette_placeholder,
+.wrap,
+.color_palette_placeholder,
 .dropdown .dropdown-contents{
 	background-color: black;
 }
 
-#wrap,
-#simple-wrap{
+.wrap{
 	background-image: URL("./images/probka.jpg");
 	background-size: 1295px 1077px;
 	background-position: 0px 20px;
@@ -46,21 +44,21 @@ body,
 	background: linear-gradient(to bottom, transparent 0%, rgba(37, 126, 222, 0.25) 70%);
 }
 
-#navigation .tab > a{
+.navigation .tab > a{
 	//background: linear-gradient(to top, transparent 0%, rgba(238, 0, 0, 0.15) 70%);
 }
 
-#navigation .tab > a:hover{
+.navigation .tab > a:hover{
 	background: linear-gradient(to top, transparent 0%, rgba(50, 214, 53, 0.15) 70%);
 }
 
-#navigation .activetab > a,
-#navigation .activetab > a:hover,
-#navigation .tab > a:focus{
+.navigation .activetab > a,
+.navigation .activetab > a:hover,
+.navigation .tab > a:focus{
 	background: linear-gradient(to top, transparent 0%, rgba(37, 126, 222, 0.25) 70%);
 }
 
-#navigation ul {
+.navigation ul {
 	background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.45) 70%);
 }
 
@@ -138,7 +136,7 @@ div.rules{
 	background-color: rgba(0,0,0,0.6);
 }
 
-#cp-main .pm,
+.cp-main .pm,
 .cp-mini{
 	background-color: rgba(238, 0, 0, 0);
 }
@@ -171,7 +169,7 @@ table.table1 tbody tr.bg2:hover{
 
 }
 
-#message-box textarea,
+.message-box textarea,
 #muzycy-box textarea{
 	background-color: rgba(0, 0, 0, 0.75);
 }
@@ -325,7 +323,7 @@ blockquote blockquote.uncited{
 
 /* BORDERS */
 
-#wrap{
+.wrap{
 	border: 2px solid #fff;
 }
 
@@ -441,11 +439,11 @@ li:not(.header) .lastpost:hover{
 	border-left: 1px solid #32D635 !important;
 }
 
-#message-box textarea{
+.message-box textarea{
 	border-color: black;
 }
 
-#wrap{
+.wrap{
 	border-radius: 15px;
 }
 
@@ -481,7 +479,7 @@ span.button:focus,
 .tab > a,
 .inputbox,
 .posthilit,
-#message-box textarea,
+.message-box textarea,
 #muzycy-box textarea,
 .panel-container h3,
 .panel-container hr,
@@ -497,7 +495,7 @@ img.postimage{
 
 @media only screen and (max-width:920px), only screen and (max-device-width:920px){
 	
-	#wrap{
+	.wrap{
 		border-width: 0;
 		border-radius: 0;
 	}
@@ -534,8 +532,7 @@ li:not(.header) .lastpost,
 
 @media only screen and (max-width:860px), only screen and (max-device-width:860px){
 	@media only screen and (max-width:720px), only screen and (max-device-width:720px){
-		#wrap,
-		#simple-wrap{
+		.wrap{
 			background-image: URL("./images/probka720.jpg");
 			background-size: 720px 599px;
 		}
@@ -549,8 +546,7 @@ li:not(.header) .lastpost,
 
 @media only screen and (max-width:380px), only screen and (max-device-width:380px){
 
-	#wrap,
-	#simple-wrap{
+	.wrap{
 		background-size: 550px 457px;
 	}
 

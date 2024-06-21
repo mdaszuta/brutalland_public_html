@@ -12,7 +12,7 @@ h2,
 h3,
 .post:target h3 a,
 .inputbox,
-#message-box textarea,
+.message-box textarea,
 .tab.activetab > a,
 .tab > a:focus,
 div.content,
@@ -33,7 +33,7 @@ a.username{
 ::-ms-input-placeholder{ color:#333; }
 
 .copyright a,
-#cp-main .fa-user-circle-o,
+.cp-main .fa-user-circle-o,
 #m-notify .fa-user-circle-o{
 	color: #444;
 }
@@ -224,7 +224,7 @@ ul.topiclist li.row a.topictitle.subforum.read:hover{ color: #32D635; }
 
 /* BOX-SHADOWS */
 
-#wrap{
+.wrap{
 	box-shadow: 0 0 5px 2px #9D9A93, inset 0 3px 18px rgba(157, 154, 147, .25);
 }
 
@@ -243,21 +243,21 @@ ul.topiclist li.row a.topictitle.subforum.read:hover{ color: #32D635; }
     box-shadow: 0 1px 1px -1px #257EDE;
 }
 
-#navigation .tab > a{
+.navigation .tab > a{
     //box-shadow: 0 -1px 1px -1px #ee0000;
 }
 
-#navigation .tab > a:hover{
+.navigation .tab > a:hover{
     box-shadow: 0 -1px 1px -1px #32D635;
 }
 
-#navigation .activetab > a,
-#navigation .activetab > a:hover,
-#navigation .tab > a:focus{
+.navigation .activetab > a,
+.navigation .activetab > a:hover,
+.navigation .tab > a:focus{
     box-shadow: 0 -1px 1px -1px #257EDE;
 }
 
-#navigation ul {
+.navigation ul {
     box-shadow: 0 -1px 1px -1px #ee0000;
 }
 
@@ -417,8 +417,8 @@ blockquote blockquote.uncited,
 	box-shadow: 0 1px 1px -1px rgba(238, 0, 0, .6), inset 0 4px 9px rgba(100, 100, 100, .25);
 }
 
-.panel-container:not(#cp-main) .panel li.row.bg1{ box-shadow:0 1px 1px -1px #ee0000, inset 0 4px 9px rgba(238, 0, 0, .1); }
-.panel-container:not(#cp-main) .panel li.row.bg2{ box-shadow:0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1); }
+.panel-container:not(.cp-main) .panel li.row.bg1{ box-shadow:0 1px 1px -1px #ee0000, inset 0 4px 9px rgba(238, 0, 0, .1); }
+.panel-container:not(.cp-main) .panel li.row.bg2{ box-shadow:0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1); }
 
 .bg1,
 table.zebra-list tr:nth-child(odd) td,
@@ -461,7 +461,7 @@ ul.zebra-list li:nth-child(even):hover{
 
 @media only screen and (max-width:920px), only screen and (max-device-width:920px){
 	
-	#wrap{
+	.wrap{
 		box-shadow: none;
 	}
 	

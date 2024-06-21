@@ -54,7 +54,6 @@
 	<!-- EVENT ucp_register_credentials_after -->
 
 	<!-- EVENT ucp_register_options_before -->
-	
 	<!-- EVENT ucp_register_profile_fields_before -->
 	<!-- IF .profile_fields -->
 		<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
@@ -73,7 +72,6 @@
 	</fieldset>
 	</div>
 </div>
-
 <!-- IF CAPTCHA_TEMPLATE -->
 	<!-- DEFINE $CAPTCHA_TAB_INDEX = 5 -->
 	<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
@@ -82,11 +80,15 @@
 <!-- IF S_COPPA -->
 <div class="panel">
 	<div class="inner">
+
 	<h4>{L_COPPA_COMPLIANCE}</h4>
+
 	<p class="fbr-m-info">{L_COPPA_EXPLAIN}</p>
 	</div>
 </div>
 <!-- ENDIF -->
+
+<!-- EVENT ucp_register_buttons_before -->
 
 <div class="panel">
 	<div class="inner">
@@ -126,7 +128,7 @@
 						</div>
 						<!-- ENDIF -->
 						<div>
-							<select name="tz" id="timezone" class="autowidth tz_select">
+							<select name="tz" id="timezone" class="autowidth tz_select timezone">
 								<option value="">{L_SELECT_TIMEZONE}</option>
 								<!-- BEGIN timezone_select -->
 								<optgroup label="{timezone_select.LABEL}" data-tz-value="{timezone_select.VALUE}">
@@ -150,7 +152,6 @@
 
 	</div>
 </div>
-
 </form>
 
 <!-- INCLUDE overall_footer.html -->

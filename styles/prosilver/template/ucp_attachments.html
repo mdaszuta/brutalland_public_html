@@ -24,7 +24,7 @@
 		<ul class="topiclist cplist responsive-show-columns">
 
 		<!-- BEGIN attachrow -->
-		<li class="row<!-- IF attachrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{attachrow.U_VIEW_ATTACHMENT}'">
+		<li class="row<!-- IF attachrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<dl>
 				<dt>
 					<div class="list-inner">
@@ -34,7 +34,7 @@
 				</dt>
 				<dd class="extra">{attachrow.DOWNLOAD_COUNT}</dd>
 				<dd class="time"><span>{attachrow.POST_TIME}</span></dd>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" /></dd>
+				<dd class="mark"><input type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" /></dd>
 			</dl>
 		</li>
 		<!-- END attachrow -->
