@@ -263,16 +263,7 @@
 
 /* Miscellaneous styles
 ---------------------------------------- */
-.rtl #forum-permissions {
-	float: left;
-	padding-right: 5px;
-	padding-left: 0;
-	margin-right: 5px;
-	margin-left: 0;
-	text-align: left;
-}
-
-.rtl #quick-links {
+.rtl .quick-links {
 	margin-left: 7px;
 	margin-right: 0;
 }

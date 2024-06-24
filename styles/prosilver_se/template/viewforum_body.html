@@ -1,5 +1,6 @@
 <!-- INCLUDE overall_header.html -->
 <!-- EVENT viewforum_forum_title_before -->
+<!-- EVENT viewforum_forum_name_prepend --><!-- EVENT viewforum_forum_name_append -->
 <!-- EVENT viewforum_forum_title_after -->
 
 <!-- IF S_FORUM_RULES -->
@@ -91,6 +92,8 @@
 	<!-- INCLUDE forumlist_body.html -->
 <!-- ENDIF -->
 
+<!-- EVENT viewforum_body_topic_row_before -->
+
 <!-- BEGIN topicrow -->
 
 	<!-- IF not topicrow.S_TOPIC_TYPE_SWITCH and not topicrow.S_FIRST_ROW -->
@@ -100,8 +103,7 @@
 	<!-- ENDIF -->
 
 	<!-- IF topicrow.S_FIRST_ROW or not topicrow.S_TOPIC_TYPE_SWITCH -->
-	<div class="forumbg<!-- IF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) --> announcement<!-- ENDIF -->">
-		
+		<div class="forumbg<!-- IF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) --> announcement<!-- ENDIF -->">
 		<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
@@ -120,13 +122,13 @@
 		<ul class="topiclist topics">
 	<!-- ENDIF -->
 
-		<!-- EVENT viewforum_body_topic_row_before -->
+		<!-- EVENT viewforum_body_topicrow_row_before -->
 		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<!-- EVENT viewforum_body_topic_row_prepend -->
 			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
-					
+
 					<!-- IF not S_IS_BOT --><!-- IF topicrow.REPLIES -->
 						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
 					<!-- ENDIF --><!-- ENDIF -->
@@ -134,7 +136,8 @@
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
-						
+						<!-- EVENT topiclist_row_topic_title_after -->
+
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
 							<ul>
@@ -222,14 +225,19 @@
 
 <!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
 	<div class="action-bar bottom">
-	
 		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 			<div class="buttons fbr-left">
-				<!-- EVENT viewforum_buttons_bottom_before -->
-				<a href="{U_POST_NEW_TOPIC}" class="button">
-					<!-- IF S_IS_LOCKED -->{L_BUTTON_FORUM_LOCKED}<!-- ELSE -->{L_BUTTON_NEW_TOPIC}<!-- ENDIF -->
-				</a>
-				<!-- EVENT viewforum_buttons_bottom_after -->
+			<!-- EVENT viewforum_buttons_bottom_before -->
+
+			<a href="{U_POST_NEW_TOPIC}" class="button">
+			<!-- IF S_IS_LOCKED -->
+				{L_BUTTON_FORUM_LOCKED}
+			<!-- ELSE -->
+				{L_BUTTON_NEW_TOPIC}
+			<!-- ENDIF -->
+			</a>
+
+			<!-- EVENT viewforum_buttons_bottom_after -->
 			</div>
 		<!-- ENDIF -->
 

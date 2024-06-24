@@ -16,7 +16,7 @@
 	opacity:0.25;
 }
 
-#nav-footer,
+.nav-footer,
 .mark_read,
 .to-searched-post,
 .ajaxshoutbox_delete .fa-remove{
@@ -114,7 +114,7 @@ li.row:hover .topic-reply-counter.unread,
 .brutalform .inputbox:focus ~ .brutalform-label,
 .brutalform select:focus ~ .brutalform-label,
 .brutalform .brutalform-timezone-select:focus ~ .brutalform-label,
-.page-footer #nav-footer:hover,
+.page-footer .nav-footer:hover,
 .contact-box-all .m-labeled-box-button:hover .fa{
 	opacity: 1;
 }
@@ -260,7 +260,7 @@ fieldset .flex-box-o:hover .fb-l span{
 	-webkit-transition-delay: 4s; transition-delay: 4s;
 }
 
-#nav-footer{
+.nav-footer{
 	-webkit-transition: opacity 1.6s ease-out; transition: opacity 1.6s ease-out;
 }
 

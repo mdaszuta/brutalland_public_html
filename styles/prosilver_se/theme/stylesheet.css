@@ -876,7 +876,7 @@ ul.ajaxshoutboxpost dd{
 }
 //.search-box .fa-search{ order: 2; }
 
-.header-avatar img{ max-height: 30px; }
+a.header-avatar img{ max-height: 30px; }
 
 .fa-search,
 .ajaxshoutbox_delete .fa-remove,
@@ -1536,7 +1536,7 @@ div#postingbox.panel{
 
 #reprap,
 .member-search.panel,
-#nav-footer .fa{
+.nav-footer .fa{
 	text-align: center;
 }
 
@@ -1562,7 +1562,7 @@ ul.topiclist li.row dl {
 	padding-left: 0px;
 }
 
-#nav-footer{
+.nav-footer{
 	order: 1;
 	display: flex;
 	justify-content: flex-end;
@@ -1573,13 +1573,13 @@ ul.topiclist li.row dl {
 	list-style: none;
 }
 
-#nav-footer .fa{
+.nav-footer .fa{
 	min-width: 30px;
 	vertical-align: middle;
 }
 
-#nav-footer .stat-block.online-list .forum-title,
-#nav-footer .see_online{
+.nav-footer .stat-block.online-list .forum-title,
+.nav-footer .see_online{
 	margin: 0;
 }
 
@@ -1812,7 +1812,7 @@ ul.topiclist li.row dl {
 		//max-width: calc(100vw - 100px);
 	}
 	
-	#memberlist.table1 .info{
+	.memberlist.table1 .info{
 		display: none;
 	}
 	

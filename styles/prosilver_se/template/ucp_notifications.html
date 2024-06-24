@@ -4,8 +4,7 @@
 
 <div class="panel">
 	<div class="inner">
-		
-		
+
 
 		<!-- IF MODE == 'notification_options' -->
 			<div class="top-with-settings">
@@ -24,7 +23,6 @@
 						<!-- BEGIN notification_methods -->
 							<th class="mark">{notification_methods.NAME}</th>
 						<!-- END notification_methods -->
-						<th class="mark" style="display:none;">{L_NOTIFICATIONS}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,7 +40,6 @@
 							<!-- BEGIN notification_methods -->
 								<td class="mark"><input type="checkbox" name="{notification_types.TYPE}_{notification_methods.METHOD}"<!-- IF notification_methods.SUBSCRIBED --> checked="checked"<!-- ENDIF --> /></td>
 							<!-- END notification_methods -->
-							<td class="mark" style="display:none;"><input type="checkbox" name="{notification_types.TYPE}_notification"<!-- IF notification_types.SUBSCRIBED --> checked="checked"<!-- ENDIF --> /></td>
 						</tr>
 					<!-- ENDIF -->
 				<!-- END notification_types -->
@@ -76,13 +73,13 @@
 							<dl class="flex-2centered">
 								<dt>
 									<div class="list-inner">
-									
+
 										<div class="notifications-avatar-container">
 										<!-- IF notification_list.AVATAR -->{notification_list.AVATAR}<!-- ELSE --><div class="fa fa-user-circle-o"></div><!-- ENDIF -->
 										</div>
-										
+
 										<div class="notifications">
-										
+
 											<!-- IF notification_list.URL -->
 											<a href="<!-- IF notification_list.UNREAD -->{notification_list.U_MARK_READ}<!-- ELSE -->{notification_list.URL}<!-- ENDIF -->">
 											<!-- ENDIF -->
@@ -94,11 +91,11 @@
 												</div>
 												<div class="notifications_time">{notification_list.TIME}</div>				
 												<!-- IF notification_list.FORUM --><!-- ENDIF -->
-												
+
 											<!-- IF notification_list.URL -->
 											</a>
 											<!-- ENDIF -->
-											
+
 										</div>
 									</div>
 								</dt>

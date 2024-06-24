@@ -50,7 +50,7 @@ table.responsive td.empty{display:none !important;}
 table.responsive td > dfn{display:inline-block !important;}
 table.responsive td > dfn:after{content:':';padding-right:5px;}
 table.responsive span.rank-img{float:none;padding-right:5px;}
-table.responsive#memberlist td:first-child input[type="checkbox"]{float:right;}*/
+table.responsive.memberlist td:first-child input[type="checkbox"]{float:right;}*/
 fieldset dt, fieldset.fields1 dt, fieldset.fields2 dt{width:auto;float:none;}
 fieldset dd, fieldset.fields1 dd, fieldset.fields2 dd{margin-left:20px;}
 dl.pmlist dt{width:auto !important;margin-bottom:5px;}

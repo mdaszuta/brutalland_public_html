@@ -26,10 +26,10 @@
 
 	<!-- BEGIN forumrow -->
 		<li class="row<!-- IF forumrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-			
+
 			<dl class="icon {forumrow.FORUM_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
-				<dt title="{forumrow.FORUM_FOLDER_IMG_ALT}">
+				<dt title="<!-- IF forumrow.S_UNREAD_FORUM -->{L_UNREAD_POSTS}<!-- ELSE -->{L_NO_UNREAD_POSTS}<!-- ENDIF -->">
 				
 					<!-- IF forumrow.TOPICS -->
 						<div class="topic-reply-counter<!-- IF forumrow.S_UNREAD_FORUM --> unread<!-- ELSE --> read<!-- ENDIF -->">{forumrow.TOPICS} <dfn>{L_TOPICS}</dfn></div>
@@ -37,9 +37,9 @@
 					
 					<!-- IF forumrow.S_UNREAD_FORUM --><a href="{forumrow.U_VIEWFORUM}" class="icon-link"></a><!-- ENDIF -->
 					<div class="list-inner">
-					
-					
-					
+
+
+
 						<a href="{forumrow.U_VIEWFORUM}" class="forumtitle">{forumrow.FORUM_NAME}</a><br />
 						{forumrow.FORUM_DESC}
 						<!-- IF forumrow.LAST_POST_TIME -->

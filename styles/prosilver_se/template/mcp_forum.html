@@ -29,11 +29,9 @@
 
 		<!-- BEGIN topicrow -->
 		<li class="row<!-- IF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
-			
 			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{L_VIEW_TOPIC}">
-					
 					<!-- IF not S_IS_BOT --><!-- IF topicrow.REPLIES -->
 						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
 					<!-- ENDIF --><!-- ENDIF -->
@@ -61,7 +59,7 @@
 						<!-- ENDIF -->
 						
 						<br />
-						
+						<!-- EVENT topiclist_row_topic_title_after -->
 						<div class="lastpost responsive-show" style="display: none;">
 							<span>
 								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
@@ -113,6 +111,7 @@
 	</div>
 </div>
 
+<!-- EVENT mcp_forum_actions_before -->
 <fieldset class="display-actions">
 	<!-- IF not S_MERGE_SELECT -->
 	<select name="action">
@@ -126,18 +125,16 @@
 		<!-- IF S_CAN_SYNC --><option value="resync">{L_RESYNC}</option><!-- ENDIF -->
 		<!-- IF S_CAN_MAKE_NORMAL --><option value="make_normal">{L_MAKE_NORMAL}</option><!-- ENDIF -->
 		<!-- IF S_CAN_MAKE_STICKY --><option value="make_sticky">{L_MAKE_STICKY}</option><!-- ENDIF -->
-		<!-- IF S_CAN_MAKE_ANNOUNCE -->
-			<option value="make_announce">{L_MAKE_ANNOUNCE}</option>
-			<option value="make_global">{L_MAKE_GLOBAL}</option>
-		<!-- ENDIF -->
+		<!-- IF S_CAN_MAKE_ANNOUNCE --><option value="make_announce">{L_MAKE_ANNOUNCE}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MAKE_ANNOUNCE_GLOBAL --><option value="make_global">{L_MAKE_GLOBAL}</option><!-- ENDIF -->
+		<!-- EVENT mcp_forum_actions_append -->
 	</select>
 	<input class="button2" type="submit" value="{L_SUBMIT}" />
-	<div>
-		<a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a>
-	</div>
+	<div><a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a></div>
 	<!-- ENDIF -->
 	{S_FORM_TOKEN}
 </fieldset>
+<!-- EVENT mcp_forum_actions_after -->
 </form>
 
 <!-- INCLUDE mcp_footer.html -->

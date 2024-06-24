@@ -21,7 +21,7 @@
 	<ul class="topiclist cplist missing-column">
 
 	<!-- BEGIN forumrow -->
-		<li class="row<!-- IF forumrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
+		<li class="row<!-- IF forumrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<dl class="icon {forumrow.FORUM_IMG_STYLE}">
 				<dt>
 					<!-- IF forumrow.S_UNREAD_FORUM --><a href="{forumrow.U_VIEWFORUM}" class="icon-link"></a><!-- ENDIF -->
@@ -30,16 +30,23 @@
 						{forumrow.FORUM_DESC}
 						<!-- IF forumrow.LAST_POST_TIME -->
 						<div class="responsive-show" style="display: none;">
-							{L_LAST_POST} {L_POST_BY_AUTHOR} {forumrow.LAST_POST_AUTHOR_FULL} &laquo; <a href="{topicrow.U_LAST_POST}">{forumrow.LAST_POST_TIME}</a>
+							{L_LAST_POST} {L_POST_BY_AUTHOR} {forumrow.LAST_POST_AUTHOR_FULL} &laquo; <a href="{forumrow.U_LAST_POST}">{forumrow.LAST_POST_TIME}</a>
 						</div>
 						<!-- ENDIF -->
 					</div>
 				</dt>
-				<dd class="lastpost"><!-- IF forumrow.LAST_POST_TIME --><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {forumrow.LAST_POST_AUTHOR_FULL}
-					<a href="{forumrow.U_LAST_POST}">{LAST_POST_IMG}</a> <br />{forumrow.LAST_POST_TIME}</span>
-					<!-- ELSE -->{L_NO_POSTS}<br />&nbsp;<!-- ENDIF -->
+				<dd class="lastpost">
+					<!-- IF forumrow.LAST_POST_TIME -->
+						<span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {forumrow.LAST_POST_AUTHOR_FULL}
+							<a href="{forumrow.U_LAST_POST}">
+								{LAST_POST_IMG}
+							</a>
+							<br />{forumrow.LAST_POST_TIME}</span>
+					<!-- ELSE -->
+						{L_NO_POSTS}<br />&nbsp;
+					<!-- ENDIF -->
 				</dd>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="f[{forumrow.FORUM_ID}]" id="f{forumrow.FORUM_ID}" /></dd>
+				<dd class="mark"><input type="checkbox" name="f[{forumrow.FORUM_ID}]" id="f{forumrow.FORUM_ID}" /></dd>
 			</dl>
 		</li>
 	<!-- END forumrow -->
@@ -69,14 +76,27 @@
 	<ul class="topiclist cplist missing-column">
 
 	<!-- BEGIN topicrow -->
-		<li class="row<!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ELSEIF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'">
+		<li class="row<!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ELSEIF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
 					<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
 					<div class="list-inner">
-						<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
-						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
-						<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
+						<!-- IF topicrow.S_UNREAD_TOPIC -->
+							<a href="{topicrow.U_NEWEST_POST}">
+								{NEWEST_POST_IMG}
+							</a>
+						<!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+							<a href="{topicrow.U_MCP_QUEUE}">
+								{topicrow.UNAPPROVED_IMG}
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_REPORTED -->
+							<a href="{topicrow.U_MCP_REPORT}">
+								{REPORTED_IMG}
+							</a>
+						<!-- ENDIF -->
+						<br />
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
 							<ul>
@@ -102,9 +122,12 @@
 					</div>
 				</dt>
 				<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
-					<a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{LAST_POST_IMG}</a> <br />{topicrow.LAST_POST_TIME}</span>
+					<a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}">
+						{LAST_POST_IMG}
+					</a>
+					<br />{topicrow.LAST_POST_TIME}</span>
 				</dd>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>
+				<dd class="mark"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>
 			</dl>
 		</li>
 	<!-- END topicrow -->

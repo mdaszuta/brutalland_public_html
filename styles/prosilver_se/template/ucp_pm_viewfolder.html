@@ -84,7 +84,7 @@
 						<!-- ENDIF -->
 
 						<br />
-						
+
 						<!-- IF S_SHOW_RECIPIENTS -->{L_MESSAGE_TO}{L_COLON} {messagerow.RECIPIENTS} {messagerow.SENT_TIME}<!-- ELSE --><span>{messagerow.MESSAGE_AUTHOR_FULL}</span> {messagerow.SENT_TIME}<!-- ENDIF -->
 						<!-- IF messagerow.S_PM_REPORTED --><a href="{messagerow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --> {messagerow.ATTACH_ICON_IMG}
 
@@ -98,15 +98,13 @@
 
 		</ul>
 	<!-- ELSE -->
-		<p class="fbr-m-info">
-			<strong>
-				<!-- IF S_COMPOSE_PM_VIEW and S_NO_AUTH_SEND_MESSAGE -->
-					<!-- IF S_USER_NEW -->{L_USER_NEW_PERMISSION_DISALLOWED}<!-- ELSE -->{L_NO_AUTH_SEND_MESSAGE}<!-- ENDIF -->
-				<!-- ELSE -->
-					{L_NO_MESSAGES}
-				<!-- ENDIF -->
-			</strong>
-		</p>
+		<p class="fbr-m-info"><strong>
+			<!-- IF S_COMPOSE_PM_VIEW and S_NO_AUTH_SEND_MESSAGE -->
+				<!-- IF S_USER_NEW -->{L_USER_NEW_PERMISSION_DISALLOWED}<!-- ELSE -->{L_NO_AUTH_SEND_MESSAGE}<!-- ENDIF -->
+			<!-- ELSE -->
+				{L_NO_MESSAGES}
+			<!-- ENDIF -->
+		</strong></p>
 	<!-- ENDIF -->
 
 	<!-- IF FOLDER_CUR_MESSAGES neq 0 -->
