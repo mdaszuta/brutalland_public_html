@@ -308,8 +308,6 @@ $vars = array(
 );
 extract($phpbb_dispatcher->trigger_event('core.modify_mcp_modules_display_option', compact($vars)));
 
-extract($phpbb_dispatcher->trigger_event('core.index_modify_zipsklad'));
-
 // Load and execute the relevant module
 $module->load_active();
 

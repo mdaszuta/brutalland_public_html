@@ -628,6 +628,4 @@ $template->set_filenames(array(
 );
 make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
 
-extract($phpbb_dispatcher->trigger_event('core.index_modify_zipsklad'));
-
 page_footer();

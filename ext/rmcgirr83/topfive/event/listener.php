@@ -54,8 +54,7 @@ class listener implements EventSubscriberInterface
 	{
 
 		return array(
-			'core.index_modify_page_title'	=> 'main',
-			'core.index_modify_zipsklad'	=> 'main',
+			'core.user_setup'	=> 'main',
 		);
 	}
 

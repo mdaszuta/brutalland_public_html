@@ -3,6 +3,7 @@
 html,
 body,
 .wrap,
+.darken,
 .color_palette_placeholder,
 .dropdown .dropdown-contents{
 	background-color: black;
@@ -170,6 +171,8 @@ table.table1 tbody tr.bg2:hover{
 }
 
 .message-box textarea,
+.message-box textarea:hover,
+.message-box textarea:focus,
 #muzycy-box textarea{
 	background-color: rgba(0, 0, 0, 0.75);
 }

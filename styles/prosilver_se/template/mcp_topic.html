@@ -1,5 +1,6 @@
 <!-- INCLUDE mcp_header.html -->
 
+
 <!-- IF S_MERGE_VIEW -->
 	<!-- DEFINE $SHOW_PANEL = 'merge-panel' -->
 <!-- ELSEIF S_SPLIT_VIEW -->
@@ -107,7 +108,6 @@
 			<div class="inner">
 
 			<div class="postbody" id="pr{postrow.POST_ID}">
-
 				<ul class="post-buttons" data-skip-responsive="true">
 					<div id="post_b_1">
 						<li>
@@ -125,8 +125,8 @@
 
 				<h3><a href="{postrow.U_POST_DETAILS}">{postrow.POST_SUBJECT}</a></h3>
 
+				<!-- EVENT mcp_topic_postrow_post_details_before -->
 				<p class="author">
-					<!-- EVENT mcp_topic_postrow_post_details_before -->
 					<span>{postrow.POST_AUTHOR_FULL}</span> {postrow.POST_DATE}<!-- IF postrow.U_MCP_DETAILS --> [ <a href="{postrow.U_MCP_DETAILS}">{L_POST_DETAILS}</a> ]<!-- ENDIF -->
 				</p>
 				<!-- EVENT mcp_topic_postrow_post_details_after -->

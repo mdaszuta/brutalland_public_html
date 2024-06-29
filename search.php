@@ -149,8 +149,6 @@ $vars = array(
 );
 extract($phpbb_dispatcher->trigger_event('core.search_modify_submit_parameters', compact($vars)));
 
-extract($phpbb_dispatcher->trigger_event('core.index_modify_zipsklad'));
-
 if ($keywords || $author || $author_id || $search_id || $submit)
 {
 	// clear arrays

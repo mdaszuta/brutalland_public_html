@@ -30,8 +30,6 @@ $user->setup('app');
 /* @var $http_kernel \Symfony\Component\HttpKernel\HttpKernel */
 $http_kernel = $phpbb_container->get('http_kernel');
 
-extract($phpbb_dispatcher->trigger_event('core.index_modify_zipsklad'));
-
 /* @var $symfony_request \phpbb\symfony_request */
 $symfony_request = $phpbb_container->get('symfony_request');
 $response = $http_kernel->handle($symfony_request);

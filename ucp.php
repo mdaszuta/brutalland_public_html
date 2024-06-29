@@ -40,7 +40,7 @@ $template->assign_var('S_IN_UCP', true);
 
 $module = new p_master();
 $default = false;
-extract($phpbb_dispatcher->trigger_event('core.index_modify_zipsklad'));
+
 // Basic "global" modes
 switch ($mode)
 {

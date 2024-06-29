@@ -35,17 +35,17 @@
 					<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
 					<!-- EVENT mcp_forum_topic_title_after -->
 					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
-						<a href="{topicrow.U_MCP_QUEUE}">
+						<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
 							{topicrow.UNAPPROVED_IMG}
 						</a>
 					<!-- ENDIF -->
 					<!-- IF topicrow.S_TOPIC_DELETED or topicrow.S_POSTS_DELETED -->
-						<a href="{topicrow.U_MCP_QUEUE}">
+						<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_DELETED}">
 							{topicrow.DELETED_IMG}
 						</a>
 					<!-- ENDIF -->
 					<!-- IF topicrow.S_TOPIC_REPORTED -->
-						<a href="{topicrow.U_MCP_REPORT}">
+						<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
 							{REPORTED_IMG}
 						</a>
 					<!-- ENDIF -->

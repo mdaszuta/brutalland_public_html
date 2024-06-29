@@ -394,8 +394,6 @@ $vars = array(
 );
 extract($phpbb_dispatcher->trigger_event('core.modify_posting_auth', compact($vars)));
 
-extract($phpbb_dispatcher->trigger_event('core.index_modify_zipsklad'));
-
 if (!$is_authed)
 {
 	$check_auth = ($mode == 'quote') ? 'reply' : $mode;

@@ -16,10 +16,10 @@
 	</thead>
 	<tbody>
 <!-- BEGIN user -->
-	<tr class="<!-- IF group.user.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF group.user.S_INACTIVE --> inactive<!-- ENDIF -->" onclick="window.location.href='{group.user.U_CLICK_LINK}'">
+	<tr class="<!-- IF group.user.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF group.user.S_INACTIVE --> inactive<!-- ENDIF -->" onclick="window.location.href='{group.user.U_VIEW_PROFILE}'" title="{L_SHOW_PROFILE}">
 		<td><!-- IF group.user.RANK_IMG --><span class="rank-img">{group.user.RANK_IMG}</span><!-- ELSE --><span class="rank-img">{group.user.RANK_TITLE}</span><!-- ENDIF --><!-- EVENT memberlist_team_username_prepend -->{group.user.USERNAME_FULL}<!-- IF group.user.S_INACTIVE --> ({L_INACTIVE})<!-- ENDIF --><!-- EVENT memberlist_team_username_append --></td>
 		<td class="info"><!-- IF group.user.U_GROUP -->
-			<a<!-- IF group.user.GROUP_COLOR --> style="font-weight: bold; color: #{group.user.GROUP_COLOR}"<!-- ENDIF --> href="{group.user.U_GROUP}">{group.user.GROUP_NAME}</a>
+			<a<!-- IF group.user.GROUP_COLOR --> style="font-weight: bold; color: #{group.user.GROUP_COLOR}"<!-- ENDIF --> href="{group.user.U_GROUP}" title="{group.user.GROUP_NAME}">{group.user.GROUP_NAME}</a>
 			<!-- ELSE -->
 				{group.user.GROUP_NAME}
 			<!-- ENDIF --></td>

@@ -27,7 +27,6 @@ class main_listener implements EventSubscriberInterface
 		return array(
 			'core.user_setup'                                => 'load_language_on_setup',
 			'core.index_modify_page_title'                   => 'index_modify_page_title',
-			'core.index_modify_zipsklad'                     => 'index_modify_page_title',
 			'core.modify_posting_parameters'                 => 'modify_posting_parameters',
 			'core.posting_modify_template_vars'              => 'posting_modify_template_vars',
 			'core.viewforum_modify_topicrow'                 => 'viewforum_modify_topicrow',

@@ -3158,3 +3158,269 @@ li.notification-disapproved strong {
 	max-width: 65%;
 	vertical-align: bottom;
 }
+
+
+
+
+
+
+
+/* colours.css */
+
+.gallery label {
+	background: #FFFFFF;
+	border-color: #CCC;
+}
+
+.gallery label:hover {
+	background-color: #EEE;
+}
+
+.message-box textarea.drag-n-drop {
+	outline-color: rgba(102, 102, 102, 0.5);
+}
+
+.message-box textarea.drag-n-drop-highlight {
+	outline-color: rgba(17, 163, 234, 0.5);
+}
+
+.darken {
+	background-color: #000000;
+}
+
+.loading_indicator {
+	background-color: #000000;
+	background-image: url("./images/loading.gif");
+}
+
+/* END colours.css */
+
+/* content.css */
+
+.topicreview {
+	padding-right:5px;
+	overflow: auto;
+	height: 300px;
+}
+
+/*
+.topicreview .postbody {
+	width: auto;
+	float: none;
+	margin: 0;
+	height: auto;
+}
+*/
+
+.topicreview .post {
+	height: auto;
+}
+
+.topicreview h2 {
+	border-bottom-width: 0;
+}
+
+.post_details {
+	overflow: auto;
+	max-height: 300px;
+}
+
+.postbody .content::-webkit-scrollbar,
+.topicreview::-webkit-scrollbar,
+.post_details::-webkit-scrollbar,
+.codebox code::-webkit-scrollbar,
+.attachbox dd::-webkit-scrollbar,
+.attach-image::-webkit-scrollbar,
+.dropdown-extended ul::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	-webkit-appearance: none;
+	background: rgba(0, 0, 0, .1);
+	border-radius: 3px;
+}
+
+.postbody .content::-webkit-scrollbar-thumb,
+.topicreview::-webkit-scrollbar-thumb,
+.post_details::-webkit-scrollbar-thumb,
+.codebox code::-webkit-scrollbar-thumb,
+.attachbox dd::-webkit-scrollbar-thumb,
+.attach-image::-webkit-scrollbar-thumb,
+.dropdown-extended ul::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, .3);
+	border-radius: 3px;
+}
+
+#memberlist tr.inactive, #team tr.inactive {
+	font-style: italic;
+}
+
+/* END content.css */
+
+/* cp.css */
+
+.cp-main .content {
+	padding: 0;
+}
+
+.cp-main .postbody h3, .cp-main .box2 h3 {
+	margin-top: 0;
+}
+
+.cp-main .buttons {
+	margin-left: 0;
+}
+
+.minitabs .tab {
+	float: right;
+}
+
+.minitabs .tab > a {
+	margin-left: 2px;
+}
+
+.tabs .dropdown, .minitabs .dropdown {
+	top: 20px;
+	margin-right: -2px;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+.minitabs .dropdown {
+	margin-right: -4px;
+}
+
+.tabs .dropdown-up .dropdown, .minitabs .dropdown-up .dropdown {
+	bottom: 20px;
+	top: auto;
+}
+
+.tabs .dropdown li {
+	text-align: right;
+}
+
+.minitabs .dropdown li {
+	text-align: left;
+}
+
+.gallery label {
+	position: relative;
+	float: left;
+	margin: 10px;
+	padding: 5px;
+	width: auto;
+	border: 1px solid transparent;
+	text-align: center;
+}
+
+@media only screen and (max-width:900px),
+only screen and (max-device-width:900px) {
+	.nojs .tabs a span,	.nojs .minitabs a span {
+		max-width: 40px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		letter-spacing: -.5px;
+	}
+
+	.navigation li:first-child a {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+
+	.navigation li:last-child a {
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+}
+
+/* END cp.css */
+
+/* forms.css */
+
+.format-buttons {
+	margin: 15px 0 2px 0;
+}
+
+.format-buttons input, .format-buttons select {
+	vertical-align: middle;
+}
+
+.message-box textarea {
+	font-family: "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
+	width: 450px;
+	height: 270px;
+	min-width: 100%;
+	max-width: 100%;
+	font-size: 1.2em;
+	resize: vertical;
+	outline: 3px dashed transparent;
+	outline-offset: -4px;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+/* END forms.css */
+
+/* plupload.css */
+
+.attach-panel-multi {
+	display: none;
+	margin-bottom: 1em;
+}
+
+.file-list td {
+	vertical-align: middle;
+}
+
+.nojs .file-inline-bbcode {
+	display: none;
+}
+
+.file-total-progress {
+	height: 2px;
+	display: block;
+	position: relative;
+	margin: 4px -10px -6px -10px;
+}
+
+.file-progress-bar, .file-total-progress-bar {
+	background-color: green;
+	display: block;
+	height: 100%;
+	width: 0;
+}
+
+/* END plupload.css */
+
+/* forum_fn.js moze to tworzyc */
+
+.quick-links a.responsive-menu-link {
+	display: block;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+	width: auto;
+}
+
+.quick-links a.responsive-menu-link:before {
+	font-size: 1.455em;
+	line-height: 16.5px;
+}
+
+.compact .quick-links a.responsive-menu-link {
+	width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.button.responsive-menu-link:before {
+	background-position: -191px 0;
+}
+
+.button.responsive-menu-link:hover:before {
+	background-position: -191px -21px;
+}
+
+/* END forum_fn.js moze to tworzyc */

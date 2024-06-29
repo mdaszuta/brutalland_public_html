@@ -1,5 +1,4 @@
 		<!-- EVENT overall_footer_content_after -->
-		
 	</div>
 
 <!-- EVENT overall_footer_page_body_after -->
@@ -12,43 +11,45 @@
 	</div>
 
 	<div id="phpbb_alert" class="phpbb_alert" data-l-err="{L_ERROR}" data-l-timeout-processing-req="{L_TIMEOUT_PROCESSING_REQ}">
-		<a href="#" class="alert_close"></a>
+		<a href="#" class="alert_close">
+		</a>
 		<h3 class="alert_title">&nbsp;</h3><p class="alert_text"></p>
 	</div>
 	<div id="phpbb_confirm" class="phpbb_alert">
-		<a href="#" class="alert_close"></a>
+		<a href="#" class="alert_close">
+		</a>
 		<div class="alert_text"></div>
 	</div>
 </div>
 
 </div>
 
-<div class="copyright">
-	<!-- IF U_ACP --><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
-	<br />
-	
-	<div id="sigil">
-		<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->sigil-top<!-- ELSE -->sigil-all<!-- ENDIF -->"></a>
-		<!-- IF S_REGISTERED_USER -->
-			<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}#ugh<!-- ELSE -->{U_INDEX}#ugh<!-- ENDIF -->' class="sigil-bottom"></a>
-		<!-- ENDIF -->
+	<div class="copyright">
+		<!-- EVENT overall_footer_copyright_prepend -->
+		<!-- EVENT overall_footer_copyright_append -->
+		<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
+		<!-- IF U_ACP --><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
+		<br />
+		
+		<div id="sigil">
+			<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->sigil-top<!-- ELSE -->sigil-all<!-- ENDIF -->"></a>
+			<!-- IF S_REGISTERED_USER -->
+				<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}#ugh<!-- ELSE -->{U_INDEX}#ugh<!-- ENDIF -->' class="sigil-bottom"></a>
+			<!-- ENDIF -->
+		</div>
 	</div>
-	
-</div>
-
 
 <div>
 	<a id="bottom" class="anchor" accesskey="z"></a>
 	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
 </div>
 
-
-<!-- IF S_ALLOW_CDN -->
-	<script>window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js">\x3C/script>');</script>
-<!-- ENDIF -->
-<script src="{T_JQUERY_LINK}"></script>
-<script src="{T_ASSETS_PATH}/javascript/core.js"></script>
-<script src="{ROOT_PATH}styles/prosilver_se/template/skrypty.js"></script>
+<script type="text/javascript" src="{T_JQUERY_LINK}"></script>
+<!-- IF S_ALLOW_CDN --><script type="text/javascript">window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
+<script type="text/javascript" src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
+<!-- INCLUDEJS forum_fn.js -->
+<!-- INCLUDEJS ajax.js -->
+<script type="text/javascript" src="{ROOT_PATH}styles/prosilver_se/template/skrypty.js?assets_version={T_ASSETS_VERSION}"></script>
 
 <script>
 $(document).ready(function(){
@@ -114,7 +115,30 @@ $(document).ready(function(){
 <!-- IF S_RH_TOPICTAGS_INCLUDE_NG_TAGS_INPUT -->
 	<script src="{ROOT_PATH}ext/robertheim/topictags/styles/all/angular/taginput.app.js"></script>
 <!-- ENDIF -->
-	
+
+<!-- IF S_COOKIE_NOTICE -->
+	<script src="{T_ASSETS_PATH}/cookieconsent/cookieconsent.min.js?assets_version={T_ASSETS_VERSION}"></script>
+	<script>
+		window.addEventListener("load", function(){
+			window.cookieconsent.initialise({
+				"palette": {
+					"popup": {
+						"background": "#0F538A"
+					},
+					"button": {
+						"background": "#E5E5E5"
+					}
+				},
+				"theme": "classic",
+				"content": {
+					"message": "{LA_COOKIE_CONSENT_MSG}",
+					"dismiss": "{LA_COOKIE_CONSENT_OK}",
+					"link": "{LA_COOKIE_CONSENT_INFO}"
+				}
+			})});
+	</script>
+<!-- ENDIF -->
+
 <!-- EVENT overall_footer_after -->
 
 <!-- IF S_PLUPLOAD --><!-- INCLUDE plupload.html --><!-- ENDIF -->

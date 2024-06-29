@@ -79,11 +79,11 @@
 					<dd class="lastpost">
 						<span>
 							<!-- IF forumrow.U_UNAPPROVED_TOPICS -->
-								<a href="{forumrow.U_UNAPPROVED_TOPICS}">
+								<a href="{forumrow.U_UNAPPROVED_TOPICS}" title="{L_TOPICS_UNAPPROVED}">
 									{UNAPPROVED_IMG}
 								</a>
 							<!-- ELSEIF forumrow.U_UNAPPROVED_POSTS -->
-								<a href="{forumrow.U_UNAPPROVED_POSTS}">
+								<a href="{forumrow.U_UNAPPROVED_POSTS}" title="{L_POSTS_UNAPPROVED_FORUM}">
 									{UNAPPROVED_POST_IMG}
 								</a>
 							<!-- ENDIF -->
@@ -95,7 +95,7 @@
 								<!-- ENDIF -->
 									{L_POST_BY_AUTHOR} {forumrow.LAST_POSTER_FULL}
 								<!-- IF not S_IS_BOT -->
-									<a href="{forumrow.U_LAST_POST}">
+									<a href="{forumrow.U_LAST_POST}" title="{L_VIEW_LATEST_POST}">
 										{LAST_POST_IMG}
 									</a>
 								<!-- ENDIF -->

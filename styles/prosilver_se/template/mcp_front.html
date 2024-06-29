@@ -1,5 +1,6 @@
 <!-- INCLUDE mcp_header.html -->
 
+
 <!-- EVENT mcp_front_latest_unapproved_before -->
 
 <!-- IF S_SHOW_UNAPPROVED -->
@@ -50,14 +51,12 @@
 
 	<!-- IF .unapproved -->
 	<fieldset class="display-actions flex-box-form">
-		<div class="flex-box-o">
-			{S_HIDDEN_FIELDS}
-			<div class="flex-box"><input class="button" type="submit" name="action[approve]" value="{L_APPROVE}" /></div>
-			<div class="flex-box"><input class="button" type="submit" name="action[disapprove]" value="{L_DISAPPROVE}" /></div>
-			<div>
-				<a href="#" onclick="marklist('mcp_queue', 'post_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp_queue', 'post_id_list', false); return false;">{L_UNMARK_ALL}</a>
-			</div>
-		</div>
+	<div class="flex-box-o">
+		{S_HIDDEN_FIELDS}
+		<div class="flex-box"><input class="button" type="submit" name="action[approve]" value="{L_APPROVE}" /></div>
+		<div class="flex-box"><input class="button" type="submit" name="action[disapprove]" value="{L_DISAPPROVE}" /></div>
+		<div><a href="#" onclick="marklist('mcp_queue', 'post_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp_queue', 'post_id_list', false); return false;">{L_UNMARK_ALL}</a></div>
+	</div>
 	</fieldset>
 	<!-- ENDIF -->
 		</form>

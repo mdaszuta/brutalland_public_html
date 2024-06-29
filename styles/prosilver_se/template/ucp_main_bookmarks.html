@@ -2,6 +2,7 @@
 
 <form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
 
+
 <div class="panel">
 	<div class="inner">
 
@@ -44,11 +45,11 @@
 					<!-- IF topicrow.REPLIES -->
 						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
 					<!-- ENDIF -->
-					
+
 					<div class="list-inner">
-					
+
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
-						
+
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
 							<ul>
@@ -63,7 +64,7 @@
 							</ul>
 						</div>
 						<!-- ENDIF -->
-						
+
 						<br />
 
 						<div class="lastpost responsive-show" style="display: none;">
@@ -74,15 +75,13 @@
 								</a>
 							</span>
 						</div>
-						
-						
+
 						<div class="responsive-hide">
 							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
 							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 							<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
 						</div>
-						
-						
+
 					</div>
 				</dt>
 				</div>

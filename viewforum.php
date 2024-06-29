@@ -1002,6 +1002,4 @@ if ($forum_data['forum_type'] == FORUM_POST && sizeof($topic_list) && $mark_foru
 	update_forum_tracking_info($forum_id, $forum_data['forum_last_post_time'], false, $mark_time_forum);
 }
 
-extract($phpbb_dispatcher->trigger_event('core.index_modify_zipsklad'));
-
 page_footer();
