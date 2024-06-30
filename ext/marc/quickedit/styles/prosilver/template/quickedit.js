@@ -16,7 +16,7 @@ phpbb.addAjaxCallback('quickedit_post', function(res) {
 
 	if (res.POST_ID && res.POST_ID > 0 && !$(quickeditBoxId).length) {
 		var $post = $('#p' + res.POST_ID);
-		
+
 		$post.find('.content').hide();
 		$(res.MESSAGE).insertAfter($post.find('.author'));
 
@@ -100,46 +100,43 @@ phpbb.addAjaxCallback('quickedit_post', function(res) {
  * Add Quickedit functionality to edit buttons
  */
 phpbb.QuickeditAjaxifyEditButtons = function(elements) {
-
 	var editButtons = elements.find('div[id^="p"]').filter(function() {
 		return this.id.match(/^p+(?:([0-9]+))/);
 	});
 
 	editButtons.each(function() {
-		
+
 		//if( (elements.find('.firstpostintopic')[0] != undefined) ) {console.log(elements.find('.firstpostintopic')[0]);}
 		/* Ponizszy if sprawdza, czy to nie pierwszy post na stronie. Jesli tak, czy nie jest to pierwsza strona. Tego jednego nie pozwala quickeditowac */
 		if( ( ('#' + this.id) != elements.find('.first a')[0].hash ) || ( elements.find('.firstpostintopic')[0] == undefined ) ) {
-			
-			var $this = $('#' + this.id + " a[href*='mode=edit']"),
-				fn;
 
-			fn = 'quickedit_post';
-			phpbb.ajaxify({
-				selector: $this,
-				refresh: false,
-				callback: fn
-			});
+		var $this = $('#' + this.id + " a[href*='mode=edit']"),
+			fn;
 
-			// Close dropdown in responsive design
-			$this.filter(function() {
-				return !!$(this).closest('.responsive-menu').length;
-			}).click(function() {
-				var $container = $(this).parents('.dropdown-container'),
-					$trigger = $container.find('.dropdown-trigger:first'),
-					data;
+		fn = 'quickedit_post';
+		phpbb.ajaxify({
+			selector: $this,
+			refresh: false,
+			callback: fn
+		});
 
-				if (!$trigger.length) {
-					data = $container.attr('data-dropdown-trigger');
-					$trigger = data ? $container.children(data) : $container.children('a:first');
-				}
-				$trigger.click();
-			});
-		
+		// Close dropdown in responsive design
+		$this.filter(function() {
+			return !!$(this).closest('.responsive-menu').length;
+		}).click(function() {
+			var $container = $(this).parents('.dropdown-container'),
+				$trigger = $container.find('.dropdown-trigger:first'),
+				data;
+
+			if (!$trigger.length) {
+				data = $container.attr('data-dropdown-trigger');
+				$trigger = data ? $container.children(data) : $container.children('a:first');
+			}
+			$trigger.click();
+		});
+
 		}
 	});
-	
-	
 };
 
 $(window).on('load', function() {
