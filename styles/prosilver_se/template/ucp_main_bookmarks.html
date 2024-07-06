@@ -15,7 +15,7 @@
 <!-- IF .topicrow -->
 	<ul class="topiclist missing-column">
 		<li class="header">
-			<dl class="icon">
+			<dl class="row-item">
 				<dt><div class="list-inner">{L_BOOKMARKS}</div></dt>
 				<dd class="mark">{L_MARK}</dd>
 				<dd class="lastpost">
@@ -38,7 +38,7 @@
 					<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>
 				</dl>
 			<!-- ELSE -->
-			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
+			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 

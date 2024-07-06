@@ -14,7 +14,7 @@
 			<ul class="topiclist">
 				<li class="header">
 					<!-- EVENT forumlist_body_category_header_row_prepend -->
-					<dl class="icon">
+					<dl class="row-item">
 						<dt><div class="list-inner"><!-- IF forumrow.S_IS_CAT --><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a><!-- ELSE -->{L_FORUM}<!-- ENDIF --></div></dt>
 						<dd class="posts">{L_POSTS}</dd>
 						<dd class="lastpost">
@@ -35,13 +35,13 @@
 		<!-- EVENT forumlist_body_forum_row_before -->
 		<li class="row<!-- IF forumrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<!-- EVENT forumlist_body_forum_row_prepend -->
-			<dl class="icon {forumrow.FORUM_IMG_STYLE}">
+			<dl class="row-item {forumrow.FORUM_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
 				<dt title="{forumrow.FORUM_FOLDER_IMG_ALT}">
 					<!-- IF not S_IS_BOT --><!-- IF forumrow.TOPICS -->
 						<div class="topic-reply-counter<!-- IF forumrow.S_UNREAD_FORUM --> unread<!-- ELSE --> read<!-- ENDIF -->">{forumrow.TOPICS} <dfn>{L_TOPICS}</dfn></div>
 					<!-- ENDIF --><!-- ENDIF -->
-					<!-- IF forumrow.S_UNREAD_FORUM --><a href="{forumrow.U_VIEWFORUM}" class="icon-link"></a><!-- ENDIF -->
+					<!-- IF forumrow.S_UNREAD_FORUM --><a href="{forumrow.U_VIEWFORUM}" class="row-item-link"></a><!-- ENDIF -->
 					<div class="list-inner">
 						<!-- IF S_ENABLE_FEEDS and forumrow.S_FEED_ENABLED -->
 							<!--

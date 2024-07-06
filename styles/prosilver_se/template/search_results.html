@@ -40,7 +40,7 @@
 		<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
-				<dl class="icon">
+				<dl class="row-item">
 					<dt><div class="list-inner">{L_TOPICS}{L_COLON} {TOTAL_MATCHES}<!-- IF IGNORED_WORDS --> [{L_IGNORED_TERMS}{L_COLON} <strong>{IGNORED_WORDS}</strong>]<!-- ENDIF --></div></dt>
 					<dd class="views">{L_VIEWS}</dd>
 					<dd class="lastpost">
@@ -57,7 +57,7 @@
 		<!-- BEGIN searchresults -->
 			<!-- EVENT search_results_topic_before -->
 			<li class="row<!-- IF searchresults.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-				<dl class="icon {searchresults.TOPIC_IMG_STYLE}">
+				<dl class="row-item {searchresults.TOPIC_IMG_STYLE}">
 					<div class="main-rowlist" onclick="window.location.href='<!-- IF searchresults.S_UNREAD_TOPIC -->{searchresults.U_NEWEST_POST}<!-- ELSE -->{searchresults.U_VIEW_TOPIC}<!-- ENDIF -->'">
 					<dt<!-- IF searchresults.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF searchresults.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 
@@ -143,7 +143,7 @@
 		<div class="inner">
 			<ul class="topiclist">
 				<li class="header">
-					<dl class="icon">
+					<dl class="row-item">
 						<dt><div class="list-inner">{L_JUST_RESULTS}{L_COLON} {TOTAL_MATCHES}<!-- IF IGNORED_WORDS --> [{L_IGNORED_TERMS}{L_COLON} <strong>{IGNORED_WORDS}</strong>]<!-- ENDIF --></div></dt>
 					</dl>
 				</li>

@@ -11,7 +11,7 @@
 	<ul class="topiclist cplist two-long-columns">
 	<!-- BEGIN topicrow -->
 		<li class="row<!-- IF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
+			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 

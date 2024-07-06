@@ -36,7 +36,7 @@
 		<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
-				<dl class="icon">
+				<dl class="row-item">
 					<dt><div class="list-inner">{TOTAL_TOPICS}</div></dt>
 					<dd class="views">{L_VIEWS}</dd>
 					<dd class="lastpost">
@@ -54,7 +54,7 @@
 		<!-- EVENT viewforum_body_topicrow_row_before -->
 		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<!-- EVENT viewforum_body_topic_row_prepend -->
-			<dl class="icon {topicrow.TOPIC_IMG_STYLE}">
+			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF searchresults.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 					<script>

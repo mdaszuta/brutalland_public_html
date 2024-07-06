@@ -779,7 +779,7 @@ dd.lastpost > span{
 	justify-content: flex-end;
 }
 
-.header .icon { width: 100%; }
+.header .row-item { width: 100%; }
 
 dd.time {
     width: 170px;
