@@ -10,6 +10,16 @@
 	<p>{L_WARNED_USERS_EXPLAIN}</p>
 
 	<!-- IF .user -->
+		<div class="action-bar bar-top">
+			<div class="pagination">
+				{TOTAL_USERS}
+				<!-- IF .pagination -->
+					<!-- INCLUDE pagination.html -->
+				<!-- ELSE -->
+					 &bull; {PAGE_NUMBER}
+				<!-- ENDIF -->
+			</div>
+		</div>
 
 		<table class="table1">
 		<thead>

@@ -385,7 +385,8 @@ tags-input .tags:focus{
 	box-shadow: 0 -1px 1px -1px #257EDE !important;
 }
 
-.action-bar.top .button{
+.action-bar.top .button,
+.action-bar.bar-top .button{
 	box-shadow: 0 -1px 1px -1px #0000 !important;
 }
 

@@ -10,6 +10,16 @@
 	<p>{L_ATTACHMENTS_EXPLAIN}</p>
 
 	<!-- IF .attachrow -->
+		<div class="action-bar top">
+			<div class="pagination">
+				{NUM_ATTACHMENTS}
+				<!-- IF .pagination -->
+					<!-- INCLUDE pagination.html -->
+				<!-- ELSE -->
+					 &bull; {PAGE_NUMBER}
+				<!-- ENDIF -->
+			</div>
+		</div>
 
 		<ul class="topiclist">
 			<li class="header">

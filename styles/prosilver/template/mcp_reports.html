@@ -18,6 +18,16 @@
 	<p>{L_EXPLAIN}</p>
 
 	<!-- IF .postrow -->
+		<div class="action-bar bar-top">
+			<div class="pagination">
+				{TOTAL_REPORTS}
+				<!-- IF .pagination -->
+					<!-- INCLUDE pagination.html -->
+				<!-- ELSE -->
+					 &bull; {PAGE_NUMBER}
+				<!-- ENDIF -->
+			</div>
+		</div>
 
 		<ul class="topiclist missing-column">
 			<li class="header">

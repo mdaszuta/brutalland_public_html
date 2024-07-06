@@ -35,10 +35,9 @@
 <!-- ENDIF -->
 
 <!-- IF S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS -->
-	<div class="action-bar top">
+	<div class="action-bar bar-top">
 
 	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
-		<div class="buttons">
 			<!-- EVENT viewforum_buttons_top_before -->
 
 		<a href="{U_POST_NEW_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->">
@@ -49,7 +48,6 @@
 			<!-- ENDIF -->
 		</a>
 			<!-- EVENT viewforum_buttons_top_after -->
-		</div>
 	<!-- ENDIF -->
 
 	<!-- IF S_DISPLAY_SEARCHBOX -->
@@ -267,7 +265,7 @@
 <!-- ENDIF -->
 
 <!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
-	<div class="action-bar bottom">
+	<div class="action-bar bar-bottom">
 		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 			<div class="buttons">
 			<!-- EVENT viewforum_buttons_bottom_before -->

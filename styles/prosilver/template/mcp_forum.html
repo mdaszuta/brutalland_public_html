@@ -10,6 +10,17 @@
 <div class="panel">
 	<div class="inner">
 
+	<div class="action-bar bar-top">
+		<div class="pagination">
+			{TOTAL_TOPICS}
+			<!-- IF .pagination -->
+				<!-- INCLUDE pagination.html -->
+			<!-- ELSE -->
+				 &bull; {PAGE_NUMBER}
+			<!-- ENDIF -->
+		</div>
+	</div>
+
 	<!-- IF .topicrow -->
 		<ul class="topiclist<!-- IF S_MERGE_SELECT --> missing-column<!-- ENDIF -->">
 			<li class="header">

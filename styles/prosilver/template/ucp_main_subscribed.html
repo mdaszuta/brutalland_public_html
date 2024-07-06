@@ -133,6 +133,17 @@
 	<!-- END topicrow -->
 	</ul>
 
+	<div class="action-bar bar-bottom">
+		<div class="pagination">
+			{TOTAL_TOPICS}
+			<!-- IF .pagination -->
+				<!-- INCLUDE pagination.html -->
+			<!-- ELSE -->
+				 &bull; {PAGE_NUMBER}
+			<!-- ENDIF -->
+		</div>
+	</div>
+
 <!-- ELSEIF S_TOPIC_NOTIFY -->
     <ul class="topiclist">
         <li class="header">

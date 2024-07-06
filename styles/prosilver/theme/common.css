@@ -814,7 +814,7 @@ fieldset.fields1 dl.pmlist dd.recipients {
 	width: auto;
 }
 
-.action-bar.bottom .pagination {
+.action-bar.bar-bottom .pagination {
 	margin-top: 0;
 }
 
@@ -1177,11 +1177,11 @@ li.row .notifications_title strong,
 	width: 50px;
 }
 
-.dropdown .clone.hidden+li.separator {
+.dropdown .clone.hidden + li.separator {
 	display: none;
 }
 
-.dropdown .clone.hidden+li {
+.dropdown .clone.hidden + li {
 	border-top: none;
 }
 
