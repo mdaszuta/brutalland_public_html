@@ -70,6 +70,7 @@ label:nth-child(1) input[type="radio"]{
 }
 
 .page-body{
+	margin: 0;
 	padding-top: 1px;
 }
 
@@ -82,6 +83,11 @@ label:nth-child(1) input[type="radio"]{
 .navigation{
     display: flex;
     justify-content: center;
+}
+
+p.rightside,
+a.rightside{
+	margin-left: 0;
 }
 
 .navigation ul {
@@ -318,7 +324,6 @@ a.sigil-bottom { height: 20px; }
 }
 
 .button,
-.pagination li a,
 a.button1,
 a.button2,
 input.button1,
@@ -566,6 +571,8 @@ body.simple{
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	font-size: 1.1em;
+	margin: 0;
 }
 
 .action-bar .buttons{ order: 1; }
@@ -574,6 +581,7 @@ body.simple{
 .action-bar .button{
 	display:flex;
 	align-items:center;
+	margin-right: 0;
 }
 
 .action-bar .search-box.fbr-right{
@@ -591,12 +599,44 @@ body.simple{
 .row .pagination{
 	display: inline-flex;
 	float: none;
+	margin-top: 0;
+	vertical-align: text-bottom;
+}
+
+.pagination li a, .pagination li span{
+	display: block;
+	line-height: 1.4;
+	min-width: 10px;
+	padding: 2px;
+	text-align: center;
+}
+
+.pagination li a,
+.pagination li span,
+.pagination li.active span{
+	font-size: 0.9em;
+}
+
+.pagination li.active span{
+	font-weight: bold;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	border: none;
+}
+
+.row .pagination li a,
+.row .pagination li span {
+    padding: 2px;
+	font-size: 1em;
 }
 
 .pagination ul{
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+}
+
+.pagination > ul{
+	margin: 0;
 }
 
 .fbr-m-info{
@@ -884,7 +924,17 @@ a.header-avatar img{ max-height: 30px; }
 	padding: 0;
 }
 
-h2{ padding-bottom: 10px; }
+h1{
+	margin: 0;
+}
+
+h2{
+	padding-bottom: 10px;
+}
+
+h3{
+	border: none;
+}
 
 .spoilwrapper,
 .spoilcontent{
@@ -956,6 +1006,22 @@ table.table1 tbody tr.bg3,
 .fbr .inputbox:not(#message),
 .fbr .brutalform-explanation{
 	text-align: center;
+}
+
+table.table1 thead th{
+	font-weight: bold;
+	padding: 5px;
+	border-bottom: 1px solid transparent;
+	vertical-align: middle;
+}
+
+table.table1 tbody tr {
+	border: none;
+}
+
+table.table1 tbody td {
+	border-top: 1px solid transparent;
+	vertical-align: middle;
 }
 
 #notification-settings-table tbody td:not(.mark){
@@ -1550,6 +1616,21 @@ ul.topiclist li.row dl {
     //justify-content: center;
 }
 
+dl.details dt{
+	display: flex;
+	width: unset;
+}
+
+dl.details dd{
+	margin: 0;
+	width: unset;
+	overflow: unset;
+}
+
+.fbr dt label {
+    text-align: right;
+}
+
 .member-search.panel{
 	margin: auto;
 }
@@ -1743,6 +1824,7 @@ ul.topiclist li.row dl {
 	.fbr-right,
 	.fbr-right-big{
 		justify-content: space-around;
+		flex-wrap: wrap;
 	}
 	
 	.fbr select{ max-width:90vw; }
@@ -1776,7 +1858,8 @@ ul.topiclist li.row dl {
 	
 	.top-with-settings div{
 		top: -20px;
-	}
+		right: 10px;
+	}	
 	
 	table.table1#notification-settings-table .mark {
 		white-space: nowrap;
@@ -1841,7 +1924,6 @@ ul.topiclist li.row dl {
 		padding: 0;
 	}
 	
-	.pagination > ul,
 	div.content,
 	div#postingbox.panel{
 		margin: 0;
@@ -1870,7 +1952,11 @@ ul.topiclist li.row dl {
 	}
 
 	.cp-main .action-bar.top .buttons{ flex-wrap: wrap; }
-	
+
+	.message-box{
+		max-width: calc(100vw - 10px);
+	}
+
 	#tagowarka_edit tags-input .tags .tag-list {
     position: initial;
     padding-bottom: 0;

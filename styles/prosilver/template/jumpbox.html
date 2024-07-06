@@ -1,4 +1,5 @@
 
+<div class="action-bar actions-jump">
 	<!-- IF S_VIEWTOPIC -->
 	<p class="jumpbox-return">
 		<a href="{U_VIEW_FORUM}" class="left-box arrow-{S_CONTENT_FLOW_BEGIN}" accesskey="r">
@@ -26,11 +27,11 @@
 	<!-- ENDIF -->
 
 	<!-- IF S_DISPLAY_JUMPBOX -->
-	<div class="dropdown-container dropdown-container-{S_CONTENT_FLOW_END}<!-- IF not S_IN_MCP --> dropdown-up<!-- ENDIF --> dropdown-{S_CONTENT_FLOW_BEGIN} dropdown-button-control" id="jumpbox">
+	<div class="jumpbox dropdown-container dropdown-container-{S_CONTENT_FLOW_END}<!-- IF not S_IN_MCP --> dropdown-up<!-- ENDIF --> dropdown-{S_CONTENT_FLOW_BEGIN} dropdown-button-control" id="jumpbox">
 			<span title="<!-- IF S_IN_MCP and S_MERGE_SELECT -->{L_SELECT_TOPICS_FROM}<!-- ELSEIF S_IN_MCP -->{L_MODERATE_FORUM}<!-- ELSE -->{L_JUMP_TO}<!-- ENDIF -->" class="dropdown-trigger button dropdown-select">
 				<!-- IF S_IN_MCP and S_MERGE_SELECT -->{L_SELECT_TOPICS_FROM}<!-- ELSEIF S_IN_MCP -->{L_MODERATE_FORUM}<!-- ELSE -->{L_JUMP_TO}<!-- ENDIF -->
 			</span>
-		<div class="dropdown hidden">
+		<div class="dropdown">
 			<div class="pointer"><div class="pointer-inner"></div></div>
 			<ul class="dropdown-contents">
 				<!-- BEGIN jumpbox_forums -->
@@ -45,3 +46,4 @@
 	<!-- ELSE -->
 	<br /><br />
 	<!-- ENDIF -->
+</div>

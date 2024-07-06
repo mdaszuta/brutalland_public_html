@@ -142,6 +142,12 @@ dd textarea {
 	width: 95%;
 }
 
+/* Browser-specific tweaks */
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0
+}
+
 /* Quick-login on index page */
 fieldset.quick-login {
 	margin-top: 5px;
@@ -310,7 +316,7 @@ input.button1, input.button2 {
 	font-size: 1em;
 }
 
-a.button1, input.button1, a.button2, input.button2 {
+a.button1, input.button1, input.button3, a.button2, input.button2 {
 	width: auto !important;
 	padding-top: 1px;
 	padding-bottom: 1px;
@@ -323,12 +329,21 @@ a.button1, input.button1 {
 	border: 1px solid transparent;
 }
 
+input.button3 {
+	padding: 0;
+	margin: 0;
+	line-height: 5px;
+	height: 12px;
+	background-image: none;
+	font-variant: small-caps;
+}
+
 input[type="button"], input[type="submit"], input[type="reset"], input[type="checkbox"], input[type="radio"] {
 	cursor: pointer;
 }
 
 /* Alternative button */
-a.button2, input.button2 {
+a.button2, input.button2, input.button3 {
 	border: 1px solid transparent;
 }
 
@@ -342,7 +357,7 @@ a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.but
 }
 
 /* Hover states */
-a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover {
+a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
 	background-position: 0 100%;
 }
 
@@ -351,7 +366,7 @@ input.disabled {
 }
 
 /* Focus states */
-input.button1:focus, input.button2:focus {
+input.button1:focus, input.button2:focus, input.button3:focus {
 	outline-style: none;
 }
 
