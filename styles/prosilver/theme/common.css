@@ -1054,7 +1054,8 @@ form > p.post-notice strong {
 	clear: both;
 }
 
-#top {
+.top-anchor {
+	display: block;
 	position: absolute;
 	top: -20px;
 }

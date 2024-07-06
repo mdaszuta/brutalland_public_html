@@ -82,24 +82,22 @@
 
 <!-- IF .postrow -->
 	<fieldset class="display-actions flex-box-form">
-	
-		<div class="flex-box-o">
-			<!-- IF S_RESTORE -->
-			<div class="flex-box"><input class="button" type="submit" name="action[restore]" value="{L_RESTORE}" /></div>
-			<div class="flex-box"><input class="button" type="submit" name="action[delete]" value="{L_DELETE}" /></div>
+	<div class="flex-box-o">
+		<!-- IF S_RESTORE -->
+		<div class="flex-box"><input class="button" type="submit" name="action[restore]" value="{L_RESTORE}" /></div>
+		<div class="flex-box"><input class="button" type="submit" name="action[delete]" value="{L_DELETE}" /></div>
+		<!-- ELSE -->
+		<div class="flex-box"><input class="button" type="submit" name="action[approve]" value="{L_APPROVE}" /></div>
+		<div class="flex-box"><input class="button" type="submit" name="action[disapprove]" value="{L_DISAPPROVE}" /></div>
+		<!-- ENDIF -->
+		<div>
+			<!-- IF S_TOPICS -->
+				<a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a>
 			<!-- ELSE -->
-			<div class="flex-box"><input class="button" type="submit" name="action[approve]" value="{L_APPROVE}" /></div>
-			<div class="flex-box"><input class="button" type="submit" name="action[disapprove]" value="{L_DISAPPROVE}" /></div>
+				<a href="#" onclick="marklist('mcp', 'post_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'post_id_list', false); return false;">{L_UNMARK_ALL}</a>
 			<!-- ENDIF -->
-			
-			<div>
-				<!-- IF S_TOPICS -->
-					<a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a>
-				<!-- ELSE -->
-					<a href="#" onclick="marklist('mcp', 'post_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'post_id_list', false); return false;">{L_UNMARK_ALL}</a>
-				<!-- ENDIF -->
-			</div>
 		</div>
+	</div>
 	</fieldset>
 <!-- ENDIF -->
 </form>
