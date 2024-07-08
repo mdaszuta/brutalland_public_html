@@ -266,7 +266,7 @@ fieldset dt, fieldset.fields1 dt, fieldset.fields2 dt {
 }
 
 fieldset dd, fieldset.fields1 dd, fieldset.fields2 dd {
-	margin-left: 0px;
+	margin-left: 20px;
 }
 
 textarea, dd textarea, .message-box textarea {
@@ -347,7 +347,10 @@ fieldset.quick-login label[for="autologin"] {
 		white-space: normal;
 	}
 
-	//select, .inputbox{max-width:260px;}
+	select, .inputbox {
+		max-width: 260px;
+	}
+
 	.captcha-panel dd.captcha {
 		margin-left: 0;
 	}
@@ -394,8 +397,15 @@ fieldset.quick-login label[for="autologin"] {
 }
 
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
-	//dl.details dt, dl.details dd{width:auto;float:none;text-align:left;}
-	//dl.details dd{margin-left:20px;}
+	dl.details dt, dl.details dd {
+		width: auto;
+		float: none;
+		text-align: left;
+	}
+
+	dl.details dd {
+		margin-left: 20px;
+	}
 }
 
 /* Polls
