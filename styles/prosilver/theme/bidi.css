@@ -133,7 +133,7 @@
 
 .rtl .notification_text {
 	margin-left: 0;
-	margin-right: 10px;
+	margin-right: 58px;
 }
 
 .rtl .notification_list p.notification-time {
@@ -261,10 +261,27 @@
 	margin-right: 0;
 }
 
-.pagination li.previous a { background-position: -50px 2px; }
-.pagination li.next a { background-position: -30px 2px; }
-.pagination li.previous a:hover { background-position: -50px -18px; }
-.pagination li.next a:hover { background-position: -30px -18px; }
+.rtl .topic-poster {
+	float: right;
+	padding-left: 0.5em;
+}
+
+/* Action Bar styles
+---------------------------------------- */
+.rtl .action-bar .button {
+	margin-right: 0;
+	float: right;
+}
+
+.rtl .action-bar > .button {
+	margin-left: 5px;
+	float: right;
+}
+
+.rtl .action-bar .dropdown-button-control .button {
+	margin-left: 5px;
+}
+
 
 /* Miscellaneous styles
 ---------------------------------------- */
@@ -287,11 +304,6 @@
 * links.css
 */
 
-/* Back to top of page */
-.rtl .back2top {
-	text-align: left;
-}
-
 /* Links adjustment to correctly display an order of rtl/ltr mixed content */
 .rtl a {
 	direction: rtl;
@@ -300,7 +312,6 @@
 
 li.breadcrumbs span:first-child > a {
 	padding-left: 0;
-	padding-right: 19px;
 }
 
 /* Notification mark read link */
@@ -310,14 +321,9 @@ li.breadcrumbs span:first-child > a {
 	right: auto;
 }
 
-.rtl a.top {
+.rtl .back2top .top {
 	float: left;
-}
-
-.rtl a.top2 {
-	background-position: 100% 50%;
-	padding-left: 0;
-	padding-right: 15px;
+	margin-left: -10px;
 }
 
 .rtl .skiplink {
@@ -452,7 +458,6 @@ li.breadcrumbs span:first-child > a {
 
 .rtl p.post-notice {
 	padding-left: 5px;
-	padding-right: 26px;
 }
 
 .rtl p.post-notice:before {
@@ -593,49 +598,12 @@ li.breadcrumbs span:first-child > a {
 /**
 * buttons.css
 */
-.rtl .dropdown-select {
-	padding-left: 24px;
-	padding-right: 8px;
-}
 
-.rtl .icon-button:before {
-	float: left;
-	margin-left: 0;
-	margin-right: 2px;
-}
-
-.rtl .dropdown-select.icon-button:before {
-	margin-left: 4px;
-	margin-right: 0;
-}
-
-.rtl .dropdown-select:after {
-	border-left: 0;
-	border-right-style: solid;
-	border-right-width: 1px;
-	left: 0;
-	right: auto;
-}
-
-.rtl .buttons, .rtl .buttons .button {
+.rtl .caret {
 	float: right;
 }
 
-.rtl .buttons .button, .rtl .dropdown-select {
-	margin-left: 5px;
-	margin-right: 0;
-}
 
-/* Icon images
----------------------------------------- */
-.rtl .small-icon {
-	background-position: 100% 50%;
-}
-
-.rtl .small-icon > a {
-	padding-left: 0;
-	padding-right: 19px;
-}
 
 /* Post control buttons
 --------------------------------------------- */
@@ -652,8 +620,17 @@ li.breadcrumbs span:first-child > a {
 	float: right;
 }
 
-.post-buttons .icon-button:before {
-	margin-right: 0;
+/* Poster contact icons
+ ----------------------------------------*/
+.rtl .contact-icons a {
+	border-left-width: 1px;
+	border-left-style: dotted;
+	border-right: none;
+	float: right;
+}
+
+.rtl .contact-icons .last-cell {
+	border-left: none;
 }
 
 /**
@@ -888,6 +865,10 @@ li.breadcrumbs span:first-child > a {
 	padding-right: 0;
 }
 
+.rtl .dropdown fieldset.display-options label {
+	text-align: left;
+}
+
 /* Display actions for ucp and mcp pages */
 .rtl fieldset.display-actions {
 	text-align: left;
@@ -933,24 +914,26 @@ li.breadcrumbs span:first-child > a {
 	padding: 3px;
 }
 
-.rtl .search-box .button {
+.rtl .button-search,
+.button-search-end {
 	float: right;
 }
 
-.rtl .search-box a.button {
+.button-search-end {
 	border-left-width: 1px;
 	border-right-width: 0;
+}
+
+.rtl .search-header .button-search-end {
+	border: 0;
 	border-radius: 4px 0 0 4px;
-	padding-left: 5px;
-	padding-right: 3px;
 }
 
-.rtl input.search {
-	background-position: right 1px;
-	padding-right: 17px;
-	padding-left: 0;
+.rtl .search-header {
+	float: left;
+	margin-right: 0;
+	margin-left: 5px;
 }
-
 
 /* Form button styles
 ---------------------------------------- */

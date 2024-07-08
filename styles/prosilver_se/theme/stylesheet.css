@@ -116,6 +116,14 @@ div#postingbox.panel h3,
 	display: none;
 }
 
+/* probably not needed, but to be sure */
+
+#attach-row-tpl{
+	display: none;
+}
+
+/* END probably not needed, but to be sure */
+
 .flex-box-o,
 .flex-box-o-o{
 	display: flex;

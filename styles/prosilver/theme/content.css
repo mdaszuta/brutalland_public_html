@@ -1,14 +1,14 @@
 /* Content Styles
 ---------------------------------------- */
 
-ul.forums {
-	background: transparent none repeat-x 0 0;
-}
-
 ul.topiclist {
 	display: block;
 	list-style-type: none;
 	margin: 0;
+}
+
+ul.forums {
+	background: transparent none repeat-x 0 0;
 }
 
 ul.topiclist li {
