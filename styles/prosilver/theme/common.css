@@ -522,22 +522,72 @@ a.header-avatar span:after {
 	border-radius: 5px;
 	padding: 5px;
 	position: relative;
-	min-width: 40px;
 	max-height: 300px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+}
+
+.dropdown-contents a {
+	display: block;
+	padding: 5px;
+}
+
+.jumpbox {
+	margin: 5px 0;
+}
+
+.jumpbox .dropdown li {
+	border-top: 1px solid transparent;
+}
+
+.jumpbox .dropdown-select {
+	margin: 0;
+}
+
+.jumpbox .dropdown-contents {
+	padding: 0;
+	text-decoration: none;
+}
+
+.jumpbox .dropdown-contents li {
+	padding: 0;
+}
+
+.jumpbox .dropdown-contents a {
+	margin-right: 20px;
+	padding: 5px 10px;
+	text-decoration: none;
+	width: 100%;
+}
+
+.jumpbox .spacer {
+	display: inline-block;
+	width: 0px;
+}
+
+.jumpbox .spacer + .spacer {
+	width: 20px;
+}
+
+.dropdown-contents a {
+	display: block;
+	padding: 5px;
+}
+
+.jumpbox .dropdown-select {
+	margin: 0;
+}
+
+.jumpbox .dropdown-contents a {
+	text-decoration: none;
 }
 
 .dropdown li {
+	display: list-item;
 	border-top: 1px dotted transparent;
 	float: none !important;
 	line-height: normal !important;
 	font-size: 1em !important;
 	list-style: none;
 	margin: 0;
-	padding-top: 4px;
-	padding-bottom: 4px;
 	white-space: nowrap;
 	text-align: left;
 }
@@ -573,7 +623,6 @@ a.header-avatar span:after {
 
 .dropdown li.separator {
 	border-top: 1px solid transparent;
-	margin: 4px 0;
 	padding: 0;
 }
 
@@ -1046,10 +1095,6 @@ form > p.post-notice strong {
 	line-height: 20px;
 }
 
-#jumpbox {
-	margin: 5px 0;
-}
-
 .stat-block {
 	clear: both;
 }
@@ -1076,15 +1121,17 @@ ul.linklist:after,
 .tabs-container:after,
 .tabs > ul:after,
 .minitabs > ul:after,
-.navigation > ul:after,
 .postprofile .avatar-container:after {
 	clear: both;
 	content: '';
 	display: block;
 }
 
-.hidden {
-	display: none;
+.emoji {
+	min-height: 18px;
+	min-width: 18px;
+	height: 1em;
+	width: 1em;
 }
 
 .smilies {
@@ -1105,64 +1152,181 @@ ul.linklist:after,
 	font-size: 0.95em;
 }
 
-/*
-.notification_list .notifications_reference,
-.notification_list .notification-location,
-.notification_list li a .notifications_reason {
+.dropdown-extended {
+	display: none;
+	z-index: 1;
+}
+
+.dropdown-extended ul {
+	max-height: 350px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	clear: both;
+}
+
+.dropdown-extended ul li {
+	padding: 0;
+	margin: 0 !important;
+	float: none;
+	border-top: 1px solid;
+	list-style-type: none;
+	font-size: 0.95em;
+	clear: both;
+	position: relative;
+}
+
+.dropdown-extended ul li:first-child {
+	border-top: none;
+}
+
+.dropdown-extended ul li.no_notifications {
+	padding: 10px;
+}
+
+.dropdown-extended .dropdown-contents {
+	max-height: none;
+	padding: 0;
+	position: absolute;
+	width: 340px;
+}
+
+.nojs .dropdown-extended .dropdown-contents {
+	position: relative;
+}
+
+.dropdown-extended .header {
+	padding: 0 10px;
+	font-family: Arial, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	text-align: left;
+	text-shadow: 1px 1px 1px white;
+	text-transform: uppercase;
+	line-height: 3em;
+	border-bottom: 1px solid;
+	border-radius: 5px 5px 0 0;
+}
+
+.dropdown-extended .header .header_settings {
+	float: right;
+	font-weight: normal;
+	text-transform: none;
+}
+
+.dropdown-extended .header .header_settings a {
+	display: inline-block;
+	padding: 0 5px;
+}
+
+.dropdown-extended .header:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.dropdown-extended .footer {
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.dropdown-extended ul li a, .dropdown-extended ul li.no-url {
+	padding: 8px;
+}
+
+.dropdown-extended .footer > a {
+	padding: 5px 0;
+}
+
+.dropdown-extended ul li a, .notification_list dt > a, .dropdown-extended .footer > a {
+	display: block;
+	text-decoration: none;
+}
+
+.notification_list ul li img {
+	float: left;
+	max-height: 50px;
+	max-width: 50px;
+	width: auto !important;
+	height: auto !important;
+	margin-right: 5px;
+}
+
+.notification_list ul li p {
+	margin-bottom: 4px;
+	font-size: 1em;
+}
+
+.notification_list p.notification-reference,
+.notification_list p.notification-location,
+.notification_list li a p.notification-reason {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-*/
+
+.notification_list p.notification-time {
+	font-size: 0.9em;
+	margin: 0;
+	text-align: right;
+}
 
 .notification_list div.notifications {
-	margin-left: 60px;
-	/*padding: 5px;*/
+	margin-left: 50px;
+	padding: 5px;
 }
 
 .notification_list div.notifications a {
 	display: block;
 }
 
-.notifications_title {
-	font-size: 1.2em;
+.notification_list p.notifications_title {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 1.2em !important;
 }
 
-li.row .notifications_title strong,
-.notifications_title strong {
+.notification_list p.notifications_title strong {
 	font-weight: bold;
 }
+
+.notification_list p.notifications_time {
+	font-size: 0.9em !important;
+}
+
+.notification_text {
+	margin-left: 58px;
+}
+
+.badge {
+	border-radius: 10px;
+	opacity: 0.8;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 10px;
+	line-height: 1;
+	float: right;
+	display: inline-block;
+	margin-left: 3px;
+	vertical-align: baseline;
+	position: relative;
+	top: 3px;
+	padding: 4px 6px;
+}
+
+.badge.hidden {
+	display: none;
+}
+
+/* Navbar specific list items
+----------------------------------------*/
 
 .linklist .quick-links {
 	margin: 0 7px 0 0;
 }
 
-.quick-links a.responsive-menu-link {
-	display: block;
-	font-size: inherit;
-	line-height: inherit;
-	margin: 0;
-	width: auto;
-}
-
-.quick-links a.responsive-menu-link:before {
-	font-size: 1.455em;
-	line-height: 16.5px;
-}
-
-.compact .quick-links a.responsive-menu-link {
-	width: 0;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-.compact .icon-notification>a>span,
-.compact .icon-pm > a > span {
+.compact .icon-notification > a > span, .compact .icon-pm > a > span {
 	display: none;
 }
 
-.compact .icon-notification>a>strong,
-.compact .icon-pm>a>strong {
+.compact .icon-notification > a > strong, .compact .icon-pm > a > strong {
 	padding-left: 2px;
 }
 
@@ -1186,28 +1350,45 @@ li.row .notifications_title strong,
 	border-top: none;
 }
 
+.hidden {
+	display: none;
+}
+
+
+
+/* START links.css FRAGMENTS */
+
+
+
+/* Link Styles
+---------------------------------------- */
+
+/* Links adjustment to correctly display an order of rtl/ltr mixed content */
 a {
 	direction: ltr;
 	unicode-bidi: embed;
 	text-decoration: none;
 }
 
-li.breadcrumbs span:first-child>a {
+/* Navigation bar links */
+li.breadcrumbs span:first-child > a {
 	display: inline-block;
 	padding-left: 17px;
 }
 
-.postprofile a,
-.postprofile dt.author a {
+/* Profile links */
+.postprofile a, .postprofile dt.author a {
 	font-weight: bold;
 	text-decoration: none;
 }
 
+/* Profile searchresults */
 .search .postprofile a {
 	text-decoration: none;
 	font-weight: normal;
 }
 
+/* Back to top of page */
 .back2top {
 	clear: both;
 	height: 11px;
@@ -1232,21 +1413,11 @@ a.top2 {
 	padding-left: 15px;
 }
 
-a.arrow-up {
-	background: none no-repeat left center;
-}
-
-a.arrow-down {
-	background: none no-repeat right center;
-}
-
-a.arrow-left {
-	background: none no-repeat 3px 60%;
-}
-
-a.arrow-right {
-	background: none no-repeat 95% 60%;
-}
+/* Arrow links  */
+a.arrow-up		{ background: none no-repeat left center; }
+a.arrow-down		{ background: none no-repeat right center; }
+a.arrow-left		{ background: none no-repeat 3px 60%; }
+a.arrow-right		{ background: none no-repeat 95% 60%; }
 
 a.arrow-up {
 	padding-left: 10px;
@@ -1285,12 +1456,14 @@ a.arrow-right:hover {
 	background-position: 100% 60%;
 }
 
+/* invisible skip link, used for accessibility  */
 .skiplink {
 	position: absolute;
 	left: -999px;
 	width: 990px;
 }
 
+/* Feed icon in forumlist_body.html */
 a.feed-icon-forum {
 	float: right;
 	margin: 3px;
@@ -1299,6 +1472,12 @@ a.feed-icon-forum {
 a.anchor {
 	display: block;
 }
+
+
+
+/* END links.css FRAGMENTS */
+
+
 
 ul.topiclist {
 	display: block;
@@ -2108,10 +2287,6 @@ table.fixed-width-table {
 .buttons,
 .buttons .button {
 	float: left;
-}
-
-#jumpbox .dropdown-select {
-	margin: 0;
 }
 
 .reply-icon:before,

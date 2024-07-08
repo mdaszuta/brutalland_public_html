@@ -36,8 +36,9 @@ ul.topiclist.forums dd.lastpost{display:none;}
 }
 li.row .responsive-show strong{font-weight:bold;color:inherit;}
 ul.topiclist li.row dt a.subforum{display:inline-block;vertical-align:bottom;overflow:hidden;text-overflow:ellipsis;max-width:100px;}
-@media only screen and (max-width:350px), only screen and (max-device-width:350px){.dropdown-extended .dropdown-contents{width:auto;}
-}
+/*
+@media only screen and (max-width:350px), only screen and (max-device-width:350px){.dropdown-extended .dropdown-contents{width:auto;}}
+*/
 .pagination > ul{margin:5px 0 0;}
 .row .pagination .ellipsis + li{display:none !important;}
 /*table.responsive, table.responsive tbody, table.responsive tr, table.responsive td{display:block;}

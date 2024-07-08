@@ -9,7 +9,7 @@
 a.top, a.top2 { background-image: url("./images/icon_back_top.png"); }
 a.top:hover, a.top2:hover { background-image: url("./images/icon_back_top_2.png"); }
 
-.icon-button:before, .dropdown-select:after						{ background-image: url("./images/icons_button.png"); }
+.icon-button:before												{ background-image: url("./images/icons_button.png"); }
 
 .forum_unread													{ background-image: url("./images/forum_unread.png"); }
 .forum_read														{ background-image: url("./images/forum_read.png"); }

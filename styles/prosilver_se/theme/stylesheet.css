@@ -95,6 +95,12 @@ a.rightside{
 	margin-bottom: 25px;
 }
 
+.navigation > ul:after{
+	clear: both;
+	content: '';
+	display: block;
+}
+
 fieldset.display-options,
 p.jumpbox-return,
 #username_logged_in,
@@ -440,11 +446,13 @@ input.button2,
 	overflow-x: hidden;
 }
 
-.notification_list img{
+.notification_list img,
+.notification_list ul li img{
 	max-height: 54px;
+	max-width: 54px;
 	width: auto;
 	height: auto;
-	max-width: 54px;
+	margin-right: 0;
 }
 
 .notifications-avatar-container{
@@ -466,6 +474,10 @@ input.button2,
 .m-list-left.notification_text{
 	width: calc(100% - 76px);
 	max-width: calc(100% - 76px);
+}
+
+.notification_text {
+	margin-left: 0;
 }
 
 #m-notify .mark_read{
@@ -563,11 +575,11 @@ body.simple{
 	min-height: 100%;
 	padding: 0 5px;
 }
-
+/*
 .dropdown{
 	padding: 0;
 }
-
+*/
 .action-bar{
 	display: flex;
 	flex-wrap: wrap;
@@ -674,7 +686,7 @@ body.simple{
 }
 
 .action-bar:after{ content: none; }
-.action-bar .dropdown-container-left{ float: right; }
+/*.action-bar .dropdown-container-left{ float: right; }*/
 
 .forabg ul.topiclist .row{ padding: 2px 0; }
 
@@ -998,6 +1010,7 @@ div #shoutbox_scroll{
 }
 
 .cp-main .notification_list .notifications{
+	margin-left: 60px;
 	padding: 0 5px;
 }
 

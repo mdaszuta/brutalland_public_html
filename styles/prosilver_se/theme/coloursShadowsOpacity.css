@@ -378,11 +378,6 @@ button,
 #topic_preview,
 hr,
 hr.dashed,
-.dropdown,
-.dropdown li,
-.dropdown-select,
-.dropdown-select::after,
-.dropdown .dropdown-contents,
 .inputbox,
 .inputbox:hover,
 .inputbox:focus,
@@ -401,6 +396,16 @@ li.row:hover dd,
 	border: none;
 }
 
+/*
+
+.dropdown,
+.dropdown li,
+.dropdown-select,
+.dropdown-select::after,
+.dropdown .dropdown-contents{
+	border: none;
+}
+
 @media (hover:hover){
 
 	.dropdown-select:hover{
@@ -408,7 +413,7 @@ li.row:hover dd,
 	}
 
 }
-
+*/
 img.postimage,
 img.postimage:hover{
 	border: none !important;

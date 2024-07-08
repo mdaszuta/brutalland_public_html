@@ -50,12 +50,19 @@
 		<!-- END attachrow -->
 		</ul>
 
-		<fieldset class="display-options">
-			<label for="sk">{L_SORT_BY}{L_COLON} <select name="sk" id="sk">{S_SORT_OPTIONS}</select></label> 
-			<label><select name="sd" id="sd">{S_ORDER_SELECT}</select></label>
-			<input class="button2" type="submit" name="sort" value="{L_SORT}" />
+		<div class="action-bar bottom">
+			<!-- INCLUDE display_options.html -->
 			{S_FORM_TOKEN}
-		</fieldset>
+
+			<div class="pagination">
+				{TOTAL_ATTACHMENTS} {L_TITLE}
+				<!-- IF .pagination -->
+					<!-- INCLUDE pagination.html -->
+				<!-- ELSE -->
+					 &bull; {PAGE_NUMBER}
+				<!-- ENDIF -->
+			</div>
+		</div>
 
 	<!-- ELSE -->
 		<p><strong>{L_UCP_NO_ATTACHMENTS}</strong></p>

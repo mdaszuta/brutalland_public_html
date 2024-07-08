@@ -27,7 +27,6 @@
 <!-- ENDIF -->
 
 <div class="action-bar bar-top">
-	<div class="buttons">
 	<!-- EVENT viewtopic_buttons_top_before -->
 
 	<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
@@ -41,7 +40,6 @@
 	<!-- ENDIF -->
 
 	<!-- EVENT viewtopic_buttons_top_after -->
-	</div>
 	<!-- INCLUDE viewtopic_topic_tools.html -->
 	<!-- EVENT viewtopic_dropdown_top_custom -->
 
@@ -180,7 +178,7 @@
 			<dd class="profile-contact">
 				<strong>{L_CONTACT}{L_COLON}</strong>
 				<div class="dropdown-container dropdown-left">
-					<a href="#" class="dropdown-trigger">
+					<a href="#" class="dropdown-trigger" title="{postrow.CONTACT_USER}">
 						<span class="icon_contact" title="{postrow.CONTACT_USER}">{postrow.CONTACT_USER}</span>
 					</a>
 					<div class="dropdown">
@@ -381,22 +379,8 @@
 	<!-- INCLUDE quickreply_editor.html -->
 <!-- ENDIF -->
 
-<!-- IF S_NUM_POSTS > 1 or .pagination -->
-	<form id="viewtopic" method="post" action="{S_TOPIC_ACTION}">
-	<fieldset class="display-options" style="margin-top: 0; ">
-		<!-- IF not S_IS_BOT -->
-		<label>{L_DISPLAY_POSTS}{L_COLON} {S_SELECT_SORT_DAYS}</label>
-		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label> <label>{S_SELECT_SORT_DIR}</label>
-		<input type="submit" name="sort" value="{L_GO}" class="button2" />
-		<!-- ENDIF -->
-	</fieldset>
-	</form>
-	<hr />
-<!-- ENDIF -->
-
 <!-- EVENT viewtopic_body_topic_actions_before -->
-<div class="action-bar bar-bottom">
-	<div class="buttons">
+	<div class="action-bar bar-bottom">
 	<!-- EVENT viewtopic_buttons_bottom_before -->
 
 	<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
@@ -409,9 +393,14 @@
 		</a>
 	<!-- ENDIF -->
 	<!-- EVENT viewtopic_buttons_bottom_after -->
-	</div>
 
 	<!-- INCLUDE viewtopic_topic_tools.html -->
+
+	<!-- IF (S_NUM_POSTS > 1 or .pagination) and not S_IS_BOT  -->
+		<form method="post" action="{S_TOPIC_ACTION}">
+		<!-- INCLUDE display_options.html -->
+		</form>
+	<!-- ENDIF -->
 
 	<!-- IF .quickmod -->
 	<div class="quickmod dropdown-container dropdown-container-left dropdown-up dropdown-{S_CONTENT_FLOW_END} dropdown-button-control" id="quickmod">

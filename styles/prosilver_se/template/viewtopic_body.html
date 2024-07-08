@@ -115,7 +115,8 @@
 				</div>
 				<!-- EVENT viewtopic_body_post_author_before -->
 				<span class="author-postnumber-mobile responsive-show" style="display: none;"><!-- EVENT viewtopic_body_postrow_post_details_before --> </span>
-				<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF --><!-- IF S_USER_LOGGED_IN and postrow.S_ONLINE and not postrow.S_POST_HIDDEN --><div class="fa fa-circle"></div><!-- ENDIF -->
+				<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->
+				<!-- IF S_USER_LOGGED_IN and postrow.S_ONLINE and not postrow.S_POST_HIDDEN --><div class="fa fa-circle"></div><!-- ENDIF -->
 				<span class="author-mobile responsive-show" style="display: none;"> {postrow.POST_DATE}</span>
 				<!-- EVENT viewtopic_body_post_author_after -->
 				
@@ -300,7 +301,7 @@
 
 			<!-- IF postrow.BUMPED_MESSAGE --><div class="notice"><br /><br />{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
 			<!-- EVENT viewtopic_body_postrow_post_notices_after -->
-			<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="responsive-hide signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
+			<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
 
 			<!-- EVENT viewtopic_body_postrow_post_content_footer -->
 			</div>
@@ -308,8 +309,8 @@
 		</div>
 
 		<!-- EVENT viewtopic_body_postrow_back2top_before -->
-		<!-- EVENT viewtopic_body_postrow_back2top_prepend -->
-		<!-- EVENT viewtopic_body_postrow_back2top_append -->
+			<!-- EVENT viewtopic_body_postrow_back2top_prepend -->
+			<!-- EVENT viewtopic_body_postrow_back2top_append -->
 		<!-- EVENT viewtopic_body_postrow_back2top_after -->
 
 		</div>
@@ -334,7 +335,6 @@
 	</form>
 	<hr />
 <!-- ENDIF -->
-
 <!-- EVENT viewtopic_body_topic_actions_before -->
 <div class="action-bar bar-bottom">
 	<div class="buttons fbr-left">
