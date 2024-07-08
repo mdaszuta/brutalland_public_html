@@ -1,116 +1,30 @@
 /**
  * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * forum_fn.js
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  */
 
-
-
-
 /**
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  * KONIEC forum_fn.js
  * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  */
 
 /**
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  * ajax.js
  * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  */
 
-
-	
-
 /**
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  * KONIEC ajax.js
  * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  */
 
 /**
  * 
- * 
  * ext\phpbb\collapsiblecategories\styles\all\template\js\collapsiblecategories.js
- * 
  * 
  */
 
@@ -124,64 +38,43 @@
 
 /**
  * 
- * 
  * ext\volksdevil\activitybuttons\styles\all\template\js\hidequicklinks.js
- * 
  * 
  */
 
 /**
- * 
  * 
  * ext\kasimi\markpostunread\styles\all\template\js\markpostunread.js
  * 
- * 
  */
 
 /**
- * 
  * 
  * ext\vse\abbc3\styles\all\template\js\abbc3.min.js
  * 
- * 
  */
 
 /**
- * 
  * 
  * ext\vse\lightbox\styles\all\template\js\resizer.js
  * 
- * 
  */
 
 /**
- * 
  * 
  * ext\vse\lightbox\styles\all\template\lightbox\js\lightbox.min.js
  * 
- * 
  */
 
 /**
- * 
  * 
  * ext\vse\topicpreview\styles\all\template\topicpreview.js
  * 
- * 
  */
 
 /**
  * 
- * 
- * 
- * 
- * 
- * 
  * DALSZA CZĘŚĆ NIE BYŁA NIGDY MINIFIED
- * 
- * 
- * 
- * 
  * 
  */
 
