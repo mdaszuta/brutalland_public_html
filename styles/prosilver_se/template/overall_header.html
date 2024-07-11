@@ -87,6 +87,7 @@
 <![endif]-->
 
 	<link href="{T_STYLESHEET_LINK}" rel="stylesheet">
+	<link href="{ROOT_PATH}styles/prosilver_se/theme/responsiveCustom.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 
 <!-- EVENT overall_header_head_append -->
 
@@ -97,16 +98,19 @@
 </head>
 <body id="phpbb" class="nojs notouch section-{SCRIPT_NAME} {S_CONTENT_DIRECTION} {BODY_CLASS}">
 
+<!-- EVENT overall_header_body_before -->
+
 	<a id="top" class="top-anchor" accesskey="t"></a>
 	<div id="top-site-menu">
-		<!-- EVENT overall_header_body_before -->
 		<!-- EVENT overall_header_navbar_before -->
 		<!-- INCLUDE navbar_header.html -->
 	</div>
 	<div id="wrap" class="wrap">
-		
+
 		<div id="page-header" <!-- IF SCRIPT_NAME != 'posting' -->onclick="window.location.href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->'" style="cursor:pointer;"<!-- ENDIF -->>
 		</div>
+
+	<!-- EVENT overall_header_page_body_before -->
 
 	<a id="start_here" class="anchor"></a>
 	<div id="page-body" class="page-body" role="main">

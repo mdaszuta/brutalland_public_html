@@ -1476,15 +1476,16 @@ a.anchor {
 /* Content Styles
 ---------------------------------------- */
 
-
 ul.topiclist {
 	display: block;
 	list-style-type: none;
+	margin: 0;
 }
 
 ul.topiclist li {
 	display: block;
 	list-style-type: none;
+	margin: 0;
 }
 
 ul.topiclist dl {
@@ -1502,7 +1503,8 @@ ul.topiclist dt, ul.topiclist dd {
 
 ul.topiclist dt {
 	width: 100%;
-	margin-right: -345px;
+	margin-right: -440px;
+	font-size: 1.1em;
 }
 
 ul.topiclist.missing-column dt {
@@ -1518,7 +1520,7 @@ ul.topiclist.two-columns dt {
 }
 
 ul.topiclist dt .list-inner {
-	margin-right: 345px;
+	margin-right: 440px;
 	padding-left: 5px;
 	padding-right: 5px;
 }
@@ -1581,7 +1583,7 @@ li.header dt, li.header dd {
 li.header dt {
 	font-weight: bold;
 	width: 100%;
-	margin-right: -345px;
+	margin-right: -440px;
 }
 
 li.header dd {
@@ -1720,8 +1722,14 @@ dd.option {
 	padding: 1px;
 }
 
+/* Topic review panel
+----------------------------------------*/
+.review {
+	margin-top: 2em;
+}
+
 .topicreview {
-	padding-right:5px;
+	padding-right: 5px;
 	overflow: auto;
 	height: 300px;
 }
@@ -1834,12 +1842,13 @@ p.author {
 	padding-top: 0.2em;
 	font-size: 1.1em;
 	clear: left;
-	line-height: 1.4em;
+	line-height: 140%;
 	overflow: hidden;
 	width: 100%;
 }
 
 .signature.standalone {
+	border-top-width: 0;
 	margin-top: 0;
 }
 
@@ -1935,7 +1944,6 @@ blockquote .codebox {
 	display: block;
 	height: auto;
 	max-height: 200px;
-	white-space: normal;
 	padding-top: 5px;
 	font: 0.9em Monaco, "Andale Mono","Courier New", Courier, monospace;
 	line-height: 1.3em;
@@ -2105,15 +2113,16 @@ fieldset.polls dd div {
 .postprofile {
 	margin: 5px 0 10px 0;
 	min-height: 80px;
-	border: 1px solid #fff;
+	border: 1px solid transparent;
 	border-width: 0 0 0 1px;
+	width: 22%;
 	float: right;
 	display: inline;
 }
 
 .postprofile dd, .postprofile dt {
 	line-height: 1.2em;
-	padding-left: 8px;
+	margin-left: 8px;
 }
 
 .postprofile dd {
@@ -2131,7 +2140,7 @@ fieldset.polls dd div {
 
 /* Post-profile avatars */
 .postprofile .has-avatar .avatar-container {
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 	overflow: hidden;
 }
 
@@ -2970,9 +2979,9 @@ input.button1:focus, input.button2:focus {
 --------------------------------------------- */
 
 .full { width: 95%; }
-.medium { width: 50%; }
-.narrow { width: 25%; }
-.tiny { width: 10%; }
+.medium { width: 50%;}
+.narrow { width: 25%;}
+.tiny { width: 10%;}
 
 /* END forms.css FRAGMENTS */
 
