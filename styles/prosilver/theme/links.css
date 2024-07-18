@@ -8,6 +8,8 @@ a {
 	text-decoration: none;
 }
 
+a:hover	{ text-decoration: underline; }
+
 /* Coloured usernames */
 .username-coloured {
 	font-weight: bold;
@@ -18,6 +20,10 @@ a {
 /* Links on gradient backgrounds */
 .forumbg .header a, .forabg .header a, th a {
 	text-decoration: none;
+}
+
+.forumbg .header a:hover, .forabg .header a:hover, th a:hover {
+	text-decoration: underline;
 }
 
 /* Navigation bar links */
@@ -60,6 +66,10 @@ a.forumtitle {
 	text-decoration: none;
 }
 
+a.forumtitle:hover {
+	text-decoration: underline;
+}
+
 a.topictitle {
 	font-family: "Trebuchet MS", Helvetica, Arial, Sans-serif;
 	font-size: 1.2em;
@@ -67,9 +77,17 @@ a.topictitle {
 	text-decoration: none;
 }
 
+a.topictitle:hover {
+	text-decoration: underline;
+}
+
 a.lastsubject {
 	font-weight: bold;
 	text-decoration: none;
+}
+
+a.lastsubject:hover {
+	text-decoration: underline;
 }
 
 /* Post body links */
@@ -79,8 +97,13 @@ a.lastsubject {
 	padding-bottom: 0;
 }
 
+.postlink:hover {
+	text-decoration: none;
+}
+
 .signature a, .signature a:hover {
 	border: none;
+	text-decoration: underline;
 }
 
 /* Profile links */
@@ -89,10 +112,18 @@ a.lastsubject {
 	text-decoration: none;
 }
 
+.postprofile a:hover, .postprofile dt.author a:hover {
+	text-decoration: underline;
+}
+
 /* Profile searchresults */
 .search .postprofile a {
 	text-decoration: none;
 	font-weight: normal;
+}
+
+.search .postprofile a:hover {
+	text-decoration: underline;
 }
 
 /* Back to top of page */

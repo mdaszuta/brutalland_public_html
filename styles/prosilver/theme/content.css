@@ -299,14 +299,14 @@ dd.option {
 	overflow: auto;
 	height: 300px;
 }
-/*
+
 .topicreview .postbody {
 	width: auto;
 	float: none;
 	margin: 0;
 	height: auto;
 }
-*/
+
 .topicreview .post {
 	height: auto;
 }

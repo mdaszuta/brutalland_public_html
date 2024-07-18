@@ -1,4 +1,4 @@
-@import url("buttons.css");@import url("icons.css");@import url("tagowarka.css");@import url("coloursShadowsOpacity.css");@import url("fontsEtc.css");@import url("coloursOnly.css");@import url("opacityBoxShadow.css");
+@import url("buttons.css");@import url("icons_se.css");@import url("tagowarka.css");@import url("coloursShadowsOpacity.css");@import url("fontsEtc.css");@import url("coloursOnly.css");@import url("opacityBoxShadow.css");
 
 .wrap{
 	margin: -23px auto auto auto;
@@ -71,6 +71,95 @@ a.lastsubject{
 }
 
 /* END common.css */
+
+/* content.css */
+
+ul.topiclist dd {
+	padding: 0;
+}
+
+li.header dt, li.header dd {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-top: 4px;
+}
+
+ul.topiclist li.row dt a.subforum {
+	padding: 0;
+}
+
+li.row {
+	border-top: none;
+	border-bottom: none;
+}
+
+li.header dd {
+	/*padding-left: 0;*/
+}
+
+dl.row-item dt .pagination a {
+	display: block;
+}
+
+dl.row-item dt .lastpost a {
+    display: flex;
+}
+
+li.header dl.row-item dt .list-inner {
+	padding-left: 45px;
+	padding-right: 5px;
+}
+
+dl a.row-item-link {
+	display: none !important;
+}
+
+dd.lastpost, dd.redirect, dd.moderation, dd.time, dd.info {
+	text-align: center;
+}
+
+dd.lastpost > span, ul.topiclist dd.info > span, ul.topiclist dd.time > span, dd.redirect > span, dd.moderation > span {
+	padding-left: 0;
+}
+
+.postbody h3 {
+	float: none;
+    font-family: unset;
+	font-weight: normal;
+}
+
+.content h2, .panel h2 {
+	border-bottom: none;
+}
+
+blockquote {
+	border: none;
+}
+
+.attachbox {
+	margin: 0;
+	padding: 3px;
+	border: none;
+}
+
+fieldset.polls dl {
+	margin-top: 0;
+	border-top: none;
+}
+
+.attachment-filename {
+	text-align: right;
+}
+
+/* END content.css */
+
+/* buttons.css */
+
+.post-buttons {
+	margin-top: 0;
+}
+
+/* END buttons.css */
 
 label input[type="radio"]{
 	margin-left: 10px;
@@ -791,6 +880,11 @@ dd.lastpost > span{
 	background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 70%);
 }
 */
+
+.postlink{
+	border: none;
+}
+
 .post-buttons{
 	display: flex;
 	flex-direction: column;
@@ -985,7 +1079,8 @@ h3{
 	display: none;
 }
 
-.review{
+.review,
+h2.review {
 	padding: 1em 0 1em 0;
 }
 
@@ -1083,9 +1178,17 @@ table.table1 tbody td {
 	padding: 0;
 }
 
-.postprofile{ width: 15%; }
+.postprofile,
+.search .postprofile {
+	width: 15%;
+}
 
-.postbody{ width: 83%; }
+.postbody,
+.search .postbody,
+.topicreview .postbody,
+.mcp-main .postbody {
+	width: 83%;
+}
 
 .fbr-big div.fbr-left{
 	align-items: center;
@@ -1583,9 +1686,7 @@ blockquote.uncited,
 blockquote blockquote.uncited,
 .codebox{
 	padding-bottom: 10px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	margin-left: 7px;
+	margin: 15px 0 15px 7px;
 }
 
 cite div.responsive-hide{
@@ -1617,6 +1718,10 @@ cite div.responsive-hide{
 
 .fbr-settings-panel .fbr-left input[type="checkbox" i] {
     margin: 0;
+}
+
+input[type="checkbox" i] {
+    margin: 3px 3px 3px 3px;
 }
 
 div.content,
