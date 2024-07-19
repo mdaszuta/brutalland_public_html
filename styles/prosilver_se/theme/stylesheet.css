@@ -161,6 +161,79 @@ fieldset.polls dl {
 
 /* END buttons.css */
 
+/* cp.css */
+
+.cp-main {
+	float: none;
+	width: 100%;
+}
+
+.panel-container .panel li.row,
+ul.cplist {
+	border-bottom: none;
+	border-top: none;
+}
+
+.panel-container .panel li.header dd, .panel-container .panel li.header dt {
+	margin-bottom: 4px;
+}
+
+.tabs .tab, .navigation .tab, .minitabs .tab {
+	display: inline-flex;
+	float: none;
+	font-weight: bold;
+	line-height: 1.4em;
+}
+
+.tabs {
+	margin: 0;
+}
+
+.tabs .tab > a {
+	border: none;
+	margin: 0;
+}
+
+.tabs .tab > a,
+.minitabs .tab > a {
+	border-radius: 3px;
+}
+
+.tabs .activetab > a {
+	/*margin-top: 0;*/
+	padding-bottom: 5px;
+}
+
+.minitabs {
+	float: none;
+	margin: 0;
+	max-width: 100%;
+}
+
+.minitabs .tab {
+    float: right;
+}
+
+.navigation {
+	padding-top: 0;
+}
+
+.navigation li {
+	margin: 0;
+}
+
+.navigation a {
+	margin: 0;
+}
+
+.cp-main h2 {
+	/*border-bottom: none;*/
+	padding-bottom: 0.5em;
+	margin-left: 0;
+}
+
+/* END cp.css */
+
 label input[type="radio"]{
 	margin-left: 10px;
 }
