@@ -124,7 +124,7 @@ dd.lastpost > span, ul.topiclist dd.info > span, ul.topiclist dd.time > span, dd
 
 .postbody h3 {
 	float: none;
-    font-family: unset;
+    /*font-family: unset;*/
 	font-weight: normal;
 }
 
@@ -234,11 +234,88 @@ ul.cplist {
 
 /* END cp.css */
 
-label input[type="radio"]{
+/* form.css */
+
+select {
+	/*vertical-align: baseline;*/
+}
+
+label {
+	padding-right: 0;
+}
+
+dd input, dd textarea {
+	margin-right: 0;
+}
+
+.timezone {
+	width: fit-content;
+}
+
+fieldset.submit-buttons {
+	margin: 0;
+}
+
+input,
+fieldset.submit-buttons input {
+	padding: 1px 6px;
+}
+
+.smiley-box {
+	width: 30px;
+	float: none;
+}
+
+.smiley-box img {
+	margin: 0;
+}
+
+input.inputbox,
+textarea.inputbox {
+	width: 100%;
+}
+
+fieldset.display-actions {
+	padding: 1em;
+}
+
+fieldset.forum-selection {
+	margin: 5px 0 5px 0;
+	float: none;
+	text-align: center;
+}
+
+a.button2, a.button2:link, a.button2:visited, a.button2:active {
+	padding: 0;
+	line-height: normal;
+}
+
+.search-box,
+.search-box button {
+	float: none;
+}
+
+.search-box .inputbox {
+	border-radius: 3px;
+	float: none;
+	padding: 2px;
+}
+
+input.search {
+	padding-left: revert;
+}
+
+/* END form.css */
+
+#add {
+	resize: vertical;
+}
+
+label input[type="radio"]:not([name="sf"]) {
 	margin-left: 10px;
 }
 
-label:nth-child(1) input[type="radio"]{
+label:nth-child(1) input[type="radio"] {
 	margin-left: 0;
 }
 
@@ -256,6 +333,7 @@ label:nth-child(1) input[type="radio"]{
 .navigation{
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 p.rightside,
@@ -1299,9 +1377,9 @@ table.table1 tbody td {
 	height: 60px;
 }
 
-.inputbox{
+.inputbox {
 	width: 100%;
-	padding: 2px;
+	/*padding: 2px;*/
 	//-webkit-box-sizing: border-box;
 	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -1339,13 +1417,14 @@ table.table1 tbody td {
 
 #quickeditbox .panel,
 #quickeditbox .message-box{
-	width: 100% !important;
-	padding: 8px;
+	width: 100%;
+	padding: 8px 0;
 }
 
 .message-box textarea#message.inputbox,
 .message-box textarea{
 	padding: 8px;
+    text-align: justify;
 }
 
 #muzycy-box textarea{

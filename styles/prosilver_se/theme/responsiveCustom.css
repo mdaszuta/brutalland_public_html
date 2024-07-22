@@ -66,6 +66,16 @@
 		text-align: center;
 	}
 	
+	/* fbr-left fbr-right mobile change */
+	/*
+	.fbr-left,
+	.fbr-right {
+		flex-basis: 100%;
+		padding: 10px 5px 10px 5px;
+	}
+	*/
+	/* fbr-left fbr-right mobile change */
+
 	.fbr-right,
 	.fbr-right-big{
 		justify-content: space-around;
@@ -76,6 +86,10 @@
 		max-width:90vw;
 	}
 	
+	.hastouch .phantom-label {
+		opacity: 1;
+	}
+
 	.lastpost.responsive-show span{
 		display: flex;
 		white-space: nowrap;

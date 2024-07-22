@@ -191,7 +191,8 @@ textarea .inputbox:focus{
 .panel.bg1,
 .panel.bg2,
 .panel.bg3,
-.inputbox{
+.inputbox,
+.inputbox.search {
 	background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.45) 70%);
 }
 
@@ -373,6 +374,11 @@ a.button1,
 a.button2,
 input.button1,
 input.button2,
+a.button1:hover,
+a.button2:hover,
+input.button1:hover,
+input.button2:hover,
+input.button3:hover,
 span.button:focus,
 button,
 #topic_preview,

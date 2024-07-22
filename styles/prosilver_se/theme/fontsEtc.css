@@ -140,15 +140,25 @@ select,
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 1), -1px -1px 3px rgba(0, 0, 0, 1);
 }
 
+input:focus::placeholder,
+textarea:focus::placeholder {
+    /* color: red !important; */
+    text-shadow: none;
+}
+
 /* FONT-FAMILIES */
 
 .button,
 .button1,
 .button2:not(.fa),
+a.button1,
+input.button1,
 #brutalform-drafty .brutalform-explanation,
 select:not(.abbc3_select),
 h1,
 h2,
+h3,
+.postbody h3,
 a.forumtitle,
 a.topictitle,
 ul.topiclist li.row dt a.subforum,
@@ -258,6 +268,10 @@ ul.topiclist dt:not(.ajaxshoutbox_user){
 select:not(.abbc3_select),
 .button1,
 .button2:not(.fa),
+input.button1,
+input.button2:not(.fa),
+h3,
+.postbody h3,
 .brutalform-label,
 #brutalform-drafty .brutalform-explanation,
 ul.topiclist li.row dt a.subforum,
