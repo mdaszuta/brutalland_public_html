@@ -8,13 +8,13 @@ a.topictitle:hover,
 a.lastsubject:hover,
 .signature a, .signature a:hover,
 .postprofile a:hover, .postprofile dt.author a:hover,
-.search .postprofile a:hover{
+.search .postprofile a:hover {
 	text-decoration: none;
 }
 
 /* FONT WEIGHT */
 
-.muzycy_zespoly{
+.muzycy_zespoly {
 	font-style: italic;
 }
 
@@ -24,7 +24,7 @@ a.lastsubject:hover,
 .post-number a,
 a.forumtitle,
 a.topictitle,
-a.lastsubject{
+a.lastsubject {
 	font-weight: normal;
 }
 
@@ -48,12 +48,12 @@ table.table1 tbody tr.bg3,
 .brutalform-box .brutalform-label,
 .fbr-left label,
 .page-footer .navbar,
-.username{
+.username {
 	font-weight: bold;
 }
 
 /*
-.username-coloured{
+.username-coloured {
 	font-weight: bold;
 }
 */
@@ -86,22 +86,33 @@ h3,
 table.table1 tbody tr.bg3,
 .copyright strong,
 .brutalform-button-s,
-.brutalform-label{
+.brutalform-label {
 	font-variant: small-caps;
 }
 
 .notifications_time,
 .m-list-right-bottom,
 .username,
-.username-coloured{
+.username-coloured {
 	font-variant: initial;
 }
 
 /* PLACEHOLDER FONTS */
 
-::placeholder{ font-weight: bold; font-variant: small-caps;}
-::-webkit-input-placeholder{ font-weight: bold; font-variant: small-caps;}
-::-ms-input-placeholder{ font-weight: bold; font-variant: small-caps;}
+::placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+::-webkit-input-placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+::-ms-input-placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
 
 /* TEXT-TRANSFORMS */
 
@@ -111,21 +122,21 @@ table.table1 tbody tr.bg3,
 #m-ksywa .main-m-bottom a,
 .pagination,
 .submit-buttons input,
-.brutalform .reset{
+.brutalform .reset {
 	text-transform: lowercase;
 }
 
 .username,
-.username-coloured{
+.username-coloured {
 	text-transform: initial;
 }
 
-.spoilbtn{
+.spoilbtn {
 	text-transform: uppercase;
 }
 
 .button,
-.brutalform .brutalform-go-to-register{
+.brutalform .brutalform-go-to-register {
 	text-transform: uppercase !important;
 }
 
@@ -136,7 +147,7 @@ button,
 input,
 textarea,
 select,
-.fa{
+.fa {
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 1), -1px -1px 3px rgba(0, 0, 0, 1);
 }
 
@@ -169,16 +180,16 @@ a.lastsubject,
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
 .tags input,
-.brutalform-label{
+.brutalform-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #ToTop,
-#OnBottom{
+#OnBottom {
 	font: normal normal normal 14px/1 FontAwesome;
 }
 
-.spoilbtn{
+.spoilbtn {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -186,17 +197,17 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .username-coloured,
 input,
 textarea,
-.attachbox dt{
+.attachbox dt {
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 }
 
 /* FONT-SIZES */
 
-.notification_text .m-list-left-bottom{
+.notification_text .m-list-left-bottom {
 	font-size: unset;
 }
 
-#m-feed-topics .main-m-bottom span{
+#m-feed-topics .main-m-bottom span {
 	transform: rotate(180deg);
 	font-size: x-small;
 }
@@ -206,7 +217,7 @@ dl.details,
 .brutalform .reset,
 #reprap,
 .navbar,
-ul.topiclist dt:not(.ajaxshoutbox_user){
+ul.topiclist dt:not(.ajaxshoutbox_user) {
 	font-size: 1.1em;
 }
 
@@ -215,45 +226,45 @@ ul.topiclist dt:not(.ajaxshoutbox_user){
 }
 
 #register_text,
-#abbc3_buttons .fa{
+#abbc3_buttons .fa {
 	font-size: 1.25em;
 }
 
-.brutalform-button-s{
+.brutalform-button-s {
 	font-size: 1.3em;
 }
 
-.fa-search-user{
+.fa-search-user {
 	font-size: 1.66em;
 }
 
 .pagination .fa-caret-left,
-.pagination .fa-caret-right{
+.pagination .fa-caret-right {
 	font-size: 1.669em;
 }
 
 #m-name .action-bar.top .buttons .button,
-#m-name .action-bar.bar-top .buttons .button{
+#m-name .action-bar.bar-top .buttons .button {
 	font-size: 1.75em;
 }
 
 .button,
 .brutalform .brutalform-go-to-register,
-.member-search strong{
+.member-search strong {
 	font-size: 2em;
 }
 
-.m-labeled-box .fa{
+.m-labeled-box .fa {
 	font-size: 2.3em;
 }
 
-#m-name .m-labeled-box .fa{
+#m-name .m-labeled-box .fa {
 	font-size: 4em;
 	//font-size: 4.3em;
 }
 
 .abbc3_button,
-.spoilbtn{
+.spoilbtn {
 	font-size: 11px;
 }
 
@@ -261,7 +272,7 @@ ul.topiclist dt:not(.ajaxshoutbox_user){
 	font-size: 12px;
 }
 
-#m-ksywa .main-m-bottom{
+#m-ksywa .main-m-bottom {
 	font-size: 14px;
 }
 
@@ -275,7 +286,7 @@ h3,
 .brutalform-label,
 #brutalform-drafty .brutalform-explanation,
 ul.topiclist li.row dt a.subforum,
-a.lastsubject{
+a.lastsubject {
 	font-size: 17px;
 }
 
@@ -289,17 +300,17 @@ a.topictitle,
 .notifications_reason,
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
-.tags input{
+.tags input {
 	font-size: 21px;
 }
 
 /* PSEUDOAVATARY */
 
 #m-notify .fa-user-circle-o,
-.cp-main .notification_list .fa-user-circle-o{
+.cp-main .notification_list .fa-user-circle-o {
 	font-size: 50px;
 }
 
-.cp-main .fa-user-circle-o{
+.cp-main .fa-user-circle-o {
 	font-size: 120px;
 }
