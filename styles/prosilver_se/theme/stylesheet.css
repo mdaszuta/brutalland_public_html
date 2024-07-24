@@ -274,6 +274,7 @@ fieldset.submit-buttons input {
 .smiley-box {
 	width: 30px;
 	float: none;
+	margin-top: 0;
 }
 
 .smiley-box img {
@@ -390,6 +391,7 @@ div#postingbox.panel h3,
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	flex-wrap: wrap;
 }
 
 .display-actions .flex-box-o,
@@ -840,7 +842,8 @@ input.button2,
 }
 
 #m-ksywa .main-m-bottom a {
-	padding: 7px;
+	/* padding: 7px; */
+	padding: 10px;
 }
 
 #m-avatar {
@@ -1218,7 +1221,8 @@ ul.ajaxshoutboxpost dd {
 }
 
 .search-box .search-box-hide,
-.search-box .inputbox {
+.search-box .inputbox,
+.section-viewtopic .search-box .inputbox {
 	width: 0;
 	//order: 1;
 }
@@ -1984,8 +1988,8 @@ div.content,
 }
 
 div#postingbox.panel {
-	margin-left: 3px;
-	margin-right: 3px;
+	/* margin-left: 3px; */
+	/* margin-right: 3px; */
 }
 
 #reprap,

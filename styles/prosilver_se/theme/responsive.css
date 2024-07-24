@@ -28,8 +28,8 @@ body {
 ----------------------------------------*/
 .headerbar, .navbar, .forabg, .forumbg, .post, .panel {
 	border-radius: 0;
-	/*margin-left: -5px;*/
-	/*margin-right: -5px;*/
+	margin-left: -5px;
+	margin-right: -5px;
 }
 
 .cp-main .forabg, .cp-main .forumdb, .cp-main .post, .cp-main .panel {
@@ -86,7 +86,6 @@ body {
 
 /* .topiclist lists
 ----------------------------------------*/
-/*
 li.header dt {
 	text-align: center;
 	text-transform: none;
@@ -99,7 +98,6 @@ ul.topiclist li.header dt, ul.topiclist li.header dt .list-inner {
 	margin-right: 0 !important;
 	padding-right: 0;
 }
-*/
 
 ul.topiclist li.header dd {
 	display: none !important;
@@ -116,7 +114,6 @@ ul.topiclist dt .list-inner.with-mark {
 	padding-right: 34px;
 }
 
-/*
 ul.topiclist dt .list-inner {
 	min-height: 28px;
 }
@@ -124,16 +121,13 @@ ul.topiclist dt .list-inner {
 ul.topiclist li.header dt .list-inner {
 	min-height: 0;
 }
-*/
 
 ul.topiclist dd {
 	display: none;
 }
-/*
 ul.topiclist dd.mark {
 	display: block;
 }
-*/
 
 /* Forums and topics lists
 ----------------------------------------*/
@@ -152,7 +146,7 @@ ul.topiclist dd.mark {
 	display: block;
 	position: absolute;
 	right: 5px;
-	/*top: 0;*/
+	top: 0;
 	margin: 0;
 	width: auto;
 	min-width: 0;
@@ -214,7 +208,6 @@ ul.topiclist li.row dt a.subforum {
 
 /* Responsive tables
 ----------------------------------------*/
-/*
 table.responsive, table.responsive tbody, table.responsive tr, table.responsive td {
 	display: block;
 }
@@ -264,7 +257,6 @@ table.responsive span.rank-img {
 table.responsive.memberlist td:first-child input[type="checkbox"] {
 	float: right;
 }
-*/
 
 /* Forms
 ----------------------------------------*/
@@ -275,6 +267,12 @@ fieldset dt, fieldset.fields1 dt, fieldset.fields2 dt {
 
 fieldset dd, fieldset.fields1 dd, fieldset.fields2 dd {
 	margin-left: 20px;
+}
+
+textarea, dd textarea, .message-box textarea {
+	width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 dl.pmlist dt {
@@ -289,6 +287,15 @@ dl.pmlist dd {
 
 dl.pmlist dd:first-of-type {
 	padding-left: 20px;
+}
+
+.smiley-box, .message-box {
+	float: none;
+	width: auto;
+}
+
+.smiley-box {
+	margin-top: 5px;
 }
 
 .bbcode-status {
@@ -370,13 +377,11 @@ fieldset.quick-login label[for="autologin"] {
 	}
 }
 
-/*
 @media only screen and (max-width: 430px), only screen and (max-device-width: 430px) {
 	.section-viewtopic .search-box .inputbox {
 		width: 110px;
 	}
 }
-*/
 
 @media only screen and (max-width: 320px), only screen and (max-device-width: 320px) {
 	select, .inputbox {
@@ -392,7 +397,6 @@ fieldset.quick-login label[for="autologin"] {
 }
 
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
-	/*
 	dl.details dt, dl.details dd {
 		width: auto;
 		float: none;
@@ -402,7 +406,6 @@ fieldset.quick-login label[for="autologin"] {
 	dl.details dd {
 		margin-left: 20px;
 	}
-*/
 }
 
 /* Polls
@@ -454,11 +457,6 @@ fieldset.polls dd.resultbar, fieldset.polls dd.poll_option_percent {
 .postprofile dt, .postprofile dd.profile-rank, .search .postprofile dd {
 	display: block;
 	margin: 0;
-	padding-left: 0;
-}
-
-.post {
-	padding: 5px 5px;
 }
 
 .postprofile .has-avatar .avatar-container {
@@ -521,7 +519,7 @@ dl.mini dd.pm-legend {
 }
 
 .topicreview {
-	/*margin: 0 -5px;*/
+	margin: 0 -5px;
 	padding: 0 5px;
 }
 

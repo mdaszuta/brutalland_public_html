@@ -474,7 +474,7 @@ $lang = array_merge($lang, array(
 	),
 	'NOTIFICATION_POST_APPROVED'		=> 'zaakceptowano post',
 	'NOTIFICATION_POST_DISAPPROVED'		=> 'odrzucono post',
-	'NOTIFICATION_POST_IN_QUEUE'		=> 'poprośba o akceptację posta %1$s',
+	'NOTIFICATION_POST_IN_QUEUE'		=> 'prośba o akceptację posta %1$s',
 	'NOTIFICATION_QUOTE'				=> array(
 		1	=> 'cytat %1$s',
 	),
@@ -486,7 +486,7 @@ $lang = array_merge($lang, array(
 	'NOTIFICATION_TOPIC'				=> 'nowy temat %1$s',
 	'NOTIFICATION_TOPIC_APPROVED'		=> 'zaakceptowano temat',
 	'NOTIFICATION_TOPIC_DISAPPROVED'	=> 'nie zaakceptowano tematu',
-	'NOTIFICATION_TOPIC_IN_QUEUE'		=> 'poprośba o akceptację tematu %1$s',
+	'NOTIFICATION_TOPIC_IN_QUEUE'		=> 'prośba o akceptację tematu %1$s',
 	'NOTIFICATION_TYPE_NOT_EXIST'		=> 'W katalogu witryny brakuje powiadomienia typu „%s”.',
 	'NOTIFICATION_ADMIN_ACTIVATE_USER'	=> '<strong>Wymagana aktywacja</strong> dla nowo zarejestrowanego lub zdeaktywowanego użytkownika „%1$s”',
 	// Used in conjuction with NOTIFICATION_BOOKMARK and NOTIFICATION_POST.

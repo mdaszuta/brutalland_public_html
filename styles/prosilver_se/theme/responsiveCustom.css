@@ -39,6 +39,48 @@
 
 @media (max-width: 700px), (max-device-width: 700px) {
 	
+	/* responsive.css */
+
+	.headerbar, .forabg, .forumbg, .post, .panel {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.navbar {
+		margin: auto;
+	}
+
+	.topicreview {
+		margin: 0;
+	}
+
+	li.header dt {
+		text-align: left;
+		text-transform: uppercase;
+	}
+
+	/* table responsive */
+
+	table.responsive tr {
+        padding: 5px 0;
+    }
+
+	table.table1.responsive td dfn {
+		color: #888;
+		font-weight: bold;
+		font-style: normal;
+	}
+
+	table.table1.responsive td strong {
+		color: #fff;
+	}
+
+	/* END responsive.css */
+
+	.post {
+		/* padding: 5px 7px; */
+	}
+
 	.flex-box {
 		flex-basis: 100%;
 	}
@@ -187,11 +229,14 @@
 		padding: 0;
 	}
 	
-	div.content,
-	div#postingbox.panel {
+	div.content {
 		margin: 0;
 	}
-	
+
+	div#postingbox.panel {
+		/* margin: 0; */
+	}
+
 	.postbody p.post-number,
 	.topiclist li:not(.header) .lastpost {
 		display: none;
