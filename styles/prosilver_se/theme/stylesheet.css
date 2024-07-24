@@ -1030,6 +1030,14 @@ dd.lastpost > span {
 	background: #999;
 }
 
+.postbody {
+	margin-top: 5px;
+}
+
+.has-profile .post-buttons {
+	top: 0;
+}
+
 .postbody .signature:not(.standalone) {
 	display: none;
 }
