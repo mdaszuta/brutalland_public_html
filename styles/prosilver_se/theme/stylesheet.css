@@ -1468,6 +1468,10 @@ table.table1 tbody td {
 	//margin: auto;
 }
 
+.content a.button {
+	line-height: normal;
+}
+
 /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
 
 #quick-login-panel fieldset dl {
