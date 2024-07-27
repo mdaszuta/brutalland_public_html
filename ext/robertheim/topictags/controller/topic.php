@@ -44,7 +44,7 @@ class topic
 	/** @var string */
 	private $topic_type = '';
 	private $forum_name = '';
-	
+
 	/** @var int */
 	private $forum_id;
 

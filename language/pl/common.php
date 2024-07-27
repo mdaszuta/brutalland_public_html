@@ -927,11 +927,14 @@ $lang = array_merge($lang, array(
 	'JOIN'						=> 'Dołącz',
 	'SHOW_PROFILE'				=> 'Pokaż profil',
 	'SEE_ALL_NOTIFICATIONS'		=> 'Wszystkie',
+	'READING_TOPIC_FORUM'		=> 'Czyta temat %2$s na forum %1$s',
+	'REPLYING_MESSAGE_TOPIC'	=> 'Odpowiada na wiadomość w temacie %2$s na forum %1$s',
+	
+	/** ADDED AND NOT USED */
+	
 	'DELETED_IMG'				=> '<div class="fa fa-recycle" title="Ten temat został usunięty"></div>',
 	'POLL_IMG'					=> '<div class="fa fa-bar-chart" title="Ten temat zawiera ankietę"></div>',
 	'REPORTED_IMG'				=> '<div class="fa fa-exclamation-triangle" title="Ten temat został zgłoszony"></div>',
-	'READING_TOPIC_FORUM'		=> 'Czyta temat %2$s na forum %1$s',
-	'REPLYING_MESSAGE_TOPIC'	=> 'Odpowiada na wiadomość w temacie %2$s na forum %1$s',
 
 	// Info BBCode - unused
 	'ABBC3_INFO_SHOW'	=> '► Informacje:',

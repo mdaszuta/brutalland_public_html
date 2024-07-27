@@ -86,7 +86,11 @@
 						<br />
 
 						<!-- IF S_SHOW_RECIPIENTS -->{L_MESSAGE_TO}{L_COLON} {messagerow.RECIPIENTS} {messagerow.SENT_TIME}<!-- ELSE --><span>{messagerow.MESSAGE_AUTHOR_FULL}</span> {messagerow.SENT_TIME}<!-- ENDIF -->
-						<!-- IF messagerow.S_PM_REPORTED --><a href="{messagerow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --> {messagerow.ATTACH_ICON_IMG}
+						<!-- IF messagerow.S_PM_REPORTED -->
+							<a href="{messagerow.U_MCP_REPORT}">
+								<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{PM_REPORTED}</span>
+							</a>
+						<!-- ENDIF --> <!-- IF messagerow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF -->
 
 						</div>
 					</dt>

@@ -37,7 +37,9 @@
 			<!-- ENDIF -->
 			<!-- EVENT ucp_pm_history_post_buttons_list_after -->
 
-			<p class="author">{history_row.MINI_POST_IMG} <span>{history_row.MESSAGE_AUTHOR_FULL}</span> {history_row.SENT_DATE}</p>
+			<p class="author">
+				<span>{history_row.MESSAGE_AUTHOR_FULL}</span> {history_row.SENT_DATE}
+			</p>
 			<div class="content"><!-- IF history_row.MESSAGE -->{history_row.MESSAGE}<!-- ELSE --><span class="error">{L_MESSAGE_REMOVED_FROM_OUTBOX}</span><!-- ENDIF --></div>
 			<div id="message_{history_row.MSG_ID}" style="display: none;">{history_row.DECODED_MESSAGE}</div>
 		</div>

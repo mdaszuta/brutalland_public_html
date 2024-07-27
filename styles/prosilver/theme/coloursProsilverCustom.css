@@ -55,7 +55,7 @@ table.zebra-list tr:nth-child(even) td, ul.zebra-list li:nth-child(even) {
 	color: #BC2A4D;
 }
 
-
+/*
 p.post-notice.deleted:before {
 	background-image: url("./images/icon_topic_deleted.png");
 }
@@ -67,7 +67,7 @@ p.post-notice.unapproved:before {
 p.post-notice.reported:before, p.post-notice.error:before {
 	background-image: url("./images/icon_topic_reported.gif");
 }
-
+*/
 /*
 --------------------------------------------------------------
 Colours and backgrounds for links.css
@@ -92,14 +92,15 @@ Colours and backgrounds for links.css
 
 /* Back to top of page */
 a.top {
-	background-image: url("./images/icon_back_top.gif");
+	/* background-image: url("./images/icon_back_top.gif"); */
 }
 
 a.top2 {
-	background-image: url("./images/icon_back_top.gif");
+	/* background-image: url("./images/icon_back_top.gif"); */
 }
 
 /* Arrow links  */
+/*
 a.arrow-up			{ background-image: url("./images/arrow_up.gif"); }
 a.arrow-down		{ background-image: url("./images/arrow_down.gif"); }
 a.arrow-left		{ background-image: url("./images/arrow_left.gif"); }
@@ -108,12 +109,8 @@ a.arrow-right		{ background-image: url("./images/arrow_right.gif"); }
 a.arrow-up:hover {
 	background-color: transparent;
 }
-
-a.arrow-left:hover {
-	color: #368AD2;
-}
-
-a.arrow-right:hover {
+*/
+.arrow-left:hover, .arrow-right:hover {
 	color: #368AD2;
 }
 
@@ -522,7 +519,7 @@ input.disabled {
 	border-color: #999999;
 }
 .phpbb_alert .alert_close {
-	background-image: url("./images/alert_close.png");
+	/* background-image: url("./images/alert_close.png"); */
 }
 .darken {
 	background-color: #000000;

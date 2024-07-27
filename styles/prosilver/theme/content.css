@@ -7,10 +7,6 @@ ul.topiclist {
 	margin: 0;
 }
 
-ul.forums {
-	background: transparent none repeat-x 0 0;
-}
-
 ul.topiclist li {
 	display: block;
 	list-style-type: none;
@@ -79,15 +75,6 @@ ul.topiclist dfn {
 	position: absolute;
 	left: -999px;
 	width: 990px;
-}
-
-ul.topiclist li.row dt a.subforum {
-	background-image: none;
-	background-position: 0 50%;
-	background-repeat: no-repeat;
-	position: relative;
-	white-space: nowrap;
-	padding: 0 0 0 12px;
 }
 
 .forum-image {
@@ -290,7 +277,7 @@ dd.option {
 
 /* Topic review panel
 ----------------------------------------*/
-.review {
+.panel .review {
 	margin-top: 2em;
 }
 
@@ -387,8 +374,7 @@ dl.faq dt {
 }
 
 .content ul, .content ol {
-	margin-bottom: 1em;
-	margin-left: 3em;
+	margin: 0.8em 0 0.9em 3em;
 }
 
 .posthilit {
@@ -434,8 +420,7 @@ dd .signature {
 }
 
 .signature ul, .signature ol {
-	margin-bottom: 1em;
-	margin-left: 3em;
+	margin: 0.8em 0 0.9em 3em;
 }
 
 /* Post noticies */
@@ -464,7 +449,7 @@ blockquote {
 	background: transparent none 6px 8px no-repeat;
 	border: 1px solid transparent;
 	font-size: 0.95em;
-	margin: 0.5em 1px 0 25px;
+	margin: 1em 1px 1em 25px;
 	overflow: hidden;
 	padding: 5px;
 }
@@ -472,7 +457,7 @@ blockquote {
 blockquote blockquote {
 	/* Nested quotes */
 	font-size: 1em;
-	margin: 0.5em 1px 0 15px;
+	margin: 1em 1px 1em 15px;
 }
 
 blockquote cite {
@@ -492,11 +477,22 @@ blockquote.uncited {
 	padding-top: 25px;
 }
 
+blockquote cite > div {
+	float: right;
+	font-weight: normal;
+}
+
+.postbody .content li blockquote {
+	overflow: inherit;
+	margin-left: 0;
+}
+
 /* Code block */
 .codebox {
 	padding: 3px;
 	border: 1px solid transparent;
 	font-size: 1em;
+	margin: 1em 0 1.2em 0;
 }
 
 .codebox p {

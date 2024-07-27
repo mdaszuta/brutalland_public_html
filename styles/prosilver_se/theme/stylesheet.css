@@ -146,6 +146,10 @@ blockquote {
 	border: none;
 }
 
+blockquote cite > div {
+	font-weight: bold;
+}
+
 .attachbox {
 	margin: 0;
 	padding: 3px;
@@ -701,7 +705,7 @@ input.button2,
 #m-name .action-bar.top .buttons .button,
 #m-name .action-bar.bar-top .buttons .button {
 	padding: 0 55px 0 55px;
-	height: 1.75em;
+	/* height: 1.75em; */
 }
 
 #m-feed-topics .main-m-bottom {
@@ -902,6 +906,7 @@ body.simple {
 	float: none;
 	margin-top: 0;
 	vertical-align: text-bottom;
+    flex-direction: row;
 }
 
 .pagination li a, .pagination li span {
@@ -912,10 +917,20 @@ body.simple {
 	text-align: center;
 }
 
+.pagination .arrow a {
+	padding: 2px;
+}
+
+.row .pagination span i,
+a.fa-ellipsis-h::before,
+li.arrow a::before {
+	vertical-align: sub;
+}
+
 .pagination li a,
 .pagination li span,
 .pagination li.active span {
-	font-size: 0.9em;
+	/*font-size: 0.9em;*/
 }
 
 .pagination li.active span {
@@ -953,7 +968,6 @@ body.simple {
 	padding: 0;
 }
 
-.small-icon,
 .fbr-quickmod-all li,
 .fbr-m-all li {
 	list-style-type: none;
@@ -1295,6 +1309,11 @@ h3 {
 .review,
 h2.review {
 	padding: 1em 0 1em 0;
+}
+
+.review,
+.panel .review {
+	margin-top: 2em;
 }
 
 .topicreview {
@@ -1711,6 +1730,10 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	align-items: normal;
 }
 
+.fbr-right .error {
+	text-align: left;
+}
+
 #register .error {
 	padding-bottom: 1.4em;
 }
@@ -2083,6 +2106,10 @@ dl.details dd {
 /* EXT */ /* EXT */ /* EXT */ /* EXT */
 
 /* EXT */ /* EXT */ /* EXT */ /* EXT */
+
+#mcp p.post-number-phpbb32x > a {
+    /* margin-top: 0; */
+}
 
 #topic_preview {
 	display: none;

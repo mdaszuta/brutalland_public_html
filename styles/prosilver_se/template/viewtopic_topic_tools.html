@@ -17,7 +17,7 @@
 <!-- IF .attachrow and NUM_ATTACHMENTS --><div class="panel bg3"><li class="fbr-m-info">{L_TITLE}{L_COLON} {TOTAL_ATTACHMENTS}</li></div><!-- ENDIF -->
 
 <!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
-	<div class="action-bar top">
+	<div class="action-bar bar-top">
 		<li class="buttons"><a href="{U_POST_REPLY_TOPIC}" class="button">
 			<!-- IF S_IS_LOCKED -->{L_BUTTON_TOPIC_LOCKED}<!-- ELSE -->{L_BUTTON_POST_REPLY}<!-- ENDIF -->
 		</a></li>
@@ -26,7 +26,7 @@
 
 <!-- IF SCRIPT_NAME == 'viewforum' and (S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS) -->
 	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
-		<div class="action-bar top">
+		<div class="action-bar bar-top">
 			<li class="buttons"><a href="{U_POST_NEW_TOPIC}" class="button">
 				<!-- IF S_IS_LOCKED -->{L_BUTTON_FORUM_LOCKED}<!-- ELSE -->{L_BUTTON_NEW_TOPIC}<!-- ENDIF -->
 			</a></li>
@@ -35,7 +35,7 @@
 <!-- ENDIF -->
 
 <!-- IF SCRIPT_NAME == 'ucp' and (U_POST_REPLY_PM or U_POST_NEW_TOPIC or U_FORWARD_PM) -->
-	<div class="action-bar top">
+	<div class="action-bar bar-top">
 			<div class="buttons">
 				<!-- IF U_POST_REPLY_PM -->
 					<a title="{L_POST_REPLY_PM}" href="{U_POST_REPLY_PM}" class="button">{L_BUTTON_PM_REPLY}</a>

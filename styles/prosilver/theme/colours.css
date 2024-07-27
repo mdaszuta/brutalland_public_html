@@ -152,7 +152,7 @@ dl.details dd {
 
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
-	background-image: url("./images/icon_pages.gif");
+	/* background-image: url("./images/icon_pages.gif"); */
 }
 
 /* Miscellaneous styles
@@ -186,7 +186,7 @@ p.post-notice {
 	background-color: #ECD5D8;
 	background-image: none;
 }
-
+/*
 p.post-notice.deleted:before {
 	background-image: url("./images/icon_topic_deleted.png");
 }
@@ -198,7 +198,7 @@ p.post-notice.unapproved:before {
 p.post-notice.reported:before, p.post-notice.error:before {
 	background-image: url("./images/icon_topic_reported.gif");
 }
-
+*/
 /*
 --------------------------------------------------------------
 Colours and backgrounds for links.css
@@ -248,14 +248,15 @@ a:hover	{ color: #D31141; }
 
 /* Back to top of page */
 a.top {
-	background-image: url("./images/icon_back_top.gif");
+	/* background-image: url("./images/icon_back_top.gif"); */
 }
 
 a.top2 {
-	background-image: url("./images/icon_back_top.gif");
+	/* background-image: url("./images/icon_back_top.gif"); */
 }
 
 /* Arrow links  */
+/*
 a.arrow-up			{ background-image: url("./images/arrow_up.gif"); }
 a.arrow-down		{ background-image: url("./images/arrow_down.gif"); }
 a.arrow-left		{ background-image: url("./images/arrow_left.gif"); }
@@ -264,12 +265,9 @@ a.arrow-right		{ background-image: url("./images/arrow_right.gif"); }
 a.arrow-up:hover {
 	background-color: transparent;
 }
+*/
 
-a.arrow-left:hover {
-	color: #368AD2;
-}
-
-a.arrow-right:hover {
+.arrow-left:hover, .arrow-right:hover {
 	color: #368AD2;
 }
 
@@ -621,7 +619,7 @@ Colours and backgrounds for buttons.css
 .icon-unsubscribe			{ background-image: url("./images/icon_unsubscribe.gif"); }
 
 /* Profile & navigation icons */
-.icon-button:before, .dropdown-select:after						{ background-image: url("./images/icons_button.png"); }
+/* .icon-button:before, .dropdown-select:after						{ background-image: url("./images/icons_button.png"); } */
 
 /* Forum icons & Topic icons */
 .global_read						{ background-image: url("./images/announce_read.gif"); }

@@ -743,7 +743,7 @@ $template->assign_vars(array(
 	'REPLY_IMG'			=> ($topic_data['forum_status'] == ITEM_LOCKED || $topic_data['topic_status'] == ITEM_LOCKED) ? $user->img('button_topic_locked', 'TOPIC_LOCKED') : $user->img('button_topic_reply', 'REPLY_TO_TOPIC'),
 	'EDIT_IMG' 			=> $user->img('icon_post_edit', 'EDIT_POST'),
 	'DELETE_IMG' 		=> $user->img('icon_post_delete', 'DELETE_POST'),
-	'DELETED_IMG'		=> $user->lang['DELETED_IMG'],
+	'DELETED_IMG'		=> $user->img('icon_topic_deleted', 'POST_DELETED_RESTORE'),
 	'INFO_IMG' 			=> $user->img('icon_post_info', 'VIEW_INFO'),
 	'PROFILE_IMG'		=> $user->img('icon_user_profile', 'READ_PROFILE'),
 	'SEARCH_IMG' 		=> $user->img('icon_user_search', 'SEARCH_USER_POSTS'),
@@ -751,7 +751,7 @@ $template->assign_vars(array(
 	'EMAIL_IMG' 		=> $user->img('icon_contact_email', 'SEND_EMAIL'),
 	'JABBER_IMG'		=> $user->img('icon_contact_jabber', 'JABBER') ,
 	'REPORT_IMG'		=> $user->img('icon_post_report', 'REPORT_POST'),
-	'REPORTED_IMG'		=> $user->lang['REPORTED_IMG'],
+	'REPORTED_IMG'		=> $user->img('icon_topic_reported', 'POST_REPORTED'),
 	'UNAPPROVED_IMG'	=> $user->img('icon_topic_unapproved', 'POST_UNAPPROVED'),
 	'WARN_IMG'			=> $user->img('icon_user_warn', 'WARN_USER'),
 

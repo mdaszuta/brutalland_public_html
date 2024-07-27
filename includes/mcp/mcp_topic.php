@@ -364,9 +364,9 @@ function mcp_topic_view($id, $mode, $action)
 		'POSTS_PER_PAGE'	=> $posts_per_page,
 		'ACTION'			=> $action,
 
-		'REPORTED_IMG'		=> $user->lang['REPORTED_IMG'],
+		'REPORTED_IMG'		=> $user->img('icon_topic_reported', 'POST_REPORTED'),
 		'UNAPPROVED_IMG'	=> $user->img('icon_topic_unapproved', 'POST_UNAPPROVED'),
-		'DELETED_IMG'		=> $user->lang['DELETED_IMG'],
+		'DELETED_IMG'		=> $user->img('icon_topic_deleted', 'POST_DELETED_RESTORE'),
 		'INFO_IMG'			=> $user->img('icon_post_info', 'VIEW_INFO'),
 
 		'S_MCP_ACTION'		=> "$url&amp;i=$id&amp;mode=$mode&amp;action=$action&amp;start=$start",

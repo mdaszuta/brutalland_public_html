@@ -905,12 +905,15 @@ $lang = array_merge($lang, array(
 	'JOIN'						=> 'Join',
 	'SHOW_PROFILE'				=> 'Show profile',
 	'SEE_ALL_NOTIFICATIONS'		=> 'All',
+	'READING_TOPIC_FORUM'		=> 'Reading topic %2$s in %1$s',
+	'REPLYING_MESSAGE_TOPIC'	=> 'Replying to message in topic %2$s in %1$s',
+
+	/** ADDED AND NOT USED */
+	
 	'DELETED_IMG'				=> '<div class="fa fa-recycle" title="This topic has been deleted"></div>',
 	'POLL_IMG'					=> '<div class="fa fa-bar-chart" title="This topic has a poll"></div>',
 	'REPORTED_IMG'				=> '<div class="fa fa-exclamation-triangle" title="This topic has been reported"></div>',
-	'READING_TOPIC_FORUM'		=> 'Reading topic %2$s in %1$s',
-	'REPLYING_MESSAGE_TOPIC'	=> 'Replying to message in topic %2$s in %1$s',
-	
+
 	// Info BBCode - unused
 	'ABBC3_INFO_SHOW'	=> '► Info:',
 	'ABBC3_INFO_HIDE'	=> '▼ Info:',

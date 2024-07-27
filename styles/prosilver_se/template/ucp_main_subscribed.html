@@ -26,20 +26,16 @@
 
 	<!-- BEGIN forumrow -->
 		<li class="row<!-- IF forumrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-
 			<dl class="row-item {forumrow.FORUM_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
 				<dt title="<!-- IF forumrow.S_UNREAD_FORUM -->{L_UNREAD_POSTS}<!-- ELSE -->{L_NO_UNREAD_POSTS}<!-- ENDIF -->">
-				
+
 					<!-- IF forumrow.TOPICS -->
 						<div class="topic-reply-counter<!-- IF forumrow.S_UNREAD_FORUM --> unread<!-- ELSE --> read<!-- ENDIF -->">{forumrow.TOPICS} <dfn>{L_TOPICS}</dfn></div>
 					<!-- ENDIF -->
 					
 					<!-- IF forumrow.S_UNREAD_FORUM --><a href="{forumrow.U_VIEWFORUM}" class="row-item-link"></a><!-- ENDIF -->
 					<div class="list-inner">
-
-
-
 						<a href="{forumrow.U_VIEWFORUM}" class="forumtitle">{forumrow.FORUM_NAME}</a><br />
 						{forumrow.FORUM_DESC}
 						<!-- IF forumrow.LAST_POST_TIME -->
@@ -99,17 +95,18 @@
 			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
-					
+
 					<!-- IF topicrow.REPLIES -->
 						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
 					<!-- ENDIF -->
-					
+
 					<div class="list-inner">
-					
+
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
-						
+
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
+							<span><i class="icon fa-clone fa-fw" aria-hidden="true"></i></span>
 							<ul>
 							<!-- BEGIN pagination -->
 								<!-- IF topicrow.pagination.S_IS_PREV -->
@@ -122,9 +119,9 @@
 							</ul>
 						</div>
 						<!-- ENDIF -->
-						
+
 						<br />
-						
+
 						<div class="lastpost responsive-show" style="display: none;">
 							<span>
 								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
@@ -133,15 +130,19 @@
 								</a>
 							</span>
 						</div>
-						
-						
 						<div class="responsive-hide">
 							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
-							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+								<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
+									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
+								</a>
+							<!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_REPORTED -->
+								<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
+									<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
+								</a>
+							<!-- ENDIF -->
 						</div>
-						
-						
 					</div>
 				</dt>
 				</div>
@@ -167,7 +168,9 @@
 <!-- IF .topicrow or .forumrow -->
 	<fieldset class="display-actions flex-box-form">
 		<div class="flex-box-o">
-			<div class="flex-box"><input type="submit" name="unwatch" value="{L_UNWATCH_MARKED}" class="button" /></div>
+			<div class="flex-box">
+				<input type="submit" name="unwatch" value="{L_UNWATCH_MARKED}" class="button" />
+			</div>
 			<div class="flex-box fb-c">
 				<a href="#" onclick="marklist('ucp', 't', true); marklist('ucp', 'f', true); return false;">{L_MARK_ALL}</a>
 				<a href="#" onclick="marklist('ucp', 't', false); marklist('ucp', 'f', false); return false;">{L_UNMARK_ALL}</a>

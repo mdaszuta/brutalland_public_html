@@ -30,7 +30,7 @@
 	<!-- EVENT viewtopic_buttons_top_before -->
 
 	<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
-		<a href="{U_POST_REPLY_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->">
+		<a href="{U_POST_REPLY_TOPIC}" class="button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->">
 			<!-- IF S_IS_LOCKED -->
 				{L_BUTTON_TOPIC_LOCKED}
 			<!-- ELSE -->
@@ -48,10 +48,10 @@
 			<form method="get" id="topic-search" action="{S_SEARCHBOX_ACTION}">
 			<fieldset>
 				<input class="inputbox search tiny"  type="search" name="keywords" id="search_keywords" size="20" placeholder="{L_SEARCH_TOPIC}" />
-				<button class="button icon-button search-icon" type="submit" title="{L_SEARCH}">
+				<button class="button search-icon" type="submit" title="{L_SEARCH}">
 					{L_SEARCH}
 				</button>
-				<a href="{U_SEARCH}" class="button icon-button search-adv-icon" title="{L_SEARCH_ADV}">
+				<a href="{U_SEARCH}" class="button search-adv-icon" title="{L_SEARCH_ADV}">
 					{L_SEARCH_ADV}
 				</a>
 				{S_SEARCH_LOCAL_HIDDEN_FIELDS}
@@ -233,42 +233,42 @@
 					<!-- EVENT viewtopic_body_post_buttons_before -->
 					<!-- IF postrow.U_EDIT -->
 						<li>
-							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}" class="button icon-button edit-icon">
+							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}" class="button edit-icon">
 								<span>{L_BUTTON_EDIT}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_DELETE -->
 						<li>
-							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}" class="button icon-button delete-icon">
+							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}" class="button delete-icon">
 								<span>{L_DELETE_POST}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_REPORT -->
 						<li>
-							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}" class="button icon-button report-icon">
+							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}" class="button report-icon">
 								<span>{L_REPORT_POST}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_WARN -->
 						<li>
-							<a href="{postrow.U_WARN}" title="{L_WARN_USER}" class="button icon-button warn-icon">
+							<a href="{postrow.U_WARN}" title="{L_WARN_USER}" class="button warn-icon">
 								<span>{L_WARN_USER}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_INFO -->
 						<li>
-							<a href="{postrow.U_INFO}" title="{L_INFORMATION}" class="button icon-button info-icon">
+							<a href="{postrow.U_INFO}" title="{L_INFORMATION}" class="button info-icon">
 								<span>{L_INFORMATION}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_QUOTE -->
 						<li>
-							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="button icon-button quote-icon">
+							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="button quote-icon">
 								<span>{L_QUOTE}</span>
 							</a>
 						</li>
@@ -295,6 +295,7 @@
 			<!-- IF postrow.S_POST_UNAPPROVED -->
 			<form method="post" class="mcp_approve" action="{postrow.U_APPROVE_ACTION}">
 				<p class="post-notice unapproved">
+					<span><i class="icon fa-question icon-red fa-fw" aria-hidden="true"></i></span>
 					<strong>{L_POST_UNAPPROVED_ACTION}</strong>
 					<input class="button2" type="submit" value="{L_DISAPPROVE}" name="action[disapprove]" />
 					<input class="button1" type="submit" value="{L_APPROVE}" name="action[approve]" />
@@ -318,7 +319,7 @@
 
 			<!-- IF postrow.S_POST_REPORTED -->
 			<p class="post-notice reported">
-				<a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a>
+				<a href="{postrow.U_MCP_REPORT}"><i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><strong>{L_POST_REPORTED}</strong></a>
 			</p>
 			<!-- ENDIF -->
 
@@ -362,7 +363,8 @@
 		<div class="back2top">
 			<!-- EVENT viewtopic_body_postrow_back2top_prepend -->
 			<a href="#top" class="top" title="{L_BACK_TO_TOP}">
-				{L_BACK_TO_TOP}
+				<i class="icon fa-chevron-circle-up fa-fw icon-gray" aria-hidden="true"></i>
+				<span class="sr-only">{L_BACK_TO_TOP}</span>
 			</a>
 			<!-- EVENT viewtopic_body_postrow_back2top_append -->
 		</div>
@@ -384,7 +386,7 @@
 	<!-- EVENT viewtopic_buttons_bottom_before -->
 
 	<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
-		<a href="{U_POST_REPLY_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->">
+		<a href="{U_POST_REPLY_TOPIC}" class="button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->">
 			<!-- IF S_IS_LOCKED -->
 				{L_BUTTON_TOPIC_LOCKED}
 			<!-- ELSE -->
@@ -404,8 +406,9 @@
 
 	<!-- IF .quickmod -->
 	<div class="quickmod dropdown-container dropdown-container-left dropdown-up dropdown-{S_CONTENT_FLOW_END} dropdown-button-control" id="quickmod">
-		<span title="{L_QUICK_MOD}" class="dropdown-trigger button icon-button modtools-icon dropdown-select">
-			{L_QUICK_MOD}
+		<span title="{L_QUICK_MOD}" class="button button-secondary dropdown-trigger dropdown-select">
+			<i class="icon fa-gavel fa-fw" aria-hidden="true"></i><span class="sr-only">{L_QUICK_MOD}</span>
+			<span class="caret"><i class="icon fa-sort-down fa-fw" aria-hidden="true"></i></span>
 		</span>
 		<div class="dropdown">
 				<div class="pointer"><div class="pointer-inner"></div></div>

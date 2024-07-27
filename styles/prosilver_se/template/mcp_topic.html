@@ -111,8 +111,8 @@
 				<ul class="post-buttons" data-skip-responsive="true">
 					<div id="post_b_1">
 						<li>
-							<a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}">
-								&nbsp;<div class="fa fa-info fa-2x"></div>&nbsp;
+							<a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}" class="button-icon-only">
+								<div class="fa fa-info fa-2x" aria-hidden="true"></div><span class="sr-only">{L_POST_DETAILS}</span>
 							</a>
 						</li>
 						<li>
@@ -133,19 +133,19 @@
 
 				<!-- IF postrow.S_POST_UNAPPROVED -->
 				<p class="post-notice unapproved">
-					<a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_UNAPPROVED}</strong></a>
+					<a href="{postrow.U_MCP_APPROVE}"><i class="icon fa-question fa-fw icon-red" aria-hidden="true"></i><strong>{L_POST_UNAPPROVED}</strong></a>
 				</p>
 				<!-- ENDIF -->
 
 				<!-- IF postrow.S_POST_DELETED -->
 				<p class="post-notice deleted">
-					<a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_DELETED}</strong></a>
+					<a href="{postrow.U_MCP_APPROVE}"><i class="icon fa-recycle fa-fw icon-red" aria-hidden="true"></i><strong>{L_POST_DELETED}</strong></a>
 				</p>
 				<!-- ENDIF -->
 
 				<!-- IF postrow.S_POST_REPORTED -->
 				<p class="post-notice reported">
-					<a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a>
+					<a href="{postrow.U_MCP_REPORT}"><i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><strong>{L_POST_REPORTED}</strong></a>
 				</p>
 				<!-- ENDIF -->
 

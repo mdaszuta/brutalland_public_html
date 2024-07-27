@@ -147,12 +147,12 @@
 		<!-- IF not S_IS_BOT and .postrow.contact -->
 			<dd class="profile-contact">
 				<strong title="{postrow.CONTACT_USER}">{L_CONTACT}{L_COLON}</strong>
-				
+
 				<div class="rozwijany-box contact-box menu-toggle">
 					<div class="rozwijany-box-devil contact-box-devil menu-devil">
 						<a class="fa fa-comment-o"></a>
 					</div>
-					<div class="rozwijany-box-all contact-box-all menu-all">					
+					<div class="rozwijany-box-all contact-box-all menu-all">
 						<!-- BEGIN contact -->
 							<a href="<!-- IF postrow.contact.U_CONTACT -->{postrow.contact.U_CONTACT}<!-- ELSE -->{postrow.U_POST_AUTHOR}<!-- ENDIF -->" class="m-labeled-box m-labeled-box-button" title="{postrow.contact.NAME}"<!-- IF postrow.contact.ID eq 'jabber' --> onclick="popup(this.href, 750, 320); return false;"<!-- ENDIF -->>
 								<!-- IF postrow.contact.ID == 'pm' -->
@@ -199,34 +199,46 @@
 					<!-- EVENT viewtopic_body_post_buttons_before -->
 					<!-- IF postrow.U_EDIT -->
 						<li>
-							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}">&nbsp;<div class="fa fa-edit fa-2x"></div>&nbsp;</a>
+							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}">
+								&nbsp;<div class="fa fa-edit fa-2x"></div>&nbsp;
+							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_QUOTE -->
 						<li>
-							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}">&nbsp;<div class="fa fa-quote-right fa-2x"></div>&nbsp;</a>
+							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}">
+								&nbsp;<div class="fa fa-quote-right fa-2x"></div>&nbsp;
+							</a>
 						</li>
 					<!-- ENDIF -->
 					</div>
 					<div id="post_b_2">
 					<!-- IF postrow.U_DELETE -->
 						<li>
-							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}">&nbsp;<div class="fa fa-times fa-lg"></div>&nbsp;</a>
+							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}">
+								&nbsp;<div class="fa fa-times fa-lg"></div>&nbsp;
+							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_REPORT -->
 						<li>
-							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}">&nbsp;<div class="fa fa-flag fa-lg"></div>&nbsp;</a>
+							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}">
+								&nbsp;<div class="fa fa-flag fa-lg"></div>&nbsp;
+							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_WARN -->
 						<li>
-							<a href="{postrow.U_WARN}" title="{L_WARN_USER}">&nbsp;<div class="fa fa-warning fa-lg"></div>&nbsp;</a>
+							<a href="{postrow.U_WARN}" title="{L_WARN_USER}">
+								&nbsp;<div class="fa fa-warning fa-lg"></div>&nbsp;
+							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_INFO -->
 						<li>
-							<a href="{postrow.U_INFO}" title="{L_INFORMATION}">&nbsp;<div class="fa fa-info fa-lg"></div>&nbsp;</a>
+							<a href="{postrow.U_INFO}" title="{L_INFORMATION}">
+								&nbsp;<div class="fa fa-info fa-lg"></div>&nbsp;
+							</a>
 						</li>
 					<!-- ENDIF -->
 					</div>
@@ -245,6 +257,7 @@
 			<!-- IF postrow.S_POST_UNAPPROVED -->
 			<form method="post" class="mcp_approve" action="{postrow.U_APPROVE_ACTION}">
 				<p class="post-notice unapproved">
+					<span><i class="icon fa-question icon-red fa-fw" aria-hidden="true"></i></span>
 					<strong>{L_POST_UNAPPROVED_ACTION}</strong>
 					<input class="button2" type="submit" value="{L_DISAPPROVE}" name="action[disapprove]" />
 					<input class="button1" type="submit" value="{L_APPROVE}" name="action[approve]" />
@@ -255,6 +268,7 @@
 			<!-- ELSEIF postrow.S_POST_DELETED -->
 			<form method="post" class="mcp_approve" action="{postrow.U_APPROVE_ACTION}">
 				<p class="post-notice deleted">
+					<span><i class="icon fa-recycle icon-red fa-fw" aria-hidden="true"></i></span>
 					<strong>{L_POST_DELETED_ACTION}</strong>
 					<!-- IF postrow.S_DELETE_PERMANENT -->
 						<input class="button2" type="submit" value="{L_DELETE}" name="action[delete]" />
@@ -268,6 +282,7 @@
 
 			<!-- IF postrow.S_POST_REPORTED -->
 			<p class="post-notice reported">
+				<span><i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i></span>
 				<a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a>
 			</p>
 			<!-- ENDIF -->

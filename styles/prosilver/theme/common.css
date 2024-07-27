@@ -879,8 +879,6 @@ fieldset.fields1 dl.pmlist dd.recipients {
 .row .pagination {
 	display: block;
 	margin-top: 0.3em;
-	padding-left: 15px;
-	background: none 0 50% no-repeat;
 }
 
 .row .pagination > ul {
@@ -922,19 +920,9 @@ fieldset.fields1 dl.pmlist dd.recipients {
 }
 
 .phpbb_alert .alert_close {
-	display: block;
 	float: right;
-	width: 16px;
-	height: 16px;
-	overflow: hidden;
-	text-decoration: none !important;
-	background: transparent none 0 0 no-repeat;
-	margin-top: -7px;
-	margin-right: -31px;
-}
-
-.phpbb_alert .alert_close:hover {
-	background-position: 0 -16px;
+	margin-right: -36px;
+	margin-top: -8px;
 }
 
 .phpbb_alert p {
@@ -1025,21 +1013,8 @@ div.rules ul, div.rules ol {
 p.post-notice {
 	position: relative;
 	padding: 5px;
-	padding-left: 26px;
 	min-height: 14px;
 	margin-bottom: 1em;
-}
-
-p.post-notice:before {
-	content: '';
-	display: block;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	width: 28px;
-	background: transparent none 50% 50% no-repeat;
-	pointer-events: none;
 }
 
 form > p.post-notice strong {
@@ -1273,12 +1248,8 @@ ul.linklist:after,
 	margin: 0 7px 0 0;
 }
 
-.compact .icon-notification > a > span, .compact .icon-pm > a > span {
+.linklist.compact .rightside > a > span span {
 	display: none;
-}
-
-.compact .icon-notification > a > strong, .compact .icon-pm > a > strong {
-	padding-left: 2px;
 }
 
 .dropdown-page-jump .dropdown {

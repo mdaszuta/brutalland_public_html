@@ -46,7 +46,7 @@
 						<!-- IF S_ENABLE_FEEDS and forumrow.S_FEED_ENABLED -->
 							<!--
 								<a class="feed-icon-forum" title="{L_FEED} - {forumrow.FORUM_NAME}" href="{U_FEED}?f={forumrow.FORUM_ID}">
-									<img src="{T_THEME_PATH}/images/feed.gif" alt="{L_FEED} - {forumrow.FORUM_NAME}" />
+									<i class="icon fa-rss-square fa-fw icon-orange" aria-hidden="true"></i><span class="sr-only">{L_FEED} - {forumrow.FORUM_NAME}</span>
 								</a>
 							-->
 						<!-- ENDIF -->
@@ -83,11 +83,11 @@
 					<dd class="lastpost"<!-- IF forumrow.LAST_POST_TIME --> onclick="window.location.href='{forumrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}"<!-- ENDIF -->>
 							<!-- IF forumrow.U_UNAPPROVED_TOPICS -->
 								<a href="{forumrow.U_UNAPPROVED_TOPICS}" title="{L_TOPICS_UNAPPROVED}">
-									{UNAPPROVED_IMG}
+									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPICS_UNAPPROVED}</span>
 								</a>
 							<!-- ELSEIF forumrow.U_UNAPPROVED_POSTS -->
 								<a href="{forumrow.U_UNAPPROVED_POSTS}" title="{L_POSTS_UNAPPROVED_FORUM}">
-									{UNAPPROVED_POST_IMG}
+									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_POSTS_UNAPPROVED_FORUM}</span>
 								</a>
 							<!-- ENDIF -->
 							<!-- IF forumrow.LAST_POST_TIME -->

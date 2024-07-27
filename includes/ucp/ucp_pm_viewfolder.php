@@ -186,7 +186,7 @@ function view_folder($id, $mode, $folder_id, $folder)
 				'S_SHOW_RECIPIENTS'		=> ($folder_id == PRIVMSGS_OUTBOX || $folder_id == PRIVMSGS_SENTBOX) ? true : false,
 				'S_SHOW_COLOUR_LEGEND'	=> true,
 
-				'REPORTED_IMG'			=> $user->lang['REPORTED_IMG'],
+				'REPORTED_IMG'			=> $user->img('icon_topic_reported', 'PM_REPORTED'),
 				'S_PM_ICONS'			=> ($config['enable_pm_icons']) ? true : false)
 			);
 		}

@@ -278,7 +278,7 @@ ul.zebra-list li:nth-child(even):hover {
 }
 
 .phpbb_alert {
-	background-color: rgba(0, 0, 0, 0.35);
+	background-color: rgba(0, 0, 0, 0.75);
 }
 
 //.firstpostintopic { background-color: rgba(0, 0, 0, 0.7); }

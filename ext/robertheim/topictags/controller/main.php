@@ -168,10 +168,10 @@ class main
 				'TOTAL_TOPICS'				=> $this->user->lang('VIEW_FORUM_TOPICS', $topics_count),
 				'NEWEST_POST_IMG'			=> $this->user->img('icon_topic_newest', 'VIEW_NEWEST_POST'),
 				'LAST_POST_IMG'				=> $this->user->img('icon_topic_latest', 'VIEW_LATEST_POST'),
-				'REPORTED_IMG'				=> $user->lang['REPORTED_IMG'],
+				'REPORTED_IMG'				=> $this->user->img('icon_topic_reported', 'TOPIC_REPORTED'),
 				'UNAPPROVED_IMG'			=> $this->user->img('icon_topic_unapproved', 'TOPIC_UNAPPROVED'),
-				'DELETED_IMG'				=> $user->lang['DELETED_IMG'],
-				'POLL_IMG'					=> $user->lang['POLL_IMG'],
+				'DELETED_IMG'				=> $this->user->img('icon_topic_deleted', 'TOPIC_DELETED'),
+				'POLL_IMG'					=> $this->user->img('icon_topic_poll', 'TOPIC_POLL'),
 				'S_TOPIC_ICONS'				=> true,
 			));
 

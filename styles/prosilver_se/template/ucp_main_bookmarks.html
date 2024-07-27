@@ -52,6 +52,7 @@
 
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
+							<span><i class="icon fa-clone fa-fw" aria-hidden="true"></i></span>
 							<ul>
 							<!-- BEGIN pagination -->
 								<!-- IF topicrow.pagination.S_IS_PREV -->
@@ -78,8 +79,16 @@
 
 						<div class="responsive-hide">
 							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
-							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+								<a href="{topicrow.U_MCP_QUEUE}">
+									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
+								</a>
+							<!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_REPORTED -->
+								<a href="{topicrow.U_MCP_REPORT}">
+									<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
+								</a>
+							<!-- ENDIF -->
 						</div>
 
 					</div>
@@ -110,7 +119,9 @@
 <!-- IF .topicrow and not S_NO_DISPLAY_BOOKMARKS -->
 	<fieldset class="display-actions flex-box-form">
 		<div class="flex-box-o">
-			<div class="flex-box"><input type="submit" name="unbookmark" value="{L_REMOVE_BOOKMARK_MARKED}" class="button" /></div>
+			<div class="flex-box">
+				<input type="submit" name="unbookmark" value="{L_REMOVE_BOOKMARK_MARKED}" class="button" />
+			</div>
 			<div class="flex-box fb-c">
 				<a href="#" onclick="marklist('ucp', '', true); return false;">{L_MARK_ALL}</a>
 				<a href="#" onclick="marklist('ucp', '', false); return false;">{L_UNMARK_ALL}</a>

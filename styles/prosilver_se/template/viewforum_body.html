@@ -24,6 +24,7 @@
 	<div class="buttons fbr-left">
 	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 			<!-- EVENT viewforum_buttons_top_before -->
+
 			<!-- EVENT viewforum_buttons_top_after -->
 	<!-- ENDIF -->
 	</div>
@@ -38,6 +39,7 @@
 			</form>
 		</div>
 	<!-- ENDIF -->
+
 
 	</div>
 <!-- ENDIF -->
@@ -91,7 +93,6 @@
 <!-- IF S_HAS_SUBFORUM -->
 	<!-- INCLUDE forumlist_body.html -->
 <!-- ENDIF -->
-
 <!-- EVENT viewforum_body_topic_row_before -->
 
 <!-- BEGIN topicrow -->
@@ -140,6 +141,7 @@
 
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
+							<span><i class="icon fa-clone fa-fw" aria-hidden="true"></i></span>
 							<ul>
 							<!-- BEGIN pagination -->
 								<!-- IF topicrow.pagination.S_IS_PREV -->
@@ -172,10 +174,23 @@
 							
 							<!-- EVENT topiclist_tags -->
 							
-							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_DELETED --><a href="{topicrow.U_MCP_QUEUE}">{DELETED_IMG}</a> <!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
-							<!-- IF topicrow.S_HAS_POLL -->{POLL_IMG}<!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+								<a href="{topicrow.U_MCP_QUEUE}">
+									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
+								</a>
+							<!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_DELETED -->
+								<a href="{topicrow.U_MCP_QUEUE}">
+									<i class="icon fa-recycle fa-fw icon-green" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_DELETED}</span>
+								</a>
+							<!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_REPORTED -->
+								<a href="{topicrow.U_MCP_REPORT}">
+									<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
+								</a>
+							<!-- ENDIF -->
+							<!-- IF topicrow.S_HAS_POLL --><i class="icon fa-bar-chart fa-fw" aria-hidden="true"></i><!-- ENDIF -->
+							<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i><!-- ENDIF -->
 						</div>
 						
 						<!-- EVENT topiclist_row_append -->

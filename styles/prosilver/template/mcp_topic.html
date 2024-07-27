@@ -100,8 +100,8 @@
 			<div class="postbody" id="pr{postrow.POST_ID}">
 				<ul class="post-buttons">
 					<li>
-						<a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}" class="button icon-button info-icon">
-							<span>{L_POST_DETAILS}</span>
+						<a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}" class="button button-icon-only">
+							<i class="icon fa-info fa-fw" aria-hidden="true"></i><span class="sr-only">{L_POST_DETAILS}</span>
 						</a>
 					</li>
 					<li>
@@ -116,14 +116,14 @@
 				<!-- EVENT mcp_topic_postrow_post_details_before -->
 				<p class="author">
 					<a href="#pr{postrow.POST_ID}" title="{postrow.MINI_POST}">
-						{postrow.MINI_POST_IMG}
+						<i class="icon fa-file fa-fw icon-lightgray icon-tiny" aria-hidden="true"></i><span class="sr-only">{postrow.MINI_POST}</span>
 					</a> {L_POSTED} {postrow.POST_DATE} {L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong><!-- IF postrow.U_MCP_DETAILS --> [ <a href="{postrow.U_MCP_DETAILS}">{L_POST_DETAILS}</a> ]<!-- ENDIF -->
 				</p>
 				<!-- EVENT mcp_topic_postrow_post_details_after -->
 
 				<!-- IF postrow.S_POST_UNAPPROVED -->
 				<p class="post-notice unapproved">
-					<a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_UNAPPROVED}</strong></a>
+					<a href="{postrow.U_MCP_APPROVE}"><i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><strong>{L_POST_UNAPPROVED}</strong></a>
 				</p>
 				<!-- ENDIF -->
 
@@ -135,7 +135,7 @@
 
 				<!-- IF postrow.S_POST_REPORTED -->
 				<p class="post-notice reported">
-					<a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a>
+					<a href="{postrow.U_MCP_REPORT}"><i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><strong>{L_POST_REPORTED}</strong></a>
 				</p>
 				<!-- ENDIF -->
 

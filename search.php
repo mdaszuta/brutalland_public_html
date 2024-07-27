@@ -1286,10 +1286,10 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 		'GOTO_PAGE_IMG'		=> $user->img('icon_post_target', 'GOTO_PAGE'),
 		'NEWEST_POST_IMG'	=> $user->img('icon_topic_newest', 'VIEW_NEWEST_POST'),
-		'REPORTED_IMG'		=> $user->lang['REPORTED_IMG'],
+		'REPORTED_IMG'		=> $user->img('icon_topic_reported', 'TOPIC_REPORTED'),
 		'UNAPPROVED_IMG'	=> $user->img('icon_topic_unapproved', 'TOPIC_UNAPPROVED'),
-		'DELETED_IMG'		=> $user->lang['DELETED_IMG'],
-		'POLL_IMG'			=> $user->lang['POLL_IMG'],
+		'DELETED_IMG'		=> $user->img('icon_topic_deleted', 'TOPIC_DELETED'),
+		'POLL_IMG'			=> $user->img('icon_topic_poll', 'TOPIC_POLL'),
 		'LAST_POST_IMG'		=> $user->img('icon_topic_latest', 'VIEW_LATEST_POST'),
 
 		'U_SEARCH_WORDS'	=> $u_search,

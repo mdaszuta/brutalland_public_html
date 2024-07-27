@@ -369,10 +369,10 @@ $template->assign_vars(array(
 	'FOLDER_ANNOUNCE_IMG'		=> $user->img('announce_read', 'POST_ANNOUNCEMENT'),
 	'FOLDER_ANNOUNCE_UNREAD_IMG'=> $user->img('announce_unread', 'POST_ANNOUNCEMENT'),
 	'FOLDER_MOVED_IMG'			=> $user->img('topic_moved', 'TOPIC_MOVED'),
-	'REPORTED_IMG'				=> $user->lang['REPORTED_IMG'],
+	'REPORTED_IMG'				=> $user->img('icon_topic_reported', 'TOPIC_REPORTED'),
 	'UNAPPROVED_IMG'			=> $user->img('icon_topic_unapproved', 'TOPIC_UNAPPROVED'),
-	'DELETED_IMG'				=> $user->lang['DELETED_IMG'],
-	'POLL_IMG'					=> $user->lang['POLL_IMG'],
+	'DELETED_IMG'				=> $user->img('icon_topic_deleted', 'TOPIC_DELETED'),
+	'POLL_IMG'					=> $user->img('icon_topic_poll', 'TOPIC_POLL'),
 	'GOTO_PAGE_IMG'				=> $user->img('icon_post_target', 'GOTO_PAGE'),
 
 	'L_NO_TOPICS' 			=> ($forum_data['forum_status'] == ITEM_LOCKED) ? $user->lang['POST_FORUM_LOCKED'] : $user->lang['NO_TOPICS'],
