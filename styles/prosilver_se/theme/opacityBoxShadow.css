@@ -1,7 +1,7 @@
 .fb-l span,
 .lastpost .fa-fast-forward,
 .phantom-label,
-.post-buttons #post_b_2,
+.post-buttons #post-buttons-row-2,
 .brutalform-label {
 	opacity: 0;
 }
@@ -42,8 +42,8 @@
 #m-aktywne-tematy .main-m-top,
 #m-logged-out .main-m-top,
 .topic-forumtitle,
-.post-buttons #post_b_1:hover ~ #post_b_2,
-.post-buttons #post_b_2:hover,
+.post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
+.post-buttons #post-buttons-row-2:hover,
 #page-header,
 ul.button,
 .pagination {
@@ -158,8 +158,8 @@ li.row:hover .topic-reply-counter.unread,
 
 /* RESPONSIVE */ /* RESPONSIVE */ /* RESPONSIVE */
 
-@media only screen and (max-width: 860px), only screen and (max-device-width: 860px) {
-	.post-buttons #post_b_2 {
+@media only screen and (max-width: 860px) {
+	.post-buttons #post-buttons-row-2 {
 		opacity: 0.8;
 	}
 }
@@ -223,8 +223,8 @@ fieldset .flex-box-o:hover .fb-l span {
 
 .post-number,
 .post-buttons,
-.post-buttons #post_b_1:hover ~ #post_b_2,
-.post-buttons #post_b_2:hover,
+.post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
+.post-buttons #post-buttons-row-2:hover,
 .mark_read,
 .ajaxshoutbox_delete .fa-remove,
 .fa-exclamation-triangle,

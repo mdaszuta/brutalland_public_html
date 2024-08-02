@@ -1098,23 +1098,24 @@ dd.lastpost > span {
 	margin-right: 0px !important;
 }
 
-.post-buttons #post_b_1 {
+.post-buttons #post-buttons-row-1 {
 	order: 1;
 	display: flex;
 	justify-content: flex-end;
 }
 
-.post-buttons #post_b_2 {
+.post-buttons #post-buttons-row-2 {
 	order: 2;
 	display: none;
 	position: absolute;
 	top: 100%;
 }
 
-.post-buttons #post_b_1:hover ~ #post_b_2,
-.post-buttons #post_b_2:hover {
+.post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
+.post-buttons #post-buttons-row-2:hover {
 	display: flex;
 	justify-content: flex-end;
+	width: 100%;
 }
 
 .header .row-item {

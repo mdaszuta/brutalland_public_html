@@ -470,9 +470,10 @@
 		/* display: none; */
 	}
 	
-	.post-buttons #post_b_2 {
+	.post-buttons #post-buttons-row-2 {
 		display: flex;
 		justify-content: flex-end;
+		width: 100%;
 	}
 
 	.main-m-lewa-prawa {
