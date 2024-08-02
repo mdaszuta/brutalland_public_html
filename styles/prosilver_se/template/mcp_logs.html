@@ -46,27 +46,25 @@
 	</table>
 
 	<!-- IF .log -->
-		<fieldset class="display-options">
-			<label>{L_DISPLAY_POSTS}{L_COLON} {S_SELECT_SORT_DAYS}</label>
-			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
-			<label>{S_SELECT_SORT_DIR}</label>
-			<input type="submit" name="sort" value="{L_GO}" class="button2" />
-		</fieldset>
+		<div class="action-bar bottom">
+			<!-- INCLUDE display_options.html -->
+
+		</div>
 
 		{S_FORM_TOKEN}
 		</div>
 	</div>
 
 		<!-- IF S_CLEAR_ALLOWED -->
-		<fieldset class="display-actions flex-box-form">
-			<div class="flex-box-o">
-				<div class="flex-box"><input class="button" type="submit" name="action[del_all]" value="{L_DELETE_ALL}" /></div>
-				<div class="flex-box"><input class="button" type="submit" value="{L_DELETE_MARKED}" name="action[del_marked]" /></div>
-				<div>
-					<a href="#" onclick="marklist('mcp', 'mark', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'mark', false); return false;">{L_UNMARK_ALL}</a>
+			<fieldset class="display-actions flex-box-form">
+				<div class="flex-box-o">
+					<div class="flex-box"><input class="button" type="submit" name="action[del_all]" value="{L_DELETE_ALL}" /></div>
+					<div class="flex-box"><input class="button" type="submit" value="{L_DELETE_MARKED}" name="action[del_marked]" /></div>
+					<div>
+						<a href="#" onclick="marklist('mcp', 'mark', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'mark', false); return false;">{L_UNMARK_ALL}</a>
+					</div>
 				</div>
-			</div>
-		</fieldset>
+			</fieldset>
 		<!-- ENDIF -->
 	<!-- ELSE -->
 			{S_FORM_TOKEN}

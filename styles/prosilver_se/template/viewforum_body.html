@@ -18,6 +18,7 @@
 	</div>
 <!-- ENDIF -->
 
+
 <!-- IF S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS -->
 	<div class="action-bar bar-top">
 
@@ -133,7 +134,7 @@
 					<!-- IF not S_IS_BOT --><!-- IF topicrow.REPLIES -->
 						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
 					<!-- ENDIF --><!-- ENDIF -->
-					
+
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
@@ -192,7 +193,6 @@
 							<!-- IF topicrow.S_HAS_POLL --><i class="icon fa-bar-chart fa-fw" aria-hidden="true"></i><!-- ENDIF -->
 							<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i><!-- ENDIF -->
 						</div>
-						
 						<!-- EVENT topiclist_row_append -->
 					</div>
 				</dt>
@@ -225,19 +225,6 @@
 	<!-- ENDIF -->
 <!-- END topicrow -->
 
-<!-- IF S_SELECT_SORT_DAYS and not S_DISPLAY_ACTIVE -->
-	<form method="post" action="{S_FORUM_ACTION}">
-		<fieldset class="display-options">
-	<!-- IF not S_IS_BOT -->
-			<label>{L_DISPLAY_TOPICS}{L_COLON} {S_SELECT_SORT_DAYS}</label>
-			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
-			<label>{S_SELECT_SORT_DIR}</label>
-			<input type="submit" name="sort" value="{L_GO}" class="button2" />
-	<!-- ENDIF -->
-		</fieldset>
-	</form>
-<!-- ENDIF -->
-
 <!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
 	<div class="action-bar bar-bottom">
 		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
@@ -258,9 +245,17 @@
 
 			<div class="fbr-right">
 			</div>
+
+		<!-- IF S_SELECT_SORT_DAYS and not S_IS_BOT -->
+			<form method="post" action="{S_FORUM_ACTION}">
+			<!-- INCLUDE display_options.html -->
+			</form>
+		<!-- ENDIF -->
+
 		</div>
 <!-- ENDIF -->
 
 <!-- INCLUDE jumpbox.html -->
+
 
 <!-- INCLUDE overall_footer.html -->
