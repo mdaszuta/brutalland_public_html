@@ -1,12 +1,13 @@
 {% if postrow.S_MARKPOSTUNREAD_ALLOWED %}
 <li>
 	{% if S_MARKPOSTUNREAD_31X %}
-	<a href="{{ postrow.U_MARKPOSTUNREAD }}" title="{L_MARKPOSTUNREAD_MARK_UNREAD}">
-		<div class="fa fa-bookmark fa-2x"></div>&nbsp;
+	<a href="{{ postrow.U_MARKPOSTUNREAD }}" title="{L_MARKPOSTUNREAD_MARK_UNREAD}" class="button icon-button unread-icon">
+		<span>{{ lang('MARKPOSTUNREAD_MARK_UNREAD') }}</span>
 	</a>
 	{% else %}
-	<a href="{{ postrow.U_MARKPOSTUNREAD }}" title="{{ lang('MARKPOSTUNREAD_MARK_UNREAD') }}">
-		<div class="fa fa-bookmark fa-2x"></div>&nbsp;
+	<a href="{{ postrow.U_MARKPOSTUNREAD }}" title="{{ lang('MARKPOSTUNREAD_MARK_UNREAD') }}" class="button-icon-only">
+		<div class="fa fa-bookmark fa-2x" aria-hidden="true"></div>
+		<span class="sr-only">{{ lang('MARKPOSTUNREAD_MARK_UNREAD') }}</span>
 	</a>
 	{% endif %}
 </li>
