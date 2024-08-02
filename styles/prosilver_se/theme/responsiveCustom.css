@@ -63,6 +63,11 @@
 		max-width: 100%;
 	}
 
+	.row .pagination {
+		/* margin-top: 0; */
+		/* margin-bottom: 0; */
+	}
+
 	/* table responsive */
 
 	table.responsive tr {
@@ -458,10 +463,6 @@
 
 	.ajaxshoutbox_user_message .ajaxshoutbox_message {
 		flex-basis: 75%;
-	}
-	
-	.hastouch .post-buttons .icon-button {
-		/* display: none; */
 	}
 	
 	.post-buttons #post-buttons-row-2 {
