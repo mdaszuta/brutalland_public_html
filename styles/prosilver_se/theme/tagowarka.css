@@ -84,7 +84,10 @@ tags-input .autocomplete .suggestion-item em{
 div.inputbox.ng-scope{padding:0;}
 #m-tagowarka tags-input .tags .tag-list{order:2;}
 .f-tags-all{display:inline-flex;flex-direction:column;align-items:center;}
-@media only screen and (max-width:720px), only screen and (max-device-width:720px){.f-tags-all{display:none;}
+@media only screen and (max-width:700px) {
+	.f-tags-all {
+		display:none;
+	}
 }
 .section-viewforum ul.topiclist.topics dl{position:static;}
 .f-tags-i{order:1;cursor:pointer;max-width:initial;}

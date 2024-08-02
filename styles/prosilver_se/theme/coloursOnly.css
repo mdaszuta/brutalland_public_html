@@ -506,7 +506,7 @@ ul.zebra-list li:nth-child(even):hover {
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 920px), only screen and (max-device-width: 920px) {
+@media only screen and (max-width: 920px) {
 	.wrap {
 		box-shadow: none;
 	}

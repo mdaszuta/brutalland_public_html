@@ -1,7 +1,7 @@
 /* responsive taken from _se\stylesheet.css */
 
 
-@media (min-width: 700px), (min-device-width: 700px) {
+@media (min-width: 701px) {
 	dd.posts,
 	dd.topics,
 	dd.views,
@@ -14,7 +14,7 @@
 	}
 }
 
-@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+@media only screen and (max-width: 700px) {
 	
 	ul.shoutboxlist dd.ajaxshoutbox_date {
 		display: none;
@@ -37,7 +37,7 @@
 	
 }
 
-@media (max-width: 700px), (max-device-width: 700px) {
+@media (max-width: 700px) {
 	
 	/* responsive.css */
 
@@ -312,7 +312,7 @@
 
 }
 
-@media only screen and (max-width: 550px), only screen and (max-device-width: 550px) {
+@media only screen and (max-width: 550px) {
 	
 	#m-name .main-m-bottom,
 	#m-feed .main-m-bottom,
@@ -336,35 +336,25 @@
 	
 }
 
-@media only screen and (max-width: 360px), only screen and (max-device-width: 360px) {
+@media only screen and (max-width: 360px) {
 	#topic_preview {
 		max-width: 220px;
 	}
 }
 
-@media only screen and (max-height: 500px), only screen and (max-device-width: 500px) {
+@media only screen and (max-width: 700px) {
 	.phpbb_alert {
 		top: 100px;
 	}
 }
 
-@media (max-height: 800px), (max-device-height: 800px) {
+@media (max-height: 800px) {
 	.main-m-item .main-m-bottom{
 		max-height: 80vh;
 	}
 }
 
-@media (max-width: 1024px) and (min-width: 720px), (max-device-width: 1024px) and (min-device-width: 720px) {
-
-}
-
-@media only screen and (max-width: 920px), only screen and (max-device-width: 920px) {
-	.wrap{
-		padding: 0;
-	}
-}
-
-@media only screen and (max-width: 900px), only screen and (max-device-width: 900px) {
+@media only screen and (max-width: 900px) {
 	/* cp.css */
 
 	.navigation {
@@ -378,7 +368,13 @@
 	/* END cp.css */
 }
 
-@media only screen and (max-width: 860px), only screen and (max-device-width: 860px) {
+@media only screen and (max-width: 920px) {
+	.wrap{
+		padding: 0;
+	}
+}
+
+@media only screen and (max-width: 860px) {
 
 	.wrap {
 		margin: auto;

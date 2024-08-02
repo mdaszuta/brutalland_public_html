@@ -164,7 +164,7 @@ li.row:hover .topic-reply-counter.unread,
 	}
 }
 
-@media (max-width: 700px), (max-device-width: 700px) {
+@media (max-width: 700px) {
 	.lastpost .fa-fast-forward {
 		opacity: 0.2;
 	}

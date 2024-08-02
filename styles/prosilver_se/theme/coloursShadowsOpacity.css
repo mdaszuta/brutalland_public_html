@@ -517,7 +517,7 @@ img.postimage {
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 920px), only screen and (max-device-width: 920px) {
+@media only screen and (max-width: 920px) {
 	.wrap{
 		border-width: 0;
 		border-radius: 0;
@@ -553,9 +553,9 @@ li:not(.header) .lastpost,
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 860px), only screen and (max-device-width: 860px) {
+@media only screen and (max-width: 860px) {
 
-	@media only screen and (max-width: 720px), only screen and (max-device-width: 720px) {
+	@media only screen and (max-width: 720px) {
 		.wrap {
 			background-image: URL("./images/probka720.jpg");
 			background-size: 720px 599px;
@@ -568,7 +568,7 @@ li:not(.header) .lastpost,
 
 }
 
-@media only screen and (max-width: 380px), only screen and (max-device-width: 380px) {
+@media only screen and (max-width: 380px) {
 	.wrap {
 		background-size: 550px 457px;
 	}
