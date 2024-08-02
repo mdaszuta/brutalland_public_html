@@ -1,8 +1,8 @@
-.icon-pages						{ background-image: url("./images/icon_pages.gif"); }
+.icon-pages						{ /* background-image: url("./images/icon_pages.gif"); */ }
 .row .pagination				{ /* background-image: url("./images/icon_pages.gif"); */ }
-.icon-search	{ background-image: url("./images/icon_search.gif"); }
+.icon-search	{ /* background-image: url("./images/icon_search.gif"); */ }
 
-.icon-search:hover	{ background-image: url("./images/icon_search_2.gif"); }
+.icon-search:hover	{ /* background-image: url("./images/icon_search_2.gif"); */ }
 
 /* Profile & navigation icons */
 

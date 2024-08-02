@@ -183,6 +183,24 @@ fieldset.display-options a {
 	margin-top: 3px;
 }
 
+.dropdown fieldset.display-options {
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+}
+
+.dropdown fieldset.display-options label {
+	display: block;
+	margin: 4px;
+	padding: 0;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.dropdown fieldset.display-options select {
+	min-width: 120px;
+}
+
 /* Display actions for ucp and mcp pages */
 fieldset.display-actions {
 	text-align: right;
@@ -320,6 +338,7 @@ a.button1, input.button1, input.button3, a.button2, input.button2 {
 	padding-bottom: 1px;
 	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
 	background: transparent none repeat-x top left;
+	line-height: 1.5;
 }
 
 a.button1, input.button1 {
@@ -346,12 +365,10 @@ a.button2, input.button2, input.button3 {
 }
 
 /* <a> button in the style of the form buttons */
-a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.button2:link, a.button2:visited, a.button2:active {
+a.button1, a.button2 {
 	text-decoration: none;
-	padding: 2px 8px;
-	line-height: 250%;
+	padding: 0 3px;
 	vertical-align: text-bottom;
-	background-position: 0 1px;
 }
 
 /* Hover states */
@@ -385,26 +402,6 @@ input.button1:focus, input.button2:focus, input.button3:focus {
 	box-sizing: border-box;
 }
 
-.search-box button {
-	float: left;
-}
-
-.search-box button.search-icon {
-	border-radius: 0;
-	font-size: 0;
-	height: 24px;
-	margin: 0;
-	padding: 3px 5px;
-}
-
-.search-box a.button {
-	border-left-width: 0;
-	border-radius: 0 4px 4px 0;
-	font-size: 0;
-	margin: 0;
-	padding: 2px 5px 2px 3px;
-}
-
 /* Search box (header)
 --------------------------------------------- */
 .search-header {
@@ -417,16 +414,7 @@ input.button1:focus, input.button2:focus, input.button3:focus {
 
 .search-header .inputbox { border: 0; }
 
-.search-header button {
-	border-top: 0;
-	border-bottom: 0;
-}
-
-.search-header a.button {
-	border: 0;
-	border-left: 1px;
-	padding: 3px 5px 3px 4px;
-}
+.navbar .linklist > li.responsive-search { display: none; }
 
 input.search {
 	background-image: none;

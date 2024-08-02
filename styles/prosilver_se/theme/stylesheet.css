@@ -169,8 +169,16 @@ fieldset.polls dl {
 
 /* buttons.css */
 
+.button {
+	line-height: normal;
+}
+
 .post-buttons {
 	margin-top: 0;
+}
+
+.hastouch .post-buttons {
+	margin-right: 0px;
 }
 
 /* END buttons.css */
@@ -300,13 +308,15 @@ fieldset.forum-selection {
 	text-align: center;
 }
 
-a.button2, a.button2:link, a.button2:visited, a.button2:active {
-	padding: 0;
+a.button1, input.button1, a.button2, input.button2 {
 	line-height: normal;
 }
 
-.search-box,
-.search-box button {
+a.button2 {
+	/* padding: 0; */
+}
+
+.search-box {
 	float: none;
 }
 
@@ -367,7 +377,19 @@ a.rightside {
 	display: block;
 }
 
-fieldset.display-options,
+/* ukrycie sort-tools i przyległego mu checkboxa */
+
+.sort-tools,
+.sort-tools-checkbox {
+	display: none;
+}
+
+/* ukrycie jumpbox */
+
+.jumpbox {
+	display: none;
+}
+
 p.jumpbox-return,
 #username_logged_in,
 h3.first,
@@ -702,7 +724,7 @@ input.button2,
 }
 	
 #m-name .action-bar.bar-top .buttons .button {
-	padding: 0 55px 0 55px;
+	/* padding: 0 55px 0 55px; */
 	/* height: 1.75em; */
 }
 
@@ -903,6 +925,7 @@ body.simple {
 	display: inline-flex;
 	float: none;
 	margin-top: 0;
+	margin-bottom: 0;
 	vertical-align: text-bottom;
     flex-direction: row;
 }
@@ -1093,7 +1116,7 @@ dd.lastpost > span {
 .post-buttons {
 	display: flex;
 	flex-direction: column;
-	margin-right: 0px !important;
+	margin-right: 0px;
 }
 
 .post-buttons #post-buttons-row-1 {
@@ -1114,6 +1137,11 @@ dd.lastpost > span {
 	display: flex;
 	justify-content: flex-end;
 	width: 100%;
+}
+
+.post-buttons .button-icon-only {
+	padding-left: 4px;
+    padding-right: 4px;
 }
 
 .header .row-item {
@@ -1588,10 +1616,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 #bandInfoInput {
 	height: 100px;
-}
-
-#captcha-qa-label {
-	padding: 0;
 }
 
 .fbr .inputbox,
