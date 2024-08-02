@@ -59,7 +59,7 @@
 							<!-- BEGIN subforum -->
 								<!-- IF forumrow.subforum.S_FIRST_ROW --><!-- ENDIF -->
 								<a href="{forumrow.subforum.U_SUBFORUM}" class="subforum<!-- IF forumrow.subforum.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF -->" title="<!-- IF forumrow.subforum.S_UNREAD -->{L_UNREAD_POSTS}<!-- ELSE -->{L_NO_UNREAD_POSTS}<!-- ENDIF -->">
-									{forumrow.subforum.SUBFORUM_NAME}
+									{forumrow.subforum.SUBFORUM_NAME}<!-- IF forumrow.subforum.IS_LINK --> <i class="icon fa-external-link fa-fw" aria-hidden="true"></i><!-- ENDIF -->
 								</a>
 								<!-- IF not forumrow.subforum.S_LAST_ROW --> &#124; <!-- ENDIF -->
 							<!-- END subforum -->
