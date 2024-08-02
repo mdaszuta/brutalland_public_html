@@ -273,7 +273,6 @@
 		flex-basis: 100%;
 	}
 
-	.cp-main .action-bar.top .buttons,
 	.cp-main .action-bar.bar-top .buttons {
 		flex-wrap: wrap;
 	}
@@ -310,7 +309,6 @@
 	.postprofile .search-result-date {
 		margin-bottom: 0;
 	}
-
 
 }
 

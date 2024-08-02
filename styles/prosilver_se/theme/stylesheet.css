@@ -695,14 +695,12 @@ input.button2,
 	min-height: 23px;
 }
 
-#m-name .action-bar.top .buttons,
 #m-name .action-bar.bar-top .buttons {
 	flex-basis: 100%;
 	flex-direction: column;
 	align-items: center;
 }
 	
-#m-name .action-bar.top .buttons .button,
 #m-name .action-bar.bar-top .buttons .button {
 	padding: 0 55px 0 55px;
 	/* height: 1.75em; */
@@ -1348,7 +1346,6 @@ div #shoutbox_scroll {
     padding: 5px 0;
 }
 
-.cp-main .action-bar.top .buttons,
 .cp-main .action-bar.bar-top .buttons {
 	flex-basis: 100%;
 }
@@ -1814,12 +1811,10 @@ tags-input .autocomplete .suggestion-item {
 	box-sizing: border-box;
 }
 
-.action-bar.top,
 .action-bar.bar-top {
 	justify-content: space-between;
 }
 
-.action-bar.top .fbr-left,
 .action-bar.bar-top .fbr-left {
 	padding: 0;
 }
