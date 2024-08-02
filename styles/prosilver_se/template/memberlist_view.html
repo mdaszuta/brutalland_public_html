@@ -1,5 +1,6 @@
 <!-- INCLUDE overall_header.html -->
 
+
 <!-- EVENT memberlist_view_content_prepend -->
 
 <form method="post" action="{S_PROFILE_ACTION}" id="viewprofile">
@@ -9,25 +10,23 @@
 	<div class="fbr-left-big">
 
 		<dl>
-			
 			<!-- IF AVATAR_IMG --><dt class="profile-avatar">{AVATAR_IMG}</dt><!-- ENDIF -->
-			
+
 			<dt><!-- IF USER_COLOR --><span style="color: {USER_COLOR};" class="username-coloured"><!-- ELSE --><span class="username"><!-- ENDIF -->
 				{USERNAME}
 				<!-- IF S_ONLINE --><div class="fa fa-circle"></div><!-- ENDIF -->
 			</span></dt>
-			
+
 			<!-- EVENT memberlist_view_rank_avatar_before -->
 			<!-- IF RANK_TITLE --><dd>{RANK_TITLE}</dd><!-- ENDIF -->
 			<!-- IF RANK_IMG --><dd>{RANK_IMG}</dd><!-- ENDIF -->
 			<!-- EVENT memberlist_view_rank_avatar_after -->
-			
 		</dl>
-	
+
 	</div>
 
 	<dl class="fbr-right-big details profile-details">
-	
+
 		<div class="fbr">
 			<dt class="fbr-left"></dt>
 			<dd class="fbr-right">
@@ -106,11 +105,11 @@
 	<div class="inner fbr-big">
 
 		<div class="fbr-left-big">
-		
+
 			<h2>{L_CONTACT_USER}</h2>
-			
+
 			<dl class="details">
-			
+
 			<!-- IF U_EMAIL -->
 			<div class="fbr">
 				<dt class="fbr-left"><label><div class="fa fa-at"></div></label></dt>
@@ -160,22 +159,22 @@
 		</div>
 
 		<div class="fbr-right-big">
-		
+
 			<h2>{L_USER_FORUM}</h2>
-			
+
 				<dl class="details">
-				
+
 					<!-- EVENT memberlist_view_user_statistics_before -->
 					<div class="fbr">
 						<dt class="fbr-left"><label>{L_JOINED}{L_COLON}</label></dt>
 						<dd class="fbr-right">{JOINED}</dd>
 					</div>
-					
+
 					<div class="fbr">
 						<dt class="fbr-left"><label>{L_LAST_ACTIVE}{L_COLON}</label></dt>
 						<dd class="fbr-right">{LAST_ACTIVE}</dd>
 					</div>
-					
+
 					<!-- IF S_WARNINGS -->
 					<div class="fbr">
 						<dt class="fbr-left"><label>{L_WARNINGS}{L_COLON}</label></dt>
@@ -208,7 +207,7 @@
 					</div>
 					<!-- ENDIF -->
 				</dl>
-			
+
 		</div>
 
 	</div>

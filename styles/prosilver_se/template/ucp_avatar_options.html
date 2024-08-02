@@ -19,9 +19,9 @@
 		</label>
 		<!-- ENDIF -->
 	</fieldset>
-	
+
 	<hr class="dashed" />
-	
+
 	<fieldset style="display:none;">
 		<div class="fbr">
 			<div class="fbr-left"><label>{L_AVATAR_TYPE}</label></div>
@@ -35,17 +35,17 @@
 		</div>
 	</fieldset>
 	<div id="avatar_options">
-	<!-- BEGIN avatar_drivers -->
-		<div id="avatar_option_{avatar_drivers.DRIVER}">
-			<noscript>
-				<h3 class="avatar_section_header">{avatar_drivers.L_TITLE}</h3>
-			</noscript>
+<!-- BEGIN avatar_drivers -->
+	<div id="avatar_option_{avatar_drivers.DRIVER}">
+	<noscript>
+	<h3 class="avatar_section_header">{avatar_drivers.L_TITLE}</h3>
+	</noscript>
 
-			<fieldset>
-				{avatar_drivers.OUTPUT}
-			</fieldset>
-		</div>
-	<!-- END avatar_drivers -->
+	<fieldset>
+	{avatar_drivers.OUTPUT}
+	</fieldset>
+	</div>
+<!-- END avatar_drivers -->
 	</div>
 <!-- IF not S_GROUP_MANAGE -->
 	<fieldset class="submit-buttons flex-box-form">

@@ -6,38 +6,37 @@
 
 <div class="panel fbr-settings-panel">
 	<div class="inner">
-		<p class="fbr-m-info">{L_PROFILE_INFO_NOTICE}</p>
+	<p class="fbr-m-info">{L_PROFILE_INFO_NOTICE}</p>
 
-		<fieldset>
-		<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
-		<!-- EVENT ucp_profile_profile_info_before -->
-		<!-- IF S_BIRTHDAYS_ENABLED -->
-			<div class="fbr">
-				<div class="fbr-left"><label for="bday_day">{L_BIRTHDAY}</label><span style="display:none;">{L_BIRTHDAY_EXPLAIN}</span></div>
-				<div class="fbr-right fb-s">
-					<label for="bday_day">{L_DAY}{L_COLON} <select name="bday_day" id="bday_day">{S_BIRTHDAY_DAY_OPTIONS}</select></label>
-					<label for="bday_month">{L_MONTH}{L_COLON} <select name="bday_month" id="bday_month">{S_BIRTHDAY_MONTH_OPTIONS}</select></label>
-					<label for="bday_year">{L_YEAR}{L_COLON} <select name="bday_year" id="bday_year">{S_BIRTHDAY_YEAR_OPTIONS}</select></label>
-				</div>
+	<fieldset>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<!-- EVENT ucp_profile_profile_info_before -->
+	<!-- IF S_BIRTHDAYS_ENABLED -->
+		<div class="fbr">
+			<div class="fbr-left"><label for="bday_day">{L_BIRTHDAY}</label><span style="display:none;">{L_BIRTHDAY_EXPLAIN}</span></div>
+			<div class="fbr-right fb-s">
+				<label for="bday_day">{L_DAY}{L_COLON} <select name="bday_day" id="bday_day">{S_BIRTHDAY_DAY_OPTIONS}</select></label>
+				<label for="bday_month">{L_MONTH}{L_COLON} <select name="bday_month" id="bday_month">{S_BIRTHDAY_MONTH_OPTIONS}</select></label>
+				<label for="bday_year">{L_YEAR}{L_COLON} <select name="bday_year" id="bday_year">{S_BIRTHDAY_YEAR_OPTIONS}</select></label>
 			</div>
-		<!-- ENDIF -->
-		
-		<!-- IF S_JABBER_ENABLED -->
-			<div class="fbr">
-				<div class="fbr-left"><label for="jabber">{L_UCP_JABBER}</label></div>
-				<div class="fbr-right"><input type="email" name="jabber" id="jabber" maxlength="255" value="{JABBER}" class="inputbox" /></div>
-			</div>
-		<!-- ENDIF -->
-		<!-- BEGIN profile_fields -->
-			<div class="fbr">
-				<div class="fbr-left"><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
-				<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF --></div>
-				<!-- IF profile_fields.ERROR --><div class="error">{profile_fields.ERROR}</div><!-- ENDIF -->
-				<div class="fbr-right">{profile_fields.FIELD}</div>
-			</div>
-		<!-- END profile_fields -->
-		<!-- EVENT ucp_profile_profile_info_after -->
-		</fieldset>
+		</div>
+	<!-- ENDIF -->
+	<!-- IF S_JABBER_ENABLED -->
+		<div class="fbr">
+			<div class="fbr-left"><label for="jabber">{L_UCP_JABBER}</label></div>
+			<div class="fbr-right"><input type="email" name="jabber" id="jabber" maxlength="255" value="{JABBER}" class="inputbox" /></div>
+		</div>
+	<!-- ENDIF -->
+	<!-- BEGIN profile_fields -->
+		<div class="fbr">
+			<div class="fbr-left"><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
+			<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF --></div>
+			<!-- IF profile_fields.ERROR --><div class="error">{profile_fields.ERROR}</div><!-- ENDIF -->
+			<div class="fbr-right">{profile_fields.FIELD}</div>
+		</div>
+	<!-- END profile_fields -->
+	<!-- EVENT ucp_profile_profile_info_after -->
+	</fieldset>
 
 	</div>
 </div>

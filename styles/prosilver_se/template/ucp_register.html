@@ -19,9 +19,11 @@
 <div class="panel">
 	<div class="inner">
 
+
 	<fieldset class="fields2">
 	<!-- EVENT ucp_register_credentials_before -->
 	<div class="fbr">
+
 		<div class="fbr-left">
 			<div class="brutalform-box">
 				<input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" />
@@ -33,13 +35,12 @@
 				<span class="brutalform-label">{L_PASSWORD}</span>
 				<span class="brutalform-explanation">{L_PASSWORD_EXPLAIN}</span>
 			</div>
-			
 			<div class="brutalform-box">
 				<input type="password" tabindex="3" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" placeholder="{L_CONFIRM_PASSWORD}" class="inputbox" autocomplete="off" />
 				<span class="brutalform-label">{L_CONFIRM_PASSWORD}</span>
 			</div>
 		</div>
-	
+
 		<div class="fbr-right" id="fbr-register-email">
 			<div class="brutalform-box">
 				<input type="email" tabindex="4" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" placeholder="{L_EMAIL_ADDRESS}" class="inputbox" autocomplete="off" />
@@ -50,6 +51,7 @@
 				<!-- IF L_REG_COND --><strong>{L_REG_COND}</strong><!-- ENDIF -->
 			</div>
 		</div>
+
 	</div>
 	<!-- EVENT ucp_register_credentials_after -->
 
@@ -104,16 +106,16 @@
 				</fieldset>
 			</div>
 		</div>
-		
+
 		<div class="fbr" id="brutalform-lang-timezone">
-			
+
 			<div class="fbr-left">
 				<fieldset class="fields2">
 					<div class="brutalform-box">
 						<select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select>
 						<span class="brutalform-label">{L_LANGUAGE}</span>
 					</div>
-				
+
 					<div class="brutalform-box">
 						<div class="brutalform-timezone-select">
 						<!-- IF .timezone_date -->
@@ -146,8 +148,9 @@
 					</div>
 				</fieldset>
 			</div>
-			
+
 			<div class="fbr-right"></div>
+
 		</div>
 
 	</div>

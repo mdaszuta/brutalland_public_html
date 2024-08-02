@@ -19,28 +19,28 @@
 	<!-- ENDIF -->
 
 	<!-- EVENT posting_editor_subject_before -->
-	
+
 	<div class="fbr" id="postingbox-top-fbr">
 		<div class="fbr-left">
 			<!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
-		
+
 				<div class="brutalform-box">
 					<input autocomplete="off" type="text" name="subject" id="subject" size="45" oninput="show_name_post_real_time(event)" maxlength="<!-- IF S_NEW_MESSAGE -->120<!-- ELSE -->124<!-- ENDIF -->" placeholder="{L_SUBJECT}" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox" />
 					<span class="brutalform-label">{L_SUBJECT}</span>
 				</div>
-				
+
 				<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
 					<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
 					<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
 				<!-- ENDIF -->
-				
+
 			<!-- ENDIF -->
 		</div>
 		<div class="fbr-right">
 			<!-- EVENT posting_editor_subject_after -->
-			
+
 			<!-- IF SCRIPT_NAME == 'ucp' -->
-		
+
 			<div class="brutalform-box panel" id="pmheader-postingbox">
 				<div class="inner">
 				<!-- EVENT posting_pm_layout_include_pm_header_before -->
@@ -64,18 +64,18 @@
 					<div id="info-box-devil" class="rozwijany-box-devil menu-devil">
 						<a class="button2">dyskografia &frasl; skład &#x25BC;</a>
 					</div>
-					
+
 					<div id="info-box-all" class="rozwijany-box-all menu-all">
 						<div id="muzycy-box">
 							<textarea name="bandInfoInput" id="bandInfoInput" oninput="bandInfo();" class="inputbox" placeholder="Wklej dyskografię lub pełny skład z MA"></textarea>
 						</div>
 					</div>
-					
+
 				</div>
 		</div>
 	</div>
 	<!-- ENDIF -->
-	
+
 	<!-- INCLUDE posting_buttons.html -->
 
 	<!-- EVENT posting_editor_message_before -->
@@ -199,7 +199,7 @@
 				<div class="fbr-right"><label for="topic_type-{topic_type.VALUE}">{topic_type.L_TOPIC_TYPE}</label></div>
 			</div>
 			<!-- END topic_type -->
-			
+
 			<!-- ENDIF -->
 
 			<!-- IF S_TOPIC_TYPE_ANNOUNCE or S_TOPIC_TYPE_STICKY -->

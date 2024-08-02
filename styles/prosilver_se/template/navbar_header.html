@@ -1,9 +1,9 @@
 <div class="navbar nav-m1" role="navigation">
 
 	<div id="main-m" class="main-m-lewa-prawa">
-	
+
 		<div id="m-lewa" class="main-m-lewa-prawa">
-		
+
 			<div id="m-home" class="main-m-item">
 				<div class="main-m-top" id="thegate">
 					<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->thegate-top<!-- ELSE -->thegate-all<!-- ENDIF -->"></a>
@@ -14,21 +14,21 @@
 			</div>
 
 		</div>
-		
+
 		<div id="m-naj-s" class="main-m-lewa-prawa">
 			<div id="m-srodek" class="main-m-lewa-prawa">
 				<div id="m-name" class="main-m-item menu-toggle<!-- IF TOTAL_POSTS or TOTAL_MESSAGES or TOTAL_TOPICS or TOTAL_USERS or TOTAL_REPORTS or (TOTAL and SCRIPT_NAME == 'mcp') or (not S_IS_BOT and S_DISPLAY_REPLY_INFO) or (SCRIPT_NAME == 'viewforum' and (S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS)) or (not S_IS_BOT and (U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_BUMP_TOPIC or U_EMAIL_TOPIC or U_PRINT_TOPIC or S_DISPLAY_TOPIC_TOOLS)) or (not S_IS_BOT and (U_WATCH_FORUM_LINK or U_MARK_TOPICS)) or SEARCH_MATCHES or .notification_list or (TOTAL_MESSAGES or S_VIEW_MESSAGE) or .attachrow and NUM_ATTACHMENTS --> show-name-bottom-list<!-- ENDIF -->">
 					<!-- INCLUDE show_name.html -->
 				</div>
 			</div>
-			
+
 			<div id="m-pagination" class="main-m-lewa-prawa">
 				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
 			</div>
 		</div>	
-		
+
 		<div id="m-prawa" class="main-m-lewa-prawa">
-		
+
 			<form action="{U_SEARCH}" method="get" id="search">
 				<fieldset>
 					<div id="m-search-box" class="main-m-item search-box" role="search">
@@ -36,22 +36,22 @@
 							<a class="search-box-hide"><div class="fa fa-compress"></div></a>
 							<input name="keywords" id="keywords_top" accesskey="s" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search tiny" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
 							<button class="fa fa-search fa-2x" type="submit" id="search_but_top" title="{L_SEARCH}"></button>
-						</div>						
-					</div>					
+						</div>
+					</div>
 				</fieldset>
 			</form>
-			
+
 			<div id ="m-feed" class="main-m-item menu-toggle">
 				<div class="main-m-top menu-devil">
 					<a id="m-feed-icon" ><div class="fa fa-history fa-2x"></div></a>
 				</div>
-				
+
 				<div class="main-m-bottom menu-all">
 					<div class="m-list" id="lista-top-five"></div>
 				</div>
-				
+
 			</div>
-				
+
 			<!-- IF S_USER_LOGGED_IN -->
 			<div id="m-feed-topics" class="main-m-item menu-toggle">
 					<div class="main-m-top menu-devil">
@@ -71,9 +71,9 @@
 					</div>
 			</div>
 			<!-- ENDIF -->
-		
+
 			<!-- IF S_REGISTERED_USER -->
-					
+
 				<!-- IF S_NOTIFICATIONS_DISPLAY -->
 				<div id="m-notify" class="main-m-item menu-toggle">
 					<div class="main-m-top menu-devil">
@@ -89,7 +89,7 @@
 					<!-- INCLUDE notification_dropdown.html -->
 				</div>
 				<!-- ENDIF -->
-				
+
 				<!-- IF S_DISPLAY_PM -->
 					<div id="m-pm" class="main-m-item">
 						<div class="main-m-top">
@@ -104,20 +104,20 @@
 						</div>
 					</div>
 				<!-- ENDIF -->
-				
+
 			<!-- ENDIF -->
-			
+
 			<!-- IF SCRIPT_NAME == 'insane' -->
 				<div id="m-tagi" class="main-m-item menu-toggle">
 					<div class="main-m-top menu-devil">
 						<a><div class="fa fa-tags fa-lg"></div></a>
 					</div>
 					<div class="main-m-bottom menu-all" id="m-tagi-lista">
-						
+
 							<div class="m-list-title">
 								<h3><a href="{RH_TOPICTAGS_TAGCLOUD_LINK}"><div class="fa fa-tag fa-lg"></div>{RH_TOPICTAGS_TAGCLOUD_TAG_COUNT}</a></h3>
 							</div>
-						
+
 						<!-- IF S_USER_LOGGED_IN && SCRIPT_NAME != 'posting' -->
 							<div id="m-tagowarka" class="m-list-title">
 								<div ng-app="rhTopicTagsInputApp2" ng-controller="rhTopicTagsInputCtrl2">
@@ -130,7 +130,7 @@
 											<input type="hidden" name="rh_topictags" id="rh_topictags" value="{[{ jsonRep2 }]}"></input>
 										</div>
 										<a href="" onclick="tagSearchClick(); return false;" class="m-list-right" title="Szukaj po tagach"><div class="fa fa-search fa-2x"></div></a>
-										
+
 										<script>
 										function tagSearchClick() {
 											if (String(document.getElementById('rh_topictags').value) != "[]" & String(document.getElementById('rh_topictags').value) != "{[{ jsonRep2 }]}" )
@@ -143,7 +143,7 @@
 								</div>
 							</div>
 						<!-- ENDIF -->
-						
+
 							<!-- IF .rh_topictags_tags -->
 							<div class="rh_topictags_tagcloud">
 									<!-- BEGIN rh_topictags_tags -->
@@ -154,13 +154,13 @@
 									<!-- END rh_topictags_tags -->
 							</div>
 							<!-- ENDIF -->
-						
+
 					</div>
 				</div>
 			<!-- ENDIF -->
-			
+
 			<!-- IF S_REGISTERED_USER -->
-			
+
 				<div id="m-ksywa" class="main-m-item menu-toggle header-profile">
 					<div class="main-m-top menu-devil">
 						<a class="header-avatar">
@@ -183,9 +183,9 @@
 						<!-- IF U_ACP --><a href="{U_ACP}" title="{L_ACP}"><div class="fa fa-unlock-alt fa-lg"></div>&nbsp;&nbsp;{L_ACP_SHORT}</a><!-- ENDIF -->
 					</div>
 				</div>
-			
+
 			<!-- ENDIF -->
-	
+
 			<!-- IF not S_REGISTERED_USER -->
 			<div id="m-akt-top" class="main-m-item">
 				<div class="main-m-top">
@@ -195,14 +195,14 @@
 					</a>
 				</div>
 			</div>
-			
+
 			<div id="m-logged-out" class="main-m-item">
 				<div class="main-m-top" id="m-login">
 						<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT} &frasl; {L_REGISTER}" accesskey="x"><div class="fa fa-sign-in fa-2x"></div></a>
 				</div>
 			</div>
 			<!-- ENDIF -->
-	
+
 		</div>
 
 	</div>

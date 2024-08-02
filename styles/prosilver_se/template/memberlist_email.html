@@ -5,7 +5,7 @@
 <!-- IF S_CONTACT_ADMIN-->
 <!-- ELSEIF S_SEND_USER -->
 <!-- ELSE -->
-	<h2>{L_EMAIL_TOPIC}</h2>
+<h2>{L_EMAIL_TOPIC}</h2>
 <!-- ENDIF -->
 
 <form method="post" action="{S_POST_ACTION}" id="post">
@@ -19,7 +19,7 @@
 				<!-- IF ERROR_MESSAGE --><p class="error">{ERROR_MESSAGE}</p><!-- ENDIF -->
 				<fieldset class="fields2">
 				<!-- IF S_SEND_USER -->
-				
+
 					<div class="fbr">
 						<div class="fbr-left phantom-label"><label>{L_RECIPIENT}</label></div>
 						<div class="fbr-right text-align-c"><strong>{USERNAME_FULL}</strong></div>
@@ -28,9 +28,9 @@
 						<div class="fbr-left phantom-label"><label for="subject">{L_SUBJECT}</label></div>
 						<div class="fbr-right"><input class="inputbox" type="text" name="subject" id="subject" size="50" tabindex="1" value="{SUBJECT}" autocomplete="off" placeholder="{L_SUBJECT}" /></div>
 					</div>
-					
+
 				<!-- ELSEIF S_CONTACT_ADMIN -->
-				
+
 					<!-- IF not S_IS_REGISTERED -->
 					<div class="fbr">
 						<div class="fbr-left phantom-label"><label for="email">{L_SENDER_EMAIL_ADDRESS}</label></div>
@@ -46,7 +46,7 @@
 						<div class="fbr-left phantom-label"><label for="subject">{L_SUBJECT}</label></div>
 						<div class="fbr-right"><input class="inputbox" type="text" name="subject" id="subject" size="50" tabindex="3" value="{SUBJECT}" autocomplete="off" placeholder="{L_SUBJECT}" /></div>
 					</div>
-					
+
 				<!-- ELSE -->
 					<div class="fbr">
 						<div class="fbr-left phantom-label"><label for="email">{L_EMAIL_ADDRESS}</label></div>

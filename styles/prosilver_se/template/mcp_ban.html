@@ -40,6 +40,7 @@
 
 <form id="mcp_ban" method="post" action="{U_ACTION}">
 
+
 <div class="panel fbr-settings-panel">
 	<div class="inner">
 
@@ -107,29 +108,29 @@
 
 	<!-- IF S_BANNED_OPTIONS -->
 		<fieldset>
-			<!-- EVENT mcp_ban_unban_before -->
-			<div class="fbr">
-				<div class="fbr-left"><label for="unban">{L_BAN_CELL}</label></div>
-				<div class="fbr-right"><select name="unban[]" id="unban" multiple="multiple" size="5" onchange="if (this.selectedIndex != -1) {display_details(this.options[this.selectedIndex].value);}">{BANNED_OPTIONS}</select></div>
-			</div>
-			<div class="fbr">
-				<div class="fbr-left"><label for="unbanlength">{L_BAN_LENGTH}</label></div>
-				<div class="fbr-right"><span id="unbanlength"></span></div>
-			</div>
-			<div class="fbr">
-				<div class="fbr-left"><label for="unbanreason">{L_BAN_REASON}</label></div>
-				<div class="fbr-right"><span id="unbanreason"></span></div>
-			</div>
-			<div class="fbr">
-				<div class="fbr-left"><label for="unbangivereason">{L_BAN_GIVE_REASON}</label></div>
-				<div class="fbr-right"><span id="unbangivereason"></span></div>
-			</div>
-			<!-- EVENT mcp_ban_unban_after -->
+		<!-- EVENT mcp_ban_unban_before -->
+		<div class="fbr">
+			<div class="fbr-left"><label for="unban">{L_BAN_CELL}</label></div>
+			<div class="fbr-right"><select name="unban[]" id="unban" multiple="multiple" size="5" onchange="if (this.selectedIndex != -1) {display_details(this.options[this.selectedIndex].value);}">{BANNED_OPTIONS}</select></div>
+		</div>
+		<div class="fbr">
+			<div class="fbr-left"><label for="unbanlength">{L_BAN_LENGTH}</label></div>
+			<div class="fbr-right"><span id="unbanlength"></span></div>
+		</div>
+		<div class="fbr">
+			<div class="fbr-left"><label for="unbanreason">{L_BAN_REASON}</label></div>
+			<div class="fbr-right"><span id="unbanreason"></span></div>
+		</div>
+		<div class="fbr">
+			<div class="fbr-left"><label for="unbangivereason">{L_BAN_GIVE_REASON}</label></div>
+			<div class="fbr-right"><span id="unbangivereason"></span></div>
+		</div>
+		<!-- EVENT mcp_ban_unban_after -->
 		</fieldset>
 
 		</div>
 	</div>
-	
+
 	<fieldset class="submit-buttons flex-box-form">
 		<div class="flex-box-o">
 			{S_HIDDEN_FIELDS}

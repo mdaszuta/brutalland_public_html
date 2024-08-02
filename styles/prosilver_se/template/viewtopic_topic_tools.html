@@ -1,6 +1,6 @@
 <!-- EVENT viewtopic_topic_tools_before -->
 
-<ul role="menu">
+<ul>
 
 <!-- IF TOTAL_POSTS --><div class="panel bg3"><li class="fbr-m-info">{TOTAL_POSTS}</li></div><!-- ENDIF -->
 
@@ -59,24 +59,24 @@
 			<li><a href="{U_VIEW_UNREAD_POST}" class="mark"><div class="fa fa-play"></div>{L_VIEW_UNREAD_POST}</a></li>
 		</div>
 	<!-- ENDIF -->
-	
+
 	<div class="panel bg3">
 		<li><a href="{U_VIEW_FORUM}"><div class="fa fa-fast-backward"></div>{FORUM_NAME}&nbsp;<span>{L_FORUM}</span></a></li>
 	</div>
-	
+
 	<!-- IF RH_TOPICTAGS_SHOW -->
 		<div class="panel bg3">
 			<!-- BEGIN rh_topic_tags -->
 				<li><a href="{rh_topic_tags.LINK}"><div class="fa fa-backward"></div>{rh_topic_tags.NAME}&nbsp;<span>{L_RH_TOPICTAGS_TAG}</span></a></li>
 			<!-- END rh_topic_tags -->
 		</div>
-	<!-- ENDIF -->	
-	
+	<!-- ENDIF -->
+
 	<div class="switcheroo-menu">
 			<div class="switcheroo-static">
 				<!-- IF U_WATCH_TOPIC -->
 				<a href="{U_WATCH_TOPIC}" class="watch-topic-link m-labeled-box m-labeled-box-button" data-ajax="toggle_link" data-toggle-text="{S_WATCH_TOPIC_TOGGLE}" data-toggle-url="{U_WATCH_TOPIC_TOGGLE}" data-update-all=".watch-topic-link">
-					<div class="fa fa-<!-- IF S_WATCHING_TOPIC -->eye-slash<!-- ELSE -->eye<!-- ENDIF -->"></div>
+					<div class="fa <!-- IF S_WATCHING_TOPIC -->fa-eye-slash<!-- ELSE -->fa-eye<!-- ENDIF -->"></div>
 					<div class="m-labeled-box-bg"><strong>{S_WATCH_TOPIC_TITLE}</strong></div>
 				</a>
 				<!-- ENDIF -->
@@ -105,15 +105,15 @@
 				</a>
 				<!-- ENDIF -->
 			</div>
-			
+
 			<!-- EVENT viewtopic_topic_tools_after -->
-			
+
 		</div>
-	
-	
+
+
 	<!-- IF .quickmod -->
 		<div class="panel bg3 fbr-quickmod">
-			<a class="fbr-quickmod-devil"><div class="fa fa-wrench"></div></a>
+			<a class="fbr-quickmod-devil"><div class="fa fa-wrench fa-lg"></div></a>
 			<div class="fbr-quickmod-all">
 			<!-- BEGIN quickmod -->
 				<!-- DEFINE $QUICKMOD_AJAX = (quickmod.VALUE in ['lock', 'unlock', 'delete_topic', 'restore_topic', 'make_normal', 'make_sticky', 'make_announce', 'make_global']) -->
@@ -151,7 +151,7 @@
 			<!-- ENDIF -->
 		</div>
 	</div>
-	
+
 <!-- ENDIF -->
 
 
@@ -161,7 +161,7 @@
 	<div class="panel bg3"><li class="fbr-m-info">{SEARCH_MATCHES}</li></div>
 
 	<!-- IF U_MARK_ALL_READ -->
-	
+
 	<div class="switcheroo-menu">
 		<div class="switcheroo-static">
 			<a href="{U_MARK_ALL_READ}" accesskey="m" class="mark-read m-labeled-box m-labeled-box-button">
@@ -170,7 +170,7 @@
 			</a>
 		</div>
 	</div>
-	
+
 	<!-- ENDIF -->
 
 <!-- ENDIF -->
@@ -182,7 +182,7 @@
 	<div class="panel bg3"><li class="fbr-m-info">{L_NOTIFICATIONS}{L_COLON} {TOTAL_COUNT}</li></div>
 
 	<!-- IF U_MARK_ALL -->
-	
+
 	<div class="switcheroo-menu">
 		<div class="switcheroo-static">
 			<a href="{U_MARK_ALL}" class="mark m-labeled-box m-labeled-box-button">
@@ -191,7 +191,7 @@
 			</a>
 		</div>
 	</div>
-	
+
 	<!-- ENDIF -->
 
 <!-- ENDIF -->
@@ -199,7 +199,7 @@
 
 
 <!-- IF TOTAL_MESSAGES or S_VIEW_MESSAGE -->
-	
+
 	<div class="switcheroo-menu">
 		<div class="switcheroo-static">
 			<!-- IF S_VIEW_MESSAGE -->
@@ -225,7 +225,7 @@
 			<!-- ENDIF -->
 		</div>
 	</div>
-	
+
 <!-- ENDIF -->
 
 </ul>
