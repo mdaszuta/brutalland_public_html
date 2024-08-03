@@ -1,5 +1,4 @@
 @import url("buttons.css");
-@import url("icons_se.css");
 @import url("tagowarka.css");
 @import url("coloursShadowsOpacity.css");
 @import url("fontsEtc.css");
@@ -167,6 +166,10 @@ blockquote cite > div {
 	margin: 0;
 	padding: 3px;
 	border: none;
+}
+
+.attachbox dd {
+    border-top: 1px dashed #666;
 }
 
 fieldset.polls dl {
@@ -1149,7 +1152,7 @@ dd.lastpost > span {
 .post-buttons #post-buttons-row-2:hover {
 	display: flex;
 	justify-content: flex-end;
-	width: 100%;
+	/* width: 100%; */
 }
 
 .post-buttons .button-icon-only {
