@@ -62,7 +62,7 @@
 					<dt<!-- IF searchresults.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF searchresults.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 
 					<!-- IF not S_IS_BOT --><!-- IF searchresults.TOPIC_REPLIES -->
-						<div class="topic-reply-counter<!-- IF searchresults.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->">{searchresults.TOPIC_REPLIES} <dfn>{L_TOPIC_REPLIES}</dfn></div>
+						<div class="topic-reply-counter<!-- IF searchresults.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_REPLIES}">{searchresults.TOPIC_REPLIES} <dfn>{L_REPLIES}</dfn></div>
 					<!-- ENDIF --><!-- ENDIF -->
 
 						<div class="list-inner">
