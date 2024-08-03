@@ -32,16 +32,47 @@ a.username {
 	color: #eee;
 }
 
-::placeholder {
-	color:#333;
+/* kolory placeholderów */
+
+*::-moz-placeholder {
+	color: #444;
 }
 
-::-webkit-input-placeholder {
-	color:#333;
+*::-webkit-input-placeholder {
+	color:#444;
 }
 
-::-ms-input-placeholder {
-	color:#333;
+*::-ms-input-placeholder {
+	color:#444;
+}
+
+*:not(.search)::placeholder {
+	color:#444;
+	transition: all .35s linear;
+}
+
+/* znikanie placeholdera po focusie na input, textarea etc */
+
+*:focus::-moz-placeholder {
+	color: transparent;
+	text-shadow: none;
+}
+
+*:focus::-webkit-input-placeholder {
+	color: transparent;
+	text-shadow: none;
+}
+
+*:focus::-ms-input-placeholder {
+	color: transparent;
+	text-shadow: none;
+}
+
+*:not(.search):focus::placeholder {
+	/* color: red !important; */
+	color: transparent;
+	text-shadow: none;
+	transition: all .25s linear;
 }
 
 .copyright a,

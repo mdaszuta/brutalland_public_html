@@ -97,7 +97,7 @@ table.table1 tbody tr.bg3,
 
 /* PLACEHOLDER FONTS */
 
-::placeholder {
+::-moz-placeholder {
 	font-weight: bold;
 	font-variant: small-caps;
 }
@@ -108,6 +108,11 @@ table.table1 tbody tr.bg3,
 }
 
 ::-ms-input-placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+::placeholder {
 	font-weight: bold;
 	font-variant: small-caps;
 }
@@ -147,12 +152,6 @@ textarea,
 select,
 .fa {
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 1), -1px -1px 3px rgba(0, 0, 0, 1);
-}
-
-input:focus::placeholder,
-textarea:focus::placeholder {
-    /* color: red !important; */
-    text-shadow: none;
 }
 
 /* FONT-FAMILIES */
