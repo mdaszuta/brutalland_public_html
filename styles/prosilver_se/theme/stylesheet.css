@@ -110,6 +110,10 @@ ul.topiclist li.row dt a.subforum {
 	padding: 0;
 }
 
+.vertical-separator {
+	padding: 0 5px;
+}
+
 li.row {
 	border-top: none;
 	border-bottom: none;
@@ -1239,6 +1243,10 @@ ul.ajaxshoutboxpost li.row dt {
 	width: 16px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.ajaxshoutbox_loadingbar {
+	font-size: 16px;
 }
 
 #ajaxshoutbox_loadbefore,

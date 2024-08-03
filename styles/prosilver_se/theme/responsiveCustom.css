@@ -22,6 +22,10 @@
 	ul.shoutboxlist dd.ajaxshoutbox_message {
 		display: block;
 	}
+
+	ul.topiclist.forums .ajaxshoutbox_row dt {
+		margin-right: 0px;
+	}
 	
 }
 

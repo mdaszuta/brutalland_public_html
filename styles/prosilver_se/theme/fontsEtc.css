@@ -206,7 +206,7 @@ textarea,
 
 #m-feed-topics .main-m-bottom span {
 	transform: rotate(180deg);
-	font-size: x-small;
+	/* font-size: x-small; */
 }
 
 dl.details,
@@ -282,6 +282,7 @@ h3,
 .brutalform-label,
 #brutalform-drafty .brutalform-explanation,
 ul.topiclist li.row dt a.subforum,
+li.row .vertical-separator,
 a.lastsubject {
 	font-size: 17px;
 }

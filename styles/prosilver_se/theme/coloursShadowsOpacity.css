@@ -313,10 +313,6 @@ blockquote blockquote.uncited {
 	background-image: url("./images/quote_rtl.gif");
 }
 
-.ajaxshoutbox_loadingbar {
-	background-image: url("./images/ajax-loader.gif");
-}
-
 #page-header {
 	background: URL("./images/logo.png");
 	background-position: 0 22px;
