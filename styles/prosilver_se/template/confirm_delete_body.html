@@ -8,7 +8,7 @@
 			<label for="delete_permanent">
 				<div class="fbr">
 					<div class="fbr-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
-					<div class="fbr-right"><!-- IF S_TOPIC_MODE -->{L_DELETE_TOPIC_PERMANENTLY}<!-- ELSE -->{L_DELETE_POST_PERMANENTLY}<!-- ENDIF --></div>
+					<div class="fbr-right"><!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
 				</div>
 			</label>
 		<!-- ENDIF -->
@@ -18,6 +18,7 @@
 			<div class="fbr-right"><input type="text" name="delete_reason" value="" class="inputbox autowidth" maxlength="120" size="45" placeholder="{L_DELETE_REASON}" /></div>
 		</div>
 		<!-- ENDIF -->
+
 		<fieldset class="submit-buttons flex-box-form">
 			<div class="flex-box-o">
 				<div class="flex-box"><input type="button" name="confirm" value="{L_YES}" class="button" /></div>
@@ -45,7 +46,7 @@
 			<label for="delete_permanent">
 				<div class="fbr">
 					<div class="fbr-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
-					<div class="fbr-right"><!-- IF S_TOPIC_MODE -->{L_DELETE_TOPIC_PERMANENTLY}<!-- ELSE -->{L_DELETE_POST_PERMANENTLY}<!-- ENDIF --></div>
+					<div class="fbr-right">{L_DELETE_PERMANENTLY} <!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
 				</div>
 			</label>
 		<!-- ENDIF -->
