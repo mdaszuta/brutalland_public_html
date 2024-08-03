@@ -85,13 +85,6 @@ class listener implements EventSubscriberInterface
 					'forum_id' => $asid,
 					'hash' => generate_link_hash("collapsible_$asid")))
 			));
-			$statyid = 'staty';
-			$this->template->assign_vars(array(
-				'S_STATY_HIDDEN' => in_array($statyid, $this->operator->get_user_categories()),
-				'U_STATY_COLLAPSE_URL' => $this->helper->route('phpbb_collapsiblecategories_main_controller', array(
-					'forum_id' => $statyid,
-					'hash' => generate_link_hash("collapsible_$statyid")))
-			));
 		}
 		$this->template->assign_vars(array(
 			'S_TOPFIVE'	=>	$this->config['top_five_active'],

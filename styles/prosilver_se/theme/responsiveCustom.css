@@ -234,6 +234,10 @@
 		clear: none;
 	}
 	
+	.postprofile dd.profile-rank {
+		display: none;
+	}
+
 	.has-profile .post-buttons,
 	.post-buttons {
 		right: 8px;
