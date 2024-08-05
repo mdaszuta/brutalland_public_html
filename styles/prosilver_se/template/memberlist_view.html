@@ -85,11 +85,17 @@
 			<div class="fbr">
 				<dt class="fbr-left"></dt>
 				<dd class="fbr-right fb-s flex-spaced-between zebra">
-					<!-- IF U_REMOVE_FRIEND --><a href="{U_REMOVE_FRIEND}" data-ajax="zebra"><strong>{L_REMOVE_FRIEND}</strong></a>
-					<!-- ELSEIF U_REMOVE_FOE --><a href="{U_REMOVE_FOE}" data-ajax="zebra"><strong>{L_REMOVE_FOE}</strong></a>
+					<!-- IF U_REMOVE_FRIEND -->
+						<a href="{U_REMOVE_FRIEND}" data-ajax="zebra"><strong>{L_REMOVE_FRIEND}</strong></a>
+					<!-- ELSEIF U_REMOVE_FOE -->
+						<a href="{U_REMOVE_FOE}" data-ajax="zebra"><strong>{L_REMOVE_FOE}</strong></a>
 					<!-- ELSE -->
-						<!-- IF U_ADD_FRIEND --><a href="{U_ADD_FRIEND}" data-ajax="zebra"><strong>{L_ADD_FRIEND}</strong></a><!-- ENDIF -->
-						<!-- IF U_ADD_FOE --><a href="{U_ADD_FOE}" data-ajax="zebra"><strong>{L_ADD_FOE}</strong></a><!-- ENDIF -->
+						<!-- IF U_ADD_FRIEND -->
+							<a href="{U_ADD_FRIEND}" data-ajax="zebra"><strong>{L_ADD_FRIEND}</strong></a>
+						<!-- ENDIF -->
+						<!-- IF U_ADD_FOE -->
+							<a href="{U_ADD_FOE}" data-ajax="zebra"><strong>{L_ADD_FOE}</strong></a>
+						<!-- ENDIF -->
 					<!-- ENDIF -->
 				</dd>
 			</div>

@@ -12,13 +12,13 @@
 <div id="minitabs" class="minitabs sub-panels" data-show-panel="{$SHOW_PANEL}" role="tablist" data-skip-responsive="true">
 	<ul>
 		<li id="display-panel-tab" class="tab<!-- IF not S_MERGE_VIEW --> activetab<!-- ENDIF -->">
-			<a href="#minitabs" data-subpanel="display-panel" role="tab" aria-controls="display-panel"><span>{L_DISPLAY_OPTIONS}</span></a>
+			<a href="#minitabs" data-subpanel="display-panel" role="tab" aria-controls="display-panel">{L_DISPLAY_OPTIONS}</a>
 		</li>
 		<li id="split-panel-tab" class="tab">
-			<a href="#minitabs" data-subpanel="split-panel" role="tab" aria-controls="split-panel"><span>{L_SPLIT_TOPIC}</span></a>
+			<a href="#minitabs" data-subpanel="split-panel" role="tab" aria-controls="split-panel">{L_SPLIT_TOPIC}</a>
 		</li>
 		<li id="merge-panel-tab" class="tab<!-- IF S_MERGE_VIEW --> activetab<!-- ENDIF -->">
-			<a href="#minitabs" data-subpanel="merge-panel" role="tab" aria-controls="merge-panel"><span>{L_MERGE_POSTS}</span></a>
+			<a href="#minitabs" data-subpanel="merge-panel" role="tab" aria-controls="merge-panel">{L_MERGE_POSTS}</a>
 		</li>
 	</ul>
 </div>
@@ -80,14 +80,14 @@
 <!-- IF S_CAN_MERGE -->
 	<fieldset id="merge-panel" class="fields2" role="tabpanel">
 		<p class="fbr-m-info">{L_MERGE_TOPIC_EXPLAIN}</p>
-		<div class="fbr">
-			<div class="fbr-left"><label for="to_topic_id">{L_MERGE_TOPIC_ID}</label></div>
-			<div class="fbr-right">
-				<input class="inputbox autowidth" type="number" min="0" max="9999999999" name="to_topic_id" id="to_topic_id" value="{TO_TOPIC_ID}" />
-				<a href="{U_SELECT_TOPIC}" class="button2">{L_SELECT_TOPIC}</a>
-				<!-- IF TO_TOPIC_INFO --><span class="text-align-c">{TO_TOPIC_INFO}</span><!-- ENDIF -->
-			</div>
+	<div class="fbr">
+		<div class="fbr-left"><label for="to_topic_id">{L_MERGE_TOPIC_ID}</label></div>
+		<div class="fbr-right">
+			<input class="inputbox autowidth" type="number" min="0" max="9999999999" name="to_topic_id" id="to_topic_id" value="{TO_TOPIC_ID}" />
+			<a href="{U_SELECT_TOPIC}" class="button2">{L_SELECT_TOPIC}</a>
+			<!-- IF TO_TOPIC_INFO --><span class="text-align-c">{TO_TOPIC_INFO}</span><!-- ENDIF -->
 		</div>
+	</div>
 	</fieldset>
 <!-- ENDIF -->
 
@@ -110,16 +110,16 @@
 			<div class="postbody" id="pr{postrow.POST_ID}">
 				<ul class="post-buttons" data-skip-responsive="true">
 					<div id="post-buttons-row-1">
-						<li>
-							<a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}" class="button-icon-only">
-								<div class="fa fa-info fa-2x" aria-hidden="true"></div><span class="sr-only">{L_POST_DETAILS}</span>
-							</a>
-						</li>
-						<li>
-							<label for="post_id_list_select_{postrow.POST_ID}">
-								<input type="checkbox" title="{L_SELECT}" id="post_id_list_select_{postrow.POST_ID}" name="post_id_list[]" value="{postrow.POST_ID}"<!-- IF postrow.S_CHECKED --> checked="checked"<!-- ENDIF --> />
-							</label>
-						</li>
+					<li>
+						<a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}" class="button-icon-only">
+							<div class="fa fa-info fa-2x" aria-hidden="true"></div><span class="sr-only">{L_POST_DETAILS}</span>
+						</a>
+					</li>
+					<li>
+						<label for="post_id_list_select_{postrow.POST_ID}">
+							<input type="checkbox" title="{L_SELECT}" id="post_id_list_select_{postrow.POST_ID}" name="post_id_list[]" value="{postrow.POST_ID}"<!-- IF postrow.S_CHECKED --> checked="checked"<!-- ENDIF --> />
+						</label>
+					</li>
 					</div>
 				</ul>
 
@@ -167,6 +167,7 @@
 		<!-- END postrow -->
 	</div>
 
+
 	</div>
 </div>
 
@@ -182,9 +183,7 @@
 		<!-- IF S_CAN_SYNC --><option value="resync">{L_RESYNC}</option><!-- ENDIF -->
 	</select>&nbsp;
 	<input class="button1" type="submit" name="mcp_topic_submit" value="{L_SUBMIT}" />
-	<div>
-		<a href="#" onclick="marklist('mcp', 'post', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'post', false); return false;">{L_UNMARK_ALL}</a>
-	</div>
+	<div><a href="#" onclick="marklist('mcp', 'post', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'post', false); return false;">{L_UNMARK_ALL}</a></div>
 {S_HIDDEN_FIELDS}
 {S_FORM_TOKEN}
 </fieldset>

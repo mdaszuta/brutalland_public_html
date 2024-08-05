@@ -23,7 +23,6 @@
 	<fieldset class="fields2">
 	<!-- EVENT ucp_register_credentials_before -->
 	<div class="fbr">
-
 		<div class="fbr-left">
 			<div class="brutalform-box">
 				<input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" />
@@ -40,7 +39,6 @@
 				<span class="brutalform-label">{L_CONFIRM_PASSWORD}</span>
 			</div>
 		</div>
-
 		<div class="fbr-right" id="fbr-register-email">
 			<div class="brutalform-box">
 				<input type="email" tabindex="4" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" placeholder="{L_EMAIL_ADDRESS}" class="inputbox" autocomplete="off" />
@@ -51,11 +49,13 @@
 				<!-- IF L_REG_COND --><strong>{L_REG_COND}</strong><!-- ENDIF -->
 			</div>
 		</div>
-
 	</div>
+
 	<!-- EVENT ucp_register_credentials_after -->
 
 	<!-- EVENT ucp_register_options_before -->
+
+
 	<!-- EVENT ucp_register_profile_fields_before -->
 	<!-- IF .profile_fields -->
 		<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
@@ -100,7 +100,7 @@
 			<div class="fbr-right">
 				<fieldset class="submit-buttons">
 				{S_HIDDEN_FIELDS}
-				<input type="submit" tabindex="6" value="{L_REGISTER}" name="submit" class="button submit default-submit-action" />
+				<input type="submit" tabindex="6" name="submit" id="submit" value="{L_REGISTER}" class="button submit default-submit-action" />
 				<input type="reset" tabindex="7" value="{L_RESET}" name="reset" class="button2 reset" />
 				{S_FORM_TOKEN}
 				</fieldset>

@@ -13,11 +13,7 @@
 		<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
 		<div class="fields2 fbr">
 			<div class="fbr-left"><label for="reason_id">{L_REASON}</label></div>
-			<div class="fbr-right">
-				<select name="reason_id" id="reason_id" class="full">
-					<!-- BEGIN reason --><option value="{reason.ID}"<!-- IF reason.S_SELECTED --> selected="selected"<!-- ENDIF -->>{reason.DESCRIPTION}</option><!-- END reason -->
-				</select>
-			</div>
+			<div class="fbr-right"><select name="reason_id" id="reason_id" class="full"><!-- BEGIN reason --><option value="{reason.ID}"<!-- IF reason.S_SELECTED --> selected="selected"<!-- ENDIF -->>{reason.DESCRIPTION}</option><!-- END reason --></select></div>
 		</div>
 		<!-- IF S_CAN_NOTIFY -->
 			<div class="fields2 fbr">

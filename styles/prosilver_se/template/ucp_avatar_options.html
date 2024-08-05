@@ -25,13 +25,11 @@
 	<fieldset style="display:none;">
 		<div class="fbr">
 			<div class="fbr-left"><label>{L_AVATAR_TYPE}</label></div>
-			<div class="fbr-right">
-				<select name="avatar_driver" id="avatar_driver" data-togglable-settings="true">
+			<div class="fbr-right"><select name="avatar_driver" id="avatar_driver" data-togglable-settings="true">
 					<!-- BEGIN avatar_drivers -->
 					<option value="{avatar_drivers.DRIVER}"<!-- IF avatar_drivers.SELECTED --> selected="selected"<!-- ENDIF --> data-toggle-setting="#avatar_option_{avatar_drivers.DRIVER}">{avatar_drivers.L_TITLE}</option>
 					<!-- END avatar_drivers -->
-				</select>
-			</div>
+				</select></div>
 		</div>
 	</fieldset>
 	<div id="avatar_options">

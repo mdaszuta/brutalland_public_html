@@ -2,7 +2,7 @@
 
 <script>
 $(document).ready(function(){
-  $('#titleID').text('{L_SETTINGS} \u007C {L_USERGROUPS}<!-- IF GROUP_NAME -->: {GROUP_NAME}<!-- ENDIF -->');
+  $('#titleID').text('{L_SETTINGS} \u007C {L_USERGROUPS}<!-- IF GROUP_NAME -->{L_COLON} {GROUP_NAME}<!-- ENDIF -->');
 });
 </script>
 
@@ -119,6 +119,7 @@ $(document).ready(function(){
 </div>
 
 <!-- INCLUDE ucp_avatar_options.html -->
+
 <fieldset class="submit-buttons flex-box-form">
 	<div class="flex-box-o">
 		{S_HIDDEN_FIELDS}

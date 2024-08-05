@@ -79,23 +79,15 @@
 										</div>
 
 										<div class="notifications">
-
-											<!-- IF notification_list.URL -->
-											<a href="<!-- IF notification_list.UNREAD -->{notification_list.U_MARK_READ}<!-- ELSE -->{notification_list.URL}<!-- ENDIF -->">
-											<!-- ENDIF -->
-
-												<div class="notifications_title">
-													<!-- IF notification_list.REFERENCE --><div class="notifications_reference">{notification_list.REFERENCE}</div><!-- ENDIF -->
-													<!-- IF notification_list.REASON --><div class="notifications_reason">{notification_list.REASON}</div><!-- ENDIF -->
-													{notification_list.FORMATTED_TITLE}
-												</div>
-												<div class="notifications_time">{notification_list.TIME}</div>				
-												<!-- IF notification_list.FORUM --><!-- ENDIF -->
-
-											<!-- IF notification_list.URL -->
-											</a>
-											<!-- ENDIF -->
-
+											<!-- IF notification_list.URL --><a href="<!-- IF notification_list.UNREAD -->{notification_list.U_MARK_READ}<!-- ELSE -->{notification_list.URL}<!-- ENDIF -->"><!-- ENDIF -->
+											<div class="notifications_title">
+												<!-- IF notification_list.REFERENCE --><div class="notifications_reference">{notification_list.REFERENCE}</div><!-- ENDIF -->
+												<!-- IF notification_list.REASON --><div class="notifications_reason">{notification_list.REASON}</div><!-- ENDIF -->
+												{notification_list.FORMATTED_TITLE}
+											</div>
+											<div class="notifications_time">{notification_list.TIME}</div>
+											<!-- IF notification_list.FORUM --><!-- ENDIF -->
+											<!-- IF notification_list.URL --></a><!-- ENDIF -->
 										</div>
 									</div>
 								</dt>
@@ -106,6 +98,7 @@
 					<!-- END notification_list -->
 				</ul>
 			</div>
+
 
 			<!-- ELSE -->
 				<p class="fbr-m-info"><strong>{L_NO_NOTIFICATIONS}</strong></p>
