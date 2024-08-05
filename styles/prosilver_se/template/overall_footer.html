@@ -67,49 +67,6 @@
 
 <script type="text/javascript" src="{ROOT_PATH}styles/prosilver_se/template/skrypty.js?assets_version={T_ASSETS_VERSION}"></script>
 
-<script>
-$(document).ready(function(){
-
-	var timeoutId = 0;
-
-	$("#m-feed .menu-devil").on('mouseenter click', function() {
-		var doc = document.getElementById('lista-top-five').innerHTML;
-
-		timeoutId = setTimeout( function(){
-			console.log("timoutowane");
-			if(doc == ''){
-				doc = `<!-- BEGIN top_five_topic -->
-					<!-- IF top_five_topic.NO_TOPIC_TITLE-->
-						{top_five_topic.NO_TOPIC_TITLE}
-					<!-- ELSE -->
-						<div class="flex <!-- IF top_five_topic.S_ROW_COUNT is odd -->m-row1<!-- ELSE -->m-row2<!-- ENDIF --> m-list-all">
-							<div class="m-list-left" onclick="window.location.href='<!-- IF top_five_topic.S_UNREAD -->{top_five_topic.U_TOPIC_UNREAD}<!-- ELSE -->{top_five_topic.U_TOPIC}<!-- ENDIF -->'" title="<!-- IF top_five_topic.S_UNREAD -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_GOTO_LAST_POST}<!-- ENDIF -->">
-								<a href="<!-- IF top_five_topic.S_UNREAD -->{top_five_topic.U_TOPIC_UNREAD}<!-- ELSE -->{top_five_topic.U_TOPIC}<!-- ENDIF -->" class="flex topictitle<!-- IF top_five_topic.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF --> m-list-left-top">
-									{top_five_topic.TOPIC_TITLE}
-								</a>
-								<span class="flex meta m-list-left-bottom"><a href="{top_five_topic.U_FORUM}" class="topic-forumtitle<!-- IF top_five_topic.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_JUMP_TO} {L_FORUM_SMALL}">{top_five_topic.FORUM_NAME}</a></span>											
-							</div>
-							<span class="flex meta m-list-right" onclick="window.location.href='{top_five_topic.U_TOPIC}'" title="{L_GOTO_LAST_POST}">
-								<div class="m-list-right-top">{top_five_topic.USERNAME_FULL}</div>
-								<div class="m-list-right-bottom">{top_five_topic.LAST_TOPIC_TIME}</div>
-							</span>
-						</div>
-					<!-- ENDIF -->
-				<!-- END top_five_topic -->`;
-
-				document.getElementById('lista-top-five').innerHTML = doc;
-				console.log("loaded");
-			}
-		} , 150);
-
-	}).on('mouseup mouseleave', function() {
-		clearTimeout(timeoutId);
-	});
-
-});
-
-</script>
-
 <!-- IF S_RH_TOPICTAGS_INCLUDE_NG_TAGS_INPUT -->
 	<!-- IF S_ALLOW_CDN -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>

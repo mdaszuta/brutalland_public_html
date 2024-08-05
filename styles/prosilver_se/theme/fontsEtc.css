@@ -16,6 +16,10 @@ a.lastsubject:hover,
 	font-style: italic;
 }
 
+.notifications_reason em {
+    font-style: normal;
+}
+
 #top-site-menu .pagination li a,
 .notifications_time,
 .m-list-right-bottom,
@@ -279,6 +283,7 @@ input.button1,
 input.button2:not(.fa),
 h3,
 .postbody h3,
+.notifications_reason,
 .brutalform-label,
 #brutalform-drafty .brutalform-explanation,
 ul.topiclist li.row dt a.subforum,
@@ -294,7 +299,6 @@ a.forumtitle,
 a.topictitle,
 #titleID,
 .notifications_reference,
-.notifications_reason,
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
 .tags input {
