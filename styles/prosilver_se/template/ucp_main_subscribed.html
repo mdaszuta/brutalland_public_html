@@ -55,7 +55,7 @@
 				<dd class="lastpost"<!-- IF forumrow.LAST_POST_TIME --> onclick="window.location.href='{forumrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}"<!-- ENDIF -->>
 					<!-- IF forumrow.LAST_POST_TIME -->
 						<dfn>{L_LAST_POST}</dfn>
-						<a href="{forumrow.U_LAST_POST}" title="{forumrow.LAST_POST_SUBJECT}" class="lastsubject">{forumrow.LAST_POST_SUBJECT}</a>
+						<a href="{forumrow.U_LAST_POST}" class="lastsubject">{forumrow.LAST_POST_SUBJECT}</a>
 						<span>
 							<span class="lastpost-poster">{forumrow.LAST_POST_AUTHOR_FULL}</span>
 							<span class="lastpost-time">{forumrow.LAST_POST_TIME} <a class="fa fa-fast-forward fa-lg"></a></span>
@@ -101,9 +101,18 @@
 					<!-- ENDIF -->
 
 					<div class="list-inner">
-
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
-
+							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+								<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
+									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
+								</a>
+							<!-- ENDIF -->
+							<!-- IF topicrow.S_TOPIC_REPORTED -->
+								<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
+									<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
+								</a>
+							<!-- ENDIF -->
+							<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF -->
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
 							<span><i class="icon fa-clone fa-fw" aria-hidden="true"></i></span>
@@ -119,9 +128,7 @@
 							</ul>
 						</div>
 						<!-- ENDIF -->
-
 						<br />
-
 						<div class="lastpost responsive-show" style="display: none;">
 							<span>
 								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
@@ -132,17 +139,6 @@
 						</div>
 						<div class="responsive-hide">
 							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
-							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
-								<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
-									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
-								</a>
-							<!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_REPORTED -->
-								<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
-									<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
-								</a>
-							<!-- ENDIF -->
-							<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF -->
 						</div>
 					</div>
 				</dt>
@@ -158,6 +154,7 @@
 		</li>
 	<!-- END topicrow -->
 	</ul>
+
 
 <!-- ELSEIF S_TOPIC_NOTIFY -->
 	<p class="fbr-m-info"><strong>{L_NO_WATCHED_TOPICS}</strong></p>

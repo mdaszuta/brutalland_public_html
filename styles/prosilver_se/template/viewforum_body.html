@@ -132,13 +132,32 @@
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 
-					<!-- IF not S_IS_BOT --><!-- IF topicrow.REPLIES -->
+					<!-- IF not S_IS_BOT -->
+					<!-- IF topicrow.REPLIES -->
 						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_REPLIES}">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
-					<!-- ENDIF --><!-- ENDIF -->
+					<!-- ENDIF -->
+					<!-- ENDIF -->
 
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+							<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
+								<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_DELETED -->
+							<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_DELETED}">
+								<i class="icon fa-recycle fa-fw icon-green" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_DELETED}</span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_REPORTED -->
+							<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
+								<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_HAS_POLL --><i class="icon fa-bar-chart fa-fw" aria-hidden="true"></i><!-- ENDIF -->
+						<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i><!-- ENDIF -->
 						<!-- EVENT topiclist_row_topic_title_after -->
 
 						<!-- IF .topicrow.pagination -->
@@ -158,7 +177,6 @@
 						<!-- ENDIF -->
 
 						<br />
-
 						<!-- IF not S_IS_BOT -->
 						<div class="lastpost responsive-show" style="display: none;">
 							<span>
@@ -173,26 +191,9 @@
 						<div class="responsive-hide">
 							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
 							<!-- IF topicrow.S_POST_GLOBAL and FORUM_ID != topicrow.FORUM_ID --><a href="{topicrow.U_VIEW_FORUM}" class="topic-forumtitle" title="{L_JUMP_TO} {L_FORUM_SMALL}">{topicrow.FORUM_NAME}</a><!-- ENDIF -->
-							
+
 							<!-- EVENT topiclist_tags -->
-							
-							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
-								<a href="{topicrow.U_MCP_QUEUE}">
-									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
-								</a>
-							<!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_DELETED -->
-								<a href="{topicrow.U_MCP_QUEUE}">
-									<i class="icon fa-recycle fa-fw icon-green" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_DELETED}</span>
-								</a>
-							<!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_REPORTED -->
-								<a href="{topicrow.U_MCP_REPORT}">
-									<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
-								</a>
-							<!-- ENDIF -->
-							<!-- IF topicrow.S_HAS_POLL --><i class="icon fa-bar-chart fa-fw" aria-hidden="true"></i><!-- ENDIF -->
-							<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i><!-- ENDIF -->
+
 						</div>
 						<!-- EVENT topiclist_row_append -->
 					</div>

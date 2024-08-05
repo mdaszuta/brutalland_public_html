@@ -1,5 +1,9 @@
 <!-- INCLUDE overall_header.html -->
 
+<!-- IF TOPIC_TITLE -->
+	<!-- EVENT posting_topic_title_before --><!-- EVENT posting_topic_title_after -->
+<!-- ELSE -->
+ <!-- ENDIF -->
 
 <!-- IF S_FORUM_RULES -->
 	<div class="rules<!-- IF U_FORUM_RULES --> rules-link<!-- ENDIF -->">
@@ -21,6 +25,7 @@
 <!-- IF S_DRAFT_LOADED -->
 	<div class="panel">
 		<div class="inner">
+
 		<p class="fbr-m-info">{L_DRAFT_LOADED}</p>
 
 		</div>
@@ -66,8 +71,9 @@
 </div>
 
 <!-- IF not S_SHOW_DRAFTS -->
-	<!-- IF S_SHOW_ATTACH_BOX --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->
-	<!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE --><!-- INCLUDE posting_poll_body.html --><!-- ENDIF -->
+<!-- IF S_SHOW_ATTACH_BOX --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->
+
+<!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE --><!-- INCLUDE posting_poll_body.html --><!-- ENDIF -->
 <!-- ENDIF -->
 
 <!-- IF S_DISPLAY_PREVIEW --><!-- INCLUDE posting_preview.html --><!-- ENDIF -->

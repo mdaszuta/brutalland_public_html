@@ -173,6 +173,7 @@ class main
 				'DELETED_IMG'				=> $this->user->img('icon_topic_deleted', 'TOPIC_DELETED'),
 				'POLL_IMG'					=> $this->user->img('icon_topic_poll', 'TOPIC_POLL'),
 				'S_TOPIC_ICONS'				=> true,
+				'TOTAL_TOPICS_COUNT'		=> $topics_count,
 			));
 
 			$this->display_topics($topics);

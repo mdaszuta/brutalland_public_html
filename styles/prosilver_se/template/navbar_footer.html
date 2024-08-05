@@ -1,32 +1,39 @@
 <div class="navbar" role="navigation">
 	<div class="inner">
-		<ul class="topiclist forums">
-			<div id="nav-footer" class="nav-footer" role="menubar">
 
-				<!-- IF SCRIPT_NAME == 'viewforum' || SCRIPT_NAME == 'viewtopic' -->
-					<!-- IF S_DISPLAY_ONLINE_LIST -->
-						<div class="stat-block online-list">
-							<p class="see_online">
-							<!-- IF U_VIEWONLINE and S_USER_LOGGED_IN -->
-								<a href="{U_VIEWONLINE}">{LOGGED_IN_USER_LIST}</a>
-								<a href="{U_VIEWONLINE}" class="fa fa-globe fa-lg"></a>
-							<!-- ENDIF -->
-							</p>
-						</div>
+	<ul class="topiclist forums">
+		<div id="nav-footer" class="nav-footer" role="menubar">
+			<!-- EVENT overall_footer_breadcrumb_prepend -->
+			<!-- EVENT overall_footer_breadcrumb_append -->
+
+		<!-- EVENT overall_footer_timezone_before -->
+		<!-- EVENT overall_footer_timezone_after -->
+		<!-- IF SCRIPT_NAME == 'viewforum' || SCRIPT_NAME == 'viewtopic' -->
+			<!-- IF S_DISPLAY_ONLINE_LIST -->
+				<div class="stat-block online-list">
+					<p class="see_online">
+					<!-- IF U_VIEWONLINE and S_USER_LOGGED_IN -->
+						<a href="{U_VIEWONLINE}">{LOGGED_IN_USER_LIST}</a>
+						<a href="{U_VIEWONLINE}" class="fa fa-globe fa-lg"></a>
 					<!-- ENDIF -->
-				<!-- ENDIF -->
-				<!-- IF U_CONTACT_US -->
-					<a href="{U_CONTACT_US}" role="menuitem" id="m_kon" title="{L_CONTACT_US} / {L_FORUM_RULES}">
-						<div class="fa fa-info fa-lg"></div>
-					</a>
-				<!-- ENDIF -->
-				<!-- IF not S_IS_BOT -->
-					<a href="{U_DELETE_COOKIES}" data-ajax="true" data-refresh="true" role="menuitem" id="m_del" title="{L_DELETE_COOKIES}">
-						<div class="fa fa-trash-o fa-lg"></div>
-					</a>
-				<!-- ENDIF -->
+					</p>
+				</div>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+		<!-- EVENT overall_footer_teamlink_before -->
+		<!-- EVENT overall_footer_teamlink_after -->
+		<!-- IF U_CONTACT_US -->
+			<a href="{U_CONTACT_US}" role="menuitem" id="m_kon" title="{L_CONTACT_US} / {L_FORUM_RULES}">
+				<div class="fa fa-info fa-lg"></div>
+			</a>
+		<!-- ENDIF -->
+		<!-- IF not S_IS_BOT -->
+			<a href="{U_DELETE_COOKIES}" data-ajax="true" data-refresh="true" role="menuitem" id="m_del" title="{L_DELETE_COOKIES}">
+				<div class="fa fa-trash-o fa-lg"></div>
+			</a>
+		<!-- ENDIF -->
+		</div>
+	</ul>
 
-			</div>
-		</ul>
 	</div>
 </div>

@@ -27,7 +27,7 @@
 				<div id="post-buttons-row-1">
 				<li>
 					<a <!-- IF history_row.U_QUOTE -->href="{history_row.U_QUOTE}"<!-- ELSE -->href="#postingbox" onclick="addquote({history_row.MSG_ID}, '{history_row.MESSAGE_AUTHOR_QUOTE}', '{LA_WROTE}', {time:{history_row.MESSAGE_TIME},user_id:{history_row.USER_ID}});"<!-- ENDIF --> title="{L_QUOTE} {history_row.MESSAGE_AUTHOR}" class="button-icon-only">
-						<div class="fa fa-quote-right fa-2x"></div>
+						<div class="fa fa-quote-right fa-2x" aria-hidden="true"></div><span class="sr-only">{L_QUOTE} {history_row.MESSAGE_AUTHOR}</span>
 					</a>
 				</li>
 				</div>
@@ -49,3 +49,5 @@
 	<!-- END history_row -->
 </div>
 <!-- EVENT ucp_pm_history_review_after -->
+
+

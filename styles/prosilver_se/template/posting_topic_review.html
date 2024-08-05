@@ -37,14 +37,14 @@
 			<!-- IF topic_review_row.U_MCP_DETAILS -->
 				<li>
 					<a href="{topic_review_row.U_MCP_DETAILS}" title="{L_POST_DETAILS}" class="button-icon-only">
-						<div class="fa fa-info fa-2x"></div><span class="sr-only">{L_POST_DETAILS}</span>
+						<div class="fa fa-info fa-2x" aria-hidden="true"></div><span class="sr-only">{L_POST_DETAILS}</span>
 					</a>
 				</li>
 			<!-- ENDIF -->
 			<!-- IF topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE -->
 				<li>
 					<a href="#postingbox" onclick="addquote({topic_review_row.POST_ID}, '{topic_review_row.POSTER_QUOTE}', '{LA_WROTE}', {post_id:{topic_review_row.POST_ID},time:{topic_review_row.POST_TIME},user_id:{topic_review_row.USER_ID}});" title="{L_QUOTE} {topic_review_row.POST_AUTHOR}" class="button-icon-only">
-						<div class="fa fa-quote-right fa-2x"></div><span class="sr-only">{L_QUOTE} {topic_review_row.POST_AUTHOR}</span>
+						<div class="fa fa-quote-right fa-2x" aria-hidden="true"></div><span class="sr-only">{L_QUOTE} {topic_review_row.POST_AUTHOR}</span>
 					</a>
 				</li>
 			<!-- ENDIF -->
