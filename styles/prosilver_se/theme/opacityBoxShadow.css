@@ -17,7 +17,6 @@
 }
 
 .nav-footer,
-.mark_read,
 .to-searched-post,
 .ajaxshoutbox_delete .fa-remove {
 	opacity: 0.3;
@@ -68,6 +67,11 @@ ul.button,
 #page-header:hover,
 .copyright:hover {
 	opacity: 0.7;
+}
+
+
+.mark_read {
+	opacity: 0.75;
 }
 
 .post-buttons:hover,

@@ -482,6 +482,7 @@ div#postingbox.panel h3,
 .fb-s {
 	flex-direction: row !important;
 }
+
 .fb-c {
 	justify-content: center;
 }
@@ -805,11 +806,24 @@ input.button2,
 .notification_text {
 	margin-left: 0;
 }
-
+/*
 #m-notify .mark_read {
 	position: absolute;
 	padding-top: 3px;
     right: 45px;
+}
+*/
+
+#m-notify .m-list div[class^="m-row"] {
+    position: relative;
+}
+
+#m-notify .mark_read {
+    position: absolute;
+    /* padding-top: 3px; */
+    top: calc(50% - 28px);
+    z-index: 1;
+    right: 43px;
 }
 
 #m-notify .footer {
