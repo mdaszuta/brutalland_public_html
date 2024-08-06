@@ -32,13 +32,13 @@ $(document).ready(function(){
 			<dl class="flex-2centered">
 				<dt>
 					<div class="list-inner">
-						<!-- IF S_CHANGE_DEFAULT --><input onclick="event.cancelBubble=true" title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF leader.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{leader.GROUP_ID}" /> <!-- ENDIF -->
+						<!-- IF S_CHANGE_DEFAULT --><input onclick="event.stopPropagation()" title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF leader.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{leader.GROUP_ID}" /> <!-- ENDIF -->
 						<a href="{leader.U_VIEW_GROUP}" class="forumtitle"<!-- IF leader.GROUP_COLOUR --> style="color:#{leader.GROUP_COLOUR}"<!-- ENDIF -->>{leader.GROUP_NAME}</a>
 						<!-- IF leader.GROUP_DESC --><br />{leader.GROUP_DESC}<!-- ENDIF -->
 						<!-- IF not leader.GROUP_SPECIAL --><br /><i>{leader.GROUP_STATUS}</i><!-- ENDIF -->
 					</div>
 				</dt>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="radio" name="selected" value="{leader.GROUP_ID}" <!-- IF leader.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="radio" name="selected" value="{leader.GROUP_ID}" <!-- IF leader.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>
 			</dl>
 		</li>
 		<!-- END leader -->
@@ -64,13 +64,13 @@ $(document).ready(function(){
 			<dl class="flex-2centered">
 				<dt>
 					<div class="list-inner">
-						<!-- IF S_CHANGE_DEFAULT --><input onclick="event.cancelBubble=true" title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF member.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{member.GROUP_ID}" /> <!-- ENDIF -->
+						<!-- IF S_CHANGE_DEFAULT --><input onclick="event.stopPropagation()" title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF member.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{member.GROUP_ID}" /> <!-- ENDIF -->
 						<a href="{member.U_VIEW_GROUP}" class="forumtitle"<!-- IF member.GROUP_COLOUR --> style="color:#{member.GROUP_COLOUR}"<!-- ENDIF -->>{member.GROUP_NAME}</a>
 						<!-- IF member.GROUP_DESC --><br />{member.GROUP_DESC}<!-- ENDIF -->
 						<!-- IF not member.GROUP_SPECIAL --><br /><i>{member.GROUP_STATUS}</i><!-- ENDIF -->
 					</div>
 				</dt>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="radio" name="selected" value="{member.GROUP_ID}" <!-- IF member.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="radio" name="selected" value="{member.GROUP_ID}" <!-- IF member.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>
 			</dl>
 		</li>
 		<!-- END member -->
@@ -105,7 +105,7 @@ $(document).ready(function(){
 						<!-- IF not pending.GROUP_SPECIAL --><br /><i>{pending.GROUP_STATUS}</i><!-- ENDIF -->
 					</div>
 				</dt>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="radio" name="selected" value="{pending.GROUP_ID}" <!-- IF pending.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="radio" name="selected" value="{pending.GROUP_ID}" <!-- IF pending.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /></dd>
 			</dl>
 		</li>
 		<!-- END pending -->
@@ -139,7 +139,7 @@ $(document).ready(function(){
 						<!-- IF not nonmember.GROUP_SPECIAL --><br /><i>{nonmember.GROUP_STATUS}</i><!-- ENDIF -->
 					</div>
 				</dt>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="radio" name="selected" value="{nonmember.GROUP_ID}" <!-- IF not nonmember.S_CAN_JOIN -->disabled="disabled"<!-- ENDIF --> /></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="radio" name="selected" value="{nonmember.GROUP_ID}" <!-- IF not nonmember.S_CAN_JOIN -->disabled="disabled"<!-- ENDIF --> /></dd>
 			</dl>
 		</li>
 		<!-- END nonmember -->

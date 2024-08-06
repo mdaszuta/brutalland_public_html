@@ -51,9 +51,9 @@
 
 		 		<dd class="mark">
 					<!-- IF S_TOPICS -->
-						<input type="checkbox" name="topic_id_list[]" value="{postrow.TOPIC_ID}" />
+						<input onclick="event.stopPropagation()" type="checkbox" name="topic_id_list[]" value="{postrow.TOPIC_ID}" />
 					<!-- ELSE -->
-						<input onclick="event.cancelBubble=true" type="checkbox" name="post_id_list[]" value="{postrow.POST_ID}" />
+						<input onclick="event.stopPropagation()" type="checkbox" name="post_id_list[]" value="{postrow.POST_ID}" />
 					<!-- ENDIF -->
 				</dd>
 			</dl>

@@ -62,7 +62,7 @@
 						<!-- IF postrow.U_VIEWFORUM -->{L_FORUM}{L_COLON} <a href="{postrow.U_VIEWFORUM}">{postrow.FORUM_NAME}</a><!-- ELSE -->{postrow.FORUM_NAME}<!-- ENDIF --></span>
 					</dd>
 					<!-- ENDIF -->
-					<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="report_id_list[]" value="{postrow.REPORT_ID}" /></dd>
+					<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="report_id_list[]" value="{postrow.REPORT_ID}" /></dd>
 				</dl>
 			</li>
 		<!-- END postrow -->

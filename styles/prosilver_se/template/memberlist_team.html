@@ -25,7 +25,7 @@
 				{group.user.GROUP_NAME}
 			<!-- ENDIF --></td>
 		<!-- IF S_DISPLAY_MODERATOR_FORUMS -->
-			<td class="info"><!-- IF group.user.FORUM_OPTIONS --><select onclick="event.cancelBubble=true" style="width: 100%;">{group.user.FORUMS}</select><!-- ELSEIF group.user.FORUMS -->{group.user.FORUMS}<!-- ELSE -->-<!-- ENDIF --></td>
+			<td class="info"><!-- IF group.user.FORUM_OPTIONS --><select onclick="event.stopPropagation()" style="width: 100%;">{group.user.FORUMS}</select><!-- ELSEIF group.user.FORUMS -->{group.user.FORUMS}<!-- ELSE -->-<!-- ENDIF --></td>
 		<!-- ENDIF -->
 	</tr>
 <!-- BEGINELSE -->

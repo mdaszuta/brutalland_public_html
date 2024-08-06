@@ -51,7 +51,7 @@
 					</div>
 				</dt>
 				</div>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="f[{forumrow.FORUM_ID}]" id="f{forumrow.FORUM_ID}" /></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="f[{forumrow.FORUM_ID}]" id="f{forumrow.FORUM_ID}" /></dd>
 				<dd class="lastpost"<!-- IF forumrow.LAST_POST_TIME --> onclick="window.location.href='{forumrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}"<!-- ENDIF -->>
 					<!-- IF forumrow.LAST_POST_TIME -->
 						<dfn>{L_LAST_POST}</dfn>
@@ -143,7 +143,7 @@
 					</div>
 				</dt>
 				</div>
-				<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>
 				<dd class="lastpost" onclick="window.location.href='{topicrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
 					<span>
 						<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>

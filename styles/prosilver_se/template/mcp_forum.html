@@ -97,7 +97,7 @@
 				</div>
 				<!-- IF not S_MERGE_SELECT -->
 				<dd class="mark">
-					<!-- IF not topicrow.S_MOVED_TOPIC --><input onclick="event.cancelBubble=true" type="checkbox" name="topic_id_list[]" value="{topicrow.TOPIC_ID}"<!-- IF topicrow.S_TOPIC_CHECKED --> checked="checked"<!-- ENDIF --> /><!-- ELSE -->&nbsp;<!-- ENDIF -->
+					<!-- IF not topicrow.S_MOVED_TOPIC --><input onclick="event.stopPropagation()" type="checkbox" name="topic_id_list[]" value="{topicrow.TOPIC_ID}"<!-- IF topicrow.S_TOPIC_CHECKED --> checked="checked"<!-- ENDIF --> /><!-- ELSE -->&nbsp;<!-- ENDIF -->
 				</dd>
 				<!-- ENDIF -->
 				<dd class="lastpost">

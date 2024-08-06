@@ -92,7 +92,7 @@
 						</div>
 					</dt>
 					<!-- IF S_UNREAD --><dd class="info"><!-- IF messagerow.FOLDER --><a href="{messagerow.U_FOLDER}">{messagerow.FOLDER}</a><!-- ELSE -->{L_UNKNOWN_FOLDER}<!-- ENDIF --></dd><!-- ENDIF -->
-					<dd class="mark"><input onclick="event.cancelBubble=true" type="checkbox" name="marked_msg_id[]" value="{messagerow.MESSAGE_ID}" /></dd>
+					<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="marked_msg_id[]" value="{messagerow.MESSAGE_ID}" /></dd>
 				</dl>
 			</li>
 		<!-- END messagerow -->
