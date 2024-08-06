@@ -1102,7 +1102,15 @@ dd.lastpost > span {
 .postbody {
 	margin-top: 5px;
 }
-
+/*
+.post-buttons {
+    float: none;
+    position: absolute;
+    margin: 0;
+    right: 0;
+	top: 0;
+}
+*/
 .has-profile .post-buttons {
 	top: 0;
 }
@@ -1579,7 +1587,8 @@ table.table1 tbody td {
 }
 
 .message-box textarea#message.inputbox,
-.message-box textarea {
+.message-box textarea,
+#notepad {
 	padding: 8px;
     text-align: justify;
 }

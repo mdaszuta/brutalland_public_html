@@ -243,6 +243,7 @@ blockquote.uncited,
 blockquote blockquote.uncited,
 .codebox {
 	background-color: rgba(238, 0, 0, 0.1);
+	/* background-color: rgba(102, 102, 102, 0.2); */
 }
 
 blockquote blockquote,

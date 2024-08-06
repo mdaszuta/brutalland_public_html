@@ -19,8 +19,8 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'NOTES'				=> 'Notatki',
+	'NOTES'				=> 'Notatnik',
 	'NOTES_DESCRIPTION'	=> 'Twoje notatki:',
 	'SAVE_NOTES'		=> 'Zapisz',
-	'NOTES_SAVED'		=> 'Zapisano zmiany.<br /><br /> <a href="%s">Wróć do Notatek</a>',
+	'NOTES_SAVED'		=> 'Zapisano zmiany.<br /><br /> <a href="%s">Wróć do Notatnika</a>',
 ));

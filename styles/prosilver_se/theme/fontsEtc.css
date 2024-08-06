@@ -235,6 +235,10 @@ ul.topiclist dt:not(.ajaxshoutbox_user) {
 	font-size: 1.3em;
 }
 
+#notepad {
+	font-size: 1.32em;
+}
+
 .fa-search-user {
 	font-size: 1.66em;
 }
