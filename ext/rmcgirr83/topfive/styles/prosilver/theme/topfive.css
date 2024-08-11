@@ -1,10 +1,8 @@
 dd.tf-most-active {
-	font-size: 11pt;
-	line-height: 14pt;
-	margin-bottom: 1em;
-	font-family: "Lucida Grande", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	overflow: hidden;
-
+	font-size: 1.2em;
+	line-height: 1.2em;
+	text-align: left;
+	width: 185px;
 }
 
 .rtl dd.tf-most-active  {
@@ -38,10 +36,6 @@ dd.tf-active-header {
 	padding: 2px 0;
 }
 
-a.topictitle  { 
-	font-size: 1.3em;
-}
-
 #top_five li:first-child {
 	padding-top: 0;
 }
@@ -51,7 +45,7 @@ a.topictitle  {
 }
 
 #top_five .meta {
-//	display: block;
+	display: block;
 	padding-left: 8px;
 }
 

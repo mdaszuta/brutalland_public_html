@@ -1,0 +1,103 @@
+/* CHANGE POST TIME */
+
+#mcp_chgposttime {
+    margin-bottom: 25px;
+}
+
+/* PM BARS */
+
+.pmbars-outer {
+	width: auto;
+	padding: 0;
+	border: solid 1px #666;
+	margin: 8px 0 8px 0;
+}
+
+.pmbars-normal-bar {
+	background-color: #32D635;
+}
+
+.pmbars-danger-bar {
+	background-color: #b10000;
+}
+
+/* SCROLL TO UP DOWN */
+
+.nav-up, .nav-down {
+	background-color: transparent;
+	border: 1px solid transparent;
+	color: unset;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 1), -1px -1px 3px rgba(0, 0, 0, 1);
+	margin-bottom: 0;
+	border-radius: 50%;
+}
+
+.nav-down:hover, .nav-up:hover {
+	color: #32D635;
+    box-shadow: 0 5px 0.5em -1px #32D635;
+}
+
+/* QUICK LOGIN */
+
+#quick-login-panel {
+	width: 45em;
+}
+
+/* MENTION */
+
+.mention {
+	color: #257EDE;
+	font-weight: unset;
+}
+
+/* MENTION - jquery.atwho.min.css */
+
+.atwho-view {
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	border: none;
+	box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
+}
+
+.atwho-view .cur {
+	background-color: rgba(50, 214, 53, .2);
+	color: #32D635;
+}
+
+.atwho-view strong {
+	color: #32D635;
+}
+
+.atwho-view ul li {
+	border: none;
+}
+
+/* POST NUMBERS */
+
+p.post-number.post-number-phpbb32x {
+	margin-right: 3px;
+}
+
+/* COLLAPSE CATEGORIES */
+
+a.collapse-btn {
+	background: transparent;
+	border: 1px solid #666;
+	box-shadow: 1px 1px 1px black, inset 0 4px 9px rgba(100, 100, 100, .25);
+}
+
+a.collapse-btn:after,
+a.collapse-btn:before {
+	background: transparent;
+	border: 1px solid #666;
+}
+
+a.collapse-btn:hover,
+a.collapse-btn:hover:after,
+a.collapse-btn:hover:before {
+	background: transparent;
+}
+
+a.collapse-hide:before {
+    border: none;
+}

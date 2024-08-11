@@ -192,7 +192,7 @@ a.subforum.unread:hover,
 .posthilit,
 .inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#text_shoutbox):hover,
 .postprofile strong,
-dl.mini dt,
+dl.mini h3,
 .online .fa-circle,
 fieldset dl:hover dt label,
 .fbr:hover > .fbr-left label {
@@ -217,7 +217,6 @@ fieldset dl:hover dt label,
 .panel-container .panel li.header dd,
 .panel-container .panel li.header dt,
 table.table1 thead th,
-.mention,
 .button:focus,
 span.button:focus,
 a.button1:focus,
@@ -285,7 +284,11 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 .search-box input:focus::-webkit-input-placeholder, .pagination input:focus::-webkit-input-placeholder { /* Internet Explorer 10-11 */ color: #257EDE;}
 .search-box input:focus::-ms-input-placeholder, .pagination input:focus::-ms-input-placeholder { /* Microsoft Edge */ color: #257EDE;}
 
-/* COLORS */
+/* END COLORS */
+
+* {
+	outline: none !important;
+}
 
 /* BOX-SHADOWS */
 

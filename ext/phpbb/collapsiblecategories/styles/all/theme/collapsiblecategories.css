@@ -8,21 +8,25 @@
 /* Collapse button */
 a.collapse-btn {
 	margin: -20px 0 0 0;
-
-	border: 1px solid #666; /* Button border color */
+	background-color: #eef5f9; /* Button bg color */
+	border: 1px solid #2092E3; /* Button border color */
+	display: block;
 	position: relative;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	float: right;
-	box-shadow: 1px 1px 1px black, inset 0 4px 9px rgba(100, 100, 100, .25);
 }
 a.collapse-btn:after,
 a.collapse-btn:before {
-
-	border: 1px solid #666; /* Symbol bg color */
+	background: #eef5f9; /* Button bg color */
+	border: 1px solid #2092E3; /* Symbol bg color */
 	content: '';
 	position: absolute;
+}
+a.collapse-btn:hover,
+a.collapse-btn:hover:after,
+a.collapse-btn:hover:before {
+	background-color: #fff; /* Button hover color */
+	cursor: pointer;
 }
 .rtl a.collapse-btn { float: left; }
 

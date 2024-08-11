@@ -1558,6 +1558,10 @@ table.table1 tbody td {
 
 /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
 
+#quick-login-panel {
+	/* z-index: 1001 !important; */
+}
+
 #quick-login-panel fieldset dl {
 	margin-left: 2%;
 }

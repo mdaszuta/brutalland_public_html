@@ -8,46 +8,44 @@
 
 			<fieldset class="brutalform">
 				<div class="fbr">
-				
 					<div>
-					
+
 						<div class="brutalform-box">
 							<input type="text" tabindex="1" name="username" id="ql-username" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" />
 							<span class="brutalform-label">{L_USERNAME}</span>
 						</div>
-						
+
 						<div class="brutalform-box">
 							<input type="password" tabindex="2" id="ql-password" name="password" size="25" placeholder="{L_PASSWORD}" class="inputbox" />
 							<span class="brutalform-label">{L_PASSWORD}</span>
 						</div>
-						
+
 						{S_LOGIN_REDIRECT}
 						{S_HIDDEN_FIELDS}
-						
+
 						<!-- IF U_SEND_PASSWORD_EXT -->
 							<div class="brutalform-box">
 								<a href="{U_SEND_PASSWORD}" class="forgot-pass">{L_FORGOT_PASS}</a>
 							</div>
 						<!-- ENDIF -->
-		
+
 						<div class="brutalform-autologin submit-buttons">
 							<!-- IF S_AUTOLOGIN_ENABLED -->
 								<input type="checkbox" checked="checked" name="autologin" id="autologin" tabindex="3" title="{L_LOG_ME_IN}" />
 							<!-- ENDIF -->
 							<input type="submit" name="login" tabindex="4" value="{L_LOGIN}" class="button submit" />
 						</div>
-						
+
 						<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
 						<div class="brutalform-box submit-buttons">
 							<a href="{U_REGISTER}" tabindex="5" class="brutalform-go-to-register button submit">{L_REGISTER}</a>
 						</div>
 						<!-- ENDIF -->
-						
+
 					</div>
-					
 				</div>
 			</fieldset>
-			
+
 			{% for mode in loops.ql_oauth %}
 				{% if loop.first %}<hr /><p class="ql-oauth">{% endif %}
 					<a href="{{ mode.REDIRECT_URL }}">{{ mode.SERVICE_NAME }}</a>

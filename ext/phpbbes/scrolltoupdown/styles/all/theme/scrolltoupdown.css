@@ -3,10 +3,14 @@
 	position: fixed;
 	z-index: 9999;
 	right: 0%;
+	background: #4F4F4F;
+	border: 1px solid #ccc;
 	border-radius: 5px;
 	cursor: pointer;
+	color: #fff;
 	text-align: center;
 	font: normal normal 25px/25px sans-serif;
+	text-shadow: 0 1px 2px #000;
 	opacity: .5;
 	padding: 3px;
 	margin-bottom: 5px;

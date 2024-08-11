@@ -213,6 +213,10 @@ textarea,
 	/* font-size: x-small; */
 }
 
+.shoutboxlist .fa-remove {
+	font-size: 10px;
+}
+
 dl.details,
 .fbr-left-big dl,
 .brutalform .reset,

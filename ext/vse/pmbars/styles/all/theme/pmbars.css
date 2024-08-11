@@ -1,10 +1,10 @@
 .pmbars-outer {
-	//width: 100%;
+	width: 100%;
 	height: 14px;
-	//padding: 1px;
-	border: solid 1px #666;
+	padding: 1px;
+	border: solid 1px #A4B3BF;
 	border-radius: 3px;
-	margin: 8px 0 8px 0;
+	margin: -8px 0 8px 0;
 }
 
 .pmbars-inner {
@@ -17,11 +17,11 @@
 }
 
 .pmbars-normal-bar {
-	background-color: #32D635;
+	background-color: #32cd32;
 }
 
 .pmbars-danger-bar {
-	background-color: #b10000;
+	background-color: #f08080;
 }
 
 .rtl .pmbars-outer {

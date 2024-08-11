@@ -1,0 +1,40 @@
+/* Activity Buttons */
+@media (max-width:699px) {
+	.activitymenuhide {
+		display:block !important;
+		margin-bottom: 2px;
+		border-bottom: 2px solid #fff;
+		padding-bottom: 4px;
+		text-align: center;
+	}
+}
+
+.activitymenuhide{
+	display:none;
+}
+
+.activitymenu {
+	display: block;
+	float: right;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.activitybutton{
+	float: right;
+	margin-left: 3px;
+	height: 16px;
+	padding: 2px 6px;
+}
+
+@media (max-width:699px){
+	.activitybutton{
+		float: none !important;
+	}
+}
+
+/* Core Search clear right */
+.search-header {
+	clear: right;
+	margin-top: 8px!important;
+}

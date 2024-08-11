@@ -28,7 +28,7 @@ p.post-number.post-number-phpbb31x {
 }
 
 p.post-number.post-number-phpbb32x {
-	margin-right: 3px;
+	margin-right: 6px;
 }
 
 #mcp p.post-number-phpbb32x > a {
@@ -71,9 +71,13 @@ p.post-number.post-number-bold {
 }
 
 .tooltip-pointer:before {
+	border-right-color: #BBB;
+	border-width: 7px;
 	margin-top: -7px;
 }
 
 .tooltip-pointer:after {
+	border-right-color: #FFF;
+	border-width: 6px;
 	margin-top: -6px;
 }

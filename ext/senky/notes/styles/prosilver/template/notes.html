@@ -11,12 +11,11 @@ $(document).ready(function(){
 		<div class="content">
 
 			<form method="post" action="{U_SENKY_NOTES}">
+					<textarea rows="10" name="note" class="inputbox" id="notepad">{NOTE}</textarea>
 
-				<textarea id="notepad" name="note" class="inputbox" rows="10">{NOTE}</textarea>
-
-				<input type="hidden" name="snote" value="true" />
-				{S_FORM_TOKEN}
-				<input class="button" type="submit" value="{L_SAVE_NOTES}" />
+					<input type="hidden" name="snote" value="true" />
+					{S_FORM_TOKEN}
+					<input class="button" type="submit" value="{L_SAVE_NOTES}" />
 
 			</form>
 

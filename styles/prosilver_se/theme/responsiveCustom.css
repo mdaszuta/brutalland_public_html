@@ -476,12 +476,6 @@
 	.ajaxshoutbox_user_message .ajaxshoutbox_message {
 		flex-basis: 75%;
 	}
-	
-	.post-buttons #post-buttons-row-2 {
-		display: flex;
-		justify-content: flex-end;
-		/* width: 100%; */
-	}
 
 	.main-m-lewa-prawa {
 		flex-wrap: wrap;
@@ -509,4 +503,12 @@
 		padding-top: 0px;
 	}
 
+}
+
+@media not all and (hover: hover) and (pointer: fine) {
+	.post-buttons #post-buttons-row-2 {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+	}
 }
