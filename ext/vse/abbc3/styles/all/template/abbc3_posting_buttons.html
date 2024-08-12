@@ -187,7 +187,7 @@ function bbspecial(bbcode, bbcodeId) {
 		</div>
 
 		<a class="fa fa-code" accesskey="c" name="addbbcode8" value=" " onclick="bbstyle(8)" title="{{ lang('BBCODE_C_HELP') }}"></a>
-		
+
 		<div id="list-box" class="rozwijany-box menu-toggle">
 			<div id="list-box-devil" class="rozwijany-box-devil menu-devil">
 				<a class="fa fa-list-ul"></a>
@@ -202,14 +202,14 @@ function bbspecial(bbcode, bbcodeId) {
 			<div id="color-palette-devil" class="rozwijany-box-devil menu-devil">
 				<input type="button" class="abbc3_button" name="abbc3_bbpalette" value=" " style="background-image:url('{{ ABBC3_ICONS }}/fontcolor.gif');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}" />
 			</div>
-			
+
 			<div id="color-palette-all" class="rozwijany-box-all menu-all">
 				<div id="color_palette_placeholder" class="color_palette_placeholder" data-orientation="h" data-height="12" data-width="15" data-bbcode="true">
 				</div>
 			</div>
-		
+
 		</div>
-		
+
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 			<option value="50">{{ lang('FONT_TINY') }}</option>
 			<option value="85">{{ lang('FONT_SMALL') }}</option>
@@ -272,7 +272,7 @@ function bbspecial(bbcode, bbcodeId) {
 				{% endif %}
 			{% endfor %}
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_append %}
-			
+
 			<!-- EVENT posting_editor_smilies_before -->
 			<!-- IF S_SMILIES_ALLOWED and .smiley -->
 			<div id="smiley-box" class="smiley-box rozwijany-box menu-toggle">

@@ -29,7 +29,7 @@
 .hidebox_visible { color: #2f4f2f }
 
 /* [spoil] spoiler BBCode */
-/*.spoilbtn:hover { color: #d31141 !important; }*/
+.spoilbtn:hover { color: #d31141 !important; }
 
 /* [fade] fade text in/out effect */
 .fadeEffect {
@@ -54,26 +54,46 @@
 #custom-bbcode-buttons { display: none }
 
 /* ABBC3 BBCode buttons */
-#abbc3_buttons { margin: 0 0 15px 0 }
-
-#abbc3_buttons .fa,
-.abbc3_button,
-.smiley-box,
+#abbc3_buttons { margin: 15px 0 2px 0 }
+#abbc3_buttons input { vertical-align: middle }
 #abbc3_buttons select {
-	min-width: 30px;
-	border: 1px solid transparent;
-	text-align: center;
+	vertical-align: middle;
+	margin: 4px;
+	padding: 0;
+	height: 22px;
+	background-color: #fff !important;
+	border: 1px solid #b4bac0;
+	color: #000 !important;
 }
 .abbc3_button {
+	margin: 4px 0;
 	padding: 0;
-	background: center no-repeat;
+	min-width: 22px;
+	height: 22px;
+	background: transparent no-repeat center;
+	border: 1px solid transparent;
+	font-size: 11px;
+}
+.abbc3_button:hover {
+	background-color: #ffffdf;
+	border: 1px solid #bc2a4d;
+	cursor: pointer;
 }
 .abbc3_buttons_row {
-    display: flex;
-	flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+	margin: 0 !important;
+	min-height: 30px;
+	width: 80%;
+	padding: 0 2px;
+	border: 1px solid #b4bac0;
+	display: block;
+	background: transparent url('./images/abbc3_bg.gif');
 }
+/* tweaks for subsilver styles */
+form td .abbc3_buttons_row { width: 98% }
+/* tweaks for ACP bbcode editor */
+#main #abbc3_buttons { margin-left: 96px }
+#main #abbc3_buttons .abbc3_buttons_row { width: 95% }
+
 /* BBCode wizard */
 #bbcode_wizard {
 	font-size: 0.9em;

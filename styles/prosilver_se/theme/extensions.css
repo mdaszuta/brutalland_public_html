@@ -101,3 +101,51 @@ a.collapse-btn:hover:before {
 a.collapse-hide:before {
     border: none;
 }
+
+/* ABBC3 */
+
+.spoilbtn:hover {
+	color: #32D635 !important;
+}
+
+#abbc3_buttons {
+	margin: 0 0 15px 0;
+}
+
+/* custom */
+#abbc3_buttons .fa,
+.abbc3_button,
+.smiley-box,
+#abbc3_buttons select {
+	min-width: 30px;
+	border: 1px solid transparent;
+	text-align: center;
+}
+
+#abbc3_buttons select {
+	margin: 0;
+	background-color: transparent !important;
+	color: rgb(102, 102, 102) !important;
+}
+
+.abbc3_button {
+	margin: 0;
+	background: center no-repeat;
+}
+
+.abbc3_button:hover {
+	background-color: transparent;
+	border: 1px solid transparent;
+}
+
+/* custom */
+.abbc3_buttons_row {
+	width: 100%;
+	padding: 0;
+	border: none;
+	background-image: none;
+    display: flex;
+	flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
