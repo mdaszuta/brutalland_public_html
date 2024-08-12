@@ -944,6 +944,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_M_SHOW'		=> 'Skład ▼',
 	'ABBC3_M_HIDE'		=> 'Skład ▲',
 
+	// RH Topic Tags
+	'RH_TOPICTAGS_TAG'			=> 'Tag',
+
 	/**
 	* END OF ADDED LANGUAGE
 	*/

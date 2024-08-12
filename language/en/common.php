@@ -922,6 +922,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_M_SHOW'		=> 'Lineup ▼',
 	'ABBC3_M_HIDE'		=> 'Lineup ▲',
 
+	// RH Topic Tags
+	'RH_TOPICTAGS_TAG'			=> 'Tag',
+
 	/**
 	* END OF ADDED LANGUAGE
 	*/
