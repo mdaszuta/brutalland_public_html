@@ -116,6 +116,11 @@ li.header dd {
 	/*padding-left: 0;*/
 }
 
+dl.row-item {
+	background-position: 5px 50%;
+	background-size: 32px;
+}
+
 dl.row-item dt .pagination a {
 	display: block;
 }
