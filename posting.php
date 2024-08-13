@@ -1468,15 +1468,6 @@ if ($submit || $preview || $refresh)
 			if ((!$auth->acl_get('f_noapprove', $data['forum_id']) && empty($data['force_approved_state'])) || (isset($data['force_approved_state']) && !$data['force_approved_state']))
 			{
 				meta_refresh(10, $redirect_url);
-				//-- mod : Instant Post Redirect ------------------------------------------------------------
-				//-- add
-				// ipr_p
-				if (($pos = strrpos($redirect_url, '#')) !== false)
-				{
-					$redirect_url = substr_replace($redirect_url, "&amp;ipr_p={$data['post_id']}", $pos);
-				}
-				redirect($redirect_url);
-				//-- fin mod : Instant Post Redirect --------------------------------------------------------
 				$message = ($mode == 'edit') ? $user->lang['POST_EDITED_MOD'] : $user->lang['POST_STORED_MOD'];
 				$message .= (($user->data['user_id'] == ANONYMOUS) ? '' : ' '. $user->lang['POST_APPROVAL_NOTIFY']);
 				$message .= '<br /><br />' . sprintf($user->lang['RETURN_FORUM'], '<a href="' . append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $data['forum_id']) . '">', '</a>');

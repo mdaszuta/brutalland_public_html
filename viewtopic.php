@@ -1163,12 +1163,6 @@ if (!sizeof($post_list))
 	else
 	{
 		trigger_error('NO_TOPIC');
-		// ipr_p (instant post redirect)
-		if (isset($_GET['ipr_p']))
-		{
-			$ipr_p = request_var('ipr_p', 0);
-			redirect("{$phpbb_root_path}viewtopic.$phpEx?p=$ipr_p#p$ipr_p");
-		}
 	}
 }
 

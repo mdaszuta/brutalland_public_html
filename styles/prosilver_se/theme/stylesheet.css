@@ -1098,7 +1098,7 @@ dd.lastpost > span {
 
 *::selection {
 	color: #32D635;
-	background: #999;
+	background: #444;
 }
 
 .postbody {
@@ -2093,6 +2093,15 @@ div.content,
 	//-webkit-box-sizing: border-box;
 	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+.content,
+.signature,
+.message-box textarea,
+#notepad,
+.fbr,
+.panel p {
+	line-height: 1.618;
 }
 
 div#postingbox.panel {

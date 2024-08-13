@@ -184,6 +184,13 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .brutalform-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
+/*
+@font-face {
+    font-family: "Palatino Numbers";
+	src: local("Book Antiqua");
+    unicode-range: U+21-40;
+}
+*/
 
 #ToTop,
 #OnBottom {

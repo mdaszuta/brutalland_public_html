@@ -180,90 +180,7 @@ $result = $db->sql_query($db->sql_build_query('SELECT', $sql_ary));
 
 $prev_id = $prev_ip = $user_list = array();
 $logged_visible_online = $logged_hidden_online = $counter = 0;
-// BEGIN: Topic in "Who is online"
-$topic_ids = $post_ids = $topic_post_ids = $topic_titles = array();
-while ($row = $db->sql_fetchrow($result))
-{
-	if ($row['user_id'] != ANONYMOUS && !isset($prev_id[$row['user_id']]))
-	{
-		$view_online = false;
-		if (!$row['session_viewonline'])
-		{
-			$view_online = ($auth->acl_get('u_viewonline')) ? true : false;
-		}
-		else
-		{
-			$view_online = true;
-		}
 
-		$prev_id[$row['user_id']] = 1;
-
-		if (!$view_online)
-		{
-			continue;
-		}
-	}
-	else if ($show_guests && $row['user_id'] == ANONYMOUS && !isset($prev_ip[$row['session_ip']]))
-	{
-		$prev_ip[$row['session_ip']] = 1;
-	}
-	else
-	{
-		continue;
-	}
-
-	preg_match('#^([a-z/]+)#i', $row['session_page'], $on_page);
-	if (!sizeof($on_page))
-	{
-		$on_page[1] = '';
-	}
-	if (!in_array($on_page[1], array('viewtopic', 'posting')))
-	{
-		continue;
-	}
-
-	preg_match('#t=([0-9]+)#', $row['session_page'], $on_page);
-	if (sizeof($on_page))
-	{
-		$topic_ids[] = $on_page[1];
-		continue;
-	}
-
-	preg_match('#p=([0-9]+)#', $row['session_page'], $on_page);
-	if (sizeof($on_page))
-	{
-		$post_ids[] = $on_page[1];
-		continue;
-	}
-}
-
-unset($prev_id, $prev_ip);
-
-if (sizeof($topic_ids) || sizeof($post_ids))
-{
-	if (sizeof($post_ids))
-	{
-		$sql = 'SELECT topic_id, post_id FROM ' . POSTS_TABLE . ' WHERE ' . $db->sql_in_set('post_id', $post_ids);
-		$post_result = $db->sql_query($sql);
-		while ($row = $db->sql_fetchrow($post_result))
-		{
-			$topic_post_ids[$row['post_id']] = $row['topic_id'];
-			$topic_ids[] = $row['topic_id'];
-		}
-		$db->sql_freeresult($post_result);
-	}
-
-	$sql = 'SELECT topic_id, topic_title FROM ' . TOPICS_TABLE . ' WHERE ' . $db->sql_in_set('topic_id', array_unique($topic_ids));
-	$topic_result = $db->sql_query($sql);
-	while ($row = $db->sql_fetchrow($topic_result))
-	{
-		$topic_titles[$row['topic_id']] = $row['topic_title'];
-	}
-	$db->sql_freeresult($topic_result);
-}
-
-$db->sql_rowseek(0, $result);
-// END: Topic in "Who is online"
 /** @var \phpbb\controller\helper $controller_helper */
 $controller_helper = $phpbb_container->get('controller.helper');
 
@@ -364,24 +281,7 @@ while ($row = $db->sql_fetchrow($result))
 						{
 							case 'reply':
 							case 'quote':
-								// BEGIN: Topic in "Who is online"
-								preg_match('#t=([0-9]+)#', $row['session_page'], $on_page);
-								preg_match('#p=([0-9]+)#', $row['session_page'], $on_page_p);
-								if (sizeof($on_page) && isset($topic_titles[$on_page[1]]))
-								{
-									$location = sprintf($user->lang['REPLYING_MESSAGE_TOPIC'], $forum_data[$forum_id]['forum_name'], $topic_titles[$on_page[1]]);
-									$location_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t=' . $on_page[1]);
-								}
-								else if (sizeof($on_page_p) && isset($topic_post_ids[$on_page_p[1]]))
-								{
-									$location = sprintf($user->lang['REPLYING_MESSAGE_TOPIC'], $forum_data[$forum_id]['forum_name'], $topic_titles[$topic_post_ids[$on_page[1]]]);
-									$location_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;p=' . $on_page_p[1]);
-								}
-								else
-								{
-									$location = sprintf($user->lang['REPLYING_MESSAGE'], $forum_data[$forum_id]['forum_name']);
-								}
-								// END: Topic in "Who is online"
+								$location = sprintf($user->lang['REPLYING_MESSAGE'], $forum_data[$forum_id]['forum_name']);
 							break;
 
 							default:
@@ -391,24 +291,7 @@ while ($row = $db->sql_fetchrow($result))
 					break;
 
 					case 'viewtopic':
-						// BEGIN: Topic in "Who is online"
-						preg_match('#t=([0-9]+)#', $row['session_page'], $on_page);
-						preg_match('#p=([0-9]+)#', $row['session_page'], $on_page_p);
-						if (sizeof($on_page) && isset($topic_titles[$on_page[1]]))
-						{
-							$location = sprintf($user->lang['READING_TOPIC_FORUM'], $forum_data[$forum_id]['forum_name'], $topic_titles[$on_page[1]]);
-							$location_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t=' . $on_page[1]);
-						}
-						else if (sizeof($on_page_p) && isset($topic_post_ids[$on_page_p[1]]))
-						{
-							$location = sprintf($user->lang['READING_TOPIC_FORUM'], $forum_data[$forum_id]['forum_name'], $topic_titles[$topic_post_ids[$on_page_p[1]]]);
-							$location_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;p=' . $on_page_p[1]);
-						}
-						else
-						{
-							$location = sprintf($user->lang['READING_TOPIC'], $forum_data[$forum_id]['forum_name']);
-						}
-						// END: Topic in "Who is online"
+						$location = sprintf($user->lang['READING_TOPIC'], $forum_data[$forum_id]['forum_name']);
 					break;
 
 					case 'viewforum':
