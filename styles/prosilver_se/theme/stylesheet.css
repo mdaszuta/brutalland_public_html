@@ -116,7 +116,11 @@ li.header dd {
 	/*padding-left: 0;*/
 }
 
-dl.row-item {
+dl.row-item dt, dl.row-item dd {
+    min-height: 41px;
+}
+
+dl.row-item:not(.forum_read, .forum_unread, .forum_read_subforum, .forum_unread_subforum) {
 	background-position: 5px 50%;
 	background-size: 32px;
 }
