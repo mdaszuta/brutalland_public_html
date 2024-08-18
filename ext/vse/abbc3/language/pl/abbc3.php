@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'To forum wymaga zarejestrowania i zalogowania się, aby zobaczyć ukrytą zawartość.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Pokaż Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Ukryj Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> '► Pokaż',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Ukryj',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
@@ -82,13 +82,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_TABLES'			=> 'Utwórz tabele',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Utwórz tabele wykorzystując dowolny z poniższych formatów w stylu ASCII.',
 	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_SIMPLE'			=> 'Prosta tabela',
+	'ABBC3_PIPE_COMPACT'		=> 'Kompaktowa tabela',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Zewnętrzne pionowe linie i spacje wokół nich nie są niezbędne.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Wyrównanie tekstu',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",

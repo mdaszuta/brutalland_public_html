@@ -34,6 +34,6 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	'SHOW_QR'				=> 'Display quick reply',
-	'HIDE_QR'				=> 'Hide quick reply',
+	'SHOW_QR'				=> 'reply',
+	'HIDE_QR'				=> 'hide',
 ));

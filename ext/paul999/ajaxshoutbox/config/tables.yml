@@ -1,2 +1,2 @@
 parameters:
-    paul999.ajaxshoutbox.tables.ajaxshoutbox: %core.table_prefix%ajax_shoutbox
+    paul999.ajaxshoutbox.tables.ajaxshoutbox: '%core.table_prefix%ajax_shoutbox'

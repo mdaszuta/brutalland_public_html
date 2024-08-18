@@ -207,6 +207,8 @@ class topfive
 
 			$post_unread = (isset($topic_tracking_info[$forum_id][$topic_id]) && $row['topic_last_post_time'] > $topic_tracking_info[$forum_id][$topic_id]) ? true : false;
 			$view_topic_url = append_sid("{$this->root_path}viewtopic.$this->php_ext", 'f=' . $row['forum_id'] . '&amp;p=' . $row['topic_last_post_id'] . '#p' . $row['topic_last_post_id']);
+			$view_topic_url_unread = append_sid("{$this->root_path}viewtopic.$this->php_ext", 't=' . $row['topic_id'] . '&amp;view=unread#unread');
+			$view_topic_url_first = append_sid("{$this->root_path}viewtopic.$this->php_ext", 't=' . $row['topic_id']);
 			$forum_name_url = append_sid("{$this->root_path}viewforum.$this->php_ext", 'f=' . $row['forum_id']);
 			$topic_title = censor_text($row['topic_title']);
 			$topic_title = truncate_string($topic_title, 60, 255, false, $this->language->lang('ELLIPSIS'));
@@ -229,9 +231,11 @@ class topfive
 			}
 			$tpl_ary = [
 				'U_TOPIC'			=> $view_topic_url,
+				'U_TOPIC_UNREAD'	=> $view_topic_url_unread,
+				'U_TOPIC_FIRST'		=> $view_topic_url_first,
 				'U_FORUM'			=> $forum_name_url,
 				'S_UNREAD'			=> ($post_unread) ? true : false,
-				'USERNAME_FULL'		=> ($is_guest || !$this->auth->acl_get('u_viewprofile')) ? $this->language->lang('BY') . $user_avatar . get_username_string('no_profile', $row['user_id'], $row['username'], $row['user_colour'], $row['topic_last_poster_name']) : $this->language->lang('BY') . $user_avatar . get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+				'USERNAME_FULL'		=> ($is_guest || !$this->auth->acl_get('u_viewprofile')) ? $user_avatar . get_username_string('no_profile', $row['user_id'], $row['username'], $row['user_colour'], $row['topic_last_poster_name']) : $user_avatar . get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
 				'LAST_TOPIC_TIME'	=> $last_topic_time,
 				'TOPIC_TITLE' 		=> $topic_title,
 				'FORUM_NAME'		=> $forum_name,

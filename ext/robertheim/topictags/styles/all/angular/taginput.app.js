@@ -37,7 +37,7 @@ angular.module('rhTopicTagsInputApp', ['ngTagsInput'])
 		}
 		$scope.loadTags = function(query) {
 			var data = {
-				'query': query,
+				'query': query.toLowerCase(),
 				'exclude' : $scope.tags.map(function(tag) {
 					return tag.text;
 				})
@@ -69,3 +69,27 @@ angular.module('rhTopicTagsInputApp', ['ngTagsInput'])
 			$scope.jsonRep = utf8_to_b64(JSON.stringify(t));
 		}, true);
 	});
+
+angular.module('rhTopicTagsInputApp2',['ngTagsInput'])
+	.config(function($interpolateProvider,$httpProvider) {
+		$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+	})
+	.controller('rhTopicTagsInputCtrl2', function($scope,$http) {
+		$scope.tags = [];
+		$scope.loadTags = function(query) {
+			var data = {
+				'query': query.toLowerCase(),
+				'exclude' : $scope.tags.map(function(tag) {
+					return tag.text;
+				})
+			};
+			return $http.post('/tags/suggest', data);
+		};
+		$scope.jsonRep2 = '';
+		$scope.$watch('tags', function(t) {
+			t = JSON.stringify(t);
+			$scope.jsonRep2 = t.replace(/{"text":"/g,'').replace(/"}/g,'');
+		}, true);
+	});
+

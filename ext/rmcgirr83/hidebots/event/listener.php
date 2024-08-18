@@ -82,8 +82,8 @@ class listener implements EventSubscriberInterface
 		// only run for non admins
 		// most of code from phpBB Extension - tas2580 Hide Bots
 		//* @copyright (c) 2015 tas2580 (https://tas2580.net)
-		if (!$this->auth->acl_get('a_'))
-		{
+		//if (!$this->auth->acl_get('a_'))
+		//{
 			$online_users = $event['online_users'];
 			$user_online_link = $event['user_online_link'];
 			foreach ($event['rowset'] as $row)
@@ -127,7 +127,7 @@ class listener implements EventSubscriberInterface
 			}
 			$event['l_online_users'] = $l_online_users;
 			$event['online_userlist'] = $online_userlist;
-		}
+		//}
 	}
 
 	public function change_sql_array ($event)

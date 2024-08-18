@@ -77,7 +77,7 @@ class listener implements EventSubscriberInterface
 
 		return [
 			'core.acp_extensions_run_action_after'	=> 'acp_extensions_run_action_after',
-			'core.index_modify_page_title'	=> 'index_page',
+			'core.user_setup_after'	=> 'index_page',
 			'core.page_header' => 'entire_forum',
 		];
 	}
@@ -115,8 +115,8 @@ class listener implements EventSubscriberInterface
 		// add lang file
 		$this->language->add_lang('topfive', 'rmcgirr83/topfive');
 
-		$this->topfive->topposters();
-		$this->topfive->newusers();
+		//$this->topfive->topposters();
+		//$this->topfive->newusers();
 		$this->topfive->toptopics();
 
 		if ($this->operator !== null)
@@ -125,6 +125,11 @@ class listener implements EventSubscriberInterface
 			$this->template->assign_vars([
 				'S_TOPFIVE_HIDDEN' => $this->operator->is_collapsed($fid),
 				'U_TOPFIVE_COLLAPSE_URL' => $this->operator->get_collapsible_link($fid),
+			]);
+			$asid = 'ajax_shoutbox';
+			$this->template->assign_vars([
+				'S_AJAX_SHOUTBOX_HIDDEN' => $this->operator->is_collapsed($asid),
+				'U_AJAX_SHOUTBOX_COLLAPSE_URL' => $this->operator->get_collapsible_link($asid),
 			]);
 		}
 		$this->template->assign_vars([

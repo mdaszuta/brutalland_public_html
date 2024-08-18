@@ -18,7 +18,7 @@ phpbb.addAjaxCallback('quickedit_post', function(res) {
 		var $post = $('#p' + res.POST_ID);
 
 		$post.find('.content').hide();
-		$(res.MESSAGE).insertAfter($post.find('.author'));
+		$(res.MESSAGE).insertAfter($post.find('.author').not('.post-number'));
 
 		// Now we can initialize this variable
 		var $quickeditBox = $(quickeditBoxId);
@@ -105,6 +105,11 @@ phpbb.QuickeditAjaxifyEditButtons = function(elements) {
 	});
 
 	editButtons.each(function() {
+
+		//if( (elements.find('.firstpostintopic')[0] != undefined) ) {console.log(elements.find('.firstpostintopic')[0]);}
+		/* Ponizszy if sprawdza, czy to nie pierwszy post na stronie. Jesli tak, czy nie jest to pierwsza strona. Tego jednego nie pozwala quickeditowac */
+		if( ( ('#' + this.id) != elements.find('.first a')[0].hash ) || ( elements.find('.firstpostintopic')[0] == undefined ) ) {
+
 		var $this = $('#' + this.id + " a[href*='mode=edit']"),
 			fn;
 
@@ -129,6 +134,8 @@ phpbb.QuickeditAjaxifyEditButtons = function(elements) {
 			}
 			$trigger.click();
 		});
+
+		}
 	});
 };
 

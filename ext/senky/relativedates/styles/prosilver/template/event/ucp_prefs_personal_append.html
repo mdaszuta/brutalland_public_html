@@ -1,14 +1,14 @@
-<dl>
-	<dt><label for="relativedates0">{L_RELATIVE_DATES}{L_COLON}</label></dt>
-	<dd>
+<div class="fbr">
+	<div class="fbr-left"><label for="relativedates0">{L_RELATIVE_DATES}</label></div>
+	<div class="fbr-right fb-s">
 		<label for="relativedates1"><input type="radio" name="relativedates" id="relativedates1" value="1"<!-- IF S_RELATIVEDATES --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
 		<label for="relativedates0"><input type="radio" name="relativedates" id="relativedates0" value="0"<!-- IF not S_RELATIVEDATES --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
-	</dd>
-</dl>
+	</div>
+</div>
 
-<dl>
-	<dt><label for="relativedates_number">{L_RELATIVE_DATES_MAX}{L_COLON}</label><br><span>{{ lang('RELATIVE_DATES_MAX_DESC') }}</span></dt>
-	<dd>
+<div class="fbr">
+	<div class="fbr-left"><label for="relativedates_number">{L_RELATIVE_DATES_MAX}</label><span>{{ lang('RELATIVE_DATES_MAX_DESC') }}</span></div>
+	<div class="fbr-right">
 		<label for="relativedates_number">
 			<input class="input narrow" type="number" name="relativedates_number" id="relativedates_number" value="{{ RELATIVEDATES_NUMBER }}" />
 			<select name="relativedates_multiplier">
@@ -18,5 +18,5 @@
 				<option value="31536000"{% if RELATIVEDATES_MULTIPLIER == 31536000 %} selected{% endif %}>{{ lang('R_YEARS') }}</option>
 			</select>
 		</label>
-	</dd>
-</dl>
+	</div>
+</div>

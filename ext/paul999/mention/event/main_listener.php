@@ -165,7 +165,7 @@ class main_listener implements EventSubscriberInterface
 		if ($s_quick_reply)
 		{
 			$this->template->assign_vars([
-				'UA_AJAX_MENTION_URL'    => $this->helper->route('paul999_mention_controller'),
+				'U_AJAX_MENTION_URL'    => $this->helper->route('paul999_mention_controller'),
 			]);
 		}
 	}
