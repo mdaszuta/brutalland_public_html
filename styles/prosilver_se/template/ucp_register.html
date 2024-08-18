@@ -1,0 +1,160 @@
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+	/**
+	* Change language
+	*/
+	function change_language(lang_iso)
+	{
+		document.cookie = '{COOKIE_NAME}_lang=' + lang_iso + '; path={COOKIE_PATH}';
+		document.forms['register'].change_lang.value = lang_iso;
+		document.forms['register'].submit.click();
+	}
+// ]]>
+</script>
+
+<form id="register" class="brutalform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<div class="panel">
+	<div class="inner">
+
+
+	<fieldset class="fields2">
+	<!-- EVENT ucp_register_credentials_before -->
+	<div class="fbr">
+		<div class="fbr-left">
+			<div class="brutalform-box">
+				<input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" />
+				<span class="brutalform-label">{L_USERNAME}</span>
+				<span class="brutalform-explanation">{L_USERNAME_EXPLAIN}</span>
+			</div>
+			<div class="brutalform-box">
+				<input type="password" tabindex="2" name="new_password" id="new_password" size="25" value="{PASSWORD}" placeholder="{L_PASSWORD}" class="inputbox" autocomplete="off" />
+				<span class="brutalform-label">{L_PASSWORD}</span>
+				<span class="brutalform-explanation">{L_PASSWORD_EXPLAIN}</span>
+			</div>
+			<div class="brutalform-box">
+				<input type="password" tabindex="3" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" placeholder="{L_CONFIRM_PASSWORD}" class="inputbox" autocomplete="off" />
+				<span class="brutalform-label">{L_CONFIRM_PASSWORD}</span>
+			</div>
+		</div>
+		<div class="fbr-right" id="fbr-register-email">
+			<div class="brutalform-box">
+				<input type="email" tabindex="4" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" placeholder="{L_EMAIL_ADDRESS}" class="inputbox" autocomplete="off" />
+				<span class="brutalform-label">{L_EMAIL_ADDRESS}</span>
+			</div>
+			<div class="brutalform-box">
+				<!-- IF ERROR --><div class="error">{ERROR}</div><!-- ENDIF -->
+				<!-- IF L_REG_COND --><strong>{L_REG_COND}</strong><!-- ENDIF -->
+			</div>
+		</div>
+	</div>
+
+	<!-- EVENT ucp_register_credentials_after -->
+
+	<!-- EVENT ucp_register_options_before -->
+
+
+	<!-- EVENT ucp_register_profile_fields_before -->
+	<!-- IF .profile_fields -->
+		<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
+
+	<!-- BEGIN profile_fields -->
+		<dl>
+			<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}{L_COLON}<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
+			<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF -->
+			<!-- IF profile_fields.ERROR --><br /><span class="error">{profile_fields.ERROR}</span><!-- ENDIF --></dt>
+			<dd>{profile_fields.FIELD}</dd>
+		</dl>
+	<!-- END profile_fields -->
+	<!-- ENDIF -->
+
+	<!-- EVENT ucp_register_profile_fields_after -->
+	</fieldset>
+	</div>
+</div>
+<!-- IF CAPTCHA_TEMPLATE -->
+	<!-- DEFINE $CAPTCHA_TAB_INDEX = 5 -->
+	<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+<!-- ENDIF -->
+
+<!-- IF S_COPPA -->
+<div class="panel">
+	<div class="inner">
+
+	<h4>{L_COPPA_COMPLIANCE}</h4>
+
+	<p class="fbr-m-info">{L_COPPA_EXPLAIN}</p>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<!-- EVENT ucp_register_buttons_before -->
+
+<div class="panel">
+	<div class="inner">
+
+		<div class="fbr">
+			<div class="fbr-left"></div>
+			<div class="fbr-right">
+				<fieldset class="submit-buttons">
+				{S_HIDDEN_FIELDS}
+				<input type="submit" tabindex="6" name="submit" id="submit" value="{L_REGISTER}" class="button submit default-submit-action" />
+				<input type="reset" tabindex="7" value="{L_RESET}" name="reset" class="button2 reset" />
+				{S_FORM_TOKEN}
+				</fieldset>
+			</div>
+		</div>
+
+		<div class="fbr" id="brutalform-lang-timezone">
+
+			<div class="fbr-left">
+				<fieldset class="fields2">
+					<div class="brutalform-box">
+						<select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select>
+						<span class="brutalform-label">{L_LANGUAGE}</span>
+					</div>
+
+					<div class="brutalform-box">
+						<div class="brutalform-timezone-select">
+						<!-- IF .timezone_date -->
+						<div id="tz_select_date" style="display: none;">
+							<select name="tz_date" id="tz_date" class="autowidth tz_select">
+								<option value="">{L_SELECT_CURRENT_TIME}</option>
+								<!-- BEGIN timezone_date -->
+									<option value="{timezone_date.VALUE}"<!-- IF timezone_date.SELECTED --> selected="selected"<!-- ENDIF -->>{timezone_date.TITLE}</option>
+								<!-- END timezone_date -->
+							</select>
+							<input type="button" id="tz_select_date_suggest" class="button2" style="display: none;" timezone-preselect="<!-- IF S_TZ_PRESELECT -->true<!-- ELSE -->false<!-- ENDIF -->" data-l-suggestion="{L_TIMEZONE_DATE_SUGGESTION}" value="{L_TIMEZONE_DATE_SUGGESTION}" />
+						</div>
+						<!-- ENDIF -->
+						<div>
+							<select name="tz" id="timezone" class="autowidth tz_select timezone">
+								<option value="">{L_SELECT_TIMEZONE}</option>
+								<!-- BEGIN timezone_select -->
+								<optgroup label="{timezone_select.LABEL}" data-tz-value="{timezone_select.VALUE}">
+									<!-- BEGIN timezone_options -->
+									<option title="{timezone_select.timezone_options.TITLE}" value="{timezone_select.timezone_options.VALUE}"<!-- IF timezone_select.timezone_options.SELECTED --> selected="selected"<!-- ENDIF -->>{timezone_select.timezone_options.LABEL}</option>
+									<!-- END timezone_options -->
+								</optgroup>
+								<!-- END timezone_select -->
+							</select>
+
+							<!-- INCLUDEJS timezone.js -->
+						</div>
+						</div>
+						<span class="brutalform-label">{L_BOARD_TIMEZONE}</span>
+					</div>
+				</fieldset>
+			</div>
+
+			<div class="fbr-right"></div>
+
+		</div>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,86 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="postform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+
+<div class="panel">
+	<div class="inner">
+
+	<p class="fbr-m-info">{L_DRAFTS_EXPLAIN}</p>
+
+<!-- IF S_EDIT_DRAFT -->
+
+		<!-- INCLUDE posting_editor.html -->
+		</div>
+	</div>
+
+		<fieldset class="submit-buttons flex-box-form">
+			<div class="flex-box-o">
+				{S_HIDDEN_FIELDS}
+				<div class="flex-box"><input type="submit" name="submit" value="{L_SAVE}" class="button" /></div>
+				<div class="flex-box fb-c"><input type="reset" value="{L_RESET}" name="reset" class="button2" /></div>
+			</div>
+			{S_FORM_TOKEN}
+		</fieldset>
+
+<!-- ELSE -->
+
+	<!-- IF .draftrow -->
+		<ul class="topiclist missing-column">
+			<li class="header">
+				<dl class="flex-2centered">
+					<dt><div class="list-inner">{L_DRAFT_TITLE}</div></dt>
+					<dd class="mark">{L_MARK}</dd>
+					<dd class="info"></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist cplist missing-column">
+
+		<!-- BEGIN draftrow -->
+			<li class="row<!-- IF draftrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{draftrow.U_VIEW_EDIT}'">
+				<dl class="flex-2centered">
+					<dt>
+						<div class="list-inner">
+							<a class="topictitle" href="{draftrow.U_VIEW_EDIT}" title="{L_VIEW_EDIT}">{draftrow.DRAFT_SUBJECT}</a>
+							<br />{CURRENT_USERNAME_SIMPLE} {draftrow.DATE}
+							<!-- IF draftrow.S_LINK_TOPIC --><a href="{draftrow.U_VIEW}" class="topic-forumtitle" title="{L_VIEW_TOPIC}">{draftrow.TITLE}</a>
+							<!-- ELSEIF draftrow.S_LINK_FORUM --><a href="{draftrow.U_VIEW}" class="topic-forumtitle" title="{L_JUMP_TO} {L_FORUM_SMALL}">{draftrow.TITLE}</a>
+							<!-- ELSEIF S_PRIVMSGS -->
+							<!-- ELSE -->{L_NO_TOPIC_FORUM}<!-- ENDIF -->
+							<div class="responsive-show" style="display: none;">
+								<!-- IF draftrow.U_INSERT --><a href="{draftrow.U_INSERT}" class="button2">{L_LOAD_DRAFT}</a> &bull; <!-- ENDIF --><a href="{draftrow.U_VIEW_EDIT}" class="button2">{L_VIEW_EDIT}</a>
+							</div>
+						</div>
+					</dt>
+					<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="d[{draftrow.DRAFT_ID}]" id="d{draftrow.DRAFT_ID}" /></dd>
+					<dd class="info"><span><!-- IF draftrow.U_INSERT --><a href="{draftrow.U_INSERT}" class="button2">{L_LOAD_DRAFT}</a> &bull; <!-- ENDIF --><a href="{draftrow.U_VIEW_EDIT}" class="button2">{L_VIEW_EDIT}</a></span></dd>
+				</dl>
+			</li>
+		<!-- END draftrow -->
+		</ul>
+	<!-- ELSE -->
+		<p class="fbr-m-info"><strong>{L_NO_SAVED_DRAFTS}</strong></p>
+	<!-- ENDIF -->
+
+		</div>
+	</div>
+
+	<!-- IF .draftrow -->
+		<fieldset class="display-actions flex-box-form">
+			<div class="flex-box-o">
+				<div class="flex-box"><input class="button" type="submit" name="delete" value="{L_DELETE_MARKED}" /></div>
+				<div class="flex-box fb-c">
+					<a href="#" onclick="marklist('postform', '', true); return false;">{L_MARK_ALL}</a>
+					<a href="#" onclick="marklist('postform', '', false); return false;">{L_UNMARK_ALL}</a>
+				</div>
+			</div>
+			{S_FORM_TOKEN}
+		</fieldset>
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

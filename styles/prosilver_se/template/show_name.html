@@ -1,0 +1,43 @@
+<!-- IF (SCRIPT_NAME != 'index') -->
+
+<div class="main-m-top menu-devil">
+	<h1>
+		<a class="main-m-top-title" id="titleID"<!-- IF SCRIPT_NAME == 'posting' --><!-- IF TOPIC_TITLE --> href="{U_VIEW_TOPIC}"<!-- ELSEIF FORUM_NAME --> href="{U_VIEW_FORUM}"<!-- ENDIF --><!-- ENDIF -->>
+		<!-- IF SCRIPT_NAME == 'viewtopic' -->{TOPIC_TITLE}
+		<!-- ELSEIF SCRIPT_NAME == 'viewforum' -->{FORUM_NAME}
+		
+		<!-- ELSEIF SCRIPT_NAME == 'search' -->
+			<!-- IF SEARCH_TITLE -->{SEARCH_TITLE}<!-- ENDIF -->
+			<!-- IF SEARCH_WORDS -->{SEARCH_WORDS}<!-- ENDIF -->
+			
+		<!-- ELSEIF SCRIPT_NAME == 'memberlist' -->
+			<!-- IF SEARCH_WORDS -->{PAGE_TITLE}{L_COLON} {SEARCH_WORDS}
+			<!-- ELSEIF S_CONTACT_ADMIN-->{L_CONTACT_ADMIN}
+			<!-- ELSEIF S_SEND_USER -->{L_SEND_EMAIL_USER}
+			<!-- ELSE -->{PAGE_TITLE}
+			<!-- ENDIF -->
+			
+		<!-- ELSEIF SCRIPT_NAME == 'mcp' -->
+			<!-- IF L_TITLE -->{L_TITLE}<!-- ELSEIF PAGE_TITLE -->{PAGE_TITLE}<!-- ENDIF -->
+			
+		<!-- ELSEIF SCRIPT_NAME == 'ucp' -->
+			<!-- IF not L_TITLE and not TITLE and not CUR_FOLDER_NAME and not S_GROUP_DESC -->{L_SETTINGS}<!-- ENDIF -->
+			<!-- IF L_TITLE -->{L_TITLE}<!-- ENDIF --><!-- IF CUR_FOLDER_NAME -->{L_COLON} {CUR_FOLDER_NAME}<!-- ENDIF -->
+			<!-- IF TITLE -->{TITLE}<!-- ENDIF -->
+			<!-- IF S_GROUP_DESC -->{L_USERGROUPS}<!-- ENDIF -->
+			
+		<!-- ELSEIF RH_TOPICTAGS_SEARCH_HEADER -->{RH_TOPICTAGS_SEARCH_HEADER}
+		
+		<!-- ELSEIF SCRIPT_NAME == 'posting' -->
+			<!-- IF TOPIC_TITLE -->{TOPIC_TITLE}
+			<!-- ELSEIF FORUM_NAME -->{FORUM_NAME}
+			<!-- ENDIF -->
+			
+		<!-- ENDIF -->
+		</a>
+	</h1>
+</div>
+
+<div class="main-m-bottom menu-all"><div class="m-list"><!-- INCLUDE viewtopic_topic_tools.html --></div></div>
+
+<!-- ENDIF -->

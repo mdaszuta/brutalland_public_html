@@ -26,7 +26,7 @@ phpbb.addAjaxCallback('mark_forums_read', function(res) {
 	});
 
 	// Mark subforums read
-	$('a.subforum[class*="unread"]').removeClass('unread').addClass('read').children('.icon.icon-red').removeClass('icon-red').addClass('icon-blue');
+	$('a.subforum[class*="unread"]').removeClass('unread').addClass('read');
 
 	// Mark topics read if we are watching a category and showing active topics
 	if ($('#active_topics').length) {
@@ -101,7 +101,6 @@ phpbb.addAjaxCallback('mark_topics_read', function(res, updateTopicLinks) {
 phpbb.addAjaxCallback('notification.mark_all_read', function(res) {
 	if (typeof res.success !== 'undefined') {
 		phpbb.markNotifications($('#notification_list li.bg2'), 0);
-		phpbb.toggleDropdown.call($('#notification_list_button'));
 		phpbb.closeDarkenWrapper(3000);
 	}
 });
@@ -200,7 +199,7 @@ phpbb.addAjaxCallback('zebra', function(res) {
  */
 phpbb.addAjaxCallback('vote_poll', function(res) {
 	if (typeof res.success !== 'undefined') {
-		var poll = $(this).closest('.topic_poll');
+		var poll = $('.topic_poll');
 		var panel = poll.find('.panel');
 		var resultsVisible = poll.find('dl:first-child .resultbar').is(':visible');
 		var mostVotes = 0;
@@ -337,29 +336,6 @@ $('[data-ajax]').each(function() {
 	}
 });
 
-// Prevent accidental double submission of form
-$('[data-prevent-flood] input[type=submit]').click(function(event) {
-	const $submitButton = $(this); // Store the button element
-	const $form = $submitButton.closest('form');
-
-	// Always add the disabled class for visual feedback
-	$submitButton.addClass('disabled');
-
-	// Submit form if it hasn't been submitted yet
-	if (!$form.prop('data-form-submitted')) {
-		$form.prop('data-form-submitted', true);
-
-		return;
-	}
-
-	// Prevent default submission for subsequent clicks within 5 seconds
-	event.preventDefault();
-
-	setTimeout(() => {
-		$form.prop('removeProp', 'data-form-submitted');
-		$submitButton.removeClass('disabled'); // Re-enable after 5 seconds
-	}, 5000);
-});
 
 /**
  * This simply appends #preview to the action of the
@@ -383,17 +359,6 @@ $('.display_post').click(function(e) {
 	$('#post_content' + postId).show();
 	$('#profile' + postId).show();
 	$('#post_hidden' + postId).hide();
-});
-
-/**
- * Display hidden post on post review page
- */
-$('.display_post_review').on('click', function(e) {
-	e.preventDefault();
-
-	let $displayPostLink = $(this);
-	$displayPostLink.closest('.post-ignore').removeClass('post-ignore');
-	$displayPostLink.hide();
 });
 
 /**

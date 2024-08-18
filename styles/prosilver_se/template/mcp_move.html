@@ -1,0 +1,103 @@
+<!-- IF S_AJAX_REQUEST -->
+
+	<h3>{MESSAGE_TITLE}</h3>
+	<p class="fbr-m-info">{MESSAGE_TEXT}</p>
+
+	<!-- IF ADDITIONAL_MSG --><p class="fbr-m-info">{ADDITIONAL_MSG}</p><!-- ENDIF -->
+
+	<div class="fbr-settings-panel">
+		<label>
+			<div class="fbr">
+				<div class="fbr-left">{L_SELECT_DESTINATION_FORUM}</div>
+				<div class="fbr-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
+			</div>
+		</label>
+
+		<!-- IF S_CAN_LEAVE_SHADOW -->
+			<label for="move_leave_shadow">
+				<div class="fbr">
+					<div class="fbr-left"><input type="checkbox" name="move_leave_shadow" id="move_leave_shadow" /></div>
+					<div class="fbr-right">{L_LEAVE_SHADOW}</div>
+				</div>
+			</label>
+		<!-- ENDIF -->
+
+		<!-- IF S_CAN_LOCK_TOPIC -->
+			<label for="move_lock_topics">
+				<div class="fbr">
+					<div class="fbr-left"><input type="checkbox" name="move_lock_topics" id="move_lock_topics" /></div>
+					<div class="fbr-right">{L_LOCK_TOPIC}</div>
+				</div>
+			</label>
+		<!-- ENDIF -->
+	</div>
+
+	<fieldset class="submit-buttons flex-box-form">
+		<div class="flex-box-o">
+			<div class="flex-box"><input type="button" name="confirm" value="{YES_VALUE}" class="button" /></div>
+			<div class="flex-box fb-c"><input type="button" name="cancel" value="{L_NO}" class="button2" /></div>
+		</div>
+	</fieldset>
+
+<!-- ELSE -->
+
+<!-- INCLUDE overall_header.html -->
+
+<!-- EVENT mcp_move_before -->
+
+<form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
+
+<div class="panel fbr-settings-panel">
+	<div class="inner">
+
+	<div class="content">
+		<h2 class="message-title">{MESSAGE_TITLE}</h2>
+		<!-- IF ADDITIONAL_MSG --><p>{ADDITIONAL_MSG}</p><!-- ENDIF -->
+
+		<fieldset>
+		<div class="fields2 fbr">
+			<div class="fbr-left"><label>{L_SELECT_DESTINATION_FORUM}</label></div>
+			<div class="fbr-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
+		</div>
+
+		<!-- IF S_CAN_LEAVE_SHADOW or S_CAN_LOCK_TOPIC --><hr class="dashed" /><!-- ENDIF -->
+
+		<!-- IF S_CAN_LEAVE_SHADOW -->
+		<label for="move_leave_shadow">
+			<div class="fields2 fbr">
+				<div class="fbr-left"><input type="checkbox" name="move_leave_shadow" id="move_leave_shadow" /></div>
+				<div class="fbr-right">{L_LEAVE_SHADOW}</div>
+			</div>
+		</label>
+		<!-- ENDIF -->
+		<!-- IF S_CAN_LOCK_TOPIC -->
+		<label for="move_lock_topics">
+			<div class="fields2 fbr">
+				<div class="fbr-left"><input type="checkbox" name="move_lock_topics" id="move_lock_topics" /></div>
+				<div class="fbr-right">{L_LOCK_TOPIC}</div>
+			</div>
+		</label>
+		<!-- ENDIF -->
+
+		<hr class="dashed" />
+
+		<p class="fbr-m-info">{MESSAGE_TEXT}</p>
+		</fieldset>
+
+		<fieldset class="submit-buttons flex-box-form">
+			<div class="flex-box-o">
+				{S_HIDDEN_FIELDS}
+				<div class="flex-box"><input type="submit" name="confirm" value="{YES_VALUE}" class="button" /></div>
+				<div class="flex-box fb-c"><input type="submit" name="cancel" value="{L_NO}" class="button2" /></div>
+				{S_FORM_TOKEN}
+			</div>
+		</fieldset>
+
+	</div>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->
+<!-- ENDIF -->

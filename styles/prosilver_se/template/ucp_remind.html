@@ -1,0 +1,42 @@
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_PROFILE_ACTION}" method="post" id="remind" class="brutalform">
+
+<div class="panel">
+	<div class="inner">
+
+		<fieldset class="fields1">
+			<div class="fbr">
+
+				<div class="fbr-left">
+
+					<div class="brutalform-box">
+						<input class="inputbox" type="text" name="username" id="username" size="25" tabindex="1" placeholder="{L_USERNAME}" />
+						<span class="brutalform-label">{L_USERNAME}</span>
+					</div>
+
+					<div class="brutalform-box">
+						<input class="inputbox" type="email" name="email" id="email" size="25" maxlength="100" tabindex="2" placeholder="{L_EMAIL_ADDRESS}" />
+						<span class="brutalform-label">{L_EMAIL_ADDRESS}</span>
+						<span class="brutalform-explanation">{L_EMAIL_REMIND}</span>
+					</div>
+
+					<div class="brutalform-box submit-buttons">
+						{S_HIDDEN_FIELDS}
+						<input type="submit" name="submit" id="submit" class="button submit" value="{L_SEND_PASSWORD}" tabindex="3" />
+						<input type="reset" value="{L_RESET}" name="reset" class="button2 reset" tabindex="4" /></dd>
+						{S_FORM_TOKEN}
+					</div>
+
+				</div>
+
+				<div class="fbr-right"></div>
+
+			</div>
+		</fieldset>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

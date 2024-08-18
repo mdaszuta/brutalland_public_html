@@ -1,0 +1,332 @@
+a:hover,
+a:focus,
+.forumbg .header a:hover, .forabg .header a:hover, th a:hover,
+a.forumtitle:hover,
+a.topictitle:hover,
+a.lastsubject:hover,
+.signature a, .signature a:hover,
+.postprofile a:hover, .postprofile dt.author a:hover,
+.search .postprofile a:hover {
+	text-decoration: none;
+}
+
+/* FONT WEIGHT */
+
+.muzycy_zespoly {
+	font-style: italic;
+}
+
+.notifications_reason em {
+    font-style: normal;
+}
+
+#top-site-menu .pagination li a,
+.notifications_time,
+.m-list-right-bottom,
+.post-number a,
+a.forumtitle,
+a.topictitle,
+a.lastsubject {
+	font-weight: normal;
+}
+
+.button,
+.button1,
+.button2:not(.fa),
+#brutalform-drafty .brutalform-explanation,
+select:not(.abbc3_select),
+.unreadpost .post-number a,
+.fb-l label,
+.topic-reply-counter.unread,
+.topic-forumtitle,
+#top-site-menu,
+#top-site-menu a.topictitle,
+.spoilbtn,
+.tytulySD,
+.cp-main .notification_list .notifications,
+table.table1 tbody tr.bg3,
+.brutalform .brutalform-go-to-register,
+.brutalform-button-s,
+.brutalform-box .brutalform-label,
+.fbr-left label,
+.page-footer .navbar,
+.username {
+	font-weight: bold;
+}
+
+/*
+.username-coloured {
+	font-weight: bold;
+}
+*/
+
+/* FONT-VARIANTS */
+
+.pagination li a,
+.button,
+.button1,
+.button2:not(.fa),
+#brutalform-drafty .brutalform-explanation,
+select:not(.abbc3_select),
+a.forumtitle,
+a.topictitle,
+ul.topiclist li.row dt a.subforum,
+a.lastsubject,
+.topic-forumtitle,
+#titleID,
+.notifications_reference,
+.notifications_reason,
+.notify-settings,
+.cp-main .notification_list .notifications,
+input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
+.tags input,
+#top-site-menu,
+.action-bar,
+h2,
+h3,
+table.table1 tbody tr.bg3,
+.copyright strong,
+.brutalform-button-s,
+.brutalform-label {
+	font-variant: small-caps;
+}
+
+.notifications_time,
+.m-list-right-bottom,
+.username,
+.username-coloured {
+	font-variant: initial;
+}
+
+/* PLACEHOLDER FONTS */
+
+::-moz-placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+::-webkit-input-placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+::-ms-input-placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+::placeholder {
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+/* TEXT-TRANSFORMS */
+
+#m-name .m-list,
+#m-feed-topics,
+.m-labeled-box-bg strong,
+#m-ksywa .main-m-bottom a,
+.pagination,
+.submit-buttons input,
+.brutalform .reset {
+	text-transform: lowercase;
+}
+
+.username,
+.username-coloured {
+	text-transform: initial;
+}
+
+.spoilbtn {
+	text-transform: uppercase;
+}
+
+.button,
+.brutalform .brutalform-go-to-register {
+	text-transform: uppercase !important;
+}
+
+/* TEXT SHADOW */
+
+body,
+button,
+input,
+textarea,
+select,
+.fa {
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 1), -1px -1px 3px rgba(0, 0, 0, 1);
+}
+
+/* FONT-FAMILIES */
+
+.button,
+.button1,
+.button2:not(.fa),
+a.button1,
+input.button1,
+#brutalform-drafty .brutalform-explanation,
+select:not(.abbc3_select),
+h1,
+h2,
+h3,
+.postbody h3,
+a.forumtitle,
+a.topictitle,
+ul.topiclist li.row dt a.subforum,
+a.lastsubject,
+#titleID,
+.notifications_reference,
+.notifications_reason,
+input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
+.tags input,
+.brutalform-label {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+/*
+@font-face {
+    font-family: "Palatino Numbers";
+	src: local("Book Antiqua");
+    unicode-range: U+21-40;
+}
+*/
+
+#ToTop,
+#OnBottom {
+	font: normal normal normal 14px/1 FontAwesome;
+}
+
+.spoilbtn {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.username,
+.username-coloured,
+input,
+textarea,
+.attachbox dt {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+/* FONT-SIZES */
+
+.notification_text .m-list-left-bottom {
+	font-size: unset;
+}
+
+#m-feed-topics .main-m-bottom span {
+	transform: rotate(180deg);
+	/* font-size: x-small; */
+}
+
+.shoutboxlist .fa-remove {
+	font-size: 10px;
+}
+
+dl.details,
+.fbr-left-big dl,
+.brutalform .reset,
+#reprap,
+.navbar,
+ul.topiclist dt:not(.ajaxshoutbox_user) {
+	font-size: 1.1em;
+}
+
+.notifications_title {
+	font-size: 1.2em;
+}
+
+#register_text,
+#abbc3_buttons .fa {
+	font-size: 1.25em;
+}
+
+.brutalform-button-s {
+	font-size: 1.3em;
+}
+
+#notepad {
+	font-size: 1.32em;
+}
+
+.fa-search-user {
+	font-size: 1.66em;
+}
+
+.pagination .fa-caret-left,
+.pagination .fa-caret-right {
+	/* font-size: 1.669em; */
+}
+
+#m-name .action-bar.bar-top .buttons .button {
+	/* font-size: 1.75em; */
+}
+
+.button,
+.brutalform .brutalform-go-to-register,
+.member-search strong {
+	font-size: 2em;
+}
+
+.m-labeled-box .fa {
+	font-size: 2.3em;
+}
+
+#m-name .m-labeled-box .fa {
+	font-size: 4em;
+	//font-size: 4.3em;
+}
+
+.abbc3_button,
+.spoilbtn {
+	font-size: 11px;
+}
+
+.m-labeled-box-bg {
+	font-size: 12px;
+}
+
+#m-ksywa .main-m-bottom {
+	font-size: 14px;
+}
+
+select:not(.abbc3_select),
+.button1,
+.button2:not(.fa),
+input.button1,
+input.button2:not(.fa),
+h3,
+.postbody h3,
+.notifications_reason,
+.brutalform-label,
+#brutalform-drafty .brutalform-explanation,
+ul.topiclist li.row dt a.subforum,
+li.row .vertical-separator,
+a.lastsubject {
+	font-size: 17px;
+}
+
+.button,
+h2,
+.content h2, .panel h2,
+a.forumtitle,
+a.topictitle,
+#titleID,
+.notifications_reference,
+input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
+.tags input {
+	font-size: 21px;
+}
+
+/* PSEUDOAVATARY */
+
+#m-notify .fa-user-circle-o,
+.cp-main .notification_list .fa-user-circle-o {
+	font-size: 50px;
+}
+
+.cp-main .fa-user-circle-o {
+	font-size: 120px;
+}

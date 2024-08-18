@@ -1,0 +1,57 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2><!-- IF S_REPORT_POST -->{L_REPORT_POST}<!-- ELSE -->{L_REPORT_MESSAGE}<!-- ENDIF --></h2>
+
+<form method="post" action="{S_REPORT_ACTION}" id="report">
+<div class="panel">
+	<div class="inner">
+
+	<div class="content fbr-settings-panel">
+		<p class="fbr-m-info"><!-- IF S_REPORT_POST -->{L_REPORT_POST_EXPLAIN}<!-- ELSE -->{L_REPORT_MESSAGE_EXPLAIN}<!-- ENDIF --></p>
+
+		<fieldset>
+		<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+		<div class="fields2 fbr">
+			<div class="fbr-left"><label for="reason_id">{L_REASON}</label></div>
+			<div class="fbr-right"><select name="reason_id" id="reason_id" class="full"><!-- BEGIN reason --><option value="{reason.ID}"<!-- IF reason.S_SELECTED --> selected="selected"<!-- ENDIF -->>{reason.DESCRIPTION}</option><!-- END reason --></select></div>
+		</div>
+		<!-- IF S_CAN_NOTIFY -->
+			<div class="fields2 fbr">
+				<div class="fbr-left"><label for="notify1">{L_REPORT_NOTIFY}</label><span>{L_REPORT_NOTIFY_EXPLAIN}</span></div>
+				<div class="fbr-right fb-s">
+					<label for="notify1"><input type="radio" name="notify" id="notify1" value="1" <!-- IF not S_NOTIFY -->checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+					<label for="notify0"><input type="radio" name="notify" id="notify0" value="0" <!-- IF S_NOTIFY -->checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</div>
+			</div>
+		<!-- ENDIF -->
+		<div class="fields2 fbr">
+			<div class="fbr-left phantom-label"><label for="report_text">{L_MORE_INFO}</label><span>{L_CAN_LEAVE_BLANK}</span></div>
+			<div class="fbr-right"><textarea name="report_text" id="report_text" rows="10" cols="76" class="inputbox" placeholder="{L_MORE_INFO}">{REPORT_TEXT}</textarea></div>
+		</div>
+		<!-- IF CAPTCHA_TEMPLATE -->
+			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->
+		</fieldset>
+	</div>
+
+	</div>
+</div>
+
+<div class="panel">
+	<div class="inner">
+
+	<div class="content">
+		<fieldset class="submit-buttons flex-box-form">
+			<div class="flex-box-o">
+				<div class="flex-box"><input type="submit" name="submit" class="button" value="{L_SUBMIT}" /></div>
+				<div class="flex-box fb-c"><input type="submit" name="cancel" class="button2" value="{L_CANCEL}" /></div>
+			</div>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</div>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

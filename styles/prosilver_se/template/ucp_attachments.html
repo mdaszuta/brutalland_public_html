@@ -1,0 +1,69 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+
+<div class="panel">
+	<div class="inner">
+
+	<p class="fbr-m-info">{L_ATTACHMENTS_EXPLAIN}</p>
+
+	<!-- IF .attachrow -->
+
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="flex-2centered">
+					<dt><div class="list-inner"><a href="{U_SORT_FILENAME}">{L_FILENAME}</a></div></dt>
+					<dd class="extra"><a href="{U_SORT_DOWNLOADS}">{L_DOWNLOADS}</a></dd>
+					<dd class="time"><span><a href="{U_SORT_POST_TIME}">{L_POST_TIME}</a></span></dd>
+					<dd class="mark">{L_MARK}</dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist cplist responsive-show-columns">
+
+		<!-- BEGIN attachrow -->
+		<li class="row<!-- IF attachrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" onclick="window.location.href='{attachrow.U_VIEW_ATTACHMENT}'">
+			<dl class="flex-2centered">
+				<dt>
+					<div class="list-inner">
+						<a href="{attachrow.U_VIEW_TOPIC}" class="topictitle">{attachrow.TOPIC_TITLE}<!-- IF attachrow.S_IN_MESSAGE --> <i class="icon fa-envelope-o fa-fw" aria-hidden="true"></i><!-- ENDIF --></a>
+						<a href="{attachrow.U_VIEW_ATTACHMENT}" class="attachment-filename ellipsis-text" title="{attachrow.FILENAME}">{attachrow.FILENAME} <span>{attachrow.SIZE}</span></a>
+					</div>
+				</dt>
+				<dd class="extra">{attachrow.DOWNLOAD_COUNT}</dd>
+				<dd class="time"><span>{attachrow.POST_TIME}</span></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" /></dd>
+			</dl>
+		</li>
+		<!-- END attachrow -->
+		</ul>
+
+		<div class="action-bar bottom">
+			<!-- INCLUDE display_options.html -->
+			{S_FORM_TOKEN}
+
+		</div>
+
+	<!-- ELSE -->
+		<p class="fbr-m-info"><strong>{L_UCP_NO_ATTACHMENTS}</strong></p>
+	<!-- ENDIF -->
+
+	</div>
+</div>
+
+<!-- IF S_ATTACHMENT_ROWS -->
+	<fieldset class="display-actions flex-box-form">
+		<div class="flex-box-o">
+			<div class="flex-box"><input class="button" type="submit" name="delete" value="{L_DELETE_MARKED}" /></div>
+			<div class="flex-box fb-c">
+				<a href="#" onclick="marklist('ucp', 'attachment', true); return false;">{L_MARK_ALL}</a>
+				<a href="#" onclick="marklist('ucp', 'attachment', false); return false;">{L_UNMARK_ALL}</a>
+			</div>
+		</div>
+		{S_FORM_TOKEN}
+	</fieldset>
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,39 @@
+<!-- IF S_AJAX_REQUEST -->
+	<form action="{S_CONFIRM_ACTION}" method="post">
+		<h3>{MESSAGE_TITLE}</h3>
+		<p class="fbr-m-info">{MESSAGE_TEXT}</p>
+
+		<fieldset class="submit-buttons flex-box-form">
+			<div class="flex-box-o">
+				<div class="flex-box"><input type="button" name="confirm" value="{L_YES}" class="button" /></div>
+				<div class="flex-box fb-c"><input type="button" name="cancel" value="{L_NO}" class="button2" /></div>
+			</div>
+		</fieldset>
+	</form>
+
+<!-- ELSE -->
+
+<!-- INCLUDE overall_header.html -->
+
+<form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
+<div class="panel">
+	<div class="inner">
+
+	<h2 class="message-title">{MESSAGE_TITLE}</h2>
+	<p class="fbr-m-info">{MESSAGE_TEXT}</p>
+
+	<fieldset class="submit-buttons flex-box-form">
+		<div class="flex-box-o">
+			{S_HIDDEN_FIELDS}
+			<div class="flex-box"><input type="submit" name="confirm" value="{L_YES}" class="button" /></div>
+			<div class="flex-box fb-c"><input type="submit" name="cancel" value="{L_NO}" class="button2" /></div>
+		</div>
+	</fieldset>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->
+
+<!-- ENDIF -->

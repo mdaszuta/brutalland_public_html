@@ -1,0 +1,106 @@
+<!-- INCLUDE mcp_header.html -->
+
+<form id="mcp" method="post" action="{S_MCP_ACTION}">
+
+<fieldset class="forum-selection">
+	<label for="fo">{L_FORUM}{L_COLON} <select name="f" id="fo">{S_FORUM_OPTIONS}</select></label>
+	<input type="submit" name="sort" value="{L_GO}" class="button2" />
+	{S_FORM_TOKEN}
+</fieldset>
+
+
+<div class="panel">
+	<div class="inner">
+
+	<p class="fbr-m-info">{L_EXPLAIN}</p>
+
+	<!-- IF .postrow -->
+
+		<ul class="topiclist missing-column">
+			<li class="header">
+				<dl>
+					<dt><div class="list-inner"><!-- IF S_TOPICS -->{L_TOPIC}<!-- ELSE -->{L_POST}<!-- ENDIF --></div></dt>
+					<dd class="moderation"><span><!-- IF not S_TOPICS -->{L_TOPIC} &amp; <!-- ENDIF -->{L_FORUM}</span></dd>
+					<dd class="mark">{L_MARK}</dd>
+				</dl>
+			</li>
+			</ul>
+			<ul class="topiclist cplist missing-column responsive-show-all">
+
+		<!-- BEGIN postrow -->
+
+		<!-- IF postrow.S_DELETED_TOPIC -->
+			<li><p class="notopics">{L_DELETED_TOPIC}</p></li>
+		<!-- ELSE -->
+
+		<li class="row<!-- IF postrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->"  onclick="window.location.href='{postrow.U_VIEW_DETAILS}'">
+			<dl>
+				<dt>
+					<div class="list-inner">
+						<a href="{postrow.U_VIEW_DETAILS}" class="topictitle">{postrow.POST_SUBJECT}</a><!-- IF postrow.S_HAS_ATTACHMENTS --> <i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF --><br />
+						<span>{L_POSTED} {L_POST_BY_AUTHOR} {postrow.POST_AUTHOR_FULL} &raquo; {postrow.POST_TIME}</span>
+					</div>
+				</dt>
+				<dd class="moderation">
+					<span>
+						<!-- IF S_TOPICS --><br /><!-- ELSE -->{L_TOPIC}{L_COLON} <a href="{postrow.U_TOPIC}">{postrow.TOPIC_TITLE}</a> <br /><!-- ENDIF -->
+						{L_FORUM}{L_COLON} <a href="{postrow.U_VIEWFORUM}">{postrow.FORUM_NAME}</a>
+					</span>
+				</dd>
+
+
+		 		<dd class="mark">
+					<!-- IF S_TOPICS -->
+						<input onclick="event.stopPropagation()" type="checkbox" name="topic_id_list[]" value="{postrow.TOPIC_ID}" />
+					<!-- ELSE -->
+						<input onclick="event.stopPropagation()" type="checkbox" name="post_id_list[]" value="{postrow.POST_ID}" />
+					<!-- ENDIF -->
+				</dd>
+			</dl>
+		</li>
+		<!-- ENDIF -->
+		<!-- END postrow -->
+		</ul>
+
+		<div class="action-bar bottom">
+			<!-- INCLUDE display_options.html -->
+			<!-- IF TOPIC_ID --><label class="sort-tools-checkbox"><input type="checkbox" class="radio" name="t" value="{TOPIC_ID}" checked="checked" onClick="document.getElementById('mcp').submit()" /> <strong>{L_ONLY_TOPIC}</strong></label><!-- ENDIF -->
+
+		</div>
+
+	<!-- ELSE -->
+		<p class="notopics text-align-c"><strong>
+			<!-- IF S_RESTORE -->
+				<!-- IF S_TOPICS -->{L_NO_TOPICS_DELETED}<!-- ELSE -->{L_NO_POSTS_DELETED}<!-- ENDIF -->
+			<!-- ELSE -->
+				<!-- IF S_TOPICS -->{L_NO_TOPICS_QUEUE}<!-- ELSE -->{L_NO_POSTS_QUEUE}<!-- ENDIF -->
+			<!-- ENDIF -->
+		</strong></p>
+	<!-- ENDIF -->
+
+	</div>
+</div>
+
+<!-- IF .postrow -->
+	<fieldset class="display-actions flex-box-form">
+	<div class="flex-box-o">
+		<!-- IF S_RESTORE -->
+		<div class="flex-box"><input class="button" type="submit" name="action[restore]" value="{L_RESTORE}" /></div>
+		<div class="flex-box"><input class="button" type="submit" name="action[delete]" value="{L_DELETE}" /></div>
+		<!-- ELSE -->
+		<div class="flex-box"><input class="button" type="submit" name="action[approve]" value="{L_APPROVE}" /></div>
+		<div class="flex-box"><input class="button" type="submit" name="action[disapprove]" value="{L_DISAPPROVE}" /></div>
+		<!-- ENDIF -->
+		<div>
+			<!-- IF S_TOPICS -->
+				<a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a>
+			<!-- ELSE -->
+				<a href="#" onclick="marklist('mcp', 'post_id_list', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'post_id_list', false); return false;">{L_UNMARK_ALL}</a>
+			<!-- ENDIF -->
+		</div>
+	</div>
+	</fieldset>
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

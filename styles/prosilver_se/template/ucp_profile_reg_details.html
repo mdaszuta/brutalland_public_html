@@ -1,0 +1,62 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+
+<div class="panel fbr-settings-panel">
+	<div class="inner">
+
+	<!-- IF S_FORCE_PASSWORD -->
+		<p class="error">{L_FORCE_PASSWORD_EXPLAIN}</p>
+	<!-- ENDIF -->
+
+	<fieldset>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<!-- EVENT ucp_profile_register_details_before -->
+	<div class="fbr">
+		<div class="fbr-left phantom-label"><label <!-- IF S_CHANGE_USERNAME -->for="username"<!-- ENDIF -->>{L_USERNAME}</label></div>
+		<div class="fbr-right"><!-- IF S_CHANGE_USERNAME --><input type="text" name="username" id="username" value="{USERNAME}" class="inputbox" title="{L_USERNAME}" /><!-- ELSE --><strong class="text-align-c"><!-- IF S_CHANGE_USERNAME -->{USERNAME}<!-- ELSE -->{CURRENT_USERNAME_SIMPLE}<!-- ENDIF --></strong><!-- ENDIF --></div>
+	</div>
+	<div class="fbr">
+		<div class="fbr-left phantom-label"><label for="email">{L_EMAIL_ADDRESS}</label></div>
+		<div class="fbr-right"><!-- IF S_CHANGE_EMAIL --><input type="email" name="email" id="email" maxlength="100" value="{EMAIL}" class="inputbox" title="{L_EMAIL_ADDRESS}" autocomplete="off" placeholder="{L_EMAIL_ADDRESS}" /><!-- ELSE --><strong>{EMAIL}</strong><!-- ENDIF --></div>
+	</div>
+	<!-- IF S_CHANGE_PASSWORD -->
+		<div class="fbr">
+			<div class="fbr-left phantom-label"><label for="new_password">{L_NEW_PASSWORD}</label><span>{L_CHANGE_PASSWORD_EXPLAIN}</span></div>
+			<div class="fbr-right"><input type="password" name="new_password" id="new_password" maxlength="255" value="{NEW_PASSWORD}" class="inputbox" title="{L_CHANGE_PASSWORD}" autocomplete="off" placeholder="{L_NEW_PASSWORD}" /></div>
+		</div>
+		<div class="fbr">
+			<div class="fbr-left phantom-label"><label for="password_confirm">{L_CONFIRM_PASSWORD}</label></div>
+			<div class="fbr-right"><input type="password" name="password_confirm" id="password_confirm" maxlength="255" value="{PASSWORD_CONFIRM}" class="inputbox" title="{L_CONFIRM_PASSWORD}" autocomplete="off" placeholder="{L_CONFIRM_PASSWORD}" /></div>
+		</div>
+	<!-- ENDIF -->
+	<!-- EVENT ucp_profile_register_details_after -->
+	</fieldset>
+	</div>
+</div>
+
+<div class="panel fbr-settings-panel">
+	<div class="inner">
+
+	<fieldset>
+	<div class="fbr">
+		<div class="fbr-left phantom-label"><label for="cur_password">{L_CURRENT_PASSWORD}</label><span><!-- IF S_CHANGE_PASSWORD -->{L_CURRENT_CHANGE_PASSWORD_EXPLAIN}<!-- ELSE -->{L_CURRENT_PASSWORD_EXPLAIN}<!-- ENDIF --></span></div>
+		<div class="fbr-right"><input type="password" name="cur_password" id="cur_password" maxlength="255" value="{CUR_PASSWORD}" class="inputbox" title="{L_CURRENT_PASSWORD}" autocomplete="off" placeholder="{L_CURRENT_PASSWORD}" /></div>
+	</div>
+	</fieldset>
+
+	</div>
+</div>
+
+<fieldset class="submit-buttons flex-box-form">
+	<div class="flex-box-o">
+		{S_HIDDEN_FIELDS}
+		<div class="flex-box"><input type="submit" name="submit" value="{L_SUBMIT}" class="button" /></div>
+		<div class="flex-box fb-c"><input type="reset" value="{L_RESET}" name="reset" class="button2" /></div>
+	</div>
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->
