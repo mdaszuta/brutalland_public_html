@@ -421,7 +421,7 @@ dd.profile-joined,
 #quickeditbox fieldset dl,
 p.responsive-center.time,
 form#qr_postform .panel fieldset dl,
-div#postingbox.panel h3,
+#postingbox.panel h3,
 .logo {
 	display: none;
 }
@@ -1409,7 +1409,7 @@ h2.review {
     //padding: 1px;
 }
 
-div #shoutbox_scroll {
+#shoutbox_scroll {
 	max-height: 195px;
 	overflow-y: scroll;
 }
@@ -1839,6 +1839,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	flex-direction: initial;
 	justify-content: space-evenly;
 	width: 100%;
+	flex-wrap: wrap;
 }
 
 #brutalform-drafty {
@@ -1904,6 +1905,16 @@ tags-input .autocomplete .suggestion-item {
 
 .smilies {
 	max-height: 17px;
+}
+
+#smiley-box-devil {
+    width: 30px;
+    height: 24px;
+    background: url("/images/smilies/icon_twisted_bw.gif") center no-repeat;
+}
+
+#smiley-box:hover #smiley-box-devil {
+	background: url("/images/smilies/icon_twisted_bw_red_eyes.gif") center no-repeat;
 }
 
 .smiley-box img {
@@ -2082,7 +2093,7 @@ input[type="checkbox" i] {
 }
 
 div.content,
-div#postingbox.panel {
+#postingbox.panel {
 	text-align: justify;
 }
 
@@ -2104,7 +2115,7 @@ div.content,
 	line-height: 1.618;
 }
 
-div#postingbox.panel {
+#postingbox.panel {
 	/* margin-left: 3px; */
 	/* margin-right: 3px; */
 }
@@ -2174,10 +2185,6 @@ dl.details dd {
 .nav-footer .see_online {
 	margin: 0;
 }
-
-/* COLLAPSE */ /* COLLAPSE */ /* COLLAPSE */ /* COLLAPSE */
-
-/* COLLAPSE */ /* COLLAPSE */ /* COLLAPSE */ /* COLLAPSE */
 
 /* POST NUMBER */ /* POST NUMBER */ /* POST NUMBER */ /* POST NUMBER */
 

@@ -180,14 +180,6 @@ textarea .inputbox:focus {
 	//background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.45) 70%);
 }
 
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
-
-#quick-login-panel {
-	background-color: rgba(0, 0, 0, 1);
-}
-
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
-
 .panel.bg1,
 .panel.bg2,
 .panel.bg3,
@@ -274,15 +266,13 @@ ul.zebra-list li:nth-child(even):hover {
 }
 
 .member-search.panel {
-	//background-color: rgba(0, 0, 0, 0.4);
+	/*background-color: rgba(0, 0, 0, 0.4);*/
 	background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.75) 100%);
 }
 
 .phpbb_alert {
 	background-color: rgba(0, 0, 0, 0.75);
 }
-
-//.firstpostintopic { background-color: rgba(0, 0, 0, 0.7); }
 
 #thegate {
 	background: URL('./images/gateway.svg');
@@ -293,15 +283,6 @@ ul.zebra-list li:nth-child(even):hover {
 	background: URL('./images/gateway.svg');
 	background-size: 60px 60px;
 }
-
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
-
-#quick-login-panel .content {
-	background-image: URL("./images/cross_invert.png");
-	background-repeat: no-repeat;
-}
-
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
 
 blockquote,
 blockquote blockquote,
@@ -470,8 +451,7 @@ li:not(.header) .lastpost:hover {
 
 .topic-reply-counter,
 .main-m-item .main-m-bottom,
-.action-bar.bar-top .button,
-#quick-login-panel .content {
+.action-bar.bar-top .button {
 	border-radius: 7px;
 }
 
@@ -536,7 +516,6 @@ li:not(.header) .main-rowlist,
 li:not(.header) .lastpost,
 .search-box-hide,
 .fa-search,
-.ajaxshoutbox_delete .fa-remove,
 .fa-exclamation-triangle,
 .rozwijany-box-devil,
 #picture-box-all a,

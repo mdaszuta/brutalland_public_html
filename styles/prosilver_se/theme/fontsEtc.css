@@ -254,15 +254,6 @@ ul.topiclist dt:not(.ajaxshoutbox_user) {
 	font-size: 1.66em;
 }
 
-.pagination .fa-caret-left,
-.pagination .fa-caret-right {
-	/* font-size: 1.669em; */
-}
-
-#m-name .action-bar.bar-top .buttons .button {
-	/* font-size: 1.75em; */
-}
-
 .button,
 .brutalform .brutalform-go-to-register,
 .member-search strong {
@@ -275,7 +266,7 @@ ul.topiclist dt:not(.ajaxshoutbox_user) {
 
 #m-name .m-labeled-box .fa {
 	font-size: 4em;
-	//font-size: 4.3em;
+	/*font-size: 4.3em;*/
 }
 
 .abbc3_button,
