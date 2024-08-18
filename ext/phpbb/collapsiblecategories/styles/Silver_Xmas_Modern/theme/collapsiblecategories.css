@@ -1,9 +1,0 @@
-/* Import base collapsible categories stylesheet */
-@import url("../../all/theme/collapsiblecategories.css");
-
-/* Styling overrides for Silver_Xmas_Modern theme */
-
-/* Collapse button */
-.collapse-btn {
-	margin: -23px 6px 0;
-}
