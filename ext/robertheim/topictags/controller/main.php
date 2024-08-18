@@ -173,7 +173,6 @@ class main
 				'DELETED_IMG'				=> $this->user->img('icon_topic_deleted', 'TOPIC_DELETED'),
 				'POLL_IMG'					=> $this->user->img('icon_topic_poll', 'TOPIC_POLL'),
 				'S_TOPIC_ICONS'				=> true,
-				'TOTAL_TOPICS_COUNT'		=> $topics_count,
 			));
 
 			$this->display_topics($topics);
@@ -246,7 +245,6 @@ class main
 				'U_LAST_POST_AUTHOR'	=> $topic->last_post_author(),
 				'U_TOPIC_AUTHOR'		=> $topic->topic_author(),
 				'U_VIEW_TOPIC'			=> $topic->view_topic_url(),
-				'U_VIEW_FORUM'			=> append_sid("./viewforum.php?f=" . $topic->forum_id()),
 				'U_MCP_REPORT'			=> $topic->mcp_report(),
 				'U_MCP_QUEUE'			=> $topic->u_mcp_queue(),
 

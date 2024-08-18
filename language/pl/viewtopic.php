@@ -9,6 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-07-07 18:24:32 Zespół Olympus.pl $
+* @Polska wersja językowa phpBB 3.3.7 - 02.04.2022, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -49,8 +50,6 @@ $lang = array_merge($lang, array(
 	'BUMPED_BY'				=> 'Ostatnio przesunięty w górę %2$s przez: %1$s.',
 	'BUMP_TOPIC'			=> 'Przesuń temat w górę',
 
-	'CODE'					=> 'Kod',
-
 	'DELETE_TOPIC'			=> 'Usuń temat',
 	'DELETED_INFORMATION'	=> 'Usunięty %2$s przez %1$s',
 	'DISAPPROVE'					=> 'Odrzuć',
@@ -61,7 +60,7 @@ $lang = array_merge($lang, array(
 		2	=> 'Ostatnio zmieniony %3$s przez %2$s, łącznie zmieniany %1$d razy.',
 		3	=> 'Ostatnio zmieniony %3$s przez %2$s, łącznie zmieniany %1$d razy.',
 	),
-	'EMAIL_TOPIC'			=> 'Powiadamiaj mailem',
+	'EMAIL_TOPIC'			=> 'Powiadom o tym temacie',
 	'ERROR_NO_ATTACHMENT'	=> 'Wybrany załącznik już nie istnieje',
 
 	'FILE_NOT_FOUND_404'	=> 'Plik <strong>%s</strong> nie istnieje.',
@@ -77,9 +76,9 @@ $lang = array_merge($lang, array(
 	'MAKE_NORMAL'				=> 'Zmień na zwykły temat',
 	'MAKE_STICKY'				=> 'Zmień na przyklejony',
 	'MAX_OPTIONS_SELECT'		=> array(
-		1	=> 'Liczba opcji do wybrania: <strong>%d</strong>',
-		2	=> 'Maksymalna liczba opcji do wybrania: <strong>%d</strong>',
-		3	=> 'Maksymalna liczba opcji do wybrania: <strong>%d</strong>',
+		1	=> 'Można wybrać tylko <strong>%d.</strong> opcję',
+		2	=> 'Można maksymalnie wybrać <strong>%d</strong> opcje',
+		3	=> 'Można maksymalnie wybrać <strong>%d</strong> opcji',
 	),
 	'MISSING_INLINE_ATTACHMENT'	=> 'Załącznik <strong>%s</strong> nie jest już dostępny',
 	'MOVE_TOPIC'				=> 'Przenieś temat',
@@ -88,8 +87,9 @@ $lang = array_merge($lang, array(
 	'NO_NEWER_TOPICS'		=> 'Na tym forum nie ma nowszych tematów.',
 	'NO_OLDER_TOPICS'		=> 'Na tym forum nie ma starszych tematów.',
 	'NO_UNREAD_POSTS'		=> 'Na tym forum nie ma nowych nieprzeczytanych postów.',
-	'NO_VOTE_OPTION'		=> 'Aby zagłosować musisz wybrać opcję.',
+	'NO_VOTE_OPTION'		=> 'Aby zagłosować, musisz wybrać opcję.',
 	'NO_VOTES'				=> 'Brak głosów',
+	'NO_AUTH_PRINT_TOPIC'	=> 'Nie masz uprawnień do wyświetlenia podglądu wydruku.',
 
 	'POLL_ENDED_AT'			=> 'Czas głosowania minął %s',
 	'POLL_RUN_TILL'			=> 'Czas głosowania minie %s',
@@ -99,7 +99,6 @@ $lang = array_merge($lang, array(
 
 	'QUICK_MOD'				=> 'Moderowanie',
 	'QUICKREPLY'			=> 'Szybka odpowiedź',
-	'QUOTE'					=> 'Cytuj',
 
 	'REPLY_TO_TOPIC'		=> 'Odpowiedz w temacie',
 	'RESTORE'				=> 'Przywróć',

@@ -62,32 +62,32 @@ class assets_bag
 	}
 
 	/**
-	 * Returns the HTML code to includes all css assets
+	 * Returns the HTML code to include all css assets
 	 *
 	 * @return string
 	 */
-	public function get_stylesheets_content()
+	public function get_stylesheets_content(): string
 	{
 		$output = '';
 		foreach ($this->stylesheets as $stylesheet)
 		{
-			$output .= "<link href=\"{$stylesheet->get_url()}\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" />\n";
+			$output .= "<link href=\"{$stylesheet->get_url()}\" rel=\"stylesheet\" media=\"screen\">\n";
 		}
 
 		return $output;
 	}
 
 	/**
-	 * Returns the HTML code to includes all js assets
+	 * Returns the HTML code to include all js assets
 	 *
 	 * @return string
 	 */
-	public function get_scripts_content()
+	public function get_scripts_content(): string
 	{
 		$output = '';
 		foreach ($this->scripts as $script)
 		{
-			$output .= "<script type=\"text/javascript\" src=\"{$script->get_url()}\"></script>\n";
+			$output .= "<script src=\"{$script->get_url()}\"></script>\n";
 		}
 
 		return $output;

@@ -12,7 +12,7 @@ namespace phpbb\collapsiblecategories;
 
 /**
 * This ext class is optional and can be omitted if left empty.
-* However you can add special (un)installation commands in the
+* However, you can add special (un)installation commands in the
 * methods enable_step(), disable_step() and purge_step(). As it is,
 * these methods are defined in \phpbb\extension\base, which this
 * class extends, but you can overwrite them to give special
@@ -20,11 +20,11 @@ namespace phpbb\collapsiblecategories;
 */
 class ext extends \phpbb\extension\base
 {
-	/** @var string Require phpBB 3.1.5 due to the use of new template events */
-	const PHPBB_MIN_VERSION = '3.1.5';
+	/** @var string Require phpBB 3.3.11 due to restyling of Prosilver forum header bar */
+	public const PHPBB_MIN_VERSION = '3.3.11';
 
 	/**
-	 * Check whether or not the extension can be enabled.
+	 * Check whether the extension can be enabled.
 	 * The current phpBB version should meet or exceed
 	 * the minimum version required by this extension:
 	 *

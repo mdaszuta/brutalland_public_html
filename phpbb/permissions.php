@@ -234,6 +234,7 @@ class permissions
 		'u_savedrafts'	=> array('lang' => 'ACL_U_SAVEDRAFTS', 'cat' => 'post'),
 		'u_chgcensors'	=> array('lang' => 'ACL_U_CHGCENSORS', 'cat' => 'post'),
 		'u_sig'			=> array('lang' => 'ACL_U_SIG', 'cat' => 'post'),
+		'u_emoji'		=> array('lang' => 'ACL_U_EMOJI', 'cat' => 'post'),
 
 		'u_sendpm'		=> array('lang' => 'ACL_U_SENDPM', 'cat' => 'pm'),
 		'u_masspm'		=> array('lang' => 'ACL_U_MASSPM', 'cat' => 'pm'),
@@ -260,6 +261,7 @@ class permissions
 
 		// Forum Permissions
 		'f_list'		=> array('lang' => 'ACL_F_LIST', 'cat' => 'actions'),
+		'f_list_topics' => array('lang' => 'ACL_F_LIST_TOPICS', 'cat' => 'actions'),
 		'f_read'		=> array('lang' => 'ACL_F_READ', 'cat' => 'actions'),
 		'f_search'		=> array('lang' => 'ACL_F_SEARCH', 'cat' => 'actions'),
 		'f_subscribe'	=> array('lang' => 'ACL_F_SUBSCRIBE', 'cat' => 'actions'),

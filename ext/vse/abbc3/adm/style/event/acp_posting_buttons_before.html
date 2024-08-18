@@ -1,2 +1,6 @@
 {% INCLUDEJS '@vse_abbc3/js/abbc3.min.js' %}
-{% include 'abbc3_posting_buttons.html' %}
+{% INCLUDECSS '@vse_abbc3/abbc3_common.min.css' %}
+{% if S_ABBC3_BBCODES_BAR %}
+	{% INCLUDECSS '@vse_abbc3/abbc3_posting.min.css' %}
+	{% include '@vse_abbc3/abbc3_posting_buttons.html' %}
+{% endif %}

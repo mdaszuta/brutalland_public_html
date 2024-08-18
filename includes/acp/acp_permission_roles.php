@@ -179,7 +179,7 @@ class acp_permission_roles
 					$db->sql_freeresult($result);
 
 					// Make sure we only print out the error if we add the role or change it's name
-					if ($row && ($mode == 'add' || ($mode == 'edit' && $role_row['role_name'] != $role_name)))
+					if ($row && ($action == 'add' || ($action == 'edit' && $role_row['role_name'] != $role_name)))
 					{
 						trigger_error(sprintf($user->lang['ROLE_NAME_ALREADY_EXIST'], $role_name) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
@@ -348,7 +348,7 @@ class acp_permission_roles
 				{
 					$hold_ary = $this->auth_admin->get_role_mask($role_id);
 
-					if (sizeof($hold_ary))
+					if (count($hold_ary))
 					{
 						$role_name = (!empty($user->lang[$role_row['role_name']])) ? $user->lang[$role_row['role_name']] : $role_row['role_name'];
 
@@ -496,7 +496,7 @@ class acp_permission_roles
 
 		$content_array = $content_array[0];
 
-		$template->assign_var('S_NUM_PERM_COLS', sizeof($categories));
+		$template->assign_var('S_NUM_PERM_COLS', count($categories));
 
 		// Assign to template
 		foreach ($content_array as $cat => $cat_array)

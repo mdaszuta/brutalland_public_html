@@ -1,29 +1,27 @@
 .pmbars-outer {
+	background-color: #ebebeb;
+	border-radius: 30px;
+	overflow-x: hidden;
 	width: 100%;
-	height: 14px;
-	padding: 1px;
-	border: solid 1px #A4B3BF;
-	border-radius: 3px;
-	margin: -8px 0 8px 0;
+	height: 8px;
+	margin: -8px 0 8px;
 }
 
 .pmbars-inner {
+	background: #32cd32;
+	border-radius: 30px;
 	width: 0;
+	max-width: 100%;
 	height: 100%;
-	border: 0;
-	border-radius: 3px;
-	background: url('images/stripes.png') repeat;
-	display: inline-block;
 }
 
-.pmbars-normal-bar {
-	background-color: #32cd32;
+.pmbars-danger {
+	background: #d31141;
+	background: -webkit-linear-gradient(left, #32cd32 85%, #d31141 95%);
+	background: linear-gradient(to right, #32cd32 85%, #d31141 95%);
 }
 
-.pmbars-danger-bar {
-	background-color: #f08080;
-}
-
-.rtl .pmbars-outer {
-	text-align: right;
+.rtl .pmbars-danger {
+	background: -webkit-linear-gradient(right, #32cd32 85%, #d31141 95%);
+	background: linear-gradient(to left, #32cd32 85%, #d31141 95%);
 }

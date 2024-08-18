@@ -36,13 +36,12 @@ $lang = array_merge($lang, array(
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> '字體',
-	'ABBC3_FONT_FANCY'			=> '炫字體',
 	'ABBC3_FONT_SAFE'			=> '網路字體',
-	'ABBC3_FONT_WIN'			=> 'Windows字體',
+	'ABBC3_GOOGLE_FONTS'		=> 'Google字體',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> '對齊: [align=center|left|right|justify]文字[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> '插入影片: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> '插入影片: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> '模糊: [blur=color]文字[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> '文字方向: [dir=ltr|rtl]文字[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> '立體影子: [dropshadow=color]文字[/dropshadow]',
@@ -58,12 +57,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> '離題: [offtopic]文字[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> '保存格式: [pre]文字[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> '影子: [shadow=color]文字[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '劇情透露: [spoil]文字[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> '劃掉: [s]文字[/s]',
 	'ABBC3_SUB_HELPLINE'		=> '上標: [sub]文字[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> '下標: [sup]文字[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube影片: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> '複製',
@@ -75,21 +75,31 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> '輸入至訊息',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> '範例',
-
-	// BBvideo Wizard
-	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo可連結之網站',
-	'ABBC3_BBVIDEO_LINK'		=> '影片網址',
-	'ABBC3_BBVIDEO_SIZE'		=> '影片寬度 x 高度',
-	'ABBC3_BBVIDEO_PRESETS'		=> '預設大小',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
-
-	// URL Wizard
+	'ABBC3_BBVIDEO_SITES'		=> '可連結之網站',
 	'ABBC3_URL_LINK'			=> '添加URL',
 	'ABBC3_URL_DESCRIPTION'		=> '可選說明',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
+
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode順序已變更',
 	'ABBC3_BBCODE_GROUP'		=> '變更可使用此BBCode的使用者群組',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未選擇任何群組，則所有人皆可使用此BBCode。若要選擇多個群組，請按下CTRL鍵。蘋果電腦請用CMD鍵',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr />',
 ));

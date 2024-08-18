@@ -1,4 +1,13 @@
-{% if not INCLUDED_IMGUR_JS %}
+{% if not INCLUDED_FORMDATA_POLYFILL_JS %}
+{%- if S_ALLOW_CDN -%}
+{% INCLUDEJS 'https://rawcdn.githack.com/jimmywarting/FormData/3.0.19/formdata.min.js' %}
+{%- else -%}
+{% INCLUDEJS '@alfredoramos_imgur/js/formdata.min.js' %}
+{%- endif -%}
+{%- set INCLUDED_FORMDATA_POLYFILL_JS = true -%}
+{% endif %}
+{% if IMGUR_UPLOAD_URL and SHOW_IMGUR_BUTTON and not INCLUDED_IMGUR_JS and IMGUR_IS_AUTHORIZED is not defined %}
+{% INCLUDEJS '@alfredoramos_imgur/js/functions.js' %}
 {% INCLUDEJS '@alfredoramos_imgur/js/imgur.js' %}
-{% set INCLUDED_IMGUR_JS = true %}
+{%- set INCLUDED_IMGUR_JS = true -%}
 {% endif %}

@@ -5,18 +5,42 @@ services:
     alfredoramos.imgur.listener:
         class: alfredoramos\imgur\event\listener
         arguments:
+            - '@alfredoramos.imgur.helper'
+        tags:
+            - { name: event.listener }
+
+    alfredoramos.imgur.helper:
+        class: alfredoramos\imgur\includes\helper
+        arguments:
             - '@config'
             - '@template'
             - '@routing.helper'
-        tags:
-            - { name: event.listener }
+            - '@language'
+            - '@dispatcher'
 
     alfredoramos.imgur.controller:
         class: alfredoramos\imgur\controller\imgur
         arguments:
+            - '@auth'
             - '@config'
+            - '@template'
             - '@request'
             - '@controller.helper'
             - '@filesystem'
             - '@language'
+            - '@user'
+            - '@log'
             - '@alfredoramos.imgur.j0k3r.imgur.client'
+            - '@alfredoramos.imgur.helper'
+
+    alfredoramos.imgur.acp.controller:
+        class: alfredoramos\imgur\controller\acp
+        arguments:
+            - '@config'
+            - '@template'
+            - '@request'
+            - '@language'
+            - '@user'
+            - '@log'
+            - '@alfredoramos.imgur.j0k3r.imgur.client'
+            - '@alfredoramos.imgur.helper'

@@ -29,11 +29,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class main_listener implements EventSubscriberInterface
 {
 	/**
-	 * @var string
-	 */
-	private $regex = '#\[mention\]<\/s>(.*?)<e>\[\/mention\]#';
-
-	/**
 	 * @var helper
 	 */
 	protected $helper;
@@ -104,22 +99,39 @@ class main_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return [
-			'core.submit_post_end'                  => 'submit_post',
-			'core.modify_submit_post_data'          => 'modify_submit_post',
-			'core.permissions'                      => 'add_permission',
-			'core.user_setup'			            => 'load_language_on_setup',
-			'core.modify_posting_auth'              => 'posting',
-			'core.viewtopic_modify_page_title'      => 'viewtopic',
-			'core.text_formatter_s9e_parse_before'  => 'permissions',
-			'core.posting_modify_template_vars'     => 'remove_mention_in_quote',
-			'core.markread_before'                  => 'mark_read',
+			'core.submit_post_end'                  	=> 'submit_post',
+			'core.modify_submit_post_data'          	=> 'modify_submit_post',
+			'core.approve_posts_after'              	=> 'handle_post_approval',
+			'core.permissions'                      	=> 'add_permission',
+			'core.user_setup'			            	=> 'load_language_on_setup',
+			'core.modify_posting_auth'              	=> 'posting',
+			'core.viewtopic_modify_page_title'      	=> 'viewtopic',
+			'core.text_formatter_s9e_parse_before'  	=> 'permissions',
+			'core.posting_modify_template_vars'     	=> 'remove_mention_in_quote',
+			'core.markread_before'                  	=> 'mark_read',
+			'rxu.postsmerging.posts_merging_end'		=> 'submit_post',
+			'core.acp_board_config_edit_add'        	=> 'acp_board_settings',
+			'core.validate_config_variable'         	=> 'validate_config',
+			'core.page_header'                      	=> 'page_header',
+			'core.text_formatter_s9e_configure_after'	=> 'configure_bbcode',
 		];
+	}
+
+	public function configure_bbcode($event)
+	{
+		$configurator = $event['configurator'];
+		$configurator->BBCodes->addCustom(
+			'[smention u={NUMBER?} g={NUMBER?}]{TEXT}[/smention]',
+			'<em class="mention">@{TEXT}</em>'
+		);
 	}
 
 	public function add_permission($event)
 	{
 		$permissions = $event['permissions'];
 		$permissions['u_can_mention'] = array('lang' => 'ACL_U_CAN_MENTION', 'cat' => 'misc');
+		$permissions['u_can_mention_groups'] = array('lang' => 'ACL_U_CAN_MENTION_GROUPS', 'cat' => 'misc');
+		$permissions['u_can_mention_large_groups'] = array('lang' => 'ACL_U_CAN_MENTION_LARGE_GROUPS', 'cat' => 'misc');
 		$event['permissions'] = $permissions;
 	}
 
@@ -177,9 +189,80 @@ class main_listener implements EventSubscriberInterface
 			break;
 
 			case 'topic':
-				$this->mark_topic_tead($event['topic_id'], $event['post_time']);
+				$this->mark_topic_read($event['topic_id'], $event['post_time']);
 			break;
 		}
+	}
+
+	/**
+	 * Add settings to the ACP page.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 */
+	public function acp_board_settings($event)
+	{
+		if ($event['mode'] === 'post')
+		{
+			$this->user->add_lang('acp_common', false, false, 'paul999/mention');
+			$display_vars = $event['display_vars'];
+			$sm_config_vars = [
+				'simple_mention_minlength' => [
+					'lang'		=> 'MENTION_LENGTH',
+					'validate'	=> 'int',
+					'type'		=> 'number:1:9999',
+					'explain'	=> true,
+				],
+				'simple_mention_maxresults' => [
+					'lang'		=> 'MENTION_MAX_RESULTS',
+					'validate'	=> 'int',
+					'type'		=> 'number:1:9999',
+					'explain'	=> true,
+				],
+				'simple_mention_color'  => [
+					'lang'      => 'MENTION_COLOR',
+					'validate'  => 'mention_hex',
+					'type'      => 'text:6:6',
+					'explain'   => true,
+				],
+				'simple_mention_large_groups'  => [
+					'lang'      => 'MENTION_LARGE_GROUPS',
+					'validate'  => 'int',
+					'type'      => 'number:1:9999',
+					'explain'   => true,
+				],
+			];
+			$display_vars['vars'] = phpbb_insert_config_array($display_vars['vars'], $sm_config_vars, array('after' => 'allow_quick_reply'));
+			$event['display_vars'] = $display_vars;
+		}
+	}
+
+	/**
+	 * Validate the simple mention hex color
+	 * @param \phpbb\event\data $event Event data
+	 */
+	public function validate_config($event)
+	{
+		if ($event['config_definition']['validate'] === 'mention_hex')
+		{
+			$value = $event['cfg_array'][$event['config_name']];
+			if (!preg_match("/([a-f0-9]{3}){1,2}\b/i", $value))
+			{
+				$error = $event['error'];
+				$error[] = sprintf($this->user->lang('MENTION_COLOR_INVALID'), $value);
+				$event['error'] = $error;
+			}
+		}
+	}
+
+	/**
+	 * Set the mention color on pages.
+	 * @param \phpbb\event\data $event
+	 */
+	public function page_header($event)
+	{
+		$this->template->assign_vars([
+			'MENTION_COLOR' => $this->config['simple_mention_color'],
+		]);
 	}
 
 	/**
@@ -198,7 +281,7 @@ class main_listener implements EventSubscriberInterface
 	 * @param int|array $topic_id
 	 * @param int $post_time
 	 */
-	private function mark_topic_tead($topic_id, $post_time)
+	private function mark_topic_read($topic_id, $post_time)
 	{
 		$this->notification_manager->mark_notifications_by_parent(array(
 			'paul999.mention.notification.type.mention',
@@ -237,7 +320,7 @@ class main_listener implements EventSubscriberInterface
 		}
 		$this->db->sql_freeresult($result);
 
-		$this->mark_topic_tead($topic_ids, $post_time);
+		$this->mark_topic_read($topic_ids, $post_time);
 	}
 
 	/**
@@ -248,7 +331,8 @@ class main_listener implements EventSubscriberInterface
 		if ($this->auth->acl_get('u_can_mention'))
 		{
 			$this->template->assign_vars([
-			   'UA_AJAX_MENTION_URL'    => $this->helper->route('paul999_mention_controller'),
+			   'U_AJAX_MENTION_URL'		=> $this->helper->route('paul999_mention_controller'),
+			   'MIN_MENTION_LENGTH'		=> $this->config['simple_mention_minlength'],
 			]);
 		}
 	}
@@ -273,6 +357,7 @@ class main_listener implements EventSubscriberInterface
 		if ($disable)
 		{
 			$event['parser']->disable_bbcode('mention');
+			$event['parser']->disable_bbcode('smention');
 		}
 	}
 
@@ -288,6 +373,8 @@ class main_listener implements EventSubscriberInterface
 		}
 		$page_data = $event['page_data'];
 		$page_data['MESSAGE'] = preg_replace('#\[mention\](.*?)\[\/mention\]#uis', '@\\1', $page_data['MESSAGE']);
+		$page_data['MESSAGE'] = preg_replace('#\[smention u=([0-9]+)\](.*?)\[\/smention\]#uis', '@\\2', $page_data['MESSAGE']);
+		$page_data['MESSAGE'] = preg_replace('#\[smention g=([0-9]+)\](.*?)\[\/smention\]#uis', '@\\2', $page_data['MESSAGE']);
 		$event['page_data'] = $page_data;
 	}
 
@@ -303,26 +390,197 @@ class main_listener implements EventSubscriberInterface
 			return;
 		}
 
-		$matches = [];
-		$message = $event['data']['message'];
-		if (preg_match_all($this->regex, $message, $matches, PREG_OFFSET_CAPTURE) === 0)
+		$this->parse_message($event['data']['message'], $event['data']['forum_id']);
+	}
+
+	public function handle_post_approval($event)
+	{
+		if ($event['action'] != 'approve')
 		{
 			return;
 		}
-		$this->mention_data = [];
-		$mentions = [];
-		$data = [];
 
-		for ($i = 0; $i < sizeof($matches[1]); $i++)
+		$posts = [];
+		foreach ($event['post_info'] as $post_id => $post_data)
 		{
-			$data[] = utf8_clean_string($matches[1][$i][0]);
+			$posts[] = $post_id;
 		}
 
-		$sql = 'SELECT user_id, username, user_permissions, user_type
-				FROM ' . USERS_TABLE . '
-				WHERE ' . $this->db->sql_in_set('username_clean', $data);
+		$sql = 'SELECT p.poster_id, p.post_text, p.post_id, t.topic_id, t.forum_id, t.topic_title 
+				  FROM ' . POSTS_TABLE . ' p, ' . TOPICS_TABLE . ' t
+				  WHERE t.topic_id = p.topic_id
+						AND ' . $this->db->sql_in_set('p.post_id', $posts);
 		$result = $this->db->sql_query($sql);
 
+		$data = [];
+		$users = [];
+		$userdata = [];
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$data[] = $row;
+			$users[] = (int) $row['poster_id'];
+		}
+		$this->db->sql_freeresult($result);
+
+		$sql = 'SELECT username, user_id, user_permissions, user_type 
+				  FROM ' . USERS_TABLE . ' 
+				  WHERE ' . $this->db->sql_in_set('user_id', $users);
+		$result = $this->db->sql_query($sql);
+
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$userdata[$row['user_id']] = $row;
+		}
+		$this->db->sql_freeresult($result);
+
+		foreach ($data as $row)
+		{
+			$this->mention_data = [];
+
+			$local_auth = new auth();
+			$local_auth->acl($userdata[$row['poster_id']]);
+
+			if (!$local_auth->acl_get('u_can_mention'))
+			{
+				continue;
+			}
+			$this->parse_message($row['post_text'], $row['forum_id'], false, $local_auth);
+
+			if (count($this->mention_data))
+			{
+				$insert = [
+					'post_id'       => $row['post_id'],
+					'username'      => $userdata[$row['poster_id']]['username'],
+					'user_id'       => $row['poster_id'],
+					'topic_id'      => $row['topic_id'],
+					'topic_title'   => $row['topic_title'],
+				];
+				$this->send_notification($insert);
+			}
+
+		}
+
+	}
+
+	public function submit_post($event)
+	{
+		if ($event['post_visibility'] == ITEM_APPROVED && isset($this->mention_data))
+		{
+			$data = $event['data'];
+			$data['username'] = $this->user->data['username'];
+			$data['user_id'] = $this->user->data['user_id'];
+			$this->send_notification($data);
+		}
+	}
+
+	/**
+	 * @param string $message
+	 * @param int $forum_id
+	 * @param bool $current
+	 */
+	private function parse_message($message, $forum_id, $current = true, auth $local_auth = null)
+	{
+		if ($local_auth === null)
+		{
+			$local_auth = $this->auth;
+		}
+		$matches = [];
+		$mentions = [];
+		$this->mention_data = [];
+
+		// Old style BBCode.
+		if (preg_match_all('#\[mention\]<\/s>(.*?)<e>\[\/mention\]#', $message, $matches, PREG_OFFSET_CAPTURE) !== 0)
+		{
+			$data = [];
+
+			for ($i = 0; $i < count($matches[1]); $i++)
+			{
+				$data[] = utf8_clean_string($matches[1][$i][0]);
+			}
+
+			$sql = 'SELECT user_id, username, user_permissions, user_type
+				FROM ' . USERS_TABLE . '
+				WHERE ' . $this->db->sql_in_set('username_clean', $data);
+			$result = $this->db->sql_query($sql);
+			$data = $this->getUserData($result, $mentions);
+			$this->db->sql_freeresult($result);
+			$this->handle_matches($data, $forum_id, $current);
+		}
+
+		$matches = [];
+		if (preg_match_all('#\[smention u=([0-9]+)\]<\/s>(.*?)<e>\[\/smention\]#', $message, $matches, PREG_OFFSET_CAPTURE) !== 0)
+		{
+			$data = [];
+
+			for ($i = 0; $i < count($matches[1]); $i++)
+			{
+				$data[] = $matches[1][$i][0];
+			}
+
+			$sql = 'SELECT user_id, username, user_permissions, user_type
+				FROM ' . USERS_TABLE . '
+				WHERE ' . $this->db->sql_in_set('user_id', $data);
+			$result = $this->db->sql_query($sql);
+			$data = $this->getUserData($result, $mentions);
+			$this->db->sql_freeresult($result);
+			$this->handle_matches($data, $forum_id, $current);
+		}
+
+		if ($local_auth->acl_get('u_can_mention_groups') && preg_match_all('#\[smention g=([0-9]+)\]<\/s>(.*?)<e>\[\/smention\]#', $message, $matches, PREG_OFFSET_CAPTURE) !== 0)
+		{
+			// We are going to mention an group.
+			$data = [];
+
+			for ($i = 0; $i < count($matches[1]); $i++)
+			{
+				$data[] = $matches[1][$i][0];
+			}
+
+			if (!$local_auth->acl_get('u_can_mention_large_groups'))
+			{
+				// User can only mention small groups. We need to check if the specified group is small.
+				$sql = 'SELECT COUNT(user_id) as cnt, group_id  
+				FROM ' . USER_GROUP_TABLE . ' g
+				WHERE ' . $this->db->sql_in_set('g.group_id', $data) . ' GROUP BY group_id';
+
+				$result = $this->db->sql_query($sql);
+				$data = [];
+				while ($row = $this->db->sql_fetchrow($result))
+				{
+					if ($row['cnt'] <= $this->config['simple_mention_large_groups'])
+					{
+						$data[] = $row['group_id'];
+					}
+				}
+				$this->db->sql_freeresult($result);
+			}
+
+			if (count($data) > 0)
+			{
+				$sql = 'SELECT u.user_id, u.username, u.user_permissions, u.user_type
+				FROM ' . USERS_TABLE . ' u, ' . USER_GROUP_TABLE . ' ug, ' . GROUPS_TABLE . ' g 
+				WHERE 
+						g.group_id = ug.group_id
+						AND g.group_type <> ' . GROUP_HIDDEN . '
+						AND ' . $this->db->sql_in_set('g.group_name', ['GUESTS', 'BOTS'], true) . '
+						AND u.user_id = ug.user_id 
+						AND ' . $this->db->sql_in_set('ug.group_id', $data);
+				$result = $this->db->sql_query($sql);
+				$data = $this->getUserData($result, $mentions);
+
+				$this->db->sql_freeresult($result);
+				$this->handle_matches($data, $forum_id, $current);
+			}
+		}
+	}
+
+	/**
+	 * @param $result
+	 * @param array $mentions
+	 * @return array
+	 */
+	private function getUserData($result, array &$mentions): array
+	{
 		$data = [];
 
 		while ($row = $this->db->sql_fetchrow($result))
@@ -333,19 +591,29 @@ class main_listener implements EventSubscriberInterface
 				$data[] = $row;
 			}
 		}
-		$this->db->sql_freeresult($result);
+		return $data;
+	}
 
-		if (sizeof($data))
+	private function handle_matches(array $data, int $forum_id, $current)
+	{
+		$authCache = [];
+		if (count($data))
 		{
 			foreach ($data as $index => $row)
 			{
-				if ($this->user->data['user_id'] == $row['user_id'])
+				if ($current && $this->user->data['user_id'] == $row['user_id'])
 				{
 					continue; // Do not send notification to current user.
 				}
-				$auth = new auth();
-				$auth->acl($row);
-				if ($auth->acl_get('f_read', $event['data']['forum_id']))
+				if (!isset($authCache[$row['user_id']]))
+				{
+					// Not cached yet.
+					$auth = new auth();
+					$auth->acl($row);
+					$authCache[$row['user_id']] = $auth->acl_get('f_read', $forum_id);
+				}
+
+				if ($authCache[$row['user_id']])
 				{
 					// Only do the mention when the user is able to read the forum
 					$this->mention_data[] = (int) $row['user_id'];
@@ -354,23 +622,23 @@ class main_listener implements EventSubscriberInterface
 		}
 	}
 
-	public function submit_post($event)
+	/**
+	 * @param $data
+	 */
+	private function send_notification($data)
 	{
-		if (sizeof($this->mention_data))
-		{
-			$this->notification_manager->add_notifications('paul999.mention.notification.type.mention', [
-				'user_ids'		    => $this->mention_data,
-				'notification_id'   => $event['data']['post_id'],
-				'username'          => $this->user->data['username'],
-				'poster_id'         => $this->user->data['user_id'],
-				'post_id'           => $event['data']['post_id'],
-				'topic_id'          => $event['data']['topic_id'],
-				'topic_title'		=> $event['data']['topic_title'],
-			],
-			[
-				'user_ids'		    => $this->mention_data,
-			]);
-		}
-		return;
+		$this->notification_manager->add_notifications('paul999.mention.notification.type.mention', [
+			'user_ids' => $this->mention_data,
+			'notification_id' => $data['post_id'],
+			'username' => $data['username'],
+			'poster_id' => $data['user_id'],
+			'post_id' => $data['post_id'],
+			'topic_id' => $data['topic_id'],
+			'topic_title' => $data['topic_title'],
+		],
+		[
+			'user_ids' => $this->mention_data,
+		]);
 	}
+
 }

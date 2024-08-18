@@ -36,13 +36,12 @@ $lang = array_merge($lang, array(
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Шрифт',
-	'ABBC3_FONT_FANCY'			=> 'Додаткові шрифти',
 	'ABBC3_FONT_SAFE'			=> 'Стандартні шрифти',
-	'ABBC3_FONT_WIN'			=> 'Шрифти Windows',
+	'ABBC3_GOOGLE_FONTS'		=> 'Шрифти Google',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Вирівнювання: [align=center|left|right|justify]текст[/align]  Підказка: center - по центру, left - по лівому краю, right - по правому краю, justify - по ширині',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Відео з сайта: [BBvideo=width,height]http://video_url[/BBvideo]  Підказка: width - ширина, height - висота',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Відео з сайта: [bbvideo]http://video_url[/bbvideo]  Підказка: width - ширина, height - висота',
 	'ABBC3_BLUR_HELPLINE'		=> 'Розмитий текст: [blur=колір]текст[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Напрямок тексту: [dir=ltr|rtl]текст[/dir]  Підказка: ltr - зліва направо, rtl - справа наліво',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Чітка тінь: [dropshadow=колір]текст[/dropshadow]',
@@ -58,12 +57,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Повідомлення не по темі: [offtopic]текст[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Попередньо відформатований текст: [pre]текст[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Розмита тінь: [shadow=колір]текст[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'Музика з SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'Музика з SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Спойлер: [spoil]текст[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Закреслений текст: [s]текст[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Підстрочний текст: [sub]текст[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Надстрочний текст: [sup]текст[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Відео з YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Копіювати виділений текст',
@@ -75,21 +75,31 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Вставити повідомлення',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Приклад',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Дозволені сайти',
-	'ABBC3_BBVIDEO_LINK'		=> 'Посилання на відео',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Ширина та висота відео',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Розміри відео',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Додати URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Додатковий опис',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
+
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BB-кодів змінено.',
 	'ABBC3_BBCODE_GROUP'		=> 'Групи, котрі можуть використовувати BB-код',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Якщо група вибрана, то всі її користувачі можуть використовувати BB-код. Використовуйте CTRL+CLICK (або CMD+CLICK на Mac) для того, щоб вибрати кілька груп.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr />',
 ));

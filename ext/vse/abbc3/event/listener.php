@@ -10,12 +10,16 @@
 
 namespace vse\abbc3\event;
 
-use phpbb\controller\helper;
+use phpbb\config\config;
+use phpbb\config\db_text;
+use phpbb\language\language;
+use phpbb\routing\helper;
 use phpbb\template\template;
 use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\bbcodes_display;
-use vse\abbc3\core\bbcodes_parser;
+use vse\abbc3\core\bbcodes_help;
+use vse\abbc3\core\bbcodes_config;
 use vse\abbc3\ext;
 
 /**
@@ -23,14 +27,26 @@ use vse\abbc3\ext;
  */
 class listener implements EventSubscriberInterface
 {
-	/** @var bbcodes_parser */
-	protected $bbcodes_parser;
+	/** @var bbcodes_config */
+	protected $bbcodes_config;
 
 	/** @var bbcodes_display */
 	protected $bbcodes_display;
 
+	/** @var bbcodes_help */
+	protected $bbcodes_help;
+
+	/** @var config */
+	protected $config;
+
+	/** @var db_text */
+	protected $config_text;
+
 	/** @var helper */
 	protected $helper;
+
+	/** @var language */
+	protected $language;
 
 	/** @var template */
 	protected $template;
@@ -38,28 +54,31 @@ class listener implements EventSubscriberInterface
 	/** @var user */
 	protected $user;
 
-	/** @var string phpBB root path */
-	protected $ext_root_path;
+	protected $quick_reply = false;
 
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_parser  $bbcodes_parser
+	 * @param bbcodes_config  $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
+	 * @param bbcodes_help    $bbcodes_help
+	 * @param config          $config
+	 * @param db_text         $db_text
 	 * @param helper          $helper
+	 * @param language        $language
 	 * @param template        $template
-	 * @param user            $user
-	 * @param string          $ext_root_path
 	 * @access public
 	 */
-	public function __construct(bbcodes_parser $bbcodes_parser, bbcodes_display $bbcodes_display, helper $helper, template $template, user $user, $ext_root_path)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template)
 	{
-		$this->bbcodes_parser = $bbcodes_parser;
+		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
+		$this->bbcodes_help = $bbcodes_help;
+		$this->config = $config;
+		$this->config_text = $db_text;
 		$this->helper = $helper;
 		$this->template = $template;
-		$this->user = $user;
-		$this->ext_root_path = $ext_root_path;
+		$this->language = $language;
 	}
 
 	/**
@@ -71,25 +90,23 @@ class listener implements EventSubscriberInterface
 	 */
 	public static function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.user_setup'							=> 'load_language_on_setup',
+			'core.page_header' 							=> 'load_google_fonts',
+			'core.adm_page_header' 						=> 'load_google_fonts',
 
-			// functions_content events
-			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
-			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
-
-			// functions_display events
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql',
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
 
-			// message_parser events
-			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after',
-			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes',
+			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
+			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force the lowest priority
 
-			// text_formatter events (for phpBB 3.2.x)
-			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
-		);
+			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
+
+			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
+			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
+		];
 	}
 
 	/**
@@ -101,37 +118,30 @@ class listener implements EventSubscriberInterface
 	public function load_language_on_setup($event)
 	{
 		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
+		$lang_set_ext[] = [
 			'ext_name' => 'vse/abbc3',
 			'lang_set' => 'abbc3',
-		);
+		];
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
 	/**
-	 * Alter BBCodes before they are processed by phpBB
+	 * Load Google fonts data
+	 * For injecting Google Font names into the template
 	 *
-	 * This is used to change old/malformed ABBC3 BBCodes to a newer structure
-	 *
-	 * @param \phpbb\event\data $event The event object
 	 * @access public
 	 */
-	public function parse_bbcodes_before($event)
+	public function load_google_fonts()
 	{
-		$event['text'] = $this->bbcodes_parser->pre_parse_bbcodes($event['text'], $event['uid']);
-	}
+		if (!$this->config['allow_cdn'])
+		{
+			return;
+		}
 
-	/**
-	 * Alter BBCodes after they are processed by phpBB
-	 *
-	 * This is used on ABBC3 BBCodes that require additional post-processing
-	 *
-	 * @param \phpbb\event\data $event The event object
-	 * @access public
-	 */
-	public function parse_bbcodes_after($event)
-	{
-		$event['text'] = $this->bbcodes_parser->post_parse_bbcodes($event['text']);
+		$this->template->assign_var(
+			'abbc3_google_fonts',
+			json_decode($this->config_text->get('abbc3_google_fonts'), true)
+		);
 	}
 
 	/**
@@ -155,15 +165,17 @@ class listener implements EventSubscriberInterface
 	 */
 	public function setup_custom_bbcodes()
 	{
-		$this->template->assign_vars(array(
-			'ABBC3_USERNAME'			=> $this->user->data['username'],
-			'ABBC3_BBCODE_ICONS'		=> $this->ext_root_path . 'images/icons',
-			'ABBC3_BBVIDEO_HEIGHT'		=> ext::BBVIDEO_HEIGHT,
-			'ABBC3_BBVIDEO_WIDTH'		=> ext::BBVIDEO_WIDTH,
+		$this->template->assign_vars([
+			'ABBC3_BBCODE_ICONS'		=> $this->bbcodes_display->get_icons(),
+			'ABBC3_BBCODE_FONTS'		=> ext::ABBC3_BBCODE_FONTS,
 
-			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
-			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'url')),
-		));
+			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
+			'S_ABBC3_BCSTYLE_BAR'		=> phpbb_version_compare(PHPBB_VERSION, ext::PHPBB_LEGACY_MAX, '<='),
+
+			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'bbvideo']),
+			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'pipes']),
+			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'url']),
+		]);
 	}
 
 	/**
@@ -174,45 +186,86 @@ class listener implements EventSubscriberInterface
 	 */
 	public function display_custom_bbcodes($event)
 	{
+		if (!$this->config['abbc3_bbcode_bar'])
+		{
+			return;
+		}
+
 		$event['custom_tags'] = $this->bbcodes_display->display_custom_bbcodes($event['custom_tags'], $event['row']);
 	}
 
 	/**
-	 * Set custom BBCodes permissions
+	 * Allow custom BBCodes based on user's group memberships
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
-	 *
-	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
 	public function allow_custom_bbcodes($event)
-	{
-		$event['bbcodes'] = $this->bbcodes_display->allow_custom_bbcodes($event['bbcodes'], $event['rowset']);
-	}
-
-	/**
-	 * Toggle custom BBCodes in the s9e\TextFormatter parser based on user's group memberships
-	 *
-	 * @param \phpbb\event\data $event The event object
-	 * @access public
-	 */
-	public function s9e_allow_custom_bbcodes($event)
 	{
 		if (defined('IN_CRON'))
 		{
 			return; // do no apply bbcode permissions if in a cron job (for 3.1 to 3.2 update reparsing)
 		}
 
-		/** @var $service \phpbb\textformatter\s9e\parser object from the text_formatter.parser service */
-		$service = $event['parser'];
-		$parser = $service->get_parser();
-		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
+		$this->bbcodes_display->allow_custom_bbcodes($event['parser']);
+	}
+
+	/**
+	 * Configure TextFormatter powered PlugIns and BBCodes
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function configure_bbcodes($event)
+	{
+		$configurator = $event['configurator'];
+		$configurator->registeredVars['abbc3.pipes_enabled'] = $this->config['abbc3_pipes'];
+		$configurator->registeredVars['abbc3.auto_video_enabled'] = $this->config['abbc3_auto_video'];
+
+		$this->bbcodes_config->pipes($configurator);
+		$this->bbcodes_config->bbvideo($configurator);
+		$this->bbcodes_config->auto_video($configurator);
+		$this->bbcodes_config->hidden($configurator);
+	}
+
+	/**
+	 * Add ABBC3 BBCodes to the BBCode FAQ after the HELP_BBCODE_BLOCK_OTHERS block
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function add_bbcode_faq($event)
+	{
+		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
 		{
-			if (!$this->bbcodes_display->user_in_bbcode_group($groups))
-			{
-				$bbcode_name = rtrim($bbcode_name, '=');
-				$service->disable_bbcode($bbcode_name);
-			}
+			$this->bbcodes_help->faq();
+		}
+	}
+
+	/**
+	 * If Quick Reply allowed, set our quick_reply property.
+	 * Added compatibility check for Quick Reply Reloaded (qr_bbcode).
+	 *
+	 * @access public
+	 */
+	public function set_quick_reply()
+	{
+		$this->quick_reply = $this->config['abbc3_qr_bbcodes'] && !$this->config['qr_bbcode'];
+	}
+
+	/**
+	 * Add BBCodes to Quick Reply.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function add_to_quickreply($event)
+	{
+		if ($this->quick_reply)
+		{
+			$this->language->add_lang('posting');
+			$this->template->assign_var('S_ABBC3_QUICKREPLY', true);
+			$this->template->assign_vars($this->bbcodes_display->bbcode_statuses($event['forum_id']));
 		}
 	}
 }

@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 	'USER_LANG'			=> 'en-gb',
 
 	// You can define different rules for the determination of plural forms here.
-	// See http://wiki.phpbb.com/Plural_Rules for more information
+	// See https://area51.phpbb.com/docs/dev/3.3.x/language/plurals.html for more information
 	// or ask the translation manager for help.
 	'PLURAL_RULE'		=> 1,
 
@@ -62,9 +62,9 @@ $lang = array_merge($lang, array(
 
 	'ACCOUNT_ALREADY_ACTIVATED'		=> 'Your account has already been activated.',
 	'ACCOUNT_DEACTIVATED'			=> 'Your account has been manually deactivated and is only able to be reactivated by an administrator.',
-	'ACCOUNT_NOT_ACTIVATED'			=> 'Your account has not been activated yet.',
 	'ACP'							=> 'Administration Control Panel',
 	'ACP_SHORT'						=> 'ACP',
+	'ACTIVATION_ALREADY_SENT'		=> 'The activation email has already been sent to your email address. You can try again after 24 hours. If you continue to have problems activating your account, please contact a board administrator.',
 	'ACTIVE'						=> 'active',
 	'ACTIVE_ERROR'					=> 'The specified username is currently inactive. If you have problems activating your account, please contact a board administrator.',
 	'ADMINISTRATOR'					=> 'Administrator',
@@ -92,8 +92,11 @@ $lang = array_merge($lang, array(
 	'ATTACHED_IMAGE_NOT_IMAGE'		=> 'The image file you tried to attach is invalid.',
 	'AUTHOR'						=> 'Author',
 	'AUTH_NO_PROFILE_CREATED'		=> 'The creation of a user profile was unsuccessful.',
+	'AUTH_PROVIDER_OAUTH_ERROR_ALREADY_LINKED'				=> 'This external service is already associated with another board account.',
 	'AUTH_PROVIDER_OAUTH_ERROR_INVALID_ENTRY'				=> 'Invalid database entry.',
 	'AUTH_PROVIDER_OAUTH_ERROR_INVALID_SERVICE_TYPE'		=> 'Invalid service type provided to OAuth service handler.',
+	'AUTH_PROVIDER_OAUTH_ERROR_REQUEST'						=> 'Something went wrong when processing your OAuth request.',
+	'AUTH_PROVIDER_OAUTH_RETURN_ERROR'						=> 'The external service returned a wrong value therefore your request can not be processed.',
 	'AUTH_PROVIDER_OAUTH_ERROR_SERVICE_NOT_CREATED'			=> 'OAuth service not created',
 	'AUTH_PROVIDER_OAUTH_SERVICE_BITLY'						=> 'Bitly',
 	'AUTH_PROVIDER_OAUTH_SERVICE_FACEBOOK'					=> 'Facebook',
@@ -109,6 +112,8 @@ $lang = array_merge($lang, array(
 	'AVATAR_NOT_UPLOADED'			=> 'Avatar could not be uploaded.',
 	'AVATAR_NO_TEMP_DIR'			=> 'Temporary folder could not be found or is not writable.',
 	'AVATAR_NO_SIZE'				=> 'The width or height of the linked avatar could not be determined. Please enter them manually.',
+	'AVATAR_NO_UPLOAD_DIR'			=> 'Avatar storage path does not exist or is not writable.',
+	'AVATAR_NO_UPLOAD_PATH'			=> 'Avatar uploading is enabled but avatar storage path is not set.',
 	'AVATAR_PARTIAL_UPLOAD'			=> 'The specified file was only partially uploaded.',
 	'AVATAR_PHP_SIZE_NA'			=> 'The avatar’s filesize is too large.<br />The maximum allowed filesize set in php.ini could not be determined.',
 	'AVATAR_PHP_SIZE_OVERRUN'		=> 'The avatar’s filesize is too large. The maximum allowed upload size is %1$d %2$s.<br />Please note this is set in php.ini and cannot be overridden.',
@@ -138,8 +143,10 @@ $lang = array_merge($lang, array(
 		1	=> 'Users browsing this forum: %2$s and %1$d guest',
 		2	=> 'Users browsing this forum: %2$s and %1$d guests',
 	),
+	'BUTTON_DELETE'         => 'Delete',
 	'BUTTON_EDIT'			=> 'Edit',
 	'BUTTON_FORUM_LOCKED'	=> 'Locked',
+	'BUTTON_INFORMATION'    => 'Information',
 	'BUTTON_NEW_TOPIC'		=> 'New Topic',
 	'BUTTON_PM'				=> 'PM',
 	'BUTTON_PM_FORWARD'		=> 'Forward',
@@ -148,7 +155,9 @@ $lang = array_merge($lang, array(
 	'BUTTON_PM_REPLY_ALL'	=> 'Reply All',
 	'BUTTON_POST_REPLY'		=> 'Post Reply',
 	'BUTTON_QUOTE'			=> 'Quote',
+	'BUTTON_REPORT'         => 'Report',
 	'BUTTON_TOPIC_LOCKED'	=> 'Locked',
+	'BUTTON_WARN'           => 'Warn',
 	'BYTES'					=> 'Bytes',
 	'BYTES_SHORT'			=> 'B',
 
@@ -161,8 +170,14 @@ $lang = array_merge($lang, array(
 		1	=> '%d character',
 		2	=> '%d characters',
 	),
+	// Special version to be used when describing ranges e.g. "min x characters and max y characters"
+	'CHARACTERS_XY'			=> array(
+		1	=> '%d character',
+		2	=> '%d characters',
+	),
 	'COLLAPSE_VIEW'			=> 'Collapse view',
 	'CLOSE_WINDOW'			=> 'Close window',
+	'CODE'					=> 'Code',
 	'COLOUR_SWATCH'			=> 'Colour swatch',
 	'COLON'					=> ':',
 	'COMMA_SEPARATOR'		=> ', ',	// Comma used to join lists into a single string, use localised comma if appropriate, eg: Ideographic or Arabic
@@ -181,6 +196,7 @@ $lang = array_merge($lang, array(
 	'COOKIE_CONSENT_INFO'	=> 'Learn more',
 	'COOKIE_CONSENT_MSG'	=> 'This website uses cookies to ensure you get the best experience on our website.',
 	'COOKIE_CONSENT_OK'		=> 'Got it!',
+	'COOKIE_CONSENT_HREF'	=> 'http://cookiesandyou.com',
 	'COOKIES_DELETED'		=> 'All board cookies successfully deleted.',
 	'CURRENT_TIME'			=> 'It is currently %s',
 
@@ -188,7 +204,7 @@ $lang = array_merge($lang, array(
 	'DAYS'					=> 'Days',
 	'DELETE'				=> 'Delete',
 	'DELETE_ALL'			=> 'Delete all',
-	'DELETE_COOKIES'		=> 'Delete all board cookies',
+	'DELETE_COOKIES'		=> 'Delete cookies',
 	'DELETE_MARKED'			=> 'Delete marked',
 	'DELETE_POST'			=> 'Delete post',
 	'DELIMITER'				=> 'Delimiter',
@@ -199,6 +215,7 @@ $lang = array_merge($lang, array(
 	'DISPLAY_MESSAGES'		=> 'Display messages from previous',
 	'DISPLAY_POSTS'			=> 'Display posts from previous',
 	'DISPLAY_TOPICS'		=> 'Display topics from previous',
+	'DOMAIN_NO_MX_RECORD_EMAIL'	=> 'The entered email domain has no valid MX record.',
 	'DOWNLOADED'			=> 'Downloaded',
 	'DOWNLOADING_FILE'		=> 'Downloading file',
 	'DOWNLOAD_COUNTS'		=> array(
@@ -262,6 +279,17 @@ $lang = array_merge($lang, array(
 	'FSOCK_DISABLED'		=> 'The operation could not be completed because the <var>fsockopen</var> function has been disabled or the server being queried could not be found.',
 	'FSOCK_TIMEOUT'			=> 'A timeout occurred while reading from the network stream.',
 
+	'FILESYSTEM_CANNOT_CHANGE_FILE_GROUP'		=> 'Unable to change file group',
+	'FILESYSTEM_CANNOT_CHANGE_FILE_PERMISSIONS'	=> 'Unable to change file permissions',
+	'FILESYSTEM_CANNOT_COPY_FILES'				=> 'Unable to copy files',
+	'FILESYSTEM_CANNOT_CREATE_SYMLINK'			=> 'Unable to create a symlink',
+	'FILESYSTEM_CANNOT_CREATE_DIRECTORY'		=> 'Unable to create directory',
+	'FILESYSTEM_CANNOT_DELETE_FILES'			=> 'Unable to delete files from the system',
+	'FILESYSTEM_CANNOT_DUMP_FILE'				=> 'Unable to dump into file',
+	'FILESYSTEM_CANNOT_MIRROR_DIRECTORY'		=> 'Unable to mirror directory',
+	'FILESYSTEM_CANNOT_RENAME_FILE'				=> 'Unable to rename a file from the system',
+	'FILESYSTEM_CANNOT_TOUCH_FILES'				=> 'Unable to create file or change file timestamps',
+
 	'FTP_FSOCK_HOST'				=> 'FTP host',
 	'FTP_FSOCK_HOST_EXPLAIN'		=> 'FTP server used to connect your site.',
 	'FTP_FSOCK_PASSWORD'			=> 'FTP password',
@@ -292,7 +320,6 @@ $lang = array_merge($lang, array(
 	'GB'						=> 'GB',
 	'GIB'						=> 'GiB',
 	'GO'						=> 'Go',
-	'GOOGLEPLUS'				=> 'Google+',
 	'GOTO_FIRST_POST'			=> 'Go to first post',
 	'GOTO_LAST_POST'			=> 'Go to last post',
 	'GOTO_PAGE'					=> 'Go to page',
@@ -353,7 +380,7 @@ $lang = array_merge($lang, array(
 	'JOINED'				=> 'Joined',
 	'JUMP_PAGE'				=> 'Enter the page number you wish to go to',
 	'JUMP_TO'				=> 'Jump to',
-	'JUMP_TO_PAGE'			=> 'Jump to page...',
+	'JUMP_TO_PAGE'			=> 'Jump to page',
 	'JUMP_TO_PAGE_CLICK'	=> 'Click to jump to page…',
 
 	'KB'					=> 'KB',
@@ -376,9 +403,9 @@ $lang = array_merge($lang, array(
 	'LOGIN_CHECK_PM'					=> 'Log in to check your private messages.',
 	'LOGIN_CONFIRMATION'				=> 'Confirmation of login',
 	'LOGIN_CONFIRM_EXPLAIN'				=> 'To prevent brute forcing accounts the board requires you to enter a confirmation code after a maximum amount of failed logins. The code is displayed in the image you should see below. If you are visually impaired or cannot otherwise read this code please contact the %sBoard Administrator%s.', // unused
-	'LOGIN_ERROR_ATTEMPTS'				=> 'You exceeded the maximum allowed number of login attempts. In addition to your username and password you now also have to solve the CAPTCHA below.',
+	'LOGIN_ERROR_ATTEMPTS'				=> 'You exceeded the maximum allowed number of login attempts. In addition to your username and password you now also have to pass the CAPTCHA test.',
 	'LOGIN_ERROR_EXTERNAL_AUTH_APACHE'	=> 'You have not been authenticated by Apache.',
-	'LOGIN_ERROR_OAUTH_SERVICE_DOES_NOT_EXIST'	=> 'A non-existant OAuth service has been requested.',
+	'LOGIN_ERROR_OAUTH_SERVICE_DOES_NOT_EXIST'	=> 'A non-existent OAuth service has been requested.',
 	'LOGIN_ERROR_PASSWORD'				=> 'You have specified an incorrect password. Please check your password and try again. If you continue to have problems please contact the %sBoard Administrator%s.',
 	'LOGIN_ERROR_PASSWORD_CONVERT'		=> 'It was not possible to convert your password when updating this bulletin board’s software. Please %srequest a new password%s. If you continue to have problems please contact the %sBoard Administrator%s.',
 	'LOGIN_ERROR_USERNAME'				=> 'You have specified an incorrect username. Please check your username and try again. If you continue to have problems please contact the %sBoard Administrator%s.',
@@ -411,6 +438,7 @@ $lang = array_merge($lang, array(
 	'MESSAGE'				=> 'Message',
 	'MESSAGES'				=> 'Messages',
 	'MESSAGES_COUNT'		=> array(
+		0	=> 'unlimited messages',
 		1	=> '%d message',
 		2	=> '%d messages',
 	),
@@ -468,9 +496,10 @@ $lang = array_merge($lang, array(
 	'NOTIFICATION_QUOTE'				=> array(
 		1	=> '<strong>Quoted</strong> by %1$s in:',
 	),
-	'NOTIFICATION_REFERENCE'			=> '%1$s',
+	'NOTIFICATION_REFERENCE'			=> '"%1$s"',
 	'NOTIFICATION_REASON'				=> '<em>Reason:</em> %1$s.',
 	'NOTIFICATION_REPORT_PM'			=> '<strong>Private Message reported</strong> by %1$s:',
+	'NOTIFICATION_REPORT_PM_CLOSED'		=> '<strong>Private Message report closed</strong> by %1$s:',
 	'NOTIFICATION_REPORT_POST'			=> '<strong>Post reported</strong> by %1$s:',
 	'NOTIFICATION_REPORT_CLOSED'		=> '<strong>Report closed</strong> by %1$s for:',
 	'NOTIFICATION_TOPIC'				=> '<strong>New topic</strong> by %1$s:',
@@ -479,7 +508,7 @@ $lang = array_merge($lang, array(
 	'NOTIFICATION_TOPIC_IN_QUEUE'		=> '<strong>Topic approval</strong> request by %1$s:',
 	'NOTIFICATION_TYPE_NOT_EXIST'		=> 'The notification type "%s" is missing from the file system.',
 	'NOTIFICATION_ADMIN_ACTIVATE_USER'	=> '<strong>Activation required</strong> for deactivated or newly registered user: “%1$s”',
-	// Used in conjuction with NOTIFICATION_BOOKMARK and NOTIFICATION_POST.
+	// Used in conjunction with NOTIFICATION_BOOKMARK and NOTIFICATION_POST.
 	'NOTIFICATION_MANY_OTHERS'			=> 'others',
 	'NOTIFICATION_X_OTHERS'				=> array(
 		2	=> '%d others',
@@ -514,7 +543,8 @@ $lang = array_merge($lang, array(
 	'NO_POSTS_TIME_FRAME'		=> 'No posts exist inside this topic for the selected time frame.',
 	'NO_FEED_ENABLED'			=> 'Feeds are not available on this board.',
 	'NO_FEED'					=> 'The requested feed is not available.',
-	'NO_STYLE_DATA'				=> 'Could not get style data',
+	'NO_STYLE_DATA'				=> 'Could not get style data for user_style %s and set for user_id %s',
+	'NO_STYLE_CFG'				=> 'Could not get the style configuration file for: %s',
 	'NO_SUBJECT'				=> 'No subject specified',								// Used for posts having no subject defined but displayed within management pages.
 	'NO_SUCH_SEARCH_MODULE'		=> 'The specified search backend doesn’t exist.',
 	'NO_SUPPORTED_AUTH_METHODS'	=> 'No supported authentication methods.',
@@ -545,16 +575,17 @@ $lang = array_merge($lang, array(
 	'ONLINE_BUDDIES'			=> 'Online friends',
 	// "... :: x registered and y hidden"
 	'ONLINE_USERS_TOTAL'		=> array(
-		1	=> 'Online: <strong>%1$d</strong> &#124; %2$s and %3$s',
-		2	=> 'Online: <strong>%1$d</strong> &#124; %2$s and %3$s',
+		1	=> 'In total there is <strong>%1$d</strong> user online :: %2$s and %3$s',
+		2	=> 'In total there are <strong>%1$d</strong> users online :: %2$s and %3$s',
 	),
 	// "... :: x registered, y hidden and z guests"
 	'ONLINE_USERS_TOTAL_GUESTS'	=> array(
-		1	=> 'Online: <strong>%1$d</strong> &#124; %2$s, %3$s and %4$s',
-		2	=> 'Online: <strong>%1$d</strong> &#124; %2$s, %3$s and %4$s',
+		1	=> 'In total there is <strong>%1$d</strong> user online :: %2$s, %3$s and %4$s',
+		2	=> 'In total there are <strong>%1$d</strong> users online :: %2$s, %3$s and %4$s',
 	),
 	'OPTIONS'					=> 'Options',
 
+	'PAGE_NOT_FOUND'		=> 'The requested page could not be found.',
 	'PAGE_OF'				=> 'Page <strong>%1$d</strong> of <strong>%2$d</strong>',
 	'PAGE_TITLE_NUMBER'		=> 'Page %s',
 	'PASSWORD'				=> 'Password',
@@ -579,7 +610,7 @@ $lang = array_merge($lang, array(
 	'POSTS_UNAPPROVED_FORUM'=> 'At least one post in this forum has not been approved.',
 	'POST_BY_AUTHOR'		=> 'by',
 	'POST_BY_FOE'			=> '<strong>%1$s</strong>, who is currently on your ignore list, made this post.',
-	'POST_DISPLAY'			=> '%1$sDisplay this post%2$s.',
+	'POST_DISPLAY'			=> 'Display this post',
 	'POST_DAY'				=> '%.2f posts per day',
 	'POST_DELETED_ACTION'	=> 'Deleted post:',
 	'POST_DELETED'			=> 'This post has been deleted.',
@@ -597,11 +628,16 @@ $lang = array_merge($lang, array(
 	'POST_TOPIC'			=> 'Post a new topic',
 	'POST_UNAPPROVED_ACTION'	=> 'Post awaiting approval:',
 	'POST_UNAPPROVED'		=> 'This post has not been approved.',
+	'POST_UNAPPROVED_EXPLAIN'	=> 'This post is not visible to other users until it has been approved by a moderator.',
 	'POWERED_BY'			=> 'Powered by %s',
+
+	'QUOTE'					=> 'Quote',
+
 	'PREVIEW'				=> 'Preview',
 	'PREVIOUS'				=> 'Previous',		// Used in pagination
 	'PREVIOUS_STEP'			=> 'Previous',
 	'PRIVACY'				=> 'Privacy policy',
+	'PRIVACY_LINK'			=> 'Privacy',
 	'PRIVATE_MESSAGE'		=> 'Private message',
 	'PRIVATE_MESSAGES'		=> 'Private messages',
 	'PRIVATE_MESSAGING'		=> 'Private messaging',
@@ -648,6 +684,10 @@ $lang = array_merge($lang, array(
 	'RETURN_TOPIC'				=> '%sReturn to the topic last visited%s',
 	'RETURN_TO'					=> 'Return to “%s”',
 	'RETURN_TO_INDEX'			=> 'Return to Board Index',
+
+	'ROUTE_NOT_FOUND'				=> 'The requested route “%s” could not be found.',
+	'ROUTE_INVALID_MISSING_PARAMS'	=> 'Invalid or missing parameters passed for route “%s”.',
+
 	'FEED'						=> 'Feed',
 	'FEED_NEWS'					=> 'News',
 	'FEED_TOPICS_ACTIVE'		=> 'Active Topics',
@@ -726,6 +766,7 @@ $lang = array_merge($lang, array(
 	'SUBMIT'					=> 'Submit',
 
 	'TB'				=> 'TB',
+	'TERMS_LINK'		=> 'Terms',
 	'TERMS_USE'			=> 'Terms of use',
 	'TEST_CONNECTION'	=> 'Test connection',
 	'THE_TEAM'			=> 'The team',
@@ -773,6 +814,10 @@ $lang = array_merge($lang, array(
 	'TOPIC_REVIEW'		=> 'Topic review',
 	'TOPIC_TITLE'		=> 'Topic title',
 	'TOPIC_UNAPPROVED'	=> 'This topic has not been approved.',
+	'TOPIC_UNAPPROVED_FORUM'	=> array(
+		1	=> 'Topic awaiting approval',
+		2	=> 'Topics awaiting approval',
+	),
 	'TOPIC_DELETED'		=> 'This topic has been deleted.',
 	'TOTAL_ATTACHMENTS'	=> 'Attachment(s)',
 	'TOTAL_LOGS'		=> array(
@@ -889,45 +934,9 @@ $lang = array_merge($lang, array(
 	'YAHOO'				=> 'Yahoo Messenger',
 	'YOUTUBE'			=> 'YouTube',
 	'YEAR'				=> 'Year',
-	'YEAR_MONTH_DAY'	=> 'YYYY-MM-DD',
+	'YEAR_MONTH_DAY'	=> '(YYYY-MM-DD)',
 	'YES'				=> 'Yes',
 	'YOU_LAST_VISIT'	=> 'Last visit was: %s',
-
-	/**
-	* ADDED LANGUAGE
-	*/
-
-	'CONFIRM_QUESTION_EXP'		=> '...',
-	'JUST_RESULTS'				=> 'Search results',
-	'FORUM_SMALL'				=> 'forum',
-	'JUST_OK'					=> 'OK',
-	'JUMP_PAGE_NR'				=> 'Page #',
-	'JOIN'						=> 'Join',
-	'SHOW_PROFILE'				=> 'Show profile',
-	'SEE_ALL_NOTIFICATIONS'		=> 'All',
-	'READING_TOPIC_FORUM'		=> 'Reading topic %2$s in %1$s',
-	'REPLYING_MESSAGE_TOPIC'	=> 'Replying to message in topic %2$s in %1$s',
-
-	/** ADDED AND NOT USED */
-	
-	'DELETED_IMG'				=> '<div class="fa fa-recycle" title="This topic has been deleted"></div>',
-	'POLL_IMG'					=> '<div class="fa fa-bar-chart" title="This topic has a poll"></div>',
-	'REPORTED_IMG'				=> '<div class="fa fa-exclamation-triangle" title="This topic has been reported"></div>',
-
-	// Info BBCode - unused
-	'ABBC3_INFO_SHOW'	=> '► Info:',
-	'ABBC3_INFO_HIDE'	=> '▼ Info:',
-	'ABBC3_D_SHOW'		=> '▼ Discography',
-	'ABBC3_D_HIDE'		=> '▲ Discography',
-	'ABBC3_M_SHOW'		=> 'Lineup ▼',
-	'ABBC3_M_HIDE'		=> 'Lineup ▲',
-
-	// RH Topic Tags
-	'RH_TOPICTAGS_TAG'			=> 'Tag',
-
-	/**
-	* END OF ADDED LANGUAGE
-	*/
 
 	'datetime'			=> array(
 		'TODAY'		=> 'Today',

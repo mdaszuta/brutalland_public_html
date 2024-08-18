@@ -96,14 +96,14 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 	$pagination = $phpbb_container->get('pagination');
 
 	$selected_ids = '';
-	if (sizeof($post_id_list) && $action != 'merge_topics')
+	if (count($post_id_list) && $action != 'merge_topics')
 	{
 		foreach ($post_id_list as $num => $post_id)
 		{
 			$selected_ids .= '&amp;post_id_list[' . $num . ']=' . $post_id;
 		}
 	}
-	else if (sizeof($topic_id_list) && $action == 'merge_topics')
+	else if (count($topic_id_list) && $action == 'merge_topics')
 	{
 		foreach ($topic_id_list as $num => $topic_id)
 		{
@@ -166,12 +166,13 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 
 	if ($config['load_db_lastread'])
 	{
-		$read_tracking_join = ' LEFT JOIN ' . TOPICS_TRACK_TABLE . ' tt ON (tt.topic_id = t.topic_id AND tt.user_id = ' . $user->data['user_id'] . ')';
-		$read_tracking_select = ', tt.mark_time';
+		$sql_read_tracking['LEFT_JOIN'][] = ['FROM' => [TOPICS_TRACK_TABLE => 'tt'], 'ON' => 'tt.topic_id = t.topic_id AND tt.user_id = ' . $user->data['user_id']];
+		$sql_read_tracking['SELECT'] = ', tt.mark_time';
 	}
 	else
 	{
-		$read_tracking_join = $read_tracking_select = '';
+		$sql_read_tracking['LEFT_JOIN'] = [];
+		$sql_read_tracking['SELECT'] = '';
 	}
 
 	/* @var $phpbb_content_visibility \phpbb\content_visibility */
@@ -209,10 +210,31 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 	}
 	$db->sql_freeresult($result);
 
-	$sql = "SELECT t.*$read_tracking_select
-		FROM " . TOPICS_TABLE . " t $read_tracking_join
-		WHERE " . $db->sql_in_set('t.topic_id', $topic_list, false, true);
+	$sql_ary = [
+		'SELECT'	=> 't.*' . $sql_read_tracking['SELECT'],
+		'FROM'		=> [TOPICS_TABLE => 't'],
+		'LEFT_JOIN'	=> $sql_read_tracking['LEFT_JOIN'],
+		'WHERE'		=> $db->sql_in_set('t.topic_id', $topic_list, false, true),
+	];
 
+	/**
+	* Event to modify SQL query before MCP forum topic data is queried
+	*
+	* @event core.mcp_forum_topic_data_modify_sql
+	* @var	array	sql_ary		SQL query array to get the MCP forum topic data
+	* @var	int		forum_id	The forum ID
+	* @var	array	topic_list	The array of MCP forum topic IDs
+	*
+	* @since 3.3.4-RC1
+	*/
+	$vars = [
+		'sql_ary',
+		'forum_id',
+		'topic_list',
+	];
+	extract($phpbb_dispatcher->trigger_event('core.mcp_forum_topic_data_modify_sql', compact($vars)));
+
+	$sql = $db->sql_build_query('SELECT', $sql_ary);
 	$result = $db->sql_query($sql);
 	while ($row_ary = $db->sql_fetchrow($result))
 	{
@@ -221,13 +243,13 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 	$db->sql_freeresult($result);
 
 	// If there is more than one page, but we have no topic list, then the start parameter is... erm... out of sync
-	if (!sizeof($topic_list) && $forum_topics && $start > 0)
+	if (!count($topic_list) && $forum_topics && $start > 0)
 	{
 		redirect($url . "&amp;i=$id&amp;action=$action&amp;mode=$mode");
 	}
 
 	// Get topic tracking info
-	if (sizeof($topic_list))
+	if (count($topic_list))
 	{
 		if ($config['load_db_lastread'])
 		{
@@ -322,6 +344,7 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 			}
 			$topic_row = array_merge($topic_row, array(
 				'U_VIEW_TOPIC'		=> append_sid("{$phpbb_root_path}mcp.$phpEx", "i=$id&amp;f=$forum_id&amp;t={$row_ary['topic_id']}&amp;mode=topic_view"),
+				'U_NEWEST_POST' 	=> append_sid("{$phpbb_root_path}mcp.$phpEx", "i=$id&amp;f=$forum_id&amp;t={$row_ary['topic_id']}&amp;mode=topic_view&amp;view=unread#unread"),
 
 				'S_SELECT_TOPIC'	=> ($merge_select && !in_array($row_ary['topic_id'], $source_topic_ids)) ? true : false,
 				'U_SELECT_TOPIC'	=> $u_select_topic,
@@ -358,7 +381,7 @@ function mcp_resync_topics($topic_ids)
 {
 	global $db, $user, $phpbb_log, $request;
 
-	if (!sizeof($topic_ids))
+	if (!count($topic_ids))
 	{
 		trigger_error('NO_TOPIC_SELECTED');
 	}
@@ -389,7 +412,7 @@ function mcp_resync_topics($topic_ids)
 	}
 	$db->sql_freeresult($result);
 
-	$msg = (sizeof($topic_ids) == 1) ? $user->lang['TOPIC_RESYNC_SUCCESS'] : $user->lang['TOPICS_RESYNC_SUCCESS'];
+	$msg = (count($topic_ids) == 1) ? $user->lang['TOPIC_RESYNC_SUCCESS'] : $user->lang['TOPICS_RESYNC_SUCCESS'];
 
 	$redirect = $request->variable('redirect', $user->data['session_page']);
 
@@ -406,7 +429,7 @@ function merge_topics($forum_id, $topic_ids, $to_topic_id)
 {
 	global $db, $template, $user, $phpEx, $phpbb_root_path, $phpbb_log, $request, $phpbb_dispatcher;
 
-	if (!sizeof($topic_ids))
+	if (!count($topic_ids))
 	{
 		$template->assign_var('MESSAGE', $user->lang['NO_TOPIC_SELECTED']);
 		return;
@@ -421,7 +444,7 @@ function merge_topics($forum_id, $topic_ids, $to_topic_id)
 
 	$all_topic_data = phpbb_get_topic_data($sync_topics, 'm_merge');
 
-	if (!sizeof($all_topic_data) || empty($all_topic_data[$to_topic_id]))
+	if (!count($all_topic_data) || empty($all_topic_data[$to_topic_id]))
 	{
 		$template->assign_var('MESSAGE', $user->lang['NO_FINAL_TOPIC_SELECTED']);
 		return;
@@ -440,7 +463,7 @@ function merge_topics($forum_id, $topic_ids, $to_topic_id)
 	$post_id_list	= $request->variable('post_id_list', array(0));
 	$start			= $request->variable('start', 0);
 
-	if (!sizeof($post_id_list) && sizeof($topic_ids))
+	if (!count($post_id_list) && count($topic_ids))
 	{
 		$sql = 'SELECT post_id
 			FROM ' . POSTS_TABLE . '
@@ -455,7 +478,7 @@ function merge_topics($forum_id, $topic_ids, $to_topic_id)
 		$db->sql_freeresult($result);
 	}
 
-	if (!sizeof($post_id_list))
+	if (!count($post_id_list))
 	{
 		$template->assign_var('MESSAGE', $user->lang['NO_POST_SELECTED']);
 		return;
@@ -520,8 +543,8 @@ function merge_topics($forum_id, $topic_ids, $to_topic_id)
 		sync('forum', 'forum_id', $sync_forums, true, true);
 
 		// Link to the new topic
-		$return_link .= (($return_link) ? '<br /><br />' : '') . sprintf($user->lang['RETURN_NEW_TOPIC'], '<a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $to_forum_id . '&amp;t=' . $to_topic_id) . '">', '</a>');
-		$redirect = $request->variable('redirect', "{$phpbb_root_path}viewtopic.$phpEx?f=$to_forum_id&amp;t=$to_topic_id");
+		$return_link .= (($return_link) ? '<br /><br />' : '') . sprintf($user->lang['RETURN_NEW_TOPIC'], '<a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 't=' . $to_topic_id) . '">', '</a>');
+		$redirect = $request->variable('redirect', "{$phpbb_root_path}viewtopic.$phpEx?t=$to_topic_id");
 		$redirect = reapply_sid($redirect);
 
 		/**

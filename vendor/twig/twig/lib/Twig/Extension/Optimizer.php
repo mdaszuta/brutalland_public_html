@@ -1,29 +1,14 @@
 <?php
 
-/*
- * This file is part of Twig.
- *
- * (c) 2010 Fabien Potencier
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-class Twig_Extension_Optimizer extends Twig_Extension
-{
-    protected $optimizers;
+use Twig\Extension\OptimizerExtension;
 
-    public function __construct($optimizers = -1)
-    {
-        $this->optimizers = $optimizers;
-    }
+class_exists('Twig\Extension\OptimizerExtension');
 
-    public function getNodeVisitors()
-    {
-        return array(new Twig_NodeVisitor_Optimizer($this->optimizers));
-    }
+@trigger_error('Using the "Twig_Extension_Optimizer" class is deprecated since Twig version 2.7, use "Twig\Extension\OptimizerExtension" instead.', \E_USER_DEPRECATED);
 
-    public function getName()
+if (false) {
+    /** @deprecated since Twig 2.7, use "Twig\Extension\OptimizerExtension" instead */
+    class Twig_Extension_Optimizer extends OptimizerExtension
     {
-        return 'optimizer';
     }
 }

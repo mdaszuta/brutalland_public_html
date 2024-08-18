@@ -9,32 +9,32 @@ var attributes;
 var bbcodeConfig;
 
 /**
-* @type {!string} Name of the BBCode being parsed
+* @type {string} Name of the BBCode being parsed
 */
 var bbcodeName;
 
 /**
-* @type {!string} Suffix of the BBCode being parsed, including its colon
+* @type {string} Suffix of the BBCode being parsed, including its colon
 */
 var bbcodeSuffix;
 
 /**
-* @type {!number} Position of the cursor in the original text
+* @type {number} Position of the cursor in the original text
 */
 var pos;
 
 /**
-* @type {!number} Position of the start of the BBCode being parsed
+* @type {number} Position of the start of the BBCode being parsed
 */
 var startPos;
 
 /**
-* @type {!number} Length of the text being parsed
+* @type {number} Length of the text being parsed
 */
 var textLen = text.length;
 
 /**
-* @type {!string} Text being parsed, normalized to uppercase
+* @type {string} Text being parsed, normalized to uppercase
 */
 var uppercaseText = '';
 
@@ -89,7 +89,8 @@ function addBBCodeSelfClosingTag()
 */
 function addBBCodeStartTag()
 {
-	var tag = addStartTag(getTagName(), startPos, pos - startPos);
+	var prio = (bbcodeSuffix !== '') ? -10 : 0,
+		tag = addStartTag(getTagName(), startPos, pos - startPos, prio);
 	tag.setAttributes(attributes);
 
 	return tag;
@@ -98,7 +99,7 @@ function addBBCodeStartTag()
 /**
 * Parse the end tag that matches given BBCode name and suffix starting at current position
 *
-* @return {Tag}
+* @return {?Tag}
 */
 function captureEndTag()
 {
@@ -119,7 +120,7 @@ function captureEndTag()
 /**
 * Get the tag name for current BBCode
 *
-* @return string
+* @return {string}
 */
 function getTagName()
 {
@@ -129,8 +130,6 @@ function getTagName()
 
 /**
 * Parse attributes starting at current position
-*
-* @return array Associative array of [name => value]
 */
 function parseAttributes()
 {
@@ -138,7 +137,7 @@ function parseAttributes()
 	attributes = {};
 	while (pos < textLen)
 	{
-		var c = text.charAt(pos);
+		var c = text[pos];
 		if (" \n\t".indexOf(c) > -1)
 		{
 			++pos;
@@ -150,17 +149,17 @@ function parseAttributes()
 		}
 
 		// Capture the attribute name
-		var spn = /^[-\w]*/.exec(text.substr(pos, 100))[0].length;
+		var spn = /^[-\w]*/.exec(text.substring(pos, pos + 100))[0].length;
 		if (spn)
 		{
-			attrName = text.substr(pos, spn).toLowerCase();
+			attrName = text.substring(pos, pos + spn).toLowerCase();
 			pos += spn;
 			if (pos >= textLen)
 			{
 				// The attribute name extends to the end of the text
 				throw '';
 			}
-			if (text.charAt(pos) !== '=')
+			if (text[pos] !== '=')
 			{
 				// It's an attribute name not followed by an equal sign, ignore it
 				continue;
@@ -189,12 +188,12 @@ function parseAttributes()
 /**
 * Parse the attribute value starting at current position
 *
-* @return string
+* @return {string}
 */
 function parseAttributeValue()
 {
 	// Test whether the value is in quotes
-	if (text.charAt(pos) === '"' || text.charAt(pos) === "'")
+	if (text[pos] === '"' || text[pos] === "'")
 	{
 		return parseQuotedAttributeValue();
 	}
@@ -208,13 +207,8 @@ function parseAttributeValue()
 	// NOTE: this is for compatibility with some forums (such as vBulletin it seems)
 	//       that do not put attribute values in quotes, e.g.
 	//       [quote=John Smith;123456] (quoting "John Smith" from post #123456)
-	var match = /[^\]\n]*?(?=\s*(?:\s\/)?\]|\s+[-\w]+=)/.exec(text.substr(pos));
-	if (!match)
-	{
-		throw '';
-	}
-
-	var attrValue = match[0];
+	var match     = /(?:[^\s\]]|[ \t](?!\s*(?:[-\w]+=|\/?\])))*/.exec(text.substring(pos)),
+		attrValue = match[0];
 	pos += attrValue.length;
 
 	return attrValue;
@@ -222,20 +216,18 @@ function parseAttributeValue()
 
 /**
 * Parse current BBCode
-*
-* @return void
 */
 function parseBBCode()
 {
 	parseBBCodeSuffix();
 
 	// Test whether this is an end tag
-	if (text.charAt(startPos + 1) === '/')
+	if (text[startPos + 1] === '/')
 	{
 		// Test whether the tag is properly closed and whether this tag has an identifier.
 		// We skip end tags that carry an identifier because they're automatically added
 		// when their start tag is processed
-		if (text.charAt(pos) === ']' && bbcodeSuffix === '')
+		if (text[pos] === ']' && bbcodeSuffix === '')
 		{
 			++pos;
 			addBBCodeEndTag();
@@ -258,14 +250,14 @@ function parseBBCode()
 	}
 
 	// Test whether the tag is properly closed
-	if (text.charAt(pos) === ']')
+	if (text[pos] === ']')
 	{
 		++pos;
 	}
 	else
 	{
 		// Test whether this is a self-closing tag
-		if (text.substr(pos, 2) === '/]')
+		if (text.substring(pos, pos + 2) === '/]')
 		{
 			pos += 2;
 			addBBCodeSelfClosingTag();
@@ -294,7 +286,7 @@ function parseBBCode()
 	{
 		contentAttributes.forEach(function(attrName)
 		{
-			attributes[attrName] = text.substr(pos, endTag.getPos() - pos);
+			attributes[attrName] = text.substring(pos, endTag.getPos());
 		});
 	}
 	else if (requireEndTag)
@@ -317,8 +309,6 @@ function parseBBCode()
 *
 * Used to explicitly pair specific tags together, e.g.
 *   [code:123][code]type your code here[/code][/code:123]
-*
-* @return void
 */
 function parseBBCodeSuffix()
 {
@@ -326,7 +316,7 @@ function parseBBCodeSuffix()
 	if (text[pos] === ':')
 	{
 		// Capture the colon and the (0 or more) digits following it
-		bbcodeSuffix = /^:\d*/.exec(text.substr(pos))[0];
+		bbcodeSuffix = /^:\d*/.exec(text.substring(pos))[0];
 
 		// Move past the suffix
 		pos += bbcodeSuffix.length;
@@ -336,13 +326,13 @@ function parseBBCodeSuffix()
 /**
 * Parse a quoted attribute value that starts at current offset
 *
-* @return {!string}
+* @return {string}
 */
 function parseQuotedAttributeValue()
 {
-	var quote    = text.charAt(pos),
+	var quote    = text[pos],
 		valuePos = pos + 1;
-	while (1)
+	do
 	{
 		// Look for the next quote
 		pos = text.indexOf(quote, pos + 1);
@@ -353,22 +343,19 @@ function parseQuotedAttributeValue()
 		}
 
 		// Test for an odd number of backslashes before this character
-		var n = 0;
-		do
+		var n = 1;
+		while (text[pos - n] === '\\')
 		{
 			++n;
 		}
-		while (text.charAt(pos - n) === '\\');
-
-		if (n % 2)
-		{
-			// If n is odd, it means there's an even number of backslashes. We can exit this loop
-			break;
-		}
 	}
+	while (n % 2 === 0);
 
-	// Unescape special characters ' " and \
-	var attrValue = text.substr(valuePos, pos - valuePos).replace(/\\([\\'"])/g, '$1');
+	var attrValue = text.substring(valuePos, pos);
+	if (attrValue.indexOf('\\') > -1)
+	{
+		attrValue = attrValue.replace(/\\([\\'"])/g, '$1');
+	}
 
 	// Skip past the closing quote
 	++pos;

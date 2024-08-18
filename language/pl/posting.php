@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-10-07 18:24:32 Zespół Olympus.pl $
-* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.7 - 02.04.2022, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -44,9 +44,10 @@ $lang = array_merge($lang, array(
 	'ADD_POLL'					=> 'Utwórz ankietę',
 	'ADD_POLL_EXPLAIN'			=> 'Jeśli nie chcesz dołączyć ankiety do tematu, pozostaw poniższe pola puste.',
 	'ALREADY_DELETED'			=> 'Wiadomość została już usunięta.',
+	'ATTACH_COMMENT_NO_EMOJIS'	=> 'komentarz załacznika zawiera niedozwolone znaki (emotkę).',
 	'ATTACH_DISK_FULL'			=> 'Nie ma wystarczającej ilości miejsca na dysku, by zamieścić ten załącznik.',
 	'ATTACH_QUOTA_REACHED'		=> 'Przestrzeń na dysku przeznaczona na załączniki jest już zapełniona.',
-	'ATTACH_SIG'				=> 'Dołącz podpis',
+	'ATTACH_SIG'				=> 'Dołącz podpis (podpis można zmienić w panelu zarządzania kontem)',
 
 	'BBCODE_A_HELP'				=> 'Załącznik wstawiony w tekście: [attachment=]nazwa_pliku.roz[/attachment]',
 	'BBCODE_B_HELP'				=> 'Pogrubienie: [b]tekst[/b]',
@@ -57,7 +58,7 @@ $lang = array_merge($lang, array(
 	'BBCODE_IS_ON'				=> '%sBBCode%s <em>włączony</em>',
 	'BBCODE_I_HELP'				=> 'Tekst pochylony: [i]tekst[/i]',
 	'BBCODE_L_HELP'				=> 'Lista wypunktowana: [list][*]tekst[/list]',
-	'BBCODE_LISTITEM_HELP'		=> 'Kolejny podpunkt listy: [*]tekst',
+	'BBCODE_LISTITEM_HELP'		=> 'Element listy: [*]tekst',
 	'BBCODE_O_HELP'				=> 'Lista rozmieszczona: [list=1][*]Pierwszy punkt[/list] lub [list=a][*]Punkt a[/list]',
 	'BBCODE_P_HELP'				=> 'Wstaw obrazek: [img]http://url_obrazka[/img]',
 	'BBCODE_Q_HELP'				=> 'Cytat: [quote]tekst[/quote]',
@@ -72,7 +73,7 @@ $lang = array_merge($lang, array(
 	'CANNOT_EDIT_TIME'			=> 'Nie możesz już edytować ani usunąć tego posta.',
 	'CANNOT_POST_ANNOUNCE'		=> 'Nie możesz publikować ogłoszeń.',
 	'CANNOT_POST_STICKY'		=> 'Nie możesz przyklejać tematu.',
-	'CHANGE_TOPIC_TO'			=> 'Typ tematu',
+	'CHANGE_TOPIC_TO'			=> 'Zmień typ tematu na',
 	'CHARS_POST_CONTAINS'		=> array(
 		1	=> 'Twoja wiadomość zawiera %1$d znak.',
 		2	=> 'Twoja wiadomość zawiera %1$d znaki.',
@@ -144,14 +145,16 @@ $lang = array_merge($lang, array(
 	'INVALID_FILENAME'			=> '%s jest nieprawidłową nazwą pliku.',
 
 	'LOAD'						=> 'Wczytaj',
-	'LOAD_DRAFT'				=> 'Wczytaj',
+	'LOAD_DRAFT'				=> 'Wczytaj kopię roboczą',
 	'LOAD_DRAFT_EXPLAIN'		=> 'Tutaj, aby kontynuować pisanie, możesz wybrać kopię roboczą do wczytania. Aktualny post zostanie anulowany – cała zawartość posta zostanie usunięta. Możesz przeglądać, edytować i usuwać kopie robocze z poziomu swojego panelu zarządzania kontem.',
 	'LOGIN_EXPLAIN_BUMP'		=> 'Tylko zalogowani użytkownicy mogą przesuwać tematy w górę na tym forum.',
 	'LOGIN_EXPLAIN_DELETE'		=> 'Tylko zalogowani użytkownicy mogą usuwać posty na tym forum.',
+	'LOGIN_EXPLAIN_SOFT_DELETE'	=> 'Tylko zalogowani użytkownicy mogą ukrywać posty na tym forum.',
 	'LOGIN_EXPLAIN_POST'		=> 'Tylko zalogowani użytkownicy mogą pisać na tym forum.',
 	'LOGIN_EXPLAIN_QUOTE'		=> 'Tylko zalogowani użytkownicy mogą cytować posty na tym forum.',
 	'LOGIN_EXPLAIN_REPLY'		=> 'Tylko zalogowani użytkownicy mogą odpowiadać w tematach na tym forum.',
 
+	'MAX_ATTACHMENT_FILESIZE'	=> 'Maksymalny rozmiar załącznika: %s.',
 	'MAX_FONT_SIZE_EXCEEDED'	=> 'Maksymalny rozmiar czcionki to %d.',
 	'MAX_FLASH_HEIGHT_EXCEEDED'	=> array(
 		1	=> 'Animacje Flash mogą mieć maksymalną wysokość %d pikseli.',
@@ -200,7 +203,7 @@ $lang = array_merge($lang, array(
 	'POLL_DELETE'				=> 'Usuń ankietę',
 	'POLL_FOR'					=> 'Czas trwania ankiety',
 	'POLL_FOR_EXPLAIN'			=> 'Wartość 0 – ankieta bezterminowa.',
-	'POLL_MAX_OPTIONS'			=> 'Liczba głosów do oddania',
+	'POLL_MAX_OPTIONS'			=> 'Liczba opcji do wybrania',
 	'POLL_MAX_OPTIONS_EXPLAIN'	=> 'Liczba opcji, jaką może wybrać każdy użytkownik podczas głosowania.',
 	'POLL_OPTIONS'				=> 'Opcje ankiety',
 	'POLL_OPTIONS_EXPLAIN'		=> array(
@@ -231,10 +234,10 @@ $lang = array_merge($lang, array(
 	'POST_REVIEW'				=> 'Przegląd posta',
 	'POST_REVIEW_EDIT'			=> 'Recenzja posta',
 	'POST_REVIEW_EDIT_EXPLAIN'	=> 'W trakcie edytowania przez Ciebie tego posta, został on zmieniony przez innego użytkownika. Możesz życzyć sobie przejrzenia jego w aktualnej wersji i skorygowania do twoich zmian.',
-	'POST_REVIEW_EXPLAIN'		=> 'Co najmniej jeden post został dopisany w tym temacie. W związku z tym, może będziesz chcieć zmienić swój post.',
+	'POST_REVIEW_EXPLAIN'		=> 'Co najmniej jeden post został dopisany w tym temacie. W związku z tym może będziesz chcieć zmienić swój post.',
 	'POST_STORED'				=> 'Post został zamieszczony.',
 	'POST_STORED_MOD'			=> 'Post został zamieszczony, ale przed opublikowaniem musi zostać zaakceptowany przez moderatora.',
-	'POST_TOPIC_AS'				=> 'Typ tematu',
+	'POST_TOPIC_AS'				=> 'Opublikuj temat jako',
 	'PROGRESS_BAR'				=> 'Pasek postępu',
 
 	'QUOTE_DEPTH_EXCEEDED'		=> array(
@@ -247,14 +250,14 @@ $lang = array_merge($lang, array(
 	'REMOTE_UPLOAD_TIMEOUT'		=> 'Nie można przesłać wybranego pliku, ponieważ został przekroczony limit czasu żądania.',
 	'SAVE'						=> 'Zapisz',
 	'SAVE_DATE'					=> 'Zapisany',
-	'SAVE_DRAFT'				=> 'Zapisz',
+	'SAVE_DRAFT'				=> 'Zapisz kopię roboczą',
 	'SAVE_DRAFT_CONFIRM'		=> 'Zapisane kopie robocze zawierają tylko temat i treść posta. Wszystkie inne elementy zostaną usunięte. Czy chcesz zapisać kopię roboczą?',
 	'SMILIES'					=> 'Emotikony',
 	'SMILIES_ARE_OFF'			=> 'Emotikony <em>wyłączone</em>',
 	'SMILIES_ARE_ON'			=> 'Emotikony <em>włączone</em>',
-	'STICKY_ANNOUNCE_TIME_LIMIT'=> 'Czas trwania ogłoszenia/przyklejenia',
+	'STICKY_ANNOUNCE_TIME_LIMIT'=> 'Czas trwania ogłoszenia/przyklejenia/globalnego przypięcia',
 	'STICK_TOPIC_FOR'			=> 'Przyklej temat na',
-	'STICK_TOPIC_FOR_EXPLAIN'	=> 'Wartość 0 oznacza trwałe ogłoszenie/przyklejenie. Liczba ta jest relatywna do daty posta.',
+	'STICK_TOPIC_FOR_EXPLAIN'	=> 'Wartość 0 oznacza trwałe ogłoszenie/przyklejenie/globale przypięcie. Liczba ta jest relatywna do daty napisania.',
 	'STYLES_TIP'				=> 'Podpowiedź: Żeby szybko zastosować style, wystarczy zaznaczyć tekst i nacisnąć właściwy przycisk.',
 
 	'TOO_FEW_CHARS'				=> 'Wiadomość zawiera za mało znaków.',
@@ -272,11 +275,10 @@ $lang = array_merge($lang, array(
 	'TOO_MANY_POLL_OPTIONS'		=> 'Za dużo opcji ankiety.',
 	'TOO_MANY_SMILIES'			=> 'Wiadomość zawiera za dużo emotikon. Maksymalna dozwolona liczba emotikon to: %d.',
 	'TOO_MANY_URLS'				=> 'Wiadomość zawiera za dużo odnośników. Maksymalna dozwolona liczba odnośników to: %d.',
-	'TOO_MANY_USER_OPTIONS'		=> 'Nie można określać większej liczby opcji do wyboru niż zawiera ankieta.',
+	'TOO_MANY_USER_OPTIONS'		=> 'Nie można określać większej liczby opcji do wyboru, niż zawiera ankieta.',
 	'TOPIC_BUMPED'				=> 'Temat został przesunięty w górę.',
 
 	'UNAUTHORISED_BBCODE'		=> 'Nie można używać następujących kodów: %s.',
-	'UNGLOBALISE_EXPLAIN'		=> 'Aby zmienić status tematu z globalnego na zwykły, należy wybrać forum, na którym ma on zostać wyświetlony.',
 	'UNSUPPORTED_CHARACTERS_MESSAGE'	=> 'Wiadomość zawiera następujące nieobsługiwane znaki:<br />%s',
 	'UNSUPPORTED_CHARACTERS_SUBJECT'	=> 'Temat zawiera następujące nieobsługiwane znaki:<br />%s',
 	'UPDATE_COMMENT'			=> 'Zaktualizuj komentarz',

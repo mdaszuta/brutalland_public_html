@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-10-07 18:24:32 Zespół Olympus.pl $
-* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.7 - 02.04.2022, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 if (!defined('IN_PHPBB'))
@@ -36,6 +36,8 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
+	'CLI_APCU_CACHE_NOTICE'				=> 'Pamięć podręczną APC należy wyczyścić z poziomu Panelu Administracyjnego.',
+	
 	'CLI_CONFIG_CANNOT_CACHED'			=> 'Ustaw tę opcję, jeśli opcja konfiguracji zmienia się zbyt często, aby być skutecznie buforowana.',
 	'CLI_CONFIG_CURRENT'				=> 'Bieżąca wartość konfiguracyjna. Użyj 0 i 1, aby określić wartości logiczne.',
 	'CLI_CONFIG_DELETE_SUCCESS'			=> 'Usunięto konfigurację %s.',
@@ -54,12 +56,13 @@ $lang = array_merge($lang, array(
 	'CLI_DESCRIPTION_DB_LIST'					=> 'Lista zainstalowanych i dostępnych migracji.',
 	'CLI_DESCRIPTION_DB_MIGRATE'				=> 'Aktualizuje bazę danych poprzez zastosowanie migracji.',
 	'CLI_DESCRIPTION_DB_REVERT'					=> 'Przywróć bazę danych przed migracją.',
-	'CLI_DESCRIPTION_DELETE_CONFIG'				=> 'Usuwa opcję konfiguracji',
+	'CLI_DESCRIPTION_DELETE_CONFIG'				=> 'Usuwa opcję konfiguracji.',
 	'CLI_DESCRIPTION_DISABLE_EXTENSION'			=> 'Wyłącza wybrane rozszerzenie.',
 	'CLI_DESCRIPTION_ENABLE_EXTENSION'			=> 'Włącza wybrane rozszerzenie.',
-	'CLI_DESCRIPTION_FIND_MIGRATIONS'			=> 'Znajduje niewymagane migracje',
-	'CLI_DESCRIPTION_GET_CONFIG'				=> 'Pobiera wartość konfiguracyjną opcji',
-	'CLI_DESCRIPTION_INCREMENT_CONFIG'			=> 'Zwiększa wartość konfiguracyjną opcji',
+	'CLI_DESCRIPTION_FIND_MIGRATIONS'			=> 'Znajduje niewymagane migracje.',
+	'CLI_DESCRIPTION_FIX_LEFT_RIGHT_IDS'		=> 'Naprawia strukturę for i modułów.',
+	'CLI_DESCRIPTION_GET_CONFIG'				=> 'Pobiera wartość konfiguracyjną opcji.',
+	'CLI_DESCRIPTION_INCREMENT_CONFIG'			=> 'Zwiększa wartość konfiguracyjną opcji.',
 	'CLI_DESCRIPTION_LIST_EXTENSIONS'			=> 'Wyświetla wszystkie rozszerzenia w bazie danych i w systemie plików.',
 	
 	'CLI_DESCRIPTION_OPTION_ENV'				=> 'Nazwa środowiska.',
@@ -78,8 +81,6 @@ $lang = array_merge($lang, array(
 	'CLI_DESCRIPTION_REPARSER_REPARSE_OPT_RANGE_SIZE'	=> 'Przybliżona liczba rekordów do przetworzenia.',
 	'CLI_DESCRIPTION_REPARSER_REPARSE_OPT_RESUME'		=> 'Rozpocznij reparsowanie od momentu ostatniego zatrzymania.',
 	
-	'CLI_DESCRIPTION_RECALCULATE_EMAIL_HASH'			=> 'Przelicza kolumnę user_email_hash w tabeli użytkowników.',
-	
 	'CLI_DESCRIPTION_SET_ATOMIC_CONFIG'					=> 'Ustawia wartość opcji konfiguracyjnej tylko, jeśli stara wartość pasuje do nowej wartości',
 	'CLI_DESCRIPTION_SET_CONFIG'						=> 'Ustawia wartość opcji konfiguracyjnej',
 	
@@ -87,12 +88,14 @@ $lang = array_merge($lang, array(
 	'CLI_DESCRIPTION_THUMBNAIL_GENERATE'				=> 'Utwórz brakujące miniatury.',
 	'CLI_DESCRIPTION_THUMBNAIL_RECREATE'				=> 'Odtwórz wszystkie miniatury.',
 	
-	'CLI_DESCRIPTION_UPDATE_CHECK'					=> 'Sprawdź czy witryna jest aktualna..',
+	'CLI_DESCRIPTION_UPDATE_CHECK'					=> 'Sprawdź, czy witryna jest aktualna..',
 	'CLI_DESCRIPTION_UPDATE_CHECK_ARGUMENT_1'		=> 'Nazwa rozszerzenie do sprawdzenia (jeśli wszystkie, sprawdź wszystkie rozszerzenia)',
 	'CLI_DESCRIPTION_UPDATE_CHECK_OPTION_CACHE'		=> 'Uruchom polecenie Sprawdź z pamięcią podręczną.',
 	'CLI_DESCRIPTION_UPDATE_CHECK_OPTION_STABILITY'	=> 'Uruchom polecenie, aby sprawdzić stabilną lub niestabilną wersję.',	
 	
-	'CLI_ERROR_INVALID_STABILITY' => '"%s" nie jest poprawną wersją.',
+	'CLI_DESCRIPTION_UPDATE_HASH_BCRYPT'		=> 'Aktualizowanie hash wygasłych haseł, które będą zaszyfrowane używając bcrypt.',
+
+	'CLI_ERROR_INVALID_STABILITY' => '"%s" musi zostać ustawione jako stabilne lub nie - "stable" lub "unstable".',
 	
 	'CLI_DESCRIPTION_USER_ACTIVATE'				=> 'Aktywuj (lub dezaktywuj) konto użytkownika.',
 	'CLI_DESCRIPTION_USER_ACTIVATE_USERNAME'	=> 'Nazwa użytkownika do aktywacji.',
@@ -103,7 +106,7 @@ $lang = array_merge($lang, array(
 	'CLI_DESCRIPTION_USER_ADD_OPTION_USERNAME'	=> 'Nazwa nowego użytkownika',
 	'CLI_DESCRIPTION_USER_ADD_OPTION_PASSWORD'	=> 'Hasło nowego użytkownika',
 	'CLI_DESCRIPTION_USER_ADD_OPTION_EMAIL'		=> 'Adres e-mail nowego użytkownika',
-	'CLI_DESCRIPTION_USER_ADD_OPTION_NOTIFY'	=> 'Wyślij e-mail aktywacyjny do nowego użytkownika (domyślnie nie wysyłany)',
+	'CLI_DESCRIPTION_USER_ADD_OPTION_NOTIFY'	=> 'Wyślij e-mail aktywacyjny do nowego użytkownika (domyślnie nie jest wysyłany)',
 	'CLI_DESCRIPTION_USER_DELETE'				=> 'Usuń konto użytkownika.',
 	'CLI_DESCRIPTION_USER_DELETE_USERNAME'		=> 'Nazwa użytkownika do usunięcia',
 	'CLI_DESCRIPTION_USER_DELETE_OPTION_POSTS'	=> 'Usuń wszystkie posty użytkownika. Bez tej opcji, wszystko posty zostaną zachowane.',
@@ -111,21 +114,26 @@ $lang = array_merge($lang, array(
 	
 	'CLI_EXTENSION_DISABLE_FAILURE'		=> 'Nie można wyłączyć rozszerzenia %s',
 	'CLI_EXTENSION_DISABLE_SUCCESS'		=> 'Wyłączono rozszerzenie %s',
+	'CLI_EXTENSION_DISABLED'			=> 'Rozszerzenie %s nie jest włączone',
 	'CLI_EXTENSION_ENABLE_FAILURE'		=> 'Nie można włączyć rozszerzenia %s',
 	'CLI_EXTENSION_ENABLE_SUCCESS'		=> 'Włączono rozszerzenie %s',
+	'CLI_EXTENSION_ENABLED'				=> 'Rozszerzenie %s jest już włączone',
+	'CLI_EXTENSION_NOT_EXIST'			=> 'Rozszerzenie %s nie istnieje.',
 	'CLI_EXTENSION_NAME'				=> 'Nazwa rozszerzenia',
 	'CLI_EXTENSION_PURGE_FAILURE'		=> 'Nie można usunąć rozszerzenia %s',
 	'CLI_EXTENSION_PURGE_SUCCESS'		=> 'Usunięto rozszerzenie %s',
 	'CLI_EXTENSION_UPDATE_FAILURE'		=> 'Nie można zaktualizować rozszerzenia %s',
 	'CLI_EXTENSION_UPDATE_SUCCESS'		=> 'Pomyślnie zaktualizowano rozszerzenie %s',
 	'CLI_EXTENSION_NOT_FOUND'			=> 'Nie znaleziono żadnych rozszerzeń.',
+	'CLI_EXTENSION_NOT_ENABLEABLE'		=> 'Rozszerzenie %s nie jest włączalne.',
 	'CLI_EXTENSIONS_AVAILABLE'			=> 'Dostępne',
 	'CLI_EXTENSIONS_DISABLED'			=> 'Wyłączone',
 	'CLI_EXTENSIONS_ENABLED'			=> 'Włączone',
 
-	'CLI_FIXUP_RECALCULATE_EMAIL_HASH_SUCCESS'	=> 'Przeliczono wszystkie numery wiadomości e-mail.',
+	'CLI_FIXUP_FIX_LEFT_RIGHT_IDS_SUCCESS'		=> 'Pomyślnie zakończono naprawę struktury for i modułów.',
+	'CLI_FIXUP_UPDATE_HASH_BCRYPT_SUCCESS'		=> 'Pomyślnie zaktualizowano hash wygasłych haseł przez bcrypt.',
 	
-	'CLI_MIGRATION_NAME'					=> 'Nazwa migracji wraz z przestrzenią nazw (aby uniknąć błędów, użyj slash zamiast backslash).',
+	'CLI_MIGRATION_NAME'					=> 'Nazwa migracji wraz z przestrzenią nazw (aby uniknąć błędów, użyj slasha zamiast backslash).',
 	'CLI_MIGRATIONS_AVAILABLE'				=> 'Dostępne migracje',
 	'CLI_MIGRATIONS_INSTALLED'				=> 'Zainstalowane migracje',
 	'CLI_MIGRATIONS_ONLY_AVAILABLE'		    => 'Pokaż wyłącznie dostępne migracje',
@@ -161,7 +169,7 @@ $lang = array_merge($lang, array(
 // Additional help for commands.
 $lang = array_merge($lang, array(
 	'CLI_HELP_CRON_RUN'			=> $lang['CLI_DESCRIPTION_CRON_RUN'] . ' Opcjonalnie możesz podać nazwę zadania crona, aby uruchomić wyłącznie określone zadanie crona.',
-	'CLI_HELP_USER_ACTIVATE'	=> 'Aktywuj lub dezaktywuj konto użytkownika używając opcję <info>--deactivate</info>.
+	'CLI_HELP_USER_ACTIVATE'	=> 'Aktywuj lub dezaktywuj konto użytkownika, używając opcję <info>--deactivate</info>.
 Aby wysłać e-mail aktywacyjny do użytkownika, użyj opcji <info>--send-email</info>.',
 	'CLI_HELP_USER_ADD'			=> 'Polecenie <info>%command.name%</info> dodaje nowego użytkownika:
 Jeśli uruchomiono to polecenie bez opcji, zostaniesz poproszony o ich wprowadzenie.

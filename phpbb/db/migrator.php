@@ -339,9 +339,10 @@ class migrator
 			$depend = $this->get_valid_name($depend);
 
 			// Test all possible namings before throwing exception
-			if ($this->unfulfillable($depend) !== false)
+			$missing = $this->unfulfillable($depend);
+			if ($missing !== false)
 			{
-				throw new \phpbb\db\migration\exception('MIGRATION_NOT_FULFILLABLE', $name, $depend);
+				throw new \phpbb\db\migration\exception('MIGRATION_NOT_FULFILLABLE', $name, $missing);
 			}
 
 			if (!isset($this->migration_state[$depend]) ||
@@ -503,11 +504,14 @@ class migrator
 			return;
 		}
 
-		foreach ($this->migration_state as $name => $state)
+		foreach ($this->migrations as $name)
 		{
-			if (!empty($state['migration_depends_on']) && in_array($migration, $state['migration_depends_on']))
+			$state = $this->migration_state($name);
+
+			if ($state && in_array($migration, $state['migration_depends_on']) && ($state['migration_schema_done'] || $state['migration_data_done']))
 			{
 				$this->revert_do($name);
+				return;
 			}
 		}
 
@@ -629,7 +633,7 @@ class migrator
 	*/
 	protected function process_data_step($steps, $state, $revert = false)
 	{
-		if (sizeof($steps) === 0)
+		if (count($steps) === 0)
 		{
 			return true;
 		}
@@ -656,7 +660,7 @@ class migrator
 			// Result will be null or true if everything completed correctly
 			// Stop after each update step, to let the updater control the script runtime
 			$result = $this->run_step($steps[$step], $last_result, $revert);
-			if (($result !== null && $result !== true) || $step + 1 < sizeof($steps))
+			if (($result !== null && $result !== true) || $step + 1 < count($steps))
 			{
 				return array(
 					'result'	=> $result,
@@ -757,7 +761,7 @@ class migrator
 
 				$condition = $parameters[0];
 
-				if (!$condition)
+				if (!$condition || (is_array($condition) && !$this->run_step($condition, $last_result, $reverse)))
 				{
 					return false;
 				}
@@ -781,7 +785,7 @@ class migrator
 				{
 					return array(
 						$parameters[0],
-						array($last_result),
+						isset($parameters[1]) ? array_merge($parameters[1], array($last_result)) : array($last_result),
 					);
 				}
 			break;
@@ -945,7 +949,7 @@ class migrator
 	* @param string $name Name of the migration
 	* @return \phpbb\db\migration\migration
 	*/
-	protected function get_migration($name)
+	public function get_migration($name)
 	{
 		$migration = new $name($this->config, $this->db, $this->db_tools, $this->phpbb_root_path, $this->php_ext, $this->table_prefix);
 

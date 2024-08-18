@@ -10,30 +10,52 @@
 
 namespace kasimi\postnumbers\event;
 
+use phpbb\config\config;
+use phpbb\db\driver\driver_interface as db_interface;
+use phpbb\event\data;
+use phpbb\extension\manager as ext_manager;
+use phpbb\language\language;
+use phpbb\request\request_interface;
+use phpbb\template\template;
+use phpbb\user;
+use rxu\FirstPostOnEveryPage\event\listener as FirstPostOnEveryPage;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-	/* @var \phpbb\user */
+	const PAGE_VIEWTOPIC	= 'viewtopic';
+	const PAGE_REVIEW_REPLY	= 'review_reply';
+	const PAGE_REVIEW_MCP	= 'review_mcp';
+
+	/* @var user */
 	protected $user;
 
-	/* @var \phpbb\config\config */
+	/** @var language */
+	protected $lang;
+
+	/* @var config */
 	protected $config;
 
-	/** @var \phpbb\request\request_interface */
+	/** @var request_interface */
 	protected $request;
 
-	/* @var \phpbb\template\template */
+	/* @var template */
 	protected $template;
 
-	/* @var \phpbb\db\driver\driver_interface */
+	/** @var ext_manager */
+	protected $ext_manager;
+
+	/* @var db_interface */
 	protected $db;
 
-	/** @var \rxu\FirstPostOnEveryPage\event\listener */
+	/** @var FirstPostOnEveryPage */
 	protected $firstPostOnEveryPage;
 
 	/** @var boolean */
 	protected $is_active = false;
+
+	/** @var string */
+	protected $page;
 
 	/** @var string */
 	protected $location;
@@ -47,28 +69,34 @@ class listener implements EventSubscriberInterface
 	/**
  	 * Constructor
 	 *
-	 * @param \phpbb\user								$user
-	 * @param \phpbb\config\config						$config
-	 * @param \phpbb\request\request_interface			$request
-	 * @param \phpbb\template\template					$template
-	 * @param \phpbb\db\driver\driver_interface			$db
-	 * @param \rxu\FirstPostOnEveryPage\event\listener	$firstPostOnEveryPage
+	 * @param user					$user
+	 * @param language				$lang
+	 * @param config				$config
+	 * @param request_interface		$request
+	 * @param template				$template
+	 * @param ext_manager			$ext_manager
+	 * @param db_interface			$db
+	 * @param FirstPostOnEveryPage	$firstPostOnEveryPage
 	 */
 	public function __construct(
-		\phpbb\user										$user,
-		\phpbb\config\config							$config,
-		\phpbb\request\request_interface				$request,
-		\phpbb\template\template						$template,
-		\phpbb\db\driver\driver_interface				$db,
-		\rxu\FirstPostOnEveryPage\event\listener		$firstPostOnEveryPage = null
+		user $user,
+		language $lang,
+		config $config,
+		request_interface $request,
+		template $template,
+		ext_manager $ext_manager,
+		db_interface $db,
+		FirstPostOnEveryPage $firstPostOnEveryPage = null
 	)
 	{
-		$this->user										= $user;
-		$this->config 									= $config;
-		$this->request									= $request;
-		$this->template									= $template;
-		$this->db										= $db;
-		$this->firstPostOnEveryPage						= $firstPostOnEveryPage;
+		$this->user					= $user;
+		$this->lang					= $lang;
+		$this->config 				= $config;
+		$this->request				= $request;
+		$this->template				= $template;
+		$this->ext_manager			= $ext_manager;
+		$this->db					= $db;
+		$this->firstPostOnEveryPage	= $firstPostOnEveryPage;
 	}
 
 	/**
@@ -76,24 +104,28 @@ class listener implements EventSubscriberInterface
 	 */
 	static public function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.viewtopic_assign_template_vars_before'	=> 'init_viewtopic',
 			'core.viewtopic_modify_post_row'				=> 'postnum_in_viewtopic',
 			'core.posting_modify_template_vars'				=> 'init_topic_review',
 			'core.topic_review_modify_row'					=> 'postnum_in_topic_review',
 			'core.mcp_global_f_read_auth_after'				=> 'init_mcp_review',
 			'core.mcp_topic_review_modify_row'				=> 'postnum_in_mcp_review',
-		);
+		];
 	}
 
 	/**
 	 * Prepare template data
 	 *
-	 * @param bool $is_active
+	 * @param string $page
 	 */
-	protected function init($is_active)
+	protected function init($page)
 	{
-		if (!($this->is_active = $is_active))
+		$this->page = $page;
+
+		$this->is_active = $this->cfg('enabled.' . $page) && !$this->user->data['is_bot'];
+
+		if (!$this->is_active)
 		{
 			return;
 		}
@@ -101,7 +133,11 @@ class listener implements EventSubscriberInterface
 		switch ($this->cfg('location'))
 		{
 			case 1:
-				$this->location = 'subject';
+				$this->location = 'before_subject';
+			break;
+
+			case 2:
+				$this->location = 'replace_subject';
 			break;
 
 			default:
@@ -109,19 +145,20 @@ class listener implements EventSubscriberInterface
 			break;
 		}
 
-		$template_data = array(
+		$template_data = [
 			'S_POSTNUMBERS_LOCATION'	=> $this->location,
-		);
+		];
 
 		if ($this->location === 'post_img')
 		{
-			$this->user->add_lang_ext('kasimi/postnumbers', 'common');
+			$this->lang->add_lang('common', 'kasimi/postnumbers');
 
-			$template_data = array_merge($template_data, array(
+			$template_data = array_merge($template_data, [
 				'S_POSTNUMBERS_CLIPBOARD'		=> $this->cfg('clipboard'),
 				'S_POSTNUMBERS_BOLD'			=> $this->cfg('bold'),
+				'S_POSTNUMBERS_QUICKEDIT'		=> $this->ext_manager->is_enabled('marc/quickedit'),
 				'POSTNUMBERS_PHPBB_VERSION'		=> phpbb_version_compare(PHPBB_VERSION, '3.1.0@dev', '>=') && phpbb_version_compare(PHPBB_VERSION, '3.2.0@dev', '<') ? '31x' : (phpbb_version_compare(PHPBB_VERSION, '3.2.0@dev', '>=') && phpbb_version_compare(PHPBB_VERSION, '3.3.0@dev', '<') ? '32x' : ''),
-			));
+			]);
 		}
 
 		$this->template->assign_vars($template_data);
@@ -129,18 +166,16 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * Event: core.viewtopic_assign_template_vars_before
-	 *
-	 * @param $event
 	 */
-	public function init_viewtopic($event)
+	public function init_viewtopic()
 	{
-		$this->init($this->cfg('enabled.viewtopic') && !$this->user->data['is_bot']);
+		$this->init(self::PAGE_VIEWTOPIC);
 	}
 
 	/**
 	 * Event: core.viewtopic_modify_post_row
 	 *
-	 * @param $event
+	 * @param data $event
 	 */
 	public function postnum_in_viewtopic($event)
 	{
@@ -154,7 +189,7 @@ class listener implements EventSubscriberInterface
 				$this->firstPostOnEveryPage = null;
 			}
 
-			if ($post_num = $this->get_post_number($this->user->data['user_post_sortby_type'], $this->user->data['user_post_sortby_dir'], $this->user->data['user_post_show_days'], $event['row'], $event['topic_data']['topic_posts_approved'], $event['total_posts'], $event['start'], false))
+			if ($post_num = $this->get_post_number($this->user->data['user_post_sortby_type'], $this->user->data['user_post_sortby_dir'], $this->user->data['user_post_show_days'], $event['row'], $event['topic_data']['topic_posts_approved'], $event['total_posts'], $event['start']))
 			{
 				$event['post_row'] = $this->inject_post_num($event['post_row'], $post_num);
 			}
@@ -163,24 +198,22 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * Event: core.posting_modify_template_vars
-	 *
-	 * @param $event
 	 */
-	public function init_topic_review($event)
+	public function init_topic_review()
 	{
-		$this->init($this->cfg('enabled.review_reply'));
+		$this->init(self::PAGE_REVIEW_REPLY);
 	}
 
 	/**
 	 * Event: core.topic_review_modify_row
 	 *
-	 * @param $event
+	 * @param data $event
 	 */
 	public function postnum_in_topic_review($event)
 	{
 		if ($this->is_active && $event['mode'] == 'topic_review')
 		{
-			if ($post_num = $this->get_post_number('t', 'd', 0, $event['row'], $event['total_posts'], $event['total_posts'], $event['start'], true))
+			if ($post_num = $this->get_post_number('t', 'd', 0, $event['row'], $event['total_posts'], $event['total_posts'], $event['start']))
 			{
 				$event['post_row'] = $this->inject_post_num($event['post_row'], $post_num);
 			}
@@ -190,23 +223,26 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Event: core.mcp_global_f_read_auth_after
 	 *
-	 * @param $event
+	 * @param data $event
 	 */
 	public function init_mcp_review($event)
 	{
-		$this->init($this->cfg('enabled.review_mcp') && $event['mode'] == 'topic_view');
+		if ($event['mode'] == 'topic_view')
+		{
+			$this->init(self::PAGE_REVIEW_MCP);
+		}
 	}
 
 	/**
 	 * Event: core.mcp_topic_review_modify_row
 	 *
-	 * @param $event
+	 * @param data $event
 	 */
 	public function postnum_in_mcp_review($event)
 	{
 		if ($this->is_active)
 		{
-			if ($post_num = $this->get_post_number('t', 'a', 0, $event['row'], $event['topic_info']['topic_posts_approved'], $event['total'], $event['start'], false))
+			if ($post_num = $this->get_post_number('t', 'a', 0, $event['row'], $event['topic_info']['topic_posts_approved'], $event['total'], $event['start']))
 			{
 				$event['post_row'] = $this->inject_post_num($event['post_row'], $post_num);
 			}
@@ -223,10 +259,9 @@ class listener implements EventSubscriberInterface
 	 * @param int $approved_posts
 	 * @param int $total_posts
 	 * @param int $start
-	 * @param bool $is_reply_review
 	 * @return bool|int
 	 */
-	protected function get_post_number($default_sort_by, $default_sort_dir, $default_days, $row, $approved_posts, $total_posts, $start, $is_reply_review)
+	protected function get_post_number($default_sort_by, $default_sort_dir, $default_days, $row, $approved_posts, $total_posts, $start)
 	{
 		// If we display IDs, skip all checks and calculations and return immediately
 		if ($this->cfg('display_ids'))
@@ -254,11 +289,15 @@ class listener implements EventSubscriberInterface
 		{
 			$this->firstPostOnEveryPage = null;
 
-			// If posts are sorted ascending, we display #1 on all except the first page.
-			// If posts are sorted descending, we always display #1.
-			if (!$is_ascending || $start != 0)
+			// First Post On Every Page extension is only active on viewtopic
+			if ($this->page === self::PAGE_VIEWTOPIC)
 			{
-				return 1;
+				// If posts are sorted ascending, we display #1 on all except the first page.
+				// If posts are sorted descending, we always display #1.
+				if (!$is_ascending || $start != 0)
+				{
+					return 1;
+				}
 			}
 		}
 
@@ -268,7 +307,7 @@ class listener implements EventSubscriberInterface
 			$need_new_start = false;
 
 			// We only need to query the number of previous/non-approved posts in certain situations
-			if ($is_reply_review || $this->request->variable('st', $default_days) != 0)
+			if ($this->page === self::PAGE_REVIEW_REPLY || $this->request->variable('st', $default_days) != 0)
 			{
 				$need_new_start = true;
 			}
@@ -313,9 +352,13 @@ class listener implements EventSubscriberInterface
 	{
 		$post_row['POSTNUMBER'] = $post_num;
 
-		if ($this->location === 'subject')
+		if ($this->location === 'before_subject')
 		{
 			$post_row['POST_SUBJECT'] = '#' . $post_num . ' ' . $post_row['POST_SUBJECT'];
+		}
+		else if ($this->location === 'replace_subject')
+		{
+			$post_row['POST_SUBJECT'] = '#' . $post_num;
 		}
 
 		return $post_row;
@@ -330,10 +373,10 @@ class listener implements EventSubscriberInterface
 	 */
 	protected function get_post_count($topic_id, $post_time)
 	{
-		$sql_where = array(
+		$sql_where = [
 			'p.topic_id = ' . (int) $topic_id,
 			'p.post_time < ' . (int) $post_time,
-		);
+		];
 
 		if ($this->cfg('skip_nonapproved'))
 		{

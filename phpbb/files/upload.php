@@ -59,7 +59,7 @@ class upload
 	/** @var \bantu\IniGetWrapper\IniGetWrapper ini_get() wrapper */
 	protected $php_ini;
 
-	/** @var \phpbb\language\language Language class */
+	/** @var language Language class */
 	protected $language;
 
 	/** @var request_interface Request class */
@@ -261,7 +261,7 @@ class upload
 	 *
 	 * @param filespec $file Instance of filespec class
 	 */
-	public function common_checks(&$file)
+	public function common_checks($file)
 	{
 		// Filesize is too big or it's 0 if it was larger than the maxsize in the upload form
 		if ($this->max_filesize && ($file->get('filesize') > $this->max_filesize || $file->get('filesize') == 0))
@@ -297,7 +297,7 @@ class upload
 	 *
 	 * @return bool True if extension is allowed, false if not
 	 */
-	public function valid_extension(&$file)
+	public function valid_extension($file)
 	{
 		return (in_array($file->get('extension'), $this->allowed_extensions)) ? true : false;
 	}
@@ -310,7 +310,7 @@ class upload
 	 * @return bool True if dimensions are valid or no constraints set, false
 	 *			if not
 	 */
-	public function valid_dimensions(&$file)
+	public function valid_dimensions($file)
 	{
 		if (!$this->max_width && !$this->max_height && !$this->min_width && !$this->min_height)
 		{
@@ -350,7 +350,7 @@ class upload
 	 *
 	 * @return bool True if content is valid, false if not
 	 */
-	public function valid_content(&$file)
+	public function valid_content($file)
 	{
 		return ($file->check_content($this->disallowed_content));
 	}
@@ -362,27 +362,28 @@ class upload
 	 */
 	static public function image_types()
 	{
-		$result = array(
-			IMAGETYPE_GIF		=> array('gif'),
-			IMAGETYPE_JPEG		=> array('jpg', 'jpeg'),
-			IMAGETYPE_PNG		=> array('png'),
-			IMAGETYPE_SWF		=> array('swf'),
-			IMAGETYPE_PSD		=> array('psd'),
-			IMAGETYPE_BMP		=> array('bmp'),
-			IMAGETYPE_TIFF_II	=> array('tif', 'tiff'),
-			IMAGETYPE_TIFF_MM	=> array('tif', 'tiff'),
-			IMAGETYPE_JPC		=> array('jpg', 'jpeg'),
-			IMAGETYPE_JP2		=> array('jpg', 'jpeg'),
-			IMAGETYPE_JPX		=> array('jpg', 'jpeg'),
-			IMAGETYPE_JB2		=> array('jpg', 'jpeg'),
-			IMAGETYPE_IFF		=> array('iff'),
-			IMAGETYPE_WBMP		=> array('wbmp'),
-			IMAGETYPE_XBM		=> array('xbm'),
-		);
+		$result = [
+			IMAGETYPE_GIF		=> ['gif'],
+			IMAGETYPE_JPEG		=> ['jpg', 'jpeg'],
+			IMAGETYPE_PNG		=> ['png'],
+			IMAGETYPE_SWF		=> ['swf'],
+			IMAGETYPE_PSD		=> ['psd'],
+			IMAGETYPE_BMP		=> ['bmp'],
+			IMAGETYPE_TIFF_II	=> ['tif', 'tiff'],
+			IMAGETYPE_TIFF_MM	=> ['tif', 'tiff'],
+			IMAGETYPE_JPC		=> ['jpg', 'jpeg'],
+			IMAGETYPE_JP2		=> ['jpg', 'jpeg'],
+			IMAGETYPE_JPX		=> ['jpg', 'jpeg'],
+			IMAGETYPE_JB2		=> ['jpg', 'jpeg'],
+			IMAGETYPE_IFF		=> ['iff'],
+			IMAGETYPE_WBMP		=> ['wbmp'],
+			IMAGETYPE_XBM		=> ['xbm'],
+			IMAGETYPE_WEBP		=> ['webp'],
+		];
 
 		if (defined('IMAGETYPE_SWC'))
 		{
-			$result[IMAGETYPE_SWC] = array('swc');
+			$result[IMAGETYPE_SWC] = ['swc'];
 		}
 
 		return $result;

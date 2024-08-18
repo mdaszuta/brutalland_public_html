@@ -64,8 +64,9 @@ class user_loader
 	* Load user helper
 	*
 	* @param array $user_ids
+	* @param array $ignore_types user types to ignore
 	*/
-	public function load_users(array $user_ids)
+	public function load_users(array $user_ids, array $ignore_types = array())
 	{
 		$user_ids[] = ANONYMOUS;
 
@@ -75,11 +76,12 @@ class user_loader
 		// Do not load users we already have in $this->users
 		$user_ids = array_diff($user_ids, array_keys($this->users));
 
-		if (sizeof($user_ids))
+		if (count($user_ids))
 		{
 			$sql = 'SELECT *
 				FROM ' . $this->users_table . '
-				WHERE ' . $this->db->sql_in_set('user_id', $user_ids);
+				WHERE ' . $this->db->sql_in_set('user_id', $user_ids) . '
+					AND ' . $this->db->sql_in_set('user_type', $ignore_types, true, true);
 			$result = $this->db->sql_query($sql);
 
 			while ($row = $this->db->sql_fetchrow($result))
@@ -121,7 +123,7 @@ class user_loader
 	/**
 	* Get a user row from our users cache
 	*
-	* @param int $user_id User ID of the user you want to retreive
+	* @param int $user_id User ID of the user you want to retrieve
 	* @param bool $query Should we query the database if this user has not yet been loaded?
 	* 						Typically this should be left as false and you should make sure
 	* 						you load users ahead of time with load_users()
@@ -139,7 +141,7 @@ class user_loader
 		{
 			$this->load_users(array($user_id));
 
-			return $this->get_user($user_id);
+			return $user_id != ANONYMOUS ? $this->get_user($user_id) : $this->users[$user_id] ?? false;
 		}
 
 		return $this->get_user(ANONYMOUS);
@@ -148,7 +150,7 @@ class user_loader
 	/**
 	* Get username
 	*
-	* @param int $user_id User ID of the user you want to retreive the username for
+	* @param int $user_id User ID of the user you want to retrieve the username for
 	* @param string $mode The mode to load (same as get_username_string). One of the following:
 	* 			profile (for getting an url to the profile)
 	* 			username (for obtaining the username)
@@ -179,7 +181,7 @@ class user_loader
 	* @param bool $query Should we query the database if this user has not yet been loaded?
 	* 						Typically this should be left as false and you should make sure
 	* 						you load users ahead of time with load_users()
-	* @param bool @lazy If true, will be lazy loaded (requires JS)
+	* @param bool $lazy If true, will be lazy loaded (requires JS)
 	* @return string
 	*/
 	public function get_avatar($user_id, $query = false, $lazy = false)
@@ -202,7 +204,7 @@ class user_loader
 	/**
 	* Get rank
 	*
-	* @param int $user_id User ID of the user you want to retreive the rank for
+	* @param int $user_id User ID of the user you want to retrieve the rank for
 	* @param bool $query Should we query the database if this user has not yet been loaded?
 	* 						Typically this should be left as false and you should make sure
 	* 						you load users ahead of time with load_users()

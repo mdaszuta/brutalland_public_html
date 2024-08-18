@@ -29,6 +29,8 @@ class topic_preview_module
 
 	/**
 	 * Main ACP module
+	 *
+	 * @throws \Exception
 	 */
 	public function main()
 	{
@@ -36,7 +38,7 @@ class topic_preview_module
 
 		$this->tpl_name = 'acp_topic_preview';
 
-		$this->page_title = $phpbb_container->get('user')
+		$this->page_title = $phpbb_container->get('language')
 			->lang('TOPIC_PREVIEW');
 
 		$phpbb_container->get('vse.topicpreview.acp.controller')

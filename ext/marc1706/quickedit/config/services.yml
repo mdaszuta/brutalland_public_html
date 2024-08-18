@@ -1,0 +1,18 @@
+services:
+    marc1706.quickedit.listener:
+        class: marc1706\quickedit\event\listener
+        arguments:
+            - '@config'
+            - '@marc1706.quickedit.listener_helper'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@language'
+        tags:
+            - {name: event.listener}
+    marc1706.quickedit.listener_helper:
+        class: marc1706\quickedit\event\listener_helper
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@request'

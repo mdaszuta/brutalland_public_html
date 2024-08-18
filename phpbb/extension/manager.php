@@ -152,7 +152,53 @@ class manager
 	*/
 	public function create_extension_metadata_manager($name)
 	{
-		return new \phpbb\extension\metadata_manager($name, $this->config, $this, $this->phpbb_root_path);
+		if (!isset($this->extensions[$name]['metadata']))
+		{
+			$metadata = new \phpbb\extension\metadata_manager($name, $this->get_extension_path($name, true));
+			$this->extensions[$name]['metadata'] = $metadata;
+		}
+		return $this->extensions[$name]['metadata'];
+	}
+
+	/**
+	* Update the database entry for an extension
+	*
+	* @param string $name Extension name to update
+	* @param array	$data Data to update in the database
+	* @param string	$action Action to perform, by default 'update', may be also 'insert' or 'delete'
+	*/
+	protected function update_state($name, $data, $action = 'update')
+	{
+		switch ($action)
+		{
+			case 'insert':
+				$this->extensions[$name] = $data;
+				$this->extensions[$name]['ext_path'] = $this->get_extension_path($name);
+				ksort($this->extensions);
+				$sql = 'INSERT INTO ' . $this->extension_table . ' ' . $this->db->sql_build_array('INSERT', $data);
+				$this->db->sql_query($sql);
+			break;
+
+			case 'update':
+				$this->extensions[$name] = array_merge($this->extensions[$name], $data);
+				$sql = 'UPDATE ' . $this->extension_table . '
+					SET ' . $this->db->sql_build_array('UPDATE', $data) . "
+					WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
+				$this->db->sql_query($sql);
+			break;
+
+			case 'delete':
+				unset($this->extensions[$name]);
+				$sql = 'DELETE FROM ' . $this->extension_table . "
+					WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
+				$this->db->sql_query($sql);
+			break;
+		}
+
+		if ($this->cache)
+		{
+			$this->cache->deferred_purge();
+		}
 	}
 
 	/**
@@ -168,7 +214,7 @@ class manager
 	public function enable_step($name)
 	{
 		// ignore extensions that are already enabled
-		if (isset($this->extensions[$name]) && $this->extensions[$name]['ext_active'])
+		if ($this->is_enabled($name))
 		{
 			return false;
 		}
@@ -192,35 +238,7 @@ class manager
 			'ext_state'		=> serialize($state),
 		);
 
-		$this->extensions[$name] = $extension_data;
-		$this->extensions[$name]['ext_path'] = $this->get_extension_path($extension_data['ext_name']);
-		ksort($this->extensions);
-
-		$sql = 'SELECT COUNT(ext_name) as row_count
-			FROM ' . $this->extension_table . "
-			WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
-		$result = $this->db->sql_query($sql);
-		$count = $this->db->sql_fetchfield('row_count');
-		$this->db->sql_freeresult($result);
-
-		if ($count)
-		{
-			$sql = 'UPDATE ' . $this->extension_table . '
-				SET ' . $this->db->sql_build_array('UPDATE', $extension_data) . "
-				WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
-			$this->db->sql_query($sql);
-		}
-		else
-		{
-			$sql = 'INSERT INTO ' . $this->extension_table . '
-				' . $this->db->sql_build_array('INSERT', $extension_data);
-			$this->db->sql_query($sql);
-		}
-
-		if ($this->cache)
-		{
-			$this->cache->purge();
-		}
+		$this->update_state($name, $extension_data, $this->is_configured($name) ? 'update' : 'insert');
 
 		if ($active)
 		{
@@ -257,8 +275,8 @@ class manager
 	*/
 	public function disable_step($name)
 	{
-		// ignore extensions that are already disabled
-		if (!isset($this->extensions[$name]) || !$this->extensions[$name]['ext_active'])
+		// ignore extensions that are not enabled
+		if (!$this->is_enabled($name))
 		{
 			return false;
 		}
@@ -267,46 +285,15 @@ class manager
 
 		$extension = $this->get_extension($name);
 		$state = $extension->disable_step($old_state);
-
-		// continue until the state is false
-		if ($state !== false)
-		{
-			$extension_data = array(
-				'ext_state'		=> serialize($state),
-			);
-			$this->extensions[$name]['ext_state'] = serialize($state);
-
-			$sql = 'UPDATE ' . $this->extension_table . '
-				SET ' . $this->db->sql_build_array('UPDATE', $extension_data) . "
-				WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
-			$this->db->sql_query($sql);
-
-			if ($this->cache)
-			{
-				$this->cache->purge();
-			}
-
-			return true;
-		}
+		$active = ($state !== false);
 
 		$extension_data = array(
-			'ext_active'	=> false,
-			'ext_state'		=> serialize(false),
+			'ext_active'	=> $active,
+			'ext_state'		=> serialize($state),
 		);
-		$this->extensions[$name]['ext_active'] = false;
-		$this->extensions[$name]['ext_state'] = serialize(false);
+		$this->update_state($name, $extension_data);
 
-		$sql = 'UPDATE ' . $this->extension_table . '
-			SET ' . $this->db->sql_build_array('UPDATE', $extension_data) . "
-			WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
-		$this->db->sql_query($sql);
-
-		if ($this->cache)
-		{
-			$this->cache->purge();
-		}
-
-		return false;
+		return $active;
 	}
 
 	/**
@@ -336,8 +323,8 @@ class manager
 	*/
 	public function purge_step($name)
 	{
-		// ignore extensions that do not exist
-		if (!isset($this->extensions[$name]))
+		// ignore extensions that are not configured
+		if (!$this->is_configured($name))
 		{
 			return false;
 		}
@@ -352,40 +339,16 @@ class manager
 
 		$extension = $this->get_extension($name);
 		$state = $extension->purge_step($old_state);
+		$purged = ($state === false);
+
+		$extension_data = array(
+			'ext_state'	=> serialize($state),
+		);
+
+		$this->update_state($name, $extension_data, $purged ? 'delete' : 'update');
 
 		// continue until the state is false
-		if ($state !== false)
-		{
-			$extension_data = array(
-				'ext_state'		=> serialize($state),
-			);
-			$this->extensions[$name]['ext_state'] = serialize($state);
-
-			$sql = 'UPDATE ' . $this->extension_table . '
-				SET ' . $this->db->sql_build_array('UPDATE', $extension_data) . "
-				WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
-			$this->db->sql_query($sql);
-
-			if ($this->cache)
-			{
-				$this->cache->purge();
-			}
-
-			return true;
-		}
-
-		unset($this->extensions[$name]);
-
-		$sql = 'DELETE FROM ' . $this->extension_table . "
-			WHERE ext_name = '" . $this->db->sql_escape($name) . "'";
-		$this->db->sql_query($sql);
-
-		if ($this->cache)
-		{
-			$this->cache->purge();
-		}
-
-		return false;
+		return !$purged;
 	}
 
 	/**
@@ -431,25 +394,11 @@ class manager
 			if ($file_info->isFile() && $file_info->getFilename() == 'composer.json')
 			{
 				$ext_name = $iterator->getInnerIterator()->getSubPath();
-				$composer_file = $iterator->getPath() . '/composer.json';
-
-				// Ignore the extension if there is no composer.json.
-				if (!is_readable($composer_file) || !($ext_info = file_get_contents($composer_file)))
-				{
-					continue;
-				}
-
-				$ext_info = json_decode($ext_info, true);
 				$ext_name = str_replace(DIRECTORY_SEPARATOR, '/', $ext_name);
-
-				// Ignore the extension if directory depth is not correct or if the directory structure
-				// does not match the name value specified in composer.json.
-				if (substr_count($ext_name, '/') !== 1 || !isset($ext_info['name']) || $ext_name != $ext_info['name'])
+				if ($this->is_available($ext_name))
 				{
-					continue;
+					$available[$ext_name] = $this->get_extension_path($ext_name, true);
 				}
-
-				$available[$ext_name] = $this->phpbb_root_path . 'ext/' . $ext_name . '/';
 			}
 		}
 		ksort($available);
@@ -472,8 +421,12 @@ class manager
 		$configured = array();
 		foreach ($this->extensions as $name => $data)
 		{
-			$data['ext_path'] = ($phpbb_relative ? $this->phpbb_root_path : '') . $data['ext_path'];
-			$configured[$name] = $data;
+			if ($this->is_configured($name))
+			{
+				unset($data['metadata']);
+				$data['ext_path'] = ($phpbb_relative ? $this->phpbb_root_path : '') . $data['ext_path'];
+				$configured[$name] = $data;
+			}
 		}
 		return $configured;
 	}
@@ -490,7 +443,7 @@ class manager
 		$enabled = array();
 		foreach ($this->extensions as $name => $data)
 		{
-			if ($data['ext_active'])
+			if ($this->is_enabled($name))
 			{
 				$enabled[$name] = ($phpbb_relative ? $this->phpbb_root_path : '') . $data['ext_path'];
 			}
@@ -511,7 +464,7 @@ class manager
 		$disabled = array();
 		foreach ($this->extensions as $name => $data)
 		{
-			if (!$data['ext_active'])
+			if ($this->is_disabled($name))
 			{
 				$disabled[$name] = ($phpbb_relative ? $this->phpbb_root_path : '') . $data['ext_path'];
 			}
@@ -527,7 +480,15 @@ class manager
 	*/
 	public function is_available($name)
 	{
-		return file_exists($this->get_extension_path($name, true));
+		$md_manager = $this->create_extension_metadata_manager($name);
+		try
+		{
+			return $md_manager->get_metadata('all') && $md_manager->validate_enable();
+		}
+		catch (\phpbb\extension\exception $e)
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -538,7 +499,7 @@ class manager
 	*/
 	public function is_enabled($name)
 	{
-		return isset($this->extensions[$name]) && $this->extensions[$name]['ext_active'];
+		return isset($this->extensions[$name]['ext_active']) && $this->extensions[$name]['ext_active'];
 	}
 
 	/**
@@ -549,7 +510,7 @@ class manager
 	*/
 	public function is_disabled($name)
 	{
-		return isset($this->extensions[$name]) && !$this->extensions[$name]['ext_active'];
+		return isset($this->extensions[$name]['ext_active']) && !$this->extensions[$name]['ext_active'];
 	}
 
 	/**
@@ -563,7 +524,7 @@ class manager
 	*/
 	public function is_configured($name)
 	{
-		return isset($this->extensions[$name]);
+		return isset($this->extensions[$name]['ext_active']);
 	}
 
 	/**
@@ -573,7 +534,7 @@ class manager
 	* @param bool $force_update Ignores cached data. Defaults to false.
 	* @param bool $force_cache Force the use of the cache. Override $force_update.
 	* @param string $stability Force the stability (null by default).
-	* @return string
+	* @return array
 	* @throws runtime_exception
 	*/
 	public function version_check(\phpbb\extension\metadata_manager $md_manager, $force_update = false, $force_cache = false, $stability = null)
@@ -589,10 +550,10 @@ class manager
 
 		$version_helper = new \phpbb\version_helper($this->cache, $this->config, new file_downloader());
 		$version_helper->set_current_version($meta['version']);
-		$version_helper->set_file_location($version_check['host'], $version_check['directory'], $version_check['filename']);
+		$version_helper->set_file_location($version_check['host'], $version_check['directory'], $version_check['filename'], isset($version_check['ssl']) ? $version_check['ssl'] : false);
 		$version_helper->force_stability($stability);
 
-		return $updates = $version_helper->get_suggested_updates($force_update, $force_cache);
+		return $version_helper->get_ext_update_on_branch($force_update, $force_cache);
 	}
 
 	/**

@@ -21,7 +21,7 @@
 				position: { left: 35, top: 25 }
 			}, options),
 			previewTimeout,
-			previewContainer = $('<div id="topic_preview"></div>').css('width', settings.width).appendTo('body');
+			previewContainer = $('<div id="topic_preview" class="topic_preview_container"></div>').css('width', settings.width).appendTo('body');
 
 		// Do not allow delay times less than 300ms to prevent tooltip madness
 		settings.delay = Math.max(settings.delay, 300);
@@ -97,8 +97,14 @@
 			previewContainer
 				.stop(true, true) // stop any running animations first
 				.fadeOut('fast') // hide the topic preview with a fadeout
-				.animate({ top: '-=' + settings.drift + 'px' }, { duration: 'fast', queue: false }, function() {
-					// animation complete
+				.animate({
+					top: '-=' + settings.drift + 'px'
+				}, {
+					duration: 'fast',
+					queue: false,
+					complete: function() {
+						// animation complete
+					}
 				})
 			;
 			obj.restoreTitles('dt').restoreTitles('dl'); // reinstate original title attributes
@@ -110,14 +116,18 @@
 		};
 
 		return this.each(function() {
-			$(this).hover(showTopicPreview, hideTopicPreview).on('click', function() {
-				// Remove topic preview immediately on click as failsafe
-				previewContainer.hide();
-				// clear any existing timeouts
-				if (previewTimeout) {
-					previewTimeout = clearTimeout(previewTimeout);
-				}
-			});
+			$(this)
+				.on('mouseenter', showTopicPreview)
+				.on('mouseleave', hideTopicPreview)
+				.on('click', function() {
+					// Remove topic preview immediately on click as failsafe
+					previewContainer.hide();
+					// clear any existing timeouts
+					if (previewTimeout) {
+						previewTimeout = clearTimeout(previewTimeout);
+					}
+				})
+			;
 		});
 	};
 
@@ -139,7 +149,7 @@
 				// b. loading takes longer than timeout
 				var image = this;
 
-				$(image).bind('error', function() {
+				$(image).on('error', function() {
 					insertPlaceholder();
 				});
 

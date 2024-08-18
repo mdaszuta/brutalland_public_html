@@ -36,14 +36,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Hors-sujet',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Menu des polices',
-	'ABBC3_FONT_FANCY'			=> 'Polices fantaisistes',
+	'ABBC3_FONT_BBCODE'			=> 'Polices',
 	'ABBC3_FONT_SAFE'			=> 'Polices communes',
-	'ABBC3_FONT_WIN'			=> 'Polices Windows',
+	'ABBC3_GOOGLE_FONTS'		=> 'Polices Google',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Alignement du texte : [align=center|left|right|justify]texte[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Insérer un lien vers n’importe quelle vidéo internet : [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Insérer un lien vers n’importe quelle vidéo internet : [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Texte flou : [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Sens d’écriture : [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Texte à courte ombre portée : [dropshadow=color]text[/dropshadow]',
@@ -59,12 +58,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Message hors-sujet : [offtopic]texte[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Texte préformaté : [pre]texte[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Ombres sur le texte : [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'Son SoundCloud : [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'Son SoundCloud : [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler le message : [spoil]texte[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Texte barré : [s]texte[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Texte en indice : [sub]texte[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texte en exposant : [sup]texte[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vidéo YouTube : [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copier le texte sélectionné',
@@ -76,21 +76,31 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Insérer dans le message',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Exemple',
-
-	// BBvideo Wizard
-	'ABBC3_BBVIDEO_SITES'		=> 'Sites autorisés pour BBvideo',
-	'ABBC3_BBVIDEO_LINK'		=> 'Lien vers la vidéo',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Largeur de la vidéo x Hauteur de la vidéo',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Tailles prédéfinies',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
-
-	// URL Wizard
+	'ABBC3_BBVIDEO_SITES'		=> 'Sites autorisés pour vidéo',
 	'ABBC3_URL_LINK'			=> 'Ajouter une adresse URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Description facultative',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
+
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Créer des tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Permet de créer des tables au format ASCII.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Guide d’utilisation',
+	'ABBC3_PIPE_SIMPLE'			=> 'Table simple',
+	'ABBC3_PIPE_COMPACT'		=> 'Table compacte',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Les barres verticales extérieures et les espaces autour de celles-ci sont optionnels.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Alignement du texte',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'L’ordre des BBcode a été mis à jour.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestion des groupes pouvant utiliser ce BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si aucun groupe n’est sélectionné, tous les utilisateurs pourront utiliser ce BBCode. Appuyer sur la touche <samp>CTRL</samp> (ou <samp>&#8984;CMD</samp> sur Mac) tout en cliquant pour sélectionner / désélectionner plus d’un groupe.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Boite des BBCodes avancés',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Le renard brun et rapide saute sur le chien paresseux.',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemple :</strong><br>%2$s<br><br><strong>Résultat :</strong><br>%3$s<hr />',
 ));

@@ -13,6 +13,7 @@
 
 namespace phpbb\install\module\install_finish\task;
 
+use phpbb\config\db;
 use phpbb\install\exception\resource_limit_reached_exception;
 
 /**
@@ -31,7 +32,7 @@ class install_extensions extends \phpbb\install\task_base
 	protected $iohandler;
 
 	/**
-	 * @var \phpbb\config\db
+	 * @var db
 	 */
 	protected $config;
 
@@ -72,9 +73,9 @@ class install_extensions extends \phpbb\install\task_base
 		$this->extension_table = $container->get_parameter('tables.ext');
 
 		$this->log				= $container->get('log');
+		$this->config			= $container->get('config');
 		$this->user				= $container->get('user');
 		$this->extension_manager = $container->get('ext.manager');
-		$this->config			= $container->get('config');
 		$this->db				= $container->get('dbal.conn');
 		$this->finder = new \Symfony\Component\Finder\Finder();
 		$this->finder->in($phpbb_root_path . 'ext/')
@@ -82,6 +83,17 @@ class install_extensions extends \phpbb\install\task_base
 			->depth('< 3')
 			->files()
 			->name('composer.json');
+
+		/** @var \phpbb\cache\driver\driver_interface $cache */
+		$cache = $container->get('cache.driver');
+		$cache->destroy('config');
+
+		global $config;
+		$config = new db(
+			$this->db,
+			$cache,
+			$container->get_parameter('tables.config')
+		);
 
 		// Make sure asset version exists in config. Otherwise we might try to
 		// insert the assets_version setting into the database and cause a
@@ -118,6 +130,14 @@ class install_extensions extends \phpbb\install\task_base
 
 			try
 			{
+				$extension = $this->extension_manager->get_extension($ext_name);
+
+				if (!$extension->is_enableable())
+				{
+					$this->iohandler->add_log_message(array('CLI_EXTENSION_NOT_ENABLEABLE', $ext_name));
+					continue;
+				}
+
 				$this->extension_manager->enable($ext_name);
 				$extensions = $this->get_extensions();
 
@@ -149,7 +169,7 @@ class install_extensions extends \phpbb\install\task_base
 
 		$this->install_config->set('install_extensions_index', $i);
 
-		if ($i < sizeof($all_available_extensions))
+		if ($i < count($all_available_extensions))
 		{
 			throw new resource_limit_reached_exception();
 		}

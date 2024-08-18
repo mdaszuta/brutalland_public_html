@@ -9,6 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-07-05 21:45:45 Zespół Olympus.pl $
+* @Polska wersja językowa phpBB 3.3.7 - 02.04.2022, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -79,7 +80,7 @@ $lang = array_merge($lang, array(
 	'FORUM_ADMIN'						=> 'Zarządzanie forami',
 	'FORUM_ADMIN_EXPLAIN'				=> 'W phpBB3 wszystko jest oparte na forach. Występują trzy typy forów: <em>Kategoria</em>, to forum specjalne – zawiera tylko subfora, nie można na nim umieszczać tematów ani pisać postów, działa podobnie, jak kategoria w skrypcie phpBB2, <em>Forum</em> – to fora, na których można tworzyć tematy, pisać posty, zamieszczać grafikę itp., <em>Odnośnik</em> – to fora odnośniki, po kliknięciu zawartego w nich odnośnika tylko przekierowują do podanego adresu URL. Każde forum może mieć nielimitowaną liczbę subforów. Można określić czy na danym forum można tworzyć tematy i zamieszczać posty. Tutaj można dodawać, edytować, usuwać, zamykać, otwierać oddzielne fora, jak również określać dodatkową kontrolę. Jeśli temat i posty zgubiły synchronizację, można wykonać ponowną synchronizację forum. <strong>Aby nowo utworzone fora były wyświetlane, należy skopiować lub określić dla nich odpowiednie uprawnienia</strong>.',
 	'FORUM_AUTO_PRUNE'					=> 'Czyść automatycznie tematy',
-	'FORUM_AUTO_PRUNE_EXPLAIN'			=> 'Włączenie tej funkcji spowoduje automatyczne czyszczenie tematów forum. Poniżej należy określić parametry (częstotliwość/okres czasu) czyszczenia.',
+	'FORUM_AUTO_PRUNE_EXPLAIN'			=> 'Włączenie tej funkcji spowoduje automatyczne czyszczenie tematów forum. Poniżej należy określić parametry (częstotliwość/przedział czasu) czyszczenia.',
 	'FORUM_CREATED'						=> 'Forum zostało utworzone.',
 	'FORUM_DATA_NEGATIVE'				=> 'Parametry czyszczenia nie mogą być wartościami ujemnymi.',
 	'FORUM_DESC_TOO_LONG'				=> 'Opis forum jest za długi – może zawierać nie więcej niż 4000 znaków.',
@@ -87,7 +88,7 @@ $lang = array_merge($lang, array(
 	'FORUM_DELETE_EXPLAIN'				=> 'Za pomocą tego formularza można usunąć forum. Jeśli na forum można zamieszczać tematy, posty i inne elementy, tutaj można określić gdzie umieścić wszystkie tematy lub fora, jakie ono zawiera.',
 	'FORUM_DELETED'						=> 'Forum zostało usunięte.',
 	'FORUM_DESC'						=> 'Opis',
-	'FORUM_DESC_EXPLAIN'				=> 'Wprowadzone tutaj znaczniki HTML będą wyświetlane tak, jak je widać w polu obok.',
+	'FORUM_DESC_EXPLAIN'				=> 'Wprowadzone tutaj znaczniki HTML będą wyświetlane tak, jak je widać w polu obok. Jeśli wybrany typ forum, to kategoria, wtedy opis nie będzie wyświetlony.',
 	'FORUM_EDIT_EXPLAIN'				=> 'Na poniższym formularzu można określić parametry tworzonego forum. Uprawnienia moderacyjne i uprawnienia na forum dla każdego użytkownika, czy grupy użytkowników są ustawiane z poziomu uprawnień forum.',
 	'FORUM_IMAGE'						=> 'Obrazek forum',
 	'FORUM_IMAGE_EXPLAIN'				=> 'Lokalizacja dodatkowego obrazka do skojarzenia z tym forum – relatywna do katalogu głównego phpB.',
@@ -97,6 +98,7 @@ $lang = array_merge($lang, array(
 	'FORUM_LINK_TRACK_EXPLAIN'			=> 'Włączenie tej funkcji spowoduje zapisywanie kliknięć odnośnika i wyświetlanie na forum typu „Odnośnik” informacji o liczbie kliknięć.',
 	'FORUM_NAME'						=> 'Nazwa forum',
 	'FORUM_NAME_EMPTY'					=> 'Należy wprowadzić nazwę tego forum.',
+	'FORUM_NAME_EMOJI'					=> 'Podana nazwa forum jest niepoprawna.<br>Wprowadzono niedozwolone znaki:<br>%s',
 	'FORUM_PARENT'						=> 'Forum macierzyste',
 	'FORUM_PASSWORD'					=> 'Hasło forum',
 	'FORUM_PASSWORD_CONFIRM'			=> 'Potwierdź hasło',
@@ -128,6 +130,8 @@ $lang = array_merge($lang, array(
 	'GENERAL_FORUM_SETTINGS'	=> 'Ogólne ustawienia forum',
 
 	'LINK'						=> 'Odnośnik',
+	'LIMIT_SUBFORUMS'			=> 'Ogranicz liczbę wyświetlanych subforów w opisie.',
+	'LIMIT_SUBFORUMS_EXPLAIN'	=> 'Włączenie tej funkcji spowoduje ograniczenie wyświetlonych nazw subforów w opisie wyłącznie do subforów, które są bezpośrednimi potomkami (dziećmi) bieżącego forum. Wyłączenie tej funkcji wyświetli wszystkie subfora zgodnie z opcją „Wyświetlaj subfora w opisie”.',
 	'LIST_INDEX'				=> 'Wyświetlaj subforum w opisie macierzystego forum',
 	'LIST_INDEX_EXPLAIN'		=> 'Włączenie tej funkcji spowoduje wyświetlanie nazwy tego subforum jako odnośnika w opisie macierzystego forum na stronach wykazu forów, forów i w innych miejscach. Aby nazwa tego subforum była wyświetlana, musi być także włączona funkcja „Wyświetlaj subfora w opisie”.',
 	'LIST_SUBFORUMS'			=> 'Wyświetlaj subfora w opisie',

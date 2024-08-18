@@ -36,14 +36,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> '“Off Topic”',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Izbornik fontova',
-	'ABBC3_FONT_FANCY'			=> 'Fancy fontovi',
+	'ABBC3_FONT_BBCODE'			=> 'Fontovi',
 	'ABBC3_FONT_SAFE'			=> 'Sigurni fontovi',
-	'ABBC3_FONT_WIN'			=> 'Windows fontovi',
+	'ABBC3_GOOGLE_FONTS'		=> 'Google fontovi',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Poravnanje teksta: [align=center|left|right|justify]text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Umetanje URL-a stranice videa: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Umetanje URL-a stranice videa: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Bluranje teksta: [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Smjer teksta: [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Sjenčanje teksta: [dropshadow=color]text[/dropshadow]',
@@ -59,12 +58,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> '“Off Topic” poruka: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Formatiranje teksta: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Sjenčanje teksta: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '“Spoiler” poruka: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Precrtanje teksta: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Indeksiranje teksta: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Eksponentiranje teksta: [sup]text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube video: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopiraj označeni tekst',
@@ -76,21 +76,31 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Umetni u poruku',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Primjer',
-
-	// BBvideo Wizard
-	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo dopuštene stranice',
-	'ABBC3_BBVIDEO_LINK'		=> 'URL videa',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Širina x visina videa',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Podešavanje veličine videa',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
-
-	// URL Wizard
+	'ABBC3_BBVIDEO_SITES'		=> 'Dopuštene stranice',
 	'ABBC3_URL_LINK'			=> 'Unesite URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Izborni opis',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
+
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBKod poredak je ažuriran.',
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljanje grupama koje mogu koristiti ovaj BBKod',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ukoliko niti jedna grupa nije odabrana, svi/e korisnici/e mogu koristiti ovaj BBKod.<br />Za o(do)značavanje više od jedne grupe, koristi CTRL+KLIK (CMD+KLIK na Macu).',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ukoliko niti jedna grupa nije odabrana, svi/e korisnici/e mogu koristiti ovaj BBKod.<br>Za o(do)značavanje više od jedne grupe, koristi CTRL+KLIK (CMD+KLIK na Macu).',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr />',
 ));

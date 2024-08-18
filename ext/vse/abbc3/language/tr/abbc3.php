@@ -2,8 +2,9 @@
 /**
 *
 * Advanced BBCode Box [Turkish]
+* Turkish translation by ESQARE (https://www.phpbbturkey.com)
 *
-* @copyright (c) 2015 Edip Dincer
+* @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -25,71 +26,81 @@ $lang = array_merge($lang, array(
 	// Hidden BBCode
 	'ABBC3_HIDDEN_ON'			=> 'Gizli İçerik',
 	'ABBC3_HIDDEN_OFF'			=> 'Gizli İçerik (sadece üyeler için)',
-	'ABBC3_HIDDEN_EXPLAIN'		=> 'Bu forum gizli içeriği görebilmeniz için üyelik gerektiriyor.',
+	'ABBC3_HIDDEN_EXPLAIN'		=> 'Bu mesaj panosunda gizli içeriği görüntülemek için kayıt olmanız ve giriş yapmanız gerekmektedir.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Spoiler Göster',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Spoiler Gizle',
+	'ABBC3_SPOILER_SHOW'		=> '► Spoiler’ı Göster',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Spoiler’ı Gizle',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Konu Dışı',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Yazı Tipi Menüsü',
-	'ABBC3_FONT_FANCY'			=> 'Havalı yazı tipleri',
+	'ABBC3_FONT_BBCODE'			=> 'Yazı tipleri',
 	'ABBC3_FONT_SAFE'			=> 'Güvenli yazı tipleri',
-	'ABBC3_FONT_WIN'			=> 'Windows yazı tipleri',
+	'ABBC3_GOOGLE_FONTS'		=> 'Google yazı tipleri',
 
 	// BBCode help lines
-	'ABBC3_ALIGN_HELPLINE'		=> 'Yazıyı Hizala: [align=center|left|right|justify]yazı[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Herhangi bir siteden video ekler: [BBvideo=width,height]http://video_url[/BBvideo]',
-	'ABBC3_BLUR_HELPLINE'		=> 'Yazıyı flulaştır: [blur=color]yazı[/blur]',
-	'ABBC3_DIR_HELPLINE'		=> 'Yazı yönü: [dir=ltr|rtl]yazı[/dir]',
-	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Yazıya gölge ver: [dropshadow=color]yazı[/dropshadow]',
-	'ABBC3_FADE_HELPLINE'		=> 'Yazıyı soldur: [fade]yazı[/fade]',
-	'ABBC3_FLOAT_HELPLINE'		=> 'Yazıyı yüzdür: [float=left|right]yazı[/float]',
-	'ABBC3_FONT_HELPLINE'		=> 'Yazı tipi: [font=Comic Sans MS]yazı[/font]',
-	'ABBC3_GLOW_HELPLINE'		=> 'Yazıyı parlat: [glow=color]yazı[/glow]',
-	'ABBC3_HIDDEN_HELPLINE'		=> 'Ziyaretçilerden gizle: [hidden]yazı[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Yazıyı işaretle: [highlight=yellow]yazı[/highlight]  Tip: you can also use color=#FF0000',
-	'ABBC3_MARQUEE_HELPLINE'	=> 'Yazıya kayma efekti ekle: [marq=up|down|left|right]yazı[/marq]',
-	'ABBC3_MOD_HELPLINE'		=> 'Uyarı mesajı: [mod=username]yazı[/mod]',
-	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii art yazısı: [nfo]yazı[/nfo]',
-	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Konu dışı mesaj: [offtopic]yazı[/offtopic]',
-	'ABBC3_PREFORMAT_HELPLINE'	=> 'Önceden ayarlanmış yazı: [pre]yazı[/pre]',
-	'ABBC3_SHADOW_HELPLINE'		=> 'Gölge yazı: [shadow=color]yazı[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
-	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler mesajı: [spoil]yazı[/spoil]',
-	'ABBC3_STRIKE_HELPLINE'		=> 'Üzeri çizili yazı: [s]yazı[/s]',
-	'ABBC3_SUB_HELPLINE'		=> 'Alt simge yazı: [sub]yazı[/sub]',
-	'ABBC3_SUP_HELPLINE'		=> 'Üst simge yazı: [sup]yazı[/sup]',
+	'ABBC3_ALIGN_HELPLINE'		=> 'Metni hizala: [align=center|left|right|justify]metin[/align]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Herhangi bir video sitesinden video url’si yerleştirin: [bbvideo]http://video_url[/bbvideo]',
+	'ABBC3_BLUR_HELPLINE'		=> 'Bulanık metin: [blur=color]metin[/blur]',
+	'ABBC3_DIR_HELPLINE'		=> 'Metin yönü: [dir=ltr|rtl]metin[/dir]',
+	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Alt gölgeli metin: [dropshadow=color]metin[/dropshadow]',
+	'ABBC3_FADE_HELPLINE'		=> 'Parlayan / solan metin: [fade]metin[/fade]',
+	'ABBC3_FLOAT_HELPLINE'		=> 'Sağa ya da sola sabitlenmiş metin: [float=left|right]metin[/float]',
+	'ABBC3_FONT_HELPLINE'		=> 'Yazı tipi: [font=Comic Sans MS]metin[/font]',
+	'ABBC3_GLOW_HELPLINE'		=> 'Parlak metin: [glow=color]metin[/glow]',
+	'ABBC3_HIDDEN_HELPLINE'		=> 'Misafirlerden gizle: [hidden]metin[/hidden]',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Vurgulu metin: [highlight=yellow]metin[/highlight]  İpucu: ayrıca color=#FF0000 renk kodu kullanabilirsiniz',
+	'ABBC3_MARQUEE_HELPLINE'	=> 'Kayan metin: [marq=up|down|left|right]metin[/marq]',
+	'ABBC3_MOD_HELPLINE'		=> 'Uyarı mesajı: [mod=username]metin[/mod]',
+	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii sanat metni: [nfo]metin[/nfo]',
+	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Konu Dışı mesajı: [offtopic]metin[/offtopic]',
+	'ABBC3_PREFORMAT_HELPLINE'	=> 'Ön biçimlendirilmeli metin: [pre]metin[/pre]',
+	'ABBC3_SHADOW_HELPLINE'		=> 'Gölgeli metin: [shadow=color]metin[/shadow]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/kullanici-adi/sarki-basligi[/soundcloud]',
+	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler mesajı: [spoil]metin[/spoil]',
+	'ABBC3_STRIKE_HELPLINE'		=> 'Üstü çizili metin: [s]metin[/s]',
+	'ABBC3_SUB_HELPLINE'		=> 'Alt simge metni: [sub]metin[/sub]',
+	'ABBC3_SUP_HELPLINE'		=> 'Üst simge metni: [sup]text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Seçili metni kopyala',
+	'ABBC3_COPY_BBCODE'			=> 'Seçilen metni kopyala',
 	'ABBC3_PASTE_BBCODE'		=> 'Kopyalanan metni yapıştır',
-	'ABBC3_PASTE_ERROR'			=> 'İlk olarak bir metin seçip kopyalamalısınız',
-	'ABBC3_PLAIN_BBCODE'		=> 'Seçili metinden bütün BBCode etiketlerini temizle',
-	'ABBC3_NOSELECT_ERROR'		=> 'Bir metin seçilmedi.',
+	'ABBC3_PASTE_ERROR'			=> 'Önce bir metin seçimini kopyalamanız, ardından yapıştırmanız gerekir',
+	'ABBC3_PLAIN_BBCODE'		=> 'Seçilen metinden tüm BBCode etiketlerini kaldır',
+	'ABBC3_NOSELECT_ERROR'		=> 'Hiç bir metin seçilmedi.',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Mesaja ekle',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Örnek',
-
-	// BBvideo Wizard
-	'ABBC3_BBVIDEO_SITES'		=> 'İzin verilen BBvideo siteleri',
-	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Video Genişlik x Yükseklik',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Boyut Ayarları',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
-
-	// URL Wizard
-	'ABBC3_URL_LINK'			=> 'Bir site URL\'si girin',
+	'ABBC3_BBVIDEO_SITES'		=> 'İzin verilen siteler',
+	'ABBC3_URL_LINK'			=> 'Bir site URL adresi girin',
 	'ABBC3_URL_DESCRIPTION'		=> 'İsteğe bağlı açıklama',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
+
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Tablolar oluştur',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Bu ASCII tarzı formatlardan herhangi birini kullanarak tablolar oluşturun.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Kullanıcı Rehberi',
+	'ABBC3_PIPE_SIMPLE'			=> 'Basit tablo',
+	'ABBC3_PIPE_COMPACT'		=> 'Kompakt tablo',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Dış borular ve boruların etrafındaki boşluklar isteğe bağlıdır.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Metni hizala',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sıralaması güncellendi.',
-	'ABBC3_BBCODE_GROUP'		=> 'BBCode\'ları kullanabilecek grupları yönetin',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer bir grup seçilmemişse, bütün gruplar BBCode\'ları kullanabilir. Birden fazla grup seçmek/seçmemek için CTRL+KLİK (veya Mac\'te CMD+KLİK) kullanınız.',
+	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sırası güncellendi.',
+	'ABBC3_BBCODE_GROUP'		=> 'Bu BBCode’u kullanabilen grupları yönetin',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer hiç bir grup seçilmezse, tüm kullanıcılar bu BBCode’u kullanabilirler. Birden fazla grup seçmek ya da seçimi bırakmak için CTRL+SAĞ TIK (ya da Mac bilgisayarlarda CMD+SAĞ TIK) klavye ile mouse kombinasyonunu kullanın.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCode’ları',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Hızlı kahverengi tilki tembel köpeğin üzerinden atlar',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Örnek:</strong><br>%2$s<br><br><strong>Sonuç:</strong><br>%3$s<hr />',
 ));

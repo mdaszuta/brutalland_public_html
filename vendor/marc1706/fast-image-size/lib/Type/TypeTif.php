@@ -14,8 +14,8 @@ namespace FastImageSize\Type;
 class TypeTif extends TypeBase
 {
 	/** @var int TIF header size. The header might be larger but the dimensions
-	 *			should be in the first 512 bytes */
-	const TIF_HEADER_SIZE = 512;
+	 *			should be in the first 256 kiB bytes */
+	const TIF_HEADER_SIZE = 262144;
 
 	/** @var int TIF tag for image height */
 	const TIF_TAG_IMAGE_HEIGHT = 257;
@@ -39,10 +39,10 @@ class TypeTif extends TypeBase
 	protected $size;
 
 	/** @var string Bit type of long field */
-	protected $typeLong;
+	public $typeLong;
 
 	/** @var string Bit type of short field */
-	protected $typeShort;
+	public $typeShort;
 
 	/**
 	 * {@inheritdoc}
@@ -68,10 +68,18 @@ class TypeTif extends TypeBase
 		list(, $offset) = unpack($this->typeLong, substr($data, self::LONG_SIZE, self::LONG_SIZE));
 
 		// Get size of IFD
-		list(, $sizeIfd) = unpack($this->typeShort, substr($data, $offset, self::SHORT_SIZE));
+		$ifdSizeInfo = substr($data, $offset, self::SHORT_SIZE);
+		if (empty($ifdSizeInfo))
+		{
+			return;
+		}
+		list(, $sizeIfd) = unpack($this->typeShort, $ifdSizeInfo);
 
 		// Skip 2 bytes that define the IFD size
 		$offset += self::SHORT_SIZE;
+
+		// Ensure size can't exceed data length
+		$sizeIfd = min($sizeIfd, floor((strlen($data) - $offset) / self::TIF_IFD_ENTRY_SIZE));
 
 		// Filter through IFD
 		for ($i = 0; $i < $sizeIfd; $i++)
@@ -99,7 +107,7 @@ class TypeTif extends TypeBase
 	 *
 	 * @param string $signature Header signature
 	 */
-	protected function setByteType($signature)
+	public function setByteType($signature)
 	{
 		if ($signature === self::TIF_SIGNATURE_INTEL)
 		{

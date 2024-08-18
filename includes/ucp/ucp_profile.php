@@ -70,9 +70,9 @@ class ucp_profile
 					// Do not check cur_password, it is the old one.
 					$check_ary = array(
 						'new_password'		=> array(
-							array('string', true, $config['min_pass_chars'], $config['max_pass_chars']),
+							array('string', true, $config['min_pass_chars'], 0),
 							array('password')),
-						'password_confirm'	=> array('string', true, $config['min_pass_chars'], $config['max_pass_chars']),
+						'password_confirm'	=> array('string', true, $config['min_pass_chars'], 0),
 						'email'				=> array(
 							array('string', false, 6, 60),
 							array('user_email')),
@@ -98,7 +98,7 @@ class ucp_profile
 					$passwords_manager = $phpbb_container->get('passwords.manager');
 
 					// Only check the new password against the previous password if there have been no errors
-					if (!sizeof($error) && $auth->acl_get('u_chgpasswd') && $data['new_password'] && $passwords_manager->check($data['new_password'], $user->data['user_password']))
+					if (!count($error) && $auth->acl_get('u_chgpasswd') && $data['new_password'] && $passwords_manager->check($data['new_password'], $user->data['user_password']))
 					{
 						$error[] = 'SAME_PASSWORD_ERROR';
 					}
@@ -125,15 +125,13 @@ class ucp_profile
 					$vars = array('data', 'submit', 'error');
 					extract($phpbb_dispatcher->trigger_event('core.ucp_profile_reg_details_validate', compact($vars)));
 
-					if (!sizeof($error))
+					if (!count($error))
 					{
 						$sql_ary = array(
 							'username'			=> ($auth->acl_get('u_chgname') && $config['allow_namechange']) ? $data['username'] : $user->data['username'],
 							'username_clean'	=> ($auth->acl_get('u_chgname') && $config['allow_namechange']) ? utf8_clean_string($data['username']) : $user->data['username_clean'],
 							'user_email'		=> ($auth->acl_get('u_chgemail')) ? $data['email'] : $user->data['user_email'],
-							'user_email_hash'	=> ($auth->acl_get('u_chgemail')) ? phpbb_email_hash($data['email']) : $user->data['user_email_hash'],
 							'user_password'		=> ($auth->acl_get('u_chgpasswd') && $data['new_password']) ? $passwords_manager->hash($data['new_password']) : $user->data['user_password'],
-							'user_passchg'		=> ($auth->acl_get('u_chgpasswd') && $data['new_password']) ? time() : 0,
 						);
 
 						if ($auth->acl_get('u_chgname') && $config['allow_namechange'] && $data['username'] != $user->data['username'])
@@ -145,8 +143,10 @@ class ucp_profile
 							));
 						}
 
-						if ($auth->acl_get('u_chgpasswd') && $data['new_password'] && !$passwords_manager->check($data['new_password'], $user->data['user_password']))
+						if ($auth->acl_get('u_chgpasswd') && $data['new_password'])
 						{
+							$sql_ary['user_passchg'] = time();
+
 							$user->reset_login_keys();
 							$phpbb_log->add('user', $user->data['user_id'], $user->ip, 'LOG_USER_NEW_PASSWORD', false, array(
 								'reportee_id' => $user->data['user_id'],
@@ -159,7 +159,7 @@ class ucp_profile
 							$phpbb_log->add('user', $user->data['user_id'], $user->ip, 'LOG_USER_UPDATE_EMAIL', false, array(
 								'reportee_id' => $user->data['user_id'],
 								$user->data['username'],
-								$data['user_email'],
+								$user->data['user_email'],
 								$data['email']
 							));
 						}
@@ -186,7 +186,7 @@ class ucp_profile
 							$messenger->anti_abuse_headers($config, $user);
 
 							$messenger->assign_vars(array(
-								'USERNAME'		=> htmlspecialchars_decode($data['username']),
+								'USERNAME'		=> html_entity_decode($data['username'], ENT_COMPAT),
 								'U_ACTIVATE'	=> "$server_url/ucp.$phpEx?mode=activate&u={$user->data['user_id']}&k=$user_actkey")
 							);
 
@@ -196,9 +196,10 @@ class ucp_profile
 							{
 								$notifications_manager = $phpbb_container->get('notification_manager');
 								$notifications_manager->add_notifications('notification.type.admin_activate_user', array(
-									'user_id'		=> $user->data['user_id'],
-									'user_actkey'	=> $user_actkey,
-									'user_regdate'	=> time(), // Notification time
+									'user_id'					=> $user->data['user_id'],
+									'user_actkey'				=> $user_actkey,
+									'user_actkey_expiration'	=> $user::get_token_expiration(),
+									'user_regdate'				=> time(), // Notification time
 								));
 							}
 
@@ -220,7 +221,7 @@ class ucp_profile
 						$vars = array('data', 'sql_ary');
 						extract($phpbb_dispatcher->trigger_event('core.ucp_profile_reg_details_sql_ary', compact($vars)));
 
-						if (sizeof($sql_ary))
+						if (count($sql_ary))
 						{
 							$sql = 'UPDATE ' . USERS_TABLE . '
 								SET ' . $db->sql_build_array('UPDATE', $sql_ary) . '
@@ -257,7 +258,7 @@ class ucp_profile
 				}
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
+					'ERROR'				=> (count($error)) ? implode('<br />', $error) : '',
 
 					'USERNAME'			=> $data['username'],
 					'EMAIL'				=> $data['email'],
@@ -265,8 +266,8 @@ class ucp_profile
 					'NEW_PASSWORD'		=> $data['new_password'],
 					'CUR_PASSWORD'		=> '',
 
-					'L_USERNAME_EXPLAIN'		=> $user->lang($config['allow_name_chars'] . '_EXPLAIN', $user->lang('CHARACTERS', (int) $config['min_name_chars']), $user->lang('CHARACTERS', (int) $config['max_name_chars'])),
-					'L_CHANGE_PASSWORD_EXPLAIN'	=> $user->lang($config['pass_complex'] . '_EXPLAIN', $user->lang('CHARACTERS', (int) $config['min_pass_chars']), $user->lang('CHARACTERS', (int) $config['max_pass_chars'])),
+					'L_USERNAME_EXPLAIN'		=> $user->lang($config['allow_name_chars'] . '_EXPLAIN', $user->lang('CHARACTERS_XY', (int) $config['min_name_chars']), $user->lang('CHARACTERS_XY', (int) $config['max_name_chars'])),
+					'L_CHANGE_PASSWORD_EXPLAIN'	=> $user->lang($config['pass_complex'] . '_EXPLAIN', $user->lang('CHARACTERS', (int) $config['min_pass_chars'])),
 
 					'S_FORCE_PASSWORD'	=> ($auth->acl_get('u_chgpasswd') && $config['chg_passforce'] && $user->data['user_passchg'] < time() - ($config['chg_passforce'] * 86400)) ? true : false,
 					'S_CHANGE_USERNAME' => ($config['allow_namechange'] && $auth->acl_get('u_chgname')) ? true : false,
@@ -343,7 +344,7 @@ class ucp_profile
 					// validate custom profile fields
 					$cp->submit_cp_field('profile', $user->get_iso_lang_id(), $cp_data, $cp_error);
 
-					if (sizeof($cp_error))
+					if (count($cp_error))
 					{
 						$error = array_merge($error, $cp_error);
 					}
@@ -365,7 +366,7 @@ class ucp_profile
 					$vars = array('data', 'submit', 'error');
 					extract($phpbb_dispatcher->trigger_event('core.ucp_profile_validate_profile_info', compact($vars)));
 
-					if (!sizeof($error))
+					if (!count($error))
 					{
 						$data['notify'] = $user->data['user_notify_type'];
 
@@ -449,7 +450,7 @@ class ucp_profile
 				}
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
+					'ERROR'				=> (count($error)) ? implode('<br />', $error) : '',
 					'S_JABBER_ENABLED'	=> $config['jab_enable'],
 					'JABBER'			=> $data['jabber'],
 				));
@@ -469,8 +470,15 @@ class ucp_profile
 					trigger_error('NO_AUTH_SIGNATURE');
 				}
 
-				include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
-				include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+				if (!function_exists('generate_smilies'))
+				{
+					include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
+				}
+
+				if (!function_exists('display_custom_bbcodes'))
+				{
+					include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+				}
 
 				$preview	= $request->is_set_post('preview');
 
@@ -508,7 +516,7 @@ class ucp_profile
 				* @var	bool	submit				Whether or not the form has been sumitted
 				* @var	bool	preview				Whether or not the signature is being previewed
 				* @since 3.1.10-RC1
-				* @change 3.2.0-RC2 Removed message parser
+				* @changed 3.2.0-RC2 Removed message parser
 				*/
 				$vars = array(
 					'enable_bbcode',
@@ -537,7 +545,7 @@ class ucp_profile
 					'sig'
 				);
 
-				if (sizeof($warn_msg))
+				if (count($warn_msg))
 				{
 					$error += $warn_msg;
 				}
@@ -549,7 +557,7 @@ class ucp_profile
 				}
 				else
 				{
-					if (!sizeof($error))
+					if (!count($error))
 					{
 						$user->optionset('sig_bbcode', $enable_bbcode);
 						$user->optionset('sig_smilies', $enable_smilies);
@@ -594,7 +602,7 @@ class ucp_profile
 				$controller_helper = $phpbb_container->get('controller.helper');
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
+					'ERROR'				=> (count($error)) ? implode('<br />', $error) : '',
 					'SIGNATURE'			=> $decoded_message['text'],
 					'SIGNATURE_PREVIEW'	=> $signature_preview,
 
@@ -753,7 +761,7 @@ class ucp_profile
 				$avatar = phpbb_get_user_avatar($user->data, 'USER_AVATAR', true);
 
 				$template->assign_vars(array(
-					'ERROR'			=> (sizeof($error)) ? implode('<br />', $error) : '',
+					'ERROR'			=> (count($error)) ? implode('<br />', $error) : '',
 					'AVATAR'		=> $avatar,
 
 					'S_FORM_ENCTYPE'	=> ' enctype="multipart/form-data"',
@@ -778,7 +786,7 @@ class ucp_profile
 						$error[] = 'FORM_INVALID';
 					}
 
-					if (!sizeof($error))
+					if (!count($error))
 					{
 						if (!empty($keys))
 						{
@@ -803,29 +811,56 @@ class ucp_profile
 					$error = array_map(array($user, 'lang'), $error);
 				}
 
-				$sql = 'SELECT key_id, last_ip, last_login
-					FROM ' . SESSIONS_KEYS_TABLE . '
-					WHERE user_id = ' . (int) $user->data['user_id'] . '
-					ORDER BY last_login ASC';
+				$sql_ary = [
+					'SELECT'	=> 'sk.key_id, sk.last_ip, sk.last_login',
+					'FROM'		=> [SESSIONS_KEYS_TABLE	=> 'sk'],
+					'WHERE'		=> 'sk.user_id = ' . (int) $user->data['user_id'],
+					'ORDER_BY'	=> 'sk.last_login ASC',
+				];
 
-				$result = $db->sql_query($sql);
+				/**
+				 * Event allows changing SQL query for autologin keys
+				 *
+				 * @event core.ucp_profile_autologin_keys_sql
+				 * @var	array	sql_ary	Array with autologin keys SQL query
+				 * @since 3.3.2-RC1
+				 */
+				$vars = ['sql_ary'];
+				extract($phpbb_dispatcher->trigger_event('core.ucp_profile_autologin_keys_sql', compact($vars)));
 
-				while ($row = $db->sql_fetchrow($result))
+				$result = $db->sql_query($db->sql_build_query('SELECT', $sql_ary));
+				$sessions = (array) $db->sql_fetchrowset($result);
+				$db->sql_freeresult($result);
+
+				$template_vars = [];
+				foreach ($sessions as $row)
 				{
-					$template->assign_block_vars('sessions', array(
-						'KEY' => substr($row['key_id'], 0, 8),
+					$key = substr($row['key_id'], 0, 8);
+					$template_vars[$key] = [
+						'KEY' => $key,
 						'IP' => $row['last_ip'],
 						'LOGIN_TIME' => $user->format_date($row['last_login']),
-					));
+					];
 				}
 
-				$db->sql_freeresult($result);
+				/**
+				 * Event allows changing template variables
+				 *
+				 * @event core.ucp_profile_autologin_keys_template_vars
+				 * @var	array	sessions		Array with session keys data
+				 * @var	array	template_vars	Array with template variables
+				 * @since 3.3.2-RC1
+				 */
+				$vars = ['sessions', 'template_vars'];
+				extract($phpbb_dispatcher->trigger_event('core.ucp_profile_autologin_keys_template_vars', compact($vars)));
+
+				$template->assign_block_vars_array('sessions', $template_vars);
 
 			break;
 		}
 
 		$template->assign_vars(array(
-			'ERROR'		=> (sizeof($error)) ? implode('<br />', $error) : '',
+			'ERROR'		=> (count($error)) ? implode('<br />', $error) : '',
 
 			'L_TITLE'	=> $user->lang['UCP_PROFILE_' . strtoupper($mode)],
 

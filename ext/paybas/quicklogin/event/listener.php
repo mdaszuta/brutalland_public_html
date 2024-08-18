@@ -13,7 +13,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\auth\auth */
+	/* @var \phpbb\auth\provider_collection */
 	protected $auth_provider_collection;
 
 	/** @var \phpbb\config\config */
@@ -61,9 +61,14 @@ class listener implements EventSubscriberInterface
 			{
 				if (isset($auth_provider_data['BLOCK_VAR_NAME']) && ($auth_provider_data['BLOCK_VAR_NAME'] == 'oauth'))
 				{
-					foreach ($auth_provider_data['BLOCK_VARS'] as $block_vars)
+					foreach ($auth_provider_data['BLOCK_VARS'] as $oauth_provider => $block_vars)
 					{
-						// $this->template->assign_block_vars('ql_' . $auth_provider_data['BLOCK_VAR_NAME'], $block_vars); TODO: needs redirect fix for provider oauth.php
+
+						$oauth_provider = str_replace('auth.provider.oauth.service.', '', $oauth_provider);
+						$redirect_url = append_sid($this->root_path . './ucp.'.$this->phpEx.'?mode=login&amp;login=external&amp;oauth_service='.$oauth_provider);
+						$block_vars['REDIRECT_URL'] = $redirect_url;
+						$this->template->assign_block_vars('ql_' . $auth_provider_data['BLOCK_VAR_NAME'], $block_vars);
+
 					}
 				}
 			}

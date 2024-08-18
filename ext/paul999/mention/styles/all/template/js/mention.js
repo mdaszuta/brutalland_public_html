@@ -1,30 +1,36 @@
-$(document).ready(function() {
-    $('[name="message"]').atwho({
-        at: "@",
-        insertTpl: '[mention]${name}[/mention]',
-        limit: 500,
-        maxLen: 25,
-        callbacks: {
-            /*
-             It function is given, At.js will invoke it if local filter can not find any data
-             @param query [String] matched query
-             @param callback [Function] callback to render page.
-             */
-            remoteFilter: function(query, callback) {
-                if (query.length < 2) {
-                    callback([]);
+$(document).ready(function () {
+    function remoteSearch(query, callback) {
+        if (query.length < MIN_MENTION_LENGTH) {
+            callback([]);
+            return;
+        }
+        $.getJSON(U_AJAX_MENTION_URL, {q: query}, function (data) {
+            callback(data)
+        });
+    }
+
+    tribute = new Tribute({
+        collection: [{
+            trigger: '@',
+            menuItemTemplate: function (item) {
+                if (item.original.type === 'group') {
+                    return item.original.value +  SIMPLE_MENTION_GROUP_NAME.replace('{CNT}', item.original.cnt) ;
                 }
-                else {
-                    $.getJSON(U_AJAX_MENTION_URL, {q: query}, function (data) {
-                        callback(data)
-                    });
+                return item.original.value;
+            },
+
+            selectTemplate: function (item) {
+                if (item.original.type === 'user') {
+                    return '[smention u=' + item.original.user_id + ']' + item.original.value + '[/smention]';
+                }
+                else if (item.original.type === 'group') {
+                    return '[smention g=' + item.original.group_id + ']' + item.original.value + '[/smention]';
                 }
             },
-            matcher: function(flag, subtext) {
-                var regexp = new XRegExp('(\\s+|^)' + flag + '([\\p{L}-_ ]+)', 'gi');
-                var match = regexp.exec(subtext);
-                return (match != null && match[2]) ? match[2] : null;
-            }
-        }
+            values: remoteSearch,
+            spaceSelectsMatch: true,
+            lookup: 'value',
+        }]
     });
+    tribute.attach($('[name="message"]'));
 });

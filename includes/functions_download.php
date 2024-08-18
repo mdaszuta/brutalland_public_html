@@ -196,7 +196,7 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 	}
 
 	// Now the tricky part... let's dance
-	header('Cache-Control: public');
+	header('Cache-Control: private');
 
 	// Send out the Headers. Do not set Content-Disposition to inline please, it is a security measure for users using the Internet Explorer.
 	header('Content-Type: ' . $attachment['mimetype']);
@@ -206,28 +206,20 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 		header('X-Content-Type-Options: nosniff');
 	}
 
-	if ($category == ATTACHMENT_CATEGORY_FLASH && $request->variable('view', 0) === 1)
+	if (empty($user->browser) || ((strpos(strtolower($user->browser), 'msie') !== false) && !phpbb_is_greater_ie_version($user->browser, 7)))
 	{
-		// We use content-disposition: inline for flash files and view=1 to let it correctly play with flash player 10 - any other disposition will fail to play inline
-		header('Content-Disposition: inline');
+		header('Content-Disposition: attachment; ' . header_filename(html_entity_decode($attachment['real_filename'], ENT_COMPAT)));
+		if (empty($user->browser) || (strpos(strtolower($user->browser), 'msie 6.0') !== false))
+		{
+			header('Expires: ' . gmdate('D, d M Y H:i:s', time()) . ' GMT');
+		}
 	}
 	else
 	{
-		if (empty($user->browser) || ((strpos(strtolower($user->browser), 'msie') !== false) && !phpbb_is_greater_ie_version($user->browser, 7)))
+		header('Content-Disposition: ' . ((strpos($attachment['mimetype'], 'image') === 0) ? 'inline' : 'attachment') . '; ' . header_filename(html_entity_decode($attachment['real_filename'], ENT_COMPAT)));
+		if (phpbb_is_greater_ie_version($user->browser, 7) && (strpos($attachment['mimetype'], 'image') !== 0))
 		{
-			header('Content-Disposition: attachment; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
-			if (empty($user->browser) || (strpos(strtolower($user->browser), 'msie 6.0') !== false))
-			{
-				header('Expires: ' . gmdate('D, d M Y H:i:s', time()) . ' GMT');
-			}
-		}
-		else
-		{
-			header('Content-Disposition: ' . ((strpos($attachment['mimetype'], 'image') === 0) ? 'inline' : 'attachment') . '; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
-			if (phpbb_is_greater_ie_version($user->browser, 7) && (strpos($attachment['mimetype'], 'image') !== 0))
-			{
-				header('X-Download-Options: noopen');
-			}
+			header('X-Download-Options: noopen');
 		}
 	}
 
@@ -250,7 +242,7 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 			// X-Sendfile - http://blog.lighttpd.net/articles/2006/07/02/x-sendfile
 			// Lighttpd's X-Sendfile does not support range requests as of 1.4.26
 			// and always requires an absolute path.
-			header('X-Sendfile: ' . dirname(__FILE__) . "/../$upload_dir/{$attachment['physical_filename']}");
+			header('X-Sendfile: ' . __DIR__ . "/../$upload_dir/{$attachment['physical_filename']}");
 			exit;
 		}
 
@@ -335,7 +327,7 @@ function download_allowed()
 		return true;
 	}
 
-	$url = htmlspecialchars_decode($request->header('Referer'));
+	$url = html_entity_decode($request->header('Referer'), ENT_COMPAT);
 
 	if (!$url)
 	{
@@ -451,7 +443,7 @@ function set_modified_headers($stamp, $browser)
 		{
 			send_status_line(304, 'Not Modified');
 			// seems that we need those too ... browsers
-			header('Cache-Control: public');
+			header('Cache-Control: private');
 			header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT');
 			return true;
 		}
@@ -568,7 +560,7 @@ function phpbb_parse_range_request($request_array, $filesize)
 		$range = explode('-', trim($range_string));
 
 		// "-" is invalid, "0-0" however is valid and means the very first byte.
-		if (sizeof($range) != 2 || $range[0] === '' && $range[1] === '')
+		if (count($range) != 2 || $range[0] === '' && $range[1] === '')
 		{
 			continue;
 		}
@@ -662,22 +654,26 @@ function phpbb_increment_downloads($db, $ids)
 */
 function phpbb_download_handle_forum_auth($db, $auth, $topic_id)
 {
-	$sql_array = array(
-		'SELECT'	=> 't.topic_visibility, t.forum_id, f.forum_name, f.forum_password, f.parent_id',
-		'FROM'		=> array(
+	global $phpbb_container;
+
+	$sql_array = [
+		'SELECT'	=> 't.forum_id, t.topic_poster, t.topic_visibility, f.forum_name, f.forum_password, f.parent_id',
+		'FROM'		=> [
 			TOPICS_TABLE => 't',
 			FORUMS_TABLE => 'f',
-		),
-		'WHERE'	=> 't.topic_id = ' . (int) $topic_id . '
+		],
+		'WHERE'		=> 't.topic_id = ' . (int) $topic_id . '
 			AND t.forum_id = f.forum_id',
-	);
+	];
 
 	$sql = $db->sql_build_query('SELECT', $sql_array);
 	$result = $db->sql_query($sql);
 	$row = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
 
-	if ($row && $row['topic_visibility'] != ITEM_APPROVED && !$auth->acl_get('m_approve', $row['forum_id']))
+	$phpbb_content_visibility = $phpbb_container->get('content.visibility');
+
+	if ($row && !$phpbb_content_visibility->is_visible('topic', $row['forum_id'], $row))
 	{
 		send_status_line(404, 'Not Found');
 		trigger_error('ERROR_NO_ATTACHMENT');

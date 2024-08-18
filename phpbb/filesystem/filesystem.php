@@ -67,7 +67,7 @@ class filesystem implements filesystem_interface
 			$error = trim($e->getMessage());
 			$file = substr($error, strrpos($error, ' '));
 
-			throw new filesystem_exception('CANNOT_CHANGE_FILE_GROUP', $file, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_CHANGE_FILE_GROUP', $file, array(), $e);
 		}
 	}
 
@@ -124,14 +124,14 @@ class filesystem implements filesystem_interface
 			{
 				if (true !== @chmod($file, $dir_perm))
 				{
-					throw new filesystem_exception('CANNOT_CHANGE_FILE_PERMISSIONS', $file,  array());
+					throw new filesystem_exception('FILESYSTEM_CANNOT_CHANGE_FILE_PERMISSIONS', $file,  array());
 				}
 			}
 			else if (is_file($file))
 			{
 				if (true !== @chmod($file, $file_perm))
 				{
-					throw new filesystem_exception('CANNOT_CHANGE_FILE_PERMISSIONS', $file,  array());
+					throw new filesystem_exception('FILESYSTEM_CANNOT_CHANGE_FILE_PERMISSIONS', $file,  array());
 				}
 			}
 		}
@@ -153,7 +153,7 @@ class filesystem implements filesystem_interface
 			$error = trim($e->getMessage());
 			$file = substr($error, strrpos($error, ' '));
 
-			throw new filesystem_exception('CANNOT_CHANGE_FILE_GROUP', $file, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_CHANGE_FILE_GROUP', $file, array(), $e);
 		}
 	}
 
@@ -171,7 +171,7 @@ class filesystem implements filesystem_interface
 				continue;
 			}
 
-			if ($part === '..' && !empty($filtered) && $filtered[sizeof($filtered) - 1] !== '.' && $filtered[sizeof($filtered) - 1] !== '..')
+			if ($part === '..' && !empty($filtered) && $filtered[count($filtered) - 1] !== '.' && $filtered[count($filtered) - 1] !== '..')
 			{
 				array_pop($filtered);
 			}
@@ -195,7 +195,7 @@ class filesystem implements filesystem_interface
 		}
 		catch (\Symfony\Component\Filesystem\Exception\IOException $e)
 		{
-			throw new filesystem_exception('CANNOT_COPY_FILES', '', array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_COPY_FILES', '', array(), $e);
 		}
 	}
 
@@ -210,7 +210,7 @@ class filesystem implements filesystem_interface
 		}
 		catch (\Symfony\Component\Filesystem\Exception\IOException $e)
 		{
-			throw new filesystem_exception('CANNOT_DUMP_FILE', $filename, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_DUMP_FILE', $filename, array(), $e);
 		}
 	}
 
@@ -322,7 +322,7 @@ class filesystem implements filesystem_interface
 			$msg = $e->getMessage();
 			$filename = substr($msg, strpos($msg, '"'), strrpos($msg, '"'));
 
-			throw new filesystem_exception('CANNOT_MIRROR_DIRECTORY', $filename, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_MIRROR_DIRECTORY', $filename, array(), $e);
 		}
 	}
 
@@ -340,7 +340,7 @@ class filesystem implements filesystem_interface
 			$msg = $e->getMessage();
 			$filename = substr($msg, strpos($msg, '"'), strrpos($msg, '"'));
 
-			throw new filesystem_exception('CANNOT_CREATE_DIRECTORY', $filename, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_CREATE_DIRECTORY', $filename, array(), $e);
 		}
 	}
 
@@ -367,7 +367,7 @@ class filesystem implements filesystem_interface
 				$common_php_group	= @filegroup(__FILE__);
 
 				// And the owner and the groups PHP is running under.
-				$php_uid	= (function_exists('posic_getuid')) ? @posix_getuid() : false;
+				$php_uid	= (function_exists('posix_getuid')) ? @posix_getuid() : false;
 				$php_gids	= (function_exists('posix_getgroups')) ? @posix_getgroups() : false;
 
 				// If we are unable to get owner/group, then do not try to set them by guessing
@@ -398,13 +398,13 @@ class filesystem implements filesystem_interface
 					$file_gid = @filegroup($file);
 
 					// Change owner
-					if ($file_uid !== $this->chmod_info['common_owner'])
+					if (is_writable($file) && $file_uid !== $this->chmod_info['common_owner'])
 					{
 						$this->chown($file, $this->chmod_info['common_owner'], $recursive);
 					}
 
 					// Change group
-					if ($file_gid !== $this->chmod_info['common_group'])
+					if (is_writable($file) && $file_gid !== $this->chmod_info['common_group'])
 					{
 						$this->chgrp($file, $this->chmod_info['common_group'], $recursive);
 					}
@@ -525,7 +525,7 @@ class filesystem implements filesystem_interface
 			$error = trim($e->getMessage());
 			$file = substr($error, strrpos($error, ' '));
 
-			throw new filesystem_exception('CANNOT_DELETE_FILES', $file, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_DELETE_FILES', $file, array(), $e);
 		}
 	}
 
@@ -543,7 +543,7 @@ class filesystem implements filesystem_interface
 			$msg = $e->getMessage();
 			$filename = substr($msg, strpos($msg, '"'), strrpos($msg, '"'));
 
-			throw new filesystem_exception('CANNOT_RENAME_FILE', $filename, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_RENAME_FILE', $filename, array(), $e);
 		}
 	}
 
@@ -558,7 +558,7 @@ class filesystem implements filesystem_interface
 		}
 		catch (\Symfony\Component\Filesystem\Exception\IOException $e)
 		{
-			throw new filesystem_exception('CANNOT_CREATE_SYMLINK', $origin_dir, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_CREATE_SYMLINK', $origin_dir, array(), $e);
 		}
 	}
 
@@ -578,7 +578,7 @@ class filesystem implements filesystem_interface
 			$error = trim($e->getMessage());
 			$file = substr($error, strrpos($error, ' '));
 
-			throw new filesystem_exception('CANNOT_TOUCH_FILES', $file, array(), $e);
+			throw new filesystem_exception('FILESYSTEM_CANNOT_TOUCH_FILES', $file, array(), $e);
 		}
 	}
 
@@ -613,13 +613,10 @@ class filesystem implements filesystem_interface
 			}
 			else
 			{
-				$handle = @fopen($file, 'c');
+				$handle = new \SplFileInfo($file);
 
-				if (is_resource($handle))
-				{
-					fclose($handle);
-					return true;
-				}
+				// Returns TRUE if writable, FALSE otherwise
+				return $handle->isWritable();
 			}
 		}
 		else
@@ -637,7 +634,7 @@ class filesystem implements filesystem_interface
 	}
 
 	/**
-	 * Try to resolve real path when PHP's realpath failes to do so
+	 * Try to resolve real path when PHP's realpath fails to do so
 	 *
 	 * @param string	$path
 	 * @return bool|string
@@ -671,7 +668,7 @@ class filesystem implements filesystem_interface
 				else if (function_exists('debug_backtrace'))
 				{
 					$call_stack = debug_backtrace(0);
-					$this->working_directory = str_replace(DIRECTORY_SEPARATOR, '/', dirname($call_stack[sizeof($call_stack) - 1]['file']));
+					$this->working_directory = str_replace(DIRECTORY_SEPARATOR, '/', dirname($call_stack[count($call_stack) - 1]['file']));
 				}
 				else
 				{
@@ -683,7 +680,7 @@ class filesystem implements filesystem_interface
 					//$dir_parts = explode(DIRECTORY_SEPARATOR, __DIR__);
 					//$namespace_parts = explode('\\', trim(__NAMESPACE__, '\\'));
 
-					//$namespace_part_count = sizeof($namespace_parts);
+					//$namespace_part_count = count($namespace_parts);
 
 					// Check if we still loading from root
 					//if (array_slice($dir_parts, -$namespace_part_count) === $namespace_parts)
@@ -807,7 +804,7 @@ class filesystem implements filesystem_interface
 				array_pop($resolved);
 				$resolved_path = false;
 			}
-			else if ($path_part === '..' && !empty($resolved) && !in_array($resolved[sizeof($resolved) - 1], array('.', '..')))
+			else if ($path_part === '..' && !empty($resolved) && !in_array($resolved[count($resolved) - 1], array('.', '..')))
 			{
 				array_pop($resolved);
 				$resolved_path = false;
@@ -835,7 +832,7 @@ class filesystem implements filesystem_interface
 				$current_path = $resolved_path . '/' . $path_part;
 
 				// Resolve symlinks
-				if (is_link($current_path))
+				if (@is_link($current_path))
 				{
 					if (!function_exists('readlink'))
 					{
@@ -872,12 +869,12 @@ class filesystem implements filesystem_interface
 
 					$resolved_path = false;
 				}
-				else if (is_dir($current_path . '/'))
+				else if (@is_dir($current_path . '/'))
 				{
 					$resolved[] = $path_part;
 					$resolved_path = $current_path;
 				}
-				else if (is_file($current_path))
+				else if (@is_file($current_path))
 				{
 					$resolved[] = $path_part;
 					$resolved_path = $current_path;

@@ -11,7 +11,6 @@
 namespace phpbb\collapsiblecategories\event;
 
 use phpbb\collapsiblecategories\operator\operator_interface;
-use phpbb\template\template;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -19,22 +18,17 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\collapsiblecategories\operator\operator_interface */
+	/** @var operator_interface */
 	protected $operator;
-
-	/** @var \phpbb\template\template */
-	protected $template;
 
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\collapsiblecategories\operator\operator_interface $operator Collapsible categories operator object
-	 * @param \phpbb\template\template                                 $template Template object
+	 * @param operator_interface $operator Collapsible categories operator object
 	 */
-	public function __construct(operator_interface $operator, template $template)
+	public function __construct(operator_interface $operator)
 	{
 		$this->operator = $operator;
-		$this->template = $template;
 	}
 
 	/**
@@ -43,12 +37,30 @@ class listener implements EventSubscriberInterface
 	 * @return array
 	 * @static
 	 */
-	static public function getSubscribedEvents()
+	public static function getSubscribedEvents()
 	{
 		return array(
+			'core.user_setup'									=> 'load_language_on_setup',
 			'core.display_forums_modify_category_template_vars'	=> 'show_collapsible_categories',
 			'core.display_forums_modify_template_vars'			=> 'show_collapsible_categories',
 		);
+	}
+
+	/**
+	 * Load common language file during user setup
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 *
+	 * @return void
+	 */
+	public function load_language_on_setup($event)
+	{
+		$lang_set_ext = $event['lang_set_ext'];
+		$lang_set_ext[] = array(
+			'ext_name' => 'phpbb/collapsiblecategories',
+			'lang_set' => 'collapsiblecategories',
+		);
+		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
 	/**

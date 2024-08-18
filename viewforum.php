@@ -87,7 +87,7 @@ if (isset($_GET['e']) && !$user->data['is_registered'])
 }
 
 // Permissions check
-if (!$auth->acl_gets('f_list', 'f_read', $forum_id) || ($forum_data['forum_type'] == FORUM_LINK && $forum_data['forum_link'] && !$auth->acl_get('f_read', $forum_id)))
+if (!$auth->acl_gets('f_list', 'f_list_topics', 'f_read', $forum_id) || ($forum_data['forum_type'] == FORUM_LINK && $forum_data['forum_link'] && !$auth->acl_get('f_read', $forum_id)))
 {
 	if ($user->data['user_id'] != ANONYMOUS)
 	{
@@ -148,6 +148,12 @@ else
 	}
 }
 
+// Is a forum specific topic count required?
+if ($forum_data['forum_topics_per_page'])
+{
+	$config['topics_per_page'] = $forum_data['forum_topics_per_page'];
+}
+
 /* @var $phpbb_content_visibility \phpbb\content_visibility */
 $phpbb_content_visibility = $phpbb_container->get('content.visibility');
 
@@ -155,7 +161,22 @@ $phpbb_content_visibility = $phpbb_container->get('content.visibility');
 $topics_count = $phpbb_content_visibility->get_count('forum_topics', $forum_data, $forum_id);
 $start = $pagination->validate_start($start, $config['topics_per_page'], $topics_count);
 
-page_header($forum_data['forum_name'] . ($start ? ' - ' . $user->lang('PAGE_TITLE_NUMBER', $pagination->get_on_page($config['topics_per_page'], $start)) : ''), true, $forum_id);
+$page_title = $forum_data['forum_name'] . ($start ? ' - ' . $user->lang('PAGE_TITLE_NUMBER', $pagination->get_on_page($config['topics_per_page'], $start)) : '');
+
+/**
+* You can use this event to modify the page title of the viewforum page
+*
+* @event core.viewforum_modify_page_title
+* @var	string	page_title		Title of the viewforum page
+* @var	array	forum_data		Array with forum data
+* @var	int		forum_id		The forum ID
+* @var	int		start			Start offset used to calculate the page
+* @since 3.2.2-RC1
+*/
+$vars = array('page_title', 'forum_data', 'forum_id', 'start');
+extract($phpbb_dispatcher->trigger_event('core.viewforum_modify_page_title', compact($vars)));
+
+page_header($page_title, true, $forum_id);
 
 $template->set_filenames(array(
 	'body' => 'viewforum_body.html')
@@ -175,7 +196,7 @@ if (!($forum_data['forum_type'] == FORUM_POST || (($forum_data['forum_flags'] & 
 
 // Ok, if someone has only list-access, we only display the forum list.
 // We also make this circumstance available to the template in case we want to display a notice. ;)
-if (!$auth->acl_get('f_read', $forum_id))
+if (!$auth->acl_gets('f_read', 'f_list_topics', $forum_id))
 {
 	$template->assign_vars(array(
 		'S_NO_READ_ACCESS'		=> true,
@@ -201,7 +222,7 @@ if ($mark_read == 'topics')
 		$data = array(
 			'NO_UNREAD_POSTS'	=> $user->lang['NO_UNREAD_POSTS'],
 			'UNREAD_POSTS'		=> $user->lang['UNREAD_POSTS'],
-			'U_MARK_TOPICS'		=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}viewforum.$phpEx", 'hash=' . generate_link_hash('global') . "&f=$forum_id&mark=topics&mark_time=" . time()) : '',
+			'U_MARK_TOPICS'		=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}viewforum.$phpEx", 'hash=' . generate_link_hash('global') . "&f=$forum_id&mark=topics&mark_time=" . time(), false) : '',
 			'MESSAGE_TITLE'		=> $user->lang['INFORMATION'],
 			'MESSAGE_TEXT'		=> $user->lang['TOPICS_MARKED']
 		);
@@ -210,12 +231,6 @@ if ($mark_read == 'topics')
 	}
 
 	trigger_error($user->lang['TOPICS_MARKED'] . '<br /><br />' . sprintf($user->lang['RETURN_FORUM'], '<a href="' . $redirect_url . '">', '</a>'));
-}
-
-// Is a forum specific topic count required?
-if ($forum_data['forum_topics_per_page'])
-{
-	$config['topics_per_page'] = $forum_data['forum_topics_per_page'];
 }
 
 // Do the forum Prune thang - cron type job ...
@@ -229,8 +244,8 @@ if (!$config['use_system_cron'])
 
 	if ($task->is_ready())
 	{
-		$url = $task->get_url();
-		$template->assign_var('RUN_CRON_TASK', '<img src="' . $url . '" width="1" height="1" alt="cron" />');
+		$cron_task_tag = $task->get_html_tag();
+		$template->assign_var('RUN_CRON_TASK', $cron_task_tag);
 	}
 	else
 	{
@@ -240,8 +255,8 @@ if (!$config['use_system_cron'])
 
 		if ($task->is_ready())
 		{
-			$url = $task->get_url();
-			$template->assign_var('RUN_CRON_TASK', '<img src="' . $url . '" width="1" height="1" alt="cron" />');
+			$cron_task_tag = $task->get_html_tag();
+			$template->assign_var('RUN_CRON_TASK', $cron_task_tag);
 		}
 	}
 }
@@ -269,6 +284,20 @@ $limit_days = array(0 => $user->lang['ALL_TOPICS'], 1 => $user->lang['1_DAY'], 7
 
 $sort_by_text = array('a' => $user->lang['AUTHOR'], 't' => $user->lang['POST_TIME'], 'r' => $user->lang['REPLIES'], 's' => $user->lang['SUBJECT'], 'v' => $user->lang['VIEWS']);
 $sort_by_sql = array('a' => 't.topic_first_poster_name', 't' => array('t.topic_last_post_time', 't.topic_last_post_id'), 'r' => (($auth->acl_get('m_approve', $forum_id)) ? 't.topic_posts_approved + t.topic_posts_unapproved + t.topic_posts_softdeleted' : 't.topic_posts_approved'), 's' => 'LOWER(t.topic_title)', 'v' => 't.topic_views');
+
+/**
+ * Modify the topic ordering if needed
+ *
+ * @event core.viewforum_modify_topic_ordering
+ * @var array	sort_by_text	Topic ordering options
+ * @var array	sort_by_sql		Topic orderings options SQL equivalent
+ * @since 3.2.5-RC1
+ */
+$vars = array(
+	'sort_by_text',
+	'sort_by_sql',
+);
+extract($phpbb_dispatcher->trigger_event('core.viewforum_modify_topic_ordering', compact($vars)));
 
 $s_limit_days = $s_sort_key = $s_sort_dir = $u_sort_param = '';
 gen_sort_selects($limit_days, $sort_by_text, $sort_days, $sort_key, $sort_dir, $s_limit_days, $s_sort_key, $s_sort_dir, $u_sort_param, $default_sort_days, $default_sort_key, $default_sort_dir);
@@ -385,7 +414,7 @@ $template->assign_vars(array(
 	'S_SELECT_SORT_DIR'		=> $s_sort_dir,
 	'S_SELECT_SORT_KEY'		=> $s_sort_key,
 	'S_SELECT_SORT_DAYS'	=> $s_limit_days,
-	'S_TOPIC_ICONS'			=> ($s_display_active && sizeof($active_forum_ary)) ? max($active_forum_ary['enable_icons']) : (($forum_data['enable_icons']) ? true : false),
+	'S_TOPIC_ICONS'			=> ($s_display_active && count($active_forum_ary)) ? max($active_forum_ary['enable_icons']) : (($forum_data['enable_icons']) ? true : false),
 	'U_WATCH_FORUM_LINK'	=> $s_watching_forum['link'],
 	'U_WATCH_FORUM_TOGGLE'	=> $s_watching_forum['link_toggle'],
 	'S_WATCH_FORUM_TITLE'	=> $s_watching_forum['title'],
@@ -395,7 +424,7 @@ $template->assign_vars(array(
 	'S_DISPLAY_SEARCHBOX'	=> ($auth->acl_get('u_search') && $auth->acl_get('f_search', $forum_id) && $config['load_search']) ? true : false,
 	'S_SEARCHBOX_ACTION'	=> append_sid("{$phpbb_root_path}search.$phpEx"),
 	'S_SEARCH_LOCAL_HIDDEN_FIELDS'	=> build_hidden_fields($s_search_hidden_fields),
-	'S_SINGLE_MODERATOR'	=> (!empty($moderators[$forum_id]) && sizeof($moderators[$forum_id]) > 1) ? false : true,
+	'S_SINGLE_MODERATOR'	=> (!empty($moderators[$forum_id]) && count($moderators[$forum_id]) > 1) ? false : true,
 	'S_IS_LOCKED'			=> ($forum_data['forum_status'] == ITEM_LOCKED) ? true : false,
 	'S_VIEWFORUM'			=> true,
 
@@ -404,6 +433,7 @@ $template->assign_vars(array(
 	'U_VIEW_FORUM'		=> append_sid("{$phpbb_root_path}viewforum.$phpEx", "f=$forum_id" . ((strlen($u_sort_param)) ? "&amp;$u_sort_param" : '') . (($start == 0) ? '' : "&amp;start=$start")),
 	'U_CANONICAL'		=> generate_board_url() . '/' . append_sid("viewforum.$phpEx", "f=$forum_id" . (($start) ? "&amp;start=$start" : ''), true, ''),
 	'U_MARK_TOPICS'		=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}viewforum.$phpEx", 'hash=' . generate_link_hash('global') . "&amp;f=$forum_id&amp;mark=topics&amp;mark_time=" . time()) : '',
+	'U_SEARCH_FORUM'	=> append_sid("{$phpbb_root_path}search.$phpEx", 'fid%5B%5D=' . $forum_id),
 ));
 
 // Grab icons
@@ -435,9 +465,9 @@ $sql_array = array(
 *									Author, Post time, Replies, Subject, Views
 * @var	string	sort_dir			Either "a" for ascending or "d" for descending
 * @since 3.1.0-a1
-* @change 3.1.0-RC4 Added forum_data var
-* @change 3.1.4-RC1 Added forum_id, topics_count, sort_days, sort_key and sort_dir vars
-* @change 3.1.9-RC1 Fix types of properties
+* @changed 3.1.0-RC4 Added forum_data var
+* @changed 3.1.4-RC1 Added forum_id, topics_count, sort_days, sort_key and sort_dir vars
+* @changed 3.1.9-RC1 Fix types of properties
 */
 $vars = array(
 	'forum_data',
@@ -465,7 +495,7 @@ if ($user->data['is_registered'])
 		$sql_array['LEFT_JOIN'][] = array('FROM' => array(TOPICS_TRACK_TABLE => 'tt'), 'ON' => 'tt.topic_id = t.topic_id AND tt.user_id = ' . $user->data['user_id']);
 		$sql_array['SELECT'] .= ', tt.mark_time';
 
-		if ($s_display_active && sizeof($active_forum_ary))
+		if ($s_display_active && count($active_forum_ary))
 		{
 			$sql_array['LEFT_JOIN'][] = array('FROM' => array(FORUMS_TRACK_TABLE => 'ft'), 'ON' => 'ft.forum_id = t.forum_id AND ft.user_id = ' . $user->data['user_id']);
 			$sql_array['SELECT'] .= ', ft.mark_time AS forum_mark_time';
@@ -491,7 +521,7 @@ if ($forum_data['forum_type'] == FORUM_POST)
 
 		'WHERE'		=> '(t.forum_id = ' . $forum_id . '
 				AND t.topic_type = ' . POST_ANNOUNCE . ') OR
-			(' . $db->sql_in_set('t.forum_id', $g_forum_ary) . '
+			(' . $db->sql_in_set('t.forum_id', $g_forum_ary, false, true) . '
 				AND t.topic_type = ' . POST_GLOBAL . ')',
 
 		'ORDER_BY'	=> 't.topic_time DESC',
@@ -523,7 +553,7 @@ if ($forum_data['forum_type'] == FORUM_POST)
 
 	while ($row = $db->sql_fetchrow($result))
 	{
-		if ($row['topic_visibility'] != ITEM_APPROVED && !$auth->acl_get('m_approve', $row['forum_id']))
+		if (!$phpbb_content_visibility->is_visible('topic', $row['forum_id'], $row))
 		{
 			// Do not display announcements that are waiting for approval or soft deleted.
 			continue;
@@ -573,8 +603,8 @@ if ($start > $topics_count / 2)
 	// Select the sort order
 	$direction = (($sort_dir == 'd') ? 'ASC' : 'DESC');
 
-	$sql_limit = $pagination->reverse_limit($start, $sql_limit, $topics_count - sizeof($announcement_list));
-	$sql_start = $pagination->reverse_start($start, $sql_limit, $topics_count - sizeof($announcement_list));
+	$sql_limit = $pagination->reverse_limit($start, $sql_limit, $topics_count - count($announcement_list));
+	$sql_start = $pagination->reverse_start($start, $sql_limit, $topics_count - count($announcement_list));
 }
 else
 {
@@ -582,6 +612,18 @@ else
 	$direction = (($sort_dir == 'd') ? 'DESC' : 'ASC');
 	$sql_start = $start;
 }
+
+/**
+ * Modify the topics sort ordering if needed
+ *
+ * @event core.viewforum_modify_sort_direction
+ * @var string	direction	Topics sort order
+ * @since 3.2.5-RC1
+ */
+$vars = array(
+	'direction',
+);
+extract($phpbb_dispatcher->trigger_event('core.viewforum_modify_sort_direction', compact($vars)));
 
 if (is_array($sort_by_sql[$sort_key]))
 {
@@ -592,7 +634,7 @@ else
 	$sql_sort_order = $sort_by_sql[$sort_key] . ' ' . $direction;
 }
 
-if ($forum_data['forum_type'] == FORUM_POST || !sizeof($active_forum_ary))
+if ($forum_data['forum_type'] == FORUM_POST || !count($active_forum_ary))
 {
 	$sql_where = 't.forum_id = ' . $forum_id;
 }
@@ -603,7 +645,7 @@ else if (empty($active_forum_ary['exclude_forum_id']))
 else
 {
 	$get_forum_ids = array_diff($active_forum_ary['forum_id'], $active_forum_ary['exclude_forum_id']);
-	$sql_where = (sizeof($get_forum_ids)) ? $db->sql_in_set('t.forum_id', $get_forum_ids) : 't.forum_id = ' . $forum_id;
+	$sql_where = (count($get_forum_ids)) ? $db->sql_in_set('t.forum_id', $get_forum_ids) : 't.forum_id = ' . $forum_id;
 }
 
 // Grab just the sorted topic ids
@@ -662,16 +704,35 @@ $db->sql_freeresult($result);
 // For storing shadow topics
 $shadow_topic_list = array();
 
-if (sizeof($topic_list))
+if (count($topic_list))
 {
 	// SQL array for obtaining topics/stickies
 	$sql_array = array(
 		'SELECT'		=> $sql_array['SELECT'],
 		'FROM'			=> $sql_array['FROM'],
 		'LEFT_JOIN'		=> $sql_array['LEFT_JOIN'],
-
 		'WHERE'			=> $db->sql_in_set('t.topic_id', $topic_list),
 	);
+
+	/**
+	* Event to modify the SQL query before obtaining topics/stickies
+	*
+	* @event core.viewforum_modify_topic_list_sql
+	* @var	int		forum_id			The forum ID
+	* @var	array	forum_data			Data about the forum
+	* @var	array	topic_list			Topic ids array
+	* @var	array	sql_array			SQL query array for obtaining topics/stickies
+	*
+	* @since 3.2.10-RC1
+	* @since 3.3.1-RC1
+	*/
+	$vars = [
+		'forum_id',
+		'forum_data',
+		'topic_list',
+		'sql_array',
+	];
+	extract($phpbb_dispatcher->trigger_event('core.viewforum_modify_topic_list_sql', compact($vars)));
 
 	// If store_reverse, then first obtain topics, then stickies, else the other way around...
 	// Funnily enough you typically save one query if going from the last page to the middle (store_reverse) because
@@ -692,7 +753,7 @@ if (sizeof($topic_list))
 }
 
 // If we have some shadow topics, update the rowset to reflect their topic information
-if (sizeof($shadow_topic_list))
+if (count($shadow_topic_list))
 {
 	// SQL array for obtaining shadow topics
 	$sql_array = array(
@@ -732,7 +793,7 @@ if (sizeof($shadow_topic_list))
 		}
 
 		// Do not include those topics the user has no permission to access
-		if (!$auth->acl_get('f_read', $row['forum_id']))
+		if (!$auth->acl_gets('f_read', 'f_list_topics', $row['forum_id']))
 		{
 			// We need to remove any trace regarding this topic. :)
 			unset($rowset[$orig_topic_id]);
@@ -767,7 +828,7 @@ if ($s_display_active)
 
 // We need to remove the global announcements from the forums total topic count,
 // otherwise the number is different from the one on the forum list
-$total_topic_count = $topics_count - sizeof($announcement_list);
+$total_topic_count = $topics_count - count($announcement_list);
 
 $base_url = append_sid("{$phpbb_root_path}viewforum.$phpEx", "f=$forum_id" . ((strlen($u_sort_param)) ? "&amp;$u_sort_param" : ''));
 $pagination->generate_template_pagination($base_url, 'pagination', 'start', $total_topic_count, $config['topics_per_page'], $start);
@@ -794,7 +855,7 @@ $vars = array('topic_list', 'rowset', 'total_topic_count', 'forum_id');
 extract($phpbb_dispatcher->trigger_event('core.viewforum_modify_topics_data', compact($vars)));
 
 // Okay, lets dump out the page ...
-if (sizeof($topic_list))
+if (count($topic_list))
 {
 	$mark_forum_read = true;
 	$mark_time_forum = 0;
@@ -858,6 +919,11 @@ if (sizeof($topic_list))
 
 		// Replies
 		$replies = $phpbb_content_visibility->get_count('topic_posts', $row, $topic_forum_id) - 1;
+		// Correction for case of unapproved topic visible to poster
+		if ($replies < 0)
+		{
+			$replies = 0;
+		}
 
 		if ($row['topic_status'] == ITEM_MOVED)
 		{
@@ -874,8 +940,8 @@ if (sizeof($topic_list))
 		topic_status($row, $replies, $unread_topic, $folder_img, $folder_alt, $topic_type);
 
 		// Generate all the URIs ...
-		$view_topic_url_params = 'f=' . $row['forum_id'] . '&amp;t=' . $topic_id;
-		$view_topic_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params);
+		$view_topic_url_params = 't=' . $topic_id;
+		$view_topic_url = $auth->acl_get('f_read', $forum_id) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params) : false;
 
 		$topic_unapproved = (($row['topic_visibility'] == ITEM_UNAPPROVED || $row['topic_visibility'] == ITEM_REAPPROVE) && $auth->acl_get('m_approve', $row['forum_id']));
 		$posts_unapproved = ($row['topic_visibility'] == ITEM_APPROVED && $row['topic_posts_unapproved'] && $auth->acl_get('m_approve', $row['forum_id']));
@@ -892,9 +958,12 @@ if (sizeof($topic_list))
 			'TOPIC_AUTHOR_COLOUR'		=> get_username_string('colour', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
 			'TOPIC_AUTHOR_FULL'			=> get_username_string('full', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
 			'FIRST_POST_TIME'			=> $user->format_date($row['topic_time']),
+			'FIRST_POST_TIME_RFC3339'	=> gmdate(DATE_RFC3339, $row['topic_time']),
 			'LAST_POST_SUBJECT'			=> censor_text($row['topic_last_post_subject']),
 			'LAST_POST_TIME'			=> $user->format_date($row['topic_last_post_time']),
+			'LAST_POST_TIME_RFC3339'	=> gmdate(DATE_RFC3339, $row['topic_last_post_time']),
 			'LAST_VIEW_TIME'			=> $user->format_date($row['topic_last_view_time']),
+			'LAST_VIEW_TIME_RFC3339'	=> gmdate(DATE_RFC3339, $row['topic_last_view_time']),
 			'LAST_POST_AUTHOR'			=> get_username_string('username', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
 			'LAST_POST_AUTHOR_COLOUR'	=> get_username_string('colour', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
 			'LAST_POST_AUTHOR_FULL'		=> get_username_string('full', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
@@ -929,13 +998,13 @@ if (sizeof($topic_list))
 			'S_TOPIC_LOCKED'		=> ($row['topic_status'] == ITEM_LOCKED) ? true : false,
 			'S_TOPIC_MOVED'			=> ($row['topic_status'] == ITEM_MOVED) ? true : false,
 
-			'U_NEWEST_POST'			=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params . '&amp;view=unread') . '#unread',
-			'U_LAST_POST'			=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params . '&amp;p=' . $row['topic_last_post_id']) . '#p' . $row['topic_last_post_id'],
+			'U_NEWEST_POST'			=> $auth->acl_get('f_read', $forum_id) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params . '&amp;view=unread') . '#unread' : false,
+			'U_LAST_POST'			=> $auth->acl_get('f_read', $forum_id)  ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $row['topic_last_post_id']) . '#p' . $row['topic_last_post_id'] : false,
 			'U_LAST_POST_AUTHOR'	=> get_username_string('profile', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
 			'U_TOPIC_AUTHOR'		=> get_username_string('profile', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
 			'U_VIEW_TOPIC'			=> $view_topic_url,
 			'U_VIEW_FORUM'			=> append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $row['forum_id']),
-			'U_MCP_REPORT'			=> append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=reports&amp;mode=reports&amp;f=' . $row['forum_id'] . '&amp;t=' . $topic_id, true, $user->session_id),
+			'U_MCP_REPORT'			=> append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=reports&amp;mode=reports&amp;t=' . $topic_id, true, $user->session_id),
 			'U_MCP_QUEUE'			=> $u_mcp_queue,
 
 			'S_TOPIC_TYPE_SWITCH'	=> ($s_type_switch == $s_type_switch_test) ? -1 : $s_type_switch_test,
@@ -958,7 +1027,7 @@ if (sizeof($topic_list))
 
 		$template->assign_block_vars('topicrow', $topic_row);
 
-		$pagination->generate_template_pagination($view_topic_url, 'topicrow.pagination', 'start', $replies + 1, $config['posts_per_page'], 1, true, true);
+		$pagination->generate_template_pagination($topic_row['U_VIEW_TOPIC'], 'topicrow.pagination', 'start', (int) $topic_row['REPLIES'] + 1, $config['posts_per_page'], 1, true, true);
 
 		$s_type_switch = ($row['topic_type'] == POST_ANNOUNCE || $row['topic_type'] == POST_GLOBAL) ? 1 : 0;
 
@@ -993,11 +1062,21 @@ if (sizeof($topic_list))
 	}
 }
 
+/**
+* This event is to perform additional actions on viewforum page
+*
+* @event core.viewforum_generate_page_after
+* @var	array	forum_data	Array with the forum data
+* @since 3.2.2-RC1
+*/
+$vars = array('forum_data');
+extract($phpbb_dispatcher->trigger_event('core.viewforum_generate_page_after', compact($vars)));
+
 // This is rather a fudge but it's the best I can think of without requiring information
 // on all topics (as we do in 2.0.x). It looks for unread or new topics, if it doesn't find
 // any it updates the forum last read cookie. This requires that the user visit the forum
 // after reading a topic
-if ($forum_data['forum_type'] == FORUM_POST && sizeof($topic_list) && $mark_forum_read)
+if ($forum_data['forum_type'] == FORUM_POST && count($topic_list) && $mark_forum_read)
 {
 	update_forum_tracking_info($forum_id, $forum_data['forum_last_post_time'], false, $mark_time_forum);
 }

@@ -1,3 +1,4 @@
+/*global vseLightbox, mChat*/
 (function($) { // Avoid conflicts with other libraries
 
 	'use strict';
@@ -10,32 +11,42 @@
 					borderRadius: '6px',
 					transition: 'border-color 0.1s ease-out',
 					cursor: 'pointer'
-				}).hover(function() {
+				}).on('mouseenter', function() {
 					$(this).css('border-color', '#4ae');
-				}, function() {
+				}).on('mouseleave',  function() {
 					$(this).css('border-color', 'transparent');
 				});
 			});
 		}
 	});
 
-	function isResizable() {
+	function resizeWideImages() {
+		return (vseLightbox.resizeWidth > 0);
+	}
+
+	function resizeTallImages() {
+		return (vseLightbox.resizeHeight > 0);
+	}
+
+	function isMobile() {
 		var mobileWidth = 900; // disable on screens < 900px
-		return (vseLightbox.resizeWidth > 0 && $(window).width() > mobileWidth);
+		return $(window).width() <= mobileWidth && phpbb.isTouch;
+	}
+
+	function isOversized(img) {
+		return (resizeWideImages() && img.width >= vseLightbox.resizeWidth) || (resizeTallImages() && img.height >= vseLightbox.resizeHeight);
 	}
 
 	function lightboxResizer(elements) {
+		if (isMobile() || (!resizeWideImages() && !resizeTallImages() && !vseLightbox.lightboxAll)) {
+			return;
+		}
 		var $targetImage = elements.find('.postimage'),
 			galleryName = 'post-gallery';
 		if (!vseLightbox.lightboxSig) {
 			$targetImage = $targetImage.not(function() {
 				return $(this).closest('.signature').length > 0;
 			});
-		}
-		if (isResizable()) {
-			$targetImage.css('max-width', vseLightbox.resizeWidth + 'px');
-		} else {
-			return;
 		}
 		// enclosing the following in a setTimeout seems to solve issues with
 		// images not being ready and causing $(this).width() to return 0.
@@ -44,31 +55,43 @@
 				if ($(this).closest('.postlink').length > 0) {
 					return;
 				}
-				var imgIndex = (vseLightbox.lightboxGal) ? '' : $targetImage.index(this),
-					imgWidth = $(this).outerWidth();
-				// attached images (check their width and height)
+				var img = {
+					index: '',
+					width: $(this).outerWidth(),
+					height: $(this).outerHeight()
+				};
+				switch (vseLightbox.lightboxGal)
+				{
+					case 0:
+						img.index = $targetImage.index(this);
+					break;
+					case 2:
+						img.index = $(this).closest('.post').attr('id') || '';
+					break;
+				}
+				// attached images
 				if ($(this).parent('a').length > 0) {
-					if (imgWidth >= vseLightbox.resizeWidth || $(this).height() >= vseLightbox.resizeWidth) {
+					if (vseLightbox.lightboxAll || isOversized(img)) {
 						$(this).parent('a').attr({
-							'data-lightbox': galleryName + imgIndex,
+							'data-lightbox': galleryName + img.index,
 							'data-title': (vseLightbox.imageTitles) ? $(this).attr('alt') : ''
 						}).end().borderHover();
 					}
 				}
 				// regular images
-				else if (imgWidth >= vseLightbox.resizeWidth) {
+				else if (vseLightbox.lightboxAll || isOversized(img)) {
 					$(this).wrap(function() {
 						var url = $(this).attr('src');
 						return $('<a/>').attr({
 							href: url,
-							'data-lightbox': galleryName + imgIndex,
-							'data-title': (vseLightbox.imageTitles) ? ((url.indexOf('download/file.php') !== -1) ? $(this).attr('alt') : url.split('/').pop()) : ''
+							'data-lightbox': (vseLightbox.lightboxSig && $(this).closest('.signature').length > 0) ? $targetImage.index(this) : galleryName + img.index,
+							'data-title': (vseLightbox.imageTitles) ? ((url.indexOf(vseLightbox.downloadFile) !== -1) ? $(this).attr('alt') : url.split('/').pop()) : ''
 						});
 					}).borderHover();
 				}
 			}).each(function() {
 				if (this.complete) {
-					$(this).load();
+					$(this).trigger('load');
 				}
 			});
 		}, 0);
@@ -85,5 +108,37 @@
 	$('#qr_postform').on('ajax_submit_preview', function() {
 		lightboxResizer($('#preview'));
 	});
+
+	// Compatibility with SimpleSpoiler extension
+	$('.spoiler-header').on('click', function(e) {
+		var spoiler = e.target.closest('.spoiler');
+		if (!spoiler.hasAttribute('open')) {
+			lightboxResizer($(spoiler).find('.spoiler-body'));
+		}
+	});
+
+	// Compatibility with ABBC3 spoil BBCode
+	$('.spoilbtn').on('click', function(e) {
+		var spoilcontent = $(e.target.closest('.spoilwrapper')).find('.spoilcontent');
+		if (spoilcontent.css('display') === 'none') {
+			lightboxResizer(spoilcontent);
+		}
+	});
+
+	// Compatibility with mChat extension
+	if (typeof mChat === 'object') {
+		$(mChat).on({
+			mchat_add_message_before: function(e, data) {
+				setTimeout(function() {
+					lightboxResizer(data.message);
+				}, 0);
+			},
+			mchat_edit_message_before: function(e, data) {
+				setTimeout(function() {
+					lightboxResizer(data.newMessage);
+				}, 0);
+			}
+		});
+	}
 
 })(jQuery);

@@ -255,9 +255,36 @@ class manager
 			'ignore_users'		=> array(),
 		), $options);
 
+		$notified_users = [];
+		$add_notifications_override = false;
+
+		/**
+		* Get notification data before find_users_for_notification() execute
+		*
+		* @event core.notification_manager_add_notifications_before
+		* @var	bool			add_notifications_override	Flag indicating whether function should return after event
+		* @var	array|string	notification_type_name		Type identifier or array of item types
+		* @var	string			data						Data specific for this notification type that will be inserted
+		* @var	array 			notified_users				Array of notified users
+		* @var	string			options						Optional options to control what notifications are loaded
+		* @since 3.3.6-RC1
+		*/
+		$vars = [
+			'add_notifications_override',
+			'notification_type_name',
+			'data',
+			'notified_users',
+			'options',
+		];
+		extract($this->phpbb_dispatcher->trigger_event('core.notification_manager_add_notifications_before', compact($vars)));
+
+		if ($add_notifications_override)
+		{
+			return $notified_users;
+		}
+
 		if (is_array($notification_type_name))
 		{
-			$notified_users = array();
 			$temp_options = $options;
 
 			foreach ($notification_type_name as $type)
@@ -277,7 +304,7 @@ class manager
 		* Here, $notify_users is already filtered by f_read and the ignored list included in the options variable
 		*
 		* @event core.notification_manager_add_notifications
-		* @var	string	notification_type_name		The forum id from where the topic belongs
+		* @var	string	notification_type_name		The notification type identifier
 		* @var	array 	data						Data specific for the notification_type_name used will be inserted
 		* @var	array 	notify_users				The array of userid that are going to be notified for this notification. Set to array() to cancel.
 		* @var	array 	options						The options that were used when this method was called (read only)
@@ -333,13 +360,33 @@ class manager
 		foreach ($this->get_subscription_methods_instances() as $method)
 		{
 			$notified_users = $method->get_notified_users($notification_type_id, array('item_id' => $item_id));
+
 			foreach ($notified_users as $user => $notifications)
 			{
 				unset($notify_users[$user]);
 			}
 		}
 
-		if (!sizeof($notify_users))
+		/**
+		* Allow filtering the $notify_users array by $notification_type_name for a notification that is about to be sent.
+		* Here, $notify_users is already filtered from users who've already been notified.
+		*
+		* @event core.notification_manager_add_notifications_for_users_modify_data
+		* @var	string	notification_type_name		The notification type identifier
+		* @var	array 	data						Data specific for this type that will be inserted
+		* @var	array 	notify_users				User list to notify
+		*
+		* @since 3.2.10-RC1
+		* @since 3.3.1-RC1
+		*/
+		$vars = [
+			'notification_type_name',
+			'data',
+			'notify_users',
+		];
+		extract($this->phpbb_dispatcher->trigger_event('core.notification_manager_add_notifications_for_users_modify_data', compact($vars)));
+
+		if (!count($notify_users))
 		{
 			return;
 		}
@@ -364,12 +411,17 @@ class manager
 
 			foreach ($methods as $method)
 			{
-				// setup the notification methods and add the notification to the queue
+				// Do not load non-existent notification methods
+				if (!isset($this->notification_methods[$method]))
+				{
+					continue;
+				}
+
+				// Setup the notification methods and add the notification to the queue
 				if (!isset($notification_methods[$method]))
 				{
 					$notification_methods[$method] = $this->get_method_class($method);
 				}
-
 				$notification_methods[$method]->add_to_queue($notification);
 			}
 		}
@@ -475,9 +527,10 @@ class manager
 				if ($type instanceof \phpbb\notification\type\type_interface && $type->is_available())
 				{
 					$options = array_merge(array(
-						'id' => $type->get_type(),
-						'lang' => 'NOTIFICATION_TYPE_' . strtoupper($type->get_type()),
-						'group' => 'NOTIFICATION_GROUP_MISCELLANEOUS',
+						'type'	=> $type,
+						'id'	=> $type->get_type(),
+						'lang'	=> 'NOTIFICATION_TYPE_' . strtoupper($type->get_type()),
+						'group'	=> 'NOTIFICATION_GROUP_MISCELLANEOUS',
 					), (($type::$notification_option !== false) ? $type::$notification_option : array()));
 
 					$this->subscription_types[$options['group']][$options['id']] = $options;
@@ -509,6 +562,7 @@ class manager
 		foreach ($this->get_available_subscription_methods() as $method_name => $method)
 		{
 			$subscription_methods[$method_name] = array(
+				'method'	=> $method,
 				'id'		=> $method->get_type(),
 				'lang'		=> str_replace('.', '_', strtoupper($method->get_type())),
 			);
@@ -897,32 +951,19 @@ class manager
 	*/
 	public function get_notification_type_id($notification_type_name)
 	{
-		$notification_type_ids = $this->cache->get('notification_type_ids');
-
-		$this->db->sql_transaction('begin');
-
-		if ($notification_type_ids === false)
+		$sql = 'SELECT notification_type_id, notification_type_name
+			FROM ' . $this->notification_types_table;
+		$result = $this->db->sql_query($sql, 604800); // cache for one week
+		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$notification_type_ids = array();
-
-			$sql = 'SELECT notification_type_id, notification_type_name
-				FROM ' . $this->notification_types_table;
-			$result = $this->db->sql_query($sql);
-			while ($row = $this->db->sql_fetchrow($result))
-			{
-				$notification_type_ids[$row['notification_type_name']] = (int) $row['notification_type_id'];
-			}
-			$this->db->sql_freeresult($result);
-
-			$this->cache->put('notification_type_ids', $notification_type_ids);
+			$notification_type_ids[$row['notification_type_name']] = (int) $row['notification_type_id'];
 		}
+		$this->db->sql_freeresult($result);
 
 		if (!isset($notification_type_ids[$notification_type_name]))
 		{
 			if (!isset($this->notification_types[$notification_type_name]) && !isset($this->notification_types['notification.type.' . $notification_type_name]))
 			{
-				$this->db->sql_transaction('rollback');
-
 				throw new \phpbb\notification\exception('NOTIFICATION_TYPE_NOT_EXIST', array($notification_type_name));
 			}
 
@@ -932,12 +973,12 @@ class manager
 			));
 			$this->db->sql_query($sql);
 
+			// expose new notification type ID for this request
 			$notification_type_ids[$notification_type_name] = (int) $this->db->sql_nextid();
 
-			$this->cache->put('notification_type_ids', $notification_type_ids);
+			// destroy cache, we have a new addition which we have to to load next time
+			$this->cache->destroy('sql', $this->notification_types_table);
 		}
-
-		$this->db->sql_transaction('commit');
 
 		return $notification_type_ids[$notification_type_name];
 	}

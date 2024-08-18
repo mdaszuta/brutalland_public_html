@@ -4,14 +4,17 @@
  * Advanced BBCode Box
  *
  * @copyright (c) 2013 Matt Friedman
- * @license       GNU General Public License, version 2 (GPL-2.0)
+ * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
 
 namespace vse\abbc3\core;
 
+use phpbb\auth\auth;
+use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
+use phpbb\textformatter\s9e\parser;
 use phpbb\user;
 
 /**
@@ -19,6 +22,12 @@ use phpbb\user;
  */
 class bbcodes_display
 {
+	/** @var auth */
+	protected $auth;
+
+	/** @var config */
+	protected $config;
+
 	/** @var driver_interface */
 	protected $db;
 
@@ -29,7 +38,7 @@ class bbcodes_display
 	protected $user;
 
 	/** @var string */
-	protected $ext_root_path;
+	protected $root_path;
 
 	/** @var array */
 	protected $memberships;
@@ -37,18 +46,22 @@ class bbcodes_display
 	/**
 	 * Constructor
 	 *
+	 * @param auth             $auth              Auth object
+	 * @param config            $config             Config object
 	 * @param driver_interface $db                Database connection
 	 * @param manager          $extension_manager Extension manager object
 	 * @param user             $user              User object
-	 * @param string           $ext_root_path     Path to abbc3 extension root
+	 * @param string           $root_path         Path to phpBB root
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, manager $extension_manager, user $user, $ext_root_path)
+	public function __construct(auth $auth, config $config, driver_interface $db, manager $extension_manager, user $user, $root_path)
 	{
+		$this->auth = $auth;
+		$this->config = $config;
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
-		$this->ext_root_path = $ext_root_path;
+		$this->root_path = $root_path;
 	}
 
 	/**
@@ -63,43 +76,34 @@ class bbcodes_display
 	 */
 	public function display_custom_bbcodes($custom_tags, $row)
 	{
-		static $images = array();
+		$icons = $this->get_icons();
 
-		if (empty($images))
-		{
-			$images = $this->get_images();
-		}
+		$icon_tag = strtolower(rtrim($row['bbcode_tag'], '='));
 
-		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
-		$images_key = 'ext/' . $bbcode_img;
-
-		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
-		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
+		$custom_tags['BBCODE_IMG'] = isset($icons[$icon_tag]) ? $icons[$icon_tag] : '';
+		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = empty($row['bbcode_group']) || $this->user_in_bbcode_group($row['bbcode_group']);
 
 		return $custom_tags;
 	}
 
 	/**
-	 * Set custom BBCodes to 'disabled' if they are not allowed to be used
+	 * Disable BBCodes not allowed by a user's group(s).
 	 *
-	 * @param array $bbcodes Array of bbcode data for use in parsing
-	 * @param array $rowset  Array of bbcode data from the database
-	 * @return array The bbcodes data array
+	 * @param parser $service Object from the text_formatter.parser service
+	 * @return void
 	 * @access public
-	 *
-	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
-	public function allow_custom_bbcodes($bbcodes, $rowset)
+	public function allow_custom_bbcodes(parser $service)
 	{
-		foreach ($rowset as $row)
+		$parser = $service->get_parser();
+		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
 		{
-			if (!$this->user_in_bbcode_group($row['bbcode_group']))
+			if (!$this->user_in_bbcode_group($groups))
 			{
-				$bbcodes[$row['bbcode_tag']]['disabled'] = true;
+				$bbcode_name = rtrim($bbcode_name, '=');
+				$service->disable_bbcode($bbcode_name);
 			}
 		}
-
-		return $bbcodes;
 	}
 
 	/**
@@ -130,19 +134,35 @@ class bbcodes_display
 	}
 
 	/**
-	 * Get image paths/names from ABBC3's icons folder
+	 * Get paths/names to ABBC3's BBCode icons.
+	 * Search in ABBC3's icons dir and also the core's images dir.
 	 *
-	 * @return array File data from ./ext/vse/abbc3/images/icons
-	 * @access protected
+	 * @return array Array of icon paths: ['foo' => './ext/vse/abbc3/images/icons/foo.png']
+	 * @access public
 	 */
-	protected function get_images()
+	public function get_icons()
 	{
-		$finder = $this->extension_manager->get_finder();
+		static $icons = [];
 
-		return $finder
-			->extension_suffix('.gif')
-			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->ext_root_path);
+		if (empty($icons))
+		{
+			$finder = $this->extension_manager->get_finder();
+			$icons = $finder
+				->set_extensions(['vse/abbc3'])
+				->suffix(".{$this->config['abbc3_icons_type']}")
+				->extension_directory('/images/icons')
+				->core_path('images/abbc3/icons/')
+				->find();
+
+			// Rewrite the image array with img names as keys and paths as values
+			foreach ($icons as $path => $ext)
+			{
+				$icons[basename($path, ".{$this->config['abbc3_icons_type']}")] = $path;
+				unset($icons[$path]);
+			}
+		}
+
+		return $icons;
 	}
 
 	/**
@@ -152,12 +172,12 @@ class bbcodes_display
 	 */
 	protected function load_memberships()
 	{
-		if (isset($this->memberships))
+		if ($this->memberships !== null)
 		{
 			return;
 		}
 
-		$this->memberships = array();
+		$this->memberships = [];
 		$sql = 'SELECT group_id
 			FROM ' . USER_GROUP_TABLE . '
 			WHERE user_id = ' . (int) $this->user->data['user_id'] . '
@@ -168,5 +188,35 @@ class bbcodes_display
 			$this->memberships[] = $row['group_id'];
 		}
 		$this->db->sql_freeresult($result);
+	}
+
+	/**
+	 * Set BBCode statuses for posting IMG, URL, FLASH and QUOTE in a forum.
+	 *
+	 * @param int $forum_id The forum identifier
+	 * @return array An array containing booleans for each BBCode status
+	 */
+	public function bbcode_statuses($forum_id)
+	{
+		$bbcode_status = $this->config['allow_bbcode'] && $this->auth->acl_get('f_bbcode', $forum_id);
+		$url_status = $this->config['allow_post_links'];
+		$img_status = $flash_status = false;
+		$quote_status = true;
+
+		if ($bbcode_status)
+		{
+			$img_status = $this->auth->acl_get('f_img', $forum_id);
+			$flash_status = $this->auth->acl_get('f_flash', $forum_id) && $this->config['allow_post_flash'];
+
+			display_custom_bbcodes();
+		}
+
+		return [
+			'S_BBCODE_ALLOWED' => $bbcode_status,
+			'S_BBCODE_IMG'     => $img_status,
+			'S_BBCODE_FLASH'   => $flash_status,
+			'S_BBCODE_QUOTE'   => $quote_status,
+			'S_LINKS_ALLOWED'  => $url_status,
+		];
 	}
 }

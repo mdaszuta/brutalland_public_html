@@ -1,4 +1,4 @@
-var	pos, table = null, tableTag, tables, text;
+var pos, table = null, tableTag, tables, _text = text;
 
 if (config.overwriteMarkdown)
 {
@@ -15,7 +15,7 @@ processTables();
 /**
 * Add current line to a table
 *
-* @param {!string} line Line of text
+* @param {string} line Line of text
 */
 function addLine(line)
 {
@@ -27,7 +27,7 @@ function addLine(line)
 
 		// Make the table start at the first non-space character
 		ignoreLen = /^ */.exec(line)[0].length;
-		line      = line.substr(ignoreLen);
+		line      = line.substring(ignoreLen);
 	}
 
 	// Overwrite the outermost pipes
@@ -54,17 +54,18 @@ function addTableBody()
 /**
 * Add a cell's tags for current table at current position
 *
-* @param {!string} tagName Either TD or TH
-* @param {!string} align   Either "left", "center", "right" or ""
+* @param {string} tagName Either TD or TH
+* @param {string} align   Either "left", "center", "right" or ""
+* @param {string} content Cell's text content
 */
-function addTableCell(tagName, align, text)
+function addTableCell(tagName, align, content)
 {
 	var startPos  = pos,
-		endPos    = startPos + text.length,
+		endPos    = startPos + content.length,
 		ignoreLen;
 	pos = endPos;
 
-	var m = /^( *).*?( *)$/.exec(text);
+	var m = /^( *).*?( *)$/.exec(content);
 	if (m[1])
 	{
 		ignoreLen = m[1].length;
@@ -93,7 +94,7 @@ function addTableHead()
 /**
 * Process given table row
 *
-* @param {!string} tagName Either TD or TH
+* @param {string}  tagName Either TD or TH
 * @param {!Object} row
 */
 function addTableRow(tagName, row)
@@ -123,7 +124,7 @@ function captureTables()
 	tables = [];
 
 	pos = 0;
-	text.split("\n").forEach(function(line)
+	_text.split("\n").forEach(function(line)
 	{
 		if (line.indexOf('|') < 0)
 		{
@@ -141,25 +142,33 @@ function captureTables()
 /**
 * Create a pair of TBODY tags for given text span
 *
-* @param {!number} startPos
-* @param {!number} endPos
+* @param {number} startPos
+* @param {number} endPos
 */
 function createBodyTags(startPos, endPos)
 {
-	addTagPair('TBODY', startPos, 0, endPos, 0, -3);
+	addTagPair('TBODY', startPos, 0, endPos, 0, -103);
 }
 
 /**
 * Create a pair of TD or TH tags for given text span
 *
-* @param {!string} tagName  Either TD or TH
-* @param {!number} startPos
-* @param {!number} endPos
-* @param {!string} align    Either "left", "center", "right" or ""
+* @param {string} tagName  Either TD or TH
+* @param {number} startPos
+* @param {number} endPos
+* @param {string} align    Either "left", "center", "right" or ""
 */
 function createCellTags(tagName, startPos, endPos, align)
 {
-	var tag = addTagPair(tagName, startPos, 0, endPos, 0, -1);
+	var tag;
+	if (startPos === endPos)
+	{
+		tag = addSelfClosingTag(tagName, startPos, 0, -101);
+	}
+	else
+	{
+		tag = addTagPair(tagName, startPos, 0, endPos, 0, -101);
+	}
 	if (align)
 	{
 		tag.setAttribute('align', align);
@@ -169,19 +178,19 @@ function createCellTags(tagName, startPos, endPos, align)
 /**
 * Create a pair of THEAD tags for given text span
 *
-* @param {!number} startPos
-* @param {!number} endPos
+* @param {number} startPos
+* @param {number} endPos
 */
 function createHeadTags(startPos, endPos)
 {
-	addTagPair('THEAD', startPos, 0, endPos, 0, -3);
+	addTagPair('THEAD', startPos, 0, endPos, 0, -103);
 }
 
 /**
 * Create an ignore tag for given text span
 *
-* @param {!number} pos
-* @param {!number} len
+* @param {number} pos
+* @param {number} len
 */
 function createIgnoreTag(pos, len)
 {
@@ -191,12 +200,12 @@ function createIgnoreTag(pos, len)
 /**
 * Create a pair of TR tags for given text span
 *
-* @param {!number} startPos
-* @param {!number} endPos
+* @param {number} startPos
+* @param {number} endPos
 */
 function createRowTags(startPos, endPos)
 {
-	addTagPair('TR', startPos, 0, endPos, 0, -2);
+	addTagPair('TR', startPos, 0, endPos, 0, -102);
 }
 
 /**
@@ -212,12 +221,12 @@ function createSeparatorTag(row)
 /**
 * Create a pair of TABLE tags for given text span
 *
-* @param {!number} startPos
-* @param {!number} endPos
+* @param {number} startPos
+* @param {number} endPos
 */
 function createTableTags(startPos, endPos)
 {
-	tableTag = addTagPair('TABLE', startPos, 0, endPos, 0, -4);
+	tableTag = addTagPair('TABLE', startPos, 0, endPos, 0, -104);
 }
 
 /**
@@ -236,7 +245,7 @@ function endTable()
 /**
 * Test whether a valid table is currently buffered
 *
-* @return {!boolean}
+* @return {boolean}
 */
 function hasValidTable()
 {
@@ -246,8 +255,8 @@ function hasValidTable()
 /**
 * Test whether given line is a valid separator
 *
-* @param  {!string}  line
-* @return {!boolean}
+* @param  {string}  line
+* @return {boolean}
 */
 function isValidSeparator(line)
 {
@@ -257,12 +266,12 @@ function isValidSeparator(line)
 /**
 * Overwrite right angle brackets in given match
 *
-* @param  {!string} str
-* @return {!string}
+* @param  {string} str
+* @return {string}
 */
 function overwriteBlockquoteCallback(str)
 {
-	return str.replace(/>/g, ' ');
+	return str.replace(/[!>]/g, ' ');
 }
 
 /**
@@ -270,17 +279,17 @@ function overwriteBlockquoteCallback(str)
 */
 function overwriteEscapes()
 {
-	if (text.indexOf('\\|') > -1)
+	if (_text.indexOf('\\|') > -1)
 	{
-		text = text.replace(/\\[\\|]/g, '..');
+		_text = _text.replace(/\\[\\|]/g, '..');
 	}
 }
 
 /**
 * Overwrite backticks in given match
 *
-* @param  {!string} str
-* @return string
+* @param  {string} str
+* @return {string}
 */
 function overwriteInlineCodeCallback(str)
 {
@@ -293,23 +302,23 @@ function overwriteInlineCodeCallback(str)
 function overwriteMarkdown()
 {
 	// Overwrite inline code spans
-	if (text.indexOf('`') > -1)
+	if (_text.indexOf('`') > -1)
 	{
-		text = text.replace(/`[^`]*`/g, overwriteInlineCodeCallback);
+		_text = _text.replace(/`[^`]*`/g, overwriteInlineCodeCallback);
 	}
 
 	// Overwrite blockquotes
-	if (text.indexOf('>') > -1)
+	if (_text.indexOf('>') > -1)
 	{
-		text = text.replace(/^(?:> ?)+/gm, overwriteBlockquoteCallback);
+		_text = _text.replace(/^(?:>!? ?)+/gm, overwriteBlockquoteCallback);
 	}
 }
 
 /**
 * Parse and return column alignments in given separator line
 *
-* @param  {!string} line
-* @return {!Array<!string>}
+* @param  {string} line
+* @return {!Array<string>}
 */
 function parseColumnAlignments(line)
 {

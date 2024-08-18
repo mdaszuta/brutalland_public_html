@@ -28,9 +28,9 @@ class mcp_notes
 	var $p_master;
 	var $u_action;
 
-	function mcp_notes(&$p_master)
+	function __construct($p_master)
 	{
-		$this->p_master = &$p_master;
+		$this->p_master = $p_master;
 	}
 
 	function main($id, $mode)
@@ -42,7 +42,7 @@ class mcp_notes
 
 		if (is_array($action))
 		{
-			list($action, ) = each($action);
+			$action = key($action);
 		}
 
 		$this->page_title = 'MCP_NOTES';
@@ -74,7 +74,7 @@ class mcp_notes
 	*/
 	function mcp_notes_user_view($action)
 	{
-		global $config, $phpbb_log, $request;
+		global $config, $phpbb_log, $request, $phpbb_root_path, $phpEx;
 		global $template, $db, $user, $auth, $phpbb_container;
 
 		$user_id = $request->variable('u', 0);
@@ -98,7 +98,7 @@ class mcp_notes
 		$userrow = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
 
-		if (!$userrow)
+		if (!$userrow || (int) $userrow['user_id'] === ANONYMOUS)
 		{
 			trigger_error('NO_USER');
 		}
@@ -162,16 +162,16 @@ class mcp_notes
 		{
 			if (check_form_key('mcp_notes'))
 			{
-				$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOG_USER_FEEDBACK', false, array($userrow['username']));
-				$phpbb_log->add('mod', $user->data['user_id'], $user->ip, 'LOG_USER_FEEDBACK', false, array(
+				$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOG_USER_FEEDBACK', false, [$userrow['username']]);
+				$phpbb_log->add('mod', $user->data['user_id'], $user->ip, 'LOG_USER_FEEDBACK', false, [
 					'forum_id' => 0,
 					'topic_id' => 0,
 					$userrow['username']
-				));
-				$phpbb_log->add('user', $user->data['user_id'], $user->ip, 'LOG_USER_GENERAL', false, array(
+				]);
+				$phpbb_log->add('user', $user->data['user_id'], $user->ip, 'LOG_USER_GENERAL', false, [
 					'reportee_id' => $user_id,
-					$usernote
-				));
+					utf8_encode_ucr($usernote)
+				]);
 
 				$msg = $user->lang['USER_FEEDBACK_ADDED'];
 			}
@@ -185,9 +185,13 @@ class mcp_notes
 			trigger_error($msg .  '<br /><br />' . sprintf($user->lang['RETURN_PAGE'], '<a href="' . $redirect . '">', '</a>'));
 		}
 
-		// Generate the appropriate user information for the user we are looking at
+		if (!function_exists('phpbb_get_user_rank'))
+		{
+			include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+		}
 
-		$rank_title = $rank_img = '';
+		// Generate the appropriate user information for the user we are looking at
+		$rank_data = phpbb_get_user_rank($userrow, $userrow['user_posts']);
 		$avatar_img = phpbb_get_user_avatar($userrow);
 
 		$limit_days = array(0 => $user->lang['ALL_ENTRIES'], 1 => $user->lang['1_DAY'], 7 => $user->lang['7_DAYS'], 14 => $user->lang['2_WEEKS'], 30 => $user->lang['1_MONTH'], 90 => $user->lang['3_MONTHS'], 180 => $user->lang['6_MONTHS'], 365 => $user->lang['1_YEAR']);
@@ -202,7 +206,7 @@ class mcp_notes
 		$sql_sort = $sort_by_sql[$sk] . ' ' . (($sd == 'd') ? 'DESC' : 'ASC');
 
 		$keywords = $request->variable('keywords', '', true);
-		$keywords_param = !empty($keywords) ? '&amp;keywords=' . urlencode(htmlspecialchars_decode($keywords)) : '';
+		$keywords_param = !empty($keywords) ? '&amp;keywords=' . urlencode(html_entity_decode($keywords, ENT_COMPAT)) : '';
 
 		$log_data = array();
 		$log_count = 0;
@@ -239,7 +243,6 @@ class mcp_notes
 
 			'TOTAL_REPORTS'		=> $user->lang('LIST_REPORTS', (int) $log_count),
 
-			'RANK_TITLE'		=> $rank_title,
 			'JOINED'			=> $user->format_date($userrow['user_regdate']),
 			'POSTS'				=> ($userrow['user_posts']) ? $userrow['user_posts'] : 0,
 			'WARNINGS'			=> ($userrow['user_warnings']) ? $userrow['user_warnings'] : 0,
@@ -250,9 +253,9 @@ class mcp_notes
 			'U_PROFILE'			=> get_username_string('profile', $userrow['user_id'], $userrow['username'], $userrow['user_colour']),
 
 			'AVATAR_IMG'		=> $avatar_img,
-			'RANK_IMG'			=> $rank_img,
-			)
-		);
+			'RANK_IMG'			=> $rank_data['img'],
+			'RANK_TITLE'		=> $rank_data['title'],
+		));
 	}
 
 }

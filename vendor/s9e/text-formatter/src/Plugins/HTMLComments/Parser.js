@@ -4,10 +4,13 @@ var tagName  = config.tagName,
 matches.forEach(function(m)
 {
 	// Decode HTML entities
-	var content = html_entity_decode(m[0][0].substr(4, m[0][0].length - 7));
+	var content = html_entity_decode(m[0][0].substring(4, m[0][0].length - 3));
 
 	// Remove angle brackets from the content
 	content = content.replace(/[<>]/g, '');
+
+	// Remove trailing dashes
+	content = content.replace(/-+$/, '');
 
 	// Remove the illegal sequence "--" from the content
 	content = content.replace(/--/g, '');

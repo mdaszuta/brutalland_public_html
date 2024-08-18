@@ -96,7 +96,7 @@ class ucp_prefs
 						$error[] = 'FORM_INVALID';
 					}
 
-					if (!sizeof($error))
+					if (!count($error))
 					{
 						$sql_ary = array(
 							'user_allow_pm'			=> $data['allowpm'],
@@ -159,36 +159,26 @@ class ucp_prefs
 				phpbb_timezone_select($template, $user, $data['tz'], true);
 
 				// check if there are any user-selectable languages
-				$sql = 'SELECT COUNT(lang_id) as languages_count
-								FROM ' . LANG_TABLE;
+				$sql = 'SELECT lang_iso, lang_local_name
+					FROM ' . LANG_TABLE . '
+					ORDER BY lang_english_name';
 				$result = $db->sql_query($sql);
-				if ($db->sql_fetchfield('languages_count') > 1)
-				{
-					$s_more_languages = true;
-				}
-				else
-				{
-					$s_more_languages = false;
-				}
+				$lang_row = (array) $db->sql_fetchrowset($result);
 				$db->sql_freeresult($result);
+				$s_more_languages = count($lang_row) > 1;
 
 				// check if there are any user-selectable styles
-				$sql = 'SELECT COUNT(style_id) as styles_count
-								FROM ' . STYLES_TABLE . '
-								WHERE style_active = 1';
+				$sql = 'SELECT style_id, style_name
+					FROM ' . STYLES_TABLE . '
+					WHERE style_active = 1
+					ORDER BY style_name';
 				$result = $db->sql_query($sql);
-				if ($db->sql_fetchfield('styles_count') > 1)
-				{
-					$s_more_styles = true;
-				}
-				else
-				{
-					$s_more_styles = false;
-				}
+				$styles_row = (array) $db->sql_fetchrowset($result);
 				$db->sql_freeresult($result);
+				$s_more_styles = count($styles_row) > 1;
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
+					'ERROR'				=> (count($error)) ? implode('<br />', $error) : '',
 
 					'S_NOTIFY_EMAIL'	=> ($data['notifymethod'] == NOTIFY_EMAIL) ? true : false,
 					'S_NOTIFY_IM'		=> ($data['notifymethod'] == NOTIFY_IM) ? true : false,
@@ -205,11 +195,11 @@ class ucp_prefs
 					'DEFAULT_DATEFORMAT'	=> $config['default_dateformat'],
 					'A_DEFAULT_DATEFORMAT'	=> addslashes($config['default_dateformat']),
 
-					'S_MORE_LANGUAGES'	=> $s_more_languages,
+					'S_MORE_LANGUAGES'		=> $s_more_languages,
 					'S_MORE_STYLES'			=> $s_more_styles,
 
-					'S_LANG_OPTIONS'		=> language_select($data['lang']),
-					'S_STYLE_OPTIONS'		=> ($config['override_user_style']) ? '' : style_select($data['user_style']),
+					'S_LANG_OPTIONS'		=> language_select($data['lang'], $lang_row),
+					'S_STYLE_OPTIONS'		=> ($config['override_user_style']) ? '' : style_select($data['user_style'], false, $styles_row),
 					'S_CAN_HIDE_ONLINE'		=> ($auth->acl_get('u_hideonline')) ? true : false,
 					'S_SELECT_NOTIFY'		=> ($config['jab_enable'] && $user->data['user_jabber'] && @extension_loaded('xml')) ? true : false)
 				);
@@ -277,7 +267,7 @@ class ucp_prefs
 						$error[] = 'FORM_INVALID';
 					}
 
-					if (!sizeof($error))
+					if (!count($error))
 					{
 						$user->optionset('viewimg', $data['images']);
 						$user->optionset('viewflash', $data['flash']);
@@ -412,7 +402,7 @@ class ucp_prefs
 				extract($phpbb_dispatcher->trigger_event('core.ucp_prefs_view_after', compact($vars)));
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
+					'ERROR'				=> (count($error)) ? implode('<br />', $error) : '',
 
 					'S_IMAGES'			=> $data['images'],
 					'S_FLASH'			=> $data['flash'],

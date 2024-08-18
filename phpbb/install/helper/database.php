@@ -45,15 +45,6 @@ class database
 			'AVAILABLE'		=> true,
 			'2.0.x'			=> true,
 		),
-		'mysql'		=> array(
-			'LABEL'			=> 'MySQL',
-			'SCHEMA'		=> 'mysql',
-			'MODULE'		=> 'mysql',
-			'DELIM'			=> ';',
-			'DRIVER'		=> 'phpbb\db\driver\mysql',
-			'AVAILABLE'		=> true,
-			'2.0.x'			=> true,
-		),
 		'mssql_odbc'=>	array(
 			'LABEL'			=> 'MS SQL Server [ ODBC ]',
 			'SCHEMA'		=> 'mssql',
@@ -76,7 +67,7 @@ class database
 			'LABEL'			=> 'Oracle',
 			'SCHEMA'		=> 'oracle',
 			'MODULE'		=> 'oci8',
-			'DELIM'			=> '/',
+			'DELIM'			=> ';',
 			'DRIVER'		=> 'phpbb\db\driver\oracle',
 			'AVAILABLE'		=> true,
 			'2.0.x'			=> false,
@@ -239,7 +230,7 @@ class database
 	 *
 	 * @return bool|array	true if table prefix is valid, array of errors otherwise
 	 *
-	 * @throws \phpbb\install\exception\invalid_dbms_exception When $dbms is not a valid
+	 * @throws invalid_dbms_exception When $dbms is not a valid
 	 */
 	public function validate_table_prefix($dbms, $table_prefix)
 	{
@@ -256,7 +247,6 @@ class database
 		$dbms_info = $this->get_available_dbms($dbms);
 		switch ($dbms_info[$dbms]['SCHEMA'])
 		{
-			case 'mysql':
 			case 'mysql_41':
 				$prefix_length = 36;
 			break;
@@ -336,6 +326,15 @@ class database
 			);
 		}
 
+		// Check if SQLite database is writable
+		if ($dbms_info['SCHEMA'] === 'sqlite'
+			&& (($this->filesystem->exists($dbhost) && !$this->filesystem->is_writable($dbhost)) || !$this->filesystem->is_writable(pathinfo($dbhost, PATHINFO_DIRNAME))))
+		{
+			$errors[] = array(
+				'title' =>'INST_ERR_DB_NO_WRITABLE',
+			);
+		}
+
 		// Try to connect to db
 		if (is_array($db->sql_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport, false, true)))
 		{
@@ -363,7 +362,7 @@ class database
 			$tables = array_map('strtolower', $tables);
 			$table_intersect = array_intersect($tables, $table_ary);
 
-			if (sizeof($table_intersect))
+			if (count($table_intersect))
 			{
 				$errors[] = array(
 					'title' => 'INST_ERR_PREFIX',
@@ -373,14 +372,6 @@ class database
 			// Check if database version is supported
 			switch ($dbms)
 			{
-				case 'mysqli':
-					if (version_compare($db->sql_server_info(true), '4.1.3', '<'))
-					{
-						$errors[] = array(
-							'title' => 'INST_ERR_DB_NO_MYSQLI',
-						);
-					}
-				break;
 				case 'sqlite3':
 					if (version_compare($db->sql_server_info(true), '3.6.15', '<'))
 					{

@@ -9,6 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2015-02-02 18:24:32 Zespół Olympus.pl $
+* @Polska wersja językowa phpBB 3.3.7 - 02.04.2022, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -55,7 +56,7 @@ $lang = array_merge($lang, array(
 
 	'GLOBAL'				=> 'Ogłoszenie globalne',
 
-	'IGNORED_TERMS'			=> 'ignorowane słowa',
+	'IGNORED_TERMS'			=> 'ignorowany',
 	'IGNORED_TERMS_EXPLAIN'	=> 'Słowa pominięte ze względu na dużą częstotliwość występowania: <strong>%s</strong>.',
 
 	'JUMP_TO_POST'			=> 'Przejdź do posta',
@@ -74,9 +75,9 @@ $lang = array_merge($lang, array(
 	'NO_RECENT_SEARCHES'	=> 'Niczego ostatnio nie szukano.',
 	'NO_SEARCH'				=> 'Nie masz uprawnień do używania wyszukiwarki.',
 	'NO_SEARCH_RESULTS'		=> 'Nie znaleziono elementów spełniających kryteria szukania.',
-	'NO_SEARCH_LOAD'		=> 'W tej chwili nie możesz użyć wyszukiwarki – serwer jest przeciążony. Spróbuj ponownie za chwilę.',
+	'NO_SEARCH_LOAD'		=> 'Przepraszamy, ale w tym momencie nie możesz użyć wyszukiwarki – serwer jest przeciążony. Spróbuj ponownie za chwilę.',
 	'NO_SEARCH_TIME'		=> array(
-		1	=> 'W tej chwili nie możesz użyć wyszukiwarki. Spróbuj ponownie za %d. sekundę.',
+		1	=> 'W tej chwili nie możesz użyć wyszukiwarki. Spróbuj ponownie za %d sekundę.',
 		2	=> 'W tej chwili nie możesz użyć wyszukiwarki. Spróbuj ponownie za %d sekundy.',
 		3	=> 'W tej chwili nie możesz użyć wyszukiwarki. Spróbuj ponownie za %d sekund.',
 	),
@@ -89,22 +90,23 @@ $lang = array_merge($lang, array(
 
 	'RECENT_SEARCHES'		=> 'Ostatnie wyszukiwania',
 	'RESULT_DAYS'			=> 'Wyświetl wyniki z ostatnich',
-	'RESULT_SORT'			=> 'Sortuj wyniki według',
+	'RESULT_SORT'			=> 'Sortuj wyniki wg',
 	'RETURN_FIRST'			=> 'Wyświetl pierwsze',
+	'RETURN_FIRST_EXPLAIN'	=> 'Ustaw 0, aby wyświetlić cały post.',
 	'GO_TO_SEARCH_ADV'	=> 'Wyszukiwanie zaawansowane',
 
 	'SEARCHED_FOR'				=> 'Słowa kluczowe',
 	'SEARCHED_TOPIC'			=> 'Szukany temat',
 	'SEARCHED_QUERY'			=> 'Szukane wyrażenie',
-	'SEARCH_ALL_TERMS'			=> 'wszystkich',
-	'SEARCH_ANY_TERMS'			=> 'któregokolwiek',
-	'SEARCH_AUTHOR'				=> 'Szukaj według autora',
-	'SEARCH_AUTHOR_EXPLAIN'		=> 'Można użyć gwiazdki (<strong>*</strong>) jako zamiennika dowolnego ciągu znaków.',
+	'SEARCH_ALL_TERMS'			=> 'Szukaj wszystkich wyrażeń lub użyj wyrażenia wprowadzonego',
+	'SEARCH_ANY_TERMS'			=> 'Szukaj któregokolwiek z wyrażeń',
+	'SEARCH_AUTHOR'				=> 'Szukaj wg autora',
+	'SEARCH_AUTHOR_EXPLAIN'		=> 'Można użyć gwiazdki (*) jako zamiennika dowolnego ciągu znaków.',
 	'SEARCH_FIRST_POST'			=> 'Tylko pierwszy post tematu',
 	'SEARCH_FORUMS'				=> 'Przeszukaj fora',
 	'SEARCH_FORUMS_EXPLAIN'		=> 'Wybierz fora, które chcesz przeszukać. Subfora są przeszukiwane automatycznie, chyba że funkcja „Przeszukuj subfora”, jest wyłączona.',
 	'SEARCH_IN_RESULTS'			=> 'Szukaj w wynikach',
-	'SEARCH_KEYWORDS_EXPLAIN'	=> 'Umieść <strong>+</strong> przed słowem, które musi wystąpić oraz <strong>-</strong> przed słowem, które nie może wystąpić. Jeśli umieścisz listę słów oddzielonych <strong>|</strong> wewnątrz nawiasów, tylko jedno ze słów będzie musiało wystąpić. Możesz użyć gwiazdki (<strong>*</strong>) jako zamiennika dowolnego ciągu znaków.',
+	'SEARCH_KEYWORDS_EXPLAIN'	=> 'Umieść <strong>+</strong> przed słowem, które musi wystąpić oraz <strong>-</strong> przed słowem, które nie może wystąpić. Jeśli umieścisz listę słów oddzielonych <strong>|</strong> wewnątrz nawiasów, tylko jedno ze słów będzie musiało wystąpić. Możesz użyć gwiazdki (*) jako zamiennika dowolnego ciągu znaków.',
 	'SEARCH_MSG_ONLY'			=> 'Tylko treść posta',
 	'SEARCH_OPTIONS'			=> 'Opcje wyszukiwania',
 	'SEARCH_QUERY'				=> 'Wyszukiwanie',

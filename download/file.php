@@ -159,6 +159,8 @@ $user->session_begin(false);
 $auth->acl($user->data);
 $user->setup('viewtopic');
 
+$phpbb_content_visibility = $phpbb_container->get('content.visibility');
+
 if (!$config['allow_attachments'] && !$config['allow_pm_attach'])
 {
 	send_status_line(404, 'Not Found');
@@ -218,14 +220,14 @@ else
 		{
 			phpbb_download_handle_forum_auth($db, $auth, $attachment['topic_id']);
 
-			$sql = 'SELECT forum_id, post_visibility
+			$sql = 'SELECT forum_id, poster_id, post_visibility
 				FROM ' . POSTS_TABLE . '
 				WHERE post_id = ' . (int) $attachment['post_msg_id'];
 			$result = $db->sql_query($sql);
 			$post_row = $db->sql_fetchrow($result);
 			$db->sql_freeresult($result);
 
-			if (!$post_row || ($post_row['post_visibility'] != ITEM_APPROVED && !$auth->acl_get('m_approve', $post_row['forum_id'])))
+			if (!$post_row || !$phpbb_content_visibility->is_visible('post', $post_row['forum_id'], $post_row))
 			{
 				// Attachment of a soft deleted post and the user is not allowed to see the post
 				send_status_line(404, 'Not Found');
@@ -255,11 +257,6 @@ else
 		$display_cat = ATTACHMENT_CATEGORY_NONE;
 	}
 
-	if ($display_cat == ATTACHMENT_CATEGORY_FLASH && !$user->optionget('viewflash'))
-	{
-		$display_cat = ATTACHMENT_CATEGORY_NONE;
-	}
-
 	/**
 	* Event to modify data before sending file to browser
 	*
@@ -272,7 +269,7 @@ else
 	* @var	string	mode				Download mode
 	* @var	bool	thumbnail			Flag indicating if the file is a thumbnail
 	* @since 3.1.6-RC1
-	* @change 3.1.7-RC1	Fixing wrong name of a variable (replacing "extension" by "extensions")
+	* @changed 3.1.7-RC1	Fixing wrong name of a variable (replacing "extension" by "extensions")
 	*/
 	$vars = array(
 		'attach_id',

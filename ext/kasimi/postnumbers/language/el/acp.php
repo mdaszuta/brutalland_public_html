@@ -17,10 +17,10 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	'POSTNUMBERS_ENABLED_VIEWTOPIC'			=> 'Εμφάνιση αριθμού δημοσίευσης στην προβολή θέματος',
 	'POSTNUMBERS_ENABLED_REVIEW_REPLY'		=> 'Εμφάνιση αριθμού δημοσίευσης στην προεπισκόπιση θέματος κατά τη σύνταξη απάντησης',
 	'POSTNUMBERS_ENABLED_REVIEW_MCP'		=> 'Εμφάνιση αριθμού δημοσίευσης στην προεπισκόπιση θέματος στον Πίνακα Ελέγχου Συντονιστών',
@@ -30,9 +30,10 @@ $lang = array_merge($lang, array(
 	'POSTNUMBERS_DISPLAY_IDS_EXP'			=> 'Αν ενεργοποιηθεί, η παραπάνω ρύθμιση <span style="font-style: italic;">Παράκαμψη σε μη εγκεκριμένες δημοσιεύσεις</span> θα αγνοηθεί',
 	'POSTNUMBERS_LOCATION'					=> 'Θέση εμφάνισης του αριθμού δημοσίευσης',
 	'POSTNUMBERS_LOCATION_AUTHOR'			=> 'Μεταξύ του εικονιδίου δημοσίευσης και του ονόματος του συντάκτη',
-	'POSTNUMBERS_LOCATION_SUBJECT'			=> 'Στο θέμα της δημοσίευσης',
+	'POSTNUMBERS_LOCATION_BEFORE_SUBJECT'	=> 'Στο θέμα της δημοσίευσης',
+	'POSTNUMBERS_LOCATION_SUBJECT'			=> 'Replace post subject',
 	'POSTNUMBERS_CLIPBOARD'					=> 'Αντιγραφή συνδέσμου δημοσίευσης με το πάτημα στον αριθμό δημοσίευσης',
 	'POSTNUMBERS_CLIPBOARD_EXP'				=> 'Ισχύει μόνο αν ο αριθμός δημοσίευσης εμφανίζεται μεταξύ του εικονιδίου δημοσίευσης και του ονόματος του συντάκτη. Λειτουργεί μόνο τους ακόλουθους (ή νεώτερων εκδόσεων) browsers: Chrome 43, Firefox 41, IE 9, Opera 29, Safari 10. Οι μη υποστηριζόμενοι browsers εμφανίζουν ένα παράθυρο που περιέχει το σύνδεσμο της δημοσίευσης.',
 	'POSTNUMBERS_BOLD'						=> 'Εμφάνιση του αριθμού δημοσίευσης/ID με έντονους χαρακτήρες',
 	'POSTNUMBERS_BOLD_EXP'					=> 'Ισχύει μόνο αν ο αριθμός δημοσίευσης εμφανίζεται μεταξύ του εικονιδίου δημοσίευσης και του ονόματος του συντάκτη.',
-));
+]);

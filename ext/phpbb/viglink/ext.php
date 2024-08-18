@@ -16,7 +16,7 @@ namespace phpbb\viglink;
 class ext extends \phpbb\extension\base
 {
 	/**
-	 * Check whether or not the extension can be enabled.
+	 * Check whether the extension can be enabled.
 	 * The current phpBB version should meet or exceed
 	 * the minimum version required by this extension:
 	 *
@@ -44,7 +44,7 @@ class ext extends \phpbb\extension\base
 		if ($old_state === false)
 		{
 			$viglink_helper = new \phpbb\viglink\acp\viglink_helper(
-				$this->container->get('cache'),
+				$this->container->get('cache.driver'),
 				$this->container->get('config'),
 				$this->container->get('file_downloader'),
 				$this->container->get('language'),

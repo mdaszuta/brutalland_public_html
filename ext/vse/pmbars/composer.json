@@ -2,8 +2,8 @@
     "name": "vse/pmbars",
     "type": "phpbb-extension",
     "description": "A phpBB extension that adds a graphical representation to private message boxes of the space used/remaining.",
-    "homepage": "https://github.com/VSEphpbb/pmbars",
-    "version": "2.0.2",
+    "homepage": "https://github.com/iMattPro/pmbars",
+    "version": "2.0.4",
     "keywords": [
         "phpbb",
         "extension",
@@ -12,17 +12,17 @@
         "status",
         "bars"
     ],
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "authors": [
         {
-            "name": "Matt Friedman (VSE)",
-            "homepage": "http://mattfriedman.me",
+            "name": "Matt Friedman",
+            "homepage": "https://imattpro.github.io",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "composer/installers": "~1.0",
+        "composer/installers": "~1.0.0",
         "phpbb/phpbb": ">=3.1.2"
     },
     "extra": {
@@ -33,7 +33,8 @@
         "version-check": {
             "host": "www.phpbb.com",
             "directory": "/customise/db/extension/pm_box_status_bars",
-            "filename": "version_check"
+            "filename": "version_check",
+            "ssl": true
         }
     }
 }

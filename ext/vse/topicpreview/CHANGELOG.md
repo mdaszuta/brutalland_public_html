@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.3.2 - 2020-01-10
+
+- Fixed potential javascript issues in phpBB 3.3.x by removing deprecated code.
+- Miscellaneous minor code improvements.
+
+## 2.3.1 - 2019-03-30
+
+- Switched to a pure CSS "No Avatar" image instead of the no-avatar.gif that was not always available in some 3rd-party styles.
+- Fix possible install issues related to its ACP modules.
+- Miscellaneous minor code improvements.
+
+## 2.3.0 - 2018-01-20
+
+- Updated for phpBB 3.2. Compatibility with 3.1 ended.
+- Minor code improvements.
+
 ## 2.2.4 - 2017-01-10
 
 - Refactored themes to inherit from a parent theme for easier theming

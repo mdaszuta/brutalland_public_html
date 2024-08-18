@@ -1,7 +1,6 @@
 /**
  *
  * @package Post Numbers
- * @version 1.1.1
  * @copyright (c) 2016 kasimi - https://kasimi.net
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -55,7 +54,7 @@ jQuery(function($) {
 		});
 	};
 
-	$('.postbody,.author-postnumber-mobile').on('click', '.post-number', function(e) {
+	$('.postbody').on('click', '.post-number', function(e) {
 		e.preventDefault();
 		$(this).toClipboard({
 			text: function() {

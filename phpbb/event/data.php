@@ -44,23 +44,39 @@ class data extends Event implements \ArrayAccess
 		return array_intersect_key($this->data, array_flip($keys));
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetExists($offset)
 	{
 		return isset($this->data[$offset]);
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetGet($offset)
 	{
 		return isset($this->data[$offset]) ? $this->data[$offset] : null;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetSet($offset, $value)
 	{
 		$this->data[$offset] = $value;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetUnset($offset)
 	{
 		unset($this->data[$offset]);
+	}
+
+	/**
+	 * Returns data with updated key in specified offset.
+	 *
+	 * @param	string	$subarray	Data array subarray
+	 * @param	string	$key		Subarray key
+	 * @param	mixed	$value		Value to update
+	 */
+	public function update_subarray($subarray, $key, $value)
+	{
+		$this->data[$subarray][$key] = $value;
 	}
 }

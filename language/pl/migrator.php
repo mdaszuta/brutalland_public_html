@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-10-28 18:24:32 Zespół Olympus.pl $
-* @Polska wersja jÄ™zykowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.7 - 02.04.2022, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -71,12 +71,13 @@ $lang = array_merge($lang, array(
 	
 	'MODULE_ERROR'						=> 'W trakcie tworzenia modułu %s wystąpił błąd',
 	'MODULE_EXISTS'						=> 'Moduł istnieje: %s',
-	'MODULE_EXIST_MULTIPLE'				=> 'Kilka modułów z podanymi nazwami modułów nadrzędnych już istnieją: %s. Spróbuj użyć klucze przed / po, aby określić położenie modułu.',
+	'MODULE_EXIST_MULTIPLE'				=> 'Kilka modułów z podanymi nazwami modułów nadrzędnych już istnieją: %s. Spróbuj użyć kluczy przed / po, aby określić położenie modułu.',
 	'MODULE_INFO_FILE_NOT_EXIST'		=> 'Brakuje wymaganego pliku informacyjnego: %2$s',
 	'MODULE_NOT_EXIST'					=> 'Nie ma wymaganego modułu: %s',
 	
 	'PARENT_MODULE_FIND_ERROR'			=> 'Nie można określić identyfikatora modułu nadrzędnego: %s',
 	'PERMISSION_NOT_EXIST'				=> 'Nie istnieje ustawienie „%s”.',
-
+	
+	'ROLE_ASSIGNED_NOT_EXIST'			=> 'Nie istnieje rola przypisana do grupy "%1$s". Numer roli: "%2$s"',
 	'ROLE_NOT_EXIST'					=> 'Nie istnieje rola „%s”.',
 ));

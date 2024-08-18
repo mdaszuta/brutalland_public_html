@@ -23,6 +23,7 @@ class acp_database
 {
 	var $db_tools;
 	var $u_action;
+	public $page_title;
 
 	function main($id, $mode)
 	{
@@ -57,9 +58,8 @@ class acp_database
 						$type	= $request->variable('type', '');
 						$table	= array_intersect($this->db_tools->sql_list_tables(), $request->variable('table', array('')));
 						$format	= $request->variable('method', '');
-						$where	= $request->variable('where', '');
 
-						if (!sizeof($table))
+						if (!count($table))
 						{
 							trigger_error($user->lang['TABLE_SELECT_ERROR'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
@@ -69,28 +69,6 @@ class acp_database
 							trigger_error($user->lang['FORM_INVALID'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 
-						$store = $download = $structure = $schema_data = false;
-
-						if ($where == 'store_and_download' || $where == 'store')
-						{
-							$store = true;
-						}
-
-						if ($where == 'store_and_download' || $where == 'download')
-						{
-							$download = true;
-						}
-
-						if ($type == 'full' || $type == 'structure')
-						{
-							$structure = true;
-						}
-
-						if ($type == 'full' || $type == 'data')
-						{
-							$schema_data = true;
-						}
-
 						@set_time_limit(1200);
 						@set_time_limit(0);
 
@@ -98,15 +76,16 @@ class acp_database
 
 						$filename = 'backup_' . $time . '_' . unique_id();
 
+						/** @var phpbb\db\extractor\extractor_interface $extractor Database extractor */
 						$extractor = $phpbb_container->get('dbal.extractor');
-						$extractor->init_extractor($format, $filename, $time, $download, $store);
+						$extractor->init_extractor($format, $filename, $time, false, true);
 
 						$extractor->write_start($table_prefix);
 
 						foreach ($table as $table_name)
 						{
 							// Get the table structure
-							if ($structure)
+							if ($type == 'full')
 							{
 								$extractor->write_table($table_name);
 							}
@@ -130,25 +109,16 @@ class acp_database
 
 									default:
 										$extractor->flush('TRUNCATE TABLE ' . $table_name . ";\n");
-									break;
 								}
 							}
 
-							// Data
-							if ($schema_data)
-							{
-								$extractor->write_data($table_name);
-							}
+							// Only supported types are full and data, therefore always write the data
+							$extractor->write_data($table_name);
 						}
 
 						$extractor->write_end();
 
 						$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOG_DB_BACKUP');
-
-						if ($download == true)
-						{
-							exit;
-						}
 
 						trigger_error($user->lang['BACKUP_SUCCESS'] . adm_back_link($this->u_action));
 					break;
@@ -201,16 +171,10 @@ class acp_database
 					case 'submit':
 						$delete = $request->variable('delete', '');
 						$file = $request->variable('file', '');
-						$download = $request->variable('download', '');
 
-						if (!preg_match('#^backup_\d{10,}_[a-z\d]{16}\.(sql(?:\.(?:gz|bz2))?)$#', $file, $matches))
-						{
-							trigger_error($user->lang['BACKUP_INVALID'] . adm_back_link($this->u_action), E_USER_WARNING);
-						}
+						$backup_info = $this->get_backup_file($phpbb_root_path . 'store/', $file);
 
-						$file_name = $phpbb_root_path . 'store/' . $matches[0];
-
-						if (!file_exists($file_name) || !is_readable($file_name))
+						if (empty($backup_info) || !is_readable($backup_info['file_name']))
 						{
 							trigger_error($user->lang['BACKUP_INVALID'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
@@ -219,7 +183,7 @@ class acp_database
 						{
 							if (confirm_box(true))
 							{
-								unlink($file_name);
+								unlink($backup_info['file_name']);
 								$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOG_DB_DELETE');
 								trigger_error($user->lang['BACKUP_DELETE'] . adm_back_link($this->u_action));
 							}
@@ -228,50 +192,12 @@ class acp_database
 								confirm_box(false, $user->lang['DELETE_SELECTED_BACKUP'], build_hidden_fields(array('delete' => $delete, 'file' => $file)));
 							}
 						}
-						else if ($download || confirm_box(true))
+						else if (confirm_box(true))
 						{
-							if ($download)
-							{
-								$name = $matches[0];
-
-								switch ($matches[1])
-								{
-									case 'sql':
-										$mimetype = 'text/x-sql';
-									break;
-									case 'sql.bz2':
-										$mimetype = 'application/x-bzip2';
-									break;
-									case 'sql.gz':
-										$mimetype = 'application/x-gzip';
-									break;
-								}
-
-								header('Cache-Control: private, no-cache');
-								header("Content-Type: $mimetype; name=\"$name\"");
-								header("Content-disposition: attachment; filename=$name");
-
-								@set_time_limit(0);
-
-								$fp = @fopen($file_name, 'rb');
-
-								if ($fp !== false)
-								{
-									while (!feof($fp))
-									{
-										echo fread($fp, 8192);
-									}
-									fclose($fp);
-								}
-
-								flush();
-								exit;
-							}
-
-							switch ($matches[1])
+							switch ($backup_info['extension'])
 							{
 								case 'sql':
-									$fp = fopen($file_name, 'rb');
+									$fp = fopen($backup_info['file_name'], 'rb');
 									$read = 'fread';
 									$seek = 'fseek';
 									$eof = 'feof';
@@ -280,7 +206,7 @@ class acp_database
 								break;
 
 								case 'sql.bz2':
-									$fp = bzopen($file_name, 'r');
+									$fp = bzopen($backup_info['file_name'], 'r');
 									$read = 'bzread';
 									$seek = '';
 									$eof = 'feof';
@@ -289,19 +215,21 @@ class acp_database
 								break;
 
 								case 'sql.gz':
-									$fp = gzopen($file_name, 'rb');
+									$fp = gzopen($backup_info['file_name'], 'rb');
 									$read = 'gzread';
 									$seek = 'gzseek';
 									$eof = 'gzeof';
 									$close = 'gzclose';
 									$fgetd = 'fgetd';
 								break;
+
+								default:
+									trigger_error($user->lang['BACKUP_INVALID'] . adm_back_link($this->u_action), E_USER_WARNING);
+									return;
 							}
 
 							switch ($db->get_sql_layer())
 							{
-								case 'mysql':
-								case 'mysql4':
 								case 'mysqli':
 								case 'sqlite3':
 									while (($sql = $fgetd($fp, ";\n", $read, $seek, $eof)) !== false)
@@ -375,43 +303,13 @@ class acp_database
 							trigger_error($user->lang['RESTORE_SUCCESS'] . adm_back_link($this->u_action));
 							break;
 						}
-						else if (!$download)
+						else
 						{
 							confirm_box(false, $user->lang['RESTORE_SELECTED_BACKUP'], build_hidden_fields(array('file' => $file)));
 						}
 
 					default:
-						$methods = array('sql');
-						$available_methods = array('sql.gz' => 'zlib', 'sql.bz2' => 'bz2');
-
-						foreach ($available_methods as $type => $module)
-						{
-							if (!@extension_loaded($module))
-							{
-								continue;
-							}
-							$methods[] = $type;
-						}
-
-						$dir = $phpbb_root_path . 'store/';
-						$dh = @opendir($dir);
-
-						$backup_files = array();
-
-						if ($dh)
-						{
-							while (($file = readdir($dh)) !== false)
-							{
-								if (preg_match('#^backup_(\d{10,})_[a-z\d]{16}\.(sql(?:\.(?:gz|bz2))?)$#', $file, $matches))
-								{
-									if (in_array($matches[2], $methods))
-									{
-										$backup_files[(int) $matches[1]] = $file;
-									}
-								}
-							}
-							closedir($dh);
-						}
+						$backup_files = $this->get_file_list($phpbb_root_path . 'store/');
 
 						if (!empty($backup_files))
 						{
@@ -420,8 +318,8 @@ class acp_database
 							foreach ($backup_files as $name => $file)
 							{
 								$template->assign_block_vars('files', array(
-									'FILE'		=> $file,
-									'NAME'		=> $user->format_date($name, 'd-m-Y H:i:s', true),
+									'FILE'		=> sha1($file),
+									'NAME'		=> $user->format_date($name, 'd-m-Y H:i', true),
 									'SUPPORTED'	=> true,
 								));
 							}
@@ -434,6 +332,92 @@ class acp_database
 				}
 			break;
 		}
+	}
+
+	/**
+	 * Get backup file from file hash
+	 *
+	 * @param string $directory Relative path to directory
+	 * @param string $file_hash Hash of selected file
+	 *
+	 * @return array Backup file data or empty array if unable to find file
+	 */
+	protected function get_backup_file($directory, $file_hash)
+	{
+		$backup_data = [];
+
+		$file_list = $this->get_file_list($directory);
+		$supported_extensions = $this->get_supported_extensions();
+
+		foreach ($file_list as $file)
+		{
+			preg_match('#^backup_(\d{10,})_(?:[a-z\d]{16}|[a-z\d]{32})\.(sql(?:\.(?:gz|bz2))?)$#i', $file, $matches);
+			if (sha1($file) === $file_hash && in_array($matches[2], $supported_extensions))
+			{
+				$backup_data = [
+					'file_name' => $directory . $file,
+					'extension' => $matches[2],
+				];
+				break;
+			}
+		}
+
+		return $backup_data;
+	}
+
+	/**
+	 * Get backup file list for directory
+	 *
+	 * @param string $directory Relative path to backup directory
+	 *
+	 * @return array List of backup files in specified directory
+	 */
+	protected function get_file_list($directory)
+	{
+		$supported_extensions = $this->get_supported_extensions();
+
+		$dh = @opendir($directory);
+
+		$backup_files = [];
+
+		if ($dh)
+		{
+			while (($file = readdir($dh)) !== false)
+			{
+				if (preg_match('#^backup_(\d{10,})_(?:[a-z\d]{16}|[a-z\d]{32})\.(sql(?:\.(?:gz|bz2))?)$#i', $file, $matches))
+				{
+					if (in_array($matches[2], $supported_extensions))
+					{
+						$backup_files[(int) $matches[1]] = $file;
+					}
+				}
+			}
+			closedir($dh);
+		}
+
+		return $backup_files;
+	}
+
+	/**
+	 * Get supported extensions for backup
+	 *
+	 * @return array List of supported extensions
+	 */
+	protected function get_supported_extensions()
+	{
+		$extensions = ['sql'];
+		$available_methods = ['sql.gz' => 'zlib', 'sql.bz2' => 'bz2'];
+
+		foreach ($available_methods as $type => $module)
+		{
+			if (!@extension_loaded($module))
+			{
+				continue;
+			}
+			$extensions[] = $type;
+		}
+
+		return $extensions;
 	}
 }
 
@@ -495,7 +479,7 @@ function sanitize_data_mssql($text)
 		{
 			$val[] = "'" . $value . "'";
 		}
-		if (sizeof($matches[0]))
+		if (count($matches[0]))
 		{
 			$val[] = 'char(' . ord(array_shift($matches[0])) . ')';
 		}
@@ -519,7 +503,7 @@ function sanitize_data_oracle($text)
 		{
 			$val[] = "'" . $value . "'";
 		}
-		if (sizeof($matches[0]))
+		if (count($matches[0]))
 		{
 			$val[] = 'chr(' . ord(array_shift($matches[0])) . ')';
 		}
@@ -541,7 +525,7 @@ function sanitize_data_generic($text)
 		{
 			$val[] = "'" . $value . "'";
 		}
-		if (sizeof($matches[0]))
+		if (count($matches[0]))
 		{
 			$val[] = "'" . array_shift($matches[0]) . "'";
 		}
@@ -583,7 +567,7 @@ function fgetd_seekless(&$fp, $delim, $read, $seek, $eof, $buffer = 8192)
 	static $array = array();
 	static $record = '';
 
-	if (!sizeof($array))
+	if (!count($array))
 	{
 		while (!$eof($fp))
 		{
@@ -605,7 +589,7 @@ function fgetd_seekless(&$fp, $delim, $read, $seek, $eof, $buffer = 8192)
 		}
 	}
 
-	if (sizeof($array))
+	if (count($array))
 	{
 		return array_shift($array);
 	}

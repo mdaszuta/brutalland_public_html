@@ -70,14 +70,28 @@ class ErrorMiddleware
             $responseData = $body;
         }
 
-        if (is_array($responseData) && isset($responseData['data']) && isset($responseData['data']['error'])) {
-            throw new ErrorException(
-                'Request to: ' . $responseData['data']['request'] . ' failed with: "' . $responseData['data']['error'] . '"',
-                $response->getStatusCode()
-            );
+        if (\is_array($responseData) && isset($responseData['data']) && isset($responseData['data']['error'])) {
+            $errorMessage = $responseData['data']['error'];
+            // when uploading too fast, error is an array
+            if (\is_array($responseData['data']['error'])) {
+                $errorMessage = '';
+
+                if (isset($responseData['data']['error']['message'])) {
+                    $errorMessage = $responseData['data']['error']['message'];
+                } elseif (isset($responseData['data']['error']['code'])) {
+                    $errorMessage = 'Error code: ' . $responseData['data']['error']['code'];
+                }
+            }
+
+            $message = 'Request failed with: "' . $errorMessage . '"';
+            if (isset($responseData['data']['request'])) {
+                $message = 'Request to: ' . $responseData['data']['request'] . ' failed with: "' . $errorMessage . '"';
+            }
+
+            throw new ErrorException($message, $response->getStatusCode());
         }
 
-        throw new RuntimeException(is_array($responseData) && isset($responseData['message']) ? $responseData['message'] : $responseData, $response->getStatusCode());
+        throw new RuntimeException(\is_array($responseData) && isset($responseData['message']) ? $responseData['message'] : $responseData, $response->getStatusCode());
     }
 
     /**

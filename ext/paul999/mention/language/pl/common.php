@@ -23,10 +23,8 @@ if (empty($lang) || !is_array($lang))
  * loaded we need to include it on all pages. Make sure to only include important
  * language items (That are directly needed by the notification system) in this file.
  */
- 
-$notification_mention_string = '<div class="notifications_reference">%2$s</div>oznaczenie %1$s';
- 
 $lang = array_merge($lang, array(
-	'MENTION_MENTION_NOTIFICATION'	=> $notification_mention_string,
-	'NOTIFICATION_TYPE_MENTION'     => 'Wspomniano cię'
+	'MENTION_MENTION_NOTIFICATION'	=> 'Zostałeś wspomniany przez %1$s<br />w “%2$s”',
+	'NOTIFICATION_TYPE_MENTION'     => 'Ktoś o mnie wspomniał',
+	'MENTION_GROUP_NAME'			=> '(Group. Will notify {CNT} users in total)', // Do not translate/change {CNT}
 ));

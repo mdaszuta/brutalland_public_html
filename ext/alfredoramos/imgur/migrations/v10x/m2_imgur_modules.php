@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Imgur Extension for phpBB.
+ * Imgur extension for phpBB.
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @copyright 2017 Alfredo Ramos
- * @license GNU GPL-2.0
+ * @license GPL-2.0-only
  */
 
 namespace alfredoramos\imgur\migrations\v10x;
@@ -13,9 +13,8 @@ use phpbb\db\migration\migration;
 
 class m2_imgur_modules extends migration
 {
-
 	/**
-	 * Add Imgur ACP settings
+	 * Add Imgur ACP settings.
 	 *
 	 * @return array
 	 */
@@ -43,5 +42,4 @@ class m2_imgur_modules extends migration
 			]
 		];
 	}
-
 }

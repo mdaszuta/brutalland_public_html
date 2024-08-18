@@ -3,22 +3,38 @@ var attrName       = config.attrName,
 	hasDoubleQuote = (text.indexOf('"') >= 0),
 	tagName        = config.tagName;
 
-parseSingleQuotes();
-parseSymbolsAfterDigits();
-parseSingleQuotePairs();
-parseDoubleQuotePairs();
-parseDashesAndEllipses();
-parseSymbolsInParentheses();
-parseNotEqualSign();
-parseGuillemets();
+if (typeof config.disableQuotes === 'undefined')
+{
+	parseSingleQuotes();
+	parseSingleQuotePairs();
+	parseDoubleQuotePairs();
+}
+if (typeof config.disableGuillemets === 'undefined')
+{
+	parseGuillemets();
+}
+if (typeof config.disableMathSymbols === 'undefined')
+{
+	parseNotEqualSign();
+	parseSymbolsAfterDigits();
+	parseFractions();
+}
+if (typeof config.disablePunctuation === 'undefined')
+{
+	parseDashesAndEllipses();
+}
+if (typeof config.disableSymbols === 'undefined')
+{
+	parseSymbolsInParentheses();
+}
 
 /**
 * Add a fancy replacement tag
 *
-* @param  {!number} tagPos Position of the tag in the text
-* @param  {!number} tagLen Length of text consumed by the tag
-* @param  {!string} chr    Replacement character
-* @param  {number}  prio   Tag's priority
+* @param  {number} tagPos Position of the tag in the text
+* @param  {number} tagLen Length of text consumed by the tag
+* @param  {string} chr    Replacement character
+* @param  {number=} prio   Tag's priority
 * @return {!Tag}
 */
 function addTag(tagPos, tagLen, chr, prio)
@@ -50,7 +66,7 @@ function parseDashesAndEllipses()
 		m;
 	while (m = regexp.exec(text))
 	{
-		addTag(+m['index'], m[0].length, chrs[m[0]]);
+		addTag(m.index, m[0].length, chrs[m[0]]);
 	}
 }
 
@@ -68,6 +84,46 @@ function parseDoubleQuotePairs()
 }
 
 /**
+* Parse vulgar fractions
+*/
+function parseFractions()
+{
+	if (text.indexOf('/') < 0)
+	{
+		return;
+	}
+
+	/** @const */
+	var map = {
+		'0/3'  : "\u2189",
+		'1/10' : "\u2152",
+		'1/2'  : "\u00BD",
+		'1/3'  : "\u2153",
+		'1/4'  : "\u00BC",
+		'1/5'  : "\u2155",
+		'1/6'  : "\u2159",
+		'1/7'  : "\u2150",
+		'1/8'  : "\u215B",
+		'1/9'  : "\u2151",
+		'2/3'  : "\u2154",
+		'2/5'  : "\u2156",
+		'3/4'  : "\u00BE",
+		'3/5'  : "\u2157",
+		'3/8'  : "\u215C",
+		'4/5'  : "\u2158",
+		'5/6'  : "\u215A",
+		'5/8'  : "\u215D",
+		'7/8'  : "\u215E"
+	};
+
+	var m, regexp = /\b(?:0\/3|1\/(?:[2-9]|10)|2\/[35]|3\/[458]|4\/5|5\/[68]|7\/8)\b/g;
+	while (m = regexp.exec(text))
+	{
+		addTag(m.index, m[0].length, map[m[0]]);
+	}
+}
+
+/**
 * Parse guillemets-style quotation marks
 */
 function parseGuillemets()
@@ -80,8 +136,8 @@ function parseGuillemets()
 	var m, regexp = /<<( ?)(?! )[^\n<>]*?[^\n <>]\1>>(?!>)/g;
 	while (m = regexp.exec(text))
 	{
-		var left  = addTag(+m['index'],                   2, "\u00AB"),
-			right = addTag(+m['index'] + m[0].length - 2, 2, "\u00BB");
+		var left  = addTag(m.index,                   2, "\u00AB"),
+			right = addTag(m.index + m[0].length - 2, 2, "\u00BB");
 
 		left.cascadeInvalidationTo(right);
 	}
@@ -89,36 +145,38 @@ function parseGuillemets()
 
 /**
 * Parse the not equal sign
+*
+* Supports != and =/=
 */
 function parseNotEqualSign()
 {
-	if (text.indexOf('!=') < 0)
+	if (text.indexOf('!=') < 0 && text.indexOf('=/=') < 0)
 	{
 		return;
 	}
 
-	var m, regexp = /\b !=(?= \b)/g;
+	var m, regexp = /\b (?:!|=\/)=(?= \b)/g;
 	while (m = regexp.exec(text))
 	{
-		addTag(+m['index'] + 1, 2, "\u2260");
+		addTag(m.index + 1, m[0].length - 1, "\u2260");
 	}
 }
 
 /**
 * Parse pairs of quotes
 *
-* @param {!string} q          ASCII quote character 
+* @param {string}  q          ASCII quote character
 * @param {!RegExp} regexp     Regexp used to identify quote pairs
-* @param {!string} leftQuote  Fancy replacement for left quote
-* @param {!string} rightQuote Fancy replacement for right quote
+* @param {string}  leftQuote  Fancy replacement for left quote
+* @param {string}  rightQuote Fancy replacement for right quote
 */
 function parseQuotePairs(q, regexp, leftQuote, rightQuote)
 {
 	var m;
 	while (m = regexp.exec(text))
 	{
-		var left  = addTag(+m['index'] + m[0].indexOf(q), 1, leftQuote),
-			right = addTag(+m['index'] + m[0].length - 1, 1, rightQuote);
+		var left  = addTag(m.index + m[0].indexOf(q), 1, leftQuote),
+			right = addTag(m.index + m[0].length - 1, 1, rightQuote);
 
 		// Cascade left tag's invalidation to the right so that if we skip the left quote,
 		// the right quote remains untouched
@@ -155,7 +213,7 @@ function parseSingleQuotes()
 	while (m = regexp.exec(text))
 	{
 		// Give this tag a worse priority than default so that quote pairs take precedence
-		addTag(+m['index'] + m[0].indexOf("'"), 1, "\u2019", 10);
+		addTag(m.index + m[0].indexOf("'"), 1, "\u2019", 10);
 	}
 }
 
@@ -191,16 +249,16 @@ function parseSymbolsAfterDigits()
 	while (m = regexp.exec(text))
 	{
 		// Test for a multiply sign at the end
-		if (m[0].charAt(m[0].length - 1) === 'x')
+		if (m[0][m[0].length - 1] === 'x')
 		{
-			addTag(+m['index'] + m[0].length - 1, 1, "\u00d7");
+			addTag(m.index + m[0].length - 1, 1, "\u00d7");
 		}
 
 		// Test for an apostrophe/prime right after the digit
-		var str = m[0].substr(1, 2);
+		var str = m[0].substring(1, 3);
 		if (map[str])
 		{
-			addTag(+m['index'] + 1, 1, map[str]);
+			addTag(m.index + 1, 1, map[str]);
 		}
 	}
 }
@@ -226,6 +284,6 @@ function parseSymbolsInParentheses()
 		m;
 	while (m = regexp.exec(text))
 	{
-		addTag(+m['index'], m[0].length, chrs[m[0].toLowerCase()]);
+		addTag(m.index, m[0].length, chrs[m[0].toLowerCase()]);
 	}
 }

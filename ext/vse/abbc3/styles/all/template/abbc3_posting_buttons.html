@@ -1,215 +1,44 @@
-<script>
+{% include '@vse_abbc3/abbc3_posting_script.html' %}
 
-var copyPaste = '';
-var bbvideoHeight = '{{ ABBC3_BBVIDEO_HEIGHT }}';
-var bbvideoWidth = '{{ ABBC3_BBVIDEO_WIDTH }}';
+{% macro bbcodeButton(icon, class, accesskey, id, value, title, iconClass, path, name = '', func = 'bbstyle') %}
+	<button type="button"
+			class="{{ icon ? 'abbc3_button' : 'button button-icon-only ' ~ class }}"
+			accesskey="{{ accesskey }}"
+			name="{{ name ?: 'addbbcode' ~ id }}"
+			value="{{ value }}"
+			style="background-image:url('{{ path ~ icon }}');"
+			onclick="{{ func ~ '(' ~ (id matches '/^-?\\d+$/' ? id : '\'' ~ id ~ '\'') ~ ')' }}"
+			title="{{ lang(title) }}">
+		{% if not icon %}<i class="icon fa-fw {{ iconClass }}" aria-hidden="true"></i>{% endif %}
+	</button>
+{% endmacro %}
 
-/**
-* Strip all BBCodes from the selected text
-*/
-function bbcodeToPlain(data) {
-	if (data.indexOf('[') < 0) {
-		return data;
-	}
-
-	function bbcodeToPlainSimpleReplace(str) {
-		return str.replace(basicBBcodeMatch, bbcodeToPlainPattern);
-	}
-
-	function bbcodeToPlainPattern(match_0, match_1, match_2, match_3) {
-		if (match_3 && match_3.indexOf('[') > -1) {
-			match_3 = bbcodeToPlainSimpleReplace(match_3);
-		}
-		return match_3;
-	}
-
-	var basicBBcodeMatch = new RegExp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
-
-	return bbcodeToPlainSimpleReplace(data);
-}
-
-/**
-* Apply special BBCodes
-*/
-function bbspecial(bbcode, bbcodeId) {
-	theSelection = false;
-
-	var textarea = document.forms[form_name].elements[text_name];
-
-	textarea.focus();
-
-	var selLength, selStart, selEnd, s1, s2, s3;
-
-	if ((clientVer >= 4) && is_ie && is_win) {
-		// Get text selection
-		theSelection = document.selection.createRange().text;
-	} else if (document.forms[form_name].elements[text_name].selectionEnd
-			&& (document.forms[form_name].elements[text_name].selectionEnd - document.forms[form_name].elements[text_name].selectionStart > 0)) {
-		selLength = textarea.textLength;
-		selLength = (typeof(selLength) === 'undefined' || selLength === '' || selLength === null) ? textarea.value.length : selLength;
-		selStart = textarea.selectionStart;
-		selEnd = textarea.selectionEnd;
-
-		if (selEnd === 1 || selEnd === 2) {
-			selEnd = selLength;
-		}
-
-		s1 = (textarea.value).substring(0, selStart);
-		s2 = (textarea.value).substring(selStart, selEnd);
-		s3 = (textarea.value).substring(selEnd, selLength);
-		theSelection = s2;
-	}
-
-	switch (bbcode) {
-		case 'abbc3_plain':
-			if (theSelection) {
-				try {
-					var tempSelection = bbcodeToPlain(theSelection);
-
-					if ((clientVer >= 4) && is_ie && is_win) {
-						document.selection.createRange().text = tempSelection;
-					}
-					else if (textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0)) {
-						textarea.value = s1 + tempSelection + s3;
-						selEnd = textarea.selectionEnd = (textarea.value).substring(0, selStart).length + tempSelection.length;
-					}
-				} catch (e) {}
-			} else {
-				alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
-				return;
-			}
-			break;
-
-		case 'abbc3_copy':
-			if (theSelection) {
-				copyPaste = theSelection;
-			} else {
-				alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
-				return;
-			}
-			break;
-
-		case 'abbc3_paste':
-			if (copyPaste) {
-				bbfontstyle(copyPaste, '');
-			} else {
-				alert('{{ lang('ABBC3_PASTE_ERROR')|e("js") }}');
-			}
-			break;
-
-		case 'align=':
-			bbfontstyle('[align=center]', '[/align]');
-			break;
-
-		case 'float=':
-			bbfontstyle('[float=left]', '[/float]');
-			break;
-
-		case 'dir=':
-			bbfontstyle('[dir=rtl]', '[/dir]');
-			break;
-
-		case 'marq=':
-			bbfontstyle('[marq=left]', '[/marq]');
-			break;
-
-		case 'mod=':
-			bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
-			break;
-
-		case 'highlight=':
-			bbfontstyle('[highlight=yellow]', '[/highlight]');
-			break;
-
-		case 'glow=':
-			bbfontstyle('[glow=red]', '[/glow]');
-			break;
-
-		case 'shadow=':
-			bbfontstyle('[shadow=blue]', '[/shadow]');
-			break;
-
-		case 'dropshadow=':
-			bbfontstyle('[dropshadow=blue]', '[/dropshadow]');
-			break;
-
-		case 'blur=':
-			bbfontstyle('[blur=blue]', '[/blur]');
-			break;
-
-		case 'BBvideo=':
-			if (theSelection || phpbb.isTouch) {
-				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
-			} else {
-				bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', 'bbvideo');
-			}
-			break;
-
-		case 'url':
-			if (theSelection || phpbb.isTouch) {
-				bbstyle(16);
-			} else {
-				bbwizard('{{ UA_ABBC3_URL_WIZARD }}', 'url');
-			}
-			break;
-
-		default:
-			bbstyle(bbcodeId);
-			break;
-	}
-
-	theSelection = '';
-}
-
-</script>
-
-{% set ABBC3_ICONS = ROOT_PATH ~ ABBC3_BBCODE_ICONS %}
-
+{% EVENT vse_abbc3_posting_editor_buttons_before %}
 <div id="abbc3_buttons">
-	<div class="abbc3_buttons_row">
-		<a class="fa fa-bold" accesskey="b" name="addbbcode0" value=" " onclick="bbstyle(0)" title="{{ lang('BBCODE_B_HELP') }}"></a>
-		<a class="fa fa-italic" accesskey="i" name="addbbcode2" value=" " onclick="bbstyle(2)" title="{{ lang('BBCODE_I_HELP') }}"></a>
-		<a class="fa fa-underline" accesskey="u" name="addbbcode4" value=" " onclick="bbstyle(4)" title="{{ lang('BBCODE_U_HELP') }}"></a>
+	<div class="abbc3_buttons_row{{ S_ABBC3_BCSTYLE_BAR ? ' abbc3_buttons_row_legacy' }}">
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.bold, 'bbcode-b', 'b', 0, ' B ', 'BBCODE_B_HELP', 'fa-bold', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.italic, 'bbcode-i', 'i', 2, ' i ', 'BBCODE_I_HELP', 'fa-italic', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.underline, 'bbcode-u', 'u', 4, ' u ', 'BBCODE_U_HELP', 'fa-underline', ROOT_PATH) }}
 		{% if S_BBCODE_QUOTE %}
-			<a class="fa fa-quote-right" accesskey="q" name="addbbcode6" value=" " onclick="bbstyle(6)" title="{{ lang('BBCODE_Q_HELP') }}"></a>
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.quote, 'bbcode-quote', 'q', 6, 'Quote', 'BBCODE_Q_HELP', 'fa-quote-left', ROOT_PATH) }}
 		{% endif %}
-
-		<div id="picture-box" class="rozwijany-box menu-toggle">
-			<div id="picture-box-devil" class="rozwijany-box-devil menu-devil">
-				<a class="fa fa-picture-o"></a>
-			</div>
-			<div id="picture-box-all" class="rozwijany-box-all menu-all">
-				{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
-				{% if S_BBCODE_IMG %}
-					<a accesskey="p" name="addbbcode14" value=" " onclick="bbstyle(14)" title="{{ lang('BBCODE_P_HELP') }}">Wstaw znacznik [img]<div class="fa fa-picture-o"></div>[/img]</a>
-				{% endif %}
-			</div>
-		</div>
-
-		<a class="fa fa-code" accesskey="c" name="addbbcode8" value=" " onclick="bbstyle(8)" title="{{ lang('BBCODE_C_HELP') }}"></a>
-
-		<div id="list-box" class="rozwijany-box menu-toggle">
-			<div id="list-box-devil" class="rozwijany-box-devil menu-devil">
-				<a class="fa fa-list-ul"></a>
-			</div>
-			<div id="list-box-all" class="rozwijany-box-all menu-all">
-				<a accesskey="h" name="addbbcode10" value=" " onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}"><div class="fa fa-list-ul"></div> {{ lang('BBCODE_L_HELP') }}</a>
-				<a accesskey="y" name="addlistitem" value=" " onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}"><div class="fa fa-circle"></div> {{ lang('BBCODE_LISTITEM_HELP') }}</a>
-			</div>
-		</div>
-
-		<div id="color-palette" class="rozwijany-box menu-toggle">
-			<div id="color-palette-devil" class="rozwijany-box-devil menu-devil">
-				<input type="button" class="abbc3_button" name="abbc3_bbpalette" value=" " style="background-image:url('{{ ABBC3_ICONS }}/fontcolor.gif');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}" />
-			</div>
-
-			<div id="color-palette-all" class="rozwijany-box-all menu-all">
-				<div id="color_palette_placeholder" class="color_palette_placeholder" data-orientation="h" data-height="12" data-width="15" data-bbcode="true">
-				</div>
-			</div>
-
-		</div>
-
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.code, 'bbcode-code', 'c', 8, 'Code', 'BBCODE_C_HELP', 'fa-code', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listb, 'bbcode-list', 'l', 10, 'List', 'BBCODE_L_HELP', 'fa-list', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listo, 'bbcode-list-', 'o', 12, 'List=', 'BBCODE_O_HELP', 'fa-list-ol', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listitem, 'bbcode-asterisk', 'y', -1, '[*]', 'BBCODE_LISTITEM_HELP', 'fa-asterisk', ROOT_PATH, 'addlistitem') }}
+		{% if S_BBCODE_IMG %}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.img, 'bbcode-img', 'p', 14, 'Img', 'BBCODE_P_HELP', 'fa-image', ROOT_PATH) }}
+		{% endif %}
+		{% if S_LINKS_ALLOWED %}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.url, 'bbcode-url', 'w', 'url', 'URL', 'BBCODE_W_HELP', 'fa-link', ROOT_PATH, 'addbbcode16', 'bbspecial') }}
+		{% endif %}
+		{% if S_BBCODE_FLASH %}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.flash, 'bbcode-flash', 'd', 18, 'Flash', 'BBCODE_D_HELP', 'fa-flash', ROOT_PATH) }}
+		{% endif %}
+		{% if S_BBCODE_MEDIA %}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.media, 'bbcode-media', 'm', 'media', 'Media', 'BBCODE_MEDIA_HELP', 'fa-television', ROOT_PATH, 'addmedia', 'bbspecial') }}
+		{% endif %}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.fontcolor, 'bbcode-color', '', '', (not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR')), 'BBCODE_S_HELP', 'fa-tint', ROOT_PATH, 'abbc3_bbpalette', 'change_palette') }}
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 			<option value="50">{{ lang('FONT_TINY') }}</option>
 			<option value="85">{{ lang('FONT_SMALL') }}</option>
@@ -221,77 +50,66 @@ function bbspecial(bbcode, bbcodeId) {
 				{% endif %}
 			{% endif %}
 		</select>
-		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/plain.gif');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
-
-	{% if loops.custom_tags %}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.copy, 'bbcode-copy', '', 'abbc3_copy', 'copy', 'ABBC3_COPY_BBCODE', 'fa-copy', ROOT_PATH, 'copybbcode', 'bbspecial') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.paste, 'bbcode-paste', '', 'abbc3_paste', 'paste', 'ABBC3_PASTE_BBCODE', 'fa-paste', ROOT_PATH, 'pastebbcode', 'bbspecial') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.plain, 'bbcode-plain', '', 'abbc3_plain', 'clear', 'ABBC3_PLAIN_BBCODE', 'fa-trash', ROOT_PATH, 'plainbbcode', 'bbspecial') }}
+		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
+	</div>
+	{% if custom_tags %}
+		<div class="abbc3_buttons_row{{ S_ABBC3_BCSTYLE_BAR ? ' abbc3_buttons_row_legacy' }}" style="border-top:0;">
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
-			{% for custom_tag in loops.custom_tags %}
+			{% for custom_tag in custom_tags %}
 				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
-					{% if custom_tag.BBCODE_TAG == 'font=' %}
-						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
-							<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
-							<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
-								<option style="font-family: Arial, sans-serif;" value="Arial">Arial</option>
-								<option style="font-family: Arial Black, sans-serif;" value="Arial Black">Arial Black</option>
-								<option style="font-family: Comic Sans MS, sans-serif;" value="Comic Sans MS">Comic Sans MS</option>
-								<option style="font-family: Courier New, sans-serif;" value="Courier New">Courier New</option>
-								<option style="font-family: Georgia, sans-serif;" value="Georgia">Georgia</option>
-								<option style="font-family: Impact, sans-serif;" value="Impact">Impact</option>
-								<option style="font-family: Times New Roman, sans-serif;" value="Times New Roman">Times New Roman</option>
-								<option style="font-family: Trebuchet MS, sans-serif;" value="Trebuchet MS">Trebuchet MS</option>
-								<option style="font-family: Verdana, sans-serif;" value="Verdana">Verdana</option>
-							</optgroup>
-							<optgroup label="{{ lang('ABBC3_FONT_FANCY') }}">
-								<option style="font-family: Bradley Hand ITC, sans-serif;" value="Bradley Hand ITC" >Bradley Hand ITC</option>
-								<option style="font-family: Century Gothic, sans-serif;" value="Century Gothic" >Century Gothic</option>
-								<option style="font-family: Curlz MT, sans-serif;" value="Curlz MT">Curlz MT</option>
-								<option style="font-family: cursive, sans-serif;" value="cursive">Cursive</option>
-								<option style="font-family: fantasy, sans-serif;" value="fantasy">Fantasy</option>
-								<option style="font-family: French Script MT, sans-serif;" value="French Script MT">French Script MT</option>
-								<option style="font-family: Garamond, sans-serif;" value="Garamond">Garamond</option>
-								<option style="font-family: Garamond Bold, sans-serif;" value="Garamond Bold">Garamond Bold</option>
-								<option style="font-family: Goudy Stout, sans-serif;" value="Goudy Stout">Goudy Stout</option>
-								<option style="font-family: Helvetica, sans-serif;" value="Helvetica">Helvetica</option>
-								<option style="font-family: monospace, sans-serif;" value="monospace">Monospace</option>
-								<option style="font-family: OCR A Extended, sans-serif;" value="OCR A Extended">OCR A Extended</option>
-								<option style="font-family: Script MT Bold, sans-serif;" value="Script MT Bold">Script MT Bold</option>
-							</optgroup>
-							<optgroup label="{{ lang('ABBC3_FONT_WIN') }}">
-								<option style="font-family: Lucida Console, sans-serif;" value="Lucida Console">Lucida Console</option>
-								<option style="font-family: Lucida Sans Unicode, sans-serif;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-								<option style="font-family: Microsoft Sans Serif, sans-serif;" value="Microsoft Sans Serif">Microsoft Sans Serif</option>
-								<option style="font-family: MS Mincho, sans-serif;" value="MS Mincho">MS Mincho</option>
-								<option style="font-family: Palatino Linotype, sans-serif;" value="Palatino Linotype">Palatino Linotype</option>
-								<option style="font-family: Symbol, sans-serif;" value="Symbol">Symbol</option>
-								<option style="font-family: Tahoma, sans-serif;" value="Tahoma">Tahoma</option>
-							</optgroup>
-						</select>
+					{% if custom_tag.BBCODE_TAG in ['font=', 'font'] %}
+						{% if S_ALLOW_CDN %}
+							{% if abbc3_google_fonts is not iterable %}{% set abbc3_google_fonts = [] %}{% endif %}
+							{% set abbc3_google_fonts = abbc3_google_fonts|merge(['Open Sans']) %}
+						{% endif %}
+						{% if abbc3_google_fonts is iterable %}{% set ABBC3_BBCODE_FONTS = { ABBC3_GOOGLE_FONTS: abbc3_google_fonts|sort }|merge(ABBC3_BBCODE_FONTS) %}{% endif %}
+						{% if constant('IN_ADMIN') is defined %}
+							<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
+								<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
+								{% for group, fonts in ABBC3_BBCODE_FONTS %}
+									{% if loop.length > 1 %}<optgroup label="{{ lang(group) }}">{% endif %}
+										{% for font in fonts %}
+											<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
+										{% endfor %}
+									{% if loop.length > 1 %}</optgroup>{% endif %}
+								{% endfor %}
+							</select>
+						{% else %}
+							<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
+								<a href="#" class="dropdown-trigger button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ lang('ABBC3_FONT_BBCODE') }} <i class="icon fa-fw fa-caret-down"></i></a>
+								<div class="dropdown">
+									<ul class="dropdown-contents" role="menu">
+										{% for group, fonts in ABBC3_BBCODE_FONTS %}
+											{% if loop.length > 1 %}
+											<li class="abbc3_font_menu_disabled">{{ lang(group) }}</li>
+											<li>
+												<ul>
+											{% endif %}
+													{% for font in fonts %}
+														<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
+													{% endfor %}
+											{% if loop.length > 1 %}
+												</ul>
+											</li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						{% endif %}
 					{% else %}
-						<input type="button" class="abbc3_button" name="addbbcode{{ custom_tag.BBCODE_ID }}" value=" {{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }} "{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}"<!-- IF custom_tag.BBCODE_TAG == 'l' --> accesskey="l"<!-- ENDIF --><!-- IF custom_tag.BBCODE_TAG == 'v' --> accesskey="v"<!-- ENDIF --><!-- IF custom_tag.BBCODE_TAG == 't' --> accesskey="t"<!-- ENDIF --><!-- IF custom_tag.BBCODE_TAG == 'align=' --> accesskey="a"<!-- ENDIF --> />
+						<button type="button" class="{{ custom_tag.BBCODE_IMG ? 'abbc3_button' : 'button button-secondary bbcode-' ~ custom_tag.BBCODE_TAG_CLEAN }}" name="addbbcode{{ custom_tag.BBCODE_ID }}" value="{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}"{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}</button>
 					{% endif %}
 				{% endif %}
 			{% endfor %}
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_append %}
-
-			<!-- EVENT posting_editor_smilies_before -->
-			<!-- IF S_SMILIES_ALLOWED and .smiley -->
-			<div id="smiley-box" class="smiley-box rozwijany-box menu-toggle">
-				<div id="smiley-box-devil" class="rozwijany-box-devil menu-devil">
-					<img src="./images/smilies/icon_twisted_bw.gif" width="15" height="17">
-				</div>
-				<div id="smiley-box-all" class="rozwijany-box-all menu-all">
-					<!-- BEGIN smiley -->
-						<a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a>
-					<!-- END smiley -->
-					<!-- IF S_SHOW_SMILEY_LINK and S_SMILIES_ALLOWED -->
-						<br /><a href="{U_MORE_SMILIES}" onclick="popup(this.href, 750, 350, '_phpbbsmilies'); return false;">{L_MORE_SMILIES}</a>
-					<!-- ENDIF -->
-				</div>
-			</div>
-			<!-- ENDIF -->
-			<!-- EVENT posting_editor_smilies_after -->
-
 		</div>
 	{% endif %}
 </div>
+{% EVENT vse_abbc3_posting_editor_buttons_after %}
+{% EVENT vse_abbc3_posting_editor_wizard_before %}
 <div id="bbcode_wizard"></div>
+{% EVENT vse_abbc3_posting_editor_wizard_after %}

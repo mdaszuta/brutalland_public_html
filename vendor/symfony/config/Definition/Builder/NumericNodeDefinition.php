@@ -11,6 +11,8 @@
 
 namespace Symfony\Component\Config\Definition\Builder;
 
+use Symfony\Component\Config\Definition\Exception\InvalidDefinitionException;
+
 /**
  * Abstract class that contains common code of integer and float node definitions.
  *
@@ -26,14 +28,14 @@ abstract class NumericNodeDefinition extends ScalarNodeDefinition
      *
      * @param mixed $max
      *
-     * @return NumericNodeDefinition
+     * @return $this
      *
      * @throws \InvalidArgumentException when the constraint is inconsistent
      */
     public function max($max)
     {
         if (isset($this->min) && $this->min > $max) {
-            throw new \InvalidArgumentException(sprintf('You cannot define a max(%s) as you already have a min(%s)', $max, $this->min));
+            throw new \InvalidArgumentException(sprintf('You cannot define a max(%s) as you already have a min(%s).', $max, $this->min));
         }
         $this->max = $max;
 
@@ -45,14 +47,14 @@ abstract class NumericNodeDefinition extends ScalarNodeDefinition
      *
      * @param mixed $min
      *
-     * @return NumericNodeDefinition
+     * @return $this
      *
      * @throws \InvalidArgumentException when the constraint is inconsistent
      */
     public function min($min)
     {
         if (isset($this->max) && $this->max < $min) {
-            throw new \InvalidArgumentException(sprintf('You cannot define a min(%s) as you already have a max(%s)', $min, $this->max));
+            throw new \InvalidArgumentException(sprintf('You cannot define a min(%s) as you already have a max(%s).', $min, $this->max));
         }
         $this->min = $min;
 
@@ -62,12 +64,10 @@ abstract class NumericNodeDefinition extends ScalarNodeDefinition
     /**
      * {@inheritdoc}
      *
-     * @deprecated Deprecated since version 2.8, to be removed in 3.0.
+     * @throws InvalidDefinitionException
      */
     public function cannotBeEmpty()
     {
-        @trigger_error('The '.__METHOD__.' method is deprecated since version 2.8 and will be removed in 3.0.', E_USER_DEPRECATED);
-
-        return parent::cannotBeEmpty();
+        throw new InvalidDefinitionException('->cannotBeEmpty() is not applicable to NumericNodeDefinition.');
     }
 }

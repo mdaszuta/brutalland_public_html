@@ -58,7 +58,7 @@ class controller
 	public function markpostunread($return_forum_id, $unread_post_id)
 	{
 		$this->user->add_lang_ext('kasimi/markpostunread', 'common');
-		$this->core->mark_unread_post($return_forum_id, $unread_post_id);
+		$this->core->mark_unread_post($unread_post_id);
 
 		$return_index = append_sid($this->core->root_path . 'index.' . $this->core->php_ext);
 		$return_forum = append_sid($this->core->root_path . 'viewforum.' . $this->core->php_ext, 'f=' . $return_forum_id);
@@ -67,8 +67,8 @@ class controller
 
 		return $this->helper->message('MARKPOSTUNREAD_REDIRECT_FORMAT', array(
 			$this->user->lang('MARKPOSTUNREAD_MARKED_UNREAD'),
-			sprintf($this->user->lang('RETURN_FORUM'), '<a href="' . $return_forum . '">', '</a>'),
-			sprintf($this->user->lang('RETURN_INDEX'), '<a href="' . $return_index . '">', '</a>'),
+			$this->user->lang('RETURN_FORUM', '<a href="' . $return_forum . '">', '</a>'),
+			$this->user->lang('RETURN_INDEX', '<a href="' . $return_index . '">', '</a>'),
 		));
 	}
 
@@ -82,7 +82,7 @@ class controller
 	public function searchunread()
 	{
 		// Don't allow usage if default behaviour is selected
-		if ($this->core->cfg('unread_posts_link') == 0)
+		if (!$this->core->cfg('unread_posts_link'))
 		{
 			throw new http_exception(403, 'NOT_AUTHORISED');
 		}

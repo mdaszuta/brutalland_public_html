@@ -71,8 +71,12 @@ require($phpbb_root_path . 'includes/compatibility_globals.' . $phpEx);
 
 register_compatibility_globals();
 
+/** @var \phpbb\config\config $config */
+$config = $phpbb_container->get('config');
+
 /** @var \phpbb\language\language $language */
 $language = $phpbb_container->get('language');
+$language->set_default_language($config['default_lang']);
 $language->add_lang(array('common', 'acp/common', 'cli'));
 
 /* @var $user \phpbb\user */
@@ -80,7 +84,7 @@ $user = $phpbb_container->get('user');
 $user->data['user_id'] = ANONYMOUS;
 $user->ip = '127.0.0.1';
 
-$application = new \phpbb\console\application('phpBB Console', PHPBB_VERSION, $language);
+$application = new \phpbb\console\application('phpBB Console', PHPBB_VERSION, $language, $config);
 $application->setDispatcher($phpbb_container->get('dispatcher'));
 $application->register_container_commands($phpbb_container->get('console.command_collection'));
 $application->run($input);

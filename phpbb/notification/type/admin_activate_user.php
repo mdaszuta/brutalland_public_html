@@ -150,7 +150,7 @@ class admin_activate_user extends \phpbb\notification\type\base
 		$username = $this->user_loader->get_username($this->item_id, 'username');
 
 		return array(
-			'USERNAME'			=> htmlspecialchars_decode($username),
+			'USERNAME'			=> html_entity_decode($username, ENT_COMPAT),
 			'U_USER_DETAILS'	=> "{$board_url}/memberlist.{$this->php_ext}?mode=viewprofile&u={$this->item_id}",
 			'U_ACTIVATE'		=> "{$board_url}/ucp.{$this->php_ext}?mode=activate&u={$this->item_id}&k={$this->get_data('user_actkey')}",
 		);
@@ -175,7 +175,7 @@ class admin_activate_user extends \phpbb\notification\type\base
 	/**
 	* {@inheritdoc}
 	*/
-	public function create_insert_array($user, $pre_create_data)
+	public function create_insert_array($user, $pre_create_data = array())
 	{
 		$this->set_data('user_actkey', $user['user_actkey']);
 		$this->notification_time = $user['user_regdate'];

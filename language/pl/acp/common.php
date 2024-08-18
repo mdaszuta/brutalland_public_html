@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2015-02-02 21:45:45 Zespół Olympus.pl $
-* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.10 - 04.03.2023, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -226,18 +226,8 @@ $lang = array_merge($lang, array(
 	'ADM_LOGGED_OUT'		=> 'Wylogowano z panelu administracji',
 
 	'BACK'					=> 'Wstecz',
-	
-	'CANNOT_CHANGE_FILE_GROUP'	=> 'Nie można zmienić pliku grupy',
-	'CANNOT_CHANGE_FILE_PERMISSIONS'	=> 'Nie można zmienić uprawnień pliku',
-	'CANNOT_COPY_FILES'		=> 'Nie można skopiować plików',
-	'CANNOT_CREATE_SYMLINK'	=> 'Nie można utworzyć symlinku',
-	'CANNOT_DELETE_FILES'	=> 'Nie można usunąć plików w systemie',
-	'CANNOT_DUMP_FILE'		=> 'Nie można zrzucić pliku',
-	'CANNOT_MIRROR_DIRECTORY'	=> 'Nie można skopiować folderu',
-	'CANNOT_RENAME_FILE'	=> 'Nie można zmienić nazwy pliku w systemie',
-	'CANNOT_TOUCH_FILES'	=> 'Nie można stwierdzić czy plik istnieje w systemie',
 
-	'CONTAINER_EXCEPTION' => 'phpBB encountered an error building the container due to an installed extension. For this reason, all extensions have been temporarily disabled. Please try purging your forum cache. All extensions will automatically be re-enabled once the container error is resolved. If this error continues, please visit <a href="https://www.phpbb.com/support">phpBB.com</a> for support.',
+	'CONTAINER_EXCEPTION' => 'Z powodu zainstalowanych rozszerzeń phpBB napotkał problem podczas budowania kontenera. Wszystkie rozszerzenia zostały tymczasowo wyłączone. Należy wyczyścić pamięć podręczną forum. Wszystkie rozszerzenia zostaną automatycznie włączone, gdy błąd zostanie rozwiązany. Jeśli problem nadal występuję, odwiedź stronę <a href="https://www.phpbb.com/support">phpBB.com</a> lub <a href="http://www.phpbb.pl/">phpBB.pl</a>.',
 	'EXCEPTION' => 'Wyjątek',
 
 	'COLOUR_SWATCH'			=> 'Wybierz kolor',
@@ -246,6 +236,7 @@ $lang = array_merge($lang, array(
 	'CRON_NO_SUCH_TASK'		=> 'Nie można znaleźć zadania „%s”.',
 	'CRON_NO_TASK'			=> 'Nie ma potrzeby uruchamiania zadań teraz.',
 	'CRON_NO_TASKS'			=> 'Nie znaleziono zadań.',
+	'CSV_INVALID'			=> 'Wprowadzone ustawienia pliku .csv “%1$s” są nieprawidłowe. Dane powinny być oddzielone wyłącznie przecinkami. Nie powinny zawierać innych znaków początkowych lub końcowych.',
 	'CURRENT_VERSION'		=> 'Zainstalowana wersja',
 
 	'DEACTIVATE'				=> 'Dezaktywuj',
@@ -326,6 +317,8 @@ $lang = array_merge($lang, array(
 	'TOTAL_SIZE'			=> 'Rozmiar całkowity',
 
 	'UCP'					=> 'Panel zarządzania kontem',
+	'URL_INVALID'			=> 'Wprowadzony adres URL dla ustawień “%1$s” jest nieprawidłowy.',
+	'URL_SCHEME_INVALID'	=> 'Wprowadzony schemat “%2$s” w ustawieniach pliku .csv “%1$s” jest nieprawidłowy. Schemat powinien zaczynać się od łacińskiego znaku, po którym występuje znak alfanumeryczny, myślnik lub kropka.',
 	'USERNAMES_EXPLAIN'		=> 'Każdą nazwę użytkownika wpisz w osobnym wierszu.',
 	'USER_CONTROL_PANEL'	=> 'Panel zarządzania kontem',
 	
@@ -373,15 +366,17 @@ $lang = array_merge($lang, array(
 	'DATABASE_SERVER_INFO'	=> 'Typ bazy danych',
 	'DATABASE_SIZE'			=> 'Rozmiar bazy danych',
 
-	// Enviroment configuration checks, mbstring related
+	// Environment configuration checks, mbstring related
 	'ERROR_MBSTRING_FUNC_OVERLOAD'					=> 'Funkcja przeładowania jest nieprawidłowo skonfigurowana',
-	'ERROR_MBSTRING_FUNC_OVERLOAD_EXPLAIN'			=> 'Funkcję <var>mbstring.func_overload</var> należy ustawić na 0 lub 4. Aktualne wartości można sprawdzić na stronie <samp>informacji o PHP</samp>.',
+	'ERROR_MBSTRING_FUNC_OVERLOAD_EXPLAIN'			=> 'Funkcję <var>mbstring.func_overload</var> należy ustawić na 0 lub 4. Aktualną wartość można sprawdzić na stronie <samp>informacji o PHP</samp>.',
 	'ERROR_MBSTRING_ENCODING_TRANSLATION'			=> 'Filtr jawnego kodowania znaków jest nieprawidłowo skonfigurowany',
-	'ERROR_MBSTRING_ENCODING_TRANSLATION_EXPLAIN'	=> 'Filtr <var>mbstring.encoding_translation</var> należy ustawić na 0. Aktualne wartości można sprawdzić na stronie <samp>informacji o PHP</samp>.',
+	'ERROR_MBSTRING_ENCODING_TRANSLATION_EXPLAIN'	=> 'Filtr <var>mbstring.encoding_translation</var> należy ustawić na 0. Aktualną wartość można sprawdzić na stronie <samp>informacji o PHP</samp>.',
 	'ERROR_MBSTRING_HTTP_INPUT'						=> 'Funkcja konwersji znaków danych wejściowych (HTTP input) jest nieprawidłowo skonfigurowana',
-	'ERROR_MBSTRING_HTTP_INPUT_EXPLAIN'				=> 'Funkcję <var>mbstring.http_input</var> należy ustawić na <samp>pass</samp>. Aktualne wartości można sprawdzić na stronie <samp>informacji o PHP</samp>.',
+	'ERROR_MBSTRING_HTTP_INPUT_EXPLAIN'				=> 'Funkcja <var>mbstring.http_input</var> musi pozostać pusta. Aktualną wartość można sprawdzić na stronie <samp>informacji o PHP</samp>.',
 	'ERROR_MBSTRING_HTTP_OUTPUT'					=> 'Funkcja konwersji znaków danych wyjściowych (HTTP output) jest nieprawidłowo skonfigurowana',
-	'ERROR_MBSTRING_HTTP_OUTPUT_EXPLAIN'			=> 'Funkcję <var>mbstring.http_output</var> należy ustawić na <samp>pass</samp>. Aktualne wartości można sprawdzić na stronie <samp>informacji o PHP</samp>.',
+	'ERROR_MBSTRING_HTTP_OUTPUT_EXPLAIN'			=> 'Funkcja <var>mbstring.http_output</var> musi pozostać pusta. Aktualną wartość można sprawdzić na stronie <samp>informacji o PHP</samp>.',
+	'ERROR_DEFAULT_CHARSET'							=> 'Domyślne kodowanie jest niepoprawnie skonfigurowane.',
+	'ERROR_DEFAULT_CHARSET_EXPLAIN'					=> 'Domyślne kodowanie <var>default_charset</var> musi być ustawiony na <samp>UTF-8</samp>. Aktualną wartość można sprawdzić na stronie <samp>informacji o PHP</samp>.',
 
 	'FILES_PER_DAY'		=> 'Średnia liczba załączników dziennie',
 	'FORUM_STATS'		=> 'Statystyki witryny',
@@ -396,7 +391,8 @@ $lang = array_merge($lang, array(
 	'NUMBER_USERS'		=> 'Liczba użytkowników',
 	'NUMBER_ORPHAN'		=> 'Liczba osieroconych załączników',
 
-	'PHP_VERSION_OLD'	=> 'Nowe wersje phpBB nie będą obsługiwały wersji PHP znajdującej się na tym serwerze. %sSzczegóły%s',
+	'PHP_VERSION'		=> 'Wersja PHP',
+	'PHP_VERSION_OLD'	=> 'Wersja PHP na tym serwerze (%1$s) nie będzie wspierana przez kolejne wersje phpBB. Minimalna wymagana wersja PHP to %2$s. %3$sSzczegóły%4$s',
 
 	'POSTS_PER_DAY'		=> 'Średnia liczba postów dziennie',
 
@@ -419,7 +415,7 @@ $lang = array_merge($lang, array(
 	'RESYNC_POSTCOUNTS'				=> 'Synchronizuj liczniki postów',
 	'RESYNC_POSTCOUNTS_EXPLAIN'		=> 'Zostaną wzięte pod uwagę tylko istniejące posty. Usunięte posty nie będą liczone.',
 	'RESYNC_POSTCOUNTS_CONFIRM'		=> 'Czy na pewno chcesz ponownie zsynchronizować liczniki postów?',
-	'RESYNC_POSTCOUNTS_SUCCESS'			=> 'Liczniki postów zostały ponownie zsynchronizowane',
+	'RESYNC_POSTCOUNTS_SUCCESS'		=> 'Liczniki postów zostały ponownie zsynchronizowane',
 	'RESYNC_POST_MARKING'			=> 'Synchronizuj oznaczone tematy',
 	'RESYNC_POST_MARKING_CONFIRM'	=> 'Czy na pewno chcesz ponownie zsynchronizować oznaczone tematy?',
 	'RESYNC_POST_MARKING_EXPLAIN'	=> 'Najpierw ze wszystkich tematów zostaną usunięte znaczniki, a następnie zostaną oznaczone poprawnie te tematy, w których odnotowano aktywność w ciągu ostatnich sześciu miesięcy.',
@@ -440,16 +436,19 @@ $lang = array_merge($lang, array(
 	'UPLOAD_DIR_SIZE'	=> 'Łączny rozmiar załączników',
 	'USERS_PER_DAY'		=> 'Średnia liczba rejestracji dziennie',
 
-	'VALUE'						=> 'Wartość',
-	'VERSIONCHECK_FAIL'			=> 'Nie udało się uzyskać informacji o ostatniej wersji.',
-	'VERSIONCHECK_FORCE_UPDATE'	=> 'Sprawdź wersję',
-	'VERSION_CHECK'				=> 'Sprawdź wersję',
-	'VERSION_CHECK_EXPLAIN'		=> 'Sprawdź czy posiadasz aktualną wersję skryptu phpBB.',
+	'VALUE'							=> 'Wartość',
+	'VERSIONCHECK_FAIL'				=> 'Nie udało się uzyskać informacji o ostatnim wydaniu.',
+	'VERSIONCHECK_FORCE_UPDATE'		=> 'Sprawdź wersję',
+	'VERSION_CHECK'					=> 'Sprawdź wersję',
+	'VERSION_CHECK_EXPLAIN'			=> 'Sprawdź, czy posiadasz aktualną wersję skryptu phpBB.',
+	'VERSIONCHECK_INVALID_ENTRY'	=> 'Informacja o ostatnim wydaniu zawiera błędny wpis.',
+	'VERSIONCHECK_INVALID_URL'		=> 'Informacja o ostatnim wydaniu zawieraj błędny adres URL.',
+	'VERSIONCHECK_INVALID_VERSION'	=> 'Informacja o ostatnim wydaniu zawieraj błędną wersję.',
 	'VERSION_NOT_UP_TO_DATE_ACP'	=> 'Twoja wersja skryptu phpBB jest nieaktualna.<br />Kliknij poniższy link, aby dowiedzieć się więcej o najnowszej wersji phpBB oraz jak przeprowadzić aktualizację.',
 	'VERSION_NOT_UP_TO_DATE_TITLE'	=> 'Twoja wersja skryptu phpBB jest nieaktualna.',
-	'VERSION_UP_TO_DATE_ACP'	=> 'Posiadasz najnowszą wersję skryptu phpBB. Nie trzeba jej aktualizować.',
-	'VIEW_ADMIN_LOG'			=> 'Dziennik administratorów',
-	'VIEW_INACTIVE_USERS'		=> 'Lista nieaktywnych użytkowników',
+	'VERSION_UP_TO_DATE_ACP'		=> 'Posiadasz najnowszą wersję skryptu phpBB. Nie trzeba jej aktualizować.',
+	'VIEW_ADMIN_LOG'				=> 'Dziennik administratorów',
+	'VIEW_INACTIVE_USERS'			=> 'Lista nieaktywnych użytkowników',
 
 	'WELCOME_PHPBB'			=> 'Witamy w phpBB',
 	'WRITABLE_CONFIG'		=> 'Plik konfiguracyjny (config.php) ma obecnie atrybut „do zapisu”. Zalecamy zmianę tego atrybutu na wartość 640 lub przynajmniej 644 (zobacz <a href="http://pl.wikipedia.org/wiki/Chmod" rel="external">chmod</a> i ustaw 640 config.php).',
@@ -506,13 +505,13 @@ $lang = array_merge($lang, array(
 	'LOG_ACL_ADD_ADMIN_GLOBAL_A_'		=> '<strong>Dodano lub zmieniono administratorów</strong><br />» %s',
 	'LOG_ACL_ADD_MOD_GLOBAL_M_'			=> '<strong>Dodano lub zmieniono globalnych moderatorów</strong><br />» %s',
 
-	'LOG_ACL_ADD_USER_LOCAL_F_'			=> '<strong>Dodano lub zmieniono użytkownikowi uprawnienia dostępu do forów</strong> z %1$s<br />» %2$s',
-	'LOG_ACL_ADD_USER_LOCAL_M_'			=> '<strong>Dodano lub zmieniono użytkownikowi uprawnienia moderatora forum</strong> z %1$s<br />» %2$s',
-	'LOG_ACL_ADD_GROUP_LOCAL_F_'		=> '<strong>Dodano lub zmieniono grupie uprawnienia dostępu do forum</strong> z %1$s<br />» %2$s',
-	'LOG_ACL_ADD_GROUP_LOCAL_M_'		=> '<strong>Dodano lub zmieniono grupie uprawnienia moderatora forum</strong> z %1$s<br />» %2$s',
+	'LOG_ACL_ADD_USER_LOCAL_F_'			=> '<strong>Dodano lub zmieniono użytkownikowi uprawnienia dostępu do forów</strong> na %1$s<br />» %2$s',
+	'LOG_ACL_ADD_USER_LOCAL_M_'			=> '<strong>Dodano lub zmieniono użytkownikowi uprawnienia moderatora forum</strong> na %1$s<br />» %2$s',
+	'LOG_ACL_ADD_GROUP_LOCAL_F_'		=> '<strong>Dodano lub zmieniono grupie uprawnienia dostępu do forum</strong> na %1$s<br />» %2$s',
+	'LOG_ACL_ADD_GROUP_LOCAL_M_'		=> '<strong>Dodano lub zmieniono grupie uprawnienia moderatora forum</strong> na %1$s<br />» %2$s',
 
-	'LOG_ACL_ADD_MOD_LOCAL_M_'			=> '<strong>Dodano lub zmieniono moderatorów</strong> z %1$s<br />» %2$s',
-	'LOG_ACL_ADD_FORUM_LOCAL_F_'		=> '<strong>Dodano lub zmieniono uprawnienia dostępu do forum</strong> z %1$s<br />» %2$s',
+	'LOG_ACL_ADD_MOD_LOCAL_M_'			=> '<strong>Dodano lub zmieniono moderatorów</strong> na %1$s<br />» %2$s',
+	'LOG_ACL_ADD_FORUM_LOCAL_F_'		=> '<strong>Dodano lub zmieniono uprawnienia dostępu do forum</strong> na %1$s<br />» %2$s',
 
 	'LOG_ACL_DEL_ADMIN_GLOBAL_A_'		=> '<strong>Usunięto administratorów</strong><br />» %s',
 	'LOG_ACL_DEL_MOD_GLOBAL_M_'			=> '<strong>Usunięto moderatorów globalnych</strong><br />» %s',
@@ -549,6 +548,7 @@ $lang = array_merge($lang, array(
 	'LOG_BBCODE_ADD'		=> '<strong>Dodano nowy znacznik BBCode</strong><br />» %s',
 	'LOG_BBCODE_EDIT'		=> '<strong>Edytowano BBCode</strong><br />» %s',
 	'LOG_BBCODE_DELETE'		=> '<strong>Usunięto znacznik BBCode</strong><br />» %s',
+	'LOG_BBCODE_CONFIGURATION_ERROR'	=> '<strong>Wystąpił błąd podczas konfiguracji znacznika BBCode</strong>: %1$s<br />» %2$s',
 
 	'LOG_BOT_ADDED'		=> '<strong>Dodano nowego bota</strong><br />» %s',
 	'LOG_BOT_DELETE'	=> '<strong>Usunięto bota</strong><br />» %s',
@@ -739,6 +739,10 @@ $lang = array_merge($lang, array(
 	'LOG_SEARCH_INDEX_CREATED'	=> '<strong>Utworzono indeks wyszukiwania dla</strong><br />» %s',
 	'LOG_SEARCH_INDEX_REMOVED'	=> '<strong>Usunięto indeks wyszukiwania dla</strong><br />» %s',
 	'LOG_SPHINX_ERROR'			=> '<strong>Błąd Sphinx</strong><br />» %s',
+	
+	'LOG_SPAMHAUS_OPEN_RESOLVER'		=> 'Spamhaus nie zezwala na zapytania z użyciem otwartego rozpoznawania (resolwera). Sprawdzanie czarnej listy zostało wyłączone. Aby uzyskać więcej informacji, zobacz https://www.spamhaus.com/product/help-for-spamhaus-public-mirror-users/.',
+	'LOG_SPAMHAUS_VOLUME_LIMIT'			=> 'Przekroczono limit liczby zapytań Spamhaus. Sprawdzanie czarnej listy zostało wyłączone. Aby uzyskać więcej informacji, zobacz https://www.spamhaus.com/product/help-for-spamhaus-public-mirror-users/.',
+	
 	'LOG_STYLE_ADD'				=> '<strong>Zainstalowano nowy styl</strong><br />» %s',
 	'LOG_STYLE_DELETE'			=> '<strong>Usunięto styl</strong><br />» %s',
 	'LOG_STYLE_EDIT_DETAILS'	=> '<strong>Edytowano detale stylu</strong><br />» %s',

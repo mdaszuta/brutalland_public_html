@@ -40,7 +40,7 @@ class p_master
 	* Constuctor
 	* Set module include path
 	*/
-	function p_master($include_path = false)
+	function __construct($include_path = false)
 	{
 		global $phpbb_root_path;
 
@@ -123,7 +123,7 @@ class p_master
 
 		// We "could" build a true tree with this function - maybe mod authors want to use this...
 		// Functions for traversing and manipulating the tree are not available though
-		// We might re-structure the module system to use true trees in 3.2.x...
+		// We might re-structure the module system to use true trees in 4.0
 		// $tree = $this->build_tree($this->module_cache['modules'], $this->module_cache['parents']);
 
 		// Clean up module cache array to only let survive modules the user can access
@@ -243,7 +243,7 @@ class p_master
 				}
 			}
 
-			$depth = sizeof($this->module_cache['parents'][$row['module_id']]);
+			$depth = count($this->module_cache['parents'][$row['module_id']]);
 
 			// We need to prefix the functions to not create a naming conflict
 
@@ -279,7 +279,7 @@ class p_master
 				'parent'	=> (int) $row['parent_id'],
 				'cat'		=> ($row['right_id'] > $row['left_id'] + 1) ? true : false,
 
-				'is_duplicate'	=> ($row['module_basename'] && sizeof($names[$row['module_basename'] . '_' . $row['module_mode']]) > 1) ? true : false,
+				'is_duplicate'	=> ($row['module_basename'] && count($names[$row['module_basename'] . '_' . $row['module_mode']]) > 1) ? true : false,
 
 				'name'		=> (string) $row['module_basename'],
 				'mode'		=> (string) $row['module_mode'],
@@ -431,7 +431,7 @@ class p_master
 		extract($phpbb_dispatcher->trigger_event('core.module_auth', compact($vars)));
 
 		$tokens = $match[0];
-		for ($i = 0, $size = sizeof($tokens); $i < $size; $i++)
+		for ($i = 0, $size = count($tokens); $i < $size; $i++)
 		{
 			$token = &$tokens[$i];
 
@@ -445,7 +445,7 @@ class p_master
 				break;
 
 				default:
-					if (!preg_match('#(?:' . implode(array_keys($valid_tokens), ')|(?:') . ')#', $token))
+					if (!preg_match('#(?:' . implode(')|(?:', array_keys($valid_tokens)) . ')#', $token))
 					{
 						$token = '';
 					}
@@ -662,7 +662,7 @@ class p_master
 		// Add url_extra parameter to u_action url
 		if (!empty($this->module_ary) && $this->active_module !== false && $this->module_ary[$this->active_module_row_id]['url_extra'])
 		{
-			$this->module->u_action .= $this->module_ary[$this->active_module_row_id]['url_extra'];
+			$this->module->u_action .= '&amp;' . $this->module_ary[$this->active_module_row_id]['url_extra'];
 		}
 
 		// Assign the module path for re-usage
@@ -920,7 +920,7 @@ class p_master
 			}
 
 			// Was not allowed in categories before - /*!$item_ary['cat'] && */
-			$u_title .= (isset($item_ary['url_extra'])) ? $item_ary['url_extra'] : '';
+			$u_title .= (isset($item_ary['url_extra']) && $item_ary['url_extra']) ? '&amp;' . $item_ary['url_extra'] : '';
 
 			// Only output a categories items if it's currently selected
 			if (!$depth || ($depth && (in_array($item_ary['parent'], array_values($this->module_cache['parents'])) || $item_ary['parent'] == $this->p_parent)))
@@ -932,6 +932,14 @@ class p_master
 					'S_SELECTED'	=> (isset($this->module_cache['parents'][$item_ary['id']]) || $item_ary['id'] == $this->p_id) ? true : false,
 					'U_TITLE'		=> $u_title
 				);
+
+				if (isset($this->module_cache['parents'][$item_ary['id']]) || $item_ary['id'] == $this->p_id)
+				{
+					$template->assign_block_vars('navlinks', array(
+						'BREADCRUMB_NAME'	=> $item_ary['lang'],
+						'U_BREADCRUMB'		=> $u_title,
+					));
+				}
 
 				$template->assign_block_vars($use_tabular_offset, array_merge($tpl_ary, array_change_key_case($item_ary, CASE_UPPER)));
 			}

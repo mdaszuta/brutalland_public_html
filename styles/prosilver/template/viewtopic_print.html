@@ -8,9 +8,12 @@
 <title>{SITENAME} &bull; {PAGE_TITLE}</title>
 
 <link href="{T_THEME_PATH}/print.css" rel="stylesheet">
+{% if S_CONTENT_DIRECTION eq 'rtl' %}
+	<link href="{T_THEME_PATH}/bidi.css" rel="stylesheet">
+{% endif %}
 <!-- EVENT viewtopic_print_head_append -->
 </head>
-<body id="phpbb">
+<body id="phpbb" class="{S_CONTENT_DIRECTION}">
 <div id="wrap" class="wrap">
 	<a id="top" class="top-anchor" accesskey="t"></a>
 
@@ -37,7 +40,14 @@
 
 	<div id="page-footer" class="page-footer">
 		<div class="page-number">{S_TIMEZONE}<br />{PAGE_NUMBER}</div>
-		<div class="copyright">Powered by phpBB&reg; Forum Software &copy; phpBB Limited<br />https://www.phpbb.com/</div>
+			<div class="copyright">
+				<p>{{ CREDIT_LINE }}
+				</p>
+				{% if TRANSLATION_INFO %}
+				<p>{{ TRANSLATION_INFO }}
+				</p>
+				{% endif %}
+			</div>
 	</div>
 </div>
 

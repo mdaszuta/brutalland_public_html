@@ -153,8 +153,8 @@ abstract class base implements reparser_interface
 		{
 			// Look for the closing tag inside of a e element, in an element of the same name, e.g.
 			// <e>[/url]</e></URL>
-			$match = '<e>[/' . $bbcode . ']</e></' . strtoupper($bbcode) . '>';
-			if (strpos($record['text'], $match) !== false)
+			$match = '<e>[/' . $bbcode . ']</e></' . $bbcode . '>';
+			if (stripos($record['text'], $match) !== false)
 			{
 				return true;
 			}
@@ -198,8 +198,8 @@ abstract class base implements reparser_interface
 	*/
 	protected function guess_magic_url(array $record)
 	{
-		// Look for <!-- m --> or for a URL tag that's not immediately followed by <s>
-		return (strpos($record['text'], '<!-- m -->') !== false || preg_match('(<URL [^>]++>(?!<s>))', $record['text']));
+		// Look for magic URL markers or for a URL tag that's not immediately followed by <s>
+		return preg_match('#<!-- ([lmwe]) -->.*?<!-- \1 -->#', $record['text']) || preg_match('(<URL [^>]++>(?!<s>))', $record['text']);
 	}
 
 	/**
@@ -231,7 +231,10 @@ abstract class base implements reparser_interface
 	*/
 	protected function reparse_record(array $record)
 	{
+		// Guess magic URL state based on actual record content before adding fields
+		$record['enable_magic_url'] = $this->guess_magic_url($record);
 		$record = $this->add_missing_fields($record);
+
 		$flags = ($record['enable_bbcode']) ? OPTION_FLAG_BBCODE : 0;
 		$flags |= ($record['enable_smilies']) ? OPTION_FLAG_SMILIES : 0;
 		$flags |= ($record['enable_magic_url']) ? OPTION_FLAG_LINKS : 0;

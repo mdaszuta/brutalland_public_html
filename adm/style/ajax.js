@@ -1,4 +1,4 @@
-/* global phpbb */
+/* global phpbb, statsData */
 
 (function($) {  // Avoid conflicts with other libraries
 
@@ -74,7 +74,7 @@ phpbb.prepareSendStats = function () {
 			var $sendStatisticsSuccess = $('<input />', {
 				type: 'hidden',
 				name: 'send_statistics_response',
-				value: res
+				value: JSON.stringify(res)
 			});
 			$sendStatisticsSuccess.appendTo('p.submit-buttons');
 
@@ -87,7 +87,7 @@ phpbb.prepareSendStats = function () {
 		$.ajax({
 			url: $this.attr('data-ajax-action').replace('&amp;', '&'),
 			type: 'POST',
-			data: 'systemdata=' + encodeURIComponent($this.find('input[name=systemdata]').val()),
+			data: statsData,
 			success: returnHandler,
 			error: errorHandler,
 			cache: false
@@ -173,7 +173,9 @@ function submitPermissions() {
 	var permissionSubmitSize = 0,
 		permissionRequestCount = 0,
 		forumIds = [],
-		permissionSubmitFailed = false;
+		permissionSubmitFailed = false,
+		clearIndicator = true,
+		$loadingIndicator;
 
 	if ($submitAllButton !== $submitButton) {
 		fieldsetList = $form.find('fieldset#' + $submitButton.closest('fieldset.permissions').id);
@@ -207,6 +209,8 @@ function submitPermissions() {
 		}
 	});
 
+	$loadingIndicator = phpbb.loadingIndicator();
+
 	/**
 	 * Handler for submitted permissions form chunk
 	 *
@@ -222,6 +226,8 @@ function submitPermissions() {
 		} else if (!permissionSubmitFailed && res.S_USER_NOTICE) {
 			// Display success message at the end of submitting the form
 			if (permissionRequestCount >= permissionSubmitSize) {
+				clearIndicator = true;
+
 				var $alert = phpbb.alert(res.MESSAGE_TITLE, res.MESSAGE_TEXT);
 				var $alertBoxLink = $alert.find('p.alert_text > a');
 
@@ -271,6 +277,17 @@ function submitPermissions() {
 						$form.submit();
 					}, res.REFRESH_DATA.time * 1000); // Server specifies time in seconds
 				}
+			} else {
+				// Still more forms to submit, so do not clear indicator
+				clearIndicator = false;
+			}
+		}
+
+		if (clearIndicator) {
+			phpbb.clearLoadingTimeout();
+
+			if ($loadingIndicator) {
+				$loadingIndicator.fadeOut(phpbb.alertTime);
 			}
 		}
 	}
@@ -280,10 +297,11 @@ function submitPermissions() {
 		$.ajax({
 			url: $form.action,
 			type: 'POST',
-			data: formData + '&' + $submitAllButton.name + '=' + encodeURIComponent($submitAllButton.value) +
+			data: formData + '&' + $submitButton.name + '=' + encodeURIComponent($submitButton.value) +
 				'&creation_time=' + $form.find('input[type=hidden][name=creation_time]')[0].value +
 				'&form_token=' + $form.find('input[type=hidden][name=form_token]')[0].value +
-				'&' + $form.children('input[type=hidden]').serialize(),
+				'&' + $form.children('input[type=hidden]').serialize() +
+				'&' + $form.find('input[type=checkbox][name^=inherit]').serialize(),
 			success: handlePermissionReturn,
 			error: handlePermissionReturn
 		});

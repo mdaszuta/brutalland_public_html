@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-07-07 15:34:14 Zespół Olympus.pl $
-* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.12 - 11.06.2024, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -80,10 +80,11 @@ $lang = array_merge($lang, array(
 	'ACL_U_SAVEDRAFTS'	=> 'Zapisywanie kopii roboczych',
 	'ACL_U_CHGCENSORS'	=> 'Wyłączanie cenzury słów',
 	'ACL_U_SIG'			=> 'Używanie podpisu',
+	'ACL_U_EMOJI'		=> 'Używanie emotek w postach i tytule tematów',
 
 	'ACL_U_SENDPM'		=> 'Wysyłanie prywatnych wiadomości',
-	'ACL_U_MASSPM'		=> 'Wysyłanie wiadomości do wielu użytkowników jednocześnie',
-	'ACL_U_MASSPM_GROUP'=> 'Wysyłanie wiadomości do grup',
+	'ACL_U_MASSPM'		=> 'Wysyłanie prywatnych wiadomości do wielu użytkowników jednocześnie',
+	'ACL_U_MASSPM_GROUP'=> 'Wysyłanie prywatnych wiadomości do grup',
 	'ACL_U_READPM'		=> 'Czytanie prywatnych wiadomości',
 	'ACL_U_PM_EDIT'		=> 'Edytowanie swoich prywatnych wiadomości',
 	'ACL_U_PM_DELETE'	=> 'Usuwanie prywatnych wiadomości ze swoich folderów',
@@ -99,7 +100,7 @@ $lang = array_merge($lang, array(
 
 	'ACL_U_SENDEMAIL'	=> 'Wysyłanie e-maili',
 	'ACL_U_SENDIM'		=> 'Wysyłanie błyskawicznych wiadomości',
-	'ACL_U_IGNOREFLOOD'	=> 'Ignorowanie limitu anty-przepełnieniowego',
+	'ACL_U_IGNOREFLOOD'	=> 'Ignorowanie limitu antyspamowego',
 	'ACL_U_HIDEONLINE'	=> 'Ukrywanie obecności na forum',
 	'ACL_U_VIEWONLINE'	=> 'Możliwość widzenia ukrytych użytkowników online',
 	'ACL_U_SEARCH'		=> 'Przeszukiwanie witryny',
@@ -108,6 +109,7 @@ $lang = array_merge($lang, array(
 // Forum Permissions
 $lang = array_merge($lang, array(
 	'ACL_F_LIST'		=> 'Możliwość widzenia forum',
+	'ACL_F_LIST_TOPICS' => 'Możliwość widzenia tematów',
 	'ACL_F_READ'		=> 'Czytanie zawartości forum',
 	'ACL_F_SEARCH'		=> 'Przeszukiwanie forum',
 	'ACL_F_SUBSCRIBE'	=> 'Obserwowanie forum',
@@ -126,7 +128,7 @@ $lang = array_merge($lang, array(
 	'ACL_F_EDIT'		=> 'Edytowanie swoich postów',
 	'ACL_F_DELETE'		=> 'Usuwanie swoich postów',
 	'ACL_F_SOFTDELETE'	=> 'Ukrywanie swoich postów<br /><em>Moderatorzy posiadający uprawnienia do akceptowania postów mogą przywrócić wyświetlanie ukrytych postów.</em>',
-	'ACL_F_IGNOREFLOOD' => 'Ignorowanie limitu anty-przepełnieniowego',
+	'ACL_F_IGNOREFLOOD' => 'Ignorowanie limitu antyspamowego',
 	'ACL_F_POSTCOUNT'	=> 'Zwiększanie licznika postów<br /><em>Funkcja ta dotyczy tylko nowych postów.</em>',
 	'ACL_F_NOAPPROVE'	=> 'Pisanie bez konieczności akceptacji',
 
@@ -158,9 +160,9 @@ $lang = array_merge($lang, array(
 	'ACL_M_MERGE'	=> 'Łączenie tematów',
 
 	'ACL_M_INFO'		=> 'Przeglądanie szczegółów postów',
-	'ACL_M_WARN'		=> 'Udzielanie ostrzeżeń<br /><em>To uprawnienie może zostać nadane tylko globalnie. Nie jest zależne od forum.</em>', // This moderator setting is only global (and not local)
-	'ACL_M_PM_REPORT'	=> 'Zamykanie i usuwanie raportów prywatnych wiadomości.<br /><em>To uprawnienie może zostać nadane tylko globalnie. Nie jest zależne od forum.</em>', // This moderator setting is only global (and not local)
-	'ACL_M_BAN'			=> 'Zarządzanie blokowaniem<br /><em>To uprawnienie może zostać nadane tylko globalnie. Nie jest zależne od forum..</em>', // This moderator setting is only global (and not local)
+	'ACL_M_WARN'		=> 'Udzielanie ostrzeżeń',
+	'ACL_M_PM_REPORT'	=> 'Zamykanie i usuwanie raportów prywatnych wiadomości',
+	'ACL_M_BAN'			=> 'Zarządzanie blokowaniem<br />',
 ));
 
 // Admin Permissions

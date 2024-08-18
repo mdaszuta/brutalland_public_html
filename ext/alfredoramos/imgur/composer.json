@@ -1,17 +1,17 @@
 {
     "name": "alfredoramos/imgur",
     "type": "phpbb-extension",
-    "description": "Imgur Extension for phpBB 3.2.x",
+    "description": "Imgur extension for phpBB",
     "homepage": "https://github.com/AlfredoRamos/phpbb-ext-imgur",
-    "version": "1.0.4",
-    "time": "2017-06-04",
+    "version": "1.3.1",
+    "time": "2019-11-20",
     "keywords": [
         "phpbb",
         "extension",
         "imgur",
         "uploader"
     ],
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "Alfredo Ramos",
@@ -22,13 +22,13 @@
     ],
     "require": {
         "php": ">=5.6",
-        "composer/installers": "~1.2.0",
-        "j0k3r/php-imgur-api-client": "~3.0.0",
+        "composer/installers": "~1.0.0",
+        "j0k3r/php-imgur-api-client": "3.x-dev",
         "phpbb/phpbb": "~3.2.0"
     },
     "require-dev": {
-        "phing/phing": "~2.16.0",
-        "pear/archive_tar": "~1.4.0"
+        "phing/phing": "^2.16.0",
+        "pear/archive_tar": "^1.4.0"
     },
     "extra": {
         "display-name": "Imgur",

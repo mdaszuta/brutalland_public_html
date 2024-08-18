@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2015-02-02 15:34:14 Zespół Olympus.pl $
-* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.11 - 24.10.2023, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -55,12 +55,12 @@ $lang = array_merge($lang, array(
 
 		<br />
 
-		<p>Aby dowiedzieć się więcej o przydzielaniu i zarządzaniu uprawnieniami na witrynie phpBB3, przeczytaj sekcję <a href="https://www.phpbb.com/support/docs/en/3.2/ug/quickstart/permissions/">Setting permissions naszego przewodnika Quick Start Guide</a>.</p>
+		<p>Aby dowiedzieć się więcej o przydzielaniu i zarządzaniu uprawnieniami na witrynie phpBB3, przeczytaj sekcję <a href="https://www.phpbb.com/support/docs/en/3.3/ug/quickstart/permissions/">Setting permissions naszego przewodnika Quick Start Guide</a>.</p>
 	',
 
 	'ACL_NEVER'				=> 'Nigdy',
 	'ACL_SET'				=> 'Przydzielanie uprawnień',
-	'ACL_SET_EXPLAIN'		=> 'Przydzielanie uprawnień polega na wybraniu jednej z opcji: <strong>Tak</strong>/<strong>Nie</strong>/<strong>Nigdy</strong>. Wybranie opcji <strong>Nigdy</strong> dla użytkownika lub grupy użytkowników zastępuje wszystkie inne przydzielone im wartości. Jeśli nie chcesz przydzielać danego uprawnienia, wybierz <strong>Nie</strong>. Jeśli gdzieś przydzielono temu uprawnieniu już jakąś wartość, zostanie ona użyta w ustawieniach, chyba że zostało przydzielone <strong>Nigdy</strong>. Wszystkie zaznaczone elementy skopiują uprawnienia wybranego zestawu.',
+	'ACL_SET_EXPLAIN'		=> 'Przydzielanie uprawnień polega na wybraniu jednej z opcji: <strong>Tak</strong>/<strong>Nie</strong>/<strong>Nigdy</strong>. Wybranie opcji <strong>Nigdy</strong> dla użytkownika lub grupy użytkowników zastępuje wszystkie inne przydzielone im wartości. Jeśli nie chcesz przydzielać danego uprawnienia, wybierz <strong>Nie</strong>. Jeśli gdzieś przydzielono temu uprawnieniu już jakąś wartość, zostanie ona użyta w ustawieniach, chyba że zostało przydzielone <strong>Nigdy</strong>. Wszystkie zaznaczone elementy skopiują uprawnienia wybranego zestawu. Należy pamiętać, że ustawienie uprawnień administracyjnych dla kont założycieli nie ma żadnego wpływu, ponieważ uprawnienia administratora są zawsze ustawione na <strong>Tak</strong> dla założycieli.',
 	'ACL_SETTING'			=> 'Uprawnienie',
 
 	'ACL_TYPE_A_'			=> 'Uprawnienia administratora',
@@ -80,18 +80,18 @@ $lang = array_merge($lang, array(
 	'ACL_YES'				=> 'Tak',
 
 	'ACP_ADMINISTRATORS_EXPLAIN'				=> 'Tutaj można przydzielić uprawnienia administratora użytkownikom lub grupom. Wszyscy użytkownicy z uprawnieniami administratora mają dostęp do panelu administracji.',
-	'ACP_FORUM_MODERATORS_EXPLAIN'				=> 'Tutaj można użytkownikom i grupom przydzielać uprawnienia moderacyjne na forach - ustanawiać ich moderatorami. Aby przydzielić użytkownikom prawo dostępu do forów, zdefiniować globalne uprawnienia moderacyjne czy administracyjne, należy użyć właściwej do tego strony.',
+	'ACP_FORUM_MODERATORS_EXPLAIN'				=> 'Tutaj można użytkownikom i grupom przydzielać uprawnienia moderacyjne na forach — ustanawiać ich moderatorami. Aby przydzielić użytkownikom prawo dostępu do forów, zdefiniować globalne uprawnienia moderacyjne czy administracyjne, należy użyć właściwej do tego strony.',
 	'ACP_FORUM_PERMISSIONS_EXPLAIN'				=> 'Tutaj można użytkownikom i grupom przydzielać i modyfikować prawa dostępu do forów. Aby przydzielić moderatorów czy zdefiniować administratorów, należy użyć właściwej do tego strony.',
 	'ACP_FORUM_PERMISSIONS_COPY_EXPLAIN'		=> 'Tutaj można skopiować uprawnienia forum do jednego lub kilku innych forów.',
 	'ACP_GLOBAL_MODERATORS_EXPLAIN'				=> 'Tutaj można przydzielić użytkownikom i grupom uprawnienia moderatora globalnego. Moderatorzy globalni mają uprawnienia, takie jak zwykli moderatorzy, z tym że mają ponadto dostęp do wszystkich forów na tej witrynie.',
 	'ACP_GROUPS_FORUM_PERMISSIONS_EXPLAIN'		=> 'Tutaj można przydzielać grupom uprawnienia na forach.',
 	'ACP_GROUPS_PERMISSIONS_EXPLAIN'			=> 'Tutaj można przydzielać globalne uprawnienia grupom – uprawnienia użytkownika, moderatora globalnego i administratora. Uprawnienia użytkownika zawierają uprawnienia do używania awatarów, wysyłania prywatnych wiadomości itp. Uprawnienia moderatora globalnego, to akceptowanie/odrzucanie postów, zarządzanie tematami, zarządzanie blokowaniem itp. Uprawnienia administratora, to zmiana uprawnień, definiowanie dodatkowych znaczników BBCode, zarządzanie forami itp. Indywidualne uprawnienia użytkowników powinny być zmieniane tylko w wyjątkowych przypadkach. Zalecaną metodą zmiany uprawnień jest przydzielanie użytkowników do grup i przydzielenie im uprawnień grupy.',
-	'ACP_ADMIN_ROLES_EXPLAIN'					=> 'Tutaj można zarządzać zestawami uprawnień administracyjnych. Zestawy są efektywnym sposobem przydzielania uprawnień. Jeśli zostanie zmieniony zestaw, wszyscy użytkownicy i grupy, które mają przydzielony ten zestaw, przyjmą uprawnienia nowego zestawu.',
+	'ACP_ADMIN_ROLES_EXPLAIN'					=> 'Tutaj można zarządzać zestawami uprawnień administracyjnych. Zestawy są efektywnym sposobem przydzielania uprawnień. Jeśli zostanie zmieniony zestaw, wszyscy użytkownicy i grupy, którzy mają przydzielony ten zestaw, przyjmą uprawnienia nowego zestawu.',
 	'ACP_FORUM_ROLES_EXPLAIN'					=> 'Tutaj można zarządzać zestawami uprawnień na forum. Zestawy są efektywnym sposobem przydzielania uprawnień. Jeśli zostanie zmieniony zestaw, wszystkie elementy, które mają przydzielony ten zestaw, przyjmą uprawnienia nowego zestawu.',
 	'ACP_MOD_ROLES_EXPLAIN'						=> 'Tutaj można zarządzać zestawami uprawnień moderacyjnych. Zestawy są efektywnym sposobem przydzielania uprawnień. Jeśli zostanie zmieniony zestaw, wszyscy użytkownicy i grupy, które mają przydzielony ten zestaw, przyjmą uprawnienia nowego zestawu.',
-	'ACP_USER_ROLES_EXPLAIN'					=> 'Tutaj można zarządzać zestawami uprawnień użytkownika. Zestawy są efektywnym sposobem przydzielania uprawnień. Jeśli zostanie zmieniony zestaw, wszyscy użytkownicy, które mają przydzielony ten zestaw, przyjmą uprawnienia nowego zestawu.',
+	'ACP_USER_ROLES_EXPLAIN'					=> 'Tutaj można zarządzać zestawami uprawnień użytkownika. Zestawy są efektywnym sposobem przydzielania uprawnień. Jeśli zostanie zmieniony zestaw, wszyscy użytkownicy, którzy mają przydzielony ten zestaw, przyjmą uprawnienia nowego zestawu.',
 	'ACP_USERS_FORUM_PERMISSIONS_EXPLAIN'		=> 'Tutaj można przydzielać użytkownikom uprawnienia na forach.',
-	'ACP_USERS_PERMISSIONS_EXPLAIN'				=> 'Tutaj można przydzielać globalne uprawnienia użytkownikom – uprawnienia użytkownika, moderatora globalnego i administratora. Uprawnienia użytkownika zawierają takie funkcje, jak używanie awatarów, wysyłanie prywatnych wiadomości itp. Uprawnienia moderatora globalnego, to akceptowanie/odrzucanie postów, zarządzanie postami, zarządzanie blokowaniem itp. Uprawnienia administratora globalnego, to zmiana uprawnień, tworzenie dodatkowych znaczników BBCode, zarządzanie forami itp. Zalecaną metodą zmiany tych uprawnień jednocześnie wielu użytkownikom jest system uprawnień grupowych. Uprawnienia użytkownika powinny być zmieniane tylko w wyjątkowych przypadkach. Zaleca się przydzielenie użytkowników do grup i przydzielenie im uprawnień grupy.',
+	'ACP_USERS_PERMISSIONS_EXPLAIN'				=> 'Tutaj można przydzielać globalne uprawnienia użytkownikom – uprawnienia użytkownika, moderatora globalnego i administratora. Uprawnienia użytkownika zawierają takie funkcje jak używanie awatarów, wysyłanie prywatnych wiadomości itp. Uprawnienia moderatora globalnego, to akceptowanie/odrzucanie postów, zarządzanie postami, zarządzanie blokowaniem itp. Uprawnienia administratora globalnego, to zmiana uprawnień, tworzenie dodatkowych znaczników BBCode, zarządzanie forami itp. Zalecaną metodą zmiany tych uprawnień jednocześnie wielu użytkownikom jest system uprawnień grupowych. Uprawnienia użytkownika powinny być zmieniane tylko w wyjątkowych przypadkach. Zaleca się przydzielenie użytkowników do grup i przydzielenie im uprawnień grupy.',
 	'ACP_VIEW_ADMIN_PERMISSIONS_EXPLAIN'		=> 'Tutaj można zobaczyć uprawnienia administracyjne przydzielone wybranym użytkownikom/grupom.',
 	'ACP_VIEW_GLOBAL_MOD_PERMISSIONS_EXPLAIN'	=> 'Tutaj można zobaczyć globalne uprawnienia moderacyjne przydzielone wybranym użytkownikom/grupom.',
 	'ACP_VIEW_FORUM_PERMISSIONS_EXPLAIN'		=> 'Tutaj można zobaczyć uprawnienia na forum przydzielone wybranym użytkownikom/grupom i forom.',

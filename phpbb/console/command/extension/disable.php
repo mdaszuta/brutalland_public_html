@@ -37,6 +37,13 @@ class disable extends command
 		$io = new SymfonyStyle($input, $output);
 
 		$name = $input->getArgument('extension-name');
+
+		if (!$this->manager->is_enabled($name))
+		{
+			$io->error($this->user->lang('CLI_EXTENSION_DISABLED', $name));
+			return 2;
+		}
+
 		$this->manager->disable($name);
 		$this->manager->load_extensions();
 
@@ -48,6 +55,7 @@ class disable extends command
 		else
 		{
 			$this->log->add('admin', ANONYMOUS, '', 'LOG_EXT_DISABLE', time(), array($name));
+			$this->check_apcu_cache($io);
 			$io->success($this->user->lang('CLI_EXTENSION_DISABLE_SUCCESS', $name));
 			return 0;
 		}

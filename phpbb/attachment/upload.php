@@ -14,13 +14,13 @@
 namespace phpbb\attachment;
 
 use phpbb\auth\auth;
-use \phpbb\cache\service;
-use \phpbb\config\config;
-use \phpbb\event\dispatcher;
-use \phpbb\language\language;
-use \phpbb\mimetype\guesser;
-use \phpbb\plupload\plupload;
-use \phpbb\user;
+use phpbb\cache\service;
+use phpbb\config\config;
+use phpbb\event\dispatcher;
+use phpbb\language\language;
+use phpbb\mimetype\guesser;
+use phpbb\plupload\plupload;
+use phpbb\user;
 
 /**
  * Attachment upload class
@@ -47,6 +47,9 @@ class upload
 
 	/** @var dispatcher */
 	protected $phpbb_dispatcher;
+
+	/** @var string */
+	protected $phpbb_root_path;
 
 	/** @var plupload Plupload */
 	protected $plupload;
@@ -162,7 +165,7 @@ class upload
 		// Make sure the image category only holds valid images...
 		$this->check_image($is_image);
 
-		if (sizeof($this->file->error))
+		if (count($this->file->error))
 		{
 			$this->file->remove();
 			$this->file_data['error'] = array_merge($this->file_data['error'], $this->file->error);
@@ -296,8 +299,10 @@ class upload
 	 */
 	protected function check_disk_space()
 	{
-		if ($free_space = @disk_free_space($this->phpbb_root_path . $this->config['upload_path']))
+		if (function_exists('disk_free_space'))
 		{
+			$free_space = @disk_free_space($this->phpbb_root_path);
+
 			if ($free_space <= $this->file->get('filesize'))
 			{
 				if ($this->auth->acl_get('a_'))

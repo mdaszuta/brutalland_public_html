@@ -194,7 +194,7 @@ class language
 	}
 
 	/**
-	 * @param $key array|string		The language key we want to know more about. Can be string or array.
+	 * @param	array|string	$key	The language key we want to know more about. Can be string or array.
 	 *
 	 * @return bool		Returns whether the language key is set.
 	 */
@@ -292,7 +292,7 @@ class language
 	 *
 	 * @return string
 	 */
-	public function lang_array($key, $args = array())
+	public function lang_array($key, array $args = [])
 	{
 		$lang = $this->lang_raw($key);
 
@@ -312,7 +312,7 @@ class language
 			// Replace key with language entry and simply pass along...
 			return vsprintf($lang, $args);
 		}
-		else if (sizeof($lang) == 0)
+		else if (count($lang) == 0)
 		{
 			// If the language entry is an empty array, we just return the language key
 			return $key;
@@ -322,7 +322,7 @@ class language
 		$key_found = false;
 
 		// We now get the first number passed and will select the key based upon this number
-		for ($i = 0, $num_args = sizeof($args); $i < $num_args; $i++)
+		for ($i = 0, $num_args = count($args); $i < $num_args; $i++)
 		{
 			if (is_int($args[$i]) || is_float($args[$i]))
 			{
@@ -399,7 +399,7 @@ class language
 	 *
 	 * @return int	The plural-case we need to use for the number plural-rule combination
 	 *
-	 * @throws \phpbb\language\exception\invalid_plural_rule_exception	When $force_rule has an invalid value
+	 * @throws invalid_plural_rule_exception	When $force_rule has an invalid value
 	 */
 	public function get_plural_form($number, $force_rule = false)
 	{

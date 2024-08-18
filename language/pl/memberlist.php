@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-11-29 18:24:32 Zespół Olympus.pl $
-* @Polska wersja językowa phpbb 3.2.0 - 18.02.2017, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.11 - 24.10.2023, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -70,12 +70,12 @@ $lang = array_merge($lang, array(
 	'EMPTY_SUBJECT_EMAIL'	=> 'Należy podać temat wiadomości.',
 	'EQUAL_TO'				=> 'Liczba równa',
 
-	'FIND_USERNAME_EXPLAIN'	=> 'Tego formularza można użyć do szukania użytkowników. Nie trzeba wypełniać wszystkich pól. Można użyć gwiazdki (<strong>*</strong>) jako zamiennika dowolnego ciągu znaków.<br />Można też na poniżej wyświetlonej liście odszukać użytkownika, kliknąć jego nazwę, by zobaczyć profil tego użytkownika lub kliknąć odnośnik <strong>[Wybierz]</strong>, aby przeprowadzać dalsze operacje.',
+	'FIND_USERNAME_EXPLAIN'	=> 'Tego formularza można użyć do szukania użytkowników. Nie trzeba wypełniać wszystkich pól. Można użyć gwiazdki (*) jako zamiennika dowolnego ciągu znaków. Datę należy wprowadzić w formacie <kbd>RRRR-MM-DD</kbd>, np. <samp>2007-08-31</samp>. Można też na poniżej wyświetlonej liście odszukać użytkownika, kliknąć jego nazwę, by zobaczyć profil tego użytkownika lub kliknąć odnośnik [Wybierz], aby przeprowadzać dalsze operacje.',
 	'FLOOD_EMAIL_LIMIT'		=> 'Nie możesz teraz wysłać kolejnej wiadomości. Spróbuj ponownie za chwilę.',
 
 	'GROUP_LEADER'			=> 'Lider grupy',
 
-	'HIDE_MEMBER_SEARCH'	=> 'Ukryj',
+	'HIDE_MEMBER_SEARCH'	=> 'Ukryj wyszukiwanie użytkowników',
 
 	'IM_ADD_CONTACT'		=> 'Dodaj kontakt',
 	'IM_DOWNLOAD_APP'		=> 'Pobierz program',
@@ -152,6 +152,5 @@ $lang = array_merge($lang, array(
 	'VIEW_FACEBOOK_PROFILE'	=> 'Zobacz profil na Facebooku',
 	'VIEW_SKYPE_PROFILE'	=> 'Zobacz profil na Skype',
 	'VIEW_TWITTER_PROFILE'	=> 'Zobacz profil na Twitterze',
-	'VIEW_YOUTUBE_CHANNEL'	=> 'Zobacz kanał YouTube',
-	'VIEW_GOOGLEPLUS_PROFILE' => 'Zobacz profil na Google+',
+	'VIEW_YOUTUBE_PROFILE'	=> 'Zobacz profil na YouTube',
 ));

@@ -1,3 +1,7 @@
+alfredoramos_imgur_authorize:
+    path: /imgur/authorize/{hash}
+    defaults: { _controller: alfredoramos.imgur.controller:authorize, hash: '' }
+
 alfredoramos_imgur_upload:
-    path: /imgur/upload
-    defaults: { _controller: alfredoramos.imgur.controller:upload }
+    path: /imgur/upload/{hash}
+    defaults: { _controller: alfredoramos.imgur.controller:upload, hash: '' }

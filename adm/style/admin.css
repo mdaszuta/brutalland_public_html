@@ -1,4 +1,4 @@
-/*  phpBB 3.1 Admin Style Sheet
+/*  phpBB 3.3 Admin Style Sheet
 	------------------------------------------------------------------------
 	Original author:	subBlue ( http://www.subblue.com/ )
 	Copyright (c) phpBB Limited <https://www.phpbb.com>
@@ -191,7 +191,7 @@ li {
 
 #page-header {
 	text-align: right;
-	background: url("../images/phpbb_logo.png") top left no-repeat;
+	background: url("../images/phpbb_logo.svg") top left no-repeat;
 	height: 54px;
 	font-size: 0.85em;
 	margin-bottom: 10px;
@@ -199,7 +199,7 @@ li {
 
 .rtl #page-header {
 	text-align: left;
-	background: url("../images/phpbb_logo.png") top right no-repeat;
+	background: url("../images/phpbb_logo.svg") top right no-repeat;
 }
 
 #page-header h1 {
@@ -525,7 +525,6 @@ li {
 	padding: 0;
 	border-right: 1px solid #CCCFD3;
 	position: relative;
-	z-index: 1;
 }
 
 .rtl #menu {
@@ -724,9 +723,25 @@ td {
 }
 
 .table1 {
-	border-collapse: separate;
-	border-spacing: 1px;
 	clear: both;
+	border-spacing: 1px;
+	border-collapse: separate;
+}
+
+.table2 {
+	display: inline-block;
+	border-spacing: 1px;
+	border-collapse: separate;
+}
+
+.lside {
+	display: flex;
+	align-items: stretch;
+	width: 100%;
+}
+
+.tabled {
+	width: 1%;
 }
 
 dt#color_palette_placeholder table {
@@ -841,6 +856,7 @@ table.zebra-table tbody tr:nth-child(odd) {
 }
 
 .row2 {
+	word-break: break-all;
 	background-color: #DCEBFE;
 }
 
@@ -1891,7 +1907,6 @@ li.pagination ul {
 	color: #000;
 	text-align: center;
 	border: 1px solid #AAA;
-	opacity: .95;
 }
 
 .tooltip span.top {
@@ -2050,6 +2065,8 @@ fieldset.permissions .padding {
 }
 
 .permissions-category ul {
+	display: flex;
+	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -2103,7 +2120,6 @@ fieldset.permissions .padding {
 
 .permissions-category .activetab a span.tabbg {
 	background-position: 100% 0;
-	padding-bottom: 7px;
 	color: #333333;
 }
 
@@ -2298,6 +2314,10 @@ fieldset.permissions .padding {
 		margin: 0 !important;
 	}
 
+	.permissions-category ul {
+		display: block;
+	}
+
 	.permissions-category a, .permissions-category a span.tabbg {
 		display: block;
 		float: none !important;
@@ -2461,6 +2481,9 @@ fieldset.permissions .padding {
 	text-align: left;
 }
 
+.rtl .dropdown li {
+	text-align: right;
+}
 .wrap .dropdown li, .dropdown.wrap li {
 	white-space: normal;
 }
@@ -2473,6 +2496,10 @@ fieldset.permissions .padding {
 	left: auto;
 	top: 3.2em;
 	width: 250px;
+}
+
+.rtl .roles-options > .dropdown {
+	right: auto;
 }
 
 .roles-options {
@@ -2493,6 +2520,10 @@ fieldset.permissions .padding {
 	background: url('../images/arrow_down.gif') no-repeat 245px .7em;
 }
 
+.rtl .roles-options > span {
+	background: url('../images/arrow_down.gif') no-repeat 7px .7em;
+}
+
 .roles-options li {
 	list-style: none;
 }
@@ -2505,6 +2536,14 @@ fieldset.permissions .padding {
 
 /* Classes for additional tasks
 ---------------------------------------- */
+
+.current-ext {
+	color: #228822;
+}
+
+.outdated-ext {
+	color: #BC2A4D;
+}
 
 .phpinfo {
 	overflow: auto;
@@ -2605,7 +2644,7 @@ fieldset.permissions .padding {
 .send-stats-tile h2 {
 	margin-top: 0;
 	text-align: center;
-    padding-bottom: 1em;
+	padding-bottom: 1em;
 }
 
 .send-stats-tile i {
@@ -2690,4 +2729,38 @@ fieldset.permissions .padding {
 .configlist {
 	word-wrap: break-word;
 	word-break: break-all;
+}
+
+/* stylelint-disable declaration-property-unit-whitelist */
+.emoji {
+	min-height: 18px;
+	min-width: 18px;
+	height: 1em;
+	width: 1em;
+}
+
+.acp-icon {
+	font-size: 1.5em;
+}
+/* stylelint-enable declaration-property-unit-whitelist */
+
+.acp-icon-move-up,
+.acp-icon-move-down {
+	color: #4ba5de;
+}
+
+.acp-icon-settings {
+	color: #62c046;
+}
+
+.acp-icon-delete {
+	color: #d74558;
+}
+
+.acp-icon-resync {
+	color: #f69934;
+}
+
+.acp-icon-disabled {
+	color: #d0d0d0;
 }
