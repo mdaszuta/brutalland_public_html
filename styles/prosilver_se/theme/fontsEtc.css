@@ -94,7 +94,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 h2,
 h3,
 table.table1 tbody tr.bg3,
-.copyright strong,
+.copyright .text-strong,
 .brutalform-button-s,
 .brutalform-label {
 	font-variant: small-caps;

@@ -1549,7 +1549,7 @@ table.table1 td.info a {
     height: 18px;
 }
 
-.copyright strong {
+.copyright .text-strong {
 	//width: -moz-fit-content;
 	//width: -webkit-fit-content;
 	width: fit-content;
