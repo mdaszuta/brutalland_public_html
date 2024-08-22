@@ -82,14 +82,18 @@
 					<!-- EVENT topiclist_row_topic_title_after -->
 					<div class="lastpost responsive-show" style="display: none;">
 						<span>
+							{% EVENT mcp_forum_last_post_author_username_prepend %}
 							<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
+							{% EVENT mcp_forum_last_post_author_username_append %}
 							<span class="lastpost-time">{topicrow.LAST_POST_TIME}</span>
 						</span>
 					</div>
 
 					<div class="responsive-hide">
 						<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF -->
-						<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
+						{% EVENT topiclist_row_topic_by_author_before %}
+						<span>{% EVENT mcp_forum_topic_author_username_prepend %}{topicrow.TOPIC_AUTHOR_FULL}{% EVENT mcp_forum_topic_author_username_append %}</span> {topicrow.FIRST_POST_TIME}
+						{% EVENT topiclist_row_topic_by_author_after %}
 					</div>
 					<!-- EVENT topiclist_row_append -->
 					</div>
@@ -102,7 +106,7 @@
 				<!-- ENDIF -->
 				<dd class="lastpost">
 					<span><dfn>{L_LAST_POST}</dfn>
-						<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
+						<span class="lastpost-poster">{% EVENT mcp_forum_last_post_author_username_prepend %}{topicrow.LAST_POST_AUTHOR_FULL}{% EVENT mcp_forum_last_post_author_username_append %}</span>
 						<span class="lastpost-time">{topicrow.LAST_POST_TIME}</span>
 					</span>
 				</dd>

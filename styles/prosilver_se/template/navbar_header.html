@@ -175,7 +175,7 @@
 						<!-- IF U_RESTORE_PERMISSIONS --><a href="{U_RESTORE_PERMISSIONS}"><div class="fa fa-user-times fa-lg"></div>&nbsp;&nbsp;{L_RESTORE_PERMISSIONS}</a><!-- ENDIF -->
 						<a href="{{ U_SENKY_NOTES }}"><div class="fa fa-pencil-square-o fa-lg"></div>&nbsp;&nbsp;{{ lang('NOTES') }}</a>
 						<a href="{U_PROFILE}" title="{L_PROFILE}"><div class="fa fa-cogs fa-lg"></div>&nbsp;&nbsp;{L_PROFILE}</a>
-						<a href="{U_USER_PROFILE}" title="{L_READ_PROFILE}"><div class="fa fa-id-card-o fa-lg"></div>&nbsp;&nbsp;{L_READ_PROFILE}</a>
+						<!-- IF U_USER_PROFILE --><a href="{U_USER_PROFILE}" title="{L_READ_PROFILE}"><div class="fa fa-id-card-o fa-lg"></div>&nbsp;&nbsp;{L_READ_PROFILE}</a><!-- ENDIF -->
 						<!-- IF S_DISPLAY_MEMBERLIST --><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}"><div class="fa fa-users fa-lg"></div>&nbsp;&nbsp;{L_MEMBERLIST}</a><!-- ENDIF -->
 						<!-- IF U_TEAM --><a href="{U_TEAM}"><div class="fa fa-shield fa-lg"></div>&nbsp;&nbsp;{L_THE_TEAM}</a><!-- ENDIF -->
 						<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x"><div class="fa fa-sign-out fa-lg"></div>&nbsp;&nbsp;{L_LOGIN_LOGOUT}</a>
@@ -196,11 +196,13 @@
 				</div>
 			</div>
 
-			<div id="m-logged-out" class="main-m-item">
-				<div class="main-m-top" id="m-login">
-						<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT} &frasl; {L_REGISTER}" accesskey="x"><div class="fa fa-sign-in fa-2x"></div></a>
+				<!-- IF not S_IS_BOT -->
+				<div id="m-logged-out" class="main-m-item">
+					<div class="main-m-top" id="m-login">
+							<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT} &frasl; {L_REGISTER}" accesskey="x"><div class="fa fa-sign-in fa-2x"></div></a>
+					</div>
 				</div>
-			</div>
+				<!-- ENDIF -->
 			<!-- ENDIF -->
 
 		</div>

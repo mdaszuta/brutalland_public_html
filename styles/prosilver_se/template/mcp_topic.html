@@ -104,6 +104,10 @@
 
 	<div id="topicreview" class="topicreview">
 		<!-- BEGIN postrow -->
+		<!-- EVENT mcp_topic_postrow_post_before -->
+		<!-- IF postrow.S_FIRST_UNREAD -->
+			<a id="unread" class="anchor"<!-- IF S_UNREAD_VIEW --> data-url="{postrow.U_MINI_POST}"<!-- ENDIF -->></a>
+		<!-- ENDIF -->
 		<div class="post <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
 			<div class="inner">
 
@@ -123,11 +127,13 @@
 					</div>
 				</ul>
 
+				<!-- EVENT mcp_topic_postrow_post_subject_before -->
 				<h3><a href="{postrow.U_POST_DETAILS}">{postrow.POST_SUBJECT}</a></h3>
+				<!-- EVENT mcp_topic_postrow_post_subject_after -->
 
 				<!-- EVENT mcp_topic_postrow_post_details_before -->
 				<p class="author">
-					<span>{postrow.POST_AUTHOR_FULL}</span> {postrow.POST_DATE}<!-- IF postrow.U_MCP_DETAILS --> [ <a href="{postrow.U_MCP_DETAILS}">{L_POST_DETAILS}</a> ]<!-- ENDIF -->
+					{% EVENT mcp_topic_post_author_full_prepend %}<span>{postrow.POST_AUTHOR_FULL}</span>{% EVENT mcp_topic_post_author_full_append %} {postrow.POST_DATE}<!-- IF postrow.U_MCP_DETAILS --> [ <a href="{postrow.U_MCP_DETAILS}">{L_POST_DETAILS}</a> ]<!-- ENDIF -->
 				</p>
 				<!-- EVENT mcp_topic_postrow_post_details_after -->
 
@@ -151,6 +157,8 @@
 
 				<div class="content" id="message_{postrow.POST_ID}">{postrow.MESSAGE}</div>
 
+				<!-- EVENT mcp_topic_postrow_attachments_before -->
+
 				<!-- IF postrow.S_HAS_ATTACHMENTS -->
 					<dl class="attachbox">
 						<dt>{L_ATTACHMENTS}</dt>
@@ -160,10 +168,14 @@
 					</dl>
 				<!-- ENDIF -->
 
+				<!-- EVENT mcp_topic_postrow_attachments_after -->
+
 			</div>
 
 			</div>
 		</div>
+		<!-- BEGINELSE -->
+			<p class="fbr-m-info"><strong>{{ lang('NO_POSTS_TIME_FRAME') }}</strong></p>
 		<!-- END postrow -->
 	</div>
 

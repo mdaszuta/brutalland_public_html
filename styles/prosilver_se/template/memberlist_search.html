@@ -14,7 +14,7 @@
 			<div class="fbr-left phantom-label"><label for="username">{L_USERNAME}</label></div>
 			<div class="fbr-right">
 				<!-- IF U_LIVE_SEARCH --><div class="dropdown-container dropdown-{S_CONTENT_FLOW_END}"><!-- ENDIF -->
-				<input type="text" name="username" id="username" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox"<!-- IF U_LIVE_SEARCH --> autocomplete="off" data-filter="phpbb.search.filter" data-ajax="member_search" data-min-length="3" data-url="{U_LIVE_SEARCH}" data-results="#user-search" data-overlay="false"<!-- ENDIF --> />
+				<input type="text" name="username" id="username" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox"<!-- IF U_LIVE_SEARCH --> autocomplete="off" data-filter="phpbb.search.filter" data-ajax="member_search" data-min-length="3" data-url="{U_LIVE_SEARCH}" data-results="#user-search"<!-- ENDIF --> />
 				<!-- IF U_LIVE_SEARCH -->
 					<div class="dropdown live-search hidden" id="user-search">
 						<div class="pointer"><div class="pointer-inner"></div></div>
@@ -80,7 +80,7 @@
 	<fieldset class="submit-buttons flex-box-form">
 		<div class="flex-box-o">
 			<div class="flex-box"><input type="submit" name="submit" value="{L_SEARCH}" class="button" /></div>
-			<div class="flex-box fb-c"><input type="reset" value="{L_RESET}" name="reset" class="button2" /></div>
+			<div class="flex-box fb-c"></div>
 		</div>
 		{S_FORM_TOKEN}
 	</fieldset>

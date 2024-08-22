@@ -11,13 +11,13 @@
 <script>
 	WebFontConfig = {
 		google: {
-			families: ['Open+Sans:600:cyrillic-ext,latin,greek-ext,greek,vietnamese,latin-ext,cyrillic']
+			families: ['Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese']
 		}
 	};
 
 	(function(d) {
 		var wf = d.createElement('script'), s = d.scripts[0];
-		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+		wf.src = 'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js';
 		wf.async = true;
 		s.parentNode.insertBefore(wf, s);
 	})(document);
@@ -43,10 +43,16 @@
 	<link href="{ROOT_PATH}styles/prosilver/theme/bidi.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 <!-- ENDIF -->
 
-<!--[if lte IE 8]>
+<!--[if lte IE 9]>
 	<link href="{ROOT_PATH}styles/prosilver/theme/tweaks.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 <![endif]-->
 
+<link href="{ROOT_PATH}styles/prosilver_se/theme/buttons.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<link href="{ROOT_PATH}styles/prosilver_se/theme/tagowarka.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<link href="{ROOT_PATH}styles/prosilver_se/theme/coloursShadowsOpacity.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<link href="{ROOT_PATH}styles/prosilver_se/theme/fontsEtc.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<link href="{ROOT_PATH}styles/prosilver_se/theme/coloursOnly.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
+<link href="{ROOT_PATH}styles/prosilver_se/theme/opacityBoxShadow.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 <link href="{T_STYLESHEET_LINK}" rel="stylesheet">
 <link href="{ROOT_PATH}styles/prosilver_se/theme/responsiveCustom.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 
@@ -55,6 +61,8 @@
 <!-- EVENT simple_header_head_append -->
 
 {$STYLESHEETS}
+
+<link href="{ROOT_PATH}styles/prosilver_se/theme/extensions.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 
 <!-- EVENT simple_header_stylesheets_after -->
 

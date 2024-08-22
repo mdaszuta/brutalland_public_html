@@ -122,8 +122,10 @@
 	#postingbox .fbr-right,
 	#register .fbr-left,
 	#register .fbr-right,
-	#remind .fbr-left,
-	#remind .fbr-right,
+	#reset_password .fbr-left,
+	#reset_password .fbr-right,
+	#resend .fbr-left,
+	#resend .fbr-right,
 	#login .fbr-left,
 	#login .fbr-right {
 		flex-basis: 100%;

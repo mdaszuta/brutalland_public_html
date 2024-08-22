@@ -1,7 +1,6 @@
 <!-- INCLUDE overall_header.html -->
 
-<script type="text/javascript">
-// <![CDATA[
+<script>
 	/**
 	* Change language
 	*/
@@ -11,8 +10,18 @@
 		document.forms['register'].change_lang.value = lang_iso;
 		document.forms['register'].submit.click();
 	}
-// ]]>
 </script>
+
+{% if PROVIDER_TEMPLATE_FILE %}
+	<div class="panel">
+		<div class="inner">
+
+			<h2>{{ SITENAME }} - {{ lang('OAUTH_REGISTRATION') }}</h2>
+
+			{% include PROVIDER_TEMPLATE_FILE %}
+		</div>
+	</div>
+{% endif %}
 
 <form id="register" class="brutalform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
 
@@ -25,7 +34,7 @@
 	<div class="fbr">
 		<div class="fbr-left">
 			<div class="brutalform-box">
-				<input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" />
+				<input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" autocomplete="off" />
 				<span class="brutalform-label">{L_USERNAME}</span>
 				<span class="brutalform-explanation">{L_USERNAME_EXPLAIN}</span>
 			</div>
@@ -57,8 +66,7 @@
 
 
 	<!-- EVENT ucp_register_profile_fields_before -->
-	<!-- IF .profile_fields -->
-		<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
+	{% if PROFILE_FIELDS_REQUIRED %}<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>{% endif %}
 
 	<!-- BEGIN profile_fields -->
 		<dl>
@@ -68,7 +76,6 @@
 			<dd>{profile_fields.FIELD}</dd>
 		</dl>
 	<!-- END profile_fields -->
-	<!-- ENDIF -->
 
 	<!-- EVENT ucp_register_profile_fields_after -->
 	</fieldset>
@@ -101,7 +108,6 @@
 				<fieldset class="submit-buttons">
 				{S_HIDDEN_FIELDS}
 				<input type="submit" tabindex="6" name="submit" id="submit" value="{L_REGISTER}" class="button submit default-submit-action" />
-				<input type="reset" tabindex="7" value="{L_RESET}" name="reset" class="button2 reset" />
 				{S_FORM_TOKEN}
 				</fieldset>
 			</div>
@@ -111,10 +117,12 @@
 
 			<div class="fbr-left">
 				<fieldset class="fields2">
+					{% if S_LANG_OPTIONS %}
 					<div class="brutalform-box">
-						<select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select>
-						<span class="brutalform-label">{L_LANGUAGE}</span>
+						<select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{{ lang('LANGUAGE') }}">{{ S_LANG_OPTIONS }}</select>
+						<span class="brutalform-label">{{ lang('LANGUAGE') }}</span>
 					</div>
+					{% endif %}
 
 					<div class="brutalform-box">
 						<div class="brutalform-timezone-select">

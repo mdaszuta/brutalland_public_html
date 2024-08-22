@@ -17,8 +17,8 @@
 
 	<!-- IF S_SHOW_POLL_BOX -->
 		<div class="fbr">
-			<div class="fbr-left phantom-label"><label for="poll_title">{L_POLL_QUESTION}</label></div>
-			<div class="fbr-right"><input type="text" name="poll_title" id="poll_title" maxlength="255" value="{POLL_TITLE}" class="inputbox" placeholder="{L_POLL_QUESTION}" /></div>
+			<div class="fbr-left phantom-label"><label for="poll_title">{{ lang('POLL_QUESTION') }}</label></div>
+			<div class="fbr-right"><input type="text" name="poll_title" id="poll_title" maxlength="100" value="{{ POLL_TITLE }}" class="inputbox" placeholder="{L_POLL_QUESTION}" /></div>
 		</div>
 		<div class="fbr">
 			<div class="fbr-left phantom-label"><label for="poll_option_text">{L_POLL_OPTIONS}</label><br /><span>{L_POLL_OPTIONS_EXPLAIN}</span></div>

@@ -6,10 +6,8 @@
 
 <!-- EVENT ucp_pm_history_review_before -->
 <div id="topicreview" class="topicreview">
-	<script type="text/javascript">
-	// <![CDATA[
+	<script>
 		bbcodeEnabled = {S_BBCODE_ALLOWED};
-	// ]]>
 	</script>
 	<!-- BEGIN history_row -->
 	<div class="post <!-- IF history_row.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
@@ -23,7 +21,6 @@
 			<!-- IF $SHOW_PM_HISTORY_POST_BUTTONS -->
 			<ul class="post-buttons">
 				<!-- EVENT ucp_pm_history_post_buttons_before -->
-				<!-- IF history_row.U_QUOTE or history_row.MESSAGE_AUTHOR_QUOTE -->
 				<div id="post-buttons-row-1">
 				<li>
 					<a <!-- IF history_row.U_QUOTE -->href="{history_row.U_QUOTE}"<!-- ELSE -->href="#postingbox" onclick="addquote({history_row.MSG_ID}, '{history_row.MESSAGE_AUTHOR_QUOTE}', '{LA_WROTE}', {time:{history_row.MESSAGE_TIME},user_id:{history_row.USER_ID}});"<!-- ENDIF --> title="{L_QUOTE} {history_row.MESSAGE_AUTHOR}" class="button-icon-only">
@@ -31,14 +28,13 @@
 					</a>
 				</li>
 				</div>
-				<!-- ENDIF -->
 				<!-- EVENT ucp_pm_history_post_buttons_after -->
 			</ul>
 			<!-- ENDIF -->
 			<!-- EVENT ucp_pm_history_post_buttons_list_after -->
 
 			<p class="author">
-				<span>{history_row.MESSAGE_AUTHOR_FULL}</span> {history_row.SENT_DATE}
+				<!-- EVENT ucp_pm_history_row_message_author_username_prepend --><span>{history_row.MESSAGE_AUTHOR_FULL}</span><!-- EVENT ucp_pm_history_row_message_author_username_append --> {history_row.SENT_DATE}
 			</p>
 			<div class="content"><!-- IF history_row.MESSAGE -->{history_row.MESSAGE}<!-- ELSE --><span class="error">{L_MESSAGE_REMOVED_FROM_OUTBOX}</span><!-- ENDIF --></div>
 			<div id="message_{history_row.MSG_ID}" style="display: none;">{history_row.DECODED_MESSAGE}</div>
@@ -49,5 +45,4 @@
 	<!-- END history_row -->
 </div>
 <!-- EVENT ucp_pm_history_review_after -->
-
 

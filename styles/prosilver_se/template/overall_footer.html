@@ -29,9 +29,17 @@
 	<div class="copyright">
 		<!-- EVENT overall_footer_copyright_prepend -->
 		<!-- EVENT overall_footer_copyright_append -->
-		<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
-		<!-- IF U_ACP --><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
-		<br />
+		<!-- IF DEBUG_OUTPUT -->
+		<p class="footer-row">
+			<span class="footer-info">{{ DEBUG_OUTPUT }}</span>
+		</p>
+		<!-- ENDIF -->
+		<!-- IF U_ACP -->
+		<p class="footer-row">
+			<a class="footer-link" href="{{ U_ACP }}"><strong>{{ lang('ACP') }}</strong></a>
+		</p>
+		<!-- ENDIF -->
+		<!-- IF not U_ACP --><p class="footer-row empty-footer-row"></p><!-- ENDIF -->
 
 		<div id="sigil">
 			<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->sigil-top<!-- ELSE -->sigil-all<!-- ENDIF -->"></a>
@@ -43,16 +51,16 @@
 
 <div>
 	<a id="bottom" class="anchor" accesskey="z"></a>
-	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
+	{% if not S_IS_BOT %}{{ RUN_CRON_TASK }}{% endif %}
 </div>
 
-<script type="text/javascript" src="{T_JQUERY_LINK}"></script>
-<!-- IF S_ALLOW_CDN --><script type="text/javascript">window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
-<script type="text/javascript" src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
+<script src="{T_JQUERY_LINK}"></script>
+<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery-3.7.1.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
+<script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
 <!-- INCLUDEJS forum_fn.js -->
 <!-- INCLUDEJS ajax.js -->
 <!-- IF S_ALLOW_CDN -->
-	<script type="text/javascript">
+	<script>
 		(function($){
 			var $fa_cdn = $('head').find('link[rel="stylesheet"]').first(),
 				$span = $('<span class="fa" style="display:none"></span>').appendTo('body');
@@ -65,7 +73,7 @@
 	</script>
 <!-- ENDIF -->
 
-<script type="text/javascript" src="{ROOT_PATH}styles/prosilver_se/template/skrypty.js?assets_version={T_ASSETS_VERSION}"></script>
+<script src="{ROOT_PATH}styles/prosilver_se/template/skrypty.js?assets_version={T_ASSETS_VERSION}"></script>
 
 <script>
 $(document).ready(function(){
@@ -135,23 +143,27 @@ $(document).ready(function(){
 <!-- IF S_COOKIE_NOTICE -->
 	<script src="{T_ASSETS_PATH}/cookieconsent/cookieconsent.min.js?assets_version={T_ASSETS_VERSION}"></script>
 	<script>
-		window.addEventListener("load", function(){
-			window.cookieconsent.initialise({
-				"palette": {
-					"popup": {
-						"background": "#0F538A"
+		if (typeof window.cookieconsent === "object") {
+			window.addEventListener("load", function(){
+				window.cookieconsent.initialise({
+					"palette": {
+						"popup": {
+							"background": "#0F538A"
+						},
+						"button": {
+							"background": "#E5E5E5"
+						}
 					},
-					"button": {
-						"background": "#E5E5E5"
+					"theme": "classic",
+					"content": {
+						"message": "{LA_COOKIE_CONSENT_MSG}",
+						"dismiss": "{LA_COOKIE_CONSENT_OK}",
+						"link": "{LA_COOKIE_CONSENT_INFO}",
+						"href": "{UA_PRIVACY}"
 					}
-				},
-				"theme": "classic",
-				"content": {
-					"message": "{LA_COOKIE_CONSENT_MSG}",
-					"dismiss": "{LA_COOKIE_CONSENT_OK}",
-					"link": "{LA_COOKIE_CONSENT_INFO}"
-				}
-			})});
+				});
+			});
+		}
 	</script>
 <!-- ENDIF -->
 

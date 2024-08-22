@@ -35,7 +35,7 @@
 			<form method="get" id="forum-search" action="{S_SEARCHBOX_ACTION}">
 			<fieldset>
 				<button class="fa fa-search fa-2x" type="submit" id="search_but_s" title="{L_SEARCH}"></button>
-				<input class="inputbox search tiny" type="search" name="keywords" id="search_keywords" size="20" placeholder="{L_SEARCH_FORUM}" />				
+				<input class="inputbox search tiny" type="search" name="keywords" id="search_keywords" size="20" placeholder="{L_SEARCH_FORUM}" />
 				{S_SEARCH_LOCAL_HIDDEN_FIELDS}
 			</fieldset>
 			</form>
@@ -67,11 +67,11 @@
 				<fieldset class="fields1">
 				<dl>
 					<dt><label for="username">{L_USERNAME}{L_COLON}</label></dt>
-					<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" /></dd>
+					<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" autocomplete="username" /></dd>
 				</dl>
 				<dl>
 					<dt><label for="password">{L_PASSWORD}{L_COLON}</label></dt>
-					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" autocomplete="off" /></dd>
+					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" autocomplete="current-password" /></dd>
 					<!-- IF S_AUTOLOGIN_ENABLED --><dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="3" /> {L_LOG_ME_IN}</label></dd><!-- ENDIF -->
 					<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="4" /> {L_HIDE_ME}</label></dd>
 				</dl>
@@ -80,6 +80,7 @@
 					<dd><input type="submit" name="login" tabindex="5" value="{L_LOGIN}" class="button1" /></dd>
 				</dl>
 				{S_LOGIN_REDIRECT}
+				{S_FORM_TOKEN_LOGIN}
 				</fieldset>
 			</div>
 
@@ -130,7 +131,7 @@
 			<!-- EVENT viewforum_body_topic_row_prepend -->
 			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
 				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
-				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
+				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url('{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}'); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 
 					<!-- IF not S_IS_BOT -->
 					<!-- IF topicrow.REPLIES -->
@@ -140,10 +141,10 @@
 
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->
-						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<!-- IF topicrow.U_VIEW_TOPIC --><a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a><!-- ELSE -->{topicrow.TOPIC_TITLE}<!-- ENDIF -->
 						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
-							<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
-								<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
+							<a href="{topicrow.U_MCP_QUEUE}" title="<!-- IF topicrow.S_TOPIC_UNAPPROVED -->{L_TOPIC_UNAPPROVED}<!-- ELSE -->{L_POSTS_UNAPPROVED}<!-- ENDIF -->">
+								<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only"><!-- IF topicrow.S_TOPIC_UNAPPROVED -->{L_TOPIC_UNAPPROVED}<!-- ELSE -->{L_POSTS_UNAPPROVED}<!-- ENDIF --></span>
 							</a>
 						<!-- ENDIF -->
 						<!-- IF topicrow.S_TOPIC_DELETED -->
@@ -177,19 +178,21 @@
 						<!-- ENDIF -->
 
 						<br />
-						<!-- IF not S_IS_BOT -->
+						<!-- IF not S_IS_BOT and topicrow.U_LAST_POST -->
 						<div class="lastpost responsive-show" style="display: none;">
 							<span>
-								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
+								<span class="lastpost-poster"><!-- EVENT viewforum_body_last_post_author_username_prepend -->{topicrow.LAST_POST_AUTHOR_FULL}<!-- EVENT viewforum_body_last_post_author_username_append --></span>
 								<a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}" class="lastpost-time">
-									{topicrow.LAST_POST_TIME} <div class="fa fa-fast-forward fa-lg"></div>
+									<time datetime="{topicrow.LAST_POST_TIME_RFC3339}">{topicrow.LAST_POST_TIME}</time> <div class="fa fa-fast-forward fa-lg"></div>
 								</a>
 							</span>
 						</div>
 						<!-- ENDIF -->
 
-						<div class="responsive-hide">
-							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
+						<div class="responsive-hide left-box">
+							{% EVENT topiclist_row_topic_by_author_before %}
+							<span><!-- EVENT viewforum_body_topic_author_username_prepend -->{topicrow.TOPIC_AUTHOR_FULL}<!-- EVENT viewforum_body_topic_author_username_append --></span> <time datetime="{topicrow.FIRST_POST_TIME_RFC3339}">{topicrow.FIRST_POST_TIME}</time>
+							{% EVENT topiclist_row_topic_by_author_after %}
 							<!-- IF topicrow.S_POST_GLOBAL and FORUM_ID != topicrow.FORUM_ID --><a href="{topicrow.U_VIEW_FORUM}" class="topic-forumtitle" title="{L_JUMP_TO} {L_FORUM_SMALL}">{topicrow.FORUM_NAME}</a><!-- ENDIF -->
 
 							<!-- EVENT topiclist_tags -->
@@ -202,8 +205,8 @@
 				<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
 				<dd class="lastpost" onclick="window.location.href='{topicrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
 					<span>
-						<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
-						<span class="lastpost-time">{topicrow.LAST_POST_TIME} <a class="fa fa-fast-forward fa-lg"></a></span>
+						<span class="lastpost-poster"><!-- EVENT viewforum_body_last_post_author_username_prepend -->{topicrow.LAST_POST_AUTHOR_FULL}<!-- EVENT viewforum_body_last_post_author_username_append --></span>
+						<span class="lastpost-time"><time datetime="{topicrow.LAST_POST_TIME_RFC3339}">{topicrow.LAST_POST_TIME}</time> <a class="fa fa-fast-forward fa-lg"></a></span>
 					</span>
 				</dd>
 			</dl>
@@ -221,7 +224,13 @@
 	<!-- IF S_IS_POSTABLE -->
 	<div class="panel">
 		<div class="inner">
-		<strong>{L_NO_TOPICS}</strong>
+		<strong>{{ lang(S_SORT_DAYS ? 'NO_TOPICS_TIME_FRAME' : 'NO_TOPICS') }}</strong>
+		</div>
+	</div>
+	<!-- ELSE IF not S_HAS_SUBFORUM -->
+	<div class="panel">
+		<div class="inner">
+			<strong>{L_NO_FORUMS_IN_CATEGORY}</strong>
 		</div>
 	</div>
 	<!-- ENDIF -->
@@ -258,6 +267,8 @@
 <!-- ENDIF -->
 
 <!-- INCLUDE jumpbox.html -->
+
+{% EVENT viewforum_body_online_list_before %}
 
 
 <!-- INCLUDE overall_footer.html -->

@@ -5,28 +5,32 @@
 </h2>
 
 <div id="topicreview" class="topicreview">
-<script type="text/javascript">
-// <![CDATA[
+<script>
 	bbcodeEnabled = {S_BBCODE_ALLOWED};
-// ]]>
 </script>
 	<!-- BEGIN topic_review_row -->
 
 	<!-- IF topic_review_row.S_IGNORE_POST -->
 	<div class="post bg3 post-ignore">
 		<div class="inner">
-			{topic_review_row.L_IGNORE_POST}
+			<p class="fbr-m-info">{topic_review_row.L_IGNORE_POST}</p>
+			<p class="fbr-m-info"><strong>
+			<a class="display_post_review" href="{{ post_review_row.U_MINI_POST }}">{{ lang('POST_DISPLAY') }}</a>
+			</strong></p>
 	<!-- ELSE IF topic_review_row.S_POST_DELETED -->
 	<div class="post bg3 post-ignore">
 		<div class="inner">
-			{topic_review_row.L_DELETE_POST}
+			<p class="fbr-m-info">{topic_review_row.L_DELETE_POST}</p>
+			<p class="fbr-m-info"><strong>
+			<a class="display_post_review" href="{{ post_review_row.U_MINI_POST }}">{{ lang('POST_DISPLAY') }}</a>
+			</strong></p>
 	<!-- ELSE -->
 	<div class="post <!-- IF topic_review_row.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF topic_review_row.POST_ID == REPORTED_POST_ID --> reported<!-- ENDIF -->">
 		<div class="inner">
 	<!-- ENDIF -->
 
 		<div class="postbody" id="pr{topic_review_row.POST_ID}">
-			<h3><a href="#pr{topic_review_row.POST_ID}">{topic_review_row.POST_SUBJECT}</a></h3>
+			<h3><a href="{topic_review_row.U_MINI_POST}">{topic_review_row.POST_SUBJECT}</a></h3>
 
 			<!-- IF (topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE) or topic_review_row.U_MCP_DETAILS -->
 			<!-- DEFINE $SHOW_POST_BUTTONS = (topic_review_row.U_MCP_DETAILS or (topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE)) -->
@@ -56,11 +60,13 @@
 			<!-- EVENT posting_topic_review_row_post_details_before -->
 			<!-- ENDIF -->
 			<p class="author">
-				<span>{topic_review_row.POST_AUTHOR_FULL}</span> {topic_review_row.POST_DATE}
+				<!-- EVENT posting_topic_review_row_post_author_username_prepend --><span>{topic_review_row.POST_AUTHOR_FULL}</span><!-- EVENT posting_topic_review_row_post_author_username_append --> {topic_review_row.POST_DATE}
 			</p>
 			<!-- EVENT posting_topic_review_row_post_details_after -->
 
 			<div class="content">{topic_review_row.MESSAGE}</div>
+
+			<!-- EVENT posting_topic_review_row_content_after -->
 
 			<!-- IF topic_review_row.S_HAS_ATTACHMENTS -->
 				<dl class="attachbox">

@@ -33,13 +33,13 @@
 				</dt>
 				<dd class="extra">{attachrow.DOWNLOAD_COUNT}</dd>
 				<dd class="time"><span>{attachrow.POST_TIME}</span></dd>
-				<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" /></dd>
+				<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1"{% if attachrow.S_LOCKED %} disabled title="{{ lang('ATTACHMENT_LOCKED') }}"{% endif %} /></dd>
 			</dl>
 		</li>
 		<!-- END attachrow -->
 		</ul>
 
-		<div class="action-bar bottom">
+		<div class="action-bar bar-bottom">
 			<!-- INCLUDE display_options.html -->
 			{S_FORM_TOKEN}
 

@@ -160,6 +160,11 @@ dd.lastpost > span, ul.topiclist dd.info > span, ul.topiclist dd.time > span, dd
 	border-bottom: none;
 }
 
+#ch {
+	border: none;
+	align-self: flex-start;
+}
+
 blockquote {
 	border: none;
 }
@@ -320,6 +325,10 @@ textarea.inputbox {
 	width: 100%;
 }
 
+input[type="number"] {
+	-moz-padding-end: inherit;
+}
+
 fieldset.display-actions {
 	padding: 1em;
 }
@@ -429,7 +438,7 @@ form#qr_postform .panel fieldset dl,
 /* probably not needed, but to be sure */
 
 #attach-row-tpl {
-	display: none;
+	/*display: none;*/
 }
 
 /* END probably not needed, but to be sure */
@@ -974,6 +983,10 @@ body.simple {
 	text-align: center;
 }
 
+.pagination li.active span {
+	font-size: 1em;
+}
+
 .pagination .arrow a {
 	padding: 2px;
 }
@@ -1113,6 +1126,12 @@ dd.lastpost > span {
 	top: 0;
 }
 */
+
+p.post-notice {
+    clear: both;
+    position: static;
+}
+
 .has-profile .post-buttons {
 	top: 0;
 }
@@ -1120,6 +1139,12 @@ dd.lastpost > span {
 .postbody .signature:not(.standalone) {
 	display: none;
 }
+
+/* nie wygląda dobrze w pm-kach */
+label[for="attach_sig"] {
+    /*display: none;*/
+}
+
 /*
 .postbody [id^=post_content] {
 	position: relative;
@@ -1345,7 +1370,6 @@ a.header-avatar img {
 }
 
 .fa-search,
-.ajaxshoutbox_delete .fa-remove,
 .fa-exclamation-triangle {
 	padding: 0;
 }
@@ -1444,7 +1468,7 @@ table.table1 tbody tr.bg3,
 table.table1 thead th {
 	font-weight: bold;
 	padding: 5px;
-	border-bottom: 1px solid transparent;
+	border-bottom: none;
 	vertical-align: middle;
 }
 
@@ -1453,8 +1477,15 @@ table.table1 tbody tr {
 }
 
 table.table1 tbody td {
-	border-top: 1px solid transparent;
+	border-top: none;
 	vertical-align: middle;
+}
+
+table.table1 td.info a {
+    max-width: 195px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #notification-settings-table tbody td:not(.mark) {
@@ -1511,6 +1542,11 @@ table.table1 tbody td {
 	//width: -webkit-fit-content;
 	width: fit-content;
 	margin: auto;
+	padding: 5px;
+}
+
+.copyright .empty-footer-row {
+    height: 18px;
 }
 
 .copyright strong {
@@ -1610,9 +1646,11 @@ table.table1 tbody td {
 .brutalform-box span,
 #register_text span,
 #login span,
-#remind span,
+#reset_password span,
+#resend span,
 #login a,
-#remind a,
+#reset_password a,
+#resend a,
 #quick-login-panel span,
 #pmheader-postingbox span {
 	padding: 2px;
@@ -1814,19 +1852,22 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 
 #login .fbr-right,
-#remind .fbr-right,
+#reset_password .fbr-right,
+#resend .fbr-right,
 #quick-login-panel .fbr-right,
 #fbr-register-email {
 	flex-direction: column-reverse;
 }
 
 #login fieldset.fields1 div,
-#remind fieldset.fields1 div,
+#reset_password fieldset.fields1 div,
+#resend fieldset.fields1 div,
 #quick-login-panel fieldset.fields1 div {
 	margin-bottom: 0;
 }
 
-#remind .submit-buttons {
+#reset_password .submit-buttons,
+#resend .submit-buttons {
 	margin-top: 77px;
 }
 
@@ -2051,8 +2092,7 @@ fieldset.fields1 div {
 blockquote,
 blockquote blockquote,
 blockquote.uncited,
-blockquote blockquote.uncited,
-.codebox {
+blockquote blockquote.uncited {
 	padding-bottom: 10px;
 	margin: 15px 0 15px 7px;
 }
@@ -2064,7 +2104,8 @@ cite div.responsive-hide {
 
 #login .fbr-left,
 #register .fbr-left,
-#remind .fbr-left {
+#reset_password .fbr-left,
+#resend .fbr-left {
 	align-items: initial;
 }
 
@@ -2111,8 +2152,15 @@ div.content,
 .message-box textarea,
 #notepad,
 .fbr,
-.panel p {
+.panel p,
+.agreement,
+.agreement-text {
 	line-height: 1.618;
+}
+
+.agreement,
+.agreement-text {
+	margin-bottom: 1.618em;
 }
 
 #postingbox.panel {

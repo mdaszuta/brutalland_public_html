@@ -97,9 +97,11 @@ p.author,
 .brutalform-box span,
 #register_text span,
 #login span,
-#remind span,
+#reset_password span,
+#resend span,
 #login a,
-#remind a,
+#reset_password a,
+#resend a,
 #pmheader-postingbox span,
 .tab > a,
 dl.faq dt,
@@ -120,7 +122,8 @@ label.fbr-right,
 .fbr-m-info,
 .spoilbtn,
 cite div.responsive-hide,
-blockquote cite {
+blockquote cite,
+blockquote.uncited::before {
 	color: #777;
 }
 

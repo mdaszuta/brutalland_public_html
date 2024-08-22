@@ -126,11 +126,6 @@ class listener implements EventSubscriberInterface
 				'S_TOPFIVE_HIDDEN' => $this->operator->is_collapsed($fid),
 				'U_TOPFIVE_COLLAPSE_URL' => $this->operator->get_collapsible_link($fid),
 			]);
-			$asid = 'ajax_shoutbox';
-			$this->template->assign_vars([
-				'S_AJAX_SHOUTBOX_HIDDEN' => $this->operator->is_collapsed($asid),
-				'U_AJAX_SHOUTBOX_COLLAPSE_URL' => $this->operator->get_collapsible_link($asid),
-			]);
 		}
 		$this->template->assign_vars([
 			'S_TOPFIVE'	=>	true,

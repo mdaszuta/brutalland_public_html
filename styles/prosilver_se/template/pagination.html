@@ -1,7 +1,7 @@
 <ul>
 <!-- BEGIN pagination -->
 	<!-- IF pagination.S_IS_PREV -->
-		<li class="arrow previous"><a class="fa fa-chevron-left button-icon-only" href="{pagination.PAGE_URL}" rel="prev" role="button"><span class="sr-only">{L_PREVIOUS}</span></a></li>
+		<li class="arrow previous"><a class="fa fa-chevron-{S_CONTENT_FLOW_BEGIN} button-icon-only" href="{pagination.PAGE_URL}" rel="prev" role="button"><span class="sr-only">{L_PREVIOUS}</span></a></li>
 	<!-- ELSEIF pagination.S_IS_CURRENT -->
 	<li class="active"><span>{pagination.PAGE_NUMBER}</span></li>
 	<!-- ELSEIF pagination.S_IS_ELLIPSIS and BASE_URL and TOTAL_PAGES > 6 -->
@@ -18,7 +18,7 @@
 	<!-- ELSEIF pagination.S_IS_ELLIPSIS -->
 	<div class="fa fa-ellipsis-h" role="separator"></div>
 	<!-- ELSEIF pagination.S_IS_NEXT -->
-		<li class="arrow next"><a class="fa fa-chevron-right button-icon-only" href="{pagination.PAGE_URL}" rel="next" role="button"><span class="sr-only">{L_NEXT}</span></a></li>
+		<li class="arrow next"><a class="fa fa-chevron-{S_CONTENT_FLOW_END} button-icon-only" href="{pagination.PAGE_URL}" rel="next" role="button"><span class="sr-only">{L_NEXT}</span></a></li>
 	<!-- ELSE -->
 		<li><a href="{pagination.PAGE_URL}" role="button">{pagination.PAGE_NUMBER}</a></li>
 	<!-- ENDIF -->

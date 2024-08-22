@@ -12,10 +12,10 @@
 		<dl>
 			<!-- IF AVATAR_IMG --><dt class="profile-avatar">{AVATAR_IMG}</dt><!-- ENDIF -->
 
-			<dt><!-- IF USER_COLOR --><span style="color: {USER_COLOR};" class="username-coloured"><!-- ELSE --><span class="username"><!-- ENDIF -->
+			<dt><!-- EVENT memberlist_view_username_prepend --><!-- IF USER_COLOR --><span style="color: {USER_COLOR};" class="username-coloured"><!-- ELSE --><span class="username"><!-- ENDIF -->
 				{USERNAME}
 				<!-- IF S_ONLINE --><div class="fa fa-circle"></div><!-- ENDIF -->
-			</span></dt>
+			</span><!-- EVENT memberlist_view_username_append --></dt>
 
 			<!-- EVENT memberlist_view_rank_avatar_before -->
 			<!-- IF RANK_TITLE --><dd>{RANK_TITLE}</dd><!-- ENDIF -->

@@ -284,17 +284,6 @@ ul.zebra-list li:nth-child(even):hover {
 	background-size: 60px 60px;
 }
 
-blockquote,
-blockquote blockquote,
-blockquote.uncited,
-blockquote blockquote.uncited {
-	background-image: url("./images/quote.gif");
-}
-
-.rtl blockquote {
-	background-image: url("./images/quote_rtl.gif");
-}
-
 #page-header {
 	background: URL("./images/logo.png");
 	background-position: 0 22px;
@@ -460,7 +449,6 @@ blockquote,
 blockquote blockquote,
 blockquote.uncited,
 blockquote blockquote.uncited,
-.codebox,
 .member-search.panel,
 .phpbb_alert {
 	border-radius: 5px;
@@ -484,7 +472,8 @@ span.button:focus,
 #muzycy-box textarea,
 .panel-container h3,
 .panel-container hr,
-.panel-container .panel li.row {
+.panel-container .panel li.row,
+.codebox {
 	border-radius: 3px;
 }
 

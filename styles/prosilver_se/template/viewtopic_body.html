@@ -1,5 +1,6 @@
 <!-- INCLUDE overall_header.html -->
 
+<!-- EVENT viewtopic_topic_title_before -->
 <!-- EVENT viewtopic_topic_title_prepend --><!-- EVENT viewtopic_topic_title_append -->
 <!-- EVENT viewtopic_topic_title_after -->
 
@@ -45,7 +46,7 @@
 <!-- EVENT viewtopic_body_poll_before -->
 
 <!-- IF S_HAS_POLL -->
-	<form method="post" action="{S_POLL_ACTION}" data-ajax="vote_poll" class="topic_poll">
+	<form method="post" action="{S_POLL_ACTION}" data-ajax="vote_poll" data-refresh="true" class="topic_poll">
 
 	<div class="panel">
 		<div class="inner">
@@ -157,12 +158,14 @@
 					<div class="rozwijany-box-all contact-box-all menu-all">
 							<!-- BEGIN contact -->
 								<a href="<!-- IF postrow.contact.U_CONTACT -->{postrow.contact.U_CONTACT}<!-- ELSE -->{postrow.U_POST_AUTHOR}<!-- ENDIF -->" class="m-labeled-box m-labeled-box-button" title="{postrow.contact.NAME}"<!-- IF postrow.contact.ID eq 'jabber' --> onclick="popup(this.href, 750, 320); return false;"<!-- ENDIF -->>
+									{% EVENT viewtopic_body_contact_icon_prepend %}
 									<!-- IF postrow.contact.ID == 'pm' -->
 										<div class="fa fa-envelope"></div>
 									<!-- ELSEIF postrow.contact.ID == 'email' -->
 										<div class="fa fa-at"></div>
 									<!-- ENDIF -->
 										<div class="m-labeled-box-bg"><strong></strong></div>
+									{% EVENT viewtopic_body_contact_icon_append %}
 								</a>
 							<!-- END contact -->
 					</div>
@@ -177,20 +180,29 @@
 			<!-- IF postrow.S_POST_HIDDEN -->
 				<!-- IF postrow.S_POST_DELETED -->
 					<div class="ignore" id="post_hidden{postrow.POST_ID}">
-						{postrow.L_POST_DELETED_MESSAGE}<br />
-						{postrow.L_POST_DISPLAY}
+						<p class="fbr-m-info">{postrow.L_POST_DELETED_MESSAGE}</p>
+						<p class="fbr-m-info"><strong>
+						<a class="display_post" data-post-id="{{ postrow.POST_ID }}" href="{{ postrow.U_MINI_POST_VIEW }}">{{ lang('POST_DISPLAY') }}</a>
+						</strong></p>
 					</div>
 				<!-- ELSEIF postrow.S_IGNORE_POST -->
 					<div class="ignore" id="post_hidden{postrow.POST_ID}">
-						{postrow.L_IGNORE_POST}<br />
-						{postrow.L_POST_DISPLAY}
+						<p class="fbr-m-info">{postrow.L_IGNORE_POST}</p>
+						<p class="fbr-m-info"><strong>
+						<a class="display_post" data-post-id="{{ postrow.POST_ID }}" href="{{ postrow.U_MINI_POST_VIEW }}">{{ lang('POST_DISPLAY') }}</a>
+						</strong></p>
 					</div>
 				<!-- ENDIF -->
 			<!-- ENDIF -->
 			<div id="post_content{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
 
 			<!-- EVENT viewtopic_body_post_subject_before -->
-			<h3 <!-- IF postrow.S_FIRST_ROW -->class="first"<!-- ENDIF -->><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="{postrow.POST_ICON_IMG_ALT}" title="{postrow.POST_ICON_IMG_ALT}" /> <!-- ENDIF --><a href="#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3>
+		<h3 {% if postrow.S_FIRST_ROW %}class="first"{% endif %}>
+			{% if postrow.POST_ICON_IMG %}
+				<img src="{{ T_ICONS_PATH }}{{ postrow.POST_ICON_IMG }}" width="{{ postrow.POST_ICON_IMG_WIDTH }}" height="{{ postrow.POST_ICON_IMG_HEIGHT }}" alt="{{ postrow.POST_ICON_IMG_ALT }}" title="{{ postrow.POST_ICON_IMG_ALT }}">
+			{% endif %}
+			<a {% if postrow.S_FIRST_UNREAD %}class="first-unread" {% endif %}href="{{ postrow.U_MINI_POST }}">{{ postrow.POST_SUBJECT }}</a>
+		</h3>
 
 		<!-- DEFINE $SHOW_POST_BUTTONS = (postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE) -->
 		<!-- EVENT viewtopic_body_post_buttons_list_before -->
@@ -209,7 +221,7 @@
 					<!-- IF postrow.U_QUOTE -->
 						<li>
 							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="button-icon-only">
-								<div class="fa fa-quote-right fa-2x" aria-hidden="true"></div><span class="sr-only">{L_QUOTE}</span>
+								<div class="fa fa-quote-right fa-2x" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_QUOTE}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
@@ -218,28 +230,28 @@
 					<!-- IF postrow.U_DELETE -->
 						<li>
 							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}" class="button-icon-only">
-								<div class="fa fa-times fa-lg" aria-hidden="true"></div><span class="sr-only">{L_DELETE_POST}</span>
+								<div class="fa fa-times fa-lg" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_DELETE}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_REPORT -->
 						<li>
 							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}" class="button-icon-only">
-								<div class="fa fa-flag fa-lg" aria-hidden="true"></div><span class="sr-only">{L_REPORT_POST}</span>
+								<div class="fa fa-flag fa-lg" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_REPORT}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_WARN -->
 						<li>
 							<a href="{postrow.U_WARN}" title="{L_WARN_USER}" class="button-icon-only">
-								<div class="fa fa-warning fa-lg" aria-hidden="true"></div><span class="sr-only">{L_WARN_USER}</span>
+								<div class="fa fa-warning fa-lg" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_WARN}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_INFO -->
 						<li>
 							<a href="{postrow.U_INFO}" title="{L_INFORMATION}" class="button-icon-only">
-								<div class="fa fa-info fa-lg" aria-hidden="true"></div><span class="sr-only">{L_INFORMATION}</span>
+								<div class="fa fa-info fa-lg" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_INFORMATION}</span>
 							</a>
 						</li>
 					<!-- ENDIF -->
@@ -252,11 +264,12 @@
 
 			<!-- EVENT viewtopic_body_postrow_post_details_before -->
 			<p class="author responsive-hide">
-				<span> <strong>{postrow.POST_AUTHOR_FULL}</strong> {postrow.POST_DATE} </span>
+				<span> <strong>{postrow.POST_AUTHOR_FULL}</strong> <time datetime="{postrow.POST_DATE_RFC3339}">{postrow.POST_DATE}</time> </span>
 			</p>
 			<!-- EVENT viewtopic_body_postrow_post_details_after -->
 
 			<!-- IF postrow.S_POST_UNAPPROVED -->
+			<!-- IF postrow.S_CAN_APPROVE -->
 			<form method="post" class="mcp_approve" action="{postrow.U_APPROVE_ACTION}">
 				<p class="post-notice unapproved">
 					<span><i class="icon fa-question icon-blue fa-fw" aria-hidden="true"></i></span>
@@ -267,6 +280,12 @@
 					{S_FORM_TOKEN}
 				</p>
 			</form>
+			<!-- ELSE -->
+				<p class="post-notice unapproved">
+					<span><i class="icon fa-question icon-blue fa-fw" aria-hidden="true"></i></span>
+					<strong>{L_POST_UNAPPROVED_EXPLAIN}</strong>
+				</p>
+			<!-- ENDIF -->
 			<!-- ELSEIF postrow.S_POST_DELETED -->
 			<form method="post" class="mcp_approve" action="{postrow.U_APPROVE_ACTION}">
 				<p class="post-notice deleted">
@@ -289,7 +308,11 @@
 			</p>
 			<!-- ENDIF -->
 
+			{% EVENT viewtopic_body_postrow_content_before %}
+
 			<div class="content">{postrow.MESSAGE}</div>
+
+			<!-- EVENT viewtopic_body_postrow_content_after -->
 
 			<!-- IF postrow.S_HAS_ATTACHMENTS -->
 				<dl class="attachbox">
@@ -318,7 +341,10 @@
 
 			<!-- IF postrow.BUMPED_MESSAGE --><div class="notice"><br /><br />{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
 			<!-- EVENT viewtopic_body_postrow_post_notices_after -->
-			<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
+
+			{% EVENT viewtopic_body_postrow_signature_before %}
+				{% if postrow.SIGNATURE %}<div id="sig{{ postrow.POST_ID }}" class="signature">{{ postrow.SIGNATURE }}</div>{% endif %}
+			{% EVENT viewtopic_body_postrow_signature_after %}
 
 			<!-- EVENT viewtopic_body_postrow_post_content_footer -->
 			</div>
@@ -375,5 +401,9 @@
 <!-- EVENT viewtopic_body_footer_before -->
 <!-- INCLUDE jumpbox.html -->
 
+{% EVENT viewtopic_body_online_list_before %}
+
+
+{% EVENT viewtopic_body_online_list_after %}
 
 <!-- INCLUDE overall_footer.html -->

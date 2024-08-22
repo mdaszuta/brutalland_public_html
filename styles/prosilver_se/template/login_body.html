@@ -10,16 +10,17 @@
 		<div class="fbr">
 			<div class="fbr-left">
 				<div class="brutalform-box">
-					<input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" />
+					<input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" autocomplete="username" />
 					<span class="brutalform-label">{L_USERNAME}</span>
 				</div>
 
 				<div class="brutalform-box">
-					<input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" class="inputbox" placeholder="{L_PASSWORD}" autocomplete="off" />
+					<input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" class="inputbox" placeholder="{L_PASSWORD}" autocomplete="current-password" />
 					<span class="brutalform-label">{L_PASSWORD}</span>
 				</div>
 
 				{S_LOGIN_REDIRECT}
+				{S_FORM_TOKEN_LOGIN}
 				{S_HIDDEN_FIELDS}
 
 				<!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION) -->

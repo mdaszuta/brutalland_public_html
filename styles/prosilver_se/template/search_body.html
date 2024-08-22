@@ -15,6 +15,8 @@
 			<label for="keywords">{L_SEARCH_KEYWORDS}{L_COLON}</label>
 			<span>
 				<label for="terms1"><input type="radio" name="terms" id="terms1" value="all" checked="checked" /><strong> {L_SEARCH_ALL_TERMS}</strong></label>
+			</span>
+			<span>
 				<label for="terms2"><input type="radio" name="terms" id="terms2" value="any" /><strong> {L_SEARCH_ANY_TERMS}</strong></label>
 			</span>
 			<span class="responsive-hide">{L_SEARCH_KEYWORDS_EXPLAIN}</span>
@@ -39,7 +41,7 @@
 		{S_HIDDEN_FIELDS}
 		<div class="flex-box-o">
 			<div class="flex-box"><input type="submit" name="submit" value="{L_SEARCH}" class="button" /></div>
-			<div class="flex-box fb-c"><input type="reset" value="{L_RESET}" name="reset" class="button2" /></div>
+			<div class="flex-box fb-c"></div>
 		</div>
 	</fieldset>
 
@@ -99,8 +101,8 @@
 				<div class="fbr-right">{S_SELECT_SORT_DAYS}</div>
 			</div>
 			<div class="fbr">
-				<div class="fbr-left"><label>{L_RETURN_FIRST}{L_COLON}</label></div>
-				<div class="fbr-right fb-s"><select name="ch" title="{L_RETURN_FIRST}">{S_CHARACTER_OPTIONS}</select> <span>{L_POST_CHARACTERS}</span></div>
+				<div class="fbr-left"><label for="ch">{{ lang('RETURN_FIRST') ~ lang('COLON') }}</label><span class="phantom-label">{{ lang('RETURN_FIRST_EXPLAIN') }}</span></div>
+				<div class="fbr-right fb-s"><input id="ch" name="ch" type="number" value="{{ DEFAULT_RETURN_CHARS }}" min="0" max="9999" title="{{ lang('RETURN_FIRST') }}"> <span>{{ lang('POST_CHARACTERS') }}</span></div>
 			</div>
 		</div>
 	</div>

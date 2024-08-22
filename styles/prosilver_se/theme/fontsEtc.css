@@ -4,6 +4,12 @@ a:focus,
 a.forumtitle:hover,
 a.topictitle:hover,
 a.lastsubject:hover,
+.row-item .forumtitle:hover,
+.row-item .topictitle:hover,
+.row-item .lastsubject:hover,
+.row-item .subforum:hover,
+.row-item a.username:hover,
+.row-item a.username-coloured:hover,
 .signature a, .signature a:hover,
 .postprofile a:hover, .postprofile dt.author a:hover,
 .search .postprofile a:hover {
@@ -33,6 +39,8 @@ a.lastsubject {
 .button,
 .button1,
 .button2:not(.fa),
+input.button,
+input.button1,
 #brutalform-drafty .brutalform-explanation,
 select:not(.abbc3_select),
 .unreadpost .post-number a,
@@ -217,7 +225,6 @@ textarea,
 
 #m-feed-topics .main-m-bottom span {
 	transform: rotate(180deg);
-	/* font-size: x-small; */
 }
 
 .shoutboxlist .fa-remove {
@@ -266,7 +273,6 @@ ul.topiclist dt:not(.ajaxshoutbox_user) {
 
 #m-name .m-labeled-box .fa {
 	font-size: 4em;
-	/*font-size: 4.3em;*/
 }
 
 .abbc3_button,

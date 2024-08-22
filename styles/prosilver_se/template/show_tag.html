@@ -2,7 +2,9 @@
 
 <!-- EVENT search_results_header_before -->
 
-<!-- IF RH_TOPICTAGS_SEARCH_IGNORED_TAGS --><p class="fbr-m-info">{RH_TOPICTAGS_SEARCH_IGNORED_TAGS}</p><!-- ENDIF -->
+<!-- IF RH_TOPICTAGS_SEARCH_IGNORED_TAGS -->
+	<p class="fbr-m-info">{RH_TOPICTAGS_SEARCH_IGNORED_TAGS}</p>
+<!-- ENDIF -->
 
 <!-- IF SEARCH_TOPIC -->
 	<p class="return-link">
@@ -21,8 +23,9 @@
 		<div class="search-box fbr-right" role="search">
 			<form method="post" action="{S_SEARCH_ACTION}">
 			<fieldset>
-				<button class="fa fa-search fa-2x" type="submit" title="{L_SEARCH}" id="search_but_s"></button>
+				<button class="fa fa-search fa-2x" type="submit" id="search_but_s" title="{L_SEARCH}"></button>
 				<input class="inputbox search tiny" type="search" name="keywords" id="search_keywords" size="20" placeholder="{L_SEARCH_IN_RESULTS}" />
+				{S_SEARCH_LOCAL_HIDDEN_FIELDS}
 			</fieldset>
 			</form>
 		</div>
@@ -35,8 +38,7 @@
 <!-- BEGIN topicrow -->
 
 	<!-- IF topicrow.S_FIRST_ROW or not topicrow.S_TOPIC_TYPE_SWITCH -->
-	<div class="forumbg">
-
+		<div class="forumbg">
 		<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
@@ -56,11 +58,11 @@
 	<!-- ENDIF -->
 
 		<!-- EVENT viewforum_body_topicrow_row_before -->
-			<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
+		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<!-- EVENT viewforum_body_topic_row_prepend -->
-				<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
-					<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
-					<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
+			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
+				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
+				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url('{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}'); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
 
 					<script>
 					console.log("read/unread " + "{topicrow.S_UNREAD_TOPIC}" + " Topic_img_style! " + "{topicrow.TOPIC_IMG_STYLE}");
@@ -72,83 +74,80 @@
 					<!-- ENDIF -->
 					<!-- ENDIF -->
 
-						<div class="list-inner">
-							<!-- EVENT topiclist_row_prepend -->
-							<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+					<div class="list-inner">
+						<!-- EVENT topiclist_row_prepend -->
+						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+							<a href="{topicrow.U_MCP_QUEUE}" title="<!-- IF topicrow.S_TOPIC_UNAPPROVED -->{L_TOPIC_UNAPPROVED}<!-- ELSE -->{L_POSTS_UNAPPROVED}<!-- ENDIF -->">
+								<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only"><!-- IF topicrow.S_TOPIC_UNAPPROVED -->{L_TOPIC_UNAPPROVED}<!-- ELSE -->{L_POSTS_UNAPPROVED}<!-- ENDIF --></span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_DELETED -->
+							<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_DELETED}">
+								<i class="icon fa-recycle fa-fw icon-green" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_DELETED}</span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_REPORTED -->
+							<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
+								<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_HAS_POLL --><i class="icon fa-bar-chart fa-fw" aria-hidden="true"></i><!-- ENDIF -->
+						<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i><!-- ENDIF -->
 
-								<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
-									<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
-										<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
-									</a>
+						<!-- IF .topicrow.pagination -->
+						<div class="pagination">
+							<span><i class="icon fa-clone fa-fw" aria-hidden="true"></i></span>
+							<ul>
+							<!-- BEGIN pagination -->
+								<!-- IF topicrow.pagination.S_IS_PREV -->
+								<!-- ELSEIF topicrow.pagination.S_IS_CURRENT --><li class="active"><span>{topicrow.pagination.PAGE_NUMBER}</span></li>
+								<!-- ELSEIF topicrow.pagination.S_IS_ELLIPSIS --><li class="ellipsis"><span>{L_ELLIPSIS}</span></li>
+								<!-- ELSEIF topicrow.pagination.S_IS_NEXT -->
+								<!-- ELSE --><li><a href="{topicrow.pagination.PAGE_URL}" title="{L_JUMP_TO_PAGE}">{topicrow.pagination.PAGE_NUMBER}</a></li>
 								<!-- ENDIF -->
-								<!-- IF topicrow.S_TOPIC_DELETED -->
-									<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_DELETED}">
-										<i class="icon fa-recycle fa-fw icon-green" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_DELETED}</span>
-									</a>
-								<!-- ENDIF -->
-								<!-- IF topicrow.S_TOPIC_REPORTED -->
-									<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
-										<i class="icon fa-exclamation fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
-									</a>
-								<!-- ENDIF -->
-								<!-- IF topicrow.S_HAS_POLL --><i class="icon fa-bar-chart fa-fw" aria-hidden="true"></i><!-- ENDIF -->
-								<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i><!-- ENDIF -->
-
-							<!-- IF .topicrow.pagination -->
-							<div class="pagination">
-								<span><i class="icon fa-clone fa-fw" aria-hidden="true"></i></span>
-								<ul>
-								<!-- BEGIN pagination -->
-									<!-- IF topicrow.pagination.S_IS_PREV -->
-									<!-- ELSEIF topicrow.pagination.S_IS_CURRENT --><li class="active"><span>{topicrow.pagination.PAGE_NUMBER}</span></li>
-									<!-- ELSEIF topicrow.pagination.S_IS_ELLIPSIS --><li class="ellipsis"><span>{L_ELLIPSIS}</span></li>
-									<!-- ELSEIF topicrow.pagination.S_IS_NEXT -->
-									<!-- ELSE --><li><a href="{topicrow.pagination.PAGE_URL}" title="{L_JUMP_TO_PAGE}">{topicrow.pagination.PAGE_NUMBER}</a></li>
-									<!-- ENDIF -->
-								<!-- END pagination -->
-								</ul>
-							</div>
-							<!-- ENDIF -->
-
-							<br />
-
-							<!-- IF not S_IS_BOT -->
-							<div class="lastpost responsive-show" style="display: none;">
-								<span>
-									<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
-									<a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}" class="lastpost-time">
-										{topicrow.LAST_POST_TIME} <div class="fa fa-fast-forward fa-lg"></div>
-									</a>
-								</span>
-							</div>
-							<!-- ENDIF -->
-
-							<div class="responsive-hide">
-								<span>{topicrow.TOPIC_AUTHOR_FULL}</span> {topicrow.FIRST_POST_TIME}
-								<a href="{topicrow.U_VIEW_FORUM}" class="topic-forumtitle" title="{L_JUMP_TO} {L_FORUM_SMALL}">{topicrow.FORUM_ID} {topicrow.FORUM_NAME} {topicrow.FORUM_TITLE}</a>
-
-								<!-- EVENT topiclist_tags -->
-
-							</div>
-							<!-- EVENT topiclist_row_topic_title_after -->
-
-							<!-- EVENT topiclist_row_append -->
+							<!-- END pagination -->
+							</ul>
 						</div>
-					</dt>
-					</div>
-					<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
-					<dd class="lastpost" onclick="window.location.href='{topicrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
-						<span>
-							<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
-							<span class="lastpost-time">{topicrow.LAST_POST_TIME} <a class="fa fa-fast-forward fa-lg"></a></span>
-						</span>
-					</dd>
-				</dl>
-			</li>
-			<!-- EVENT viewforum_body_topic_row_after -->
-		<!-- IF topicrow.S_LAST_ROW -->
-		</ul>
+						<!-- ENDIF -->
 
+						<br />
+						<!-- IF not S_IS_BOT -->
+						<div class="lastpost responsive-show" style="display: none;">
+							<span>
+								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
+								<a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}" class="lastpost-time">
+									<time datetime="{topicrow.LAST_POST_TIME_RFC3339}">{topicrow.LAST_POST_TIME}</time> <div class="fa fa-fast-forward fa-lg"></div>
+								</a>
+							</span>
+						</div>
+						<!-- ENDIF -->
+
+						<div class="responsive-hide left-box">
+							<span>{topicrow.TOPIC_AUTHOR_FULL}</span> <time datetime="{topicrow.FIRST_POST_TIME_RFC3339}">{topicrow.FIRST_POST_TIME}</time>
+							<a href="{topicrow.U_VIEW_FORUM}" class="topic-forumtitle" title="{L_JUMP_TO} {L_FORUM_SMALL}">{topicrow.FORUM_ID} {topicrow.FORUM_NAME} {topicrow.FORUM_TITLE}</a>
+
+							<!-- EVENT topiclist_tags -->
+
+						</div>
+						<!-- EVENT topiclist_row_topic_title_after -->
+						<!-- EVENT topiclist_row_append -->
+					</div>
+				</dt>
+				</div>
+				<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
+				<dd class="lastpost" onclick="window.location.href='{topicrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
+					<span>
+						<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
+						<span class="lastpost-time"><time datetime="{topicrow.LAST_POST_TIME_RFC3339}">{topicrow.LAST_POST_TIME}</time> <a class="fa fa-fast-forward fa-lg"></a></span>
+					</span>
+				</dd>
+			</dl>
+		</li>
+		<!-- EVENT viewforum_body_topic_row_after -->
+
+	<!-- IF topicrow.S_LAST_ROW -->
+			</ul>
 		</div>
 	</div>
 	<!-- ENDIF -->

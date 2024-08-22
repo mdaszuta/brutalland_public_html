@@ -9,13 +9,11 @@
 		<!-- EVENT overall_footer_timezone_before -->
 		<!-- EVENT overall_footer_timezone_after -->
 		<!-- IF SCRIPT_NAME == 'viewforum' || SCRIPT_NAME == 'viewtopic' -->
-			<!-- IF S_DISPLAY_ONLINE_LIST -->
+			<!-- IF S_DISPLAY_ONLINE_LIST and U_VIEWONLINE and S_USER_LOGGED_IN -->
 				<div class="stat-block online-list">
 					<p class="see_online">
-					<!-- IF U_VIEWONLINE and S_USER_LOGGED_IN -->
 						<a href="{U_VIEWONLINE}">{LOGGED_IN_USER_LIST}</a>
 						<a href="{U_VIEWONLINE}" class="fa fa-globe fa-lg"></a>
-					<!-- ENDIF -->
 					</p>
 				</div>
 			<!-- ENDIF -->

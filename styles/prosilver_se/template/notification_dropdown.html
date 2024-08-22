@@ -1,5 +1,6 @@
 <div class="main-m-bottom menu-all notification_list">
-	<div class="m-list">
+
+		<div class="m-list">
 			<!-- IF not .notifications -->
 				<p class="no_notifications fbr-m-info">
 					{L_NO_NOTIFICATIONS}
@@ -36,30 +37,32 @@
 					<!-- IF notifications.URL --></a><!-- ENDIF -->
 				</div>
 			<!-- END notifications -->
-	</div>
-
-	<div class="footer switcheroo-menu">
-		<div class="switcheroo-menu-all">
-			<a href="{U_VIEW_ALL_NOTIFICATIONS}" id="n_see" class="m-labeled-box m-labeled-box-button">
-				<div class="fa fa-bell"></div>
-				<div class="m-labeled-box-bg"><strong>{L_SEE_ALL_NOTIFICATIONS}</strong></div>
-			</a>
-			<a href="{U_NOTIFICATION_SETTINGS}" id="n_set" class="m-labeled-box m-labeled-box-button">
-				<div class="fa fa-cog"></div>
-				<div class="m-labeled-box-bg"><strong>{L_SETTINGS}</strong></div>
-			</a>
-			<!-- IF NOTIFICATIONS_COUNT -->
-				<a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read" id="mark_all_notifications" class="m-labeled-box m-labeled-box-button">
-					<div class="fa fa-trash"></div>
-					<div class="m-labeled-box-bg"><strong>{L_RESET}</strong></div>
-				</a>
-			<!-- ENDIF -->
 		</div>
-		<div class="switcheroo-menu-devil">
-			<div class="m-labeled-box m-labeled-box-button">
-				<div class="fa fa-dot-circle-o"></div>
-				<div class="m-labeled-box-bg"><strong></strong></div>
+
+		{% EVENT notification_dropdown_footer_before %}
+		<div class="footer switcheroo-menu">
+			<div class="switcheroo-menu-all">
+				<a href="{U_VIEW_ALL_NOTIFICATIONS}" id="n_see" class="m-labeled-box m-labeled-box-button">
+					<div class="fa fa-bell"></div>
+					<div class="m-labeled-box-bg"><strong>{L_SEE_ALL_NOTIFICATIONS}</strong></div>
+				</a>
+				<a href="{U_NOTIFICATION_SETTINGS}" id="n_set" class="m-labeled-box m-labeled-box-button">
+					<div class="fa fa-cog"></div>
+					<div class="m-labeled-box-bg"><strong>{L_SETTINGS}</strong></div>
+				</a>
+				<!-- IF NOTIFICATIONS_COUNT -->
+					<a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read" id="mark_all_notifications" class="m-labeled-box m-labeled-box-button">
+						<div class="fa fa-trash"></div>
+						<div class="m-labeled-box-bg"><strong>{L_RESET}</strong></div>
+					</a>
+				<!-- ENDIF -->
+			</div>
+			<div class="switcheroo-menu-devil">
+				<div class="m-labeled-box m-labeled-box-button">
+					<div class="fa fa-dot-circle-o"></div>
+					<div class="m-labeled-box-bg"><strong></strong></div>
+				</div>
 			</div>
 		</div>
-	</div>
+		{% EVENT notification_dropdown_footer_after %}
 </div>
