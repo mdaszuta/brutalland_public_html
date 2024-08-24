@@ -273,6 +273,7 @@
 	
 	.lastpost.responsive-show {
 		float: right;
+		margin: 2px 0;
 	}
 
 	.lastpost .fa-fast-forward {

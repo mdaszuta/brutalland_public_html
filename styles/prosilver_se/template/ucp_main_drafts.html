@@ -49,12 +49,12 @@
 							<!-- ELSEIF S_PRIVMSGS -->
 							<!-- ELSE -->{L_NO_TOPIC_FORUM}<!-- ENDIF -->
 							<div class="responsive-show" style="display: none;">
-								<!-- IF draftrow.U_INSERT --><a href="{draftrow.U_INSERT}" class="button2">{L_LOAD_DRAFT}</a> &bull; <!-- ENDIF --><a href="{draftrow.U_VIEW_EDIT}" class="button2">{L_VIEW_EDIT}</a>
+								<!-- IF draftrow.U_INSERT --><a href="{draftrow.U_INSERT}" class="button2">{L_LOAD_DRAFT}</a><!-- ENDIF --><a href="{draftrow.U_VIEW_EDIT}" class="button2">{L_VIEW_EDIT}</a>
 							</div>
 						</div>
 					</dt>
 					<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="d[{draftrow.DRAFT_ID}]" id="d{draftrow.DRAFT_ID}" /></dd>
-					<dd class="info"><span><!-- IF draftrow.U_INSERT --><a href="{draftrow.U_INSERT}" class="button2">{L_LOAD_DRAFT}</a> &bull; <!-- ENDIF --><a href="{draftrow.U_VIEW_EDIT}" class="button2">{L_VIEW_EDIT}</a></span></dd>
+					<dd class="info"><span><!-- IF draftrow.U_INSERT --><a href="{draftrow.U_INSERT}" class="button2">{L_LOAD_DRAFT}</a><!-- ENDIF --><a href="{draftrow.U_VIEW_EDIT}" class="button2">{L_VIEW_EDIT}</a></span></dd>
 				</dl>
 			</li>
 		<!-- END draftrow -->

@@ -124,6 +124,10 @@ li.row.bg3:hover,
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#257EDE', EndColorStr='#000000')";
 }
 
+select:not([multiple="multiple"]) option {
+	background-color: rgba(0, 0, 0, 1);
+}
+
 #topic_preview {
 	background-color: rgba(0, 0, 0, 0.75);
 }

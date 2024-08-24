@@ -50,7 +50,7 @@ a.lastsubject {
     max-width: 100%;
 }
 
-/* common.css */
+/* override prosilver\common.css */
 
 @media (min-width: 701px) {
 	.postprofile dd, .postprofile dt {
@@ -87,10 +87,15 @@ a.lastsubject {
 
 /* END common.css */
 
-/* content.css */
+/* override prosilver\content.css */
 
 ul.topiclist dd {
 	padding: 0;
+}
+
+ul.topiclist li.row dd {
+	padding: 0;
+	margin-bottom: 0;
 }
 
 li.header dt, li.header dd {
@@ -116,6 +121,23 @@ li.header dd {
 	/*padding-left: 0;*/
 }
 
+li.header dl.row-item dt .list-inner {
+	padding-left: 45px;
+	padding-right: 5px;
+}
+
+.row .list-inner {
+	padding: 0;
+}
+
+dl.row-item {
+	background-size: 25px;
+}
+
+dl.row-item dt .list-inner {
+	padding-left: 45px;
+}
+
 dl.row-item dt, dl.row-item dd {
     min-height: 41px;
 }
@@ -133,11 +155,6 @@ dl.row-item dt .lastpost a {
     display: flex;
 }
 
-li.header dl.row-item dt .list-inner {
-	padding-left: 45px;
-	padding-right: 5px;
-}
-
 dl a.row-item-link {
 	display: none !important;
 }
@@ -148,6 +165,11 @@ dd.lastpost, dd.redirect, dd.moderation, dd.time, dd.info {
 
 dd.lastpost > span, ul.topiclist dd.info > span, ul.topiclist dd.time > span, dd.redirect > span, dd.moderation > span {
 	padding-left: 0;
+}
+
+/* menu w grupy\zarządzanie grupami */
+dd.option {
+	width: unset;
 }
 
 .postbody h3 {
@@ -194,7 +216,7 @@ fieldset.polls dl {
 
 /* END content.css */
 
-/* buttons.css */
+/* override prosilver\buttons.css */
 
 .button {
 	line-height: normal;
@@ -210,7 +232,7 @@ fieldset.polls dl {
 
 /* END buttons.css */
 
-/* cp.css */
+/* override prosilver\cp.css */
 
 .cp-main {
 	float: none;
@@ -283,7 +305,7 @@ ul.cplist {
 
 /* END cp.css */
 
-/* form.css */
+/* override prosilver\form.css */
 
 select {
 	/*vertical-align: baseline;*/
@@ -434,14 +456,6 @@ form#qr_postform .panel fieldset dl,
 .logo {
 	display: none;
 }
-
-/* probably not needed, but to be sure */
-
-#attach-row-tpl {
-	/*display: none;*/
-}
-
-/* END probably not needed, but to be sure */
 
 .flex-box-o,
 .flex-box-o-o {
@@ -754,11 +768,6 @@ input.button2,
 	flex-direction: column;
 	align-items: center;
 }
-	
-#m-name .action-bar.bar-top .buttons .button {
-	/* padding: 0 55px 0 55px; */
-	/* height: 1.75em; */
-}
 
 #m-feed-topics .main-m-bottom {
 	/*flex-direction: row !important;*/
@@ -911,7 +920,6 @@ input.button2,
 }
 
 #m-ksywa .main-m-bottom a {
-	/* padding: 7px; */
 	padding: 10px;
 }
 
@@ -923,19 +931,13 @@ input.button2,
 
 #m-avatar .avatar { margin: 0; }
 
-//::-webkit-scrollbar { width: 1px;}
-
 div.content { padding-top: 10px; }
 
 body.simple {
 	min-height: 100%;
 	padding: 0 5px;
 }
-/*
-.dropdown {
-	padding: 0;
-}
-*/
+
 .action-bar {
 	display: flex;
 	flex-wrap: wrap;
@@ -958,8 +960,6 @@ body.simple {
 	align-items: flex-end;
 	display: none;
 }
-
-//.action-bar .search-box button { float: right; }
 
 .pagination {
 	display: flex;
@@ -1065,8 +1065,6 @@ li.arrow a::before {
 	content: none;
 }
 
-/*.action-bar .dropdown-container-left{ float: right; }*/
-
 .forabg ul.topiclist .row {
 	padding: 2px 0;
 }
@@ -1098,6 +1096,7 @@ dd.lastpost > span {
 }
 
 .topiclist.forums .lastpost,
+.topiclist.topics .lastpost,
 .topiclist.cplist .lastpost {
 	flex-direction: column;
 	justify-content: center;
@@ -1423,16 +1422,6 @@ h2.review {
 	text-align: justify;
 }
 
-//.postbody img.postimage { max-width: 98%; }
-
-.postbody img.postimage {
-    //max-width: 551px;
-    //-webkit-box-sizing: border-box;
-    //-moz-box-sizing: border-box;
-    //box-sizing: border-box;
-    //padding: 1px;
-}
-
 #shoutbox_scroll {
 	max-height: 195px;
 	overflow-y: scroll;
@@ -1603,10 +1592,6 @@ table.table1 td.info a {
 
 /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
 
-#quick-login-panel {
-	/* z-index: 1001 !important; */
-}
-
 #quick-login-panel fieldset dl {
 	margin-left: 2%;
 }
@@ -1658,10 +1643,6 @@ table.table1 td.info a {
 	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
-/**
-.pmbars-outer {}
-*/
 
 .brutalform-box input:not(.button2) {
 	width: 100%;
@@ -2014,8 +1995,6 @@ tags-input .autocomplete .suggestion-item {
     display: none;
 }
 
-//.rozwijany-box:hover .rozwijany-box-all { display: flex; }
-
 .switcheroo-menu,
 .switcheroo-static,
 .fbr-quickmod:hover .fbr-quickmod-all {
@@ -2163,11 +2142,6 @@ div.content,
 	margin-bottom: 1.618em;
 }
 
-#postingbox.panel {
-	/* margin-left: 3px; */
-	/* margin-right: 3px; */
-}
-
 #reprap,
 .member-search.panel,
 .nav-footer .fa {
@@ -2176,12 +2150,6 @@ div.content,
 
 #page-header {
 	min-height: 280px;
-}
-
-ul.topiclist li.row dl {
-	//display: flex;
-    //align-items: center;
-    //justify-content: center;
 }
 
 dl.details dt {
@@ -2233,14 +2201,6 @@ dl.details dd {
 .nav-footer .see_online {
 	margin: 0;
 }
-
-/* POST NUMBER */ /* POST NUMBER */ /* POST NUMBER */ /* POST NUMBER */
-
-/* POST NUMBER */ /* POST NUMBER */ /* POST NUMBER */ /* POST NUMBER */
-
-/* EXT */ /* EXT */ /* EXT */ /* EXT */
-
-/* EXT */ /* EXT */ /* EXT */ /* EXT */
 
 /* EXT */ /* EXT */ /* EXT */ /* EXT */
 
@@ -2348,8 +2308,3 @@ dl.details dd {
 }
 
 /* EXT */ /* EXT */ /* EXT */ /* EXT */
-
-/* EXT */ /* EXT */ /* EXT */ /* EXT */
-
-/* EXT */ /* EXT */ /* EXT */ /* EXT */
-

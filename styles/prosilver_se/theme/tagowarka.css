@@ -262,7 +262,10 @@ div.inputbox.ng-scope {
 	}
 }
 
-.section-viewforum ul.topiclist.topics dl {
+/* pozwala na wyświetlanie rozwijanej listy z tagami w viewforum_body / show_tag */
+
+.section-viewforum ul.topiclist.topics dl,
+[class*="section-app\/tag\/"] ul.topiclist.topics dl {
 	position: static;
 }
 
@@ -275,7 +278,7 @@ div.inputbox.ng-scope {
 .f-tags {
 	order: 2;
 	display: none;
-	position: relative;
+	/*position: relative;*/
 	flex-wrap: wrap;
 	background-color: rgba(0, 0, 0, 1);
 	border-radius: 7px;
