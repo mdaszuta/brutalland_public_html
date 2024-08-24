@@ -218,3 +218,12 @@ a.collapse-btn {
 .ModTable .rowtext {
 	color: #777;
 }
+
+.pipe-table th {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #eee;
+}
+
+.pipe-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
