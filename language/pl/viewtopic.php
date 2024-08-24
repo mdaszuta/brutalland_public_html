@@ -60,7 +60,7 @@ $lang = array_merge($lang, array(
 		2	=> 'Ostatnio zmieniony %3$s przez %2$s, łącznie zmieniany %1$d razy.',
 		3	=> 'Ostatnio zmieniony %3$s przez %2$s, łącznie zmieniany %1$d razy.',
 	),
-	'EMAIL_TOPIC'			=> 'Powiadom o tym temacie',
+	'EMAIL_TOPIC'			=> 'Powiadamiaj mailem',
 	'ERROR_NO_ATTACHMENT'	=> 'Wybrany załącznik już nie istnieje',
 
 	'FILE_NOT_FOUND_404'	=> 'Plik <strong>%s</strong> nie istnieje.',
@@ -76,9 +76,9 @@ $lang = array_merge($lang, array(
 	'MAKE_NORMAL'				=> 'Zmień na zwykły temat',
 	'MAKE_STICKY'				=> 'Zmień na przyklejony',
 	'MAX_OPTIONS_SELECT'		=> array(
-		1	=> 'Można wybrać tylko <strong>%d.</strong> opcję',
-		2	=> 'Można maksymalnie wybrać <strong>%d</strong> opcje',
-		3	=> 'Można maksymalnie wybrać <strong>%d</strong> opcji',
+		1	=> 'Liczba opcji do wybrania: <strong>%d</strong>',
+		2	=> 'Maksymalna liczba opcji do wybrania: <strong>%d</strong>',
+		3	=> 'Maksymalna liczba opcji do wybrania: <strong>%d</strong>',
 	),
 	'MISSING_INLINE_ATTACHMENT'	=> 'Załącznik <strong>%s</strong> nie jest już dostępny',
 	'MOVE_TOPIC'				=> 'Przenieś temat',

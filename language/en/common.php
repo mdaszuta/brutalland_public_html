@@ -380,7 +380,7 @@ $lang = array_merge($lang, array(
 	'JOINED'				=> 'Joined',
 	'JUMP_PAGE'				=> 'Enter the page number you wish to go to',
 	'JUMP_TO'				=> 'Jump to',
-	'JUMP_TO_PAGE'			=> 'Jump to page',
+	'JUMP_TO_PAGE'			=> 'Jump to page...',
 	'JUMP_TO_PAGE_CLICK'	=> 'Click to jump to page…',
 
 	'KB'					=> 'KB',
@@ -496,7 +496,7 @@ $lang = array_merge($lang, array(
 	'NOTIFICATION_QUOTE'				=> array(
 		1	=> '<strong>Quoted</strong> by %1$s in:',
 	),
-	'NOTIFICATION_REFERENCE'			=> '"%1$s"',
+	'NOTIFICATION_REFERENCE'			=> '%1$s',
 	'NOTIFICATION_REASON'				=> '<em>Reason:</em> %1$s.',
 	'NOTIFICATION_REPORT_PM'			=> '<strong>Private Message reported</strong> by %1$s:',
 	'NOTIFICATION_REPORT_PM_CLOSED'		=> '<strong>Private Message report closed</strong> by %1$s:',
@@ -575,13 +575,13 @@ $lang = array_merge($lang, array(
 	'ONLINE_BUDDIES'			=> 'Online friends',
 	// "... :: x registered and y hidden"
 	'ONLINE_USERS_TOTAL'		=> array(
-		1	=> 'In total there is <strong>%1$d</strong> user online :: %2$s and %3$s',
-		2	=> 'In total there are <strong>%1$d</strong> users online :: %2$s and %3$s',
+		1	=> 'Online: <strong>%1$d</strong> &#124; %2$s and %3$s',
+		2	=> 'Online: <strong>%1$d</strong> &#124; %2$s and %3$s',
 	),
 	// "... :: x registered, y hidden and z guests"
 	'ONLINE_USERS_TOTAL_GUESTS'	=> array(
-		1	=> 'In total there is <strong>%1$d</strong> user online :: %2$s, %3$s and %4$s',
-		2	=> 'In total there are <strong>%1$d</strong> users online :: %2$s, %3$s and %4$s',
+		1	=> 'Online: <strong>%1$d</strong> &#124; %2$s, %3$s and %4$s',
+		2	=> 'Online: <strong>%1$d</strong> &#124; %2$s, %3$s and %4$s',
 	),
 	'OPTIONS'					=> 'Options',
 
@@ -934,9 +934,39 @@ $lang = array_merge($lang, array(
 	'YAHOO'				=> 'Yahoo Messenger',
 	'YOUTUBE'			=> 'YouTube',
 	'YEAR'				=> 'Year',
-	'YEAR_MONTH_DAY'	=> '(YYYY-MM-DD)',
+	'YEAR_MONTH_DAY'	=> 'YYYY-MM-DD',
 	'YES'				=> 'Yes',
 	'YOU_LAST_VISIT'	=> 'Last visit was: %s',
+
+	/**
+	* ADDED LANGUAGE
+	*/
+
+	'CONFIRM_QUESTION_EXP'		=> '...',
+	'JUST_RESULTS'				=> 'Search results',
+	'FORUM_SMALL'				=> 'forum',
+	'JUST_OK'					=> 'OK',
+	'JUMP_PAGE_NR'				=> 'Page #',
+	'JOIN'						=> 'Join',
+	'SHOW_PROFILE'				=> 'Show profile',
+	'SEE_ALL_NOTIFICATIONS'		=> 'All',
+	'READING_TOPIC_FORUM'		=> 'Reading topic %2$s in %1$s',
+	'REPLYING_MESSAGE_TOPIC'	=> 'Replying to message in topic %2$s in %1$s',
+
+	// Info BBCode - unused
+	'ABBC3_INFO_SHOW'	=> '► Info:',
+	'ABBC3_INFO_HIDE'	=> '▼ Info:',
+	'ABBC3_D_SHOW'		=> '▼ Discography',
+	'ABBC3_D_HIDE'		=> '▲ Discography',
+	'ABBC3_M_SHOW'		=> 'Lineup ▼',
+	'ABBC3_M_HIDE'		=> 'Lineup ▲',
+
+	// RH Topic Tags
+	'RH_TOPICTAGS_TAG'			=> 'Tag',
+
+	/**
+	* END OF ADDED LANGUAGE
+	*/
 
 	'datetime'			=> array(
 		'TODAY'		=> 'Today',

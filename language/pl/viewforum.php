@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 
 	'LOGIN_NOTIFY_FORUM'	=> 'Poinformowano cię o tym forum. Zaloguj się, aby je przejrzeć.',
 
-	'MARK_TOPICS_READ'		=> 'Oznacz jako przeczytane',
+	'MARK_TOPICS_READ'		=> 'Oznacz tematy jako przeczytane',
 
 	'NEW_POSTS_HOT'			=> 'Nowe posty [ Popularne ]',	// Not used anymore
 	'NEW_POSTS_LOCKED'		=> 'Nowe posty [ Zamknięte ]',	// Not used anymore

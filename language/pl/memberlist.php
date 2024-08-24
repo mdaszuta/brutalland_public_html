@@ -70,12 +70,12 @@ $lang = array_merge($lang, array(
 	'EMPTY_SUBJECT_EMAIL'	=> 'Należy podać temat wiadomości.',
 	'EQUAL_TO'				=> 'Liczba równa',
 
-	'FIND_USERNAME_EXPLAIN'	=> 'Tego formularza można użyć do szukania użytkowników. Nie trzeba wypełniać wszystkich pól. Można użyć gwiazdki (*) jako zamiennika dowolnego ciągu znaków. Datę należy wprowadzić w formacie <kbd>RRRR-MM-DD</kbd>, np. <samp>2007-08-31</samp>. Można też na poniżej wyświetlonej liście odszukać użytkownika, kliknąć jego nazwę, by zobaczyć profil tego użytkownika lub kliknąć odnośnik [Wybierz], aby przeprowadzać dalsze operacje.',
+	'FIND_USERNAME_EXPLAIN'	=> 'Tego formularza można użyć do szukania użytkowników. Nie trzeba wypełniać wszystkich pól. Można użyć gwiazdki (<strong>*</strong>) jako zamiennika dowolnego ciągu znaków.<br />Można też na poniżej wyświetlonej liście odszukać użytkownika, kliknąć jego nazwę, by zobaczyć profil tego użytkownika lub kliknąć odnośnik <strong>[Wybierz]</strong>, aby przeprowadzać dalsze operacje.',
 	'FLOOD_EMAIL_LIMIT'		=> 'Nie możesz teraz wysłać kolejnej wiadomości. Spróbuj ponownie za chwilę.',
 
 	'GROUP_LEADER'			=> 'Lider grupy',
 
-	'HIDE_MEMBER_SEARCH'	=> 'Ukryj wyszukiwanie użytkowników',
+	'HIDE_MEMBER_SEARCH'	=> 'Ukryj',
 
 	'IM_ADD_CONTACT'		=> 'Dodaj kontakt',
 	'IM_DOWNLOAD_APP'		=> 'Pobierz program',

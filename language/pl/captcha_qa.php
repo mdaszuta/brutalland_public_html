@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_QA'				=> 'Q&amp;A',
-	'CONFIRM_QUESTION_EXPLAIN'	=> 'To pytanie jest elementem zabezpieczającym przed automatycznym zamieszczaniem postów.',
+	'CONFIRM_QUESTION_EXPLAIN'	=> 'Pytanie zabezpiecza przed botami spamującymi.',
 	'CONFIRM_QUESTION_WRONG'	=> 'Udzielono nieprawidłowej odpowiedzi na pytanie.',
 	'CONFIRM_QUESTION_MISSING'	=> 'Wystąpił problem z przetworzeniem pytań. Skontaktuj się z administratorem witryny.',
 	
