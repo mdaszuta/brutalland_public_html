@@ -13,19 +13,19 @@
 	<fieldset>
 		{% EVENT ucp_profile_signature_posting_editor_options_prepend %}
 		<!-- IF S_BBCODE_ALLOWED -->
-			<div class="fbr">
+			<div class="fbr fbr-checkbox">
 				<div class="fbr-left"><input type="checkbox" name="disable_bbcode" id="disable_bbcode"{S_BBCODE_CHECKED} /></div>
 				<div class="fbr-right"><label for="disable_bbcode">{L_DISABLE_BBCODE}</label></div>
 			</div>
 		<!-- ENDIF -->
 		<!-- IF S_SMILIES_ALLOWED -->
-			<div class="fbr">
+			<div class="fbr fbr-checkbox">
 				<div class="fbr-left"><input type="checkbox" name="disable_smilies" id="disable_smilies"{S_SMILIES_CHECKED} /></div>
 				<div class="fbr-right"><label for="disable_smilies">{L_DISABLE_SMILIES}</label></div>
 			</div>
 		<!-- ENDIF -->
 		<!-- IF S_LINKS_ALLOWED -->
-			<div class="fbr">
+			<div class="fbr fbr-checkbox">
 				<div class="fbr-left"><input type="checkbox" name="disable_magic_url" id="disable_magic_url"{S_MAGIC_URL_CHECKED} /></div>
 				<div class="fbr-right"><label for="disable_magic_url">{L_DISABLE_MAGIC_URL}</label></div>
 			</div>

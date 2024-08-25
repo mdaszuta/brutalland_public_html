@@ -160,7 +160,7 @@
 			<!-- EVENT posting_editor_options_prepend -->
 			<!-- IF S_SIG_ALLOWED -->
 				<label for="attach_sig">
-					<div class="fbr">
+					<div class="fbr fbr-checkbox">
 						<div class="fbr-left"><input type="checkbox" name="attach_sig" id="attach_sig"{S_SIGNATURE_CHECKED} /></div>
 						<div class="fbr-right">{L_ATTACH_SIG}</div>
 					</div>
@@ -168,7 +168,7 @@
 			<!-- ENDIF -->
 			<!-- IF S_NOTIFY_ALLOWED -->
 				<label for="notify">
-					<div class="fbr">
+					<div class="fbr fbr-checkbox">
 						<div class="fbr-left"><input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} /></div>
 						<div class="fbr-right">{L_NOTIFY_REPLY}</div>
 					</div>
@@ -176,7 +176,7 @@
 			<!-- ENDIF -->
 			<!-- IF S_LOCK_TOPIC_ALLOWED -->
 				<label for="lock_topic">
-					<div class="fbr">
+					<div class="fbr fbr-checkbox">
 						<div class="fbr-left"><input type="checkbox" name="lock_topic" id="lock_topic"{S_LOCK_TOPIC_CHECKED} /></div>
 						<div class="fbr-right">{L_LOCK_TOPIC}</div>
 					</div>
@@ -184,7 +184,7 @@
 			<!-- ENDIF -->
 			<!-- IF S_LOCK_POST_ALLOWED -->
 				<label for="lock_post">
-					<div class="fbr">
+					<div class="fbr fbr-checkbox">
 						<div class="fbr-left"><input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} /></div>
 						<div class="fbr-right">{L_LOCK_POST_EXPLAIN}</div>
 					</div>
@@ -198,7 +198,7 @@
 			</div>
 
 			<!-- BEGIN topic_type -->
-			<div class="fbr">
+			<div class="fbr fbr-checkbox">
 				<div class="fbr-left">
 					<!-- IF topic_type.VALUE --><!-- ENDIF -->
 					<input type="radio" name="topic_type" id="topic_type-{topic_type.VALUE}" value="{topic_type.VALUE}"{topic_type.S_CHECKED} />
@@ -219,7 +219,7 @@
 			{% if S_SOFTDELETE_ALLOWED || S_DELETE_ALLOWED %}
 				{% if S_SOFTDELETE_ALLOWED %}
 				<label for="delete">
-					<div class="fbr">
+					<div class="fbr fbr-checkbox">
 						<div class="fbr-left"><input type="checkbox" name="delete" id="delete" {{ S_SOFTDELETE_CHECKED }}></div>
 						<div class="fbr-right">{{ lang('DELETE_POST_WARN') }}</div>
 					</div>
@@ -227,7 +227,7 @@
 				{% endif %}
 				{% if S_DELETE_ALLOWED %}
 				<label for="delete_permanent">
-					<div class="fbr">
+					<div class="fbr fbr-checkbox">
 						<div class="fbr-left"><input type="checkbox" name="delete_permanent" id="delete_permanent"></div>
 						<div class="fbr-right">{{ lang('DELETE_POST_PERMANENTLY') }}</div>
 					</div>

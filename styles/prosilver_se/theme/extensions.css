@@ -35,6 +35,7 @@
 #quick-login-panel {
 	background-color: rgba(0, 0, 0, 1);
 	width: 45em;
+	max-width: 100%;
 }
 
 #quick-login-panel .content {
