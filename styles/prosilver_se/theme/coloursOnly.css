@@ -242,7 +242,7 @@ a.mark-read.rightside:focus,
 .lastpost:focus a.lastsubject,
 .lastpost:focus .fa-fast-forward {
 	color:#257EDE !important;
-	outline: 0;
+	/*outline: 0;*/
 }
 
 ul.topiclist li.row:hover a.topictitle.subforum.read {
@@ -274,6 +274,10 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 
 }
 
+#color-palette i {
+	color: #800000;
+}
+
 .search-box ::placeholder, .pagination ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */ color: #bb0000;}
 .search-box ::-webkit-input-placeholder, .pagination ::-webkit-input-placeholder { /* Internet Explorer 10-11 */ color: #bb0000;}
 .search-box ::-ms-input-placeholder, .pagination ::-ms-input-placeholder { /* Microsoft Edge */ color: #bb0000;}
@@ -288,8 +292,13 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 
 /* END COLORS */
 
+button:focus,
+.message-box textarea {
+	outline: none;
+}
+
 * {
-	outline: none !important;
+	/*outline: none !important;*/
 }
 
 /* BOX-SHADOWS */
@@ -348,7 +357,7 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 
 .fa-search,
 .fa-remove {
-	outline: 0;
+	/*outline: 0;*/
 }
 
 .dropdown li {
@@ -418,21 +427,21 @@ table.table1 tbody tr.bg3:hover {
 }
 
 .inputbox {
-	outline: 0;
+	/*outline: 0;*/
 	box-shadow: 0 1px 1px -1px #ee0000;
 	//-webkit-transition: box-shadow 0.5s ease-in-out;
 	transition: box-shadow 0.5s ease-in-out;
 }
 
 .inputbox:hover {
-	outline: 0;
+	/*outline: 0;*/
 	box-shadow: 0 1px 1px -1px #32D635;
 	//-webkit-transition: box-shadow 0.5s ease-in-out;
 	transition: box-shadow 0.5s ease-in-out;
 }
 
 .inputbox:focus {
-	outline: 0;
+	/*outline: 0;*/
 	box-shadow: 0 1px 1px -1px #257EDE;
 	//-webkit-transition: box-shadow 0.5s ease-in-out;
 	transition: box-shadow 0.5s ease-in-out;

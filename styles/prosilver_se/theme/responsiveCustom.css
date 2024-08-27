@@ -514,6 +514,11 @@
 		display: flex;
 	}
 	
+	/* unika wyjeżdżania poza vw */
+	#smiley-box-all {
+		width: auto;
+	}
+
 	.message-box,
 	#muzycy-box {
 		width: auto;
