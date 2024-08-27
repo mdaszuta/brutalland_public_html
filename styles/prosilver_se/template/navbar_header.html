@@ -1,6 +1,6 @@
 <div class="navbar nav-m1" role="navigation">
 
-	<div id="main-m" class="main-m-lewa-prawa">
+	<div id="main-m" class="main-m-lewa-prawa<!-- IF S_REGISTERED_USER --> menu-registered-user<!-- ELSE --> menu-unregistered-user<!-- ENDIF -->">
 
 		<div id="m-lewa" class="main-m-lewa-prawa">
 
@@ -25,9 +25,6 @@
 			<div id="m-pagination" class="main-m-lewa-prawa">
 				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
 			</div>
-		</div>	
-
-		<div id="m-prawa" class="main-m-lewa-prawa">
 
 			<form action="{U_SEARCH}" method="get" id="search">
 				<fieldset>
@@ -40,6 +37,10 @@
 					</div>
 				</fieldset>
 			</form>
+			
+		</div>	
+
+		<div id="m-prawa" class="main-m-lewa-prawa">
 
 			<div id ="m-feed" class="main-m-item menu-toggle">
 				<div class="main-m-top menu-devil">

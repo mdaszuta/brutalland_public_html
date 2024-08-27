@@ -43,7 +43,7 @@
 							<span>
 								<span class="lastpost-poster">{forumrow.LAST_POST_AUTHOR_FULL}</span>
 								<a href="{forumrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}" class="lastpost-time">
-									{forumrow.LAST_POST_TIME} <div class="fa fa-fast-forward fa-lg"></div>
+									{forumrow.LAST_POST_TIME} <i class="fa fa-fast-forward fa-lg"></i>
 								</a>
 							</span>
 						</div>
@@ -58,7 +58,7 @@
 						<a href="{forumrow.U_LAST_POST}" class="lastsubject">{forumrow.LAST_POST_SUBJECT}</a>
 						<span>
 							<span class="lastpost-poster">{forumrow.LAST_POST_AUTHOR_FULL}</span>
-							<span class="lastpost-time"><time datetime="{forumrow.LAST_POST_TIME_RFC3339}">{forumrow.LAST_POST_TIME}</time> <a class="fa fa-fast-forward fa-lg"></a></span>
+							<span class="lastpost-time"><time datetime="{forumrow.LAST_POST_TIME_RFC3339}">{forumrow.LAST_POST_TIME}</time> <i class="fa fa-fast-forward fa-lg"></i></span>
 						</span>
 					<!-- ELSE -->
 						{L_NO_POSTS}
@@ -134,7 +134,7 @@
 							<span>
 								<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
 								<a href="{topicrow.U_LAST_POST}" title="{L_GOTO_LAST_POST}" class="lastpost-time">
-									{topicrow.LAST_POST_TIME} <div class="fa fa-fast-forward fa-lg"></div>
+									{topicrow.LAST_POST_TIME} <i class="fa fa-fast-forward fa-lg"></i>
 								</a>
 							</span>
 						</div>
@@ -148,7 +148,7 @@
 				<dd class="lastpost" onclick="window.location.href='{topicrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
 					<span>
 						<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>
-						<span class="lastpost-time">{topicrow.LAST_POST_TIME} <a class="fa fa-fast-forward fa-lg"></a></span>
+						<span class="lastpost-time">{topicrow.LAST_POST_TIME} <i class="fa fa-fast-forward fa-lg"></i></span>
 					</span>
 				</dd>
 			</dl>

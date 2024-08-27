@@ -1,6 +1,10 @@
+body {
+	padding: 0 0 12px 0;
+}
+
 .wrap {
-	margin: -23px auto auto auto;
-	/*margin: 17px auto auto auto;*/
+	/*margin: -23px auto auto auto;*/
+	margin: -11px auto auto auto;
 }
 
 [data-s9e-mediaembed="facebook"],
@@ -25,21 +29,49 @@ select#usernames {
 	margin: 0;
 }
 
+#m-prawa .main-m-item {
+	min-width: 50px;
+}
+
+/* ellipsis tematu */
+#main-m {
+	position: relative;
+}
+
+#main-m #m-naj-s {
+	overflow: hidden;
+}
+
+#main-m #m-srodek {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#m-srodek .main-m-item,
+#m-srodek .main-m-item .main-m-top,
+#m-srodek .main-m-item .main-m-top h1 {
+	width: 100%;
+}
+
+/* przesunięcie względem relative (#m-main) to szerokość m-home + padding titleID (71 + 13) - margines 17.5px */
+#m-name .main-m-bottom {
+	left: 66.5px;
+	width: 400px;
+    max-width: 100%;
+}
+
+a#titleID {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/* ellipsis tematu */
+
 a#titleID {
 	display: block;
-    line-height: 45px;
-    overflow: hidden;
-	
-	//padding-left: 0;
-	//overflow: hidden;
-    //text-overflow: ellipsis;
-    //white-space: nowrap;
-    //max-width: 100%;
-    //max-width: 743px;
-    //width: 743px;
-    //text-overflow: ellipsis;
-    //white-space: nowrap;
-    //box-sizing: border-box;
+	line-height: 45px;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 ul.topiclist li.row dt a.subforum,
@@ -88,6 +120,11 @@ a.lastsubject {
 /* END common.css */
 
 /* override prosilver\content.css */
+
+ul.topiclist li.row dl {
+	margin: 0;
+	padding: 2px 0;
+}
 
 ul.topiclist dd {
 	padding: 0;
@@ -564,6 +601,7 @@ input[type="radio"] {
 #main-m #m-naj-s {
 	order: 2;
 	width: 100%;
+	min-height: 45px;
 	flex-wrap: nowrap;
 	justify-content: space-between;
 }
@@ -571,15 +609,26 @@ input[type="radio"] {
 #main-m #m-srodek {
 	order: 2;
 	display: flex;
+	flex-basis: 100%;
 }
 
 #main-m #m-pagination {
 	order: 3;
 	display: flex;
+	flex-basis: 0%;
+}
+
+#main-m #search {
+	order: 4;
+	flex-basis: 0%;
+}
+
+#main-m #search .inputbox {
+	padding: 0;
 }
 
 #main-m #m-prawa { order: 4; }
-#main-m #m-prawa #search { order: 2; }
+/*#main-m #m-prawa #search { order: 2; }*/
 #main-m #m-prawa #m-feed { order: 3; }
 #main-m #m-prawa #m-feed-topics { order: 4; }
 #main-m #m-prawa #m-notify { order: 5; }
@@ -603,6 +652,7 @@ input[type="radio"] {
 	z-index: 666;
 	align-items: center;
 	height: 100%;
+	box-sizing: border-box;
 }
 
 .main-m-item .main-m-bottom {
@@ -618,17 +668,14 @@ input[type="radio"] {
 	top: 100%;
 }
 
-#m-name.main-m-item .main-m-bottom {
-	/*left: -81px;*/
-	left: 0;
-}
-
 #m-ksywa .main-m-bottom a:last-of-type {
     /*margin-bottom: 10px;*/
 }
 
-#m-ksywa.main-m-item .main-m-bottom {
-	/*right: -10px;*/
+#m-feed .main-m-bottom,
+#m-notify .main-m-bottom,
+#m-ksywa .main-m-bottom {
+	right: -50px;
 }
 
 .main-m-top:hover ~ .main-m-bottom,
@@ -755,7 +802,7 @@ input.button2,
 .m-list ul { list-style-type: none; }
 
 #m-name {
-	position: relative;
+	/*position: relative;*/
 }
 
 #m-name .m-list .panel .fa {
@@ -1962,6 +2009,8 @@ tags-input .autocomplete .suggestion-item {
 }
 
 .switcheroo-static {
+	flex-wrap: wrap;
+	justify-content: center;
 	padding: 15px 0;
 }
 

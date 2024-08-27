@@ -218,10 +218,27 @@ $(document).ready(function(){
 	*/
 	
 	var timeoutSearchBox = 0;
-	$(".search-box").on('mouseenter', function() {
-		var search_inputbox = $(this).find(".inputbox");
-		var search_box_hide = $(this).find(".search-box-hide");
+	$("#search_but_top").on('mouseenter click', function() {
+
+		var search_inputbox = $(this).siblings(".inputbox");
+		var search_box_hide = $(this).siblings(".search-box-hide");
+		var search_all = $(this).parentsUntil("#m-naj-s").filter("#search");
+
+		/* log */
+		//console.log('siblings ' + $(this).siblings());
+		var obj = {
+			prop1: search_inputbox,
+			prop2: search_box_hide,
+			parents: {
+				parentsProp1: search_all,
+			},
+		}
+		console.log(obj);
+		//console.log('parents ' + search_all);		
+
 		timeoutSearchBox = setTimeout( function() {
+			search_all.css("width", "100%");
+			search_inputbox.css("padding","0px 5px");
 			search_inputbox.focus().animate({ width: "175px" }, 500 );
 			search_box_hide.fadeIn(500).css("display","flex");
 		}, 300);
@@ -232,8 +249,14 @@ $(document).ready(function(){
 	$(".search-box-hide").on('click', function() {
 		var search_inputbox = $(this).next(".inputbox");
 		var search_box_hide = $(this);
-		search_inputbox.animate({ width: "0px" }, 500 );
+		var search_all = $(this).parentsUntil("#m-naj-s").filter("#search");
+
+		search_inputbox.animate({ width: "0px", padding: "0" }, 500 );
 		search_box_hide.fadeOut(500);
+		setTimeout( function() {
+			search_all.css("width", "auto");
+		}, 500);
+
 	});
 	
 	/**
