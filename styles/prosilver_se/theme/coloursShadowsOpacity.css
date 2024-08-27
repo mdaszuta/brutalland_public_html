@@ -19,7 +19,7 @@ body,
 	background: linear-gradient(to top, transparent 0%, #000 20%);
 }
 
-.main-m-item .main-m-bottom {
+.main-menu-item .main-menu-bottom {
 	background-image: URL("./images/death_of.png");
 	background-size: 555px 690px;
 }
@@ -443,7 +443,7 @@ li:not(.header) .lastpost:hover {
 }
 
 .topic-reply-counter,
-.main-m-item .main-m-bottom,
+.main-menu-item .main-menu-bottom,
 .action-bar.bar-top .button {
 	border-radius: 7px;
 }

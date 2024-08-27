@@ -136,7 +136,7 @@ table.table1 tbody tr.bg3,
 #m-name .m-list,
 #m-feed-topics,
 .m-labeled-box-bg strong,
-#m-ksywa .main-m-bottom a,
+#m-ksywa .main-menu-bottom a,
 .pagination,
 .submit-buttons input,
 .brutalform .reset {
@@ -227,7 +227,7 @@ textarea,
 	font-size: unset;
 }
 
-#m-feed-topics .main-m-bottom span {
+#m-feed-topics .main-menu-bottom span {
 	transform: rotate(180deg);
 }
 
@@ -288,7 +288,7 @@ ul.topiclist dt:not(.ajaxshoutbox_user) {
 	font-size: 12px;
 }
 
-#m-ksywa .main-m-bottom {
+#m-ksywa .main-menu-bottom {
 	font-size: 14px;
 }
 

@@ -88,7 +88,7 @@ table.table1 td,
 a.attachment-filename span,
 th.name h3,
 ul.topiclist li,
-#m-feed-topics .main-m-bottom,
+#m-feed-topics .main-menu-bottom,
 p.post-notice,
 p.author,
 .postbody .notice,
@@ -333,7 +333,7 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 
 /* UCP TOP MENU NAVI */
 
-.main-m-item .main-m-bottom {
+.main-menu-item .main-menu-bottom {
 	box-shadow: 0 1px 1px -1px #000, inset 0 8px 9px rgba(0, 0, 0, .3);
 	box-shadow: 0 0 110px 1px #000, inset 0 2px 9px rgba(0, 0, 0, .35);
 }

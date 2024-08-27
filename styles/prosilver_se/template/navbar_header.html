@@ -1,11 +1,11 @@
 <div class="navbar nav-m1" role="navigation">
 
-	<div id="main-m" class="main-m-lewa-prawa<!-- IF S_REGISTERED_USER --> menu-registered-user<!-- ELSE --> menu-unregistered-user<!-- ENDIF -->">
+	<div id="main-menu" class="main-menu-lewa-prawa<!-- IF S_REGISTERED_USER --> menu-registered-user<!-- ELSE --> menu-unregistered-user<!-- ENDIF -->">
 
-		<div id="m-lewa" class="main-m-lewa-prawa">
+		<div id="m-lewa" class="main-menu-lewa-prawa">
 
-			<div id="m-home" class="main-m-item">
-				<div class="main-m-top" id="thegate">
+			<div id="m-home" class="main-menu-item">
+				<div class="main-menu-top" id="thegate">
 					<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->thegate-top<!-- ELSE -->thegate-all<!-- ENDIF -->"></a>
 					<!-- IF S_REGISTERED_USER -->
 						<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}#ugh<!-- ELSE -->{U_INDEX}#ugh<!-- ENDIF -->' class="thegate-bottom"></a>
@@ -15,21 +15,21 @@
 
 		</div>
 
-		<div id="m-naj-s" class="main-m-lewa-prawa">
-			<div id="m-srodek" class="main-m-lewa-prawa">
-				<div id="m-name" class="main-m-item menu-toggle<!-- IF TOTAL_POSTS or TOTAL_MESSAGES or TOTAL_TOPICS or TOTAL_USERS or TOTAL_REPORTS or (TOTAL and SCRIPT_NAME == 'mcp') or (not S_IS_BOT and S_DISPLAY_REPLY_INFO) or (SCRIPT_NAME == 'viewforum' and (S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS)) or (not S_IS_BOT and (U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_BUMP_TOPIC or U_EMAIL_TOPIC or U_PRINT_TOPIC or S_DISPLAY_TOPIC_TOOLS)) or (not S_IS_BOT and (U_WATCH_FORUM_LINK or U_MARK_TOPICS)) or SEARCH_MATCHES or .notification_list or (TOTAL_MESSAGES or S_VIEW_MESSAGE) or .attachrow and NUM_ATTACHMENTS --> show-name-bottom-list<!-- ENDIF -->">
+		<div id="m-naj-s" class="main-menu-lewa-prawa">
+			<div id="m-srodek" class="main-menu-lewa-prawa">
+				<div id="m-name" class="main-menu-item menu-toggle<!-- IF TOTAL_POSTS or TOTAL_MESSAGES or TOTAL_TOPICS or TOTAL_USERS or TOTAL_REPORTS or (TOTAL and SCRIPT_NAME == 'mcp') or (not S_IS_BOT and S_DISPLAY_REPLY_INFO) or (SCRIPT_NAME == 'viewforum' and (S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS)) or (not S_IS_BOT and (U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_BUMP_TOPIC or U_EMAIL_TOPIC or U_PRINT_TOPIC or S_DISPLAY_TOPIC_TOOLS)) or (not S_IS_BOT and (U_WATCH_FORUM_LINK or U_MARK_TOPICS)) or SEARCH_MATCHES or .notification_list or (TOTAL_MESSAGES or S_VIEW_MESSAGE) or .attachrow and NUM_ATTACHMENTS --> show-name-bottom-list<!-- ENDIF -->">
 					<!-- INCLUDE show_name.html -->
 				</div>
 			</div>
 
-			<div id="m-pagination" class="main-m-lewa-prawa">
+			<div id="m-pagination" class="main-menu-lewa-prawa">
 				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
 			</div>
 
 			<form action="{U_SEARCH}" method="get" id="search">
 				<fieldset>
-					<div id="m-search-box" class="main-m-item search-box" role="search">
-						<div class="main-m-top">
+					<div id="m-search-box" class="main-menu-item search-box" role="search">
+						<div class="main-menu-top">
 							<a class="search-box-hide"><div class="fa fa-compress"></div></a>
 							<input name="keywords" id="keywords_top" accesskey="s" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search tiny" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
 							<button class="fa fa-search fa-2x" type="submit" id="search_but_top" title="{L_SEARCH}"></button>
@@ -40,22 +40,22 @@
 			
 		</div>	
 
-		<div id="m-prawa" class="main-m-lewa-prawa">
+		<div id="m-prawa" class="main-menu-lewa-prawa">
 
-			<div id ="m-feed" class="main-m-item menu-toggle">
-				<div class="main-m-top menu-devil">
+			<div id ="m-feed" class="main-menu-item menu-toggle">
+				<div class="main-menu-top menu-devil">
 					<a id="m-feed-icon" ><div class="fa fa-history fa-2x"></div></a>
 				</div>
 
-				<div class="main-m-bottom menu-all">
+				<div class="main-menu-bottom menu-all">
 					<div class="m-list" id="lista-top-five"></div>
 				</div>
 
 			</div>
 
 			<!-- IF S_USER_LOGGED_IN -->
-			<div id="m-feed-topics" class="main-m-item menu-toggle">
-					<div class="main-m-top menu-devil">
+			<div id="m-feed-topics" class="main-menu-item menu-toggle">
+					<div class="main-menu-top menu-devil">
 						<!-- IF S_LOAD_UNREADS -->
 						<a href="{U_SEARCH_UNREAD}" id="m-feed-topics-unread" class="m-labeled-box">
 							<div class="fa fa-inbox"></div>
@@ -63,7 +63,7 @@
 						</a>
 						<!-- ENDIF -->
 					</div>
-					<div class="main-m-bottom menu-all">
+					<div class="main-menu-bottom menu-all">
 						<div>
 							<a href="{U_SEARCH_SELF}">{L_AB_MINE}</a><span class="vertical-separator">&dagger;</span>
 							<a href="{U_SEARCH_ACTIVE_TOPICS}">{L_AB_ACTIVE}</a><span class="vertical-separator">&dagger;</span>
@@ -76,8 +76,8 @@
 			<!-- IF S_REGISTERED_USER -->
 
 				<!-- IF S_NOTIFICATIONS_DISPLAY -->
-				<div id="m-notify" class="main-m-item menu-toggle">
-					<div class="main-m-top menu-devil">
+				<div id="m-notify" class="main-menu-item menu-toggle">
+					<div class="main-menu-top menu-devil">
 						<a id="notification_list_button" class="m-labeled-box">
 							<!-- IF NOTIFICATIONS_COUNT > 0 -->
 								<div class="fa fa-bell"></div>
@@ -92,8 +92,8 @@
 				<!-- ENDIF -->
 
 				<!-- IF S_DISPLAY_PM -->
-					<div id="m-pm" class="main-m-item">
-						<div class="main-m-top">
+					<div id="m-pm" class="main-menu-item">
+						<div class="main-menu-top">
 							<a href="{U_PRIVATEMSGS}" class="m-labeled-box">
 								<!-- IF PRIVATE_MESSAGE_COUNT > 0 -->
 									<div class="fa fa-envelope"></div>
@@ -109,11 +109,11 @@
 			<!-- ENDIF -->
 
 			<!-- IF SCRIPT_NAME == 'insane' -->
-				<div id="m-tagi" class="main-m-item menu-toggle">
-					<div class="main-m-top menu-devil">
+				<div id="m-tagi" class="main-menu-item menu-toggle">
+					<div class="main-menu-top menu-devil">
 						<a><div class="fa fa-tags fa-lg"></div></a>
 					</div>
-					<div class="main-m-bottom menu-all" id="m-tagi-lista">
+					<div class="main-menu-bottom menu-all" id="m-tagi-lista">
 
 							<div class="m-list-title">
 								<h3><a href="{RH_TOPICTAGS_TAGCLOUD_LINK}"><div class="fa fa-tag fa-lg"></div>{RH_TOPICTAGS_TAGCLOUD_TAG_COUNT}</a></h3>
@@ -162,8 +162,8 @@
 
 			<!-- IF S_REGISTERED_USER -->
 
-				<div id="m-ksywa" class="main-m-item menu-toggle header-profile">
-					<div class="main-m-top menu-devil">
+				<div id="m-ksywa" class="main-menu-item menu-toggle header-profile">
+					<div class="main-menu-top menu-devil">
 						<a class="header-avatar">
 							<!-- IF CURRENT_USER_AVATAR -->
 								<div id="m-avatar">{CURRENT_USER_AVATAR}</div>
@@ -172,7 +172,7 @@
 							<!-- ENDIF -->
 						</a>
 					</div>
-					<div class="main-m-bottom menu-all">
+					<div class="main-menu-bottom menu-all">
 						<!-- IF U_RESTORE_PERMISSIONS --><a href="{U_RESTORE_PERMISSIONS}"><div class="fa fa-user-times fa-lg"></div>&nbsp;&nbsp;{L_RESTORE_PERMISSIONS}</a><!-- ENDIF -->
 						<a href="{{ U_SENKY_NOTES }}"><div class="fa fa-pencil-square-o fa-lg"></div>&nbsp;&nbsp;{{ lang('NOTES') }}</a>
 						<a href="{U_PROFILE}" title="{L_PROFILE}"><div class="fa fa-cogs fa-lg"></div>&nbsp;&nbsp;{L_PROFILE}</a>
@@ -188,8 +188,8 @@
 			<!-- ENDIF -->
 
 			<!-- IF not S_REGISTERED_USER -->
-			<div id="m-akt-top" class="main-m-item">
-				<div class="main-m-top">
+			<div id="m-akt-top" class="main-menu-item">
+				<div class="main-menu-top">
 					<a href="{U_SEARCH_ACTIVE_TOPICS}" id="m-aktywne-tematy" class="m-labeled-box">
 						<div class="fa fa-inbox"></div>
 						<div class="m-labeled-box-bg"><strong>{L_AB_TOPICS}</strong></div>
@@ -198,8 +198,8 @@
 			</div>
 
 				<!-- IF not S_IS_BOT -->
-				<div id="m-logged-out" class="main-m-item">
-					<div class="main-m-top" id="m-login">
+				<div id="m-logged-out" class="main-menu-item">
+					<div class="main-menu-top" id="m-login">
 							<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT} &frasl; {L_REGISTER}" accesskey="x"><div class="fa fa-sign-in fa-2x"></div></a>
 					</div>
 				</div>
