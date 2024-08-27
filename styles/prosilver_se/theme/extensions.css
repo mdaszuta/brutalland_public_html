@@ -83,6 +83,12 @@ p.post-number.post-number {
 	margin-right: 3px;
 }
 
+/* REMOVE SUBJECT FROM REPLIES */
+
+.post .content {
+	margin-top: 0;
+}
+
 /* COLLAPSE CATEGORIES + */
 
 a.collapse-btn {

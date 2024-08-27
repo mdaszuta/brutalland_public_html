@@ -260,7 +260,15 @@ fieldset.polls dl {
 }
 
 .post-buttons {
-	margin-top: 0;
+	/*margin-top: 0;*/
+}
+/* post-buttons absolute */
+.post-buttons {
+	float: none;
+	position: absolute;
+	margin: 0;
+	right: 0;
+	/*top: 5px;*/
 }
 
 .hastouch .post-buttons {
@@ -1160,24 +1168,17 @@ dd.lastpost > span {
 	background: #444;
 }
 
-.postbody {
+.postbody,
+.topicreview .postbody {
 	margin-top: 5px;
 }
-/*
-.post-buttons {
-    float: none;
-    position: absolute;
-    margin: 0;
-    right: 0;
-	top: 0;
-}
-*/
 
 p.post-notice {
     clear: both;
     position: static;
 }
 
+.post-buttons,
 .has-profile .post-buttons {
 	top: 0;
 }
@@ -1231,7 +1232,7 @@ label[for="attach_sig"] {
 .post-buttons {
 	display: flex;
 	flex-direction: column;
-	margin-right: 0px;
+	/*margin-right: 0px;*/
 }
 
 .post-buttons #post-buttons-row-1 {

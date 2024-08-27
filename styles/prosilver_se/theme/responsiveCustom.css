@@ -203,7 +203,16 @@
 	.memberlist.table1 .info {
 		display: none;
 	}
-	
+
+	/* wyświetlanie post-buttons dla mcp_post */
+	.postbody.mcp-post-postbody {
+		position: relative;
+	}
+
+	.postbody.mcp-post-postbody .post-buttons {
+		top: -1.618em;
+	}
+
 	span.author-mobile.responsive-show,
 	span.author-postnumber-mobile.responsive-show {
 		display: inline !important;
