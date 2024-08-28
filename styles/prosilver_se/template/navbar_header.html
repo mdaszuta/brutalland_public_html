@@ -6,9 +6,9 @@
 
 			<div id="m-home" class="main-menu-item">
 				<div class="main-menu-top" id="thegate">
-					<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->thegate-top<!-- ELSE -->thegate-all<!-- ENDIF -->"></a>
+					<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->thegate-top<!-- ELSE -->thegate-all<!-- ENDIF -->" aria-label="{L_FORUM_INDEX}"></a>
 					<!-- IF S_REGISTERED_USER -->
-						<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}#ugh<!-- ELSE -->{U_INDEX}#ugh<!-- ENDIF -->' class="thegate-bottom"></a>
+						<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}#ugh<!-- ELSE -->{U_INDEX}#ugh<!-- ENDIF -->' class="thegate-bottom" aria-label="{L_FORUM_INDEX}"></a>
 					<!-- ENDIF -->
 				</div>
 			</div>
@@ -94,7 +94,7 @@
 				<!-- IF S_DISPLAY_PM -->
 					<div id="m-pm" class="main-menu-item">
 						<div class="main-menu-top">
-							<a href="{U_PRIVATEMSGS}" class="m-labeled-box">
+							<a href="{U_PRIVATEMSGS}" class="m-labeled-box" aria-label="{L_PRIVATE_MESSAGES}">
 								<!-- IF PRIVATE_MESSAGE_COUNT > 0 -->
 									<div class="fa fa-envelope"></div>
 									<div class="m-labeled-box-bg"><strong>{PRIVATE_MESSAGE_COUNT}</strong></div>

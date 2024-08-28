@@ -10,10 +10,10 @@
 		<!-- EVENT overall_footer_timezone_after -->
 		<!-- IF SCRIPT_NAME == 'viewforum' || SCRIPT_NAME == 'viewtopic' -->
 			<!-- IF S_DISPLAY_ONLINE_LIST and U_VIEWONLINE and S_USER_LOGGED_IN -->
-				<div class="stat-block online-list">
+				<div class="stat-block online-list" role="menuitem">
 					<p class="see_online">
-						<a href="{U_VIEWONLINE}">{LOGGED_IN_USER_LIST}</a>
-						<a href="{U_VIEWONLINE}" class="fa fa-globe fa-lg"></a>
+						<a href="{U_VIEWONLINE}" aria-label="{L_WHO_IS_ONLINE}">{LOGGED_IN_USER_LIST}</a>
+						<a href="{U_VIEWONLINE}" class="fa fa-globe fa-lg" aria-label="{L_WHO_IS_ONLINE}"></a>
 					</p>
 				</div>
 			<!-- ENDIF -->
