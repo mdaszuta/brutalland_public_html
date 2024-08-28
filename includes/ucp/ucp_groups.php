@@ -440,8 +440,8 @@ class ucp_groups
 						'GROUP_DESC_DISP'		=> generate_text_for_display($group_row['group_desc'], $group_row['group_desc_uid'], $group_row['group_desc_bitfield'], $group_row['group_desc_options']),
 						'GROUP_TYPE'			=> $group_row['group_type'],
 
-						'AVATAR'				=> !empty($avatar) ? $avatar : '',
-						'AVATAR_IMAGE'			=> !empty($avatar) ? $avatar : '',
+						'AVATAR'				=> !empty($avatar) ? $avatar : '<i class="icon fa-user-circle-o"></i>',
+						'AVATAR_IMAGE'			=> !empty($avatar) ? $avatar : '<i class="icon fa-user-circle-o"></i>',
 						'AVATAR_WIDTH'			=> isset($group_row['group_avatar_width']) ? $group_row['group_avatar_width'] : '',
 						'AVATAR_HEIGHT'			=> isset($group_row['group_avatar_height']) ? $group_row['group_avatar_height'] : '',
 					));

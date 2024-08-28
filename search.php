@@ -1193,6 +1193,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 					// post highlighting
 					$row['post_text'] = preg_replace('#(?!<.*)(?<!\w)(' . $hilit . ')(?!\w|[^<>]*(?:</s(?:cript|tyle))?>)#isu', '<span class="posthilit">$1</span>', $row['post_text']);
 					$row['post_subject'] = preg_replace('#(?!<.*)(?<!\w)(' . $hilit . ')(?!\w|[^<>]*(?:</s(?:cript|tyle))?>)#isu', '<span class="posthilit">$1</span>', $row['post_subject']);
+					$row['topic_title'] = preg_replace('#(?!<.*)(?<!\w)(' . $hilit . ')(?!\w|[^<>]*(?:</s(?:cript|tyle))?>)#isu', '<span class="posthilit">$1</span>', $row['topic_title']);
 				}
 
 				$tpl_ary = array(
@@ -1214,6 +1215,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 				'FORUM_TITLE'		=> $row['forum_name'],
 				'TOPIC_TITLE'		=> $topic_title,
+				'TOPIC_TITLE_ROW'	=> $row['topic_title'],
 				'TOPIC_REPLIES'		=> $replies,
 				'TOPIC_VIEWS'		=> $row['topic_views'],
 
