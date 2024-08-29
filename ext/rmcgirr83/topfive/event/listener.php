@@ -77,8 +77,8 @@ class listener implements EventSubscriberInterface
 
 		return [
 			'core.acp_extensions_run_action_after'	=> 'acp_extensions_run_action_after',
-			'core.user_setup_after'	=> 'index_page',
-			'core.page_header' => 'entire_forum',
+			'core.page_header'	=> 'index_page',
+			/*'core.page_header' => 'entire_forum',*/
 		];
 	}
 
@@ -115,8 +115,8 @@ class listener implements EventSubscriberInterface
 		// add lang file
 		$this->language->add_lang('topfive', 'rmcgirr83/topfive');
 
-		//$this->topfive->topposters();
-		//$this->topfive->newusers();
+		/*$this->topfive->topposters();*/
+		/*$this->topfive->newusers();*/
 		$this->topfive->toptopics();
 
 		if ($this->operator !== null)
