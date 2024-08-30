@@ -1236,16 +1236,16 @@ label[for="attach_sig"] {
 }
 
 .post-buttons #post-buttons-row-1 {
-	order: 1;
+	/*order: 1;*/
 	display: flex;
 	justify-content: flex-end;
 }
 
 .post-buttons #post-buttons-row-2 {
-	order: 2;
+	/*order: 2;*/
 	display: none;
-	position: absolute;
-	top: 100%;
+	/*position: absolute;*/
+	/*top: 100%;*/
 }
 
 .post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
