@@ -36,7 +36,7 @@
 					'data-title-alt': oldTitle
 				})
 				.find('i')
-				.toggleClass('fa-plus-square fa-minus-square')
+				.toggleClass('fa-plus fa-minus')
 				.end()
 				.getCollapsible()
 				.stop(true, true)
