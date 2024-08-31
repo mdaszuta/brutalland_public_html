@@ -54,9 +54,9 @@ ul.button,
 .cp-main .notifications_time,
 .main-menu-top .m-labeled-box .fa,
 .unreadpost .post-number,
-.fa-exclamation-triangle,
+li.row .fa-flag,
 .fa-bar-chart,
-.fa-recycle,
+li.row .fa-recycle,
 .f-tags-i,
 .darken {
 	opacity: 0.6;
@@ -77,9 +77,9 @@ ul.button,
 .post-buttons:hover,
 .mark_read:hover,
 .ajaxshoutbox_delete .fa-remove:hover,
-.fa-exclamation-triangle:hover,
+li.row .fa-flag:hover,
 .fa-bar-chart:hover,
-.fa-recycle:hover,
+li.row .fa-recycle:hover,
 .f-tags-i:hover {
 	opacity: 0.9;
 }
@@ -211,9 +211,9 @@ fieldset .flex-box-o:hover .fb-l span {
 .post-buttons:hover,
 .mark_read:hover,
 .ajaxshoutbox_delete .fa-remove:hover,
-.fa-exclamation-triangle:hover,
+li.row .fa-flag:hover,
 .fa-bar-chart:hover,
-.fa-recycle:hover,
+li.row .fa-recycle:hover,
 .f-tags-i:hover,
 #m-ksywa .main-menu-bottom a .fa,
 #m-ksywa .main-menu-bottom a:hover .fa,
@@ -231,9 +231,9 @@ fieldset .flex-box-o:hover .fb-l span {
 .post-buttons #post-buttons-row-2:hover,
 .mark_read,
 .ajaxshoutbox_delete .fa-remove,
-.fa-exclamation-triangle,
+li.row .fa-flag,
 .fa-bar-chart,
-.fa-recycle,
+li.row .fa-recycle,
 .f-tags-i {
 	-webkit-transition: opacity 0.75s ease-out;
 	transition: opacity 0.75s ease-out;
