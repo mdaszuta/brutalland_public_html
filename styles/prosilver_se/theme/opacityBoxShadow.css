@@ -54,10 +54,12 @@ ul.button,
 .cp-main .notifications_time,
 .main-menu-top .m-labeled-box .fa,
 .unreadpost .post-number,
+li.row .fa-question,
 li.row .fa-flag,
-.fa-bar-chart,
 li.row .fa-recycle,
-.f-tags-i,
+li.row .fa-bar-chart,
+li.row .fa-paperclip,
+li.row .fa-tags,
 .darken {
 	opacity: 0.6;
 }
@@ -77,10 +79,12 @@ li.row .fa-recycle,
 .post-buttons:hover,
 .mark_read:hover,
 .ajaxshoutbox_delete .fa-remove:hover,
+li.row .fa-question:hover,
 li.row .fa-flag:hover,
-.fa-bar-chart:hover,
 li.row .fa-recycle:hover,
-.f-tags-i:hover {
+li.row .fa-bar-chart:hover,
+li.row .fa-paperclip:hover,
+li.row .fa-tags:hover {
 	opacity: 0.9;
 }
 .main-menu-top:hover ~ .main-menu-bottom,
@@ -211,10 +215,12 @@ fieldset .flex-box-o:hover .fb-l span {
 .post-buttons:hover,
 .mark_read:hover,
 .ajaxshoutbox_delete .fa-remove:hover,
+li.row .fa-question:hover,
 li.row .fa-flag:hover,
-.fa-bar-chart:hover,
 li.row .fa-recycle:hover,
-.f-tags-i:hover,
+li.row .fa-bar-chart:hover,
+li.row .fa-paperclip:hover,
+li.row .fa-tags:hover,
 #m-ksywa .main-menu-bottom a .fa,
 #m-ksywa .main-menu-bottom a:hover .fa,
 .contact-box-all .m-labeled-box-button .fa,
@@ -231,10 +237,12 @@ li.row .fa-recycle:hover,
 .post-buttons #post-buttons-row-2:hover,
 .mark_read,
 .ajaxshoutbox_delete .fa-remove,
+li.row .fa-question,
 li.row .fa-flag,
-.fa-bar-chart,
 li.row .fa-recycle,
-.f-tags-i {
+li.row .fa-bar-chart,
+li.row .fa-paperclip,
+li.row .fa-tags {
 	-webkit-transition: opacity 0.75s ease-out;
 	transition: opacity 0.75s ease-out;
 	-webkit-transition-delay: 666666s;
