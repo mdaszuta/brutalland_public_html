@@ -14,6 +14,7 @@ fieldset.polls dl.voted,
 h2,
 h3,
 .post:target h3 a,
+.postprofile .fa-comment-o,
 .inputbox,
 .message-box textarea,
 .tab.activetab > a,
@@ -194,6 +195,7 @@ a.subforum.unread:hover,
 .posthilit,
 .inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#text_shoutbox):hover,
 .postprofile strong,
+.postprofile .fa-comment-o:hover,
 dl.mini h3,
 .online .fa-circle,
 fieldset dl:hover dt label,
@@ -494,8 +496,7 @@ tags-input .tags:focus {
 }
 
 .rozwijany-box-all,
-.switcheroo-menu-all,
-.fbr-quickmod-all {
+.switcheroo-menu-all {
 	box-shadow: 0 -1px 1px -1px #ee0000;
 }
 

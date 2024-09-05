@@ -228,8 +228,7 @@ tags-input .autocomplete .suggestion-item:focus {
 }
 
 .rozwijany-box-all,
-.switcheroo-menu-all,
-.fbr-quickmod-all {
+.switcheroo-menu-all {
 	background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.75) 50%);
 }
 

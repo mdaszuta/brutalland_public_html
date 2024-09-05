@@ -1082,31 +1082,9 @@ li.arrow a::before {
 
 .fbr-m-info {
 	text-align: center;
-	//text-align: justify;
-    //-moz-text-align-last: center;
-    //text-align-last: center;
 }
 
-.fbr-m-all a,
-.fbr-quickmod-all a {
-	height: auto !important;
-	padding: 0;
-}
-
-.fbr-quickmod-all li,
-.fbr-m-all li {
-	list-style-type: none;
-}
-
-.fbr-m-all li {
-	padding: 4px 0 4px 0;
-}
-
-.fbr-m-all .fa {
-	min-width: 15px;
-}
-
-.fbr-m-all .page-jump-form {
+.ellipsis-box-all .page-jump-form {
 	display: flex;
 }
 
@@ -1991,7 +1969,7 @@ tags-input .autocomplete .suggestion-item {
 }
 
 .switcheroo-menu,
-.fbr-quickmod,
+.quickmod-box,
 #info-box-devil,
 #info-box-all,
 #picture-box-all,
@@ -2004,18 +1982,13 @@ tags-input .autocomplete .suggestion-item {
 	padding: 10px 15px 35px 15px;
 }
 
-.fbr-quickmod-all {
-	padding: 5px 15px 25px 15px;
-}
-
 .switcheroo-static {
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 15px 0;
 }
 
-.rozwijany-box-all:not(.contact-box-all):not(#smiley-box-all),
-.fbr-quickmod-all {
+.rozwijany-box-all:not(.contact-box-all):not(#smiley-box-all) {
 	flex-direction: column;
 }
 
@@ -2023,8 +1996,7 @@ tags-input .autocomplete .suggestion-item {
     flex-wrap: wrap;
 }
 
-.switcheroo-menu,
-.fbr-quickmod {
+.switcheroo-menu {
 	position: relative;
 }
 
@@ -2033,20 +2005,23 @@ tags-input .autocomplete .suggestion-item {
 	z-index: 999;
 }
 
+.quickmod-box-all {
+	position: static;
+	/*padding: 5px 15px 25px 15px;*/
+}
+
 .rozwijany-box-all,
 .switcheroo-menu {
     justify-content: center;
 }
 
 .rozwijany-box-all,
-.switcheroo-menu-all,
-.fbr-quickmod-all {
+.switcheroo-menu-all {
     display: none;
 }
 
 .switcheroo-menu,
-.switcheroo-static,
-.fbr-quickmod:hover .fbr-quickmod-all {
+.switcheroo-static {
     display: flex;
 }
 
@@ -2056,8 +2031,8 @@ tags-input .autocomplete .suggestion-item {
 	justify-content: space-evenly;
 }
 
-.fbr-quickmod-all,
-.fbr-m-all,
+.quickmod-box-all,
+.ellipsis-box-all,
 #color-palette-all {
 	width: auto;
 }
@@ -2066,7 +2041,7 @@ tags-input .autocomplete .suggestion-item {
 	width: 95%;
 }
 
-.fbr-m-all {
+.ellipsis-box-all {
     margin-left: -105px;
 }
 
