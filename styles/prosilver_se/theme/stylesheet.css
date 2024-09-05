@@ -1246,6 +1246,8 @@ dd.time {
     width: 170px;
 }
 
+/* AJAX SHOUTBOX */
+
 .ajaxshoutbox_row {
 	display: flex;
 	justify-content: space-between;
@@ -1366,6 +1368,8 @@ ul.ajaxshoutboxpost dd {
 .rtl ul.shoutboxlist dt.ajaxshoutbox_user {
 	margin-left: 0px;
 }
+
+/* end of AJAX SHOUTBOX */
 
 .search-box .search-box-hide,
 .search-box .inputbox,
@@ -1615,22 +1619,7 @@ table.table1 td.info a {
 	line-height: normal;
 }
 
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
-
-#quick-login-panel fieldset dl {
-	margin-left: 2%;
-}
-
-#quick-login-panel .close {
-	right: 5px !important;
-	top: -15px !important;
-}
-
-#quick-login-panel dd.input-link {
-	margin-top: 15px;
-}
-
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
+/* QUICK EDIT */ /* QUICK EDIT */ /* QUICK EDIT */ /* QUICK EDIT */
 
 #quickeditbox .panel,
 #quickeditbox .message-box {
@@ -1828,8 +1817,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 
 .brutalform-box .brutalform-explanation {
-	//order: 3;
-	//background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.75) 70%);
 	position: absolute;
     top: 101%;
 	z-index: -3;

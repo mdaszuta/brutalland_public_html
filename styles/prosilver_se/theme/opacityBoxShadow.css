@@ -156,14 +156,6 @@ li.row:hover .topic-reply-counter.unread,
 	opacity: 1;
 }
 
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
-
-#quick-login-panel .close {
-	opacity: 1 !important;
-}
-
-/* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */ /* QUICK LOGIN */
-
 /* RESPONSIVE */ /* RESPONSIVE */ /* RESPONSIVE */
 
 @media only screen and (max-width: 860px) {

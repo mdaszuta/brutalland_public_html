@@ -44,6 +44,10 @@
 	border-radius: 7px;
 }
 
+#quick-login-panel .close {
+	background: transparent;
+}
+
 /* MENTION + */
 
 .mention {

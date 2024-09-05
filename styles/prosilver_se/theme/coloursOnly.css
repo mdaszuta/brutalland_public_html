@@ -295,7 +295,8 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 /* END COLORS */
 
 button:focus,
-.message-box textarea {
+.message-box textarea,
+input {
 	outline: none;
 }
 
