@@ -716,7 +716,8 @@ input[type="radio"] {
 #main-menu #search,
 .main-menu-item .main-menu-top a,
 #m-home.main-menu-item .main-menu-top a.thegate-all,
-#main-menu #m-search-box .main-menu-top {
+#main-menu #m-search-box .main-menu-top,
+#main-menu #m-search-box .search-box-hide {
 	height: 45px;
 }
 
@@ -1382,12 +1383,13 @@ ul.ajaxshoutboxpost dd {
 	position: relative;
 }
 
-.search-box a.search-box-hide {
+.search-box .search-box-hide {
 	opacity: 1;
 	display: none;
 	position: absolute;
-    right: 0px;
+	right: 0px;
 	justify-content: center;
+	align-items: center;
 	padding-left: 6px;
 	padding-right: 6px;
 }
