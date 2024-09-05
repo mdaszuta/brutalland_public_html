@@ -29,7 +29,7 @@ select#usernames {
 	margin: 0;
 }
 
-#m-prawa .main-menu-item {
+#main-menu-right .main-menu-item {
 	min-width: 50px;
 }
 
@@ -38,22 +38,22 @@ select#usernames {
 	position: relative;
 }
 
-#main-menu #m-naj-s {
+#main-menu #main-menu-middle {
 	overflow: hidden;
 }
 
-#main-menu #m-srodek {
+#main-menu #main-menu-title {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-#m-srodek .main-menu-item,
-#m-srodek .main-menu-item .main-menu-top,
-#m-srodek .main-menu-item .main-menu-top h1 {
+#main-menu-title .main-menu-item,
+#main-menu-title .main-menu-item .main-menu-top,
+#main-menu-title .main-menu-item .main-menu-top h1 {
 	width: 100%;
 }
 
-/* przesunięcie względem relative (#m-main) to szerokość m-home + padding titleID (71 + 13) - margines 17.5px */
+/* przesunięcie względem relative (#main-menu) to szerokość m-home + padding titleID (71 + 13) - margines 17.5px */
 #m-name .main-menu-bottom {
 	left: 66.5px;
 	width: 400px;
@@ -594,7 +594,7 @@ input[type="radio"] {
 	margin: auto;
 }
 
-.main-menu-lewa-prawa {
+.main-menu-row {
 	display: flex;
 	align-items: center;
 }
@@ -603,10 +603,10 @@ input[type="radio"] {
 	justify-content: space-between;
 }
 
-#main-menu #m-lewa { order: 1; }
-#main-menu #m-lewa #m-home { order: 1; }
+#main-menu #main-menu-left { order: 1; }
+#main-menu #main-menu-left #m-home { order: 1; }
 
-#main-menu #m-naj-s {
+#main-menu #main-menu-middle {
 	order: 2;
 	width: 100%;
 	min-height: 45px;
@@ -614,7 +614,7 @@ input[type="radio"] {
 	justify-content: space-between;
 }
 
-#main-menu #m-srodek {
+#main-menu #main-menu-title {
 	order: 2;
 	display: flex;
 	flex-basis: 100%;
@@ -635,16 +635,16 @@ input[type="radio"] {
 	padding: 0;
 }
 
-#main-menu #m-prawa { order: 4; }
-/*#main-menu #m-prawa #search { order: 2; }*/
-#main-menu #m-prawa #m-feed { order: 3; }
-#main-menu #m-prawa #m-feed-topics { order: 4; }
-#main-menu #m-prawa #m-notify { order: 5; }
-#main-menu #m-prawa #m-pm { order: 6; }
-#main-menu #m-prawa #m-tagi { order: 7; }
-#main-menu #m-prawa #m-ksywa { order: 8; }
-#main-menu #m-prawa #m-akt-top { order: 9; }
-#main-menu #m-prawa #m-logged-out { order: 10; }
+#main-menu #main-menu-right { order: 4; }
+/*#main-menu #main-menu-right #search { order: 2; }*/
+#main-menu #main-menu-right #m-feed { order: 3; }
+#main-menu #main-menu-right #m-feed-topics { order: 4; }
+#main-menu #main-menu-right #m-notify { order: 5; }
+#main-menu #main-menu-right #m-pm { order: 6; }
+#main-menu #main-menu-right #m-tagi { order: 7; }
+#main-menu #main-menu-right #m-ksywa { order: 8; }
+#main-menu #main-menu-right #m-akt-top { order: 9; }
+#main-menu #main-menu-right #m-logged-out { order: 10; }
 
 .main-menu-item {
 	display: flex;

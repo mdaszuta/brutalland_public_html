@@ -222,7 +222,7 @@ $(document).ready(function(){
 
 		var search_inputbox = $(this).siblings(".inputbox");
 		var search_box_hide = $(this).siblings(".search-box-hide");
-		var search_all = $(this).parentsUntil("#m-naj-s").filter("#search");
+		var search_all = $(this).parentsUntil("#main-menu-middle").filter("#search");
 
 		/* log */
 		//console.log('siblings ' + $(this).siblings());
@@ -249,7 +249,7 @@ $(document).ready(function(){
 	$(".search-box-hide").on('click', function() {
 		var search_inputbox = $(this).next(".inputbox");
 		var search_box_hide = $(this);
-		var search_all = $(this).parentsUntil("#m-naj-s").filter("#search");
+		var search_all = $(this).parentsUntil("#main-menu-middle").filter("#search");
 
 		search_inputbox.animate({ width: "0px", padding: "0" }, 500 );
 		search_box_hide.fadeOut(500);

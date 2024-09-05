@@ -1,8 +1,8 @@
-<div class="navbar nav-m1" role="navigation">
+<div class="navbar" role="navigation">
 
-	<div id="main-menu" class="main-menu-lewa-prawa<!-- IF S_REGISTERED_USER --> menu-registered-user<!-- ELSE --> menu-unregistered-user<!-- ENDIF -->">
+	<div id="main-menu" class="main-menu-row<!-- IF S_REGISTERED_USER --> menu-registered-user<!-- ELSE --> menu-unregistered-user<!-- ENDIF -->">
 
-		<div id="m-lewa" class="main-menu-lewa-prawa">
+		<div id="main-menu-left" class="main-menu-row">
 
 			<div id="m-home" class="main-menu-item">
 				<div class="main-menu-top" id="thegate">
@@ -15,14 +15,14 @@
 
 		</div>
 
-		<div id="m-naj-s" class="main-menu-lewa-prawa">
-			<div id="m-srodek" class="main-menu-lewa-prawa">
+		<div id="main-menu-middle" class="main-menu-row">
+			<div id="main-menu-title" class="main-menu-row">
 				<div id="m-name" class="main-menu-item menu-toggle<!-- IF TOTAL_POSTS or TOTAL_MESSAGES or TOTAL_TOPICS or TOTAL_USERS or TOTAL_REPORTS or (TOTAL and SCRIPT_NAME == 'mcp') or (not S_IS_BOT and S_DISPLAY_REPLY_INFO) or (SCRIPT_NAME == 'viewforum' and (S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS)) or (not S_IS_BOT and (U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_BUMP_TOPIC or U_EMAIL_TOPIC or U_PRINT_TOPIC or S_DISPLAY_TOPIC_TOOLS)) or (not S_IS_BOT and (U_WATCH_FORUM_LINK or U_MARK_TOPICS)) or SEARCH_MATCHES or .notification_list or (TOTAL_MESSAGES or S_VIEW_MESSAGE) or .attachrow and NUM_ATTACHMENTS --> show-name-bottom-list<!-- ENDIF -->">
 					<!-- INCLUDE show_name.html -->
 				</div>
 			</div>
 
-			<div id="m-pagination" class="main-menu-lewa-prawa">
+			<div id="m-pagination" class="main-menu-row">
 				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
 			</div>
 
@@ -40,7 +40,7 @@
 			
 		</div>	
 
-		<div id="m-prawa" class="main-menu-lewa-prawa">
+		<div id="main-menu-right" class="main-menu-row">
 
 			<div id ="m-feed" class="main-menu-item menu-toggle">
 				<div class="main-menu-top menu-devil">
