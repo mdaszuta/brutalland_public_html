@@ -112,8 +112,8 @@
 			<div class="inner">
 
 			<div class="postbody" id="pr{postrow.POST_ID}">
-				<ul class="post-buttons" data-skip-responsive="true">
-					<div id="post-buttons-row-1">
+				<div class="post-buttons" data-skip-responsive="true">
+				<ul id="post-buttons-row-1">
 					<li>
 						<a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}" class="button-icon-only">
 							<div class="fa fa-info fa-2x" aria-hidden="true"></div><span class="sr-only">{L_POST_DETAILS}</span>
@@ -124,8 +124,8 @@
 							<input type="checkbox" title="{L_SELECT}" id="post_id_list_select_{postrow.POST_ID}" name="post_id_list[]" value="{postrow.POST_ID}"<!-- IF postrow.S_CHECKED --> checked="checked"<!-- ENDIF --> />
 						</label>
 					</li>
-					</div>
 				</ul>
+				</div>
 
 				<!-- EVENT mcp_topic_postrow_post_subject_before -->
 				<h3><a href="{postrow.U_POST_DETAILS}">{postrow.POST_SUBJECT}</a></h3>

@@ -64,8 +64,8 @@
 	<div class="postbody mcp-post-postbody">
 		<h3><a href="{U_VIEW_POST}">{POST_SUBJECT}</a></h3>
 
-		<ul class="post-buttons" data-skip-responsive="true">
-		<div id="post-buttons-row-1">
+		<div class="post-buttons" data-skip-responsive="true">
+		<ul id="post-buttons-row-1">
 			<li id="expand">
 				<a href="#post_details" class="button-icon-only" onclick="viewableArea(getElementById('post_details'), true); var rev_text = getElementById('expand').getElementsByTagName('a').item(0).firstChild; if (rev_text.data.trim() == '{LA_EXPAND_VIEW}'){rev_text.data = '{LA_COLLAPSE_VIEW}'; } else if (rev_text.data.trim() == '{LA_COLLAPSE_VIEW}'){rev_text.data = '{LA_EXPAND_VIEW}';} return false;">
 					{L_EXPAND_VIEW}
@@ -78,8 +78,8 @@
 					</a>
 				</li>
 			<!-- ENDIF -->
-		</div>
 		</ul>
+		</div>
 
 		<!-- IF S_PM -->
 		<p class="author">

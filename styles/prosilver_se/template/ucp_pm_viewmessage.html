@@ -85,9 +85,9 @@
 		<!-- DEFINE $SHOW_PM_POST_BUTTONS = (U_EDIT or U_DELETE or U_REPORT or U_QUOTE) -->
 		<!-- EVENT ucp_pm_viewmessage_post_buttons_list_before -->
 		<!-- IF $SHOW_PM_POST_BUTTONS -->
-		<ul class="post-buttons" data-skip-responsive="true">
+		<div class="post-buttons" data-skip-responsive="true">
 			<!-- EVENT ucp_pm_viewmessage_post_buttons_before -->
-			<div id="post-buttons-row-1">
+			<ul id="post-buttons-row-1">
 			<!-- IF U_DELETE -->
 				<li>
 					<a href="{U_DELETE}" title="{L_DELETE_MESSAGE}" class="button-icon-only">
@@ -109,8 +109,8 @@
 					</a>
 				</li>
 			<!-- ENDIF -->
-			</div>
-			<div id="post-buttons-row-2">
+			</ul>
+			<ul id="post-buttons-row-2">
 			<!-- IF U_REPORT -->
 				<li>
 					<a href="{U_REPORT}" title="{L_REPORT_PM}" class="button-icon-only">
@@ -118,9 +118,9 @@
 					</a>
 				</li>
 			<!-- ENDIF -->
-			</div>
+			</ul>
 			<!-- EVENT ucp_pm_viewmessage_post_buttons_after -->
-		</ul>
+		</div>
 		<!-- ENDIF -->
 		<!-- EVENT ucp_pm_viewmessage_post_buttons_list_after -->
 

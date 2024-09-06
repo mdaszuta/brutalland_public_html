@@ -1214,10 +1214,15 @@ label[for="attach_sig"] {
 	/*margin-right: 0px;*/
 }
 
+.post-buttons ul {
+	list-style: none;
+}
+
 .post-buttons #post-buttons-row-1 {
 	/*order: 1;*/
 	display: flex;
 	justify-content: flex-end;
+    /*align-items: center;*/
 }
 
 .post-buttons #post-buttons-row-2 {
@@ -1231,6 +1236,7 @@ label[for="attach_sig"] {
 .post-buttons #post-buttons-row-2:hover {
 	display: flex;
 	justify-content: flex-end;
+	/*align-items: center;*/
 	/* width: 100%; */
 }
 
