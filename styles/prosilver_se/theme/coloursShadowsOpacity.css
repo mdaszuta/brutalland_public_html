@@ -504,7 +504,7 @@ img.postimage {
 #m-notify a,
 #m-tagi,
 #m-ksywa a,
-li:not(.header) .main-rowlist,
+li:not(.header) .clickable-row,
 li:not(.header) .lastpost,
 .search-box-hide,
 .fa-search,

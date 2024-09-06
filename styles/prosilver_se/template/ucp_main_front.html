@@ -13,10 +13,9 @@
 	<!-- BEGIN topicrow -->
 		<li class="row<!-- IF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
-				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
-				<dt<!-- IF topicrow.TOPIC_ICON_IMG and topicrow.S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
+				<dt <!-- IF topicrow.TOPIC_ICON_IMG and topicrow.S_TOPIC_ICONS -->style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;" <!-- ENDIF -->title="<!-- IF topicrow.S_UNREAD -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->" class="clickable-row" onclick="window.location.href='<!-- IF topicrow.S_UNREAD -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 					<div class="list-inner">
-						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<a href="<!-- IF topicrow.S_UNREAD -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
 						<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF -->
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
@@ -49,7 +48,6 @@
 						</div>
 					</div>
 				</dt>
-				</div>
 				<dd class="lastpost" onclick="window.location.href='{topicrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
 					<span>
 						<span class="lastpost-poster">{topicrow.LAST_POST_AUTHOR_FULL}</span>

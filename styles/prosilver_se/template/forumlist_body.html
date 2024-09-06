@@ -36,8 +36,7 @@
 		<li class="row<!-- IF forumrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<!-- EVENT forumlist_body_forum_row_prepend -->
 			<dl class="row-item {forumrow.FORUM_IMG_STYLE}">
-				<div class="main-rowlist" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
-				<dt title="{% if forumrow.S_IS_LINK %}{{ lang('FORUM_LINK') }}{% else %}{{ forumrow.FORUM_FOLDER_IMG_ALT }}{% endif %}">
+				<dt title="{% if forumrow.S_IS_LINK %}{{ lang('FORUM_LINK') }}{% else %}{{ forumrow.FORUM_FOLDER_IMG_ALT }}{% endif %}" class="clickable-row" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
 					<!-- IF not S_IS_BOT -->
 					<!-- IF forumrow.TOPICS -->
 						<div class="topic-reply-counter<!-- IF forumrow.S_UNREAD_FORUM --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_TOPICS}">{forumrow.TOPICS} <dfn>{L_TOPICS}</dfn></div>
@@ -79,7 +78,6 @@
 						<!-- ENDIF -->
 					</div>
 				</dt>
-				</div>
 				<!-- IF forumrow.CLICKS -->
 					<dd class="redirect"><span>{L_REDIRECTS}{L_COLON} {forumrow.CLICKS}</span></dd>
 				<!-- ELSEIF not forumrow.S_IS_LINK -->

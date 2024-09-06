@@ -27,8 +27,7 @@
 	<!-- BEGIN forumrow -->
 		<li class="row<!-- IF forumrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<dl class="row-item {forumrow.FORUM_IMG_STYLE}">
-				<div class="main-rowlist" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
-				<dt title="<!-- IF forumrow.S_UNREAD_FORUM -->{L_UNREAD_POSTS}<!-- ELSE -->{L_NO_UNREAD_POSTS}<!-- ENDIF -->">
+				<dt title="<!-- IF forumrow.S_UNREAD_FORUM -->{L_UNREAD_POSTS}<!-- ELSE -->{L_NO_UNREAD_POSTS}<!-- ENDIF -->" class="clickable-row" onclick="window.location.href='{forumrow.U_VIEWFORUM}'">
 
 					<!-- IF forumrow.TOPICS -->
 						<div class="topic-reply-counter<!-- IF forumrow.S_UNREAD_FORUM --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_TOPICS}">{forumrow.TOPICS} <dfn>{L_TOPICS}</dfn></div>
@@ -50,7 +49,6 @@
 						<!-- ENDIF -->
 					</div>
 				</dt>
-				</div>
 				<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="f[{forumrow.FORUM_ID}]" id="f{forumrow.FORUM_ID}" /></dd>
 				<dd class="lastpost"<!-- IF forumrow.LAST_POST_TIME --> onclick="window.location.href='{forumrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}"<!-- ENDIF -->>
 					<!-- IF forumrow.LAST_POST_TIME_RFC3339 -->
@@ -93,8 +91,7 @@
 	<!-- BEGIN topicrow -->
 		<li class="row<!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ELSEIF topicrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<dl class="row-item {topicrow.TOPIC_IMG_STYLE}">
-				<div class="main-rowlist" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
-				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->">
+				<dt<!-- IF topicrow.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF topicrow.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->" class="clickable-row" onclick="window.location.href='<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->'">
 
 					<!-- IF topicrow.REPLIES -->
 						<div class="topic-reply-counter<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_REPLIES}">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></div>
@@ -102,17 +99,17 @@
 
 					<div class="list-inner">
 						<a href="<!-- IF topicrow.S_UNREAD_TOPIC -->{topicrow.U_NEWEST_POST}<!-- ELSE -->{topicrow.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{topicrow.TOPIC_TITLE}</a>
-							<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
-								<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
-									<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
-								</a>
-							<!-- ENDIF -->
-							<!-- IF topicrow.S_TOPIC_REPORTED -->
-								<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
-									<i class="icon fa-flag fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
-								</a>
-							<!-- ENDIF -->
-							<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+							<a href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
+								<i class="icon fa-question fa-fw icon-blue" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_UNAPPROVED}</span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_REPORTED -->
+							<a href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">
+								<i class="icon fa-flag fa-fw icon-red" aria-hidden="true"></i><span class="sr-only">{L_TOPIC_REPORTED}</span>
+							</a>
+						<!-- ENDIF -->
+						<!-- IF topicrow.ATTACH_ICON_IMG --><i class="icon fa-paperclip fa-fw" aria-hidden="true"></i> <!-- ENDIF -->
 						{% EVENT ucp_main_subscribed_topic_title_after %}
 						<!-- IF .topicrow.pagination -->
 						<div class="pagination">
@@ -143,7 +140,6 @@
 						</div>
 					</div>
 				</dt>
-				</div>
 				<dd class="mark"><input onclick="event.stopPropagation()" type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></dd>
 				<dd class="lastpost" onclick="window.location.href='{topicrow.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
 					<span>
