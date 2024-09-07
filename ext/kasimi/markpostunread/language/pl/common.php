@@ -21,7 +21,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// Viewtopic
 	'MARKPOSTUNREAD_MARK_UNREAD'			=> 'Oznacz post jako nieprzeczytany',
-	'MARKPOSTUNREAD_MARKED_UNREAD'			=> '<p class="fbr-m-info">Post oznaczony jako nieprzeczytany<p>',
+	'MARKPOSTUNREAD_MARKED_UNREAD'			=> '<p class="info-paragraph">Post oznaczony jako nieprzeczytany<p>',
 
 	/*
 	 * %1$s => success message
@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	// Navbar
 	'MARKPOSTUNREAD_UNREAD_NUM_MAX'			=> 'Nowe posty w ponad %1$d tematach',
 	'MARKPOSTUNREAD_UNREAD_NUM'				=> array(
-		0 => 'Brak nowych postów',
+		0 => 'Brak nowych postÃ³w',
 		1 => 'Nowe posty w %1$d temacie',
 		2 => 'Nowe posty w %1$d tematach',
 	),

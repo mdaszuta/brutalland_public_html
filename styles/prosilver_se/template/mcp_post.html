@@ -157,7 +157,7 @@
 		<!-- IF S_MCP_REPORT and S_CAN_VIEWIP -->
 	<div class="panel">
 		<div class="inner">
-			<p class="fbr-m-info"><!-- IF S_PM -->{L_THIS_PM_IP}<!-- ELSE -->{L_THIS_POST_IP}<!-- ENDIF -->{L_COLON} <!-- IF U_WHOIS -->
+			<p class="info-paragraph"><!-- IF S_PM -->{L_THIS_PM_IP}<!-- ELSE -->{L_THIS_POST_IP}<!-- ENDIF -->{L_COLON} <!-- IF U_WHOIS -->
 				<a href="{U_WHOIS}"><!-- IF POST_IPADDR -->{POST_IPADDR}<!-- ELSE -->{POST_IP}<!-- ENDIF --></a> (<!-- IF POST_IPADDR -->{POST_IP}<!-- ELSE --><a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a><!-- ENDIF -->)
 			<!-- ELSE -->
 				<!-- IF POST_IPADDR -->{POST_IPADDR} ({POST_IP})<!-- ELSE -->{POST_IP}<!-- IF U_LOOKUP_IP --> (<a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a>)<!-- ENDIF --><!-- ENDIF -->
@@ -169,7 +169,7 @@
 <!-- IF S_MCP_QUEUE or S_MCP_REPORT or RETURN_TOPIC -->
 	<div class="panel">
 		<div class="inner">
-		<p class="fbr-m-info"><!-- IF S_MCP_QUEUE -->{RETURN_QUEUE} | {RETURN_TOPIC_SIMPLE} | {RETURN_POST}<!-- ELSEIF S_MCP_REPORT -->{RETURN_REPORTS}<!-- IF not S_PM --> | <a href="{U_VIEW_POST}">{L_VIEW_POST}</a> | <a href="{U_VIEW_TOPIC}">{L_VIEW_TOPIC}</a> | <a href="{U_VIEW_FORUM}">{L_VIEW_FORUM}</a><!-- ENDIF --><!-- ELSE -->{RETURN_TOPIC}<!-- ENDIF --></p>
+		<p class="info-paragraph"><!-- IF S_MCP_QUEUE -->{RETURN_QUEUE} | {RETURN_TOPIC_SIMPLE} | {RETURN_POST}<!-- ELSEIF S_MCP_REPORT -->{RETURN_REPORTS}<!-- IF not S_PM --> | <a href="{U_VIEW_POST}">{L_VIEW_POST}</a> | <a href="{U_VIEW_TOPIC}">{L_VIEW_TOPIC}</a> | <a href="{U_VIEW_FORUM}">{L_VIEW_FORUM}</a><!-- ENDIF --><!-- ELSE -->{RETURN_TOPIC}<!-- ENDIF --></p>
 		</div>
 	</div>
 <!-- ENDIF -->
@@ -296,7 +296,7 @@
 		<div class="panel" id="ip">
 			<div class="inner">
 
-			<p class="fbr-m-info">{L_THIS_POST_IP}{L_COLON} <!-- IF U_WHOIS -->
+			<p class="info-paragraph">{L_THIS_POST_IP}{L_COLON} <!-- IF U_WHOIS -->
 				<a href="{U_WHOIS}"><!-- IF POST_IPADDR -->{POST_IPADDR}<!-- ELSE -->{POST_IP}<!-- ENDIF --></a> (<!-- IF POST_IPADDR -->{POST_IP}<!-- ELSE --><a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a><!-- ENDIF -->)
 			<!-- ELSE -->
 				<!-- IF POST_IPADDR -->{POST_IPADDR} ({POST_IP})<!-- ELSE -->{POST_IP}<!-- IF U_LOOKUP_IP --> (<a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a>)<!-- ENDIF --><!-- ENDIF -->
@@ -351,7 +351,7 @@
 
 			{% if U_LOOKUP_ALL %}
 				<div>
-					<p class="fbr-m-info"><a href="{U_LOOKUP_ALL}#ip">{L_LOOKUP_ALL}</a></p>
+					<p class="info-paragraph"><a href="{U_LOOKUP_ALL}#ip">{L_LOOKUP_ALL}</a></p>
 				</div>
 			{% endif %}
 

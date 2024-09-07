@@ -53,7 +53,7 @@
 
 		<div class="content">
 			<h2 class="poll-title"><!-- EVENT viewtopic_body_poll_question_prepend -->{POLL_QUESTION}<!-- EVENT viewtopic_body_poll_question_append --></h2>
-			<p class="author fbr-m-info">{L_POLL_LENGTH}<!-- IF S_CAN_VOTE and L_POLL_LENGTH --><br /><!-- ENDIF --><!-- IF S_CAN_VOTE --><span class="poll_max_votes">{L_MAX_VOTES}</span><!-- ENDIF --></p>
+			<p class="author info-paragraph">{L_POLL_LENGTH}<!-- IF S_CAN_VOTE and L_POLL_LENGTH --><br /><!-- ENDIF --><!-- IF S_CAN_VOTE --><span class="poll_max_votes">{L_MAX_VOTES}</span><!-- ENDIF --></p>
 
 			<fieldset class="polls">
 			<!-- BEGIN poll_option -->
@@ -180,15 +180,15 @@
 			<!-- IF postrow.S_POST_HIDDEN -->
 				<!-- IF postrow.S_POST_DELETED -->
 					<div class="ignore" id="post_hidden{postrow.POST_ID}">
-						<p class="fbr-m-info">{postrow.L_POST_DELETED_MESSAGE}</p>
-						<p class="fbr-m-info"><strong>
+						<p class="info-paragraph">{postrow.L_POST_DELETED_MESSAGE}</p>
+						<p class="info-paragraph"><strong>
 						<a class="display_post" data-post-id="{{ postrow.POST_ID }}" href="{{ postrow.U_MINI_POST_VIEW }}">{{ lang('POST_DISPLAY') }}</a>
 						</strong></p>
 					</div>
 				<!-- ELSEIF postrow.S_IGNORE_POST -->
 					<div class="ignore" id="post_hidden{postrow.POST_ID}">
-						<p class="fbr-m-info">{postrow.L_IGNORE_POST}</p>
-						<p class="fbr-m-info"><strong>
+						<p class="info-paragraph">{postrow.L_IGNORE_POST}</p>
+						<p class="info-paragraph"><strong>
 						<a class="display_post" data-post-id="{{ postrow.POST_ID }}" href="{{ postrow.U_MINI_POST_VIEW }}">{{ lang('POST_DISPLAY') }}</a>
 						</strong></p>
 					</div>

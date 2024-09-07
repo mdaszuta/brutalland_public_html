@@ -2,19 +2,19 @@
 
 <ul>
 
-<!-- IF TOTAL_POSTS --><div class="panel bg3"><li class="fbr-m-info">{TOTAL_POSTS}</li></div><!-- ENDIF -->
+<!-- IF TOTAL_POSTS --><div class="panel bg3"><li class="info-paragraph">{TOTAL_POSTS}</li></div><!-- ENDIF -->
 
-<!-- IF TOTAL_MESSAGES --><div class="panel bg3"><li class="fbr-m-info">{TOTAL_MESSAGES}</li></div><!-- ENDIF -->
+<!-- IF TOTAL_MESSAGES --><div class="panel bg3"><li class="info-paragraph">{TOTAL_MESSAGES}</li></div><!-- ENDIF -->
 
-<!-- IF TOTAL_TOPICS --><div class="panel bg3"><li class="fbr-m-info">{TOTAL_TOPICS}</li><!-- IF MODERATORS --><li class="fbr-m-info"><span><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->{L_COLON}</span> {MODERATORS}</li><!-- ENDIF --></div><!-- ENDIF -->
+<!-- IF TOTAL_TOPICS --><div class="panel bg3"><li class="info-paragraph">{TOTAL_TOPICS}</li><!-- IF MODERATORS --><li class="info-paragraph"><span><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->{L_COLON}</span> {MODERATORS}</li><!-- ENDIF --></div><!-- ENDIF -->
 
-<!-- IF TOTAL_USERS --><div class="panel bg3"><li class="fbr-m-info">{TOTAL_USERS}</li></div><!-- ENDIF -->
+<!-- IF TOTAL_USERS --><div class="panel bg3"><li class="info-paragraph">{TOTAL_USERS}</li></div><!-- ENDIF -->
 
-<!-- IF TOTAL_REPORTS --><div class="panel bg3"><li class="fbr-m-info">{TOTAL_REPORTS}</li></div>
-<!-- ELSEIF TOTAL and SCRIPT_NAME == 'mcp' --><div class="panel bg3"><li class="fbr-m-info">{TOTAL}</li></div>
+<!-- IF TOTAL_REPORTS --><div class="panel bg3"><li class="info-paragraph">{TOTAL_REPORTS}</li></div>
+<!-- ELSEIF TOTAL and SCRIPT_NAME == 'mcp' --><div class="panel bg3"><li class="info-paragraph">{TOTAL}</li></div>
 <!-- ENDIF -->
 
-<!-- IF .attachrow and NUM_ATTACHMENTS --><div class="panel bg3"><li class="fbr-m-info">{NUM_ATTACHMENTS}</li></div><!-- ENDIF -->
+<!-- IF .attachrow and NUM_ATTACHMENTS --><div class="panel bg3"><li class="info-paragraph">{NUM_ATTACHMENTS}</li></div><!-- ENDIF -->
 
 <!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
 	<div class="action-bar bar-top">
@@ -158,7 +158,7 @@
 
 <!-- IF SEARCH_MATCHES -->
 
-	<div class="panel bg3"><li class="fbr-m-info">{SEARCH_MATCHES}</li></div>
+	<div class="panel bg3"><li class="info-paragraph">{SEARCH_MATCHES}</li></div>
 
 	<!-- IF U_MARK_ALL_READ -->
 
@@ -179,7 +179,7 @@
 
 <!-- IF .notification_list -->
 
-	<div class="panel bg3"><li class="fbr-m-info">{L_NOTIFICATIONS}{L_COLON} {TOTAL_COUNT}</li></div>
+	<div class="panel bg3"><li class="info-paragraph">{L_NOTIFICATIONS}{L_COLON} {TOTAL_COUNT}</li></div>
 
 	<!-- IF U_MARK_ALL -->
 
