@@ -141,7 +141,6 @@ div.rules {
 	background-color: rgba(0,0,0,0.6);
 }
 
-.cp-main .pm,
 .cp-mini {
 	background-color: rgba(238, 0, 0, 0);
 }
@@ -159,11 +158,11 @@ table.table1 tbody tr.bg2:hover {
 }
 
 .panel-container .panel li.row.bg1:hover {
-	background-color: rgba(238, 0, 0, 0.1);
+	/*background-color: rgba(238, 0, 0, 0.1);*/
 }
 
 .panel-container .panel li.row.bg2:hover {
-	background-color: rgba(50, 214, 53, 0.1);
+	/*background-color: rgba(50, 214, 53, 0.1);*/
 }
 
 @media (hover:hover) {
@@ -500,12 +499,11 @@ img.postimage {
 /* CURSOR */
 
 #m-name a,
-#m-feed,
+#m-feed a,
 #m-notify a,
 #m-tagi,
 #m-ksywa a,
-li:not(.header) .clickable-row,
-li:not(.header) .lastpost,
+*[onclick^="window.location.href"],
 .search-box-hide,
 .fa-search,
 .rozwijany-box-devil,
