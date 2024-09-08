@@ -129,6 +129,7 @@ blockquote.uncited::before {
 }
 
 .m-list-right,
+.recipients .fa-times,
 .muzycy_zespoly {
 	color: #888;
 }

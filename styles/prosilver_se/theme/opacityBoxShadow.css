@@ -60,6 +60,7 @@ li.row .fa-recycle,
 li.row .fa-bar-chart,
 li.row .fa-paperclip,
 li.row .fa-tags,
+.recipients .fa-times,
 .darken {
 	opacity: 0.6;
 }
@@ -84,7 +85,8 @@ li.row .fa-flag:hover,
 li.row .fa-recycle:hover,
 li.row .fa-bar-chart:hover,
 li.row .fa-paperclip:hover,
-li.row .fa-tags:hover {
+li.row .fa-tags:hover,
+.recipients .fa-times:hover {
 	opacity: 0.9;
 }
 .main-menu-top:hover ~ .main-menu-bottom,
@@ -213,6 +215,7 @@ li.row .fa-recycle:hover,
 li.row .fa-bar-chart:hover,
 li.row .fa-paperclip:hover,
 li.row .fa-tags:hover,
+.recipients .fa-times:hover,
 #m-ksywa .main-menu-bottom a .fa,
 #m-ksywa .main-menu-bottom a:hover .fa,
 .contact-box-all .m-labeled-box-button .fa,
@@ -234,7 +237,8 @@ li.row .fa-flag,
 li.row .fa-recycle,
 li.row .fa-bar-chart,
 li.row .fa-paperclip,
-li.row .fa-tags {
+li.row .fa-tags,
+.recipients .fa-times {
 	-webkit-transition: opacity 0.75s ease-out;
 	transition: opacity 0.75s ease-out;
 	-webkit-transition-delay: 666666s;
