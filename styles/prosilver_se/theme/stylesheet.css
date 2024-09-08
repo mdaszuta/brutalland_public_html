@@ -12,10 +12,6 @@ body {
 	max-width: 552px !important;
 }
 
-.ajaxshoutbox_message [data-s9e-mediaembed="youtube"] {
-	max-width: 322px !important;
-}
-
 select { 
 	width: fit-content;
 	padding: 0;
@@ -1253,131 +1249,6 @@ dd.time {
     width: 170px;
 }
 
-/* AJAX SHOUTBOX */
-
-.ajaxshoutbox_row {
-	display: flex;
-	justify-content: space-between;
-	min-height: 20px;
-}
-
-.ajaxshoutbox_user_message {
-	order: 1;
-	display: flex;
-	justify-content: center;
-	flex-basis: 90%;
-}
-
-.ajaxshoutbox_user_message .ajaxshoutbox_user {
-	order: 1;
-	flex-basis: 10%;
-	justify-content: flex-end;
-	padding-right: 5px;
-}
-
-.ajaxshoutbox_user_message .ajaxshoutbox_message {
-	order: 2;
-	padding-left: 5px;
-	flex-basis: 89%;
-}
-
-.ajaxshoutbox_date_delete {
-	order: 2;
-	flex-basis: 10%;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.ajaxshoutbox_date_delete .ajaxshoutbox_delete { order: 1; }
-.ajaxshoutbox_date_delete .ajaxshoutbox_date { order: 2; }
-
-.ajaxshoutbox_date,
-.ajaxshoutbox_user {
-	text-align: right;
-}
-
-#ajaxshoutbox_post dt {
-	display: flex;
-	width: 100%;
-	min-height: 0;
-}
-
-#ajaxshoutbox_post .button2,
-#shoutbox_content .button2 {
-	display: flex;
-	min-width: min-content;
-}
-
-.ajaxshoutbox_date {
-	margin-right: 10px;
-	margin-left: 10px;
-}
-
-ul.ajaxshoutboxpost li.row dt {
-	width: 95%;
-}
-
-.ajaxshoutbox_loadingbar {
-	position: relative;
-}
-
-.ajaxshoutbox_loadingbar {
-	height: 16px;
-	width: 16px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.ajaxshoutbox_loadingbar {
-	font-size: 16px;
-}
-
-#ajaxshoutbox_loadbefore,
-#ajaxshoutbox_loadafter,
-#copy {
-	display: none;
-}
-
-#ajaxshoutbox_loadbefore {
-	height: 16px;
-	width: 16px;
-}
-
-ul.shoutboxlist li.row dl {
-	padding: 0 0;
-}
-
-ul.shoutboxlist dl {
-	position: relative;
-}
-
-ul.shoutboxlist dt,
-ul.shoutboxlist dd.ajaxshoutbox_message,
-ul.shoutboxlist dd.ajaxshoutbox_delete,
-ul.ajaxshoutboxpost dd {
-	margin-right: 0px;
-}
-
-.ajaxshoutbox_message .smilies {
-	vertical-align: middle;
-}
-
-ul.ajaxshoutboxpost dt {
-	min-height: 25px;
-}
-
-ul.ajaxshoutboxpost dd {
-	float: right;
-	min-height: 25px;
-	min-width: 25px;
-}
-
-.rtl ul.shoutboxlist dt.ajaxshoutbox_user {
-	margin-left: 0px;
-}
-
-/* end of AJAX SHOUTBOX */
-
 .search-box .search-box-hide,
 .search-box .inputbox,
 .section-viewtopic .search-box .inputbox {
@@ -1457,11 +1328,6 @@ h2.review {
 
 #topic_preview {
 	text-align: justify;
-}
-
-#shoutbox_scroll {
-	max-height: 195px;
-	overflow-y: scroll;
 }
 
 .cp-panel {

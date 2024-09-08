@@ -14,21 +14,6 @@
 	}
 }
 
-@media only screen and (max-width: 700px) {
-	
-	ul.shoutboxlist dd.ajaxshoutbox_date {
-		display: none;
-	}
-	ul.shoutboxlist dd.ajaxshoutbox_message {
-		display: block;
-	}
-
-	ul.topiclist.forums .ajaxshoutbox_row dt {
-		margin-right: 0px;
-	}
-	
-}
-
 @media (max-width: 1280px) {
 	
 	/*#m-name .main-menu-bottom{ left: 15px; }*/
@@ -498,14 +483,6 @@
 
 	.menu-unregistered-user #main-menu-right {
 		width: calc(100% - 25%);
-	}
-	
-	.ajaxshoutbox_user_message .ajaxshoutbox_user {
-		flex-basis: 24%;
-	}
-
-	.ajaxshoutbox_user_message .ajaxshoutbox_message {
-		flex-basis: 75%;
 	}
 
 	.main-menu-row {
