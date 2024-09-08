@@ -3,7 +3,7 @@
         'name' => 'phpbb/phpbb',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'be6bb099845e7e32445b6dcd90b8f29b14cbd67d',
+        'reference' => 'b083e223e29f7f7b728294cb0598d087fbab1252',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(
@@ -102,7 +102,7 @@
         'phpbb/phpbb' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'be6bb099845e7e32445b6dcd90b8f29b14cbd67d',
+            'reference' => 'b083e223e29f7f7b728294cb0598d087fbab1252',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(
