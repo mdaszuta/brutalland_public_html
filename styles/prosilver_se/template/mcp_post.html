@@ -92,6 +92,7 @@
 		<p class="author">{POST_AUTHOR_FULL} {POST_DATE}</p>
 		<!-- ENDIF -->
 
+		{% if S_CAN_APPROVE %}
 		<!-- IF S_POST_UNAPPROVED -->
 			<form method="post" id="mcp_approve" action="{U_APPROVE_ACTION}">
 
@@ -115,6 +116,7 @@
 			</p>
 			</form>
 		<!-- ENDIF -->
+		{% endif %}
 
 		{% if S_POST_REPORTED and not S_MCP_REPORT %}
 			<p class="post-notice reported">
