@@ -426,7 +426,10 @@ input.search {
 
 /* END form.css */
 
-#add {
+#username_list,
+#add,
+#group_desc,
+textarea#usernames {
 	resize: vertical;
 }
 
@@ -1510,6 +1513,7 @@ table.table1 td.info a {
 
 #muzycy-box textarea {
 	padding: 0;
+	resize: vertical;
 }
 
 #quick-login-panel .brutalform {
