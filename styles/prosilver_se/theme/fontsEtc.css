@@ -90,7 +90,7 @@ a.lastsubject,
 .notify-settings,
 .cp-main .notification_list .notifications,
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input,
 #top-site-menu,
 .action-bar,
@@ -192,7 +192,7 @@ a.lastsubject,
 .notifications_reference,
 .notifications_reason,
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input,
 .brutalform-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -314,7 +314,7 @@ a.topictitle,
 #titleID,
 .notifications_reference,
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input {
 	font-size: 21px;
 }

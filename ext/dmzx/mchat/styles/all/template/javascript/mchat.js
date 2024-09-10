@@ -784,6 +784,13 @@ jQuery(function($) {
 			mChat.cached(elem).toggle(isVisible);
 		});
 
+		/* button showin bbcodes is set to fa-toggle-on if bbcodes are shown */
+		/* console.log(mChat.storage.get('show_bbcodes')); */
+
+		if (mChat.storage.get('show_bbcodes') === 'yes') {
+			$('.mchat-button-bbcodes').find('i').toggleClass('fa-toggle-on');
+		}
+
 		var toggleRememberColor = function() {
 			var $this = $(this);
 			var newColor = $this.data('color');
@@ -878,6 +885,9 @@ jQuery(function($) {
 		var $this = $(this).trigger('blur');
 		if ($this.hasClass('mchat-button-down')) {
 			$this.toggleClass('mchat-button-is-down');
+		}
+		if ($this.find('i').hasClass('fa-toggle-off')) {
+			$this.find('i').toggleClass('fa-toggle-on');
 		}
 	}).on('keydown.phpbb.alert', mChat.cached('confirm'), function(e) {
 		mChat.onKeyPress(e, {

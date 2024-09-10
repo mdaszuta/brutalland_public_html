@@ -1542,7 +1542,7 @@ table.table1 td.info a {
 }
 
 input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#bandInfoInput),
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input {
 	min-height: 2em;
 	line-height: 2em;

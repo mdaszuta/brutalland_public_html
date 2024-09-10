@@ -7,29 +7,14 @@
 {% EVENT dmzx_mchat_header_before %}
 
 {% if MCHAT_PAGE == 'custom' %}
-	<h2>{{ lang('MCHAT_CUSTOM_PAGE') }}</h2>
+	<script>document.getElementById("titleID").innerText = "{{ lang('MCHAT_CUSTOM_PAGE') }}";</script>
 {% elseif MCHAT_PAGE == 'archive' %}
-	<h2>{{ lang('MCHAT_ARCHIVE_PAGE') }}</h2>
+	<script>document.getElementById("titleID").innerText = "{{ lang('MCHAT_ARCHIVE_PAGE') }}";</script>
 {% endif %}
 
 {% EVENT dmzx_mchat_header_after %}
 
 {% INCLUDE '@dmzx_mchat/mchat_script_data.html' %}
-
-{% if MCHAT_PAGE == 'archive' and (loops.pagination|length or MCHAT_TOTAL_MESSAGES) %}
-<div class="action-bar bar-top">
-	{% EVENT dmzx_mchat_action_bar_top_before %}
-	<div class="pagination">
-		{{ MCHAT_TOTAL_MESSAGES }}
-		{% if loops.pagination|length %}
-			{% INCLUDE 'pagination.html' %}
-		{% else %}
-			&bull; {{ PAGE_NUMBER }}
-		{% endif %}
-	</div>
-	{% EVENT dmzx_mchat_action_bar_top_after %}
-</div>
-{% endif %}
 
 {% EVENT dmzx_mchat_before %}
 
@@ -49,7 +34,7 @@
 						data-hidden="{{ S_MCHAT_HIDDEN }}"
 						data-ajax="phpbb_collapse"
 						data-overlay="true"
-						title="{{ lang('MCHAT_COLLAPSE_TITLE') }}"></a>
+						title="{{ lang('MCHAT_COLLAPSE_TITLE') }}"><i class="fa {% if S_MCHAT_HIDDEN %}fa-plus{% else %}fa-minus{% endif %}"></i></a>
 				{% endif %}
 			</li>
 		</ul>
@@ -70,9 +55,11 @@
 					<p></p>
 					<textarea></textarea>
 				</div>
-				<fieldset class="submit-buttons">
-					<input type="button" name="confirm" value="{{ lang('MCHAT_OK') }}" class="button2">&nbsp;
-					<input type="button" name="cancel" value="{{ lang('CANCEL') }}" class="button2">
+				<fieldset class="submit-buttons flex-box-form">
+					<div class="flex-box-o">
+						<div class="flex-box"><input type="button" name="confirm" value="{{ lang('MCHAT_OK') }}" class="button"></div>
+						<div class="flex-box fb-c"><input type="button" name="cancel" value="{{ lang('CANCEL') }}" class="button2"></div>
+					</div>
 				</fieldset>
 			</div>
 
@@ -83,6 +70,8 @@
 				</ul>
 				{% EVENT dmzx_mchat_static_container_after %}
 			{% endif %}
+
+			{% INCLUDE '@dmzx_mchat/mchat_panel.html' %}
 
 			<div id="mchat-main" class="{{ MCHAT_MESSAGE_TOP ? 'mchat-messages-top' : 'mchat-messages-bottom' }}">
 				{% EVENT dmzx_mchat_messages_container_before %}
@@ -97,8 +86,6 @@
 
 				{% EVENT dmzx_mchat_messages_container_after %}
 			</div>
-
-			{% INCLUDE '@dmzx_mchat/mchat_panel.html' %}
 		</div>
 
 		{% EVENT dmzx_mchat_body_after %}
@@ -106,21 +93,6 @@
 </div>
 
 {% EVENT dmzx_mchat_after %}
-
-{% if MCHAT_PAGE == 'archive' and (loops.pagination|length or MCHAT_TOTAL_MESSAGES) %}
-<div class="action-bar bottom">
-	{% EVENT dmzx_mchat_action_bar_bottom_before %}
-	<div class="pagination">
-		{{ MCHAT_TOTAL_MESSAGES }}
-		{% if loops.pagination|length %}
-			{% INCLUDE 'pagination.html' %}
-		{% else %}
-			&bull; {{ PAGE_NUMBER }}
-		{% endif %}
-	</div>
-	{% EVENT dmzx_mchat_action_bar_top_after %}
-</div>
-{% endif %}
 
 {% if MCHAT_PAGE == 'custom' and MCHAT_WHOIS_INDEX %}
 	<h3>{{ lang('MCHAT_WHO_IS_CHATTING') }}</h3>
@@ -131,7 +103,7 @@
 	</div>
 {% endif %}
 
-{% if MCHAT_PAGE in ['custom', 'archive'] and LEGEND %}
+{% if MCHAT_PAGE in ['custom', 'archive'] and LEGEND and false %}
 	<div id="mchat-legend">
 		<em>{{ lang('LEGEND') ~ lang('COLON') }} {{ LEGEND }}</em>
 	</div>

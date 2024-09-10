@@ -296,6 +296,184 @@ ul.ajaxshoutboxpost dd {
 
 /* end of AJAX SHOUTBOX */
 
+/* MCHAT */
+
+.mchat-wrapper {
+	margin-bottom: 25px;
+}
+
+.mchat-avatars .mchat-controls {
+	margin: 0 43px 5px 43px;
+}
+
+.mchat-input-control button:hover .icon,
+.mchat-panel-buttons button:hover .icon {
+	color: #32D635;
+}
+
+.mchat-input-control button:focus .icon,
+.mchat-panel-buttons button:focus .icon {
+	color: #257EDE;
+}
+
+.mchat-button-add {
+	margin: 0;
+}
+
+.mchat-button-bbcodes {
+	border: none;
+}
+
+.mchat-button-bbcodes i {
+	font-weight: bold;
+}
+
+#mchat-bbcodes {
+    font-size: 1.1em;
+	position: absolute;
+	width: 100%;
+}
+
+#mchat-panel #abbc3_buttons {
+	padding: 0;
+}
+
+#mchat-body #smiley-box-all,
+#mchat-body #smiley-box img {
+	box-sizing: unset;
+}
+
+.mchat-confirm-fields {
+	padding: 25px 0;
+}
+
+.mchat-confirm-fields textarea {
+	box-sizing: border-box;
+	resize: vertical;
+	outline: none;
+	padding: 8px;
+	text-align: justify;
+	border: 1px solid rgba(50, 214, 53, 0.15);
+}
+
+#mchat-main {
+	position: static;
+	margin-top: 8px;
+}
+
+.mchat-message .mchat-avatar {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.mchat-avatar i {
+	font-size: 36px;
+	color: #444;
+}
+
+.mchat-time {
+	margin-left: 3px;
+}
+
+.mchat-text {
+	text-align: justify;
+	color: white;
+}
+
+@-webkit-keyframes flash-message {
+
+	0% {
+		background-color: rgba(50, 214, 53, 0.1);
+	}
+
+	100% {
+		background-color: transparent;
+	}
+
+}
+
+@keyframes flash-message {
+
+	0% {
+		background-color: rgba(50, 214, 53, 0.1);
+	}
+
+	100% {
+		background-color: transparent;
+	}
+
+}
+
+.mchat-wrapper .mchat-buttons li {
+	opacity: 0.15;
+}
+/*
+.rozwijany-box-all.mchat-buttons-all {
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: fit-content;
+	right: 0;
+}
+
+.mchat-buttons-all i {
+	padding: 0 3px;
+}
+*/
+.mchat-messages-top .mchat-nav-archive {
+	text-align: center;
+	font-size: 17px;
+}
+
+.mchat-messages-top .mchat-nav-archive span {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-variant: small-caps;
+}
+
+@media only screen and (max-width: 700px) {
+
+	.mchat-avatars .mchat-controls {
+		margin: 0 0 5px 0;
+		flex-direction: row;
+		width: 100%;
+	}
+
+	.mchat-panel-buttons {
+		min-height: auto;
+		margin: 0 0 0 5px !important;
+	}
+
+	.mchat-wrapper .mchat-buttons > li {
+		padding: 0;
+	}
+
+	.mchat-message .mchat-avatar {
+		display: none;
+	}
+
+	.mchat-wrapper .mchat-buttons > li {
+		margin: 0;
+	}
+
+	.mchat-buttons a:not([data-mchat-action="del"]) {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1280px) {
+
+	#mchat-bbcodes {
+		position: static;
+	}
+
+	#mchat-main {
+		position: relative;
+		margin-top: 5px;
+	}
+	
+}
+
+/* end of MCHAT */
+
 /* TOP FIVE */
 
 /* Fixes avatar aspect-ratio */
