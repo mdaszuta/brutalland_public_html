@@ -919,9 +919,9 @@ $lang = array_merge($lang, array(
 	'VIEW_NEWEST_POST'			=> 'Wyświetl pierwszy nieprzeczytany post',
 	'VIEW_NOTES'				=> 'Opinie o użytkowniku',
 	'VIEW_ONLINE_TIMES'			=> array(
-		1	=> 'wg danych z ostatniej minuty',
-		2	=> 'wg danych z ostatnich %d minut',
-		3	=> 'wg danych z ostatnich %d minut',
+		1	=> 'według danych z ostatniej minuty',
+		2	=> 'według danych z ostatnich %d minut',
+		3	=> 'według danych z ostatnich %d minut',
 	),
 	'VIEW_TOPIC'				=> 'Wyświetl temat',
 	'VIEW_TOPIC_ANNOUNCEMENT'	=> 'Ogłoszenie: ',
