@@ -12,6 +12,37 @@ body {
 	max-width: 552px !important;
 }
 
+/* cookie consent */
+
+.cc-window {
+	background-color: transparent !important;
+	background: linear-gradient(to bottom, transparent 0%, #000 1em);
+	padding: 1em 1.8em 0.5em;
+	text-align: justify;
+}
+
+.cc-link {
+	float: right;
+}
+
+.cc-compliance {
+	padding: 0 1em;
+	margin: auto;
+	box-sizing: border-box;
+}
+
+.cc-btn:not(:hover, :focus) {
+	/*padding: 0.5em 1em;*/
+	color: #eee !important;
+	background-color: #222 !important;
+}
+
+.cc-btn:hover {
+	background-color: #333 !important;
+}
+
+/* end of cookie consent */
+
 select { 
 	width: fit-content;
 	padding: 0;
