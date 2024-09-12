@@ -405,20 +405,9 @@ ul.ajaxshoutboxpost dd {
 }
 
 .mchat-wrapper .mchat-buttons li {
-	opacity: 0.15;
-}
-/*
-.rozwijany-box-all.mchat-buttons-all {
-	flex-direction: row;
-	flex-wrap: nowrap;
-	width: fit-content;
-	right: 0;
+	/*opacity: 0.15;*/
 }
 
-.mchat-buttons-all i {
-	padding: 0 3px;
-}
-*/
 .mchat-messages-top .mchat-nav-archive {
 	text-align: center;
 	font-size: 17px;
@@ -455,7 +444,7 @@ ul.ajaxshoutboxpost dd {
 	}
 
 	.mchat-buttons a:not([data-mchat-action="del"]) {
-		display: none;
+		/*display: none;*/
 	}
 }
 
@@ -473,6 +462,32 @@ ul.ajaxshoutboxpost dd {
 }
 
 /* end of MCHAT */
+
+/* MCHAT ICONS MENU */
+
+.dropdown-container-mchat-message-icons .arrow:after,
+.dropdown-container-mchat-message-icons .arrow:before {
+	border: none;
+}
+
+.mchat-buttons .dropdown-trigger {
+	width: 30px;
+	text-align: center;
+}
+
+.mchat-buttons .dropdown .dropdown-contents {
+	background-color: rgba(0, 0, 0, 0.9);
+	border-color: transparent;
+}
+
+@media all and (hover: hover) and (pointer: fine) {
+
+	.mchat-buttons .dropdown-trigger:hover + .mchat-dropdown, .mchat-dropdown:hover {
+		display: block !important;
+	}
+
+}
+/* end of MCHAT ICONS MENU */
 
 /* TOP FIVE */
 
