@@ -88,7 +88,7 @@ $lang = array_merge($lang, array(
 		'URL'			=> 'Aktywny adres URL używający dowolnego dozwolonego protokołu – http, ftp, itp. nie może być użyty do eksploitów. Jeśli nie wybrano protokołu, do ciągu znaków będzie dodawany prefiks „http://”.',
 		'LOCAL_URL'		=> 'Lokalny adres URL. Adres musi być powiązany ze stroną tematów i nie może zawierać nazwy serwera czy protokołu jak odnośniki z prefiksem „%s”.',
 		'RELATIVE_URL'	=> 'Względny adres URL. Można to wykorzystać w celu dopasowania części adresu URL, ale należy zachować ostrożność i sprawdzić, czy pełny adres URL odpowiada względnemu URL. Jeśli chcesz używać względnych adresów URL swojej witryny, użyj tokena LOCAL_URL.',
-		'COLOR'			=> 'Kolor HTML może być wyrażony w formie numerycznej <samp>#FF1234</samp> lub jako słowa kluczowe kolorów określone w specyfikacji <a href="http://www.w3.org/TR/CSS21/syndata.html#value-def-color">CSS</a>, takie jak <samp>fuchsia</samp> lub <samp>InactiveBorder</samp>,'
+		'COLOR'			=> 'Kolor HTML może być wyrażony w formie numerycznej <samp>#FF1234</samp> lub jako słowa kluczowe kolorów określone w specyfikacji <a href="http://www.w3.org/TR/CSS21/syndata.html#value-def-color">CSS</a>, takie jak <samp>fuchsia</samp> lub <samp>InactiveBorder</samp>',
 		'ALNUM'			=> 'Characters from the latin alphabet (A-Z) and numbers.',
 		'CHOICE'		=> 'A choice of specified values, e.g. <samp>{CHOICE=spades,hearts,diamonds,clubs}</samp>. The values are treated as case-insensitive by default and can be treated case-sensitive by specifying the <samp>caseSensitive</samp> option: <samp>{CHOICE=Spades,Hearts,Diamonds,Clubs;caseSensitive}</samp>',
 		'FLOAT'			=> 'A decimal value, e.g. <samp>0.5</samp>.',
