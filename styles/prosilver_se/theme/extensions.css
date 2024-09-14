@@ -486,6 +486,14 @@ ul.ajaxshoutboxpost dd {
 }
 /* end of MCHAT ICONS MENU */
 
+/* IMGUR */
+
+.imgur-button.abbc3_button {
+	background-image: none;
+}
+
+/* end of IMGUR */
+
 /* TOP FIVE */
 
 /* Fixes avatar aspect-ratio */
