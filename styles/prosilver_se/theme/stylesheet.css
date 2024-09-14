@@ -1408,10 +1408,11 @@ table.table1 tbody td {
 }
 
 table.table1 td.info a {
-    max-width: 195px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+	word-break: break-word;
+    /*max-width: 195px;*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
 }
 
 #notification-settings-table tbody td:not(.mark) {

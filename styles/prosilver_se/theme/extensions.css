@@ -358,7 +358,8 @@ ul.ajaxshoutboxpost dd {
 
 #mchat-main {
 	position: static;
-	margin-top: 8px;
+	/*margin-top: 8px;*/
+	margin-top: 25px;
 }
 
 .mchat-message .mchat-avatar {
@@ -402,10 +403,6 @@ ul.ajaxshoutboxpost dd {
 		background-color: transparent;
 	}
 
-}
-
-.mchat-wrapper .mchat-buttons li {
-	/*opacity: 0.15;*/
 }
 
 .mchat-messages-top .mchat-nav-archive {
