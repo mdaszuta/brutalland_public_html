@@ -6,7 +6,6 @@ a,
 .info-paragraph strong,
 fieldset span strong,
 fieldset.polls dl.voted,
-.ajaxshoutbox_user_message .ajaxshoutbox_message,
 .fa-search,
 #m-pagination .pagination a,
 .m-row2:not(:hover):not(:focus) .notifications_reason em,
@@ -148,8 +147,7 @@ blockquote.uncited::before {
 a.button1,
 a.button2,
 input.button1,
-input.button2,
-.ajaxshoutbox_delete .fa-remove {
+input.button2 {
 	color: #b7b7b7;
 }
 
@@ -195,7 +193,7 @@ a.subforum.unread:hover,
 .m-row2:hover .notifications_title,
 .search-box-hide:hover,
 .posthilit,
-.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#text_shoutbox):hover,
+.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):hover,
 .postprofile strong,
 .postprofile .fa-comment-o:hover,
 dl.mini h3,
@@ -212,8 +210,7 @@ fieldset dl:hover dt label,
 	#main-menu-title a:hover,
 	#m-pagination a:hover,
 	#main-menu-right a:hover,
-	.fa-search:hover,
-	.ajaxshoutbox_delete .fa-remove:hover {
+	.fa-search:hover {
 		color:#32D635;
 	}
 }
@@ -241,13 +238,11 @@ a.username-coloured:focus,
 #main-menu-right a:focus,
 .fa-search:focus,
 .search-box-hide:focus,
-.ajaxshoutbox_delete .fa-remove:focus,
-.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#text_shoutbox):focus,
+.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):focus,
 a.mark-read.rightside:focus,
 .lastpost:focus a.lastsubject,
 .lastpost:focus .fa-fast-forward {
 	color:#257EDE !important;
-	/*outline: 0;*/
 }
 
 ul.topiclist li.row:hover a.topictitle.subforum.read {

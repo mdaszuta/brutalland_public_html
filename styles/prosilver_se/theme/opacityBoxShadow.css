@@ -19,8 +19,7 @@
 }
 
 .nav-footer,
-.to-searched-post,
-.ajaxshoutbox_delete .fa-remove {
+.to-searched-post {
 	opacity: 0.3;
 }
 
@@ -81,7 +80,6 @@ li.row .fa-tags,
 
 .post-buttons:hover,
 .mark_read:hover,
-.ajaxshoutbox_delete .fa-remove:hover,
 li.row .fa-question:hover,
 li.row .fa-flag:hover,
 li.row .fa-recycle:hover,
@@ -198,7 +196,6 @@ fieldset .flex-box-o:hover .fb-l span {
 .post-number:hover,
 .post-buttons:hover,
 .mark_read:hover,
-.ajaxshoutbox_delete .fa-remove:hover,
 li.row .fa-question:hover,
 li.row .fa-flag:hover,
 li.row .fa-recycle:hover,
@@ -218,7 +215,6 @@ li.row .fa-tags:hover,
 .post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
 .post-buttons #post-buttons-row-2:hover,
 .mark_read,
-.ajaxshoutbox_delete .fa-remove,
 li.row .fa-question,
 li.row .fa-flag,
 li.row .fa-recycle,

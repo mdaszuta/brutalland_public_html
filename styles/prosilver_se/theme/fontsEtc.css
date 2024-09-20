@@ -89,7 +89,7 @@ a.lastsubject,
 .notifications_reason,
 .notify-settings,
 .cp-main .notification_list .notifications,
-input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
+input.inputbox:not([type="number"]):not([type="file"]),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input,
 #top-site-menu,
@@ -191,7 +191,7 @@ a.lastsubject,
 #titleID,
 .notifications_reference,
 .notifications_reason,
-input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
+input.inputbox:not([type="number"]):not([type="file"]),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input,
 .brutalform-label {
@@ -237,7 +237,7 @@ dl.details,
 .brutalform .reset,
 #reprap,
 .navbar,
-ul.topiclist dt:not(.ajaxshoutbox_user) {
+ul.topiclist dt {
 	font-size: 1.1em;
 }
 
@@ -313,7 +313,7 @@ a.forumtitle,
 a.topictitle,
 #titleID,
 .notifications_reference,
-input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
+input.inputbox:not([type="number"]):not([type="file"]),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input {
 	font-size: 21px;

@@ -1544,7 +1544,7 @@ table.table1 td.info a {
     //display: flex;
 }
 
-input.inputbox:not([type="number"]):not([type="file"]):not(#text_shoutbox),
+input.inputbox:not([type="number"]):not([type="file"]),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
 .tags input {
 	min-height: 2em;
