@@ -362,6 +362,10 @@ ul.ajaxshoutboxpost dd {
 	margin-top: 25px;
 }
 
+.mchat-no-messages {
+	text-align: center;
+}
+
 .mchat-message .mchat-avatar {
 	display: flex;
 	justify-content: flex-end;

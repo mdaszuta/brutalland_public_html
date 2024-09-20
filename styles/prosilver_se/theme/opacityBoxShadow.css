@@ -1,3 +1,5 @@
+/* OPACITY */
+
 .fb-l span,
 .lastpost .fa-fast-forward,
 .phantom-label,
@@ -89,10 +91,6 @@ li.row .fa-tags:hover,
 .recipients .fa-times:hover {
 	opacity: 0.9;
 }
-.main-menu-top:hover ~ .main-menu-bottom,
-#main-menu .main-menu-bottom:hover {
-	//opacity: 1;
-}
 
 fieldset .flex-box-o:hover .fb-l span,
 li.row:hover .topic-reply-counter.unread,
@@ -131,9 +129,6 @@ li.row:hover .topic-reply-counter.unread,
 
 .brutalform-explanation {
 	opacity: 0;
-	
-	//visibility: hidden;
-	//display: none;
 }
 
 .brutalform-box:hover .brutalform-explanation,
@@ -142,9 +137,6 @@ li.row:hover .topic-reply-counter.unread,
 	opacity: 1;
 	padding-bottom: 15px;
 	z-index: 3;
-	
-	//visibility: visible;
-	//display: flex;
 }
 
 @media (hover:hover) {
@@ -158,7 +150,7 @@ li.row:hover .topic-reply-counter.unread,
 	opacity: 1;
 }
 
-/* RESPONSIVE */ /* RESPONSIVE */ /* RESPONSIVE */
+/* RESPONSIVE */
 
 @media only screen and (max-width: 860px) {
 	.post-buttons #post-buttons-row-2 {
@@ -172,18 +164,16 @@ li.row:hover .topic-reply-counter.unread,
 	}
 }
 
-/* RESPONSIVE */ /* RESPONSIVE */ /* RESPONSIVE */
+/* end of RESPONSIVE */
 
-/* TRANSITIONS START */ /* TRANSITIONS START */ /* TRANSITIONS START */
+/* TRANSITIONS */
 
 .fb-l span,
 fieldset .flex-box-o:hover .fb-l span {
-	-webkit-transition: opacity 0.35s ease-out;
 	transition: opacity 0.35s ease-out;
 }
 
 #top-site-menu {
-	-webkit-transition: opacity 0.25s ease-out;
 	transition: opacity 0.25s ease-out;
 }
 
@@ -220,10 +210,7 @@ li.row .fa-tags:hover,
 #m-ksywa .main-menu-bottom a:hover .fa,
 .contact-box-all .m-labeled-box-button .fa,
 .contact-box-all .m-labeled-box-button:hover .fa {
-	-webkit-transition: opacity 0.75s ease-out;
-	transition: opacity 0.75s ease-out;
-	-webkit-transition-delay: 0.1s;
-	transition-delay: 0.1s;
+	transition: opacity 0.75s ease-out 0.1s;
 }
 
 .post-number,
@@ -239,21 +226,13 @@ li.row .fa-bar-chart,
 li.row .fa-paperclip,
 li.row .fa-tags,
 .recipients .fa-times {
-	-webkit-transition: opacity 0.75s ease-out;
-	transition: opacity 0.75s ease-out;
-	-webkit-transition-delay: 666666s;
-	transition-delay: 666666s;
+	transition: opacity 0.75s ease-out 666666s;
 }
 
 .to-searched-post,
 .brutalform-label,
 .brutalform-explanation {
-	-moz-transition: opacity 0.75s ease-in-out;
-	-webkit-transition: opacity 0.75s ease-in-out;
-	transition: opacity 0.75s ease-in-out;
-	-moz-transition-delay: 0.35s;
-	-webkit-transition-delay: 0.35s;
-	transition-delay: 0.35s;
+	transition: opacity 0.75s ease-in-out 0.35s;
 }
 
 .brutalform-box:hover .brutalform-explanation,
@@ -265,36 +244,21 @@ li.row .fa-tags,
 .brutalform .inputbox:focus ~ .brutalform-label,
 .brutalform select:focus ~ .brutalform-label,
 .brutalform .brutalform-timezone-select:focus ~ .brutalform-label {
-	-moz-transition: opacity 0.25s ease-in-out;
-	-webkit-transition: opacity 0.25s ease-in-out;
-	transition: opacity 0.25s ease-in-out;
-	-moz-transition-delay: 0.15s;
-	-webkit-transition-delay: 0.15s;
-	transition-delay: 0.15s;
+	transition: opacity 0.25s ease-in-out 0.15s;
 }
 
 #page-header {
-	-webkit-transition: opacity 5s ease-out;
-	transition: opacity 5s ease-out;
-	-webkit-transition-delay: 4s;
-	transition-delay: 4s;
+	transition: opacity 5s ease-out 4s;
 }
 
 #page-header:hover {
-	-webkit-transition: opacity 5s ease-out;
-	transition: opacity 5s ease-out;
-	-webkit-transition-delay: 4s;
-	transition-delay: 4s;
+	transition: opacity 5s ease-out 4s;
 }
 
 .nav-footer {
-	-webkit-transition: opacity 1.6s ease-out;
 	transition: opacity 1.6s ease-out;
 }
 
 .copyright {
-	-moz-transition: opacity 1.25s ease-out;
-	-webkit-transition: opacity 1.25s ease-out;
 	transition: opacity 1.25s ease-out;
-	-o-transition: opacity 1.25s ease-out;
 }

@@ -432,28 +432,21 @@ table.table1 tbody tr.bg3:hover {
 }
 
 .inputbox {
-	/*outline: 0;*/
 	box-shadow: 0 1px 1px -1px #ee0000;
-	//-webkit-transition: box-shadow 0.5s ease-in-out;
 	transition: box-shadow 0.5s ease-in-out;
 }
 
 .inputbox:hover {
-	/*outline: 0;*/
 	box-shadow: 0 1px 1px -1px #32D635;
-	//-webkit-transition: box-shadow 0.5s ease-in-out;
 	transition: box-shadow 0.5s ease-in-out;
 }
 
 .inputbox:focus {
-	/*outline: 0;*/
 	box-shadow: 0 1px 1px -1px #257EDE;
-	//-webkit-transition: box-shadow 0.5s ease-in-out;
 	transition: box-shadow 0.5s ease-in-out;
 }
 
 #brutalform-drafty-buttons .button2 {
-	//-webkit-transition: box-shadow 0.75s ease-out;
 	transition: box-shadow 0.75s ease-out;
 }
 
