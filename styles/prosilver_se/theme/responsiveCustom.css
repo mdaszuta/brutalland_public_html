@@ -436,10 +436,8 @@
 	
 	#top-site-menu {
 		/*position: -webkit-sticky;*/
-		position:sticky;
+		position: sticky;
 		padding: 5px 5px 0 5px;
-		/*-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;*/
 		box-sizing: border-box;
 	}
 	

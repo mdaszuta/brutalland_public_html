@@ -799,15 +799,10 @@ input.button2,
 	max-width: 130px;
 	padding-right: 10px;
 	padding-left: 10px;
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-.m-list-right-top {
-	order: 1;
-	//max-width: 100%;
-}
+.m-list-right-top { order: 1; }
 .m-list-right-bottom { order: 2; }
 
 .m-list-left {
@@ -816,8 +811,6 @@ input.button2,
 	width: calc(100% - 130px);
 	padding-right: 10px;
 	padding-left: 10px;
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -964,8 +957,6 @@ input.button2,
     max-width: 50px;
 	padding-left: 3px !important;
     padding-right: 3px !important;
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -983,7 +974,7 @@ input.button2,
 .topic-reply-counter {
 	text-align: center;
     min-width: 13px;
-    //padding: 0 2px 0 2px;
+    /*padding: 0 2px 0 2px;*/
 }
 
 #m-tagi .m-list-left { flex-basis: 83%; }
@@ -1469,15 +1460,11 @@ table.table1 td.info a {
 .inputbox {
 	width: 100%;
 	/*padding: 2px;*/
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 #abbc3_buttons .fa,
 .smiley-box {
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -1530,8 +1517,6 @@ table.table1 td.info a {
 #quick-login-panel span,
 #pmheader-postingbox span {
 	padding: 2px;
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -1795,8 +1780,6 @@ tags-input .tags {
 
 tags-input .autocomplete .suggestion-item {
 	width: 100%;
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -2009,8 +1992,6 @@ div.content,
 .signature {
 	padding-left: 3px;
 	padding-right: 3px;
-	//-webkit-box-sizing: border-box;
-	//-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
