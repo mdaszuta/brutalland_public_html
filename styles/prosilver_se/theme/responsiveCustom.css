@@ -435,7 +435,6 @@
 	}
 	
 	#top-site-menu {
-		/*position: -webkit-sticky;*/
 		position: sticky;
 		padding: 5px 5px 0 5px;
 		box-sizing: border-box;

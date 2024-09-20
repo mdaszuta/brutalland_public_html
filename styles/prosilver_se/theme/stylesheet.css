@@ -1423,8 +1423,6 @@ table.table1 td.info a {
 .copyright {
 	display: flex;
 	flex-direction: column;
-	//width: -moz-fit-content;
-	//width: -webkit-fit-content;
 	width: fit-content;
 	margin: auto;
 	padding: 5px;
@@ -1435,8 +1433,6 @@ table.table1 td.info a {
 }
 
 .copyright .text-strong {
-	//width: -moz-fit-content;
-	//width: -webkit-fit-content;
 	width: fit-content;
 	margin: auto;
 }
@@ -2084,8 +2080,6 @@ dl.details dd {
 	min-width: 40px;
 	padding: 10px;
 	margin-left: -40px;
-	//-webkit-border-radius: 3px;
-	//-moz-border-radius: 3px;
 	border-radius: 3px;
 	text-decoration: none;
 	font-size: 11px;
@@ -2101,10 +2095,6 @@ dl.details dd {
 	margin-left: 15px;
 	margin-top: -16px;
 	border: 0;
-	//-webkit-transform: rotate(-45deg);
-	//-moz-transform: rotate(-45deg);
-	//-ms-transform: rotate(-45deg);
-	//-o-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 }
 
@@ -2118,10 +2108,6 @@ dl.details dd {
 	top: 100%;
 	margin-left: 15px;
 	margin-top: -5px;
-	//-webkit-transform: rotate(-45deg);
-	//-moz-transform: rotate(-45deg);
-	//-ms-transform: rotate(-45deg);
-	//-o-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 }
 

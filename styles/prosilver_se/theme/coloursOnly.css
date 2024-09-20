@@ -376,7 +376,6 @@ li.row.bg2 {
 }
 
 .pagination li.active span {
-	//-webkit-box-shadow: 0 0 0 1px #257EDE inset;
 	box-shadow: 0 0 2px #257EDE;
 }
 
