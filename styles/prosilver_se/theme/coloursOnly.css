@@ -366,14 +366,6 @@ a img.postimage:hover {
 	box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
 }
 
-table.table1 tbody tr.bg3 {
-	/*box-shadow: 0 2px 1px -1px #257EDE, inset 0 4px 9px rgba(37, 126, 222, .1);*/
-}
-
-table.table1 tbody tr.bg3:hover {
-	/*box-shadow: 0 1px 1px -1px #257EDE, inset 0 4px 9px rgba(37, 126, 222, .1);*/
-}
-
 .dropdown-select {
 	box-shadow: 0 1px 1px -1px #ee0000, inset 0 4px 9px rgba(238, 0, 0, .1);
 }
