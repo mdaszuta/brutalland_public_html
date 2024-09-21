@@ -580,7 +580,7 @@ form#qr_postform .panel fieldset dl,
 	padding: 4px 0 4px 0;
 }
 
-.fb-s {
+.flex-direction-row {
 	flex-direction: row !important;
 }
 

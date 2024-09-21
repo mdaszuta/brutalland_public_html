@@ -188,7 +188,7 @@
 			<!-- IF S_USER_SELECT -->
 			<div class="fbr">
 				<div class="fbr-left phantom-label"><label>{L_CHANGE_POSTER}</label></div>
-				<div class="fbr-right fb-s">
+				<div class="fbr-right flex-direction-row">
 					<select name="u">{S_USER_SELECT}</select>
 					<input type="submit" class="button2" name="action[chgposter_ip]" value="{L_CONFIRM}" />
 				</div>
@@ -216,7 +216,7 @@
 			<fieldset>
 			<div class="fbr">
 				<div class="fbr-left"><label>{L_MOD_OPTIONS}</label></div>
-				<div class="fbr-right fb-s"><select name="action">
+				<div class="fbr-right flex-direction-row"><select name="action">
 					<!-- IF S_CAN_LOCK_POST --><!-- IF S_POST_LOCKED --><option value="unlock_post">{L_UNLOCK_POST} [{L_UNLOCK_POST_EXPLAIN}]</option><!-- ELSE --><option value="lock_post">{L_LOCK_POST} [{L_LOCK_POST_EXPLAIN}]</option><!-- ENDIF --><!-- ENDIF -->
 					<!-- IF S_CAN_DELETE_POST --><option value="delete_post">{L_DELETE_POST}</option><!-- ENDIF -->
 					</select> <input class="button2" type="submit" value="{L_SUBMIT}" />

@@ -26,7 +26,7 @@
 	<!-- IF S_CHECK_DEFINED -->
 		<div class="fbr">
 			<div class="fbr-left"><label<!-- IF S_CHECK_SELECT --> for="check_option"<!-- ENDIF -->>{L_IF}</label></div>
-			<div class="fbr-right fb-s">
+			<div class="fbr-right flex-direction-row">
 				<!-- IF S_CHECK_SELECT -->
 					<select name="check_option" id="check_option">{S_CHECK_OPTIONS}</select>
 					<input type="submit" name="next" value="{L_NEXT_STEP}" class="button2" />
@@ -47,7 +47,7 @@
 					<label>&nbsp;</label>
 				<!-- ENDIF -->
 			</div>
-			<div class="fbr-right fb-s">
+			<div class="fbr-right flex-direction-row">
 				<!-- IF S_RULE_SELECT -->
 					<select name="rule_option" id="rule_option">{S_RULE_OPTIONS}</select>
 					<input type="submit" name="next" value="{L_NEXT_STEP}" class="button2" />
