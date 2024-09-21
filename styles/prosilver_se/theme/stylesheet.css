@@ -562,24 +562,6 @@ form#qr_postform .panel fieldset dl,
 	height: 24px;
 }
 
-.fb-l {
-	align-items: flex-end;
-	text-align: end;
-}
-
-.fb-l span {
-	padding-right: 5px;
-}
-
-.fb-r {
-	align-items: flex-start;
-}
-
-.fb-l,
-.fb-r {
-	padding: 4px 0 4px 0;
-}
-
 .flex-direction-row {
 	flex-direction: row !important;
 }

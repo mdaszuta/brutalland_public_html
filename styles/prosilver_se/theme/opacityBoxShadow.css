@@ -1,6 +1,5 @@
 /* OPACITY */
 
-.fb-l span,
 .lastpost .fa-fast-forward,
 .phantom-label,
 .post-buttons #post-buttons-row-2,
@@ -90,7 +89,6 @@ li.row .fa-tags:hover,
 	opacity: 0.9;
 }
 
-fieldset .flex-box-o:hover .fb-l span,
 li.row:hover .topic-reply-counter.unread,
 #top-site-menu,
 #m-name.show-name-bottom-list .main-menu-top,
@@ -165,11 +163,6 @@ li.row:hover .topic-reply-counter.unread,
 /* end of RESPONSIVE */
 
 /* TRANSITIONS */
-
-.fb-l span,
-fieldset .flex-box-o:hover .fb-l span {
-	transition: opacity 0.35s ease-out;
-}
 
 #top-site-menu {
 	transition: opacity 0.25s ease-out;
