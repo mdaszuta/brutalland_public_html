@@ -584,7 +584,7 @@ form#qr_postform .panel fieldset dl,
 	flex-direction: row !important;
 }
 
-.fb-c {
+.justify-content-center {
 	justify-content: center;
 }
 
