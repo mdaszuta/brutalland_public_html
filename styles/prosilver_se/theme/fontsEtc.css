@@ -56,7 +56,7 @@ select:not(.abbc3_select) option,
 .cp-main .notification_list .notifications,
 table.table1 tbody tr.bg3,
 .brutalform .brutalform-go-to-register,
-.brutalform-button-s,
+.brutalform-button-a,
 .brutalform-box .brutalform-label,
 .fbr-left label,
 .page-footer .navbar,
@@ -98,7 +98,7 @@ h2,
 h3,
 table.table1 tbody tr.bg3,
 .copyright .text-strong,
-.brutalform-button-s,
+.brutalform-button-a,
 .brutalform-label {
 	font-variant: small-caps;
 }
@@ -250,12 +250,8 @@ ul.topiclist dt {
 	font-size: 1.25em;
 }
 
-.brutalform-button-s {
+.brutalform-button-a {
 	font-size: 1.3em;
-}
-
-#notepad {
-	font-size: 1.32em;
 }
 
 .fa-search-user {

@@ -107,6 +107,7 @@ a.lastsubject {
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
+	margin-bottom: 3px;
 }
 
 /* override prosilver\common.css */
@@ -790,7 +791,9 @@ input.button2,
 	padding: 4px 0 4px 0;
 }
 
-.m-list .fa-file-o { margin-right: 5px; }
+.m-list .fa-file-o {
+	margin-right: 5px;
+}
 
 .m-list-right {
 	order: 2;
@@ -802,8 +805,9 @@ input.button2,
 	box-sizing: border-box;
 }
 
-.m-list-right-top { order: 1; }
-.m-list-right-bottom { order: 2; }
+.m-list-right-top {
+	margin-bottom: 3px;
+}
 
 .m-list-left {
 	order: 1;
@@ -831,10 +835,8 @@ input.button2,
 	margin-left: 18px;
 }
 
-.m-list ul { list-style-type: none; }
-
-#m-name {
-	/*position: relative;*/
+.m-list ul {
+	list-style-type: none;
 }
 
 #m-name .m-list .panel .fa {
@@ -889,10 +891,6 @@ input.button2,
     display: flex;
 }
 
-#m-notify .m-list-right-top {
-	//position: relative;
-}
-
 #m-notify .m-list-right {
 	width: 76px;
 }
@@ -905,13 +903,6 @@ input.button2,
 .notification_text {
 	margin-left: 0;
 }
-/*
-#m-notify .mark_read {
-	position: absolute;
-	padding-top: 3px;
-    right: 45px;
-}
-*/
 
 #m-notify .m-list div[class^="m-row"] {
     position: relative;
@@ -1074,12 +1065,6 @@ li.arrow a::before {
 	vertical-align: sub;
 }
 
-.pagination li a,
-.pagination li span,
-.pagination li.active span {
-	/*font-size: 0.9em;*/
-}
-
 .pagination li.active span {
 	font-weight: bold;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
@@ -1134,7 +1119,6 @@ li.arrow a::before {
 dd.lastpost > span {
     display: flex;
 	width: 100%;
-    //justify-content: space-between;
 }
 
 .lastpost-poster {
@@ -1165,7 +1149,8 @@ dd.lastpost > span {
 
 *::selection {
 	color: #32D635;
-	background: #444;
+	/*background: #444;*/
+	background-color: rgba(238, 0, 0, 0.25);
 }
 
 .postbody,
@@ -1245,7 +1230,6 @@ dd.time {
 .search-box .inputbox,
 .section-viewtopic .search-box .inputbox {
 	width: 0;
-	//order: 1;
 }
 
 .search-box {
@@ -1262,8 +1246,6 @@ dd.time {
 	padding-left: 6px;
 	padding-right: 6px;
 }
-
-//.search-box .fa-search { order: 2; }
 
 a.header-avatar img {
 	max-height: 30px;
@@ -1288,7 +1270,7 @@ h3 {
 .spoilwrapper,
 .spoilcontent {
 	padding: 4px;
-	//width: fit-content;
+	/*width: fit-content;*/
 }
 
 .spoilbtn {
@@ -1469,11 +1451,6 @@ table.table1 td.info a {
 	margin: auto;
 }
 
-#muzycy-box {
-	//width: 95%;
-	//margin: auto;
-}
-
 .content a.button {
 	line-height: normal;
 }
@@ -1496,10 +1473,6 @@ table.table1 td.info a {
 #muzycy-box textarea {
 	padding: 0;
 	resize: vertical;
-}
-
-#quick-login-panel .brutalform {
-	padding-top: 0;
 }
 
 .brutalform-box span,
@@ -1594,12 +1567,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	justify-content: initial;
 }
 
-#notepad {
-	resize: vertical;
-	//width: 99.5%;
-	//max-width: 99.5%;
-}
-
 #agreement.brutalform input {
 	width: 49%;
 }
@@ -1608,11 +1575,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0 !important;
-}
-
-#quick-login-panel .brutalform-go-to-register {
-	padding-top: 35px;
+	/*padding: 0 !important;*/
 }
 
 .button, .brutalform .brutalform-go-to-register {
@@ -1626,7 +1589,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .button1,
 .button2 a,
 .brutalform .reset,
-.brutalform-button-s {
+.brutalform-button-a {
 	text-align: center;
 }
 

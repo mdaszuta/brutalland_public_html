@@ -4,6 +4,13 @@
     margin-bottom: 25px;
 }
 
+/* NOTEPAD */
+
+#notepad {
+	resize: vertical;
+	font-size: 1.32em;
+}
+
 /* PM BARS + */
 
 .pmbars-outer {
@@ -251,10 +258,6 @@ a.collapse-btn {
 
 	.mchat-wrapper .mchat-buttons > li {
 		margin: 0;
-	}
-
-	.mchat-buttons a:not([data-mchat-action="del"]) {
-		/*display: none;*/
 	}
 }
 
