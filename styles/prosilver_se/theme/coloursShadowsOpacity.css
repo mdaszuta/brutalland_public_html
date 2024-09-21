@@ -28,11 +28,10 @@ body,
 	background-color: #fff;
 }
 
-/* UCP TOP MENU NAVI */
+/* UCP NAVIGATION TOP MENU */
 
 .tab > a {
 	background-color: rgba(0, 0, 0, 0.2);
-	/*background: linear-gradient(to bottom, transparent 0%, rgba(238, 0, 0, 0.15) 70%);*/
 }
 
 .tab > a:hover {
@@ -43,10 +42,6 @@ body,
 .activetab > a:hover,
 .tab > a:focus {
 	background: linear-gradient(to bottom, transparent 0%, rgba(37, 126, 222, 0.25) 70%);
-}
-
-.navigation .tab > a {
-	/*background: linear-gradient(to top, transparent 0%, rgba(238, 0, 0, 0.15) 70%);*/
 }
 
 .navigation .tab > a:hover {
@@ -63,7 +58,7 @@ body,
 	background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.45) 70%);
 }
 
-/* UCP TOP MENU NAVI */
+/* end of UCP NAVIGATION TOP MENU */
 
 .m-labeled-box-bg strong {
 	background: rgba(0, 0, 0, 0.1);
@@ -73,25 +68,25 @@ body,
 	background: rgba(0, 0, 0, 0.4);
 }
 
-/* width */
+/* Scrollbar width */
 ::-webkit-scrollbar {
   width: 7px;
 }
 
-/* Track */
+/* Scrollbar track */
 ::-webkit-scrollbar-track {
   /*box-shadow: inset 0 0 5px #666;*/
   border-radius: 7px;
   background: transparent;
 }
  
-/* Handle */
+/* Scrollbar handle */
 ::-webkit-scrollbar-thumb {
   background-color: rgba(102, 102, 102, 0.3);
   border-radius: 7px;
 }
 
-/* Handle on hover */
+/* Scrollbar handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(102, 102, 102, 0.25);
 }
@@ -123,15 +118,6 @@ li.row.bg3:hover,
 
 select:not([multiple="multiple"]) option {
 	background-color: rgba(0, 0, 0, 1);
-}
-
-#topic_preview {
-	background-color: rgba(0, 0, 0, 0.75);
-}
-
-#topic_preview:before,
-#topic_preview.invert:after {
-	background-color: rgba(0, 0, 0, 0.75) !important;
 }
 
 div.rules {
@@ -265,8 +251,7 @@ ul.zebra-list li:nth-child(even):hover {
 }
 
 .member-search.panel {
-	/*background-color: rgba(0, 0, 0, 0.4);*/
-	background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.75) 100%);
+	background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.75) 100%);
 }
 
 .phpbb_alert {
@@ -343,7 +328,6 @@ input.button2:hover,
 input.button3:hover,
 span.button:focus,
 button,
-#topic_preview,
 hr,
 hr.dashed,
 .inputbox,
@@ -364,22 +348,6 @@ li.row:hover dd,
 	border: none;
 }
 
-/*
-
-.dropdown,
-.dropdown li,
-.dropdown-select,
-.dropdown-select::after,
-.dropdown .dropdown-contents {
-	border: none;
-}
-
-@media (hover:hover) {
-	.dropdown-select:hover {
-		border: none;
-	}
-}
-*/
 img.postimage,
 img.postimage:hover {
 	border: none !important;
@@ -400,16 +368,6 @@ li:not(.header) .lastpost:hover {
 li:not(.header) .lastpost,
 li:not(.header) .lastpost:hover {
 	transition: border-color 0.75s ease-out 0.1s;
-}
-
-#topic_preview:before {
-	border-top: 1px solid #32D635 !important;
-	border-right: 1px solid #32D635 !important;
-}
-
-#topic_preview.invert:after {
-	border-bottom: 1px solid #32D635 !important;
-	border-left: 1px solid #32D635 !important;
 }
 
 .message-box textarea {
