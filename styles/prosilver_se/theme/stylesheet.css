@@ -287,10 +287,8 @@ fieldset.polls dl {
 	line-height: normal;
 }
 
-.post-buttons {
-	/*margin-top: 0;*/
-}
 /* post-buttons absolute */
+
 .post-buttons {
 	float: none;
 	position: absolute;
@@ -436,10 +434,6 @@ fieldset.forum-selection {
 
 a.button1, input.button1, a.button2, input.button2 {
 	line-height: normal;
-}
-
-a.button2 {
-	/* padding: 0; */
 }
 
 .search-box {
@@ -751,6 +745,16 @@ a.sigil-bottom { height: 20px; }
 
 .m-list-title {
 	margin: 15px;
+}
+
+.button,
+a.button1,
+a.button2,
+input.button1,
+input.button2 {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .button,
