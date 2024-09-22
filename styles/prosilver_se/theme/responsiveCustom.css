@@ -2,6 +2,7 @@
 
 
 @media (min-width: 701px) {
+
 	dd.posts,
 	dd.topics,
 	dd.views,
@@ -12,22 +13,21 @@
 		align-items: center;
 		justify-content: center;
 	}
+
 }
 
 @media (max-width: 1280px) {
-	
-	/*#m-name .main-menu-bottom{ left: 15px; }*/
-	
+
 	#m-feed .main-menu-bottom,
 	#m-notify .main-menu-bottom,
 	#m-ksywa .main-menu-bottom {
 		right: 0px;
 	}
-	
+
 }
 
 @media (max-width: 700px) {
-	
+
 	/* responsive.css */
 
 	.headerbar, .forabg, .forumbg, .post, .panel {
@@ -50,15 +50,6 @@
 
 	.inputbox:not(.autowidth) {
 		max-width: 100%;
-	}
-
-	select:not(.autowidth) {
-		/*max-width: 100%;*/
-	}
-
-	.row .pagination {
-		/* margin-top: 0; */
-		/* margin-bottom: 0; */
 	}
 
 	/* table responsive */
@@ -85,25 +76,20 @@
 		display: none;
 	}
 
-	.post {
-		/* padding: 5px 7px; */
-	}
-
 	.flex-box {
 		flex-basis: 100%;
 	}
-	
+
 	.submit-buttons .fbr,
 	#postingbox .fbr,
 	.fbr-big {
 		flex-direction: column;
 	}
-	
+
 	.fbr {
-		/*margin-bottom: 10px;*/
 		margin-bottom: 25px;
 	}
-	
+
 	#postingbox .fbr-left,
 	#postingbox .fbr-right,
 	#register .fbr-left,
@@ -120,17 +106,19 @@
 	}
 
 	/* fbr-left fbr-right mobile change */
+
 	.fbr-settings-panel .fbr:not(.fbr-checkbox) .fbr-left {
 		flex-basis: 100%;
 		align-items: flex-start;
 		text-align: left;
 	}
-	
+
 	.fbr-settings-panel .fbr:not(.fbr-checkbox) .fbr-right {
 		flex-basis: 100%;
 		align-items: center;
 		text-align: center;
 	}
+
 	/* fbr-left fbr-right mobile change */
 
 	.fbr-right,
@@ -138,7 +126,7 @@
 		justify-content: space-around;
 		flex-wrap: wrap;
 	}
-	
+
 	.fbr select {
 		max-width:90vw;
 	}
@@ -153,26 +141,26 @@
 		width: 91px;
 		max-width: 91px;
 	}
-	
+
 	.m-list-left {
 		width: calc(100% - 91px);
 		padding-left: 0;
 	}
-	
+
 	#m-notify .m-list-right {
 		width: 66px;
 	}
-	
+
 	.m-list-left.notification_text {
 		width: calc(100% - 66px);
 		max-width: calc(100% - 66px);
 	}
-	
+
 	.top-with-settings div {
 		top: -20px;
 		right: 10px;
 	}	
-	
+
 	table.table1#notification-settings-table .mark {
 		white-space: nowrap;
 	}
@@ -184,12 +172,13 @@
 	.pagination .menu-all {
 		right: 0;
 	}
-	
+
 	.memberlist.table1 .info {
 		display: none;
 	}
 
 	/* wyświetlanie post-buttons dla mcp_post */
+
 	.postbody.mcp-post-postbody {
 		position: relative;
 	}
@@ -202,17 +191,17 @@
 	span.author-postnumber-mobile.responsive-show {
 		display: inline !important;
 	}
-	
+
 	.post .postprofile {
 		padding: 0;
 		margin: 0;
 		min-height: 32px;
 	}
-	
+
 	.postprofile p.post-number {
 		clear: none;
 	}
-	
+
 	.postprofile dd.profile-rank {
 		display: none;
 	}
@@ -222,24 +211,20 @@
 		right: 8px;
 		top: 5px;
 	}
-	
+
 	.main-menu-item .main-menu-top .fa-history {
 		padding: 0;
 	}
-	
+
 	div.content {
 		margin: 0;
-	}
-
-	#postingbox.panel {
-		/* margin: 0; */
 	}
 
 	.postbody p.post-number,
 	.topiclist li:not(.header) .lastpost {
 		display: none;
 	}
-	
+
 	.lastpost.responsive-show {
 		float: right;
 		margin: 2px 0;
@@ -248,7 +233,7 @@
 	.lastpost .fa-fast-forward {
 		padding-left: 5px;
 	}
-	
+
 	.post:not(.search) dl.postprofile {
 		padding-left:3px;
 	}
@@ -256,7 +241,7 @@
 	.postbody {
 		width: auto;
 	}
-	
+
 	.action-bar .fbr-left,
 	.action-bar .fbr-right {
 		flex-basis: 100%;
@@ -268,10 +253,6 @@
 
 	/* mobile width fix */
 
-	.message-box {
-		/*max-width: calc(100vw - 10px);*/
-	}
-
 	.message-box textarea {
 		width: 100%;
 	}
@@ -281,16 +262,16 @@
 	}
 
 	/* END mobile width fix */
-	
+
 	#agreement.brutalform input {
 		width: 100%;
 	}
 
 	#tagowarka_edit tags-input .tags .tag-list {
-    position: initial;
-    padding-bottom: 0;
+		position: initial;
+		padding-bottom: 0;
 	}
-	
+
 	.to-searched-post {
 		padding: 0;
 	}
@@ -302,17 +283,17 @@
 }
 
 @media only screen and (max-width: 550px) {
-	
+
 	#m-name .main-menu-bottom,
 	#m-feed .main-menu-bottom,
 	#m-notify .main-menu-bottom {
 		left: 0;
 	}
-	
+
 	#m-name {
 		position: inherit;
 	}
-	
+
 	#m-name .main-menu-bottom{
 		width: 100%;
 	}
@@ -322,19 +303,23 @@
 	#m-notify .main-menu-bottom {
 		right: 0;
 	}
-	
+
 }
 
 @media only screen and (max-width: 700px) {
+
 	.phpbb_alert {
 		top: 100px;
 	}
+
 }
 
 @media (max-height: 800px) {
+
 	.main-menu-item .main-menu-bottom{
 		max-height: 80vh;
 	}
+
 }
 
 @media only screen and (max-width: 900px) {
@@ -352,9 +337,11 @@
 }
 
 @media only screen and (max-width: 920px) {
+
 	.wrap{
 		padding: 15px 0;
 	}
+
 }
 
 @media only screen and (max-width: 860px) {
@@ -363,9 +350,9 @@
 		margin: auto;
 		padding: 0 0 15px 0;
 	}
-	
+
 	#main-menu #main-menu-left { order: 1; }
-	
+
 	#main-menu #main-menu-title {
 		order: 3;
 		width: auto;
@@ -409,13 +396,11 @@
 	#main-menu #main-menu-right { order: 2; }
 	#main-menu #main-menu-right #m-notify { order: 6; }
 	#main-menu #main-menu-right #m-tagi { order: 5; }
-	
+
 	#page-header {
 		display: none;
 	}
-	
-	/*#m-search-box .fa-search { padding: 0; }*/
-	
+
 	#thegate {
 		margin: 0;
 	}
@@ -423,13 +408,13 @@
 	#thegate a {
 		padding: 0;
 	}
-	
+
 	#top-site-menu {
 		position: sticky;
 		padding: 5px 5px 0 5px;
 		box-sizing: border-box;
 	}
-	
+
 	.main-menu-item .main-menu-top a,
 	.main-menu-item .main-menu-top #search {
 		padding-left: 10px;
@@ -439,7 +424,7 @@
 	#main-menu .main-menu-item .main-menu-bottom {
 		max-height: 66vh;
 	}
-	
+
 	#m-home,
 	#m-name,
 	#m-pagination,
@@ -447,16 +432,16 @@
 	#main-menu #m-search-box .main-menu-top {
 		height: auto;
 	}
-	
+
 	.main-menu-top-title,
 	.main-menu-item .main-menu-top a {
 		height: 45px;
 	}
-	
+
 	#m-feed-topics #m-feed-topics-unread {
 		padding-right: 5px;
 	}
-	
+
 	/* zmienny układ #main-menu-right zależnie czy użytkownik zalogowany czy nie */
 
 	#main-menu-right {
@@ -486,8 +471,9 @@
 	.search .postprofile {
 		display: flex;
 	}
-	
+
 	/* unika wyjeżdżania poza vw */
+
 	#smiley-box-all {
 		width: auto;
 	}
@@ -496,7 +482,7 @@
 	#muzycy-box {
 		width: auto;
 	}
-	
+
 	.brutalform {
 		padding-top: 0px;
 	}
@@ -504,13 +490,11 @@
 }
 
 @media not all and (hover: hover) and (pointer: fine) {
+
 	.post-buttons #post-buttons-row-2 {
 		display: flex;
 		justify-content: flex-end;
 		width: 100%;
 	}
-	
-	.phantom-label {
-		/* opacity: 1; */
-	}
+
 }

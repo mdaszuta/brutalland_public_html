@@ -431,6 +431,14 @@ img.postimage {
 
 /* end of CURSOR */
 
+/* No outline */
+
+button:focus,
+.message-box textarea,
+input {
+	outline: none;
+}
+
 /* RESPONSIVE */
 
 @media only screen and (max-width: 920px) {

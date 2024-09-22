@@ -285,14 +285,6 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 
 /* END COLORS */
 
-/* No outline */
-
-button:focus,
-.message-box textarea,
-input {
-	outline: none;
-}
-
 /* BOX-SHADOWS */
 
 .wrap {
@@ -325,7 +317,7 @@ input {
     box-shadow: 0 -1px 1px -1px #ee0000;
 }
 
-/* UCP TOP MENU NAVI */
+/* end of UCP TOP MENU NAVI */
 
 .main-menu-item .main-menu-bottom {
 	box-shadow: 0 1px 1px -1px #000, inset 0 8px 9px rgba(0, 0, 0, .3);
