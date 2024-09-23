@@ -1447,8 +1447,7 @@ table.table1 td.info a {
 }
 
 input.inputbox:not([type="number"]):not([type="file"]),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
-.tags input {
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput) {
 	min-height: 2em;
 	line-height: 2em;
 }
@@ -1664,39 +1663,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .glow {
 	padding: 0 !important;
 }
-
-/* EXT tags */
-
-tags-input .tags,	
-tags-input .tags:hover,
-tags-input .tags:focus {
-	box-shadow: none !important;
-}
-
-auto-complete.ng-scope.ng-isolate-scope {
-	z-index: 999;
-    position: absolute;
-	width: 100%;
-}
-
-tags-input .tags .tag-list {
-	bottom: 44px;
-}
-
-tags-input .tags {
-	position: relative;
-    display: flex;
-	flex-direction: column-reverse;
-	z-index: 3;
-	margin-bottom: 0 !important;
-}
-
-tags-input .autocomplete .suggestion-item {
-	width: 100%;
-	box-sizing: border-box;
-}
-
-/* end of EXT tags */
 
 .action-bar.bar-top {
 	justify-content: space-between;

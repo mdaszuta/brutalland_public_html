@@ -84,7 +84,6 @@ a.lastsubject,
 .cp-main .notification_list .notifications,
 input.inputbox:not([type="number"]):not([type="file"]),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
-.tags input,
 #top-site-menu,
 .action-bar,
 h2,
@@ -186,7 +185,6 @@ a.lastsubject,
 .notifications_reason,
 input.inputbox:not([type="number"]):not([type="file"]),
 textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
-.tags input,
 .brutalform-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
@@ -303,8 +301,7 @@ a.topictitle,
 #titleID,
 .notifications_reference,
 input.inputbox:not([type="number"]):not([type="file"]),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
-.tags input {
+textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput) {
 	font-size: 21px;
 }
 

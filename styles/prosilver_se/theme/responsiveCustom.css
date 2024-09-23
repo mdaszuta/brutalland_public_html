@@ -267,11 +267,6 @@
 		width: 100%;
 	}
 
-	#tagowarka_edit tags-input .tags .tag-list {
-		position: initial;
-		padding-bottom: 0;
-	}
-
 	.to-searched-post {
 		padding: 0;
 	}
