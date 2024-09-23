@@ -157,12 +157,15 @@
 })(window.document, window.history, window.location);
 
 /**
-* Nazwa wpisywanego tematu real time
+* Nazwa wpisywanego tematu real time, wczytuje do tytułu menu wpisywaną wartość String
 */
 	
 function show_name_post_real_time(event) {
-  var x = event.key;
-  document.getElementById("titleID").innerHTML = document.getElementById("subject").value;
+
+	var x = event.key;
+
+	document.getElementById("titleID").innerText = document.getElementById("subject").value;
+
 }
 
 $(document).ready(function(){
@@ -174,50 +177,65 @@ $(document).ready(function(){
 	var timeoutMenu = 0;
 		
 	$(".menu-devil").on('mouseenter', function() {
+
 		var bottomMenu = $(this).next(".menu-all");
+
 		timeoutMenu = setTimeout( function() {
 			if ( bottomMenu.css("display") == "none" ){ bottomMenu.fadeIn(150).css("display","flex"); }
 		}, 150);
+
 	}).on('mouseleave mouseup', function() {
+
 		clearTimeout(timeoutMenu);
+
 	});
 
 	$(".menu-devil").on('click', function(){
+
 		var bottomMenu = $(this).next(".menu-all");
+
 		if ( bottomMenu.css("display") == "none" ){ bottomMenu.fadeIn(150).css("display","flex"); }
 		else { bottomMenu.fadeOut(0); }
+
 	});
 
 	$(".menu-toggle").on('mouseleave', function(){
+
 		var bottomMenu = $(this).children(".menu-all");
+
 		if ( bottomMenu.css("display") == "flex" ){ bottomMenu.fadeOut(0); }
+
 	});
 	
 	/**
 	* Last Post Feed Mobile
 	*/
-
-	//if(  $('#phpbb').hasClass('hastouch') ){
 	
 	$("#m-feed-topics, .search-box").on('click', function( event ){
+
 		console.log('hastouch ' + $('#phpbb').hasClass('hastouch'));
+
 		var clicks = $(this).data('clicks');
+
 		if ( clicks ) {
 			console.log('number of clicks ' + clicks);
 		} else if(  $('#phpbb').hasClass('hastouch') ) {
 			event.preventDefault();
 			console.log('number of clicks ' + clicks);
 		}
+
 		$(this).data("clicks", !clicks);
+
 		console.log('clicks: ' + clicks);
+
 	});
-	//}
 	
 	/**
 	* Search box width show and hide
 	*/
 	
 	var timeoutSearchBox = 0;
+
 	$("#search_but_top").on('mouseenter click', function() {
 
 		var search_inputbox = $(this).siblings(".inputbox");
@@ -237,24 +255,33 @@ $(document).ready(function(){
 		//console.log('parents ' + search_all);
 
 		timeoutSearchBox = setTimeout( function() {
+
 			search_all.css("width", "100%");
 			search_inputbox.css("padding","0px 5px");
 			search_inputbox.focus().animate({ width: "175px" }, 500 );
 			search_box_hide.fadeIn(500).css("display","flex");
+
 		}, 300);
+
 	}).on('mouseleave mouseup', function() {
+
 		clearTimeout(timeoutSearchBox);
+
 	});
 	
 	$(".search-box-hide").on('click', function() {
+
 		var search_inputbox = $(this).next(".inputbox");
 		var search_box_hide = $(this);
 		var search_all = $(this).parentsUntil("#main-menu-middle").filter("#search");
 
 		search_inputbox.animate({ width: "0px", padding: "0" }, 500 );
 		search_box_hide.fadeOut(500);
+
 		setTimeout( function() {
+
 			search_all.css("width", "auto");
+
 		}, 500);
 
 	});
@@ -264,19 +291,29 @@ $(document).ready(function(){
 	*/
 	
 	var timeoutSwitcheroo = 0;
+
 	$(".switcheroo-menu").on('mouseenter click', function() {
+
 		var switcheroo_devil = $(this).children(".switcheroo-menu-devil");
 		var switcheroo_all = $(this).children(".switcheroo-menu-all");
+
 		timeoutSwitcheroo = setTimeout( function() {
+
 			switcheroo_devil.fadeOut(0);
 			switcheroo_all.fadeIn(200).css("display","flex");
+
 		} , 150);
+
 	}).on('mouseleave', function() {
+
 		var switcheroo_devil = $(this).children(".switcheroo-menu-devil");
 		var switcheroo_all = $(this).children(".switcheroo-menu-all");
+
 		switcheroo_all.fadeOut(0);
 		switcheroo_devil.fadeIn(0).css("display","flex");
+
 		clearTimeout(timeoutSwitcheroo);
+
 	});
 	
 });
