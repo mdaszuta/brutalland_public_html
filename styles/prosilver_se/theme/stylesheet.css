@@ -466,7 +466,8 @@ input.search {
 #add,
 #group_desc,
 textarea#usernames,
-#poll_option_text {
+#poll_option_text,
+#muzycy-box textarea {
 	resize: vertical;
 }
 
@@ -1435,8 +1436,8 @@ table.table1 td.info a {
 }
 
 #muzycy-box textarea {
-	padding: 0;
-	resize: vertical;
+	/*padding: 0;*/
+	/*resize: vertical;*/
 }
 
 .brutalform-box span,
