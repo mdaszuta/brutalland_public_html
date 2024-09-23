@@ -9,10 +9,10 @@ body {
 
 [data-s9e-mediaembed="facebook"],
 [data-s9e-mediaembed="youtube"] {
-	max-width: 552px !important;
+	/*max-width: 552px !important;*/
 }
 
-/* cookie consent */
+/* Cookie consent */
 
 .cc-window {
 	background-color: transparent !important;
@@ -41,7 +41,7 @@ body {
 	background-color: #333 !important;
 }
 
-/* end of cookie consent */
+/* end of Cookie consent */
 
 select { 
 	width: fit-content;
@@ -52,6 +52,8 @@ select#usernames {
 	margin: auto;
 }
 
+/* Forum name link at the bottom of viewtopic_body */
+
 #topic_forum_name_link {
 	margin: 0;
 }
@@ -60,7 +62,7 @@ select#usernames {
 	min-width: 50px;
 }
 
-/* ellipsis tematu */
+/* Menu title ellipsis */
 #main-menu {
 	position: relative;
 }
@@ -92,7 +94,8 @@ a#titleID {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-/* ellipsis tematu */
+
+/* end of Menu title ellipsis */
 
 a#titleID {
 	display: block;
@@ -109,6 +112,8 @@ a.lastsubject {
     max-width: 100%;
 	margin-bottom: 3px;
 }
+
+/* OVERRIDING STYLE FILES FROM PROSILVER */
 
 /* override prosilver\common.css */
 
@@ -233,6 +238,7 @@ dd.lastpost > span, ul.topiclist dd.info > span, ul.topiclist dd.time > span, dd
 }
 
 /* menu w grupy\zarządzanie grupami */
+
 dd.option {
 	width: unset;
 }
@@ -287,7 +293,7 @@ fieldset.polls dl {
 	line-height: normal;
 }
 
-/* post-buttons absolute */
+/* Display post-buttons in absolute position */
 
 .post-buttons {
 	float: none;
@@ -452,10 +458,15 @@ input.search {
 
 /* END form.css */
 
+/* end of OVERRIDING STYLE FILES FROM PROSILVER */
+
+/* Resize only vertical, not horizontal */
+
 #username_list,
 #add,
 #group_desc,
-textarea#usernames {
+textarea#usernames,
+#poll_option_text {
 	resize: vertical;
 }
 
@@ -500,14 +511,14 @@ a.rightside {
 	display: block;
 }
 
-/* ukrycie sort-tools i przyległego mu checkboxa */
+/* Hide sort-tools i przyległego mu checkboxa */
 
 .sort-tools,
 .sort-tools-checkbox {
 	display: none;
 }
 
-/* ukrycie jumpbox */
+/* Hide jumpbox */
 
 .jumpbox {
 	display: none;
