@@ -43,7 +43,6 @@ class topic
 	private $folder_alt = '';
 	/** @var string */
 	private $topic_type = '';
-	//private $forum_name = '';
 
 	/** @var int */
 	private $forum_id;
@@ -93,7 +92,6 @@ class topic
 			$this->topic_id = $topic_row['topic_id'];
 		}
 		$this->forum_id = (int) $this->topic_row['forum_id'];
-		//$this->forum_name = $this->topic_row['forum_name'];
 
 		$this->view_topic_url_params = 'f=' . $this->forum_id . '&amp;t=' . $this->topic_id;
 		$this->view_topic_url	= append_sid("{$this->phpbb_root_path}viewtopic.{$this->php_ext}", $this->view_topic_url_params);
