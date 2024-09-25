@@ -3,50 +3,33 @@
 <div class="panel" id="quick-login-panel">
 	<div class="inner">
 		<div class="content">
-			<a href="#" class="close fa fa-times fa-lg"></a>
+			<a href="#" class="close"></a>
+			<h3><a href="{{ U_LOGIN_LOGOUT }}">{{ lang('LOGIN_LOGOUT') }}</a>{% if not S_ADMIN_AUTH and S_REGISTER_ENABLED %}&nbsp; &bull; &nbsp;<a href="{{ U_REGISTER }}">{{ lang('REGISTER') }}</a>{% endif %}</h3>
 
-			<fieldset class="brutalform">
-				<div class="fbr">
-					<div>
+			<fieldset>
+				<dl class="ql-username">
+					<dt><label for="ql-username">{{ lang('USERNAME') }}{{ lang('COLON') }}</label></dt>
+					<dd class="input-container"><input type="text" tabindex="1" name="username" id="ql-username" size="25" value="{{ USERNAME }}" class="inputbox autowidth" /></dd>
+				</dl>
+				<dl class="ql-password">
+					<dt><label for="ql-password">{{ lang('PASSWORD') }}{{ lang('COLON') }}</label></dt>
+					<dd class="input-container"><input type="password" tabindex="2" id="ql-password" name="password" size="25" class="inputbox autowidth" /></dd>
+					{% if U_SEND_PASSWORD_EXT %}<dd class="input-link"><a href="{{ U_SEND_PASSWORD_EXT }}">{{ lang('FORGOT_PASS') }}</a></dd>{% endif %}
+				</dl>
+				{% if CAPTCHA_TEMPLATE and S_CONFIRM_CODE %}
+					{% DEFINE CAPTCHA_TAB_INDEX = 3 %}
+					{% INCLUDE ''~ CAPTCHA_TEMPLATE ~'' %}
+				{% endif %}
+			</fieldset>
 
-						<div class="brutalform-box">
-							<input type="text" tabindex="1" name="username" id="ql-username" size="25" value="{{ USERNAME }}" placeholder="{{ lang('USERNAME') }}" class="inputbox" autocomplete="username" />
-							<span class="brutalform-label">{{ lang('USERNAME') }}</span>
-						</div>
+			<fieldset class="ql-options">
+				{% if S_AUTOLOGIN_ENABLED %}<label for="ql-autologin"><input type="checkbox" name="autologin" id="ql-autologin" tabindex="4" /><span>{{ lang('LOG_ME_IN') }}</span></label><br />{% endif %}
+				<label for="ql-viewonline"><input type="checkbox" name="viewonline" id="ql-viewonline" tabindex="5" /><span>{{ lang('HIDE_ME') }}</span></label>
+			</fieldset>
 
-						<div class="brutalform-box">
-							<input type="password" tabindex="2" id="ql-password" name="password" size="25" placeholder="{{ lang('PASSWORD') }}" class="inputbox" autocomplete="current-password" />
-							<span class="brutalform-label">{{ lang('PASSWORD') }}</span>
-						</div>
-
-						{{ S_LOGIN_REDIRECT }}
-						{{ S_HIDDEN_FIELDS }}
-
-						{% if U_SEND_PASSWORD_EXT %}
-							<div class="brutalform-box">
-								<a href="{{ U_SEND_PASSWORD_EXT }}" class="forgot-pass">{{ lang('FORGOT_PASS') }}</a>
-							</div>
-						{% endif %}
-
-						{% if CAPTCHA_TEMPLATE and S_CONFIRM_CODE %}
-							{% DEFINE CAPTCHA_TAB_INDEX = 3 %}
-							{% INCLUDE ''~ CAPTCHA_TEMPLATE ~'' %}
-						{% endif %}
-						<div class="brutalform-autologin submit-buttons">
-							{% if S_AUTOLOGIN_ENABLED %}
-								<input type="checkbox" checked="checked" name="autologin" id="autologin" tabindex="3" title="{{ lang('LOG_ME_IN') }}" />
-							{% endif %}
-							<input type="submit" name="login" tabindex="4" value="{{ lang('LOGIN') }}" class="button submit" />
-						</div>
-
-						{% if not S_ADMIN_AUTH and S_REGISTER_ENABLED %}
-						<div class="brutalform-box submit-buttons">
-							<a href="{{ U_REGISTER }}" tabindex="5" class="brutalform-go-to-register button submit">{{ lang('REGISTER') }}</a>
-						</div>
-						{% endif %}
-
-					</div>
-				</div>
+			<fieldset class="submit-buttons">
+				<input type="submit" name="login" tabindex="6" value="{{ lang('LOGIN') }}" class="button1" />
+				{{ S_LOGIN_REDIRECT }}{{ S_HIDDEN_FIELDS }}
 			</fieldset>
 
 			{% for mode in loops.ql_oauth %}
@@ -62,7 +45,7 @@
 <script>
 (function($) {
 	$(document).ready(function() {
-		var $button = $('#m-login a'),
+		var $button = $("li a[title='{{ lang('LOGIN_LOGOUT')|escape('js') }}']"),
 			ql_bg = '#quick-login-bg',
 			ql_pnl = '#quick-login-panel',
 			pS_bg = '#darkenwrapper';
@@ -73,7 +56,6 @@
 		$button.click(function(e){
 			e.preventDefault();
 			$(ql_bg + ', ' + ql_pnl).fadeIn(300);
-			$('#ql-username').focus();
 		});
 		$(ql_bg + ', #quick-login-panel .close').click(function () {
 			$(ql_bg + ', ' + ql_pnl).fadeOut(300);
