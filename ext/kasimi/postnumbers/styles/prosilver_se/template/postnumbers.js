@@ -54,7 +54,7 @@ jQuery(function($) {
 		});
 	};
 
-	$('.postbody').on('click', '.post-number', function(e) {
+	$('.postbody,.author-postnumber-mobile').on('click', '.post-number', function(e) {
 		e.preventDefault();
 		$(this).toClipboard({
 			text: function() {
