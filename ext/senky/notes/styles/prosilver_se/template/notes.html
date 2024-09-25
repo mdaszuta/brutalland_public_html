@@ -1,0 +1,24 @@
+<!-- INCLUDE overall_header.html -->
+
+<script>
+	document.getElementById("titleID").innerText = "{L_NOTES}";
+</script>
+
+<div class="panel">
+	<div class="inner">
+		<div class="content">
+
+			<form method="post" action="{U_SENKY_NOTES}">
+				<textarea rows="10" name="note" class="inputbox" id="notepad">{NOTE}</textarea>
+
+					<input type="hidden" name="snote" value="true" />
+					{S_FORM_TOKEN}
+					<input class="button" type="submit" value="{L_SAVE_NOTES}" />
+
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->
