@@ -10,6 +10,12 @@ jQuery(function ($) {
 
 	"use strict";
 
+	console.log($(window).width());
+
+if ($(window).width() <= 700 ) {
+
+	console.log($(window).width() <= 700);
+
 	var $container = $('.dropdown-container-mchat-message-icons');
 	$container.on('click', 'a', function() {
 		$container.removeClass('dropdown-visible');
@@ -30,4 +36,7 @@ jQuery(function ($) {
 			registerDropdown(data.newMessage);
 		}
 	});
+
+}
+
 });
