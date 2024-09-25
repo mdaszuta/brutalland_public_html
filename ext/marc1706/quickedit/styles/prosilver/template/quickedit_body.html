@@ -7,34 +7,19 @@
 		</dl>
 		{{ S_FORM_TOKEN }}
 
-		<div id="message-box" class="message-box">
+		<div id="message-box">
 			<textarea name="message" id="message" rows="15" cols="76" tabindex="4" class="inputbox">{{ MESSAGE ~ DRAFT_MESSAGE ~ SIGNATURE }}</textarea>
 		</div>
 	</fieldset>
-	<div class="panel">
+	<div class="panel bg2">
 		<div class="inner">
 		<fieldset class="submit-buttons">
-
-			<div class="fbr">
-				<div class="fbr-left">
-					<input type="submit" accesskey="s" tabindex="6" name="post" value="{{ lang('SUBMIT') }}" class="button default-submit-action submit" />
-					{{ S_HIDDEN_ADDRESS_FIELD }}
-					{{ S_HIDDEN_FIELDS }}
-				</div>
-				<div class="fbr-right">
-					<div class="brutalform-box">
-						<input type="submit" tabindex="5" accesskey="f" name="preview" value="{{ lang('FULL_EDITOR') }}" class="button1">
-					</div>
-					<div class="brutalform-box" id="brutalform-drafty">
-						<div id="brutalform-drafty-buttons">
-							<input type="submit" id="cancel" name="cancel" value="{{ lang('CANCEL') }}" class="button2">
-						</div>
-					</div>
-				</div>
-			</div>
-
+			{{ S_HIDDEN_ADDRESS_FIELD }}
+			{{ S_HIDDEN_FIELDS }}
+			<input type="submit" id="cancel" name="cancel" value="{{ lang('CANCEL') }}" class="button2">&nbsp;
+			<input type="submit" accesskey="s" tabindex="6" name="post" value="{{ lang('SUBMIT') }}" class="button1 default-submit-action" />&nbsp;
+			<input type="submit" accesskey="f" name="preview" value="{{ lang('FULL_EDITOR') }}" class="button2">
 		</fieldset>
-
 		</div>
 	</div>
 </form>
