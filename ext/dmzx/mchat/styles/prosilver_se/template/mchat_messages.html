@@ -5,7 +5,7 @@
 	{% if S_MCHAT_AVATARS %}
 	<div class="mchat-avatar">
 		{% if mchatrow.U_VIEWPROFILE %}<a href="{{ mchatrow.U_VIEWPROFILE }}" title="{{ lang('READ_PROFILE') }}">{% endif %}
-		{% if mchatrow.MCHAT_USER_AVATAR %}{{ mchatrow.MCHAT_USER_AVATAR }}{% else %}<img src="{{ STYLE_PATH }}/theme/images/no_avatar.gif" class="mchat-avatar" alt="{{ lang('READ_PROFILE') }}">{% endif %}
+		{% if mchatrow.MCHAT_USER_AVATAR %}{{ mchatrow.MCHAT_USER_AVATAR }}{% else %}<i class="icon fa-user-circle-o" alt="{{ lang('READ_PROFILE') }}"></i>{% endif %}
 		{% if mchatrow.U_VIEWPROFILE %}</a>{% endif %}
 	</div>
 	{% endif %}
@@ -13,7 +13,7 @@
 		{% INCLUDE '@dmzx_mchat/mchat_messages_icons.html' %}
 		<div class="mchat-message-header">
 			{% EVENT dmzx_mchat_messages_header_before %}
-			{{ mchatrow.MCHAT_USERNAME_FULL }} &bull; <span class="mchat-time" title="{{ mchatrow.MCHAT_DATETIME }}"{% if mchatrow.MCHAT_MINUTES_AGO != -1 %} data-mchat-minutes-ago="{{ mchatrow.MCHAT_MINUTES_AGO }}" data-mchat-relative-update="{{ mchatrow.MCHAT_RELATIVE_UPDATE }}"{% endif %}>{{ mchatrow.MCHAT_TIME }}</span>
+			{{ mchatrow.MCHAT_USERNAME_FULL }}<span class="mchat-time" title="{{ mchatrow.MCHAT_DATETIME }}"{% if mchatrow.MCHAT_MINUTES_AGO != -1 %} data-mchat-minutes-ago="{{ mchatrow.MCHAT_MINUTES_AGO }}" data-mchat-relative-update="{{ mchatrow.MCHAT_RELATIVE_UPDATE }}"{% endif %}>{{ mchatrow.MCHAT_TIME }}</span>
 			{% EVENT dmzx_mchat_messages_header_after %}
 		</div>
 		<div class="mchat-text">
@@ -24,5 +24,13 @@
 	</div>
 </li>
 {%- endfor -%}
+
+{% if U_MCHAT_ARCHIVE and MCHAT_PAGE != 'archive' %}
+	<li class="mchat-nav-archive">
+		<a href="{{ U_MCHAT_ARCHIVE }}" title="{{ lang('MCHAT_NAVBAR_ARCHIVE') }}">
+			<i class="icon fa fa-history fa-fw" aria-hidden="true"></i><span>{{ lang('MCHAT_NAVBAR_ARCHIVE') }}</span>
+		</a>
+	</li>
+{% endif %}
 
 {%- EVENT dmzx_mchat_messages_after -%}

@@ -6,8 +6,8 @@
 			<noscript><div class="error">{{ lang('MCHAT_NOJAVASCRIPT') }}</div></noscript>
 			{% EVENT dmzx_mchat_controls_before %}
 			<div class="mchat-controls">
-				<div class="mchat-input-container inputbox">
-					<textarea id="mchat-input" name="message" class="no-auto-resize {{ MCHAT_MAX_INPUT_HEIGHT ? 'mchat-multi-line' : 'mchat-single-line' }}" rows="1" autocomplete="on" spellcheck="true"></textarea>
+				<div class="mchat-input-container">
+					<textarea id="mchat-input" name="message" class="inputbox no-auto-resize {{ MCHAT_MAX_INPUT_HEIGHT ? 'mchat-multi-line' : 'mchat-single-line' }}" rows="1" autocomplete="on" spellcheck="true" aria-label="{{ lang('MESSAGE') }}"></textarea>
 					<div class="mchat-input-control">
 						<button type="button" class="mchat-button-add" id="mchat-add" data-mchat-action="add" title="{{ lang('MCHAT_ADD') }}">
 							<i class="icon icon-lightgray fa fa-chevron-right fa-fw" aria-hidden="true"></i><span class="sr-only">{{ lang('MCHAT_ADD') }}</span>
@@ -21,15 +21,15 @@
 				{% if MCHAT_ALLOW_SMILES and loops.smiley|length or S_BBCODE_ALLOWED or S_MCHAT_ADD_CUSTOM_BUTTON %}
 					<div class="mchat-panel-buttons">
 						{% EVENT dmzx_mchat_buttons_before %}
-						{% if MCHAT_ALLOW_SMILES and loops.smiley|length %}
-							<button type="button" class="button mchat-button-smilies mchat-button-down" data-mchat-action="toggle" data-mchat-element="smilies" title="{{ lang('MCHAT_SMILES') }}">
+						{% if MCHAT_ALLOW_SMILES and loops.smiley|length and false %}
+							<button type="button" class="mchat-button-smilies mchat-button-down" data-mchat-action="toggle" data-mchat-element="smilies" title="{{ lang('MCHAT_SMILES') }}">
 								<i class="icon fa fa-smile-o" aria-hidden="true"></i><span class="sr-only">{{ lang('MCHAT_SMILES') }}</span>
 							</button>
 						{% endif %}
 						{% EVENT dmzx_mchat_buttons_mid %}
 						{% if S_BBCODE_ALLOWED %}
-							<button type="button" class="button mchat-button-bbcodes mchat-button-down" data-mchat-action="toggle" data-mchat-element="bbcodes" title="{{ lang('MCHAT_BBCODES') }}">
-								<i class="icon fa fa-code fa-fw" aria-hidden="true"></i><span class="sr-only">{{ lang('MCHAT_BBCODES') }}</span>
+							<button type="button" class="mchat-button-bbcodes mchat-button-down" data-mchat-action="toggle" data-mchat-element="bbcodes" title="{{ lang('MCHAT_BBCODES') }}">
+								<i class="icon fa fa-toggle-off fa-fw icon-lightgray" aria-hidden="true"></i><span class="sr-only">{{ lang('MCHAT_BBCODES') }}</span>
 							</button>
 						{% endif %}
 						{% EVENT dmzx_mchat_buttons_after %}
