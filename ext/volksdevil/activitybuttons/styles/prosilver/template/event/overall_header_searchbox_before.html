@@ -1,0 +1,23 @@
+<div class="activitymenu responsive-hide">
+	<!-- IF S_DISPLAY_SEARCH -->
+	<!-- IF S_REGISTERED_USER --><a href="{U_SEARCH_SELF}" class="button activitybutton">{L_AB_MINE}</a><!-- ENDIF -->
+	<!-- IF S_LOAD_UNREADS --><a href="{U_SEARCH_UNREAD}" class="button activitybutton">{L_AB_UNREAD}</a><!-- ENDIF -->
+	<a href="{U_SEARCH_ACTIVE_TOPICS}" class="button activitybutton"><!-- IF S_USER_LOGGED_IN -->{L_AB_ACTIVE}<!-- ELSE -->{L_AB_TOPICS}<!-- ENDIF --></a>
+	<!-- IF S_USER_LOGGED_IN --><a href="{U_SEARCH_NEW}" class="button activitybutton">{L_AB_NEW}</a><!-- ENDIF --><!-- ENDIF -->
+	<!-- IF not S_REGISTERED_USER --><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" class="button activitybutton">{L_LOGIN_LOGOUT}</a><!-- ENDIF -->
+	<!-- IF S_REGISTER_ENABLED and not S_USER_LOGGED_IN and not (S_SHOW_COPPA or S_REGISTRATION) --><a href="{U_REGISTER}" class="button activitybutton">{L_REGISTER}</a><!-- ENDIF -->
+</div>
+
+<div class="activitymenuhide">
+	<!-- IF not S_REGISTERED_USER -->
+		<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" class="button activitybutton">{L_LOGIN_LOGOUT}</a>
+		<!-- IF S_REGISTER_ENABLED and not S_USER_LOGGED_IN and not (S_SHOW_COPPA or S_REGISTRATION) -->
+			<a href="{U_REGISTER}" class="button activitybutton">{L_REGISTER}</a>
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+	<!-- IF S_DISPLAY_SEARCH --><!-- IF S_USER_LOGGED_IN --><a href="{U_SEARCH_NEW}" class="button activitybutton">{L_AB_NEW}</a><!-- ENDIF -->
+	<a href="{U_SEARCH_ACTIVE_TOPICS}" class="button activitybutton"><!-- IF S_USER_LOGGED_IN -->{L_AB_ACTIVE}<!-- ELSE -->{L_AB_TOPICS}<!-- ENDIF --></a>
+	<!-- IF S_LOAD_UNREADS --><a href="{U_SEARCH_UNREAD}" class="button activitybutton">{L_AB_UNREAD}</a><!-- ENDIF -->
+	<!-- IF S_REGISTERED_USER --><a href="{U_SEARCH_SELF}" class="button activitybutton">{L_AB_MINE}</a><!-- ENDIF -->
+<!-- ENDIF -->
+</div>
