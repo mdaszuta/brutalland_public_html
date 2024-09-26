@@ -546,10 +546,6 @@ form#qr_postform .panel fieldset dl,
 	flex-wrap: wrap;
 }
 
-.display-actions .flex-box-container {
-	/*flex-wrap: wrap;*/
-}
-
 .flex-box {
 	display: flex;
 	flex-direction: column;
@@ -562,7 +558,7 @@ form#qr_postform .panel fieldset dl,
 	justify-content: center;
 }
 
-/* .inputbox type=number, id="count" for memberlist_search */
+/* height of input with id="count" from memberlist_search, only one not set as .inputbox because of type="number" which is excluded in css rule */
 
 #count.inputbox {
 	height: 24px;
