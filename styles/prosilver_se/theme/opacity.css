@@ -67,7 +67,6 @@ li.row .fa-tags,
 
 .topic-reply-counter.unread,
 .search-box-hide .fa,
-#page-header:hover,
 .copyright:hover {
 	opacity: 0.7;
 }
@@ -234,14 +233,6 @@ li.row .fa-tags,
 .brutalform select:focus ~ .brutalform-label,
 .brutalform .brutalform-timezone-select:focus ~ .brutalform-label {
 	transition: opacity 0.25s ease-in-out 0.15s;
-}
-
-#page-header {
-	transition: opacity 5s ease-out 4s;
-}
-
-#page-header:hover {
-	transition: opacity 5s ease-out 4s;
 }
 
 .nav-footer {
