@@ -539,17 +539,15 @@ form#qr_postform .panel fieldset dl,
 	display: none;
 }
 
-.flex-box-o,
-.flex-box-o-o {
+.flex-box-container {
 	display: flex;
 	justify-content: center;
 	width: 100%;
 	flex-wrap: wrap;
 }
 
-.display-actions .flex-box-o,
-.flex-box-o-o {
-	flex-wrap: wrap;
+.display-actions .flex-box-container {
+	/*flex-wrap: wrap;*/
 }
 
 .flex-box {
@@ -564,8 +562,14 @@ form#qr_postform .panel fieldset dl,
 	justify-content: center;
 }
 
-.flex-box-form .inputbox {
+/* .inputbox type=number, id="count" for memberlist_search */
+
+#count.inputbox {
 	height: 24px;
+}
+
+.flex-box-form .inputbox {
+	/*height: 24px;*/
 }
 
 .flex-direction-row {

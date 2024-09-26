@@ -52,7 +52,7 @@
 </div>
 
 <fieldset class="submit-buttons flex-box-form">
-<div class="flex-box-o">
+<div class="flex-box-container">
 	{S_HIDDEN_FIELDS}
 	<div class="flex-box"><input type="submit" name="action[add_feedback]" value="{L_SUBMIT}" class="button" /></div>
 	<div class="flex-box justify-content-center"></div>
@@ -110,7 +110,7 @@
 
 <!-- IF S_CLEAR_ALLOWED -->
 <fieldset class="display-actions flex-box-form">
-<div class="flex-box-o">
+<div class="flex-box-container">
 	<div class="flex-box"><input class="button" type="submit" name="action[del_all]" value="{L_DELETE_ALL}" /></div>
 	<div class="flex-box"><input class="button" type="submit" name="action[del_marked]" value="{L_DELETE_MARKED}" /></div>
 	<div><a href="#" onclick="marklist('mcp', 'marknote', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('mcp', 'marknote', false); return false;">{L_UNMARK_ALL}</a></div>
