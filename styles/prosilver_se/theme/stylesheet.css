@@ -558,6 +558,12 @@ form#qr_postform .panel fieldset dl,
 	justify-content: center;
 }
 
+/* dropdown containing search by user input in memberlist_search */
+
+#memberlist_search .dropdown-container {
+	width: 100%;
+}
+
 /* height of input with id="count" from memberlist_search, only one not set as .inputbox because of type="number" which is excluded in css rule */
 
 #count.inputbox {
@@ -1128,10 +1134,18 @@ dd.lastpost > span {
     padding: 10px 10px 0 10px;
 }
 
+/* content selected by user */
+
 *::selection {
 	color: #32D635;
-	background: #444;
-	/*background-color: rgba(238, 0, 0, 0.25);*/
+	/*background: #444;*/
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* autofill input */
+
+input:is(:-webkit-autofill, :autofill) {
+	
 }
 
 .postbody,
@@ -1429,11 +1443,6 @@ table.table1 td.info a {
 #notepad {
 	padding: 8px;
     text-align: justify;
-}
-
-#muzycy-box textarea {
-	/*padding: 0;*/
-	/*resize: vertical;*/
 }
 
 .brutalform-box span,
@@ -1738,12 +1747,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 .rozwijany-box-all {
 	position: absolute;
-	z-index: 999;
+	z-index: 600;
 }
 
 .quickmod-box-all {
 	position: static;
-	/*padding: 5px 15px 25px 15px;*/
 }
 
 .rozwijany-box-all,
@@ -1773,38 +1781,41 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	width: auto;
 }
 
+.menu-all {
+	box-sizing: border-box;
+	background: red;
+}
+
 .switcheroo-menu-all {
 	width: 95%;
 }
 
-.ellipsis-box-all {
-    margin-left: -105px;
-}
-
-.contact-box-all {
-	margin-left: -70px;
-}
-
 #info-box-all {
-    margin-left: -6%;
 	width: 40%;
+	max-width: 550px;
 }
 
-#picture-box-all {
-	margin-left: -110px;
-}
-
-#list-box-all {
-	margin-left: -145px;
-}
-
-#color-palette-all {
-	margin-left: -215px;
-}
+.ellipsis-box-all { /*margin-left: -105px;*/ }
+.contact-box-all { /*margin-left: -70px;*/ }
+#info-box-all { /*margin-left: -6%;*/ }
+#picture-box-all { /*margin-left: -110px;*/ }
+#list-box-all { /*margin-left: -145px;*/ }
+#color-palette-all { /*margin-left: -215px;*/ }
+#smiley-box-all { /*margin-left: -70px;*/ }
 
 #smiley-box-all {
-    margin-left: -70px;
-	width: 140px;
+	width: 160px;
+}
+
+#keywords_top {
+	background-color: blueviolet;
+}
+
+/* wyśrodkowana paleta (widoczne na mniejszych ekranach) */
+
+.color_palette_placeholder table {
+	margin: auto;
+	text-align: center;
 }
 
 #picture-box-all a,

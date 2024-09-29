@@ -40,10 +40,10 @@
 	padding: 0;
 	border: none;
 	background-image: none;
-    display: flex;
+	display: flex;
 	flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 .bbcode-glow .fa {
@@ -191,7 +191,7 @@ a.collapse-btn {
 	padding: 0;
 }
 
-#mchat-body #smiley-box-all,
+/*#mchat-body #smiley-box-all,*/
 #mchat-body #smiley-box img {
 	box-sizing: unset;
 }

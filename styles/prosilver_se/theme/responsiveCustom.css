@@ -373,10 +373,12 @@
 		order: 1;
 		padding-left: 11px;
 		padding-right: 11px;
+		z-index: 1001;
 	}
 
 	#main-menu #search .search-box-hide {
 		order: 2;
+		z-index: 1001;
 	}
 
 	#main-menu #search #keywords_top {
@@ -467,10 +469,14 @@
 		display: flex;
 	}
 
-	/* unika wyjeżdżania poza vw */
+	/* unika wyjeżdżania poza vw przy rozwijaniu menu w posting buttons */
 
-	#smiley-box-all {
-		width: auto;
+	.abbc3_buttons_row .menu-all,
+	#info-box-all {
+		margin: auto !important; /* nadpisuje margin obliczany przez javascript */
+		width: auto !important; /* nadpisuje wartości #smiley-box-all */
+		left: 1em;
+		right: 1em;
 	}
 
 	.message-box,

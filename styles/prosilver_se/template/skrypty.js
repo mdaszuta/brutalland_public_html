@@ -68,6 +68,9 @@
       var elem = e.target;
 
       if(this.scrollIfAnchor(elem.getAttribute('href'), true)) {
+	  	console.log('e: ' + JSON.stringify(e));
+		console.log('target: ' + e.target);
+		console.log("elem.getAttribute('href') " + elem.getAttribute('href'));
         e.preventDefault();
       }
     }
@@ -91,17 +94,81 @@ function show_name_post_real_time(event) {
 $(document).ready(function(){
 
 	/**
-	* Pokazywanie Menu
+	* Show / Hide menus
 	*/
 	
 	var timeoutMenu = 0;
-		
+	var marginValue = 0;
+	
+	
+	/** Function calculates and sets values of .menu-all:
+	* width: if chosen menu is a .contact-box
+	* margin-left: if chosen menu is not a top menu item (.main-menu-item), quick topic tools (.quickmod-box) or tags in viewtopic_body (.tag-box)
+	*/
+
+	function calculateMenuAllWidthOrMarginLeft(top, bottom) {
+
+		console.log("function top: " + top.css("width") + " bottom: " + bottom.css("width"));
+
+		if ( bottom.hasClass("contact-box-all") ) {
+			bottom.css("width", bottom.closest(".postprofile").width());
+			console.log("postprofile width: " + bottom.closest(".postprofile").width() + " bottom menu width: " + bottom.css("width") );
+		}
+
+		if ( !bottom.hasClass("main-menu-bottom") && !bottom.hasClass("quickmod-box-all") && !bottom.hasClass("tag-box-all") ) {
+			
+			console.log("top width: " + top.css("width"));
+			console.log("bottom width: " + bottom.css("width"));
+
+			/* center bottom part of a menu based on width of it and the width of it's top icon */
+			marginValue = -((parseFloat(bottom.css("width")) - parseFloat(top.css("width")))/2);
+			
+			console.log("marginValue: " + marginValue);
+			
+			bottom.css("margin-left", marginValue);
+			
+		}
+
+	}
+
+	/* Display menu on: mouse enter (delay the display by set Timeout)
+	* Hide menu on: mouse leave or mouse up
+	*/
 	$(".menu-devil").on('mouseenter', function() {
 
-		var bottomMenu = $(this).next(".menu-all");
+		var topMenu = $(this);
+		var bottomMenu = topMenu.next(".menu-all");
+		console.log("bottom width pre-timeout: " + bottomMenu.css("width"));
 
 		timeoutMenu = setTimeout( function() {
-			if ( bottomMenu.css("display") == "none" ){ bottomMenu.fadeIn(150).css("display","flex"); }
+			if ( bottomMenu.css("display") == "none" ){
+				bottomMenu.fadeIn(150).css("display","flex");
+
+				console.log("top: " + topMenu.css("width") + " bottom: " + bottomMenu.css("width"));
+				calculateMenuAllWidthOrMarginLeft(topMenu, bottomMenu);
+/*
+				if ( bottomMenu.hasClass("contact-box-all")) {
+					bottomMenu.css("width", bottomMenu.closest(".postprofile").width());
+					console.log("postprofile width: " + bottomMenu.closest(".postprofile").width() + " bottom menu width: " + bottomMenu.css("width") );
+				}
+
+				if ( !bottomMenu.hasClass("main-menu-bottom") && !bottomMenu.hasClass("quickmod-box-all") && !bottomMenu.hasClass("tag-box-all") ) {
+					
+					console.log("top width: " + topMenu.css("width"));
+					console.log("bottom width: " + bottomMenu.css("width"));
+					
+					var topMenuWidth = parseFloat(topMenu.css("width"));
+					var bottomMenuWidth = parseFloat(bottomMenu.css("width"));
+
+					marginValue = -((bottomMenuWidth - topMenuWidth)/2);
+					
+					console.log("marginValue: " + marginValue);
+					
+					bottomMenu.css("margin-left", marginValue)
+					
+				}
+*/
+			}
 		}, 150);
 
 	}).on('mouseleave mouseup', function() {
@@ -110,20 +177,32 @@ $(document).ready(function(){
 
 	});
 
+	/* Toggle display / hide menu on: click */
+
 	$(".menu-devil").on('click', function(){
 
-		var bottomMenu = $(this).next(".menu-all");
+		var topMenu = $(this);
+		var bottomMenu = topMenu.next(".menu-all");
 
-		if ( bottomMenu.css("display") == "none" ){ bottomMenu.fadeIn(150).css("display","flex"); }
-		else { bottomMenu.fadeOut(0); }
+		if ( bottomMenu.css("display") == "none" ){
+			bottomMenu.fadeIn(150).css("display","flex");
+			calculateMenuAllWidthOrMarginLeft(topMenu, bottomMenu);
+		}
+		else {
+			bottomMenu.fadeOut(0);
+		}
 
 	});
+
+	/* Hide menu on: mouse leave */
 
 	$(".menu-toggle").on('mouseleave', function(){
 
 		var bottomMenu = $(this).children(".menu-all");
 
-		if ( bottomMenu.css("display") == "flex" ){ bottomMenu.fadeOut(0); }
+		if ( bottomMenu.css("display") == "flex" ){
+			bottomMenu.fadeOut(0);
+		}
 
 	});
 	
@@ -138,10 +217,10 @@ $(document).ready(function(){
 		var clicks = $(this).data('clicks');
 
 		if ( clicks ) {
-			console.log('number of clicks ' + clicks);
+			console.log('number of clicks (if) ' + clicks);
 		} else if(  $('#phpbb').hasClass('hastouch') ) {
 			event.preventDefault();
-			console.log('number of clicks ' + clicks);
+			console.log('number of clicks (else if) ' + clicks);
 		}
 
 		$(this).data("clicks", !clicks);
@@ -153,55 +232,81 @@ $(document).ready(function(){
 	/**
 	* Search box width show and hide
 	*/
+
+	var windowWidth = parseFloat(window.innerWidth);
+	var desktopSearchInputboxWidth = "200px";
+
+	/* if viewport resized, do */
+
+	$(window).on( "resize", function() {
+		var searchInputbox = $("#keywords_top");
+
+		windowWidth = parseFloat(window.innerWidth);
+
+		/** if search input is expanded and viewport was resized, resize it too if needed
+		* if vw <= 860px - calculate input width based on viewport width
+		* if vw > 860px - width defined as desktopSearchInputboxWidth variable
+		*/
+		if( searchInputbox.outerWidth() != 0 ) {
+			if( windowWidth <= 860 ) {
+				var tmpSearchInputboxWidth = $("#search").outerWidth() - parseFloat(searchInputbox.css("margin-left"));
+				searchInputbox.css("width", tmpSearchInputboxWidth + "px");
+			}
+			else {
+				searchInputbox.css("width", desktopSearchInputboxWidth);
+			}
+		}
+	} );
 	
 	var timeoutSearchBox = 0;
 
 	$("#search_but_top").on('mouseenter click', function() {
 
-		var search_inputbox = $(this).siblings(".inputbox");
-		var search_box_hide = $(this).siblings(".search-box-hide");
-		var search_all = $(this).parentsUntil("#main-menu-middle").filter("#search");
-
-		/* log */
-		//console.log('siblings ' + $(this).siblings());
-		var obj = {
-			prop1: search_inputbox,
-			prop2: search_box_hide,
-			parents: {
-				parentsProp1: search_all,
-			},
-		}
-		console.log(obj);
-		//console.log('parents ' + search_all);
+		var searchButtonTop = $(this);
+		var searchInputbox = searchButtonTop.siblings(".inputbox");
+		var searchBoxHide = searchButtonTop.siblings(".search-box-hide");
+		var searchForm = searchButtonTop.closest("#search");
 
 		timeoutSearchBox = setTimeout( function() {
 
-			search_all.css("width", "100%");
-			search_inputbox.css("padding","0px 5px");
-			search_inputbox.focus().animate({ width: "175px" }, 500 );
-			search_box_hide.fadeIn(500).css("display","flex");
+			searchForm.css("width", "100%");
+			searchInputbox.css("padding","0px 10px");
+
+			/* jeżeli vw <= 860, input + margin-left na całą szerokość main menu */
+			if ( windowWidth <= 860 ) {
+				var tmpSearchInputboxWidth = searchForm.width() - parseFloat(searchInputbox.css("margin-left"));
+				searchInputbox.focus().animate({ width: tmpSearchInputboxWidth + "px" }, 500 );
+			}
+			else {
+				searchInputbox.focus().animate({ width: desktopSearchInputboxWidth }, 500 );
+			}
+
+			searchBoxHide.fadeIn(500).css("display","flex");
 
 		}, 300);
 
 	}).on('mouseleave mouseup', function() {
-
 		clearTimeout(timeoutSearchBox);
-
 	});
 	
 	$(".search-box-hide").on('click', function() {
 
-		var search_inputbox = $(this).next(".inputbox");
-		var search_box_hide = $(this);
-		var search_all = $(this).parentsUntil("#main-menu-middle").filter("#search");
+		var searchBoxHide = $(this);
+		var searchInputbox = searchBoxHide.next(".inputbox");
+		var searchForm = searchBoxHide.parentsUntil("#main-menu-middle").filter("#search");
 
-		search_inputbox.animate({ width: "0px", padding: "0" }, 500 );
-		search_box_hide.fadeOut(500);
+		if ( windowWidth <= 860 ) {
+			searchInputbox.animate({ width: "0px" }, 500 );
+			searchInputbox.animate({ padding: "0" }, 500 );
+		}
+		else {
+			searchInputbox.animate({ width: "0px", padding: "0" }, 500 );
+		}
+
+		searchBoxHide.fadeOut(500);
 
 		setTimeout( function() {
-
-			search_all.css("width", "auto");
-
+			searchForm.css("width", "auto");
 		}, 500);
 
 	});
