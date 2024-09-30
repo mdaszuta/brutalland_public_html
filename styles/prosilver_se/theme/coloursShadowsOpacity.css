@@ -150,7 +150,7 @@ table.table1 tbody tr.bg2:hover {
 .panel.bg2,
 .panel.bg3,
 .inputbox,
-.inputbox.search:not(#keywords_top) {
+.inputbox.search:not(#search-box-keywords) {
 	background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.45) 70%);
 }
 

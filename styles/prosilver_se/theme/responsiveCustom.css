@@ -369,7 +369,7 @@
 		padding-right: 0;
 	}
 
-	#main-menu #search #search_but_top {
+	#main-menu #search #search-box-icon {
 		order: 1;
 		padding-left: 11px;
 		padding-right: 11px;
@@ -381,7 +381,7 @@
 		z-index: 1001;
 	}
 
-	#main-menu #search #keywords_top {
+	#main-menu #search #search-box-keywords {
 		order: 3;
 		position: absolute;
 		z-index: 1000;

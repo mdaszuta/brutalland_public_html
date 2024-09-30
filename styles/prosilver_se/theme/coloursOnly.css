@@ -68,6 +68,8 @@ a.username {
 	text-shadow: none;
 }
 
+/* nie wyklucza searcha z main menu */
+
 *:not(.search):focus::placeholder {
 	/* color: red !important; */
 	color: transparent;

@@ -1783,7 +1783,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 .menu-all {
 	box-sizing: border-box;
-	background: red;
+	/*background: red;*/
 }
 
 .switcheroo-menu-all {
@@ -1795,6 +1795,10 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	max-width: 550px;
 }
 
+#smiley-box-all {
+	width: 160px;
+}
+
 .ellipsis-box-all { /*margin-left: -105px;*/ }
 .contact-box-all { /*margin-left: -70px;*/ }
 #info-box-all { /*margin-left: -6%;*/ }
@@ -1803,12 +1807,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 #color-palette-all { /*margin-left: -215px;*/ }
 #smiley-box-all { /*margin-left: -70px;*/ }
 
-#smiley-box-all {
-	width: 160px;
-}
-
-#keywords_top {
-	background-color: blueviolet;
+#search-box-keywords {
+	/*background-color: blueviolet;*/
 }
 
 /* wyśrodkowana paleta (widoczne na mniejszych ekranach) */

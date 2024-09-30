@@ -93,40 +93,32 @@ function show_name_post_real_time(event) {
 
 $(document).ready(function(){
 
+	"use strict";
+
 	/**
 	* Show / Hide menus
 	*/
-	
+
 	var timeoutMenu = 0;
-	var marginValue = 0;
-	
-	
-	/** Function calculates and sets values of .menu-all:
+
+	/** Function calculateMenuAllWidthOrMarginLeft calculates and sets values of .menu-all:
 	* width: if chosen menu is a .contact-box
 	* margin-left: if chosen menu is not a top menu item (.main-menu-item), quick topic tools (.quickmod-box) or tags in viewtopic_body (.tag-box)
 	*/
 
 	function calculateMenuAllWidthOrMarginLeft(top, bottom) {
 
-		console.log("function top: " + top.css("width") + " bottom: " + bottom.css("width"));
+		var marginValue = 0;
 
 		if ( bottom.hasClass("contact-box-all") ) {
+			/* for .contact-box, width of .menu-all is based on .postprofile width */
 			bottom.css("width", bottom.closest(".postprofile").width());
-			console.log("postprofile width: " + bottom.closest(".postprofile").width() + " bottom menu width: " + bottom.css("width") );
 		}
 
 		if ( !bottom.hasClass("main-menu-bottom") && !bottom.hasClass("quickmod-box-all") && !bottom.hasClass("tag-box-all") ) {
-			
-			console.log("top width: " + top.css("width"));
-			console.log("bottom width: " + bottom.css("width"));
-
-			/* center bottom part of a menu based on width of it and the width of it's top icon */
+			/* center the bottom part of a menu based on width of it and the width of it's top icon */
 			marginValue = -((parseFloat(bottom.css("width")) - parseFloat(top.css("width")))/2);
-			
-			console.log("marginValue: " + marginValue);
-			
 			bottom.css("margin-left", marginValue);
-			
 		}
 
 	}
@@ -134,40 +126,16 @@ $(document).ready(function(){
 	/* Display menu on: mouse enter (delay the display by set Timeout)
 	* Hide menu on: mouse leave or mouse up
 	*/
+
 	$(".menu-devil").on('mouseenter', function() {
 
 		var topMenu = $(this);
 		var bottomMenu = topMenu.next(".menu-all");
-		console.log("bottom width pre-timeout: " + bottomMenu.css("width"));
 
 		timeoutMenu = setTimeout( function() {
 			if ( bottomMenu.css("display") == "none" ){
 				bottomMenu.fadeIn(150).css("display","flex");
-
-				console.log("top: " + topMenu.css("width") + " bottom: " + bottomMenu.css("width"));
 				calculateMenuAllWidthOrMarginLeft(topMenu, bottomMenu);
-/*
-				if ( bottomMenu.hasClass("contact-box-all")) {
-					bottomMenu.css("width", bottomMenu.closest(".postprofile").width());
-					console.log("postprofile width: " + bottomMenu.closest(".postprofile").width() + " bottom menu width: " + bottomMenu.css("width") );
-				}
-
-				if ( !bottomMenu.hasClass("main-menu-bottom") && !bottomMenu.hasClass("quickmod-box-all") && !bottomMenu.hasClass("tag-box-all") ) {
-					
-					console.log("top width: " + topMenu.css("width"));
-					console.log("bottom width: " + bottomMenu.css("width"));
-					
-					var topMenuWidth = parseFloat(topMenu.css("width"));
-					var bottomMenuWidth = parseFloat(bottomMenu.css("width"));
-
-					marginValue = -((bottomMenuWidth - topMenuWidth)/2);
-					
-					console.log("marginValue: " + marginValue);
-					
-					bottomMenu.css("margin-left", marginValue)
-					
-				}
-*/
 			}
 		}, 150);
 
@@ -218,7 +186,8 @@ $(document).ready(function(){
 
 		if ( clicks ) {
 			console.log('number of clicks (if) ' + clicks);
-		} else if(  $('#phpbb').hasClass('hastouch') ) {
+		}
+		else if(  $('#phpbb').hasClass('hastouch') ) {
 			event.preventDefault();
 			console.log('number of clicks (else if) ' + clicks);
 		}
@@ -239,7 +208,8 @@ $(document).ready(function(){
 	/* if viewport resized, do */
 
 	$(window).on( "resize", function() {
-		var searchInputbox = $("#keywords_top");
+
+		var searchInputbox = $("#search-box-keywords");
 
 		windowWidth = parseFloat(window.innerWidth);
 
@@ -260,7 +230,7 @@ $(document).ready(function(){
 	
 	var timeoutSearchBox = 0;
 
-	$("#search_but_top").on('mouseenter click', function() {
+	$("#search-box-icon").on('mouseenter click', function() {
 
 		var searchButtonTop = $(this);
 		var searchInputbox = searchButtonTop.siblings(".inputbox");
@@ -293,7 +263,7 @@ $(document).ready(function(){
 
 		var searchBoxHide = $(this);
 		var searchInputbox = searchBoxHide.next(".inputbox");
-		var searchForm = searchBoxHide.parentsUntil("#main-menu-middle").filter("#search");
+		var searchForm = searchBoxHide.closest("#search");
 
 		if ( windowWidth <= 860 ) {
 			searchInputbox.animate({ width: "0px" }, 500 );
