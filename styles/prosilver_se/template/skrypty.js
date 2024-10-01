@@ -180,7 +180,7 @@ $(document).ready(function(){
 	
 	$("#m-feed-topics, .search-box").on('click', function( event ){
 
-		console.log('hastouch ' + $('#phpbb').hasClass('hastouch'));
+		console.log('hastouch class: ' + $('#phpbb').hasClass('hastouch'));
 
 		var clicks = $(this).data('clicks');
 
@@ -266,6 +266,7 @@ $(document).ready(function(){
 		var searchForm = searchBoxHide.closest("#search");
 
 		if ( windowWidth <= 860 ) {
+			/* animation queue */
 			searchInputbox.animate({ width: "0px" }, 500 );
 			searchInputbox.animate({ padding: "0" }, 500 );
 		}
