@@ -395,17 +395,17 @@ img.postimage {
 
 /* CURSOR */
 
-#m-name a,
+/*#m-name a,
 #m-feed a,
 #m-notify a,
 #m-tagi,
-#m-ksywa a,
+#m-ksywa a,*/
 *[onclick^="window.location.href"],
 .search-box-hide,
 .fa-search,
-.rozwijany-box-devil,
-#picture-box-all a,
-#list-box-all a,
+.menu-devil,
+#picture-box-all label,
+#list-box-all label,
 .spoilbtn,
 #abbc3_buttons .fa {
 	cursor: pointer;
