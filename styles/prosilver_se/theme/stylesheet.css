@@ -1552,7 +1552,9 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .button1,
 .button2 a,
 .brutalform .reset,
-.brutalform-button-a {
+.brutalform-button-a,
+.error,
+.text-align-c {
 	text-align: center;
 }
 
@@ -1624,6 +1626,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	text-align: left;
 }
 
+/* Login, registration, reset password, resend activation mail etc. */
+
 #register .error {
 	padding-bottom: 1.4em;
 }
@@ -1651,6 +1655,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .forgot-pass {
 	margin-bottom: 15px;
 }
+
+/* Draft buttons on posting */
 
 #brutalform-drafty-buttons {
 	display: flex;
@@ -1717,9 +1723,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .quickmod-box,
 #info-box-devil,
 #info-box-all,
-#picture-box-all,
-.error,
-.text-align-c {
+#picture-box-all {
 	text-align: center;
 }
 
@@ -1820,7 +1824,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 #picture-box-all a,
 #list-box-all a {
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
 }
 
 .contact-box {
