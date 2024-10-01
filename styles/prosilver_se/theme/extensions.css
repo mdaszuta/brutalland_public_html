@@ -115,12 +115,12 @@
 }
 
 .pipe-table th {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #eee;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #eee;
 }
 
 .pipe-table tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* end of ABBC3 */
@@ -128,7 +128,7 @@
 /* CHANGE POST TIME + */
 
 #mcp_chgposttime {
-    margin-bottom: 25px;
+	margin-bottom: 25px;
 }
 
 /* end of CHANGE POST TIME */
@@ -182,7 +182,7 @@ a.collapse-btn {
 }
 
 #mchat-bbcodes {
-    font-size: 1.1em;
+	font-size: 1.1em;
 	position: absolute;
 	width: 100%;
 }
@@ -359,8 +359,8 @@ a.collapse-btn {
 }
 
 .tribute-container::-webkit-scrollbar-thumb {
-    background-color: rgba(50, 214, 53, .2);
-    border-radius: 7px;
+	background-color: rgba(50, 214, 53, .2);
+	border-radius: 7px;
 }
 
 .tribute-container ul {
@@ -442,7 +442,7 @@ p.post-number.post-number {
 /* RELATIVE DATES + */
 
 #relativedates_number {
-    border: none;
+	border: none;
 }
 
 /* end of RELATIVE DATES */
@@ -468,7 +468,7 @@ p.post-number.post-number {
 
 .nav-down:hover, .nav-up:hover {
 	color: #32D635;
-    box-shadow: 0 5px 0.5em -1px #32D635;
+	box-shadow: 0 5px 0.5em -1px #32D635;
 }
 
 /* end of SCROLL TO UP DOWN */
@@ -479,8 +479,8 @@ p.post-number.post-number {
 
 #lista-top-five .topfive-avatar img { 
 	max-height: 20px;
-    vertical-align: middle;
-    width: auto;
+	vertical-align: middle;
+	width: auto;
 }
 
 /* end of TOP FIVE */

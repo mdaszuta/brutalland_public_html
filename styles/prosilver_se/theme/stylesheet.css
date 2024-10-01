@@ -86,7 +86,7 @@ select#usernames {
 #m-name .main-menu-bottom {
 	left: 66.5px;
 	width: 400px;
-    max-width: 100%;
+	max-width: 100%;
 }
 
 a#titleID {
@@ -107,9 +107,9 @@ a#titleID {
 ul.topiclist li.row dt a.subforum,
 a.lastsubject {
 	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 100%;
 	margin-bottom: 3px;
 }
 
@@ -209,7 +209,7 @@ dl.row-item dt .list-inner {
 }
 
 dl.row-item dt, dl.row-item dd {
-    min-height: 41px;
+	min-height: 41px;
 }
 
 dl.row-item:not(.forum_read, .forum_unread, .forum_read_subforum, .forum_unread_subforum) {
@@ -222,7 +222,7 @@ dl.row-item dt .pagination a {
 }
 
 dl.row-item dt .lastpost a {
-    display: flex;
+	display: flex;
 }
 
 dl a.row-item-link {
@@ -245,7 +245,7 @@ dd.option {
 
 .postbody h3 {
 	float: none;
-    /*font-family: unset;*/
+	/*font-family: unset;*/
 	font-weight: normal;
 }
 
@@ -273,7 +273,7 @@ blockquote cite > div {
 }
 
 .attachbox dd {
-    border-top: 1px dashed #666;
+	border-top: 1px dashed #666;
 }
 
 fieldset.polls dl {
@@ -359,7 +359,7 @@ ul.cplist {
 }
 
 .minitabs .tab {
-    float: right;
+	float: right;
 }
 
 .navigation {
@@ -491,9 +491,9 @@ label:nth-child(1) input[type="radio"] {
 
 .tabs,
 .navigation {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+	display: flex;
+	justify-content: center;
+	text-align: center;
 }
 
 p.rightside,
@@ -696,7 +696,7 @@ input[type="radio"] {
 }
 
 #m-ksywa .main-menu-bottom a:last-of-type {
-    /*margin-bottom: 10px;*/
+	/*margin-bottom: 10px;*/
 }
 
 #m-feed .main-menu-bottom,
@@ -762,8 +762,8 @@ a.button2,
 input.button1,
 input.button2 {
 	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .button,
@@ -855,7 +855,7 @@ input.button2,
 
 #m-notify .main-menu-bottom .m-list {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	width: 450px;
 	position: relative;
 	overflow-y: auto;
@@ -874,9 +874,9 @@ input.button2,
 .notifications-avatar-container {
 	float: left;
 	min-width: 54px;
-    justify-content: flex-end;
-    padding-right: 10px;
-    display: flex;
+	justify-content: flex-end;
+	padding-right: 10px;
+	display: flex;
 }
 
 #m-notify .m-list-right {
@@ -893,14 +893,14 @@ input.button2,
 }
 
 #m-notify .m-list div[class^="m-row"] {
-    position: relative;
+	position: relative;
 }
 
 #m-notify .mark_read {
-    position: absolute;
-    top: calc(50% - 28px);
-    z-index: 1;
-    right: 43px;
+	position: absolute;
+	top: calc(50% - 28px);
+	z-index: 1;
+	right: 43px;
 }
 
 #m-notify .footer {
@@ -910,7 +910,7 @@ input.button2,
 }
 
 .no_notifications {
-    margin: 2em 0 2em 0;
+	margin: 2em 0 2em 0;
 }
 
 #m-aktywne-tematy.m-labeled-box {
@@ -920,21 +920,21 @@ input.button2,
 
 .m-labeled-box.notify-settings,
 #m-name .m-labeled-box {
-    min-width: 90px;
+	min-width: 90px;
 	max-width: 90px;
 }
 
 .m-labeled-box {
-    position: relative;
+	position: relative;
 	display: flex;
 	justify-content: center;
 	text-align: center;
-    min-height: 45px;
+	min-height: 45px;
 	max-height: 45px;
 	min-width: 50px;
-    max-width: 50px;
+	max-width: 50px;
 	padding-left: 3px !important;
-    padding-right: 3px !important;
+	padding-right: 3px !important;
 	box-sizing: border-box;
 }
 
@@ -942,8 +942,8 @@ input.button2,
 .m-labeled-box-bg {
 	position: absolute;
 	display: flex;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 	height: 100%;
 	min-width: 100%;
 	max-width: 100%;
@@ -951,8 +951,8 @@ input.button2,
 
 .topic-reply-counter {
 	text-align: center;
-    min-width: 13px;
-    /*padding: 0 2px 0 2px;*/
+	min-width: 13px;
+	/*padding: 0 2px 0 2px;*/
 }
 
 #m-tagi .m-list-left { flex-basis: 83%; }
@@ -1027,7 +1027,7 @@ body.simple {
 	margin-top: 0;
 	margin-bottom: 0;
 	vertical-align: text-bottom;
-    flex-direction: row;
+	flex-direction: row;
 }
 
 .pagination li a, .pagination li span {
@@ -1060,7 +1060,7 @@ li.arrow a::before {
 
 .row .pagination li a,
 .row .pagination li span {
-    padding: 2px;
+	padding: 2px;
 	font-size: 1em;
 }
 
@@ -1099,25 +1099,25 @@ li.arrow a::before {
 .topiclist .lastpost,
 .flex-spaced-between {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 	align-items: center;
 }
 
 dd.lastpost > span {
-    display: flex;
+	display: flex;
 	width: 100%;
 }
 
 .lastpost-poster {
 	flex-basis: 60%;
-    text-align: right;
-    padding-right: 5px;
+	text-align: right;
+	padding-right: 5px;
 }
 
 .lastpost-time {
 	display: flex;
 	flex-basis: 40%;
-    justify-content: space-between;
+	justify-content: space-between;
 	align-items: center;
 }
 
@@ -1126,12 +1126,12 @@ dd.lastpost > span {
 .topiclist.cplist .lastpost {
 	flex-direction: column;
 	justify-content: center;
-    padding-left: 5px;
+	padding-left: 5px;
 }
 
 .to-searched-post {
 	font-size: 34px;
-    padding: 10px 10px 0 10px;
+	padding: 10px 10px 0 10px;
 }
 
 /* content selected by user */
@@ -1154,8 +1154,8 @@ input:is(:-webkit-autofill, :autofill) {
 }
 
 p.post-notice {
-    clear: both;
-    position: static;
+	clear: both;
+	position: static;
 }
 
 .post-buttons,
@@ -1169,7 +1169,7 @@ p.post-notice {
 
 /* nie wygląda dobrze w pm-kach */
 label[for="attach_sig"] {
-    /*display: none;*/
+	/*display: none;*/
 }
 
 .postlink {
@@ -1202,7 +1202,7 @@ label[for="attach_sig"] {
 
 .post-buttons .button-icon-only {
 	padding-left: 4px;
-    padding-right: 4px;
+	padding-right: 4px;
 }
 
 .header .row-item {
@@ -1210,7 +1210,7 @@ label[for="attach_sig"] {
 }
 
 dd.time {
-    width: 170px;
+	width: 170px;
 }
 
 .search-box .search-box-hide,
@@ -1292,7 +1292,7 @@ h2.review {
 }
 
 .panel .panel {
-    padding: 5px 0;
+	padding: 5px 0;
 }
 
 .cp-main .action-bar.bar-top .buttons {
@@ -1332,10 +1332,10 @@ table.table1 tbody td {
 
 table.table1 td.info a {
 	word-break: break-word;
-    /*max-width: 195px;*/
-    /*overflow: hidden;*/
-    /*white-space: nowrap;*/
-    /*text-overflow: ellipsis;*/
+	/*max-width: 195px;*/
+	/*overflow: hidden;*/
+	/*white-space: nowrap;*/
+	/*text-overflow: ellipsis;*/
 }
 
 #notification-settings-table tbody td:not(.mark) {
@@ -1345,14 +1345,14 @@ table.table1 td.info a {
 
 .top-with-settings {
 	display: flex;
-    justify-content: center;
-    position: relative;
+	justify-content: center;
+	position: relative;
 }
 
 .top-with-settings div {
 	position: absolute;
-    right: 0;
-    top: -10px;
+	right: 0;
+	top: -10px;
 }
 
 #pmheader-postingbox .recipients {
@@ -1364,8 +1364,8 @@ table.table1 td.info a {
 }
 
 #pmheader-postingbox.panel dl {
-    width: auto;
-    margin: auto;
+	width: auto;
+	margin: auto;
 	padding: 0;
 }
 
@@ -1394,7 +1394,7 @@ table.table1 td.info a {
 }
 
 .copyright .empty-footer-row {
-    height: 18px;
+	height: 18px;
 }
 
 .copyright .text-strong {
@@ -1442,7 +1442,7 @@ table.table1 td.info a {
 .message-box textarea,
 #notepad {
 	padding: 8px;
-    text-align: justify;
+	text-align: justify;
 }
 
 .brutalform-box span,
@@ -1488,11 +1488,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 .fbr-search-user a {
 	align-self: flex-end;
-    position: absolute;
-    /* min-height: 2em; */
-    /* line-height: 2em; */
-    right: 1em;
-    top: 1em;
+	position: absolute;
+	/* min-height: 2em; */
+	/* line-height: 2em; */
+	right: 1em;
+	top: 1em;
 }
 
 #bandInfoInput {
@@ -1602,7 +1602,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 .brutalform-box .brutalform-explanation {
 	position: absolute;
-    top: 101%;
+	top: 101%;
 	z-index: -3;
 }
 
@@ -1692,7 +1692,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .buttons {
 	display: flex;
 	flex-basis: 47%;
-    align-items: flex-end;
+	align-items: flex-end;
 }
 
 .smilies {
@@ -1700,9 +1700,9 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 
 #smiley-box-devil {
-    width: 30px;
-    height: 24px;
-    background: url("/images/smilies/icon_twisted_bw.gif") center no-repeat;
+	width: 30px;
+	height: 24px;
+	background: url("/images/smilies/icon_twisted_bw.gif") center no-repeat;
 }
 
 #smiley-box:hover #smiley-box-devil {
@@ -1756,17 +1756,17 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 .rozwijany-box-all,
 .switcheroo-menu {
-    justify-content: center;
+	justify-content: center;
 }
 
 .rozwijany-box-all,
 .switcheroo-menu-all {
-    display: none;
+	display: none;
 }
 
 .switcheroo-menu,
 .switcheroo-static {
-    display: flex;
+	display: flex;
 }
 
 .switcheroo-menu-devil,
@@ -1876,11 +1876,11 @@ cite div.responsive-hide {
 }
 
 .fbr-settings-panel .fbr-left input[type="checkbox" i] {
-    margin: 0;
+	margin: 0;
 }
 
 input[type="checkbox" i] {
-    margin: 3px 3px 3px 3px;
+	margin: 3px 3px 3px 3px;
 }
 
 div.content,
@@ -1932,7 +1932,7 @@ dl.details dd {
 }
 
 .fbr dt label {
-    text-align: right;
+	text-align: right;
 }
 
 .member-search.panel {

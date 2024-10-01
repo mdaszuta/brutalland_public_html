@@ -296,27 +296,27 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 /* UCP TOP MENU NAVI */
 
 .tab > a:hover {
-    box-shadow: 0 1px 1px -1px #32D635;
+	box-shadow: 0 1px 1px -1px #32D635;
 }
 
 .activetab > a,
 .activetab > a:hover,
 .tab > a:focus {
-    box-shadow: 0 1px 1px -1px #257EDE;
+	box-shadow: 0 1px 1px -1px #257EDE;
 }
 
 .navigation .tab > a:hover {
-    box-shadow: 0 -1px 1px -1px #32D635;
+	box-shadow: 0 -1px 1px -1px #32D635;
 }
 
 .navigation .activetab > a,
 .navigation .activetab > a:hover,
 .navigation .tab > a:focus {
-    box-shadow: 0 -1px 1px -1px #257EDE;
+	box-shadow: 0 -1px 1px -1px #257EDE;
 }
 
 .navigation ul {
-    box-shadow: 0 -1px 1px -1px #ee0000;
+	box-shadow: 0 -1px 1px -1px #ee0000;
 }
 
 /* end of UCP TOP MENU NAVI */

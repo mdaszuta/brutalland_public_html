@@ -28,7 +28,7 @@ tags-input {
 }
 
 tags-input .tags {
-    display: flex;
+	display: flex;
 	flex-direction: column-reverse;
 	position: relative;
 }
@@ -115,7 +115,7 @@ tags-input .tags .tag-item .remove-button {
 
 tags-input auto-complete {
 	z-index: 999;
-    position: absolute;
+	position: absolute;
 	width: 100%;
 }
 

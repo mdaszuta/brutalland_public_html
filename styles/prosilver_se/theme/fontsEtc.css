@@ -23,7 +23,7 @@ a.lastsubject:hover,
 }
 
 .notifications_reason em {
-    font-style: normal;
+	font-style: normal;
 }
 
 #top-site-menu .pagination li a,
@@ -190,9 +190,9 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 /*
 @font-face {
-    font-family: "Palatino Numbers";
+	font-family: "Palatino Numbers";
 	src: local("Book Antiqua");
-    unicode-range: U+21-40;
+	unicode-range: U+21-40;
 }
 */
 
