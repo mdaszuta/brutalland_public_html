@@ -1,7 +1,7 @@
 (function(document, history, location) {
   var HISTORY_SUPPORT = !!(history && history.pushState);
 
-  var TOPSITE_HEIGHT_PX = $('#top-site-menu').height();
+  var TOPSITE_HEIGHT_PX = $(document.getElementById("top-site-menu")).height();
   
   var anchorScrolls = {
     ANCHOR_REGEX: /^#[^ ]+$/,
