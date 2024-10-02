@@ -165,7 +165,7 @@
 		white-space: nowrap;
 	}
 
-	a#titleID {
+	#titleID {
 		padding: 0 5px 0 5px;
 	}
 
@@ -245,10 +245,6 @@
 	.action-bar .fbr-left,
 	.action-bar .fbr-right {
 		flex-basis: 100%;
-	}
-
-	.cp-main .action-bar.bar-top .buttons {
-		flex-wrap: wrap;
 	}
 
 	/* mobile width fix */
@@ -345,8 +341,6 @@
 		margin: auto;
 		padding: 0 0 15px 0;
 	}
-
-	#main-menu #main-menu-left { order: 1; }
 
 	#main-menu #main-menu-title {
 		order: 3;
