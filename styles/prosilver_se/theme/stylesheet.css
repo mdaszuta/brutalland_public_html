@@ -1502,10 +1502,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	top: 1em;
 }
 
-#bandInfoInput {
-	height: 100px;
-}
-
 .fbr .inputbox,
 .fbr .brutalform-explanation {
 	width: 100%;
@@ -1569,11 +1565,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	margin: 0;
 }
 
-#brutalform-lang-timezone .fbr-left {
-	padding-top: 0;
-	padding-bottom: 0;
-}
-
 .brutalform-autologin {
 	display: flex;
 	align-items: center;
@@ -1593,6 +1584,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+}
+
+#brutalform-lang-timezone .fbr-left {
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 #brutalform-lang-timezone .fbr-left .brutalform-box {
@@ -1690,12 +1686,12 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	justify-content: flex-start;
 }
 
-.glow {
-	padding: 0 !important;
-}
-
 .action-bar .fbr-left {
 	flex-basis: 47%;
+}
+
+.glow {
+	padding: 0 !important;
 }
 
 .smilies {
@@ -1748,6 +1744,10 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	max-width: 550px;
 }
 
+#bandInfoInput {
+	height: 100px;
+}
+
 #smiley-box-devil {
 	width: 30px;
 	height: 24px;
@@ -1766,7 +1766,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding: 3px;
 }
 
-/* wyśrodkowana paleta (widoczne na mniejszych ekranach) */
+/* centered color palette (seen on smaller displays) */
 
 .color_palette_placeholder table {
 	margin: auto;
