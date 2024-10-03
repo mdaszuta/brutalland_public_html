@@ -412,10 +412,6 @@ a img.postimage:hover {
 	box-shadow: 0 -1px 1px -1px #257EDE !important;
 }
 
-.action-bar.bar-top .button {
-	box-shadow: 0 -1px 1px -1px #0000 !important;
-}
-
 .panel.bg1,
 .panel.bg1:hover {
 	box-shadow: 0 1px 1px -1px #ee0000;

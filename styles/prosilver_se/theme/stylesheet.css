@@ -735,6 +735,10 @@ a.sigil-bottom { height: 20px; }
 	margin: auto;
 }
 
+.m-list ul {
+	list-style-type: none;
+}
+
 .button,
 a.button1,
 a.button2,
@@ -774,7 +778,7 @@ input.button2 {
 .m-list-left {
 	order: 1;
 	flex-direction: column;
-	width: calc(100% - 130px);
+	width: calc(100% - 130px); /* 100% - m-list-right width */
 	padding-right: 10px;
 	padding-left: 10px;
 	box-sizing: border-box;
@@ -797,10 +801,6 @@ input.button2 {
 	margin-left: 18px;
 }
 
-.m-list ul {
-	list-style-type: none;
-}
-
 #m-name .m-list .panel .fa {
 	min-width: 23px;
 	min-height: 23px;
@@ -808,10 +808,11 @@ input.button2 {
 
 #m-feed-topics .main-menu-bottom {
 	padding: 15px;
+	flex-direction: row;
 }
 
 #m-feed-topics .main-menu-bottom span {
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 #m-notify .main-menu-bottom .m-list {
@@ -920,6 +921,10 @@ input.button2 {
 #m-tagi .m-list-right { flex-basis: 17%; }
 #m-tagi .main-menu-bottom { width: auto; }
 
+#m-name .panel p {
+    margin-bottom: 0;
+}
+
 #m-name .main-menu-bottom .m-list {
 	width: 365px;
 	list-style-type: none;
@@ -958,6 +963,8 @@ body.simple {
 	padding: 0 5px;
 }
 
+/* Action bar settings */
+
 .action-bar {
 	display: flex;
 	flex-wrap: wrap;
@@ -973,10 +980,19 @@ body.simple {
 	margin-right: 0;
 }
 
-.action-bar .search-box.fbr-right {
+.action-bar:after {
+	content: none;
+}
+
+/* Hidden top action bar */
+
+.bar-top:not(.fbr) .fbr-left,
+.bar-top .search-box.fbr-right {
 	align-items: flex-end;
 	display: none;
 }
+
+/* Pagination settings */
 
 .pagination {
 	display: flex;
@@ -1036,11 +1052,9 @@ li.arrow a::before {
 	margin: 0;
 }
 
-.info-paragraph {
-	text-align: center;
-}
+/* Pagination jump to specific page form */
 
-.ellipsis-box-all .page-jump-form {
+.page-jump-form {
 	display: flex;
 }
 
@@ -1050,16 +1064,23 @@ li.arrow a::before {
 	margin: 10px 0 10px 0;
 }
 
-.action-bar:after {
-	content: none;
+.info-paragraph {
+	text-align: center;
+}
+
+.flex-spaced-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .forabg ul.topiclist .row {
 	padding: 2px 0;
 }
 
-.topiclist .lastpost,
-.flex-spaced-between {
+/* Go to last post settings */
+
+.topiclist .lastpost {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -1091,12 +1112,14 @@ dd.lastpost > span {
 	padding-left: 5px;
 }
 
+/* Go to searched post */
+
 .to-searched-post {
 	font-size: 34px;
 	padding: 10px 10px 0 10px;
 }
 
-/* content selected by user */
+/* Content selected by user */
 
 *::selection {
 	color: #32D635;
@@ -1104,7 +1127,7 @@ dd.lastpost > span {
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* autofill input */
+/* Autofill input */
 
 input:is(:-webkit-autofill, :autofill) {
 	
@@ -1120,10 +1143,7 @@ p.post-notice {
 	position: static;
 }
 
-.post-buttons,
-.has-profile .post-buttons {
-	top: 0;
-}
+/* Don't show signature in posts and PMs */
 
 .postbody .signature:not(.standalone) {
 	display: none;
@@ -1138,9 +1158,16 @@ label[for="attach_sig"] {
 	border: none;
 }
 
+/* Post buttons settings */
+
 .post-buttons {
 	display: flex;
 	flex-direction: column;
+}
+
+.post-buttons,
+.has-profile .post-buttons {
+	top: 0;
 }
 
 .post-buttons ul {
@@ -1175,6 +1202,8 @@ dd.time {
 	width: 170px;
 }
 
+/* Search box settings */
+
 .search-box .search-box-hide,
 .search-box .inputbox,
 .section-viewtopic .search-box .inputbox {
@@ -1196,13 +1225,15 @@ dd.time {
 	padding-right: 6px;
 }
 
+.fa-search {
+	padding: 0;
+}
+
 a.header-avatar img {
 	max-height: 30px;
 }
 
-.fa-search {
-	padding: 0;
-}
+/* Headers */
 
 h1 {
 	margin: 0;
@@ -1215,6 +1246,8 @@ h2 {
 h3 {
 	border: none;
 }
+
+/* Spoilers */
 
 .spoilwrapper,
 .spoilcontent {
@@ -1234,6 +1267,8 @@ h3 {
 .spoilcontent {
 	display: none;
 }
+
+/* Reviews */
 
 .review,
 h2.review {
@@ -1271,6 +1306,8 @@ table.table1 tbody tr.bg3,
 .fbr .brutalform-explanation {
 	text-align: center;
 }
+
+/* Tables */
 
 table.table1 thead th {
 	font-weight: bold;
@@ -1313,6 +1350,8 @@ table.table1 td.info a {
 	top: -10px;
 }
 
+/* Posting PMs */
+
 #pmheader-postingbox .recipients {
 	margin: 0;
 }
@@ -1343,6 +1382,8 @@ table.table1 td.info a {
 	align-items: center;
 }
 
+/* Copyright */
+
 .copyright {
 	display: flex;
 	flex-direction: column;
@@ -1360,13 +1401,7 @@ table.table1 td.info a {
 	margin: auto;
 }
 
-#thegate {
-	flex-direction: column;
-	margin: 0 13px 0 13px;
-	padding: 0;
-	width: 45px;
-	height: 45px;
-}
+/* Bottom logo */
 
 #sigil {
 	display: flex;
@@ -1374,6 +1409,16 @@ table.table1 td.info a {
 	margin: auto;
 	width: 60px;
 	height: 60px;
+}
+
+/* Top logo */
+
+#thegate {
+	flex-direction: column;
+	margin: 0 13px 0 13px;
+	padding: 0;
+	width: 45px;
+	height: 45px;
 }
 
 .inputbox {
@@ -1395,6 +1440,8 @@ table.table1 td.info a {
 .content a.button {
 	line-height: normal;
 }
+
+/* Message textareas */
 
 .message-box textarea#message.inputbox,
 .message-box textarea,
@@ -1426,6 +1473,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	min-height: 2em;
 	line-height: 2em;
 }
+
+/* fbr */
 
 .fbr-input-select,
 .fbr-input-button {

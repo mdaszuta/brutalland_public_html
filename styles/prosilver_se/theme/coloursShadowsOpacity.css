@@ -349,8 +349,7 @@ li:not(.header) .lastpost:hover {
 }
 
 .topic-reply-counter,
-.main-menu-item .main-menu-bottom,
-.action-bar.bar-top .button {
+.main-menu-item .main-menu-bottom {
 	border-radius: 7px;
 }
 
