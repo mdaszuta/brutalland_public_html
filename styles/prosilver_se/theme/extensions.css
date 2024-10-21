@@ -207,6 +207,7 @@ a.collapse-btn {
 	padding: 8px;
 	text-align: justify;
 	border: 1px solid rgba(50, 214, 53, 0.15);
+	font-size: 1.2em;
 }
 
 #mchat-main {
@@ -418,7 +419,7 @@ p.post-number.post-number {
 /* QUICK LOGIN */
 
 #quick-login-panel {
-	background-color: rgba(0, 0, 0, 1);
+	/*background-color: rgba(0, 0, 0, 1);*/
 	width: 45em;
 	max-width: 100%;
 }
@@ -428,9 +429,9 @@ p.post-number.post-number {
 }
 
 #quick-login-panel .content {
-	background-image: URL("./images/cross_invert.png");
-	background-repeat: no-repeat;
-	border-radius: 7px;
+	/*background-image: URL("./images/cross_invert.png");*/
+	/*background-repeat: no-repeat;*/
+	/*border-radius: 7px;*/
 }
 
 #quick-login-panel .close {

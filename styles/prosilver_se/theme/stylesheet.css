@@ -20,6 +20,14 @@ body {
 	text-align: justify;
 }
 
+.cc-window.cc-floating {
+	max-width: 100%;
+}
+
+.cc-bottom {
+	bottom: 0;
+}
+
 .cc-link {
 	float: right;
 }
@@ -1709,7 +1717,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 .menu-all {
 	box-sizing: border-box;
-	background: red;
+	/*background: red;*/
 }
 
 .rozwijany-box-all {
