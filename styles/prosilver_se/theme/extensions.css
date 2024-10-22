@@ -9,6 +9,10 @@
 	margin: 0 0 15px 0;
 }
 
+#abbc3_buttons .fa {
+	font-size: 1.25em;
+}
+
 /* custom */
 #abbc3_buttons .fa,
 .abbc3_button,
@@ -17,6 +21,7 @@
 	min-width: 30px;
 	border: none;
 	text-align: center;
+	/*box-sizing: border-box;*/
 }
 
 #abbc3_buttons select {
@@ -26,6 +31,7 @@
 }
 
 .abbc3_button {
+	/*font-size: 11px;*/
 	margin: 0;
 }
 

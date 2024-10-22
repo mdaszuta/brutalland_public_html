@@ -1212,9 +1212,9 @@ dd.time {
 
 /* Search box settings */
 
+/*.section-viewtopic .search-box .inputbox,*/
 .search-box .search-box-hide,
-.search-box .inputbox,
-.section-viewtopic .search-box .inputbox {
+.search-box .inputbox {
 	width: 0;
 }
 
@@ -1234,7 +1234,7 @@ dd.time {
 }
 
 .fa-search {
-	padding: 0;
+	/*padding: 0;*/
 }
 
 a.header-avatar img {
@@ -1309,7 +1309,7 @@ h2,
 h3,
 .fbr-left-big dl,
 table.table1 tbody tr.bg3,
-#register_text,
+.register-text,
 .fbr .inputbox:not(#message),
 .fbr .brutalform-explanation {
 	text-align: center;
@@ -1435,11 +1435,6 @@ table.table1 td.info a {
 	box-sizing: border-box;
 }
 
-#abbc3_buttons .fa,
-.smiley-box {
-	box-sizing: border-box;
-}
-
 .message-box {
 	width: 83%;
 	margin: auto;
@@ -1459,7 +1454,7 @@ table.table1 td.info a {
 }
 
 .brutalform-box span,
-#register_text span,
+.register-text span,
 #login span,
 #reset_password span,
 #resend span,

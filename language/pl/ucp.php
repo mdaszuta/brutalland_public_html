@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
 
 // Privacy policy and T&C
 $lang = array_merge($lang, array(
-	'TERMS_OF_USE_CONTENT'	=> '<div id="register_text">Rejestrując się na „%1$s”, akceptujesz poniższe postanowienia. Jeśli nie - opuść to miejsce.<br />
+	'TERMS_OF_USE_CONTENT'	=> '<div class="register-text">Rejestrując się na „%1$s”, akceptujesz poniższe postanowienia. Jeśli nie - opuść to miejsce.<br />
 	<br />
 	<br />
 	Akceptujesz zakaz publikowania wypowiedzi o charakterze obraźliwym, oszczerczym, propagującym treści niezgodne z polskim prawem lub naruszającym cudze prawa autorskie i dobra osobiste.<br />
@@ -60,7 +60,7 @@ $lang = array_merge($lang, array(
 	</div>
 	',
 
-	'PRIVACY_POLICY'		=> 'Ten tekst opisuje, w jaki sposób „%1$s” i firmy stowarzyszone zwane dalej „my”, „nas”, „nasz”, „%1$s”, „%2$s” i phpBB zwane dalej „oni”, „ich”, „oprogramowanie phpBB”, „www.phpbb.com”, „phpBB Limited”, „Zespoły phpBB”, korzystają z informacji zwanymi dalej „informacjami o tobie” zebranych w czasie dowolnej twojej sesji na forum.
+	'PRIVACY_POLICY'		=> '<div class="register-text">Ten tekst opisuje, w jaki sposób „%1$s” i firmy stowarzyszone zwane dalej „my”, „nas”, „nasz”, „%1$s”, „%2$s” i phpBB zwane dalej „oni”, „ich”, „oprogramowanie phpBB”, „www.phpbb.com”, „phpBB Limited”, „Zespoły phpBB”, korzystają z informacji zwanymi dalej „informacjami o tobie” zebranych w czasie dowolnej twojej sesji na forum.
 	<br><br>
 	Informacje o tobie są zbierane na dwa sposoby. Po pierwsze, przeglądanie „%1$s” powoduje, że aplikacja phpBB tworzy kilka ciasteczek, które są małymi plikami tekstowymi pobranymi do katalogu plików tymczasowych twojej przeglądarki. Pierwsze dwa ciasteczka zawierają identyfikator użytkownika zwany „user-id” i anonimowy identyfikator sesji zwany „session-id”, automatycznie przyznane ci przez aplikację phpBB. Trzecie ciasteczko zostanie utworzone, gdy przejrzysz chociaż jeden temat na „%1$s”. Jest ono używane do zapisania informacji, które tematy zostały przez ciebie przeczytane i służy do ułatwienia ci nawigacji na forum.
 	<br><br>
@@ -69,6 +69,7 @@ $lang = array_merge($lang, array(
 	Twoje konto będzie zawierać przynajmniej unikalną identyfikacyjną nazwę zwaną dalej „twoja nazwa użytkownika”, hasło używane do logowania zwane dalej „twoje hasło” i osobisty aktywny adres e-mail zwany dalej „twój adres e-mail”. Informacje podane dla twojego konta na „%1$s” są chronione przez prawa dotyczące ochrony danych osobowych w państwie, w którym stoi nasz serwer. Mamy prawo wymagać podania dodatkowych informacji przy rejestracji, i to my ustalamy czy podanie ich jest konieczne, czy nie. W każdym przypadku, masz możliwość wybrania, które informacje o twoim koncie są wyświetlane publicznie. Co więcej, w panelu zarządzania kontem masz możliwość włączenia lub wyłączenia wysyłania do ciebie automatycznie generowanych przez oprogramowanie phpBB e-maili.
 	<br><br>
 	Twoje hasło jest zaszyfrowane, więc jest bezpieczne, niemniej nie należy używać tego samego hasła na różnych witrynach internetowych. Hasło to umożliwia dostęp do twojego konta na „%1$s”, więc chroń je i w żadnym wypadku nie podawaj <strong>nikomu</strong>. Jeśli je zapomnisz, użyj funkcji „Nie pamiętam hasła”. Witryna poprosi cię o podanie nazwy użytkownika i adresu e-mail. Po podaniu tych danych zostanie wygenerowane nowe hasło i przesłane na podany przez ciebie adres e-mail. Umożliwi ono odzyskanie dostępu do twojego konta.
+	</div>
 	',
 ));
 

@@ -236,11 +236,7 @@ ul.topiclist dt {
 	font-size: 1.2em;
 }
 
-#register_text,
-#abbc3_buttons .fa {
-	font-size: 1.25em;
-}
-
+.register-text,
 .brutalform-button-a {
 	font-size: 1.3em;
 }
@@ -263,7 +259,6 @@ ul.topiclist dt {
 	font-size: 4em;
 }
 
-.abbc3_button,
 .spoilbtn {
 	font-size: 11px;
 }
