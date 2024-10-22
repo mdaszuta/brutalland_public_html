@@ -529,3 +529,199 @@ p.post-number.post-number {
 }
 
 /* end of TOPIC PREVIEW */
+
+/* TOPIC TAGS */
+
+.ng-scope {
+	display: flex;
+	justify-content: center;
+}
+
+/* Not .inputbox, but retains ordering of brutalform-box with brutalform-label and brutalform-explanation */
+
+#tagowarka_edit > .ng-scope {
+	order: 2;
+}
+
+/* m-tagowarka on navbar_header */
+
+#m-tagowarka_ui {
+	display: flex;
+	width: 100%;
+}
+
+#m-tagowarka tags-input input { order: 1; }
+#m-tagowarka tags-input .tags .tag-list { order: 2; }
+
+/* Input tags on posting & navbar_header, displayed with topic tags list and autocomplete */
+
+tags-input {
+	color: #bbb;
+	width: 100%;
+	outline: 0;
+}
+
+tags-input .tags {
+	display: flex;
+	flex-direction: column-reverse;
+	position: relative;
+}
+
+/* Tag already added or is otherwise invalid */
+
+tags-input .tags input.invalid-tag {
+	color: #ee0000;
+}
+
+/* Does not show clear button in IE 10 & 11 and Edge 12+ */
+
+tags-input .tags input::-ms-clear {
+	display: none;
+}
+
+/* tag-list is a list of topic tags shown in posting */
+
+tags-input .tags .tag-list {
+	background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.45) 70%);
+	bottom: 44px;
+}
+
+/* tag-item is a single tag on tag-list in posting */
+
+tags-input .tags .tag-item {
+	line-height: 25px;
+}
+
+/* rh_tag is a single tag shown on viewforum_body and viewtopic_body */
+
+.rh_tag,
+tags-input .tags .tag-item {
+	list-style-type: none;
+	display: inline-block;
+	text-align: center;
+	border-radius: 3px;
+	padding: 0 5px;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
+.rh_tag {
+	font-size: 1.1em;
+}
+
+.rh_tag a {
+	color: #bbb;
+}
+
+/* On viewforum */
+
+.topics .rh_tag a {
+	color: #777;
+}
+
+/* Shadows on hover */
+
+.rh_tag:hover,
+tags-input .tags .tag-item:hover {
+	box-shadow: 0 1px 1px -1px #32D635, inset 0 -4px 9px rgba(50, 214, 53, .5);
+}
+
+/* Displaying tag-list for wider displays in absolute position */
+
+#tagowarka_edit tags-input .host {
+	position: relative;
+}
+
+#tagowarka_edit tags-input .tags .tag-list {
+	text-align: center;
+	position: absolute;
+	z-index: 3;
+}
+
+/* Topic tag remove button in posting */
+
+tags-input .tags .tag-item .remove-button {
+	cursor: pointer;
+	color: #777;
+}
+
+/* Display autocomplete in absolute position */
+
+tags-input auto-complete {
+	z-index: 999;
+	position: absolute;
+	width: 100%;
+}
+
+tags-input .autocomplete {
+	background-color: rgba(0, 0, 0, 0.95);
+	width: 100%;
+}
+
+/* Found tags suggested in autocomplete */
+
+tags-input .autocomplete .suggestion-item {
+	box-sizing: border-box;
+	box-shadow: 0 1px 1px -1px #ee0000;
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 1.4em;
+	font-variant: small-caps;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+tags-input .autocomplete .suggestion-item:hover {
+	background: linear-gradient(transparent 0%, rgba(50, 214, 53, 0.05) 70%);
+}
+
+tags-input .autocomplete .suggestion-item:focus {
+	background: linear-gradient(transparent 0%, rgba(37, 126, 222, 0.05) 70%);
+}
+
+tags-input .autocomplete .suggestion-item.selected {
+	color: rgba(50, 214, 53);
+	box-shadow: 0 1px 1px -1px #32D635, inset 0 -4px 9px rgba(50, 214, 53, .3);
+	transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+/* Found tags - em is string from input */
+
+tags-input .autocomplete .suggestion-item em {
+	font-style: initial;
+	font-weight: bold;
+	color: white;
+}
+
+/* Displaying tags in topiclist */
+
+.tag-box {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Enables displaying list with topic tags in viewforum_body / show_tag */
+
+.section-viewforum ul.topiclist.topics dl,
+[class*="section-app\/tag\/"] ul.topiclist.topics dl {
+	position: static;
+}
+
+.tag-box-all {
+	margin-top: 15px;
+}
+
+/* Responsive */
+
+@media (max-width: 860px) {
+
+	#tagowarka_edit tags-input .tags .tag-list {
+		position: initial;
+	}
+
+}
+
+/* end of TOPIC TAGS */
