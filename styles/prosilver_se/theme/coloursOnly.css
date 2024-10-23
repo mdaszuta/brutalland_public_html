@@ -172,7 +172,6 @@ li.row:hover a.forumtitle,
 li.row:hover a.topictitle,
 li.row:hover .topic-reply-counter.unread,
 a.forumtitle:hover,
-a.subforum.unread:hover,
 .m-row1:hover .notifications_reference,
 .m-row1:hover .notifications_reason,
 .m-row1:hover .notifications_title,
@@ -232,11 +231,11 @@ a.username-coloured:focus,
 	color:#257EDE !important;
 }
 
-ul.topiclist li.row:hover a.topictitle.subforum.read {
+ul.topiclist li.row:hover .subforum.read {
 	color: white;
 }
 
-ul.topiclist li.row a.topictitle.subforum.read:hover {
+ul.topiclist li.row .subforum.read:hover {
 	color: #32D635;
 }
 

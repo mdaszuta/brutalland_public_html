@@ -465,7 +465,8 @@ p.post-number.post-number {
 
 /* SCROLL TO UP DOWN */
 
-.nav-up, .nav-down {
+.nav-up,
+.nav-down {
 	background-color: transparent;
 	border: 1px solid transparent;
 	color: unset;
@@ -474,7 +475,8 @@ p.post-number.post-number {
 	border-radius: 50%;
 }
 
-.nav-down:hover, .nav-up:hover {
+.nav-down:hover,
+.nav-up:hover {
 	color: #32D635;
 	box-shadow: 0 5px 0.5em -1px #32D635;
 }

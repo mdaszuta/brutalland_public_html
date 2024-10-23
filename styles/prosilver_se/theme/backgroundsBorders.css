@@ -127,6 +127,14 @@ table.table1 tbody tr.bg2:hover {
 	background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.45) 70%);
 }
 
+.inputbox:hover {
+	background: linear-gradient(transparent 0%, rgba(50, 214, 53, 0.05) 70%);
+}
+
+.inputbox:focus {
+	background: linear-gradient(transparent 0%, rgba(37, 126, 222, 0.05) 70%);
+}
+
 .button,
 .button1 {
 	background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.45) 70%) !important;
@@ -142,14 +150,6 @@ table.table1 tbody tr.bg2:hover {
 .button1:focus,
 .button2:focus {
 	background: linear-gradient(to top, transparent 0%, rgba(37, 126, 222, 0.05) 70%) !important;
-}
-
-.inputbox:hover {
-	background: linear-gradient(transparent 0%, rgba(50, 214, 53, 0.05) 70%);
-}
-
-.inputbox:focus {
-	background: linear-gradient(transparent 0%, rgba(37, 126, 222, 0.05) 70%);
 }
 
 .rozwijany-box-all,
@@ -191,7 +191,7 @@ ul.zebra-list li:nth-child(even):hover {
 	background-color: rgba(50, 214, 53, 0.1);
 }
 
-.member-search.panel {
+.member-search {
 	background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.75) 100%);
 }
 
@@ -224,19 +224,19 @@ ul.zebra-list li:nth-child(even):hover {
 	border: 2px solid #fff;
 }
 
-a.subforum {
+.subforum {
 	border-bottom: 1px solid transparent;
 }
 
-a.subforum.unread {
+.subforum.unread {
 	border-color: rgba(238, 0, 0, 0.3);
 }
 
-a.subforum.unread:hover {
+.subforum.unread:hover {
 	border-color: rgba(50, 214, 53, 0.3);
 }
 
-a.subforum.unread:focus {
+.subforum.unread:focus {
 	border-color: rgba(37, 126, 222, 0.3);
 }
 
@@ -322,7 +322,7 @@ li:not(.header) .lastpost:hover {
 
 .m-labeled-box-bg strong,
 blockquote,
-.member-search.panel,
+.member-search,
 .phpbb_alert {
 	border-radius: 5px;
 }

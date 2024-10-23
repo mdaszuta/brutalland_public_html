@@ -105,11 +105,10 @@ select#usernames {
 #titleID {
 	display: block;
 	line-height: 45px;
-	overflow: hidden;
 	box-sizing: border-box;
 }
 
-ul.topiclist li.row dt a.subforum,
+.subforum,
 a.lastsubject {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -179,7 +178,7 @@ li.header dt, li.header dd {
 	margin-top: 4px;
 }
 
-ul.topiclist li.row dt a.subforum {
+ul.topiclist li.row dt .subforum {
 	padding: 0;
 }
 
@@ -1952,12 +1951,6 @@ div.content,
 	margin-bottom: 1.618em;
 }
 
-#reprap,
-.member-search.panel,
-.nav-footer .fa {
-	text-align: center;
-}
-
 #page-header {
 	min-height: 280px;
 }
@@ -1977,7 +1970,8 @@ dl.details dd {
 	text-align: right;
 }
 
-.member-search.panel {
+.member-search {
+	text-align: center;
 	margin: auto;
 }
 
@@ -2004,6 +1998,7 @@ dl.details dd {
 
 .nav-footer .fa {
 	min-width: 30px;
+	text-align: center;
 	vertical-align: middle;
 }
 

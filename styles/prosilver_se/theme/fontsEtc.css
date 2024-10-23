@@ -74,7 +74,7 @@ select:not(.abbc3_select),
 select:not(.abbc3_select) option,
 a.forumtitle,
 a.topictitle,
-ul.topiclist li.row dt a.subforum,
+.subforum,
 a.lastsubject,
 .topic-forumtitle,
 #titleID,
@@ -178,7 +178,7 @@ h3,
 .postbody h3,
 a.forumtitle,
 a.topictitle,
-ul.topiclist li.row dt a.subforum,
+.subforum,
 a.lastsubject,
 #titleID,
 .notifications_reference,
@@ -195,11 +195,6 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	unicode-range: U+21-40;
 }
 */
-
-#ToTop,
-#OnBottom {
-	font: normal normal normal 14px/1 FontAwesome;
-}
 
 .spoilbtn {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -226,7 +221,6 @@ textarea,
 dl.details,
 .fbr-left-big dl,
 .brutalform .reset,
-#reprap,
 .navbar,
 ul.topiclist dt {
 	font-size: 1.1em;
@@ -282,7 +276,7 @@ h3,
 .notifications_reason,
 .brutalform-label,
 #brutalform-drafts .brutalform-explanation,
-ul.topiclist li.row dt a.subforum,
+.subforum,
 li.row .vertical-separator,
 a.lastsubject {
 	font-size: 17px;
