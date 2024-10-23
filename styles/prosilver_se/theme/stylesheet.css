@@ -989,8 +989,8 @@ body.simple {
 
 /* Hidden top action bar */
 
-.bar-top:not(.flex-columns) .flex-column-left,
-.bar-top .search-box.flex-column-right {
+.bar-top:not(.flex-columns) .column-left,
+.bar-top .search-box.column-right {
 	align-items: flex-end;
 	display: none;
 }
@@ -1353,7 +1353,7 @@ h2.review {
 
 h2,
 h3,
-.flex-column-left-big dl,
+.column-left-big dl,
 table.table1 tbody tr.bg3,
 .register-text,
 .flex-columns .inputbox:not(#message),
@@ -1432,7 +1432,7 @@ table.table1 td.info a {
 	width: 83%;
 }
 
-.flex-columns-big div.flex-column-left {
+.flex-columns-big div.column-left {
 	align-items: center;
 }
 
@@ -1562,8 +1562,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	justify-content: center;
 }
 
-.flex-column-left,
-.flex-column-left-big {
+.column-left,
+.column-left-big {
 	order: 1;
 	display: flex;
 	flex-basis: 30%;
@@ -1574,7 +1574,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding: 10px 20px 10px 20px;
 }
 
-.flex-column-left-big {
+.column-left-big {
 	align-items: initial;
 }
 
@@ -1630,12 +1630,12 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	width: 100%;
 }
 
-#brutalform-lang-timezone .flex-column-left {
+#brutalform-lang-timezone .column-left {
 	padding-top: 0;
 	padding-bottom: 0;
 }
 
-#brutalform-lang-timezone .flex-column-left .brutalform-box {
+#brutalform-lang-timezone .column-left .brutalform-box {
 	align-items: flex-end;
 }
 
@@ -1655,8 +1655,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	z-index: -3;
 }
 
-.flex-column-right,
-.flex-column-right-big {
+.column-right,
+.column-right-big {
 	order: 2;
 	display: flex;
 	flex-direction: column;
@@ -1669,7 +1669,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	align-items: normal;
 }
 
-.flex-column-right .error {
+.column-right .error {
 	text-align: left;
 }
 
@@ -1679,10 +1679,10 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding-bottom: 1.4em;
 }
 
-#login .flex-column-right,
-#reset_password .flex-column-right,
-#resend .flex-column-right,
-#quick-login-panel .flex-column-right,
+#login .column-right,
+#reset_password .column-right,
+#resend .column-right,
+#quick-login-panel .column-right,
 #flex-columns-register-email {
 	flex-direction: column-reverse;
 }
@@ -1726,11 +1726,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	top: 1.5em;
 }
 
-.submit-buttons .flex-column-left {
+.submit-buttons .column-left {
 	justify-content: flex-start;
 }
 
-.action-bar .flex-column-left {
+.action-bar .column-left {
 	flex-basis: 47%;
 }
 
@@ -1889,30 +1889,30 @@ cite div.responsive-hide {
 	margin-right: 5px;
 }
 
-#login .flex-column-left,
-#register .flex-column-left,
-#reset_password .flex-column-left,
-#resend .flex-column-left {
+#login .column-left,
+#register .column-left,
+#reset_password .column-left,
+#resend .column-left {
 	align-items: initial;
 }
 
-.settings-panel .flex-column-left,
-.settings-panel .flex-column-right {
+.settings-panel .column-left,
+.settings-panel .column-right {
 	padding: 2px 5px 2px 5px;
 }
 
-.settings-panel .flex-column-left,
-.settings-panel .flex-column-left-big {
+.settings-panel .column-left,
+.settings-panel .column-left-big {
 	flex-basis: 30%;
 	justify-content: center;
 }
 
-.settings-panel .flex-column-right,
-.settings-panel .flex-column-right-big {
+.settings-panel .column-right,
+.settings-panel .column-right-big {
 	flex-basis: 60%;
 }
 
-.settings-panel .flex-column-left input[type="checkbox" i] {
+.settings-panel .column-left input[type="checkbox" i] {
 	margin: 0;
 }
 

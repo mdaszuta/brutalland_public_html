@@ -12,12 +12,12 @@
 
 		<div class="postbody">
 		<div class="flex-columns">
-			<div class="flex-column-left"><label>{L_REPORT_REASON}{L_COLON}</label></div>
-			<div class="flex-column-right">{REPORT_REASON_TITLE}</div>
+			<div class="column-left"><label>{L_REPORT_REASON}{L_COLON}</label></div>
+			<div class="column-right">{REPORT_REASON_TITLE}</div>
 		</div>
 		<div class="flex-columns">
-			<div class="flex-column-left"><label>{L_REPORT_BY}{L_COLON}</label></div>
-			<div class="flex-column-right"><p class="author">{REPORTER_FULL} &raquo; {REPORT_DATE}</p></div>
+			<div class="column-left"><label>{L_REPORT_BY}{L_COLON}</label></div>
+			<div class="column-right"><p class="author">{REPORTER_FULL} &raquo; {REPORT_DATE}</p></div>
 		</div>
 		<!-- IF S_REPORT_CLOSED -->
 			<p class="post-notice reported"><i class="icon fa-flag fa-fw icon-red" aria-hidden="true"></i>{L_REPORT_CLOSED}</p>
@@ -187,16 +187,16 @@
 			<fieldset>
 			<!-- IF S_USER_SELECT -->
 			<div class="flex-columns">
-				<div class="flex-column-left phantom-label"><label>{L_CHANGE_POSTER}</label></div>
-				<div class="flex-column-right flex-direction-row">
+				<div class="column-left phantom-label"><label>{L_CHANGE_POSTER}</label></div>
+				<div class="column-right flex-direction-row">
 					<select name="u">{S_USER_SELECT}</select>
 					<input type="submit" class="button2" name="action[chgposter_ip]" value="{L_CONFIRM}" />
 				</div>
 			</div>
 			<!-- ENDIF -->
 			<div class="flex-columns">
-				<div class="flex-column-left phantom-label"><label>{L_CHANGE_POSTER}</label></div>
-				<div class="flex-column-right flex-columns-search-user">
+				<div class="column-left phantom-label"><label>{L_CHANGE_POSTER}</label></div>
+				<div class="column-right flex-columns-search-user">
 					<a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search fa-search-user"></div></a>
 					<input class="inputbox autowidth" type="text" name="username" value="" placeholder="{L_CHANGE_POSTER}" />
 					<input type="submit" class="button2" name="action[chgposter]" value="{L_CONFIRM}" />
@@ -215,8 +215,8 @@
 
 			<fieldset>
 			<div class="flex-columns">
-				<div class="flex-column-left"><label>{L_MOD_OPTIONS}</label></div>
-				<div class="flex-column-right flex-direction-row"><select name="action">
+				<div class="column-left"><label>{L_MOD_OPTIONS}</label></div>
+				<div class="column-right flex-direction-row"><select name="action">
 					<!-- IF S_CAN_LOCK_POST --><!-- IF S_POST_LOCKED --><option value="unlock_post">{L_UNLOCK_POST} [{L_UNLOCK_POST_EXPLAIN}]</option><!-- ELSE --><option value="lock_post">{L_LOCK_POST} [{L_LOCK_POST_EXPLAIN}]</option><!-- ENDIF --><!-- ENDIF -->
 					<!-- IF S_CAN_DELETE_POST --><option value="delete_post">{L_DELETE_POST}</option><!-- ENDIF -->
 					</select> <input class="button2" type="submit" value="{L_SUBMIT}" />

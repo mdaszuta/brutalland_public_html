@@ -10,31 +10,31 @@
 	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
 	<!-- EVENT ucp_prefs_post_prepend -->
 	<div class="flex-columns">
-		<div class="flex-column-left"><label for="bbcode1">{L_DEFAULT_BBCODE}</label></div>
-		<div class="flex-column-right flex-direction-row">
+		<div class="column-left"><label for="bbcode1">{L_DEFAULT_BBCODE}</label></div>
+		<div class="column-right flex-direction-row">
 			<label for="bbcode1"><input type="radio" name="bbcode" id="bbcode1" value="1"<!-- IF S_BBCODE --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="bbcode0"><input type="radio" name="bbcode" id="bbcode0" value="0"<!-- IF not S_BBCODE --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</div>
 	</div>
 	<div class="flex-columns">
-		<div class="flex-column-left"><label for="smilies1">{L_DEFAULT_SMILIES}</label></div>
-		<div class="flex-column-right flex-direction-row">
+		<div class="column-left"><label for="smilies1">{L_DEFAULT_SMILIES}</label></div>
+		<div class="column-right flex-direction-row">
 			<label for="smilies1"><input type="radio" name="smilies" id="smilies1" value="1"<!-- IF S_SMILIES --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="smilies0"><input type="radio" name="smilies" id="smilies0" value="0"<!-- IF not S_SMILIES --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</div>
 	</div>
 	{% if S_SIG_ALLOWED %}
 	<div class="flex-columns">
-		<div class="flex-column-left"><label for="sig1">{L_DEFAULT_ADD_SIG}</label></div>
-		<div class="flex-column-right flex-direction-row">
+		<div class="column-left"><label for="sig1">{L_DEFAULT_ADD_SIG}</label></div>
+		<div class="column-right flex-direction-row">
 			<label for="sig1"><input type="radio" name="sig" id="sig1" value="1"<!-- IF S_SIG --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="sig0"><input type="radio" name="sig" id="sig0" value="0"<!-- IF not S_SIG --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</div>
 	</div>
 	{% endif %}
 	<div class="flex-columns">
-		<div class="flex-column-left"><label for="notify1">{L_DEFAULT_NOTIFY}</label></div>
-		<div class="flex-column-right flex-direction-row">
+		<div class="column-left"><label for="notify1">{L_DEFAULT_NOTIFY}</label></div>
+		<div class="column-right flex-direction-row">
 			<label for="notify1"><input type="radio" name="notify" id="notify1" value="1"<!-- IF S_NOTIFY --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="notify0"><input type="radio" name="notify" id="notify0" value="0"<!-- IF not S_NOTIFY --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</div>

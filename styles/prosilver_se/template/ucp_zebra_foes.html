@@ -12,11 +12,11 @@
 	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
 
 	<div class="flex-columns">
-		<div class="flex-column-left">
+		<div class="column-left">
 			<label <!-- IF S_USERNAME_OPTIONS -->for="usernames"<!-- ENDIF -->>{L_YOUR_FOES}</label>
 			<!-- IF S_USERNAME_OPTIONS --><span>{L_YOUR_FOES_EXPLAIN}</span><!-- ENDIF -->
 		</div>
-		<div class="flex-column-right">
+		<div class="column-right">
 			<!-- IF S_USERNAME_OPTIONS -->
 				<select name="usernames[]" id="usernames" multiple="multiple" size="5">{S_USERNAME_OPTIONS}</select>
 			<!-- ELSE -->
@@ -26,9 +26,9 @@
 	</div>
 
 	<div class="flex-columns">
-		<div class="flex-column-left phantom-label"><label for="add">{L_ADD_FOES}</label>
+		<div class="column-left phantom-label"><label for="add">{L_ADD_FOES}</label>
 		<span>{L_ADD_FOES_EXPLAIN}</span></div>
-		<div class="flex-column-right flex-columns-search-user">
+		<div class="column-right flex-columns-search-user">
 			<a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search fa-search-user"></div></a>
 			<textarea name="add" id="add" rows="3" cols="30" class="inputbox" placeholder="{L_ADD_FOES}">{USERNAMES}</textarea>
 		</div>

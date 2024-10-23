@@ -14,21 +14,21 @@
 	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
 	<!-- EVENT ucp_profile_register_details_before -->
 	<div class="flex-columns">
-		<div class="flex-column-left phantom-label"><label <!-- IF S_CHANGE_USERNAME -->for="username"<!-- ENDIF -->>{L_USERNAME}</label></div>
-		<div class="flex-column-right"><!-- IF S_CHANGE_USERNAME --><input type="text" name="username" id="username" value="{USERNAME}" class="inputbox" title="{L_USERNAME}" /><!-- ELSE --><strong class="text-align-c"><!-- IF S_CHANGE_USERNAME -->{USERNAME}<!-- ELSE -->{CURRENT_USERNAME_SIMPLE}<!-- ENDIF --></strong><!-- ENDIF --></div>
+		<div class="column-left phantom-label"><label <!-- IF S_CHANGE_USERNAME -->for="username"<!-- ENDIF -->>{L_USERNAME}</label></div>
+		<div class="column-right"><!-- IF S_CHANGE_USERNAME --><input type="text" name="username" id="username" value="{USERNAME}" class="inputbox" title="{L_USERNAME}" /><!-- ELSE --><strong class="text-align-c"><!-- IF S_CHANGE_USERNAME -->{USERNAME}<!-- ELSE -->{CURRENT_USERNAME_SIMPLE}<!-- ENDIF --></strong><!-- ENDIF --></div>
 	</div>
 	<div class="flex-columns">
-		<div class="flex-column-left phantom-label"><label for="email">{L_EMAIL_ADDRESS}</label></div>
-		<div class="flex-column-right"><!-- IF S_CHANGE_EMAIL --><input type="email" name="email" id="email" maxlength="100" value="{EMAIL}" class="inputbox" title="{L_EMAIL_ADDRESS}" autocomplete="off" placeholder="{L_EMAIL_ADDRESS}" /><!-- ELSE --><strong>{EMAIL}</strong><!-- ENDIF --></div>
+		<div class="column-left phantom-label"><label for="email">{L_EMAIL_ADDRESS}</label></div>
+		<div class="column-right"><!-- IF S_CHANGE_EMAIL --><input type="email" name="email" id="email" maxlength="100" value="{EMAIL}" class="inputbox" title="{L_EMAIL_ADDRESS}" autocomplete="off" placeholder="{L_EMAIL_ADDRESS}" /><!-- ELSE --><strong>{EMAIL}</strong><!-- ENDIF --></div>
 	</div>
 	<!-- IF S_CHANGE_PASSWORD -->
 		<div class="flex-columns">
-			<div class="flex-column-left phantom-label"><label for="new_password">{L_NEW_PASSWORD}</label><span>{L_CHANGE_PASSWORD_EXPLAIN}</span></div>
-			<div class="flex-column-right"><input type="password" name="new_password" id="new_password" maxlength="255" value="{NEW_PASSWORD}" class="inputbox" title="{L_CHANGE_PASSWORD}" autocomplete="off" placeholder="{L_NEW_PASSWORD}" /></div>
+			<div class="column-left phantom-label"><label for="new_password">{L_NEW_PASSWORD}</label><span>{L_CHANGE_PASSWORD_EXPLAIN}</span></div>
+			<div class="column-right"><input type="password" name="new_password" id="new_password" maxlength="255" value="{NEW_PASSWORD}" class="inputbox" title="{L_CHANGE_PASSWORD}" autocomplete="off" placeholder="{L_NEW_PASSWORD}" /></div>
 		</div>
 		<div class="flex-columns">
-			<div class="flex-column-left phantom-label"><label for="password_confirm">{L_CONFIRM_PASSWORD}</label></div>
-			<div class="flex-column-right"><input type="password" name="password_confirm" id="password_confirm" maxlength="255" value="{PASSWORD_CONFIRM}" class="inputbox" title="{L_CONFIRM_PASSWORD}" autocomplete="off" placeholder="{L_CONFIRM_PASSWORD}" /></div>
+			<div class="column-left phantom-label"><label for="password_confirm">{L_CONFIRM_PASSWORD}</label></div>
+			<div class="column-right"><input type="password" name="password_confirm" id="password_confirm" maxlength="255" value="{PASSWORD_CONFIRM}" class="inputbox" title="{L_CONFIRM_PASSWORD}" autocomplete="off" placeholder="{L_CONFIRM_PASSWORD}" /></div>
 		</div>
 	<!-- ENDIF -->
 	<!-- EVENT ucp_profile_register_details_after -->
@@ -41,8 +41,8 @@
 
 	<fieldset>
 	<div class="flex-columns">
-		<div class="flex-column-left phantom-label"><label for="cur_password">{L_CURRENT_PASSWORD}</label><span><!-- IF S_CHANGE_PASSWORD -->{L_CURRENT_CHANGE_PASSWORD_EXPLAIN}<!-- ELSE -->{L_CURRENT_PASSWORD_EXPLAIN}<!-- ENDIF --></span></div>
-		<div class="flex-column-right"><input type="password" name="cur_password" id="cur_password" maxlength="255" value="{CUR_PASSWORD}" class="inputbox" title="{L_CURRENT_PASSWORD}" autocomplete="off" placeholder="{L_CURRENT_PASSWORD}" /></div>
+		<div class="column-left phantom-label"><label for="cur_password">{L_CURRENT_PASSWORD}</label><span><!-- IF S_CHANGE_PASSWORD -->{L_CURRENT_CHANGE_PASSWORD_EXPLAIN}<!-- ELSE -->{L_CURRENT_PASSWORD_EXPLAIN}<!-- ENDIF --></span></div>
+		<div class="column-right"><input type="password" name="cur_password" id="cur_password" maxlength="255" value="{CUR_PASSWORD}" class="inputbox" title="{L_CURRENT_PASSWORD}" autocomplete="off" placeholder="{L_CURRENT_PASSWORD}" /></div>
 	</div>
 	</fieldset>
 

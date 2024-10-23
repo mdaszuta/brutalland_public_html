@@ -22,7 +22,7 @@
 <!-- IF S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS -->
 	<div class="action-bar bar-top">
 
-	<div class="flex-column-left">
+	<div class="column-left">
 	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 		<!-- EVENT viewforum_buttons_top_before -->
 		<!-- EVENT viewforum_buttons_top_after -->
@@ -30,7 +30,7 @@
 	</div>
 
 	<!-- IF S_DISPLAY_SEARCHBOX -->
-		<div class="search-box flex-column-right" role="search">
+		<div class="search-box column-right" role="search">
 			<form method="get" id="forum-search" action="{S_SEARCHBOX_ACTION}">
 			<fieldset>
 				<button class="fa fa-search fa-2x" type="submit" id="search_but_s" title="{L_SEARCH}"></button>
@@ -236,7 +236,7 @@
 <!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
 	<div class="action-bar bar-bottom">
 		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
-			<div class="flex-column-left">
+			<div class="column-left">
 			<!-- EVENT viewforum_buttons_bottom_before -->
 
 			<a href="{U_POST_NEW_TOPIC}" class="button">
@@ -251,7 +251,7 @@
 			</div>
 		<!-- ENDIF -->
 
-			<div class="flex-column-right">
+			<div class="column-right">
 			</div>
 
 		<!-- IF S_SELECT_SORT_DAYS and not S_IS_BOT -->

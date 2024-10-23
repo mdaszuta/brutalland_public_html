@@ -11,8 +11,8 @@
 	<div class="flex-box-container">
 	<div class="flex-box">
 		<div class="flex-columns">
-			<div class="flex-column-left phantom-label"><label for="username">{L_USERNAME}</label></div>
-			<div class="flex-column-right">
+			<div class="column-left phantom-label"><label for="username">{L_USERNAME}</label></div>
+			<div class="column-right">
 				<!-- IF U_LIVE_SEARCH --><div class="dropdown-container dropdown-{S_CONTENT_FLOW_END}"><!-- ENDIF -->
 				<input type="text" name="username" id="username" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox"<!-- IF U_LIVE_SEARCH --> autocomplete="off" data-filter="phpbb.search.filter" data-ajax="member_search" data-min-length="3" data-url="{U_LIVE_SEARCH}" data-results="#user-search"<!-- ENDIF --> />
 				<!-- IF U_LIVE_SEARCH -->
@@ -28,46 +28,46 @@
 		</div>
 		<!-- IF S_EMAIL_SEARCH_ALLOWED -->
 		<div class="flex-columns">
-			<div class="flex-column-left phantom-label"><label for="email">{L_EMAIL}</label></div>
-			<div class="flex-column-right"><input type="text" name="email" id="email" value="{EMAIL}" class="inputbox" placeholder="{L_EMAIL}" /></div>
+			<div class="column-left phantom-label"><label for="email">{L_EMAIL}</label></div>
+			<div class="column-right"><input type="text" name="email" id="email" value="{EMAIL}" class="inputbox" placeholder="{L_EMAIL}" /></div>
 		</div>
 		<!-- ENDIF -->
 		<!-- IF S_JABBER_ENABLED -->
 		<div class="flex-columns">
-			<div class="flex-column-left phantom-label"><label for="jabber">{L_JABBER}</label></div>
-			<div class="flex-column-right"><input type="text" name="jabber" id="jabber" value="{JABBER}" class="inputbox" placeholder="{L_JABBER}" /></div>
+			<div class="column-left phantom-label"><label for="jabber">{L_JABBER}</label></div>
+			<div class="column-right"><input type="text" name="jabber" id="jabber" value="{JABBER}" class="inputbox" placeholder="{L_JABBER}" /></div>
 		</div>
 		<!-- ENDIF -->
 		<div class="flex-columns">
-			<div class="flex-column-left"><label for="search_group_id">{L_GROUP}</label></div>
-			<div class="flex-column-right"><select name="search_group_id" id="search_group_id">{S_GROUP_SELECT}</select></div>
+			<div class="column-left"><label for="search_group_id">{L_GROUP}</label></div>
+			<div class="column-right"><select name="search_group_id" id="search_group_id">{S_GROUP_SELECT}</select></div>
 		</div>
 		<!-- EVENT memberlist_search_sorting_options_before -->
 		<div class="flex-columns">
-			<div class="flex-column-left"><label for="sk" class="label3">{L_SORT_BY}</label></div>
-			<div class="flex-column-right flex-direction-row"><select name="sk" id="sk">{S_SORT_OPTIONS}</select> <select name="sd">{S_ORDER_SELECT}</select></div>
+			<div class="column-left"><label for="sk" class="label3">{L_SORT_BY}</label></div>
+			<div class="column-right flex-direction-row"><select name="sk" id="sk">{S_SORT_OPTIONS}</select> <select name="sd">{S_ORDER_SELECT}</select></div>
 		</div>
 	</div>
 
 	<div class="flex-box">
 		<div class="flex-columns">
-			<div class="flex-column-left"><label for="joined">{L_JOINED}</label></div>
-			<div class="flex-column-right"><select name="joined_select" class="flex-columns-input-select">{S_JOINED_TIME_OPTIONS}</select> <input class="inputbox medium" type="text" name="joined" id="joined" value="{JOINED}" placeholder="{L_YEAR_MONTH_DAY}" /></div>
+			<div class="column-left"><label for="joined">{L_JOINED}</label></div>
+			<div class="column-right"><select name="joined_select" class="flex-columns-input-select">{S_JOINED_TIME_OPTIONS}</select> <input class="inputbox medium" type="text" name="joined" id="joined" value="{JOINED}" placeholder="{L_YEAR_MONTH_DAY}" /></div>
 		</div>
 		<!-- IF S_VIEWONLINE -->
 		<div class="flex-columns">
-			<div class="flex-column-left"><label for="active">{L_LAST_ACTIVE}</label></div>
-			<div class="flex-column-right"><select name="active_select" class="flex-columns-input-select">{S_ACTIVE_TIME_OPTIONS}</select> <input class="inputbox medium" type="text" name="active" id="active" value="{ACTIVE}" placeholder="{L_YEAR_MONTH_DAY}" /></div>
+			<div class="column-left"><label for="active">{L_LAST_ACTIVE}</label></div>
+			<div class="column-right"><select name="active_select" class="flex-columns-input-select">{S_ACTIVE_TIME_OPTIONS}</select> <input class="inputbox medium" type="text" name="active" id="active" value="{ACTIVE}" placeholder="{L_YEAR_MONTH_DAY}" /></div>
 		</div>
 		<!-- ENDIF -->
 		<div class="flex-columns">
-			<div class="flex-column-left"><label for="count">{L_POSTS}</label></div>
-			<div class="flex-column-right"><select name="count_select" class="flex-columns-input-select">{S_COUNT_OPTIONS}</select> <input class="inputbox medium" type="number" min="0" name="count" id="count" value="{COUNT}" /></div>
+			<div class="column-left"><label for="count">{L_POSTS}</label></div>
+			<div class="column-right"><select name="count_select" class="flex-columns-input-select">{S_COUNT_OPTIONS}</select> <input class="inputbox medium" type="number" min="0" name="count" id="count" value="{COUNT}" /></div>
 		</div>
 		<!-- IF S_IP_SEARCH_ALLOWED -->
 		<div class="flex-columns">
-			<div class="flex-column-left phantom-label"><label for="ip">{L_POST_IP}</label></div>
-			<div class="flex-column-right"><input class="inputbox medium" type="text" name="ip" id="ip" value="{IP}" placeholder="{L_POST_IP}" /></div>
+			<div class="column-left phantom-label"><label for="ip">{L_POST_IP}</label></div>
+			<div class="column-right"><input class="inputbox medium" type="text" name="ip" id="ip" value="{IP}" placeholder="{L_POST_IP}" /></div>
 		</div>
 		<!-- ENDIF -->
 	<!-- EVENT memberlist_search_fields_after -->
