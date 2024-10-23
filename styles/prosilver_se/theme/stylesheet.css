@@ -1524,12 +1524,12 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 /* flex-columns */
 
-.flex-columns-input-select,
+.input-select,
 .input-button {
 	position: absolute;
 }
 
-.flex-columns-input-select {
+.input-select {
 	align-self: flex-start;
 }
 
