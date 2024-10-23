@@ -1601,7 +1601,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 .brutalform .reset,
 .brutalform-button-a,
 .error,
-.text-align-c {
+.text-align-center {
 	text-align: center;
 }
 

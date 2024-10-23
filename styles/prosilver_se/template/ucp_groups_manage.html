@@ -25,7 +25,7 @@
 			<div class="column-left phantom-label"><label for="group_name">{L_GROUP_NAME}</label></div>
 			<div class="column-right">
 				<!-- IF S_SPECIAL_GROUP -->
-					<strong class="text-align-c"<!-- IF GROUP_COLOUR --> style="color: #{GROUP_COLOUR};"<!-- ENDIF -->>{GROUP_NAME}</strong>
+					<strong class="text-align-center"<!-- IF GROUP_COLOUR --> style="color: #{GROUP_COLOUR};"<!-- ENDIF -->>{GROUP_NAME}</strong>
 					<input name="group_name" type="hidden" value="{GROUP_INTERNAL_NAME}" />
 				<!-- ELSE -->
 					<input name="group_name" type="text" id="group_name" value="{GROUP_INTERNAL_NAME}" class="inputbox" />
