@@ -27,10 +27,6 @@ body,
 	background-size: 555px 690px;
 }
 
-[data-s9e-mediaembed="facebook"] {
-	background-color: #fff;
-}
-
 /* UCP NAVIGATION TOP MENU */
 
 .tab > a {
@@ -73,15 +69,12 @@ body,
 
 select,
 input,
-#top-site-menu .navbar,
-.fa-search,
 table.table1 tbody tr,
 #m-name .panel.bg3,
 li.row,
 li.row.bg3,
 li.row:hover,
-li.row.bg3:hover,
-.fa-remove {
+li.row.bg3:hover {
 	background: transparent;
 }
 
@@ -94,11 +87,11 @@ select:not([multiple="multiple"]) option {
 }
 
 div.rules {
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
 .cp-mini {
-	background-color: rgba(238, 0, 0, 0);
+	/*background-color: rgba(238, 0, 0, 0);*/
 }
 
 .posthilit {
@@ -165,16 +158,14 @@ table.table1 tbody tr.bg2:hover {
 }
 
 blockquote,
-blockquote blockquote,
-blockquote.uncited,
-blockquote blockquote.uncited,
 .codebox {
 	background-color: rgba(238, 0, 0, 0.1);
 	/* background-color: rgba(102, 102, 102, 0.2); */
 }
 
-blockquote blockquote,
-blockquote blockquote.uncited {
+/* Nested quotes */
+
+blockquote blockquote {
 	background-color: rgba(0, 0, 0, 0.2)
 }
 
@@ -320,10 +311,6 @@ li:not(.header) .lastpost:hover {
 	transition: border-color 0.75s ease-out 0.1s;
 }
 
-.message-box textarea {
-	border-color: black;
-}
-
 .wrap {
 	border-radius: 15px;
 }
@@ -335,9 +322,6 @@ li:not(.header) .lastpost:hover {
 
 .m-labeled-box-bg strong,
 blockquote,
-blockquote blockquote,
-blockquote.uncited,
-blockquote blockquote.uncited,
 .member-search.panel,
 .phpbb_alert {
 	border-radius: 5px;
@@ -357,8 +341,6 @@ span.button:focus,
 .tab > a,
 .inputbox,
 .posthilit,
-.message-box textarea,
-#muzycy-box textarea,
 .panel-container h3,
 .panel-container hr,
 .panel-container .panel li.row,

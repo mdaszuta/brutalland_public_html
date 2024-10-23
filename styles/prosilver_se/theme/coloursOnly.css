@@ -14,7 +14,6 @@ h3,
 .post:target h3 a,
 .postprofile .fa-comment-o,
 .inputbox,
-.message-box textarea,
 .tab.activetab > a,
 .tab > a:focus,
 div.content,
@@ -32,7 +31,7 @@ a.username {
 	color: #eee;
 }
 
-/* kolory placeholderów */
+/* placeholder colors */
 
 *::-moz-placeholder {
 	color: #444;
@@ -68,9 +67,7 @@ a.username {
 	text-shadow: none;
 }
 
-/* nie wyklucza searcha z main menu */
-
-*:not(.search):focus::placeholder {
+*:focus::placeholder {
 	/* color: red !important; */
 	color: transparent;
 	text-shadow: none;
@@ -265,6 +262,8 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 	color: white;
 }
 
+/* Color palette icon */
+
 #color-palette i {
 	color: #800000;
 }
@@ -337,8 +336,6 @@ ul.topiclist li.row a.topictitle.subforum.read:hover {
 }
 
 #m-pagination .pagination a,
-.fa-search,
-.fa-remove,
 .brutalform .reset,
 #m-name .panel.bg3,
 li.row.bg1,
@@ -353,6 +350,8 @@ li.row.bg2 {
 a img.postimage:hover {
 	box-shadow: 0 0 5px 2px #32D635, inset 0 2px 9px rgba(50, 214, 53, .25);
 }
+
+/* Searched phrase */
 
 .posthilit {
 	box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
@@ -395,6 +394,8 @@ a img.postimage:hover {
 	transition: box-shadow 0.75s ease-out;
 }
 
+/* Shadows of button, button1 and button2 classes */
+
 .button,
 .button1 {
 	box-shadow: 0 -1px 1px -1px #ee0000 !important;
@@ -411,6 +412,8 @@ a img.postimage:hover {
 .button2:focus {
 	box-shadow: 0 -1px 1px -1px #257EDE !important;
 }
+
+/* Shadows of bg1, bg2 and bg3 classes of panel class */
 
 .panel.bg1,
 .panel.bg1:hover {
@@ -433,9 +436,6 @@ a img.postimage:hover {
 }
 
 blockquote,
-blockquote blockquote,
-blockquote.uncited,
-blockquote blockquote.uncited,
 .codebox {
 	box-shadow: 0 1px 1px -1px rgba(238, 0, 0, .6), inset 0 4px 9px rgba(100, 100, 100, .25);
 }

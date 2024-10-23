@@ -6,11 +6,6 @@ body {
 	margin: -11px auto auto auto;
 }
 
-[data-s9e-mediaembed="facebook"],
-[data-s9e-mediaembed="youtube"] {
-	/*max-width: 552px !important;*/
-}
-
 /* Cookie consent */
 
 .cc-window {
@@ -72,6 +67,7 @@ select#usernames {
 }
 
 /* Menu title ellipsis */
+
 #main-menu {
 	position: relative;
 }
@@ -1497,7 +1493,6 @@ table.table1 td.info a {
 
 /* Message textareas */
 
-.message-box textarea#message.inputbox,
 .message-box textarea,
 #notepad {
 	padding: 8px;
@@ -1886,10 +1881,10 @@ fieldset.fields1 div {
 	padding: 0 0 0 5px;
 }
 
+/* Quotes and nested quotes */
+
 blockquote,
-blockquote blockquote,
-blockquote.uncited,
-blockquote blockquote.uncited {
+blockquote blockquote {
 	padding-bottom: 10px;
 	margin: 15px 0 15px 7px;
 }
