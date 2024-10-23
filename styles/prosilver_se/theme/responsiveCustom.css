@@ -107,13 +107,13 @@
 
 	/* column-left column-right mobile change */
 
-	.settings-panel .flex-columns:not(.flex-columns-checkbox) .column-left {
+	.settings-panel .flex-columns:not(.with-checkbox):not(.with-radio) .column-left {
 		flex-basis: 100%;
 		align-items: flex-start;
 		text-align: left;
 	}
 
-	.settings-panel .flex-columns:not(.flex-columns-checkbox) .column-right {
+	.settings-panel .flex-columns:not(.with-checkbox):not(.with-radio) .column-right {
 		flex-basis: 100%;
 		align-items: center;
 		text-align: center;
