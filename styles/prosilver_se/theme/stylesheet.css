@@ -1537,11 +1537,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	align-self: flex-end;
 }
 
-.flex-columns-search-user {
+.search-user {
 	position: relative;
 }
 
-.flex-columns-search-user a {
+.search-user a {
 	align-self: flex-end;
 	position: absolute;
 	/* min-height: 2em; */

@@ -7,7 +7,7 @@
 	opacity: 0;
 }
 
-.fa-search-user,
+.search-user .fa-search,
 .post-buttons,
 .copyright {
 	opacity: 0.15;
@@ -107,7 +107,7 @@ li.row:hover .topic-reply-counter.unread,
 #m-logged-out:hover .main-menu-top,
 .lastpost:hover .fa-fast-forward,
 .flex-columns:hover .phantom-label,
-.fa-search-user:hover,
+.search-user .fa-search:hover,
 .search.post:hover .to-searched-post,
 .post-number:hover,
 #m-ksywa .main-menu-bottom a:hover .fa,
@@ -182,7 +182,7 @@ li.row:hover .topic-reply-counter.unread,
 #m-logged-out .main-menu-top,
 .lastpost .fa-fast-forward,
 .phantom-label,
-.fa-search-user,
+.search-user .fa-search,
 .pagination,
 .search.post:hover .to-searched-post,
 .post-number:hover,

@@ -69,12 +69,12 @@
 						<label>&nbsp;</label>
 					<!-- ENDIF -->
 				</div>
-				<div class="column-right flex-columns-search-user">
+				<div class="column-right search-user">
 					<!-- IF S_COND_SELECT -->
 						<!-- IF S_TEXT_CONDITION -->
 							<input type="text" name="rule_string" value="{CURRENT_STRING}" class="inputbox" maxlength="250" />
 						<!-- ELSEIF S_USER_CONDITION -->
-							<a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search fa-search-user"></div></a>
+							<a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search"></div></a>
 							<input type="text" name="rule_string" value="{CURRENT_STRING}" class="inputbox" placeholder="{L_USERNAME}" />
 						<!-- ELSEIF S_GROUP_CONDITION -->
 							<input type="hidden" name="rule_string" value="{CURRENT_STRING}" /><!-- IF S_GROUP_OPTIONS --><select name="rule_group_id">{S_GROUP_OPTIONS}</select><!-- ELSE -->{L_NO_GROUPS}<!-- ENDIF -->

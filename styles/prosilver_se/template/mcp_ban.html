@@ -47,8 +47,8 @@
 	<!-- EVENT mcp_ban_fields_before -->
 	<div class="flex-columns">
 		<div class="column-left phantom-label"><label for="ban">{L_BAN_CELL}</label></div>
-		<div class="column-right flex-columns-search-user">
-			<!-- IF S_USERNAME_BAN --><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search fa-search-user"></div></a><!-- ENDIF -->
+		<div class="column-right search-user">
+			<!-- IF S_USERNAME_BAN --><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search"></div></a><!-- ENDIF -->
 			<label for="ban"><textarea name="ban" id="ban" class="inputbox" cols="40" rows="3" placeholder="{L_BAN_CELL}">{BAN_QUANTIFIER}</textarea></label>
 		</div>
 	</div>
