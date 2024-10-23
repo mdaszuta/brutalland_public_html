@@ -989,8 +989,8 @@ body.simple {
 
 /* Hidden top action bar */
 
-.bar-top:not(.fbr) .fbr-left,
-.bar-top .search-box.fbr-right {
+.bar-top:not(.flex-columns) .flex-column-left,
+.bar-top .search-box.flex-column-right {
 	align-items: flex-end;
 	display: none;
 }
@@ -1353,11 +1353,11 @@ h2.review {
 
 h2,
 h3,
-.fbr-left-big dl,
+.flex-column-left-big dl,
 table.table1 tbody tr.bg3,
 .register-text,
-.fbr .inputbox:not(#message),
-.fbr .brutalform-explanation {
+.flex-columns .inputbox:not(#message),
+.flex-columns .brutalform-explanation {
 	text-align: center;
 }
 
@@ -1432,7 +1432,7 @@ table.table1 td.info a {
 	width: 83%;
 }
 
-.fbr-big div.fbr-left {
+.flex-columns-big div.flex-column-left {
 	align-items: center;
 }
 
@@ -1522,26 +1522,26 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	line-height: 2em;
 }
 
-/* fbr */
+/* flex-columns */
 
-.fbr-input-select,
-.fbr-input-button {
+.flex-columns-input-select,
+.flex-columns-input-button {
 	position: absolute;
 }
 
-.fbr-input-select {
+.flex-columns-input-select {
 	align-self: flex-start;
 }
 
-.fbr-input-button {
+.flex-columns-input-button {
 	align-self: flex-end;
 }
 
-.fbr-search-user {
+.flex-columns-search-user {
 	position: relative;
 }
 
-.fbr-search-user a {
+.flex-columns-search-user a {
 	align-self: flex-end;
 	position: absolute;
 	/* min-height: 2em; */
@@ -1550,20 +1550,20 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	top: 1em;
 }
 
-.fbr .inputbox,
-.fbr .brutalform-explanation {
+.flex-columns .inputbox,
+.flex-columns .brutalform-explanation {
 	width: 100%;
 }
 
-.fbr,
-.fbr-big {
+.flex-columns,
+.flex-columns-big {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-.fbr-left,
-.fbr-left-big {
+.flex-column-left,
+.flex-column-left-big {
 	order: 1;
 	display: flex;
 	flex-basis: 30%;
@@ -1574,12 +1574,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding: 10px 20px 10px 20px;
 }
 
-.fbr-left-big {
+.flex-column-left-big {
 	align-items: initial;
-}
-
-#postingbox-top-fbr .fbr-left {
-	justify-content: initial;
 }
 
 #agreement.brutalform input {
@@ -1634,12 +1630,12 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	width: 100%;
 }
 
-#brutalform-lang-timezone .fbr-left {
+#brutalform-lang-timezone .flex-column-left {
 	padding-top: 0;
 	padding-bottom: 0;
 }
 
-#brutalform-lang-timezone .fbr-left .brutalform-box {
+#brutalform-lang-timezone .flex-column-left .brutalform-box {
 	align-items: flex-end;
 }
 
@@ -1659,8 +1655,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	z-index: -3;
 }
 
-.fbr-right,
-.fbr-right-big {
+.flex-column-right,
+.flex-column-right-big {
 	order: 2;
 	display: flex;
 	flex-direction: column;
@@ -1669,11 +1665,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding: 10px 20px 10px 20px;
 }
 
-.fbr-settings-panel .flex-box {
+.settings-panel .flex-box {
 	align-items: normal;
 }
 
-.fbr-right .error {
+.flex-column-right .error {
 	text-align: left;
 }
 
@@ -1683,11 +1679,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding-bottom: 1.4em;
 }
 
-#login .fbr-right,
-#reset_password .fbr-right,
-#resend .fbr-right,
-#quick-login-panel .fbr-right,
-#fbr-register-email {
+#login .flex-column-right,
+#reset_password .flex-column-right,
+#resend .flex-column-right,
+#quick-login-panel .flex-column-right,
+#flex-columns-register-email {
 	flex-direction: column-reverse;
 }
 
@@ -1730,11 +1726,11 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	top: 1.5em;
 }
 
-.submit-buttons .fbr-left {
+.submit-buttons .flex-column-left {
 	justify-content: flex-start;
 }
 
-.action-bar .fbr-left {
+.action-bar .flex-column-left {
 	flex-basis: 47%;
 }
 
@@ -1893,30 +1889,30 @@ cite div.responsive-hide {
 	margin-right: 5px;
 }
 
-#login .fbr-left,
-#register .fbr-left,
-#reset_password .fbr-left,
-#resend .fbr-left {
+#login .flex-column-left,
+#register .flex-column-left,
+#reset_password .flex-column-left,
+#resend .flex-column-left {
 	align-items: initial;
 }
 
-.fbr-settings-panel .fbr-left,
-.fbr-settings-panel .fbr-right {
+.settings-panel .flex-column-left,
+.settings-panel .flex-column-right {
 	padding: 2px 5px 2px 5px;
 }
 
-.fbr-settings-panel .fbr-left,
-.fbr-settings-panel .fbr-left-big {
+.settings-panel .flex-column-left,
+.settings-panel .flex-column-left-big {
 	flex-basis: 30%;
 	justify-content: center;
 }
 
-.fbr-settings-panel .fbr-right,
-.fbr-settings-panel .fbr-right-big {
+.settings-panel .flex-column-right,
+.settings-panel .flex-column-right-big {
 	flex-basis: 60%;
 }
 
-.fbr-settings-panel .fbr-left input[type="checkbox" i] {
+.settings-panel .flex-column-left input[type="checkbox" i] {
 	margin: 0;
 }
 
@@ -1939,7 +1935,7 @@ div.content,
 .content,
 .signature,
 .message-box textarea,
-.fbr,
+.flex-columns,
 .panel p,
 .agreement,
 .agreement-text {
@@ -1966,7 +1962,7 @@ dl.details dd {
 	overflow: unset;
 }
 
-.fbr dt label {
+.flex-columns dt label {
 	text-align: right;
 }
 

@@ -1,4 +1,4 @@
-<div class="panel bg3 fbr-settings-panel" id="poll-panel">
+<div class="panel bg3 settings-panel" id="poll-panel">
 	<div class="inner">
 
 	<!-- IF S_SHOW_POLL_BOX -->
@@ -8,41 +8,41 @@
 	<fieldset class="fields2">
 	<!-- IF S_POLL_DELETE -->
 		<label for="poll_delete">
-			<div class="fbr fbr-checkbox">
-				<div class="fbr-left"><input type="checkbox" name="poll_delete" id="poll_delete"<!-- IF S_POLL_DELETE_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
-				<div class="fbr-right">{L_POLL_DELETE}</div>
+			<div class="flex-columns flex-columns-checkbox">
+				<div class="flex-column-left"><input type="checkbox" name="poll_delete" id="poll_delete"<!-- IF S_POLL_DELETE_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
+				<div class="flex-column-right">{L_POLL_DELETE}</div>
 			</div>
 		</label>
 	<!-- ENDIF -->
 
 	<!-- IF S_SHOW_POLL_BOX -->
-		<div class="fbr">
-			<div class="fbr-left phantom-label"><label for="poll_title">{{ lang('POLL_QUESTION') }}</label></div>
-			<div class="fbr-right"><input type="text" name="poll_title" id="poll_title" maxlength="100" value="{{ POLL_TITLE }}" class="inputbox" placeholder="{L_POLL_QUESTION}" /></div>
+		<div class="flex-columns">
+			<div class="flex-column-left phantom-label"><label for="poll_title">{{ lang('POLL_QUESTION') }}</label></div>
+			<div class="flex-column-right"><input type="text" name="poll_title" id="poll_title" maxlength="100" value="{{ POLL_TITLE }}" class="inputbox" placeholder="{L_POLL_QUESTION}" /></div>
 		</div>
-		<div class="fbr">
-			<div class="fbr-left phantom-label"><label for="poll_option_text">{L_POLL_OPTIONS}</label><br /><span>{L_POLL_OPTIONS_EXPLAIN}</span></div>
-			<div class="fbr-right"><textarea name="poll_option_text" id="poll_option_text" rows="5" cols="35" class="inputbox" placeholder="{L_POLL_OPTIONS}">{POLL_OPTIONS}</textarea></div>
+		<div class="flex-columns">
+			<div class="flex-column-left phantom-label"><label for="poll_option_text">{L_POLL_OPTIONS}</label><br /><span>{L_POLL_OPTIONS_EXPLAIN}</span></div>
+			<div class="flex-column-right"><textarea name="poll_option_text" id="poll_option_text" rows="5" cols="35" class="inputbox" placeholder="{L_POLL_OPTIONS}">{POLL_OPTIONS}</textarea></div>
 		</div>
 
 		<hr class="dashed" />
 
-		<div class="fbr">
-			<div class="fbr-left"><label for="poll_max_options">{L_POLL_MAX_OPTIONS}</label></div>
-			<div class="fbr-right"><label for="poll_max_options"><input type="number" min="0" max="999" name="poll_max_options" id="poll_max_options" value="{POLL_MAX_OPTIONS}" class="inputbox autowidth" /> </label></div>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label for="poll_max_options">{L_POLL_MAX_OPTIONS}</label></div>
+			<div class="flex-column-right"><label for="poll_max_options"><input type="number" min="0" max="999" name="poll_max_options" id="poll_max_options" value="{POLL_MAX_OPTIONS}" class="inputbox autowidth" /> </label></div>
 		</div>
-		<div class="fbr">
-			<div class="fbr-left"><label for="poll_length">{L_POLL_FOR}</label><span class="phantom-label">{L_POLL_FOR_EXPLAIN}</span></div>
-			<div class="fbr-right"><label for="poll_length"><input type="number" min="0" max="999" name="poll_length" id="poll_length" value="{POLL_LENGTH}" class="inputbox autowidth" /> {L_DAYS}</label></div>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label for="poll_length">{L_POLL_FOR}</label><span class="phantom-label">{L_POLL_FOR_EXPLAIN}</span></div>
+			<div class="flex-column-right"><label for="poll_length"><input type="number" min="0" max="999" name="poll_length" id="poll_length" value="{POLL_LENGTH}" class="inputbox autowidth" /> {L_DAYS}</label></div>
 		</div>
 
 		<!-- IF S_POLL_VOTE_CHANGE -->
 			<hr class="dashed" />
 
 			<label for="poll_vote_change">
-				<div class="fbr fbr-checkbox">
-					<div class="fbr-left"><input type="checkbox" id="poll_vote_change" name="poll_vote_change"{VOTE_CHANGE_CHECKED} /></div>
-					<div class="fbr-right">{L_POLL_VOTE_CHANGE}</div>
+				<div class="flex-columns flex-columns-checkbox">
+					<div class="flex-column-left"><input type="checkbox" id="poll_vote_change" name="poll_vote_change"{VOTE_CHANGE_CHECKED} /></div>
+					<div class="flex-column-right">{L_POLL_VOTE_CHANGE}</div>
 				</div>
 			</label>
 		<!-- ENDIF -->

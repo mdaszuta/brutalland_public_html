@@ -5,28 +5,28 @@
 
 	<!-- IF ADDITIONAL_MSG --><p class="info-paragraph">{ADDITIONAL_MSG}</p><!-- ENDIF -->
 
-	<div class="fbr-settings-panel">
+	<div class="settings-panel">
 		<label>
-			<div class="fbr">
-				<div class="fbr-left">{L_SELECT_DESTINATION_FORUM}</div>
-				<div class="fbr-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
+			<div class="flex-columns">
+				<div class="flex-column-left">{L_SELECT_DESTINATION_FORUM}</div>
+				<div class="flex-column-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
 			</div>
 		</label>
 
 		<!-- IF S_CAN_LEAVE_SHADOW -->
 			<label for="move_leave_shadow">
-				<div class="fbr fbr-checkbox">
-					<div class="fbr-left"><input type="checkbox" name="move_leave_shadow" id="move_leave_shadow" /></div>
-					<div class="fbr-right">{L_LEAVE_SHADOW}</div>
+				<div class="flex-columns flex-columns-checkbox">
+					<div class="flex-column-left"><input type="checkbox" name="move_leave_shadow" id="move_leave_shadow" /></div>
+					<div class="flex-column-right">{L_LEAVE_SHADOW}</div>
 				</div>
 			</label>
 		<!-- ENDIF -->
 
 		<!-- IF S_CAN_LOCK_TOPIC -->
 			<label for="move_lock_topics">
-				<div class="fbr fbr-checkbox">
-					<div class="fbr-left"><input type="checkbox" name="move_lock_topics" id="move_lock_topics" /></div>
-					<div class="fbr-right">{L_LOCK_TOPIC}</div>
+				<div class="flex-columns flex-columns-checkbox">
+					<div class="flex-column-left"><input type="checkbox" name="move_lock_topics" id="move_lock_topics" /></div>
+					<div class="flex-column-right">{L_LOCK_TOPIC}</div>
 				</div>
 			</label>
 		<!-- ENDIF -->
@@ -47,7 +47,7 @@
 
 <form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
 
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<div class="content">
@@ -56,26 +56,26 @@
 
 		<fieldset>
 		{% EVENT mcp_move_destination_forum_before %}
-		<div class="fields2 fbr">
-			<div class="fbr-left"><label>{L_SELECT_DESTINATION_FORUM}</label></div>
-			<div class="fbr-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
+		<div class="fields2 flex-columns">
+			<div class="flex-column-left"><label>{L_SELECT_DESTINATION_FORUM}</label></div>
+			<div class="flex-column-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
 		</div>
 
 		<!-- IF S_CAN_LEAVE_SHADOW or S_CAN_LOCK_TOPIC --><hr class="dashed" /><!-- ENDIF -->
 
 		<!-- IF S_CAN_LEAVE_SHADOW -->
 		<label for="move_leave_shadow">
-			<div class="fields2 fbr fbr-checkbox">
-				<div class="fbr-left"><input type="checkbox" name="move_leave_shadow" id="move_leave_shadow" /></div>
-				<div class="fbr-right">{L_LEAVE_SHADOW}</div>
+			<div class="fields2 flex-columns flex-columns-checkbox">
+				<div class="flex-column-left"><input type="checkbox" name="move_leave_shadow" id="move_leave_shadow" /></div>
+				<div class="flex-column-right">{L_LEAVE_SHADOW}</div>
 			</div>
 		</label>
 		<!-- ENDIF -->
 		<!-- IF S_CAN_LOCK_TOPIC -->
 		<label for="move_lock_topics">
-			<div class="fields2 fbr fbr-checkbox">
-				<div class="fbr-left"><input type="checkbox" name="move_lock_topics" id="move_lock_topics" /></div>
-				<div class="fbr-right">{L_LOCK_TOPIC}</div>
+			<div class="fields2 flex-columns flex-columns-checkbox">
+				<div class="flex-column-left"><input type="checkbox" name="move_lock_topics" id="move_lock_topics" /></div>
+				<div class="flex-column-right">{L_LOCK_TOPIC}</div>
 			</div>
 		</label>
 		<!-- ENDIF -->

@@ -103,11 +103,11 @@ p.author,
 #pmheader-postingbox span,
 .tab > a,
 dl.faq dt,
-.fbr-left-big dd,
+.flex-column-left-big dd,
 dl.details dd,
 dd label,
-.fbr-right label,
-label.fbr-right {
+.flex-column-right label,
+label.flex-column-right {
 	color: #666;
 }
 
@@ -186,7 +186,7 @@ a.forumtitle:hover,
 dl.mini h3,
 .online .fa-circle,
 fieldset dl:hover dt label,
-.fbr:hover > .fbr-left label {
+.flex-columns:hover > .flex-column-left label {
 	color: #32D635 !important;
 }
 

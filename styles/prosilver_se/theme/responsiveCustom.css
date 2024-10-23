@@ -80,54 +80,54 @@
 		flex-basis: 100%;
 	}
 
-	.submit-buttons .fbr,
-	#postingbox .fbr,
-	.fbr-big {
+	.submit-buttons .flex-columns,
+	#postingbox .flex-columns,
+	.flex-columns-big {
 		flex-direction: column;
 	}
 
-	.fbr {
+	.flex-columns {
 		margin-bottom: 25px;
 	}
 
-	#postingbox .fbr-left,
-	#postingbox .fbr-right,
-	#register .fbr-left,
-	#register .fbr-right,
-	#reset_password .fbr-left,
-	#reset_password .fbr-right,
-	#resend .fbr-left,
-	#resend .fbr-right,
-	#login .fbr-left,
-	#login .fbr-right {
+	#postingbox .flex-column-left,
+	#postingbox .flex-column-right,
+	#register .flex-column-left,
+	#register .flex-column-right,
+	#reset_password .flex-column-left,
+	#reset_password .flex-column-right,
+	#resend .flex-column-left,
+	#resend .flex-column-right,
+	#login .flex-column-left,
+	#login .flex-column-right {
 		flex-basis: 100%;
 		align-items: center;
 		text-align: center;
 	}
 
-	/* fbr-left fbr-right mobile change */
+	/* flex-column-left flex-column-right mobile change */
 
-	.fbr-settings-panel .fbr:not(.fbr-checkbox) .fbr-left {
+	.settings-panel .flex-columns:not(.flex-columns-checkbox) .flex-column-left {
 		flex-basis: 100%;
 		align-items: flex-start;
 		text-align: left;
 	}
 
-	.fbr-settings-panel .fbr:not(.fbr-checkbox) .fbr-right {
+	.settings-panel .flex-columns:not(.flex-columns-checkbox) .flex-column-right {
 		flex-basis: 100%;
 		align-items: center;
 		text-align: center;
 	}
 
-	/* fbr-left fbr-right mobile change */
+	/* flex-column-left flex-column-right mobile change */
 
-	.fbr-right,
-	.fbr-right-big {
+	.flex-column-right,
+	.flex-column-right-big {
 		justify-content: space-around;
 		flex-wrap: wrap;
 	}
 
-	.fbr select {
+	.flex-columns select {
 		max-width:90vw;
 	}
 
@@ -242,8 +242,8 @@
 		width: auto;
 	}
 
-	.action-bar .fbr-left,
-	.action-bar .fbr-right {
+	.action-bar .flex-column-left,
+	.action-bar .flex-column-right {
 		flex-basis: 100%;
 	}
 

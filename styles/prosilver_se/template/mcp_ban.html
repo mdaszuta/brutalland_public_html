@@ -37,7 +37,7 @@
 <form id="mcp_ban" method="post" action="{U_ACTION}">
 
 
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<h2>{L_TITLE}</h2>
@@ -45,16 +45,16 @@
 
 	<fieldset>
 	<!-- EVENT mcp_ban_fields_before -->
-	<div class="fbr">
-		<div class="fbr-left phantom-label"><label for="ban">{L_BAN_CELL}</label></div>
-		<div class="fbr-right fbr-search-user">
+	<div class="flex-columns">
+		<div class="flex-column-left phantom-label"><label for="ban">{L_BAN_CELL}</label></div>
+		<div class="flex-column-right flex-columns-search-user">
 			<!-- IF S_USERNAME_BAN --><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search fa-search-user"></div></a><!-- ENDIF -->
 			<label for="ban"><textarea name="ban" id="ban" class="inputbox" cols="40" rows="3" placeholder="{L_BAN_CELL}">{BAN_QUANTIFIER}</textarea></label>
 		</div>
 	</div>
-	<div class="fbr">
-		<div class="fbr-left"><label for="banlength">{L_BAN_LENGTH}</label></div>
-		<div class="fbr-right">
+	<div class="flex-columns">
+		<div class="flex-column-left"><label for="banlength">{L_BAN_LENGTH}</label></div>
+		<div class="flex-column-right">
 			<label for="banlength">
 				<select name="banlength" id="banlength" onchange="if(this.value==-1){document.getElementById('banlengthother').style.display = 'block';}else{document.getElementById('banlengthother').style.display='none';}">{S_BAN_END_OPTIONS}</select>
 			</label>
@@ -63,20 +63,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="fbr">
-		<div class="fbr-left phantom-label"><label for="banreason">{L_BAN_REASON}</label></div>
-		<div class="fbr-right"><input name="banreason" id="banreason" type="text" class="inputbox" maxlength="255" placeholder="{L_BAN_REASON}" /></div>
+	<div class="flex-columns">
+		<div class="flex-column-left phantom-label"><label for="banreason">{L_BAN_REASON}</label></div>
+		<div class="flex-column-right"><input name="banreason" id="banreason" type="text" class="inputbox" maxlength="255" placeholder="{L_BAN_REASON}" /></div>
 	</div>
-	<div class="fbr">
-		<div class="fbr-left phantom-label"><label for="bangivereason">{L_BAN_GIVE_REASON}</label></div>
-		<div class="fbr-right"><input name="bangivereason" id="bangivereason" type="text" class="inputbox" maxlength="255" placeholder="{L_BAN_GIVE_REASON}" /></div>
+	<div class="flex-columns">
+		<div class="flex-column-left phantom-label"><label for="bangivereason">{L_BAN_GIVE_REASON}</label></div>
+		<div class="flex-column-right"><input name="bangivereason" id="bangivereason" type="text" class="inputbox" maxlength="255" placeholder="{L_BAN_GIVE_REASON}" /></div>
 	</div>
 
 	<hr />
 
-	<div class="fbr">
-		<div class="fbr-left"><label for="banexclude0">{L_BAN_EXCLUDE}</label><span class="phantom-label">{L_BAN_EXCLUDE_EXPLAIN}</span></div>
-		<div class="fbr-right flex-direction-row">
+	<div class="flex-columns">
+		<div class="flex-column-left"><label for="banexclude0">{L_BAN_EXCLUDE}</label><span class="phantom-label">{L_BAN_EXCLUDE_EXPLAIN}</span></div>
+		<div class="flex-column-right flex-direction-row">
 			<label for="banexclude1"><input type="radio" name="banexclude" id="banexclude1" value="1" /> {L_YES}</label> 
 			<label for="banexclude0"><input type="radio" name="banexclude" id="banexclude0" value="0" checked="checked" /> {L_NO}</label>
 		</div>
@@ -96,7 +96,7 @@
 	</div>
 </fieldset>
 
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<h2>{L_UNBAN_TITLE}</h2>
@@ -105,21 +105,21 @@
 	<!-- IF S_BANNED_OPTIONS -->
 		<fieldset>
 		<!-- EVENT mcp_ban_unban_before -->
-		<div class="fbr">
-			<div class="fbr-left"><label for="unban">{L_BAN_CELL}</label></div>
-			<div class="fbr-right"><select name="unban[]" id="unban" multiple="multiple" size="5" onchange="if (this.selectedIndex != -1) {display_details(this.options[this.selectedIndex].value);}">{BANNED_OPTIONS}</select></div>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label for="unban">{L_BAN_CELL}</label></div>
+			<div class="flex-column-right"><select name="unban[]" id="unban" multiple="multiple" size="5" onchange="if (this.selectedIndex != -1) {display_details(this.options[this.selectedIndex].value);}">{BANNED_OPTIONS}</select></div>
 		</div>
-		<div class="fbr">
-			<div class="fbr-left"><label for="unbanlength">{L_BAN_LENGTH}</label></div>
-			<div class="fbr-right"><span id="unbanlength"></span></div>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label for="unbanlength">{L_BAN_LENGTH}</label></div>
+			<div class="flex-column-right"><span id="unbanlength"></span></div>
 		</div>
-		<div class="fbr">
-			<div class="fbr-left"><label for="unbanreason">{L_BAN_REASON}</label></div>
-			<div class="fbr-right"><span id="unbanreason"></span></div>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label for="unbanreason">{L_BAN_REASON}</label></div>
+			<div class="flex-column-right"><span id="unbanreason"></span></div>
 		</div>
-		<div class="fbr">
-			<div class="fbr-left"><label for="unbangivereason">{L_BAN_GIVE_REASON}</label></div>
-			<div class="fbr-right"><span id="unbangivereason"></span></div>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label for="unbangivereason">{L_BAN_GIVE_REASON}</label></div>
+			<div class="flex-column-right"><span id="unbangivereason"></span></div>
 		</div>
 		<!-- EVENT mcp_ban_unban_after -->
 		</fieldset>

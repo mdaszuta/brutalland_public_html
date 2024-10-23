@@ -27,21 +27,21 @@
 
 <form id="mcp" method="post" action="{S_MCP_ACTION}">
 
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<fieldset id="display-panel" class="fields2" role="tabpanel">
-	<div class="fbr">
-		<div class="fbr-left"><label for="posts_per_page">{L_POSTS_PER_PAGE}</label><span>{L_POSTS_PER_PAGE_EXPLAIN}</span></div>
-		<div class="fbr-right"><input class="inputbox autowidth" type="number" min="0" max="999999" name="posts_per_page" id="posts_per_page" value="{POSTS_PER_PAGE}" /></div>
+	<div class="flex-columns">
+		<div class="flex-column-left"><label for="posts_per_page">{L_POSTS_PER_PAGE}</label><span>{L_POSTS_PER_PAGE_EXPLAIN}</span></div>
+		<div class="flex-column-right"><input class="inputbox autowidth" type="number" min="0" max="999999" name="posts_per_page" id="posts_per_page" value="{POSTS_PER_PAGE}" /></div>
 	</div>
-	<div class="fbr">
-		<div class="fbr-left"><label>{L_DISPLAY_POSTS}</label></div>
-		<div class="fbr-right">{S_SELECT_SORT_DAYS}</div>
+	<div class="flex-columns">
+		<div class="flex-column-left"><label>{L_DISPLAY_POSTS}</label></div>
+		<div class="flex-column-right">{S_SELECT_SORT_DAYS}</div>
 	</div>
-	<div class="fbr">
-		<div class="fbr-left"><label>{L_SORT_BY}</label></div>
-		<div class="fbr-right flex-direction-row">
+	<div class="flex-columns">
+		<div class="flex-column-left"><label>{L_SORT_BY}</label></div>
+		<div class="flex-column-right flex-direction-row">
 			<label>{S_SELECT_SORT_KEY}</label>
 			<label>{S_SELECT_SORT_DIR}</label>
 			<input type="submit" name="sort" value="{L_GO}" class="button2" />
@@ -54,25 +54,25 @@
 		<p class="info-paragraph">{L_SPLIT_TOPIC_EXPLAIN}</p>
 
 	<!-- IF S_SHOW_TOPIC_ICONS -->
-		<div class="fbr">
-			<div class="fbr-left"><label for="icon">{L_TOPIC_ICON}{L_COLON}</label></div>
-			<div class="fbr-right"><label for="icon"> {L_NO_TOPIC_ICON}</label>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label for="icon">{L_TOPIC_ICON}{L_COLON}</label></div>
+			<div class="flex-column-right"><label for="icon"> {L_NO_TOPIC_ICON}</label>
 			<input type="radio" name="icon" id="icon" value="0" checked="checked" />
 			<!-- BEGIN topic_icon --><label for="icon-{topic_icon.ICON_ID}"><input type="radio" name="icon" id="icon-{topic_icon.ICON_ID}" value="{topic_icon.ICON_ID}" {topic_icon.S_ICON_CHECKED} /><img src="{topic_icon.ICON_IMG}" width="{topic_icon.ICON_WIDTH}" height="{topic_icon.ICON_HEIGHT}" alt="" title="" /></label> <!-- END topic_icon --></div>
 		</div>
 	<!-- ENDIF -->
 
 	<!-- EVENT mcp_topic_options_before -->
-	<div class="fbr">
-		<div class="fbr-left phantom-label"><label for="subject">{L_SPLIT_SUBJECT}</label></div>
-		<div class="fbr-right">
+	<div class="flex-columns">
+		<div class="flex-column-left phantom-label"><label for="subject">{L_SPLIT_SUBJECT}</label></div>
+		<div class="flex-column-right">
 			<input type="text" name="subject" id="subject" size="45" maxlength="124" tabindex="2" value="{SPLIT_SUBJECT}" title="{L_SPLIT_SUBJECT}" class="inputbox" placeholder="{L_SPLIT_SUBJECT}" />
 		</div>
 	</div>
 	<!-- EVENT mcp_topic_options_after -->
-	<div class="fbr">
-		<div class="fbr-left"><label>{L_SPLIT_FORUM}</label></div>
-		<div class="fbr-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
+	<div class="flex-columns">
+		<div class="flex-column-left"><label>{L_SPLIT_FORUM}</label></div>
+		<div class="flex-column-right"><select name="to_forum_id">{S_FORUM_SELECT}</select></div>
 	</div>
 	</fieldset>
 <!-- ENDIF -->
@@ -80,9 +80,9 @@
 <!-- IF S_CAN_MERGE -->
 	<fieldset id="merge-panel" class="fields2" role="tabpanel">
 		<p class="info-paragraph">{L_MERGE_TOPIC_EXPLAIN}</p>
-	<div class="fbr">
-		<div class="fbr-left"><label for="to_topic_id">{L_MERGE_TOPIC_ID}</label></div>
-		<div class="fbr-right">
+	<div class="flex-columns">
+		<div class="flex-column-left"><label for="to_topic_id">{L_MERGE_TOPIC_ID}</label></div>
+		<div class="flex-column-right">
 			<input class="inputbox autowidth" type="number" min="0" max="9999999999" name="to_topic_id" id="to_topic_id" value="{TO_TOPIC_ID}" />
 			<a href="{U_SELECT_TOPIC}" class="button2">{L_SELECT_TOPIC}</a>
 			<!-- IF TO_TOPIC_INFO --><span class="text-align-c">{TO_TOPIC_INFO}</span><!-- ENDIF -->

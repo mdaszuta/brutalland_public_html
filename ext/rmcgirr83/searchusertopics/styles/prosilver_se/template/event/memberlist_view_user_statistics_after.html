@@ -1,7 +1,7 @@
 {% if TOPICS %}
-<div class="fbr">
-	<dt class="fbr-left"><label>{{ lang('SUT_TOTAL_TOPICS') }}{{ lang('COLON') }}</label></dt>
-	<dd class="fbr-right">{{ TOPICS }}
+<div class="flex-columns">
+	<dt class="flex-column-left"><label>{{ lang('SUT_TOTAL_TOPICS') }}{{ lang('COLON') }}</label></dt>
+	<dd class="flex-column-right">{{ TOPICS }}
 		{% if U_SEARCH_TOPICS %}<strong><a href="{{ U_SEARCH_TOPICS }}">{{ lang('SEARCH_USER_TOPICS') }}</a></strong>{% endif %}
 		{% if TOPICS_PERCENT %}{{ TOPICS_PERCENT }} / {{ TOPICS_PER_DAY }}{% endif %}
 	</dd>

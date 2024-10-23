@@ -4,11 +4,11 @@
 
 <h2>{L_MCP_WARN_POST}</h2>
 
-<div class="panel fbr-settings-panel">
-	<div class="inner fbr-big">
+<div class="panel settings-panel">
+	<div class="inner flex-columns-big">
 
 
-		<div class="fbr-left-big">
+		<div class="flex-column-left-big">
 			<dl>
 				<!-- IF AVATAR_IMG --><div>{AVATAR_IMG}</div><!-- ENDIF -->
 				<!-- IF USER_COLOR --><span style="color: #{USER_COLOR}">{USERNAME}</span><!-- ELSE -->{USERNAME}<!-- ENDIF -->
@@ -17,20 +17,20 @@
 			</dl>
 		</div>
 
-		<div class="fbr-right-big">
+		<div class="flex-column-right-big">
 			<dl class="details">
 
-				<div class="fbr">
-					<dt class="fbr-left"><label>{L_JOINED}{L_COLON}</label></dt>
-					<dd class="fbr-right">{JOINED}</dd>
+				<div class="flex-columns">
+					<dt class="flex-column-left"><label>{L_JOINED}{L_COLON}</label></dt>
+					<dd class="flex-column-right">{JOINED}</dd>
 				</div>
-				<div class="fbr">
-					<dt class="fbr-left"><label>{L_TOTAL_POSTS}{L_COLON}</label></dt>
-					<dd class="fbr-right">{POSTS}</dd>
+				<div class="flex-columns">
+					<dt class="flex-column-left"><label>{L_TOTAL_POSTS}{L_COLON}</label></dt>
+					<dd class="flex-column-right">{POSTS}</dd>
 				</div>
-				<div class="fbr">
-					<dt class="fbr-left"><label>{L_WARNINGS}{L_COLON}</label></dt>
-					<dd class="fbr-right">{WARNINGS}</dd>
+				<div class="flex-columns">
+					<dt class="flex-column-left"><label>{L_WARNINGS}{L_COLON}</label></dt>
+					<dd class="flex-column-right">{WARNINGS}</dd>
 				</div>
 			</dl>
 		</div>
@@ -56,23 +56,23 @@
 
 <!-- EVENT mcp_warn_post_add_warning_field_before -->
 
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<p class="info-paragraph">{L_ADD_WARNING_EXPLAIN}</p>
 
 	<fieldset>
-		<div class="fbr">
-			<div class="fbr-left phantom-label"><label>{L_ADD_WARNING}</label></div>
-			<div class="fbr-right">
+		<div class="flex-columns">
+			<div class="flex-column-left phantom-label"><label>{L_ADD_WARNING}</label></div>
+			<div class="flex-column-right">
 				<textarea name="warning" id="warning" class="inputbox" cols="40" rows="3" placeholder="{L_ADD_WARNING}">{L_WARNING_POST_DEFAULT}</textarea>
 			</div>
 		</div>
 		<!-- IF S_CAN_NOTIFY -->
 		<label for="notify_user">
-			<div class="fbr fbr-checkbox">
-				<div class="fbr-left"><input type="checkbox" name="notify_user" id="notify_user" checked="checked" /></div>
-				<div class="fbr-right">{L_NOTIFY_USER_WARN}</label>
+			<div class="flex-columns flex-columns-checkbox">
+				<div class="flex-column-left"><input type="checkbox" name="notify_user" id="notify_user" checked="checked" /></div>
+				<div class="flex-column-right">{L_NOTIFY_USER_WARN}</label>
 			</div>
 		</div>
 		<!-- ENDIF -->

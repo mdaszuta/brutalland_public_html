@@ -1,7 +1,7 @@
 <!-- INCLUDE ucp_header.html -->
 
 
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<p class="info-paragraph">{L_UCP_WELCOME}</p>
@@ -65,17 +65,17 @@
 <!-- EVENT ucp_main_front_user_activity_before -->
 	<dl class="details">
 		<!-- EVENT ucp_main_front_user_activity_prepend -->
-		<div class="fbr">
-			<dt class="fbr-left"><label>{L_JOINED}{L_COLON}</label></dt>
-			<dd class="fbr-right">{JOINED}</dd>
+		<div class="flex-columns">
+			<dt class="flex-column-left"><label>{L_JOINED}{L_COLON}</label></dt>
+			<dd class="flex-column-right">{JOINED}</dd>
 		</div>
-		<div class="fbr">
-			<dt class="fbr-left"><label>{L_LAST_ACTIVE}{L_COLON}</label></dt>
-			<dd class="fbr-right">{LAST_VISIT_YOU}</dd>
+		<div class="flex-columns">
+			<dt class="flex-column-left"><label>{L_LAST_ACTIVE}{L_COLON}</label></dt>
+			<dd class="flex-column-right">{LAST_VISIT_YOU}</dd>
 		</div>
-		<div class="fbr">
-			<dt class="fbr-left"><label>{L_TOTAL_POSTS}{L_COLON}</label></dt>
-			<dd class="fbr-right">
+		<div class="flex-columns">
+			<dt class="flex-column-left"><label>{L_TOTAL_POSTS}{L_COLON}</label></dt>
+			<dd class="flex-column-right">
 				<!-- IF POSTS_PCT -->
 					{POSTS}
 					<!-- IF S_DISPLAY_SEARCH --><strong><a href="{U_SEARCH_USER}">{L_SEARCH_YOUR_POSTS}</a></strong><!-- ENDIF -->
@@ -86,27 +86,27 @@
 			</dd>
 		</div>
 		<!-- IF ACTIVE_FORUM != '' -->
-		<div class="fbr">
-			<dt class="fbr-left"><label>{L_ACTIVE_IN_FORUM}{L_COLON}</label></dt>
-			<dd class="fbr-right">
+		<div class="flex-columns">
+			<dt class="flex-column-left"><label>{L_ACTIVE_IN_FORUM}{L_COLON}</label></dt>
+			<dd class="flex-column-right">
 				<strong><a href="{U_ACTIVE_FORUM}">{ACTIVE_FORUM}</a></strong>
 				{ACTIVE_FORUM_POSTS} / {ACTIVE_FORUM_PCT}
 			</dd>
 		</div>
 		<!-- ENDIF -->
 		<!-- IF ACTIVE_TOPIC != '' -->
-		<div class="fbr">
-			<dt class="fbr-left"><label>{L_ACTIVE_IN_TOPIC}{L_COLON}</label></dt>
-			<dd class="fbr-right">
+		<div class="flex-columns">
+			<dt class="flex-column-left"><label>{L_ACTIVE_IN_TOPIC}{L_COLON}</label></dt>
+			<dd class="flex-column-right">
 				<strong><a href="{U_ACTIVE_TOPIC}">{ACTIVE_TOPIC}</a></strong>
 				{ACTIVE_TOPIC_POSTS} / {ACTIVE_TOPIC_PCT}
 			</dd>
 		</div>
 		<!-- ENDIF -->
 		<!-- IF WARNINGS -->
-		<div class="fbr">
-			<dt class="fbr-left"><label>{L_YOUR_WARNINGS}{L_COLON}</label></dt>
-			<dd class="fbr-right error"><i class="icon fa-exclamation-triangle fa-fw icon-red" aria-hidden="true"></i> [{WARNINGS}]</dd>
+		<div class="flex-columns">
+			<dt class="flex-column-left"><label>{L_YOUR_WARNINGS}{L_COLON}</label></dt>
+			<dd class="flex-column-right error"><i class="icon fa-exclamation-triangle fa-fw icon-red" aria-hidden="true"></i> [{WARNINGS}]</dd>
 		</div>
 		<!-- ENDIF -->
 		<!-- EVENT ucp_main_front_user_activity_append -->

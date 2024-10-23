@@ -28,8 +28,8 @@
 
 	<!-- EVENT posting_editor_subject_before -->
 
-	<div class="fbr" id="postingbox-top-fbr">
-		<div class="fbr-left">
+	<div class="flex-columns">
+		<div class="flex-column-left">
 		<!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
 			<div class="brutalform-box">
 				<!-- EVENT posting_editor_subject_prepend -->
@@ -44,7 +44,7 @@
 		<!-- ENDIF -->
 
 		</div>
-		<div class="fbr-right">
+		<div class="flex-column-right">
 		<!-- EVENT posting_editor_subject_after -->
 
 		<!-- IF SCRIPT_NAME == 'ucp' -->
@@ -62,10 +62,10 @@
 	</div>
 
 	<!-- IF S_NEW_MESSAGE && (SCRIPT_NAME != 'ucp')-->
-	<div class="fbr">
-		<div class="fbr-left">
+	<div class="flex-columns">
+		<div class="flex-column-left">
 		</div>
-		<div class="fbr-right">
+		<div class="flex-column-right">
 			<div id="info-box" class="rozwijany-box menu-toggle">
 
 				<div id="info-box-devil" class="rozwijany-box-devil menu-devil">
@@ -105,13 +105,13 @@
 	<div class="panel">
 		<div class="inner">
 		<fieldset class="submit-buttons">
-			<div class="fbr">
-				<div class="fbr-left">
+			<div class="flex-columns">
+				<div class="flex-column-left">
 					<input type="submit" tabindex="5" name="post" value="{L_SUBMIT}" class="button submit default-submit-action" />
 					{S_HIDDEN_ADDRESS_FIELD}
 					{S_HIDDEN_FIELDS}
 				</div>
-				<div class="fbr-right">
+				<div class="flex-column-right">
 					<!-- EVENT posting_editor_submit_buttons -->
 					<div class="brutalform-box">
 						<input type="submit" tabindex="6" name="preview" value="{L_PREVIEW}" class="button1"<!-- IF not S_PRIVMSGS --> onclick="document.getElementById('postform').action += '#preview';"<!-- ENDIF --> />
@@ -153,92 +153,92 @@
 	<!-- ENDIF -->
 
 	<!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 -->
-	<div class="panel bg3 fbr-settings-panel" id="options-panel">
+	<div class="panel bg3 settings-panel" id="options-panel">
 		<div class="inner">
 
 		<fieldset class="fields1">
 			<!-- EVENT posting_editor_options_prepend -->
 			<!-- IF S_SIG_ALLOWED -->
 				<label for="attach_sig">
-					<div class="fbr fbr-checkbox">
-						<div class="fbr-left"><input type="checkbox" name="attach_sig" id="attach_sig"{S_SIGNATURE_CHECKED} /></div>
-						<div class="fbr-right">{L_ATTACH_SIG}</div>
+					<div class="flex-columns flex-columns-checkbox">
+						<div class="flex-column-left"><input type="checkbox" name="attach_sig" id="attach_sig"{S_SIGNATURE_CHECKED} /></div>
+						<div class="flex-column-right">{L_ATTACH_SIG}</div>
 					</div>
 				</label>
 			<!-- ENDIF -->
 			<!-- IF S_NOTIFY_ALLOWED -->
 				<label for="notify">
-					<div class="fbr fbr-checkbox">
-						<div class="fbr-left"><input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} /></div>
-						<div class="fbr-right">{L_NOTIFY_REPLY}</div>
+					<div class="flex-columns flex-columns-checkbox">
+						<div class="flex-column-left"><input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} /></div>
+						<div class="flex-column-right">{L_NOTIFY_REPLY}</div>
 					</div>
 				</label>
 			<!-- ENDIF -->
 			<!-- IF S_LOCK_TOPIC_ALLOWED -->
 				<label for="lock_topic">
-					<div class="fbr fbr-checkbox">
-						<div class="fbr-left"><input type="checkbox" name="lock_topic" id="lock_topic"{S_LOCK_TOPIC_CHECKED} /></div>
-						<div class="fbr-right">{L_LOCK_TOPIC}</div>
+					<div class="flex-columns flex-columns-checkbox">
+						<div class="flex-column-left"><input type="checkbox" name="lock_topic" id="lock_topic"{S_LOCK_TOPIC_CHECKED} /></div>
+						<div class="flex-column-right">{L_LOCK_TOPIC}</div>
 					</div>
 				</label>
 			<!-- ENDIF -->
 			<!-- IF S_LOCK_POST_ALLOWED -->
 				<label for="lock_post">
-					<div class="fbr fbr-checkbox">
-						<div class="fbr-left"><input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} /></div>
-						<div class="fbr-right">{L_LOCK_POST_EXPLAIN}</div>
+					<div class="flex-columns flex-columns-checkbox">
+						<div class="flex-column-left"><input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} /></div>
+						<div class="flex-column-right">{L_LOCK_POST_EXPLAIN}</div>
 					</div>
 				</label>
 			<!-- ENDIF -->
 
 			<!-- IF S_TYPE_TOGGLE -->
-			<div class="fbr">
-				<div class="fbr-left"><label for="topic_type-0"><!-- IF S_EDIT_POST -->{L_CHANGE_TOPIC_TO}<!-- ELSE -->{L_POST_TOPIC_AS}<!-- ENDIF -->{L_COLON}</label></div>
-				<div class="fbr-right"></div>
+			<div class="flex-columns">
+				<div class="flex-column-left"><label for="topic_type-0"><!-- IF S_EDIT_POST -->{L_CHANGE_TOPIC_TO}<!-- ELSE -->{L_POST_TOPIC_AS}<!-- ENDIF -->{L_COLON}</label></div>
+				<div class="flex-column-right"></div>
 			</div>
 
 			<!-- BEGIN topic_type -->
-			<div class="fbr fbr-checkbox">
-				<div class="fbr-left">
+			<div class="flex-columns flex-columns-checkbox">
+				<div class="flex-column-left">
 					<!-- IF topic_type.VALUE --><!-- ENDIF -->
 					<input type="radio" name="topic_type" id="topic_type-{topic_type.VALUE}" value="{topic_type.VALUE}"{topic_type.S_CHECKED} />
 				</div>
-				<div class="fbr-right"><label for="topic_type-{topic_type.VALUE}">{topic_type.L_TOPIC_TYPE}</label></div>
+				<div class="flex-column-right"><label for="topic_type-{topic_type.VALUE}">{topic_type.L_TOPIC_TYPE}</label></div>
 			</div>
 			<!-- END topic_type -->
 
 			<!-- ENDIF -->
 
 			<!-- IF S_TOPIC_TYPE_ANNOUNCE or S_TOPIC_TYPE_STICKY -->
-			<div class="fbr">
-				<div class="fbr-left"><label for="topic_time_limit">{L_STICK_TOPIC_FOR}</label><span class="phantom-label">{L_STICK_TOPIC_FOR_EXPLAIN}</span></div>
-				<div class="fbr-right"><label for="topic_time_limit"><input type="number" min="0" max="999" name="topic_time_limit" id="topic_time_limit" value="{TOPIC_TIME_LIMIT}" class="inputbox autowidth" /> {L_DAYS}</label></div>
+			<div class="flex-columns">
+				<div class="flex-column-left"><label for="topic_time_limit">{L_STICK_TOPIC_FOR}</label><span class="phantom-label">{L_STICK_TOPIC_FOR_EXPLAIN}</span></div>
+				<div class="flex-column-right"><label for="topic_time_limit"><input type="number" min="0" max="999" name="topic_time_limit" id="topic_time_limit" value="{TOPIC_TIME_LIMIT}" class="inputbox autowidth" /> {L_DAYS}</label></div>
 			</div>
 			<!-- ENDIF -->
 
 			{% if S_SOFTDELETE_ALLOWED || S_DELETE_ALLOWED %}
 				{% if S_SOFTDELETE_ALLOWED %}
 				<label for="delete">
-					<div class="fbr fbr-checkbox">
-						<div class="fbr-left"><input type="checkbox" name="delete" id="delete" {{ S_SOFTDELETE_CHECKED }}></div>
-						<div class="fbr-right">{{ lang('DELETE_POST_WARN') }}</div>
+					<div class="flex-columns flex-columns-checkbox">
+						<div class="flex-column-left"><input type="checkbox" name="delete" id="delete" {{ S_SOFTDELETE_CHECKED }}></div>
+						<div class="flex-column-right">{{ lang('DELETE_POST_WARN') }}</div>
 					</div>
 				</label>
 				{% endif %}
 				{% if S_DELETE_ALLOWED %}
 				<label for="delete_permanent">
-					<div class="fbr fbr-checkbox">
-						<div class="fbr-left"><input type="checkbox" name="delete_permanent" id="delete_permanent"></div>
-						<div class="fbr-right">{{ lang('DELETE_POST_PERMANENTLY') }}</div>
+					<div class="flex-columns flex-columns-checkbox">
+						<div class="flex-column-left"><input type="checkbox" name="delete_permanent" id="delete_permanent"></div>
+						<div class="flex-column-right">{{ lang('DELETE_POST_PERMANENTLY') }}</div>
 					</div>
 				</label>
 				{% endif %}
 			{% endif %}
 
 			<!-- IF S_EDIT_REASON -->
-			<div class="fbr">
-				<div class="fbr-left phantom-label"><label for="edit_reason">{L_EDIT_REASON}</label></div>
-				<div class="fbr-right"><input type="text" name="edit_reason" id="edit_reason" value="{EDIT_REASON}" class="inputbox" placeholder="{L_EDIT_REASON}"/></div>
+			<div class="flex-columns">
+				<div class="flex-column-left phantom-label"><label for="edit_reason">{L_EDIT_REASON}</label></div>
+				<div class="flex-column-right"><input type="text" name="edit_reason" id="edit_reason" value="{EDIT_REASON}" class="inputbox" placeholder="{L_EDIT_REASON}"/></div>
 			</div>
 			<!-- ENDIF -->
 		</fieldset>

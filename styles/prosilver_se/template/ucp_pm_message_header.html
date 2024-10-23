@@ -5,9 +5,9 @@
 	<div class="inner">
 	<!-- IF FOLDER_STATUS and FOLDER_MAX_MESSAGES neq 0 --><p class="info-paragraph">{FOLDER_STATUS}</p><!-- ENDIF -->
 
-	<div class="action-bar bar-top fbr">
+	<div class="action-bar bar-top flex-columns">
 	<!-- IF U_POST_REPLY_PM or U_POST_NEW_TOPIC or U_FORWARD_PM -->
-		<div class="fbr-left">
+		<div class="flex-column-left">
 		<!-- IF U_POST_REPLY_PM -->
 			<a title="{L_POST_REPLY_PM}" href="{U_POST_REPLY_PM}" class="button">
 				{L_BUTTON_PM_REPLY}
@@ -18,7 +18,7 @@
 			</a>
 		<!-- ENDIF -->
 		</div>
-		<div class="fbr-right">
+		<div class="flex-column-right">
 		<!-- IF U_FORWARD_PM -->
 			<a title="{L_POST_FORWARD_PM}" href="{U_FORWARD_PM}" class="button2">
 				{L_BUTTON_PM_FORWARD}

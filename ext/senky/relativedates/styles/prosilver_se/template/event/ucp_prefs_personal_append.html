@@ -1,14 +1,14 @@
-<div class="fbr">
-	<div class="fbr-left"><label for="relativedates0">{L_RELATIVE_DATES}</label></div>
-	<div class="fbr-right flex-direction-row">
+<div class="flex-columns">
+	<div class="flex-column-left"><label for="relativedates0">{L_RELATIVE_DATES}</label></div>
+	<div class="flex-column-right flex-direction-row">
 		<label for="relativedates1"><input type="radio" name="relativedates" id="relativedates1" value="1"<!-- IF S_RELATIVEDATES --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
 		<label for="relativedates0"><input type="radio" name="relativedates" id="relativedates0" value="0"<!-- IF not S_RELATIVEDATES --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 	</div>
 </div>
 
-<div class="fbr">
-	<div class="fbr-left"><label for="relativedates_number">{L_RELATIVE_DATES_MAX}</label><span>{{ lang('RELATIVE_DATES_MAX_DESC') }}</span></div>
-	<div class="fbr-right">
+<div class="flex-columns">
+	<div class="flex-column-left"><label for="relativedates_number">{L_RELATIVE_DATES_MAX}</label><span>{{ lang('RELATIVE_DATES_MAX_DESC') }}</span></div>
+	<div class="flex-column-right">
 		<label for="relativedates_number">
 			<input class="input narrow" type="number" name="relativedates_number" id="relativedates_number" value="{{ RELATIVEDATES_NUMBER }}" />
 			<select name="relativedates_multiplier">

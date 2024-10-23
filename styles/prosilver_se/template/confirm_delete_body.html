@@ -1,21 +1,21 @@
 <!-- IF S_AJAX_REQUEST -->
 	<form action="{S_CONFIRM_ACTION}" method="post">
-		<div class="panel fbr-settings-panel">
+		<div class="panel settings-panel">
 		<p class="info-paragraph">{MESSAGE_TEXT}</p>
 
 		<!-- IF not S_SHADOW_TOPICS -->
 		<!-- IF not S_SOFTDELETED and S_ALLOWED_DELETE and S_ALLOWED_SOFTDELETE -->
 			<label for="delete_permanent">
-				<div class="fbr fbr-checkbox">
-					<div class="fbr-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
-					<div class="fbr-right"><!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
+				<div class="flex-columns flex-columns-checkbox">
+					<div class="flex-column-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
+					<div class="flex-column-right"><!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
 				</div>
 			</label>
 		<!-- ENDIF -->
 
-		<div class="fbr">
-			<div class="fbr-left phantom-label"><label for="delete_reason">{L_DELETE_REASON}</label><span>{L_DELETE_REASON_EXPLAIN}</span></div>
-			<div class="fbr-right"><input type="text" name="delete_reason" value="" class="inputbox autowidth" maxlength="120" size="45" placeholder="{L_DELETE_REASON}" /></div>
+		<div class="flex-columns">
+			<div class="flex-column-left phantom-label"><label for="delete_reason">{L_DELETE_REASON}</label><span>{L_DELETE_REASON_EXPLAIN}</span></div>
+			<div class="flex-column-right"><input type="text" name="delete_reason" value="" class="inputbox autowidth" maxlength="120" size="45" placeholder="{L_DELETE_REASON}" /></div>
 		</div>
 		<!-- ENDIF -->
 
@@ -33,7 +33,7 @@
 <!-- INCLUDE overall_header.html -->
 
 <form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<h2 class="message-title">{MESSAGE_TITLE}</h2>
@@ -44,18 +44,18 @@
 	<fieldset class="fields1">
 		<!-- IF not S_SOFTDELETED and S_ALLOWED_DELETE and S_ALLOWED_SOFTDELETE -->
 			<label for="delete_permanent">
-				<div class="fbr fbr-checkbox">
-					<div class="fbr-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
-					<div class="fbr-right">{L_DELETE_PERMANENTLY} <!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
+				<div class="flex-columns flex-columns-checkbox">
+					<div class="flex-column-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
+					<div class="flex-column-right">{L_DELETE_PERMANENTLY} <!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
 				</div>
 			</label>
 		<!-- ENDIF -->
 
 		{% EVENT confirm_delete_body_delete_reason_before %}
 
-		<div class="fbr">
-			<div class="fbr-left phantom-label"><label for="delete_reason">{L_DELETE_REASON}</label><span>{L_DELETE_REASON_EXPLAIN}</span></div>
-			<div class="fbr-right"><input type="text" name="delete_reason" id="delete_reason" value="" class="inputbox autowidth" maxlength="120" size="45" placeholder="{L_DELETE_REASON}" /></div>
+		<div class="flex-columns">
+			<div class="flex-column-left phantom-label"><label for="delete_reason">{L_DELETE_REASON}</label><span>{L_DELETE_REASON_EXPLAIN}</span></div>
+			<div class="flex-column-right"><input type="text" name="delete_reason" id="delete_reason" value="" class="inputbox autowidth" maxlength="120" size="45" placeholder="{L_DELETE_REASON}" /></div>
 		</div>
 	</fieldset>
 	<!-- ENDIF -->

@@ -3,7 +3,7 @@
 <form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
 
 
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 
 	<p class="info-paragraph">{L_FRIENDS_EXPLAIN}</p>
@@ -11,12 +11,12 @@
 	<fieldset class="fields2">
 	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
 	<!-- EVENT ucp_friend_list_before -->
-	<div class="fbr">
-		<div class="fbr-left">
+	<div class="flex-columns">
+		<div class="flex-column-left">
 			<label <!-- IF S_USERNAME_OPTIONS -->for="usernames"<!-- ENDIF -->>{L_YOUR_FRIENDS}</label>
 			<!-- IF S_USERNAME_OPTIONS --><span>{L_YOUR_FRIENDS_EXPLAIN}</span><!-- ENDIF -->
 		</div>
-		<div class="fbr-right">
+		<div class="flex-column-right">
 			<!-- IF S_USERNAME_OPTIONS -->
 				<select name="usernames[]" id="usernames" multiple="multiple" size="5">{S_USERNAME_OPTIONS}</select>
 			<!-- ELSE -->
@@ -25,10 +25,10 @@
 		</div>
 	</div>
 	<!-- EVENT ucp_friend_list_after -->
-	<div class="fbr">
-		<div class="fbr-left phantom-label"><label for="add">{L_ADD_FRIENDS}</label>
+	<div class="flex-columns">
+		<div class="flex-column-left phantom-label"><label for="add">{L_ADD_FRIENDS}</label>
 		<span>{L_ADD_FRIENDS_EXPLAIN}</span></div>
-		<div class="fbr-right fbr-search-user">
+		<div class="flex-column-right flex-columns-search-user">
 			<a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;" title="{L_FIND_USERNAME}"><div class="fa fa-search fa-search-user"></div></a>
 			<textarea name="add" id="add" rows="3" cols="30" class="inputbox" placeholder="{L_ADD_FRIENDS}">{USERNAMES}</textarea>
 		</div>

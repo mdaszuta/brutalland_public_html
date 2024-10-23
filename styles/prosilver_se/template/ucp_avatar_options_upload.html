@@ -1,11 +1,11 @@
-<div class="fbr">
-	<div class="fbr-left"><label for="avatar_upload_file">{L_UPLOAD_AVATAR_FILE}</label></div>
-	<div class="fbr-right"><input type="hidden" name="MAX_FILE_SIZE" value="{AVATAR_UPLOAD_SIZE}" /><input type="file" name="avatar_upload_file" id="avatar_upload_file" class="inputbox" accept="{{ AVATAR_ALLOWED_EXTENSIONS }}" /></div>
+<div class="flex-columns">
+	<div class="flex-column-left"><label for="avatar_upload_file">{L_UPLOAD_AVATAR_FILE}</label></div>
+	<div class="flex-column-right"><input type="hidden" name="MAX_FILE_SIZE" value="{AVATAR_UPLOAD_SIZE}" /><input type="file" name="avatar_upload_file" id="avatar_upload_file" class="inputbox" accept="{{ AVATAR_ALLOWED_EXTENSIONS }}" /></div>
 </div>
 
 <!-- IF S_UPLOAD_AVATAR_URL -->
-	<div class="fbr">
-		<div class="fbr-left phantom-label"><label for="avatar_upload_url">{L_UPLOAD_AVATAR_URL}</label><span>{L_UPLOAD_AVATAR_URL_EXPLAIN}</span></div>
-		<div class="fbr-right"><input type="url" name="avatar_upload_url" id="avatar_upload_url" value="" class="inputbox" placeholder="{L_UPLOAD_AVATAR_URL}" /></div>
+	<div class="flex-columns">
+		<div class="flex-column-left phantom-label"><label for="avatar_upload_url">{L_UPLOAD_AVATAR_URL}</label><span>{L_UPLOAD_AVATAR_URL_EXPLAIN}</span></div>
+		<div class="flex-column-right"><input type="url" name="avatar_upload_url" id="avatar_upload_url" value="" class="inputbox" placeholder="{L_UPLOAD_AVATAR_URL}" /></div>
 	</div>
 <!-- ENDIF -->

@@ -57,7 +57,7 @@ table.table1 tbody tr.bg3,
 .brutalform .brutalform-go-to-register,
 .brutalform-button-a,
 .brutalform-box .brutalform-label,
-.fbr-left label,
+.flex-column-left label,
 .page-footer .navbar,
 .username {
 	font-weight: bold;
@@ -219,7 +219,7 @@ textarea,
 }
 
 dl.details,
-.fbr-left-big dl,
+.flex-column-left-big dl,
 .brutalform .reset,
 .navbar,
 ul.topiclist dt {

@@ -7,8 +7,8 @@
 
 		<fieldset <!-- IF not S_CONFIRM_CODE -->class="fields1"<!-- ELSE -->class="fields2"<!-- ENDIF -->>
 
-		<div class="fbr">
-			<div class="fbr-left">
+		<div class="flex-columns">
+			<div class="flex-column-left">
 				<div class="brutalform-box">
 					<input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" autocomplete="username" />
 					<span class="brutalform-label">{L_USERNAME}</span>
@@ -36,14 +36,14 @@
 				<!-- ENDIF -->
 			</div>
 
-			<div class="fbr-right">
+			<div class="flex-column-right">
 					<!-- IF LOGIN_ERROR --><div class="error">{LOGIN_ERROR}</div><!-- ENDIF -->
 			</div>
 			
 		</div>
 
-		<div class="fbr">
-			<div class="fbr-left">
+		<div class="flex-columns">
+			<div class="flex-column-left">
 				<div class="brutalform-autologin submit-buttons">
 					<!-- IF S_DISPLAY_FULL_LOGIN -->
 					<!-- IF S_AUTOLOGIN_ENABLED -->
@@ -55,17 +55,17 @@
 				</div>
 			</div>
 
-			<div class="fbr-right">
+			<div class="flex-column-right">
 				<div class="brutalform-box submit-buttons">
 					<a href="{U_REGISTER}" tabindex="5" class="brutalform-go-to-register button submit">{L_REGISTER}</a>
 				</div>
 			</div>
 		</div>
 
-		<div class="fbr">
-			<div class="fbr-left">
+		<div class="flex-columns">
+			<div class="flex-column-left">
 			</div>
-			<div class="fbr-right">
+			<div class="flex-column-right">
 				<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
 					<div class="brutalform-box">
 						<a href="{U_TERMS_USE}" tabindex="7" class="brutalform-button-a">{L_TERMS_USE}</a>

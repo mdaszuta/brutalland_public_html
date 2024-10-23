@@ -1,6 +1,6 @@
-	<div class="fbr">
-		<div class="fbr-left"><label for="elonw1">{{ lang('ELONW_CHOICE') }}</label></div>
-		<div class="fbr-right flex-direction-row">
+	<div class="flex-columns">
+		<div class="flex-column-left"><label for="elonw1">{{ lang('ELONW_CHOICE') }}</label></div>
+		<div class="flex-column-right flex-direction-row">
 			<label for="elonw1"><input type="radio" name="elonw" id="elonw1" value="1"{% if S_UCP_ELONW %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
 			<label for="elonw0"><input type="radio" name="elonw" id="elonw0" value="0"{% if not S_UCP_ELONW %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
 		</div>

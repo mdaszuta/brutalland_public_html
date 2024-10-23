@@ -1,4 +1,4 @@
-<div class="panel fbr-settings-panel">
+<div class="panel settings-panel">
 	<div class="inner">
 	<!-- IF not S_AVATARS_ENABLED -->
 		<p class="info-paragraph">{L_AVATAR_FEATURES_DISABLED}</p>
@@ -6,15 +6,15 @@
 
 	<fieldset>
 	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
-		<div class="fbr">
-			<div class="fbr-left"><label>{L_CURRENT_IMAGE}</label><br /><span>{L_AVATAR_EXPLAIN}</span></div>
-			<div class="fbr-right"><!-- IF AVATAR -->{AVATAR}<!-- ELSE --><div class="fa fa-user-circle-o"></div><!-- ENDIF --></div>
+		<div class="flex-columns">
+			<div class="flex-column-left"><label>{L_CURRENT_IMAGE}</label><br /><span>{L_AVATAR_EXPLAIN}</span></div>
+			<div class="flex-column-right"><!-- IF AVATAR -->{AVATAR}<!-- ELSE --><div class="fa fa-user-circle-o"></div><!-- ENDIF --></div>
 		</div>
 		<!-- IF AVATAR -->
 		<label for="avatar_delete">
-			<div class="fbr fbr-checkbox">
-				<div class="fbr-left"><input type="checkbox" name="avatar_delete" id="avatar_delete" /></div>
-				<div class="fbr-right">{L_DELETE_AVATAR}</div>
+			<div class="flex-columns flex-columns-checkbox">
+				<div class="flex-column-left"><input type="checkbox" name="avatar_delete" id="avatar_delete" /></div>
+				<div class="flex-column-right">{L_DELETE_AVATAR}</div>
 			</div>
 		</label>
 		<!-- ENDIF -->
@@ -23,9 +23,9 @@
 	<hr class="dashed" />
 
 	<fieldset style="display:none;">
-		<div class="fbr">
-			<div class="fbr-left"><label>{L_AVATAR_TYPE}</label></div>
-			<div class="fbr-right"><select name="avatar_driver" id="avatar_driver" data-togglable-settings="true">
+		<div class="flex-columns">
+			<div class="flex-column-left"><label>{L_AVATAR_TYPE}</label></div>
+			<div class="flex-column-right"><select name="avatar_driver" id="avatar_driver" data-togglable-settings="true">
 					<!-- BEGIN avatar_drivers -->
 					<option value="{avatar_drivers.DRIVER}"<!-- IF avatar_drivers.SELECTED --> selected="selected"<!-- ENDIF --> data-toggle-setting="#avatar_option_{avatar_drivers.DRIVER}">{avatar_drivers.L_TITLE}</option>
 					<!-- END avatar_drivers -->
