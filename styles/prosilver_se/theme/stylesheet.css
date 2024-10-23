@@ -1525,7 +1525,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 /* flex-columns */
 
 .flex-columns-input-select,
-.flex-columns-input-button {
+.input-button {
 	position: absolute;
 }
 
@@ -1533,7 +1533,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	align-self: flex-start;
 }
 
-.flex-columns-input-button {
+.input-button {
 	align-self: flex-end;
 }
 
