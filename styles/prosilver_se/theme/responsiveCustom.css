@@ -82,7 +82,7 @@
 
 	.submit-buttons .flex-columns,
 	#postingbox .flex-columns,
-	.flex-columns-big {
+	.flex-columns-container {
 		flex-direction: column;
 	}
 
@@ -122,7 +122,7 @@
 	/* column-left column-right mobile change */
 
 	.column-right,
-	.column-right-big {
+	.flex-columns-container-right {
 		justify-content: space-around;
 		flex-wrap: wrap;
 	}

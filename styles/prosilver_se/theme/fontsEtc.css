@@ -219,7 +219,7 @@ textarea,
 }
 
 dl.details,
-.column-left-big dl,
+.flex-columns-container-left dl,
 .brutalform .reset,
 .navbar,
 ul.topiclist dt {

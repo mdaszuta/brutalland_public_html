@@ -1353,7 +1353,7 @@ h2.review {
 
 h2,
 h3,
-.column-left-big dl,
+.flex-columns-container-left dl,
 table.table1 tbody tr.bg3,
 .register-text,
 .flex-columns .inputbox:not(#message),
@@ -1434,7 +1434,7 @@ table.table1 td.info a {
 	width: 83%;
 }
 
-.flex-columns-big div.column-left {
+.flex-columns-container div.column-left {
 	/*align-items: center;*/
 }
 
@@ -1558,14 +1558,14 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 
 .flex-columns,
-.flex-columns-big {
+.flex-columns-container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
 .column-left,
-.column-left-big {
+.flex-columns-container-left {
 	order: 1;
 	display: flex;
 	flex-basis: 30%;
@@ -1576,7 +1576,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding: 10px 20px 10px 20px;
 }
 
-.column-left-big {
+.flex-columns-container-left {
 	align-items: initial;
 }
 
@@ -1663,7 +1663,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 
 .column-right,
-.column-right-big {
+.flex-columns-container-right {
 	order: 2;
 	display: flex;
 	flex-direction: column;
@@ -1909,13 +1909,13 @@ cite div.responsive-hide {
 }
 
 .settings-panel .column-left,
-.settings-panel .column-left-big {
+.settings-panel .flex-columns-container-left {
 	flex-basis: 30%;
 	justify-content: center;
 }
 
 .settings-panel .column-right,
-.settings-panel .column-right-big {
+.settings-panel .flex-columns-container-right {
 	flex-basis: 60%;
 }
 

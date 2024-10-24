@@ -5,9 +5,9 @@
 
 <form method="post" action="{S_PROFILE_ACTION}" id="viewprofile">
 <div class="panel settings-panel bg1<!-- IF S_ONLINE --> online<!-- ENDIF -->">
-	<div class="inner flex-columns-big">
+	<div class="inner flex-columns-container">
 
-	<div class="column-left-big">
+	<div class="flex-columns-container-left">
 
 		<dl>
 			<!-- IF AVATAR_IMG --><dt class="profile-avatar">{AVATAR_IMG}</dt><!-- ENDIF -->
@@ -25,7 +25,7 @@
 
 	</div>
 
-	<dl class="column-right-big details profile-details">
+	<dl class="flex-columns-container-right details profile-details">
 
 		<div class="flex-columns">
 			<dt class="column-left"></dt>
@@ -108,9 +108,9 @@
 
 <!-- EVENT memberlist_view_contact_before -->
 <div class="panel settings-panel bg2">
-	<div class="inner flex-columns-big">
+	<div class="inner flex-columns-container">
 
-	<div class="column-left-big">
+	<div class="flex-columns-container-left">
 		<h2>{L_CONTACT_USER}</h2>
 
 		<dl class="details">
@@ -161,7 +161,7 @@
 		</dl>
 	</div>
 
-	<div class="column-right-big">
+	<div class="flex-columns-container-right">
 		<h2>{L_USER_FORUM}</h2>
 		<dl class="details">
 			<!-- EVENT memberlist_view_user_statistics_before -->
