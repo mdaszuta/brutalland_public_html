@@ -1415,6 +1415,8 @@ table.table1 td.info a {
 }
 
 #pmheader-postingbox.panel dl {
+	display: flex;
+	flex-direction: column;
 	width: auto;
 	margin: auto;
 	padding: 0;
@@ -1433,7 +1435,7 @@ table.table1 td.info a {
 }
 
 .flex-columns-big div.column-left {
-	align-items: center;
+	/*align-items: center;*/
 }
 
 /* Copyright */
@@ -1578,6 +1580,10 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	align-items: initial;
 }
 
+.postingbox-top .column-left {
+	justify-content: initial;
+}
+
 #agreement.brutalform input {
 	width: 49%;
 }
@@ -1588,7 +1594,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	justify-content: center;
 }
 
-.button, .brutalform .brutalform-go-to-register {
+.button,
+.brutalform .brutalform-go-to-register {
 	width: 100%;
 	padding: 0;
 	justify-content: center;

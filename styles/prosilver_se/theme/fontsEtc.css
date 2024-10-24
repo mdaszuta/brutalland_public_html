@@ -236,11 +236,12 @@ ul.topiclist dt {
 }
 
 .search-user .fa-search {
-	font-size: 1.66em;
+	/*font-size: 1.66em;*/
 }
 
 .button,
 .brutalform .brutalform-go-to-register,
+.search-user .fa-search,
 .member-search strong {
 	font-size: 2em;
 }
