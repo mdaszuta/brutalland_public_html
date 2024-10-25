@@ -360,20 +360,3 @@ img.postimage {
 }
 
 /* end of BORDERS */
-
-/* RESPONSIVE */
-
-@media (max-width: 700px) {
-	.wrap {
-		/*background-image: URL("./images/probka720.jpg");*/
-		background-size: 720px 599px;
-	}
-}
-
-@media (max-width: 380px) {
-	.wrap {
-		background-size: 550px 457px;
-	}
-}
-
-/* end of RESPONSIVE */

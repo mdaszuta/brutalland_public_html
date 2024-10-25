@@ -76,6 +76,11 @@
 		display: none;
 	}
 
+	.wrap {
+		/*background-image: URL("./images/probka720.jpg");*/
+		background-size: 720px 599px;
+	}
+
 	.flex-box {
 		flex-basis: 100%;
 	}
@@ -294,6 +299,14 @@
 	#m-feed .main-menu-bottom,
 	#m-notify .main-menu-bottom {
 		right: 0;
+	}
+
+}
+
+@media (max-width: 380px) {
+
+	.wrap {
+		background-size: 550px 457px;
 	}
 
 }
