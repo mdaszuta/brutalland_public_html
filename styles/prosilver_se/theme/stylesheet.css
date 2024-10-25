@@ -401,7 +401,7 @@ dd input, dd textarea {
 }
 
 fieldset.submit-buttons {
-	margin: 0;
+	/*margin: 0;*/
 }
 
 input,
@@ -556,6 +556,7 @@ form#qr_postform .panel fieldset dl,
 
 /* dropdown containing search by user input in memberlist_search */
 
+#search_memberlist .dropdown-container,
 #memberlist_search .dropdown-container {
 	width: 100%;
 }
@@ -1258,7 +1259,7 @@ dd.time {
 
 /* Search box settings */
 
-/*.section-viewtopic .search-box .inputbox,*/
+.section-viewtopic .search-box .inputbox,
 .search-box .search-box-hide,
 .search-box .inputbox {
 	width: 0;
@@ -1618,7 +1619,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 
 .submit-buttons {
-	margin: 0;
+	/*margin: 0;*/
 }
 
 .brutalform-autologin {
