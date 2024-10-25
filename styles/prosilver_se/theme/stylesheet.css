@@ -1406,20 +1406,26 @@ table.table1 td.info a {
 
 /* Posting PMs */
 
-#pmheader-postingbox .recipients {
-	margin: 0;
-}
-
 #pmheader-postingbox.panel {
 	padding: 0;
 }
 
 #pmheader-postingbox.panel dl {
-	display: flex;
-	flex-direction: column;
 	width: auto;
 	margin: auto;
 	padding: 0;
+}
+
+#pmheader-postingbox span.recipients {
+	display: block;
+}
+
+#pmheader-postingbox span.recipients input {
+	padding: 0 6px;
+}
+
+#pmheader-postingbox dd.recipients {
+	margin: 0;
 }
 
 .postprofile,
@@ -1508,8 +1514,7 @@ table.table1 td.info a {
 #login a,
 #reset_password a,
 #resend a,
-#quick-login-panel span,
-#pmheader-postingbox span {
+#quick-login-panel span {
 	padding: 2px;
 	box-sizing: border-box;
 }
