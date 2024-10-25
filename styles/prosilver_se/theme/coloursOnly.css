@@ -473,11 +473,3 @@ ul.zebra-list li:nth-child(even):hover {
 .phpbb_alert {
 	/*box-shadow: 0 1px 1px -1px #257EDE, inset 0 4px 9px rgba(37, 126, 222, .1);*/
 }
-
-/* RESPONSIVE */
-
-@media only screen and (max-width: 920px) {
-	.wrap {
-		box-shadow: none;
-	}
-}

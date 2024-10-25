@@ -145,22 +145,6 @@ li.row:hover .topic-reply-counter.unread,
 	opacity: 1;
 }
 
-/* RESPONSIVE */
-
-@media only screen and (max-width: 860px) {
-	.post-buttons #post-buttons-row-2 {
-		opacity: 0.8;
-	}
-}
-
-@media (max-width: 700px) {
-	.lastpost .fa-fast-forward {
-		opacity: 0.2;
-	}
-}
-
-/* end of RESPONSIVE */
-
 /* TRANSITIONS */
 
 #top-site-menu {

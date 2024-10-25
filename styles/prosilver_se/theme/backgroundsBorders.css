@@ -9,16 +9,18 @@ body,
 	background-color: black;
 }
 
-.wrap {
-	background-image: URL("./images/probka.jpg");
-	background-size: 1295px 1077px;
-	background-position: 0px 20px;
-}
-
+.wrap,
 .phpbb_alert {
 	background-color: black;
 	background-image: URL("./images/probka.jpg");
 	background-size: 1295px 1077px;
+}
+
+.wrap {
+	background-position: 0px 20px;
+}
+
+.phpbb_alert {
 	background-position: calc(50% + 56.5px) -139px;
 }
 
@@ -29,7 +31,7 @@ body,
 .main-menu-item .main-menu-bottom {
 	background-color: black;
 	background-image: URL("./images/death_of.png");
-	background-size: 555px 690px;
+	background-size: 550px 690px;
 }
 
 /* UCP NAVIGATION TOP MENU */
@@ -361,29 +363,14 @@ img.postimage {
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 920px) {
-	.wrap{
-		border-width: 0;
-		border-radius: 0;
+@media (max-width: 700px) {
+	.wrap {
+		/*background-image: URL("./images/probka720.jpg");*/
+		background-size: 720px 599px;
 	}
 }
 
-@media only screen and (max-width: 860px) {
-
-	@media only screen and (max-width: 720px) {
-		.wrap {
-			background-image: URL("./images/probka720.jpg");
-			background-size: 720px 599px;
-		}
-	}
-
-	#top-site-menu {
-		background: linear-gradient(to top, transparent 0%, #000 10%);
-	}
-
-}
-
-@media only screen and (max-width: 380px) {
+@media (max-width: 380px) {
 	.wrap {
 		background-size: 550px 457px;
 	}
