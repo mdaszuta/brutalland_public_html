@@ -426,7 +426,10 @@ p.post-number.post-number {
 /* QUICK LOGIN */
 
 #quick-login-panel {
-	/*background-color: rgba(0, 0, 0, 1);*/
+	background-color: black;
+	background-image: URL("./images/probka.jpg");
+	background-size: 1295px 1077px;
+	background-position: calc(50% + 56.5px) calc(25% - 30px);
 	width: 45em;
 	max-width: 100%;
 }
