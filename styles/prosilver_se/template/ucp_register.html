@@ -128,7 +128,7 @@
 						<div class="brutalform-timezone-select">
 						<!-- IF .timezone_date -->
 						<div id="tz_select_date" style="display: none;">
-							<select name="tz_date" id="tz_date" class="autowidth tz_select">
+							<select name="tz_date" id="tz_date" class="tz_select">
 								<option value="">{L_SELECT_CURRENT_TIME}</option>
 								<!-- BEGIN timezone_date -->
 									<option value="{timezone_date.VALUE}"<!-- IF timezone_date.SELECTED --> selected="selected"<!-- ENDIF -->>{timezone_date.TITLE}</option>
@@ -138,7 +138,7 @@
 						</div>
 						<!-- ENDIF -->
 						<div>
-							<select name="tz" id="timezone" class="autowidth tz_select timezone">
+							<select name="tz" id="timezone" class="tz_select timezone">
 								<option value="">{L_SELECT_TIMEZONE}</option>
 								<!-- BEGIN timezone_select -->
 								<optgroup label="{timezone_select.LABEL}" data-tz-value="{timezone_select.VALUE}">
