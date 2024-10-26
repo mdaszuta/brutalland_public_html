@@ -1632,6 +1632,8 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 
 .submit-buttons {
 	/*margin: 0;*/
+	width: 100%;
+	/*background-color: red;*/
 }
 
 .brutalform-autologin {
