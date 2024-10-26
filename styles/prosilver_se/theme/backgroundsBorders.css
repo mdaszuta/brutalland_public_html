@@ -3,6 +3,7 @@
 html,
 body,
 .wrap,
+.phpbb_alert,
 .darken,
 .color_palette_placeholder,
 .dropdown .dropdown-contents {
@@ -11,7 +12,6 @@ body,
 
 .wrap,
 .phpbb_alert {
-	background-color: black;
 	background-image: URL("./images/probka.jpg");
 	background-size: 1295px 1077px;
 }
