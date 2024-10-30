@@ -89,6 +89,7 @@ ul.topiclist li,
 #m-feed-topics .main-menu-bottom,
 p.post-notice,
 p.author,
+.postprofile,
 .postbody .notice,
 .postbody .ignore,
 .signature,
@@ -108,6 +109,19 @@ dd label,
 .column-right label,
 label.column-right {
 	color: #666;
+}
+
+/* Information about attachment and disabled input */
+
+dl.file dd,
+input.disabled {
+	color: #666666;
+}
+
+/* Disabled option */
+
+option.disabled-option {
+	color: graytext;
 }
 
 #topic_forum_name_link a,
@@ -216,6 +230,7 @@ a:focus,
 a.username-coloured:focus,
 .unreadpost .post-number a:focus,
 .lastpost a:focus .fa-fast-forward,
+.postlink,
 #m-tagi a:focus,
 #m-feed a:focus,
 #main-menu-left a:focus,
@@ -237,6 +252,65 @@ ul.topiclist li.row:hover .subforum.read {
 ul.topiclist li.row .subforum.read:hover {
 	color: #32D635;
 }
+
+/* Special PM folders or groups as select option */
+
+.sep {
+	color: #1198D9;
+}
+
+/* Error and poster profile block
+---------------------------------------- */
+
+.error,
+dd.profile-warnings {
+	color: #BC2A4D;
+}
+
+/* Code block */
+
+.codebox code {
+	color: #2E8B57;
+}
+
+/* Icon styles
+---------------------------------------- */
+.icon.icon-blue, a:hover .icon.icon-blue {
+	color: #196db5;
+}
+
+.icon.icon-green, a:hover .icon.icon-green {
+	color: #1b9A1B;
+}
+
+.icon.icon-red, a:hover .icon.icon-red {
+	color: #BC2A4D;
+}
+
+.icon.icon-orange, a:hover .icon.icon-orange {
+	color: #FF6600;
+}
+
+.icon.icon-bluegray, a:hover .icon.icon-bluegray {
+	color: #536482;
+}
+
+.icon.icon-gray, a:hover .icon.icon-gray {
+	/* color: #777777; */
+	color: #888888;
+}
+
+.icon.icon-lightgray, a:hover .icon.icon-lightgray {
+	/* color: #999999; */
+	color: #666666;
+}
+
+.icon.icon-black, a:hover .icon.icon-black {
+	/* color: #333333; */
+	color: #CCCCCC;
+}
+
+/* BBCode - t */
 
 .tytulySD {
 	color: #008000;
@@ -329,10 +403,6 @@ ul.topiclist li.row .subforum.read:hover {
 	box-shadow: inset 0 4px 9px rgba(50, 214, 53, .15);
 }
 
-.dropdown li {
-	box-shadow: 0 1px 1px -1px #257EDE, inset 0 4px 9px rgba(37, 126, 222, .15);
-}
-
 #m-pagination .pagination a,
 .brutalform .reset,
 #m-name .panel.bg3,
@@ -353,24 +423,6 @@ a img.postimage:hover {
 
 .posthilit {
 	box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
-}
-
-.dropdown-select {
-	box-shadow: 0 1px 1px -1px #ee0000, inset 0 4px 9px rgba(238, 0, 0, .1);
-}
-
-@media (hover:hover) {
-	.dropdown-select:hover {
-		box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
-	}
-}
-
-.dropdown-select:active {
-	box-shadow: 0 1px 1px -1px #257EDE, inset 0 -4px 9px rgba(37, 126, 222, .5) !important;
-}
-
-.dropdown .dropdown-contents {
-	box-shadow: 0 1px 1px -1px #257EDE, inset 0 4px 9px rgba(37, 126, 222, .1);
 }
 
 .inputbox {
@@ -470,6 +522,43 @@ ul.zebra-list li:nth-child(even):hover {
 	box-shadow:0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .15);
 }
 
-.phpbb_alert {
-	/*box-shadow: 0 1px 1px -1px #257EDE, inset 0 4px 9px rgba(37, 126, 222, .1);*/
+/* Post poll styles
+----------------------------------------*/
+
+/* Poll options (not voted for) */
+
+fieldset.polls dl {
+	color: #666666;
+}
+
+/* Number of votes on poll result bar */
+
+fieldset.polls dd div {
+	color: #eee;
+}
+
+/* Poll results from lowest to highest percent */
+
+.pollbar1 { background-color: rgba(238, 0, 0, 0.4); }
+.pollbar2 { background-color: rgba(238, 0, 0, 0.5); }
+.pollbar3 { background-color: rgba(238, 0, 0, 0.6); }
+.pollbar4 { background-color: rgba(238, 0, 0, 0.7); }
+.pollbar5 { background-color: rgba(238, 0, 0, 0.8); }
+
+/* Dropdowns */
+
+.dropdown .dropdown-contents {
+	background-color: rgba(0, 0, 0, 0.85);
+	border: 1px solid rgba(50, 214, 53, .2);
+	box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
+	border-radius: 7px;
+}
+
+.dropdown .dropdown-contents::-webkit-scrollbar-thumb {
+	background-color: rgba(50, 214, 53, .2);
+	border-radius: 7px;
+}
+
+.dropdown li.separator {
+	border-color: #444;
 }

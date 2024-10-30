@@ -148,6 +148,14 @@ a.collapse-btn {
 
 /* end of COLLAPSIBLE CATEGORIES */
 
+/* EXTERNAL LINKS OPEN IN NEW WINDOW */
+
+a.elonw:after {
+	font-size: 11px;
+}
+
+/* end of EXTERNAL LINKS OPEN IN NEW WINDOW */
+
 /* IMGUR */
 
 .imgur-button.abbc3_button {
@@ -334,7 +342,7 @@ a.collapse-btn {
 }
 
 .mchat-buttons .dropdown .dropdown-contents {
-	background-color: rgba(0, 0, 0, 0.9);
+	/*background-color: rgba(0, 0, 0, 0.9);*/
 	border-color: transparent;
 }
 
@@ -353,13 +361,14 @@ a.collapse-btn {
 
 .mention {
 	color: #257EDE;
-	font-weight: unset;
+	/*font-weight: unset;*/
 	font-style: unset;
 }
 
 /* MENTION - tribute.css */
 
 .tribute-container {
+	min-width: 85px;
 	background-color: rgba(0, 0, 0, 0.85);
 	box-shadow: 0 1px 1px -1px #32D635, inset 0 4px 9px rgba(50, 214, 53, .1);
 	border: 1px solid rgba(50, 214, 53, .2);
@@ -427,7 +436,8 @@ p.post-number.post-number {
 
 #quick-login-panel {
 	background-color: black;
-	background-image: URL("./images/probka.jpg");
+	/*background-image: URL("./images/probka.jpg");*/
+	background-image: URL("./images/probka.webp");
 	background-size: 1295px 1077px;
 	background-position: calc(50% + 56.5px) calc(25% - 30px);
 	width: 45em;

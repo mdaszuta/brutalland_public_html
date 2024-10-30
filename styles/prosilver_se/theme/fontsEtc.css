@@ -1,5 +1,8 @@
+/* Don't underline links */
+
 a:hover,
 a:focus,
+a:active,
 .forumbg .header a:hover, .forabg .header a:hover, th a:hover,
 a.forumtitle:hover,
 a.topictitle:hover,

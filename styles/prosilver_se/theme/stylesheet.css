@@ -563,6 +563,12 @@ form#qr_postform .panel fieldset dl,
 	width: 100%;
 }
 
+/* List of users on autocomplete list  in memberlist search */
+
+.dropdown li, .dropdown li li {
+	padding: 0.5em;
+}
+
 /* height of input with id="count" from memberlist_search, only one not set as .inputbox because of type="number" which is excluded in css rule */
 
 #count.inputbox {
