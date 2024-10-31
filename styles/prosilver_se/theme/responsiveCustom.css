@@ -18,17 +18,17 @@
 
 @media (max-width: 550px) {
 
-	#m-name .main-menu-bottom,
+	#mm-title .main-menu-bottom,
 	#mm-last-posts .main-menu-bottom,
 	#mm-notifications .main-menu-bottom {
 		left: 0;
 	}
 
-	#m-name {
-		position: inherit;
+	#mm-title .main-menu-item {
+		/*position: inherit;*/
 	}
 
-	#m-name .main-menu-bottom {
+	#mm-title .main-menu-bottom {
 		width: 100%;
 		right: 0;
 	}
@@ -382,7 +382,7 @@
 	}
 
 	#mm-home,
-	#m-name,
+	#mm-title,
 	#mm-pagination,
 	#main-menu #search,
 	#main-menu #m-search-box .main-menu-top {

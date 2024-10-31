@@ -92,7 +92,7 @@ select#usernames {
 }
 
 /* przesunięcie względem relative (#main-menu) to szerokość mm-home + padding titleID (71 + 13) - margines 17.5px */
-#m-name .main-menu-bottom {
+#mm-title .main-menu-bottom {
 	left: 66.5px;
 	width: 400px;
 	max-width: 100%;
@@ -102,15 +102,12 @@ select#usernames {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-
-/* end of Menu title ellipsis */
-
-#titleID {
 	display: block;
 	line-height: 45px;
 	box-sizing: border-box;
 }
+
+/* end of Menu title ellipsis */
 
 .subforum,
 a.lastsubject {
@@ -728,7 +725,7 @@ input[type="radio"] {
 }
 
 #mm-home,
-#m-name,
+#mm-title,
 #mm-pagination,
 #main-menu #search,
 .main-menu-item .main-menu-top a,
@@ -769,8 +766,8 @@ input.button2 {
 }
 
 .m-list-right,
-.m-list-left,
-#m-name .m-list {
+.m-list-left/*,
+#mm-title .m-list*/ {
 	text-align: left;
 }
 
@@ -819,7 +816,7 @@ input.button2 {
 	margin-left: 18px;
 }
 
-#m-name .m-list .panel .fa {
+#mm-title .m-list .panel .fa {
 	min-width: 23px;
 	min-height: 23px;
 }
@@ -895,7 +892,7 @@ input.button2 {
 }
 
 .labeled-icon.notify-settings,
-#m-name .labeled-icon {
+#mm-title .labeled-icon {
 	min-width: 90px;
 	max-width: 90px;
 }
@@ -935,11 +932,11 @@ input.button2 {
 #mm-tags .m-list-right { flex-basis: 17%; }
 #mm-tags .main-menu-bottom { width: auto; }
 
-#m-name .panel p {
+#mm-title .panel p {
     margin-bottom: 0;
 }
 
-#m-name .main-menu-bottom .m-list {
+#mm-title .main-menu-bottom .m-list {
 	width: 365px;
 	list-style-type: none;
 }

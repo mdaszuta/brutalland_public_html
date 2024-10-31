@@ -13,7 +13,7 @@
 	opacity: 0.15;
 }
 
-#m-name .labeled-icon-button .fa {
+#mm-title .labeled-icon-button .fa {
 	opacity: 0.25;
 }
 
@@ -29,7 +29,7 @@
 }
 
 #mm-home .main-menu-top,
-#m-name .main-menu-top,
+#mm-title .main-menu-top,
 #mm-pagination .pagination,
 #mm-last-posts .main-menu-top,
 #mm-topics .main-menu-top,
@@ -90,9 +90,9 @@ li.row .fa-tags:hover,
 
 li.row:hover .topic-reply-counter.unread,
 #top-site-menu,
-#m-name.show-name-bottom-list .main-menu-top,
+#mm-title .with-main-menu-bottom .main-menu-top,
 #mm-home:hover .main-menu-top,
-#m-name:hover .main-menu-top,
+#mm-title:hover .main-menu-top,
 #mm-pagination:hover .pagination,
 .pagination:hover,
 #mm-last-posts:hover .main-menu-top,
@@ -152,7 +152,7 @@ li.row:hover .topic-reply-counter.unread,
 }
 
 #mm-home .main-menu-top,
-#m-name .main-menu-top,
+#mm-title .main-menu-top,
 #mm-pagination .main-menu-top,
 #mm-last-posts .main-menu-top,
 #mm-topics .main-menu-top,
