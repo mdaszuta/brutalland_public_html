@@ -13,7 +13,7 @@
 	opacity: 0.15;
 }
 
-#m-name .m-labeled-box-button .fa {
+#m-name .labeled-icon-button .fa {
 	opacity: 0.25;
 }
 
@@ -22,7 +22,7 @@
 	opacity: 0.3;
 }
 
-.m-labeled-box-button .fa,
+.labeled-icon-button .fa,
 .post-number,
 #mm-user .main-menu-bottom a .fa {
 	opacity: 0.4;
@@ -52,7 +52,7 @@ ul.button,
 .pagination li.active span,
 #mm-notifications .m-list-left-bottom,
 .cp-main .notifications_time,
-.main-menu-top .m-labeled-box .fa,
+.main-menu-top .labeled-icon .fa,
 .unreadpost .post-number,
 li.row .fa-question,
 li.row .fa-flag,
@@ -118,7 +118,7 @@ li.row:hover .topic-reply-counter.unread,
 .brutalform select:focus ~ .brutalform-label,
 .brutalform .brutalform-timezone-select:focus ~ .brutalform-label,
 .page-footer .nav-footer:hover,
-.contact-box-all .m-labeled-box-button:hover .fa {
+.contact-box-all .labeled-icon-button:hover .fa {
 	opacity: 1;
 }
 
@@ -181,8 +181,8 @@ li.row .fa-tags:hover,
 .recipients .fa-times:hover,
 #mm-user .main-menu-bottom a .fa,
 #mm-user .main-menu-bottom a:hover .fa,
-.contact-box-all .m-labeled-box-button .fa,
-.contact-box-all .m-labeled-box-button:hover .fa {
+.contact-box-all .labeled-icon-button .fa,
+.contact-box-all .labeled-icon-button:hover .fa {
 	transition: opacity 0.75s ease-out 0.1s;
 }
 

@@ -157,14 +157,14 @@
 					</div>
 					<div class="contact-box-all rozwijany-box-all menu-all">
 							<!-- BEGIN contact -->
-								<a href="<!-- IF postrow.contact.U_CONTACT -->{postrow.contact.U_CONTACT}<!-- ELSE -->{postrow.U_POST_AUTHOR}<!-- ENDIF -->" class="m-labeled-box m-labeled-box-button" title="{postrow.contact.NAME}"<!-- IF postrow.contact.ID eq 'jabber' --> onclick="popup(this.href, 750, 320); return false;"<!-- ENDIF -->>
+								<a href="<!-- IF postrow.contact.U_CONTACT -->{postrow.contact.U_CONTACT}<!-- ELSE -->{postrow.U_POST_AUTHOR}<!-- ENDIF -->" class="labeled-icon labeled-icon-button" title="{postrow.contact.NAME}"<!-- IF postrow.contact.ID eq 'jabber' --> onclick="popup(this.href, 750, 320); return false;"<!-- ENDIF -->>
 									{% EVENT viewtopic_body_contact_icon_prepend %}
 									<!-- IF postrow.contact.ID == 'pm' -->
 										<i class="fa fa-envelope"></i>
 									<!-- ELSEIF postrow.contact.ID == 'email' -->
 										<i class="fa fa-at"></i>
 									<!-- ENDIF -->
-										<div class="m-labeled-box-bg"><strong></strong></div>
+										<div class="labeled-icon-bg"><strong></strong></div>
 									{% EVENT viewtopic_body_contact_icon_append %}
 								</a>
 							<!-- END contact -->

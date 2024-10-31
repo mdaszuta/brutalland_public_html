@@ -57,9 +57,9 @@
 			<div id="mm-topics" class="main-menu-item menu-toggle">
 					<div class="main-menu-top menu-devil">
 						<!-- IF S_LOAD_UNREADS -->
-						<a href="{U_SEARCH_UNREAD}" id="mm-topics-unread" class="m-labeled-box">
+						<a href="{U_SEARCH_UNREAD}" id="mm-topics-unread" class="labeled-icon">
 							<div class="fa fa-inbox"></div>
-							<!-- IF L_AB_UNREAD > 0 --><div class="m-labeled-box-bg"><strong>{L_AB_UNREAD}</strong></div><!-- ENDIF -->
+							<!-- IF L_AB_UNREAD > 0 --><div class="labeled-icon-bg"><strong>{L_AB_UNREAD}</strong></div><!-- ENDIF -->
 						</a>
 						<!-- ENDIF -->
 					</div>
@@ -76,10 +76,10 @@
 				<!-- IF S_NOTIFICATIONS_DISPLAY -->
 				<div id="mm-notifications" class="main-menu-item menu-toggle">
 					<div class="main-menu-top menu-devil">
-						<a id="notification_list_button" class="m-labeled-box">
+						<a id="notification_list_button" class="labeled-icon">
 							<!-- IF NOTIFICATIONS_COUNT > 0 -->
 								<div class="fa fa-bell"></div>
-								<div class="m-labeled-box-bg"><strong>{NOTIFICATIONS_COUNT}</strong></div>
+								<div class="labeled-icon-bg"><strong>{NOTIFICATIONS_COUNT}</strong></div>
 							<!-- ELSE -->
 								<div class="fa fa-bell-o"></div>
 							<!-- ENDIF -->
@@ -92,10 +92,10 @@
 				<!-- IF S_DISPLAY_PM -->
 					<div id="mm-pm" class="main-menu-item">
 						<div class="main-menu-top">
-							<a href="{U_PRIVATEMSGS}" class="m-labeled-box" aria-label="{L_PRIVATE_MESSAGES}">
+							<a href="{U_PRIVATEMSGS}" class="labeled-icon" aria-label="{L_PRIVATE_MESSAGES}">
 								<!-- IF PRIVATE_MESSAGE_COUNT > 0 -->
 									<div class="fa fa-envelope"></div>
-									<div class="m-labeled-box-bg"><strong>{PRIVATE_MESSAGE_COUNT}</strong></div>
+									<div class="labeled-icon-bg"><strong>{PRIVATE_MESSAGE_COUNT}</strong></div>
 								<!-- ELSE -->
 									<div class="fa fa-envelope-o"></div>
 								<!-- ENDIF -->
@@ -186,9 +186,9 @@
 			<!-- IF not S_REGISTERED_USER -->
 			<div id="mm-active-topics" class="main-menu-item">
 				<div class="main-menu-top">
-					<a href="{U_SEARCH_ACTIVE_TOPICS}" id="m-aktywne-tematy" class="m-labeled-box">
+					<a href="{U_SEARCH_ACTIVE_TOPICS}" id="m-aktywne-tematy" class="labeled-icon">
 						<div class="fa fa-inbox"></div>
-						<div class="m-labeled-box-bg"><strong>{L_AB_TOPICS}</strong></div>
+						<div class="labeled-icon-bg"><strong>{L_AB_TOPICS}</strong></div>
 					</a>
 				</div>
 			</div>

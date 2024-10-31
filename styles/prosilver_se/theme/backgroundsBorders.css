@@ -72,7 +72,7 @@ body,
 
 /* end of UCP NAVIGATION TOP MENU */
 
-.m-labeled-box-bg strong {
+.labeled-icon-bg strong {
 	background: rgba(0, 0, 0, 0.1);
 }
 
@@ -389,7 +389,7 @@ li:not(.header) .lastpost:hover {
 	border-radius: 7px;
 }
 
-.m-labeled-box-bg strong,
+.labeled-icon-bg strong,
 blockquote,
 .member-search,
 .phpbb_alert {

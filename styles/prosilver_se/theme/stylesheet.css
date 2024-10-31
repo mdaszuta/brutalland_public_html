@@ -889,18 +889,18 @@ input.button2 {
 	margin: 2em 0 2em 0;
 }
 
-#m-aktywne-tematy.m-labeled-box {
+#m-aktywne-tematy.labeled-icon {
 	min-width: 76px;
 	max-width: 76px;
 }
 
-.m-labeled-box.notify-settings,
-#m-name .m-labeled-box {
+.labeled-icon.notify-settings,
+#m-name .labeled-icon {
 	min-width: 90px;
 	max-width: 90px;
 }
 
-.m-labeled-box {
+.labeled-icon {
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -914,8 +914,8 @@ input.button2 {
 	box-sizing: border-box;
 }
 
-.m-labeled-box .fa,
-.m-labeled-box-bg {
+.labeled-icon .fa,
+.labeled-icon-bg {
 	position: absolute;
 	display: flex;
 	justify-content: center;
