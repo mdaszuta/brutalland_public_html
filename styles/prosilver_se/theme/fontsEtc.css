@@ -130,9 +130,9 @@ table.table1 tbody tr.bg3,
 /* TEXT-TRANSFORMS */
 
 #m-name .m-list,
-#m-feed-topics,
+#mm-topics,
 .m-labeled-box-bg strong,
-#m-ksywa .main-menu-bottom a,
+#mm-user .main-menu-bottom a,
 .pagination,
 .submit-buttons input,
 .brutalform .reset {
@@ -215,7 +215,7 @@ textarea,
 	font-size: unset;
 }
 
-#m-feed-topics .main-menu-bottom span {
+#mm-topics .main-menu-bottom span {
 	transform: rotate(180deg);
 }
 
@@ -256,7 +256,7 @@ ul.topiclist dt {
 	font-size: 12px;
 }
 
-#m-ksywa .main-menu-bottom {
+#mm-user .main-menu-bottom {
 	font-size: 14px;
 }
 
@@ -292,7 +292,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 /* PSEUDOAVATARY */
 
-#m-notify .fa-user-circle-o,
+#mm-notifications .fa-user-circle-o,
 .cp-main .notification_list .fa-user-circle-o {
 	font-size: 50px;
 }

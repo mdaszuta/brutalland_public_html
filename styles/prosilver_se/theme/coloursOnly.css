@@ -7,7 +7,7 @@ a,
 fieldset span strong,
 fieldset.polls dl.voted,
 .fa-search,
-#m-pagination .pagination a,
+#mm-pagination .pagination a,
 .m-row2:not(:hover, :focus) .notifications_reason em,
 h2,
 h3,
@@ -76,7 +76,7 @@ a.username {
 
 .copyright a,
 .cp-main .fa-user-circle-o,
-#m-notify .fa-user-circle-o {
+#mm-notifications .fa-user-circle-o {
 	color: #444;
 }
 
@@ -86,7 +86,7 @@ table.table1 td,
 a.attachment-filename span,
 th.name h3,
 ul.topiclist li,
-#m-feed-topics .main-menu-bottom,
+#mm-topics .main-menu-bottom,
 p.post-notice,
 p.author,
 .postprofile,
@@ -163,8 +163,8 @@ input.button2 {
 .m-row2 .notifications_reference,
 .m-row2 .notifications_reason,
 .topic-reply-counter.unread,
-#m-feed a.topictitle.unread,
-#m-feed a.topic-forumtitle.unread {
+#mm-last-posts a.topictitle.unread,
+#mm-last-posts a.topic-forumtitle.unread {
 	color: #ee0000;
 }
 
@@ -204,11 +204,11 @@ fieldset dl:hover dt label,
 }
 
 @media (hover:hover) {
-	#m-tagi a:hover,
-	#m-feed a:hover,
+	#mm-tags a:hover,
+	#mm-last-posts a:hover,
 	#main-menu-left a:hover,
-	#main-menu-title a:hover,
-	#m-pagination a:hover,
+	#mm-title a:hover,
+	#mm-pagination a:hover,
 	#main-menu-right a:hover,
 	.fa-search:hover {
 		color:#32D635;
@@ -231,11 +231,11 @@ a.username-coloured:focus,
 .unreadpost .post-number a:focus,
 .lastpost a:focus .fa-fast-forward,
 .postlink,
-#m-tagi a:focus,
-#m-feed a:focus,
+#mm-tags a:focus,
+#mm-last-posts a:focus,
 #main-menu-left a:focus,
-#main-menu-title a:focus,
-#m-pagination a:focus,
+#mm-title a:focus,
+#mm-pagination a:focus,
 #main-menu-right a:focus,
 .fa-search:focus,
 .search-box-hide:focus,
@@ -403,7 +403,7 @@ dd.profile-warnings {
 	box-shadow: inset 0 4px 9px rgba(50, 214, 53, .15);
 }
 
-#m-pagination .pagination a,
+#mm-pagination .pagination a,
 .brutalform .reset,
 #m-name .panel.bg3,
 li.row.bg1,

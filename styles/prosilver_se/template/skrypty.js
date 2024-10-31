@@ -178,7 +178,7 @@ $(document).ready(function(){
 	* Last Post Feed Mobile
 	*/
 	
-	$("#m-feed-topics, .search-box").on('click', function( event ){
+	$("#mm-topics, .search-box").on('click', function( event ){
 
 		console.log('hastouch class: ' + $('#phpbb').hasClass('hastouch'));
 

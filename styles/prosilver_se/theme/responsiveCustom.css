@@ -19,8 +19,8 @@
 @media (max-width: 550px) {
 
 	#m-name .main-menu-bottom,
-	#m-feed .main-menu-bottom,
-	#m-notify .main-menu-bottom {
+	#mm-last-posts .main-menu-bottom,
+	#mm-notifications .main-menu-bottom {
 		left: 0;
 	}
 
@@ -159,7 +159,7 @@
 		width: calc(100% - 91px);
 	}
 
-	#m-notify .m-list-right {
+	#mm-notifications .m-list-right {
 		width: 66px;
 	}
 
@@ -317,7 +317,7 @@
 		background: linear-gradient(to top, transparent 0%, #000 10%);
 	}
 
-	#main-menu #main-menu-title {
+	#main-menu #mm-title {
 		order: 3;
 		width: auto;
 		margin-left: 45px;
@@ -358,10 +358,10 @@
 	}
 
 	#main-menu #main-menu-middle { order: 3; }
-	#main-menu #m-pagination { order: 4; }
+	#main-menu #mm-pagination { order: 4; }
 	#main-menu #main-menu-right { order: 2; }
-	#main-menu #main-menu-right #m-notify { order: 6; }
-	#main-menu #main-menu-right #m-tagi { order: 5; }
+	#main-menu #main-menu-right #mm-notifications { order: 6; }
+	#main-menu #main-menu-right #mm-tags { order: 5; }
 
 	#page-header {
 		display: none;
@@ -381,9 +381,9 @@
 		padding-right: 10px;
 	}
 
-	#m-home,
+	#mm-home,
 	#m-name,
-	#m-pagination,
+	#mm-pagination,
 	#main-menu #search,
 	#main-menu #m-search-box .main-menu-top {
 		height: auto;
@@ -394,7 +394,7 @@
 		height: 45px;
 	}
 
-	#m-feed-topics #m-feed-topics-unread {
+	#mm-topics #mm-topics-unread {
 		padding-right: 5px;
 	}
 
@@ -487,9 +487,9 @@
 
 @media (max-width: 1280px) {
 
-	#m-feed .main-menu-bottom,
-	#m-notify .main-menu-bottom,
-	#m-ksywa .main-menu-bottom {
+	#mm-last-posts .main-menu-bottom,
+	#mm-notifications .main-menu-bottom,
+	#mm-user .main-menu-bottom {
 		right: 0px;
 	}
 

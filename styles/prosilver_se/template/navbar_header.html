@@ -4,7 +4,7 @@
 
 		<div id="main-menu-left" class="main-menu-row">
 
-			<div id="m-home" class="main-menu-item">
+			<div id="mm-home" class="main-menu-item">
 				<div class="main-menu-top" id="thegate">
 					<a href='<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->' class="<!-- IF S_REGISTERED_USER -->thegate-top<!-- ELSE -->thegate-all<!-- ENDIF -->" aria-label="{L_FORUM_INDEX}"></a>
 					<!-- IF S_REGISTERED_USER -->
@@ -16,13 +16,13 @@
 		</div>
 
 		<div id="main-menu-middle" class="main-menu-row">
-			<div id="main-menu-title" class="main-menu-row">
+			<div id="mm-title" class="main-menu-row">
 				<div id="m-name" class="main-menu-item menu-toggle<!-- IF TOTAL_POSTS or TOTAL_MESSAGES or TOTAL_TOPICS or TOTAL_USERS or TOTAL_REPORTS or (TOTAL and SCRIPT_NAME == 'mcp') or (not S_IS_BOT and S_DISPLAY_REPLY_INFO) or (SCRIPT_NAME == 'viewforum' and (S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS)) or (not S_IS_BOT and (U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_BUMP_TOPIC or U_EMAIL_TOPIC or U_PRINT_TOPIC or S_DISPLAY_TOPIC_TOOLS)) or (not S_IS_BOT and (U_WATCH_FORUM_LINK or U_MARK_TOPICS)) or SEARCH_MATCHES or .notification_list or (TOTAL_MESSAGES or S_VIEW_MESSAGE) or .attachrow and NUM_ATTACHMENTS --> show-name-bottom-list<!-- ENDIF -->">
 					<!-- INCLUDE show_name.html -->
 				</div>
 			</div>
 
-			<div id="m-pagination" class="main-menu-row">
+			<div id="mm-pagination" class="main-menu-row">
 				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
 			</div>
 
@@ -42,9 +42,9 @@
 
 		<div id="main-menu-right" class="main-menu-row">
 
-			<div id ="m-feed" class="main-menu-item menu-toggle">
+			<div id ="mm-last-posts" class="main-menu-item menu-toggle">
 				<div class="main-menu-top menu-devil">
-					<a id="m-feed-icon" ><div class="fa fa-history fa-2x"></div></a>
+					<a id="mm-last-posts-icon" ><div class="fa fa-history fa-2x"></div></a>
 				</div>
 
 				<div class="main-menu-bottom menu-all">
@@ -54,10 +54,10 @@
 			</div>
 
 			<!-- IF S_USER_LOGGED_IN -->
-			<div id="m-feed-topics" class="main-menu-item menu-toggle">
+			<div id="mm-topics" class="main-menu-item menu-toggle">
 					<div class="main-menu-top menu-devil">
 						<!-- IF S_LOAD_UNREADS -->
-						<a href="{U_SEARCH_UNREAD}" id="m-feed-topics-unread" class="m-labeled-box">
+						<a href="{U_SEARCH_UNREAD}" id="mm-topics-unread" class="m-labeled-box">
 							<div class="fa fa-inbox"></div>
 							<!-- IF L_AB_UNREAD > 0 --><div class="m-labeled-box-bg"><strong>{L_AB_UNREAD}</strong></div><!-- ENDIF -->
 						</a>
@@ -74,7 +74,7 @@
 			<!-- IF S_REGISTERED_USER -->
 
 				<!-- IF S_NOTIFICATIONS_DISPLAY -->
-				<div id="m-notify" class="main-menu-item menu-toggle">
+				<div id="mm-notifications" class="main-menu-item menu-toggle">
 					<div class="main-menu-top menu-devil">
 						<a id="notification_list_button" class="m-labeled-box">
 							<!-- IF NOTIFICATIONS_COUNT > 0 -->
@@ -90,7 +90,7 @@
 				<!-- ENDIF -->
 
 				<!-- IF S_DISPLAY_PM -->
-					<div id="m-pm" class="main-menu-item">
+					<div id="mm-pm" class="main-menu-item">
 						<div class="main-menu-top">
 							<a href="{U_PRIVATEMSGS}" class="m-labeled-box" aria-label="{L_PRIVATE_MESSAGES}">
 								<!-- IF PRIVATE_MESSAGE_COUNT > 0 -->
@@ -107,11 +107,11 @@
 			<!-- ENDIF -->
 
 			<!-- IF SCRIPT_NAME == 'insane' -->
-				<div id="m-tagi" class="main-menu-item menu-toggle">
+				<div id="mm-tags" class="main-menu-item menu-toggle">
 					<div class="main-menu-top menu-devil">
 						<a><div class="fa fa-tags fa-lg"></div></a>
 					</div>
-					<div class="main-menu-bottom menu-all" id="m-tagi-lista">
+					<div class="main-menu-bottom menu-all">
 
 						<h3><a href="{RH_TOPICTAGS_TAGCLOUD_LINK}"><div class="fa fa-tag fa-lg"></div>{RH_TOPICTAGS_TAGCLOUD_TAG_COUNT}</a></h3>
 
@@ -158,7 +158,7 @@
 
 			<!-- IF S_REGISTERED_USER -->
 
-				<div id="m-ksywa" class="main-menu-item menu-toggle header-profile">
+				<div id="mm-user" class="main-menu-item menu-toggle header-profile">
 					<div class="main-menu-top menu-devil">
 						<a class="header-avatar">
 							<!-- IF CURRENT_USER_AVATAR -->
@@ -184,7 +184,7 @@
 			<!-- ENDIF -->
 
 			<!-- IF not S_REGISTERED_USER -->
-			<div id="m-akt-top" class="main-menu-item">
+			<div id="mm-active-topics" class="main-menu-item">
 				<div class="main-menu-top">
 					<a href="{U_SEARCH_ACTIVE_TOPICS}" id="m-aktywne-tematy" class="m-labeled-box">
 						<div class="fa fa-inbox"></div>
@@ -194,7 +194,7 @@
 			</div>
 
 				<!-- IF not S_IS_BOT -->
-				<div id="m-logged-out" class="main-menu-item">
+				<div id="mm-log-in" class="main-menu-item">
 					<div class="main-menu-top" id="m-login">
 							<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT} &frasl; {L_REGISTER}" accesskey="x"><div class="fa fa-sign-in fa-2x"></div></a>
 					</div>
