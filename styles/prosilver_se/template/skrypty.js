@@ -290,23 +290,23 @@ $(document).ready(function(){
 
 	$(".switcheroo-menu").on('mouseenter click', function() {
 
-		var switcheroo_devil = $(this).children(".switcheroo-menu-devil");
-		var switcheroo_all = $(this).children(".switcheroo-menu-all");
+		var switcherooDevil = $(this).children(".switcheroo-menu-devil");
+		var switcherooAll = $(this).children(".switcheroo-menu-all");
 
 		timeoutSwitcheroo = setTimeout( function() {
 
-			switcheroo_devil.fadeOut(0);
-			switcheroo_all.fadeIn(200).css("display","flex");
+			switcherooDevil.fadeOut(0);
+			switcherooAll.fadeIn(200).css("display","flex");
 
 		} , 150);
 
 	}).on('mouseleave', function() {
 
-		var switcheroo_devil = $(this).children(".switcheroo-menu-devil");
-		var switcheroo_all = $(this).children(".switcheroo-menu-all");
+		var switcherooDevil = $(this).children(".switcheroo-menu-devil");
+		var switcherooAll = $(this).children(".switcheroo-menu-all");
 
-		switcheroo_all.fadeOut(0);
-		switcheroo_devil.fadeIn(0).css("display","flex");
+		switcherooAll.fadeOut(0);
+		switcherooDevil.fadeIn(0).css("display","flex");
 
 		clearTimeout(timeoutSwitcheroo);
 
