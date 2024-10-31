@@ -24,7 +24,7 @@
 		left: 0;
 	}
 
-	#mm-title .main-menu-item {
+	#mm-title.main-menu-item {
 		/*position: inherit;*/
 	}
 
@@ -317,7 +317,7 @@
 		background: linear-gradient(to top, transparent 0%, #000 10%);
 	}
 
-	#main-menu #mm-title {
+	#mm-title {
 		order: 3;
 		width: auto;
 		margin-left: 45px;

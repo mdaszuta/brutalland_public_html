@@ -13,7 +13,7 @@
 	opacity: 0.15;
 }
 
-#mm-title .labeled-icon-button .fa {
+#mm-title .labeled-icon .fa {
 	opacity: 0.25;
 }
 
@@ -90,7 +90,7 @@ li.row .fa-tags:hover,
 
 li.row:hover .topic-reply-counter.unread,
 #top-site-menu,
-#mm-title .with-main-menu-bottom .main-menu-top,
+#mm-title.with-main-menu-bottom .main-menu-top,
 #mm-home:hover .main-menu-top,
 #mm-title:hover .main-menu-top,
 #mm-pagination:hover .pagination,

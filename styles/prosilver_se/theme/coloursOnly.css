@@ -126,7 +126,6 @@ option.disabled-option {
 
 #topic_forum_name_link a,
 #mm-title span,
-/*#mm-title a span,*/
 .info-paragraph,
 .spoilbtn,
 cite div.responsive-hide,
@@ -403,9 +402,9 @@ dd.profile-warnings {
 	box-shadow: inset 0 4px 9px rgba(50, 214, 53, .15);
 }
 
+#mm-title .panel.bg3,
 #mm-pagination .pagination a,
 .brutalform .reset,
-#mm-title .panel.bg3,
 li.row.bg1,
 li.row.bg2 {
 	box-shadow: none;
