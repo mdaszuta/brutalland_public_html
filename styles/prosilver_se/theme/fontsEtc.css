@@ -85,8 +85,8 @@ a.lastsubject,
 .notifications_reason,
 .notify-settings,
 .cp-main .notification_list .notifications,
-input.inputbox:not([type="number"]):not([type="file"]),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
+input.inputbox:not([type="number"], [type="file"]),
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #bandInfoInput),
 #top-site-menu,
 .action-bar,
 h2,
@@ -187,8 +187,8 @@ a.lastsubject,
 #titleID,
 .notifications_reference,
 .notifications_reason,
-input.inputbox:not([type="number"]):not([type="file"]),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput),
+input.inputbox:not([type="number"], [type="file"]),
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #bandInfoInput),
 .brutalform-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
@@ -200,10 +200,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 }
 */
 
-.spoilbtn {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
+.spoilbtn,
 .username,
 .username-coloured,
 input,
@@ -239,10 +236,6 @@ ul.topiclist dt {
 	font-size: 1.3em;
 }
 
-.search-user .fa-search {
-	/*font-size: 1.66em;*/
-}
-
 .button,
 .brutalform .brutalform-go-to-register,
 .search-user .fa-search,
@@ -258,10 +251,7 @@ ul.topiclist dt {
 	font-size: 4em;
 }
 
-.spoilbtn {
-	font-size: 11px;
-}
-
+.spoilbtn,
 .m-labeled-box-bg {
 	font-size: 12px;
 }
@@ -295,8 +285,8 @@ a.forumtitle,
 a.topictitle,
 #titleID,
 .notifications_reference,
-input.inputbox:not([type="number"]):not([type="file"]),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput) {
+input.inputbox:not([type="number"], [type="file"]),
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #bandInfoInput) {
 	font-size: 21px;
 }
 

@@ -6,6 +6,11 @@ body {
 	margin: -11px auto auto auto;
 }
 
+.page-body {
+	margin: 0;
+	padding-top: 1px;
+}
+
 /* Cookie consent */
 
 .cc-window {
@@ -34,7 +39,6 @@ body {
 }
 
 .cc-btn:not(:hover, :focus) {
-	/*padding: 0.5em 1em;*/
 	color: #eee !important;
 	background-color: #222 !important;
 }
@@ -117,6 +121,7 @@ a.lastsubject {
 	margin-bottom: 3px;
 }
 
+/* *********************************************************************************************************************************** */
 /* OVERRIDING STYLE FILES FROM PROSILVER */
 
 /* override prosilver\common.css */
@@ -245,7 +250,6 @@ dd.option {
 
 .postbody h3 {
 	float: none;
-	/*font-family: unset;*/
 	font-weight: normal;
 }
 
@@ -400,10 +404,6 @@ dd input, dd textarea {
 	width: fit-content;
 }
 
-fieldset.submit-buttons {
-	/*margin: 0;*/
-}
-
 input,
 fieldset.submit-buttons input {
 	padding: 1px 6px;
@@ -459,6 +459,7 @@ input.search {
 /* END form.css */
 
 /* end of OVERRIDING STYLE FILES FROM PROSILVER */
+/* *********************************************************************************************************************************** */
 
 /* Resize only vertical, not horizontal */
 
@@ -472,11 +473,6 @@ label input[type="radio"]:not([name="sf"]) {
 
 label:nth-child(1) input[type="radio"] {
 	margin-left: 0;
-}
-
-.page-body {
-	margin: 0;
-	padding-top: 1px;
 }
 
 .tab > a {
@@ -833,10 +829,6 @@ input.button2 {
 	flex-direction: row;
 }
 
-#m-feed-topics .main-menu-bottom span {
-	/*display: inline-block;*/
-}
-
 #m-notify .main-menu-bottom .m-list {
 	display: flex;
 	flex-direction: column;
@@ -1054,7 +1046,7 @@ li.arrow a::before {
 
 .pagination li.active span {
 	font-weight: bold;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: inherit;
 	border: none;
 }
 
@@ -1298,10 +1290,6 @@ dd.time {
 	padding-right: 6px;
 }
 
-.fa-search {
-	/*padding: 0;*/
-}
-
 a.header-avatar img {
 	max-height: 30px;
 }
@@ -1325,7 +1313,6 @@ h3 {
 .spoilwrapper,
 .spoilcontent {
 	padding: 4px;
-	/*width: fit-content;*/
 }
 
 .spoilbtn {
@@ -1542,8 +1529,8 @@ table.table1 td.info a {
 	width: 100%;
 }
 
-input.inputbox:not([type="number"]):not([type="file"]),
-textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#notepad):not(#mchat-input):not(#bandInfoInput) {
+input.inputbox:not([type="number"], [type="file"]),
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #bandInfoInput) {
 	min-height: 2em;
 	line-height: 2em;
 }
@@ -1798,7 +1785,7 @@ textarea.inputbox:not(#message):not(#signature):not(#poll_option_text):not(#note
 	padding: 10px 15px 35px 15px;
 }
 
-.rozwijany-box-all:not(.contact-box-all):not(#smiley-box-all) {
+.rozwijany-box-all:not(.contact-box-all, #smiley-box-all) {
 	flex-direction: column;
 }
 

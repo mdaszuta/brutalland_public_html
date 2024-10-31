@@ -1,27 +1,36 @@
 /* responsive taken from _se\stylesheet.css */
 
+@media (max-width: 380px) {
 
-@media (min-width: 701px) {
-
-	dd.posts,
-	dd.topics,
-	dd.views,
-	dd.extra,
-	dd.mark,
-	.flex-2centered {
-		display: flex !important;
-		align-items: center;
-		justify-content: center;
+	.wrap {
+		background-size: 550px 457px;
 	}
 
 }
 
-@media (max-width: 1280px) {
+@media (min-width: 381px) and (max-width: 700px) {
 
+	.wrap {
+		background-size: 720px 599px;
+	}
+
+}
+
+@media (max-width: 550px) {
+
+	#m-name .main-menu-bottom,
 	#m-feed .main-menu-bottom,
-	#m-notify .main-menu-bottom,
-	#m-ksywa .main-menu-bottom {
-		right: 0px;
+	#m-notify .main-menu-bottom {
+		left: 0;
+	}
+
+	#m-name {
+		position: inherit;
+	}
+
+	#m-name .main-menu-bottom {
+		width: 100%;
+		right: 0;
 	}
 
 }
@@ -76,9 +85,8 @@
 		display: none;
 	}
 
-	.wrap {
-		/*background-image: URL("./images/probka720.jpg");*/
-		background-size: 720px 599px;
+	.phpbb_alert {
+		top: 100px;
 	}
 
 	.flex-box {
@@ -112,13 +120,13 @@
 
 	/* column-left column-right mobile change */
 
-	.settings-panel .flex-columns:not(.with-checkbox):not(.with-radio) .column-left {
+	.settings-panel .flex-columns:not(.with-checkbox, .with-radio) .column-left {
 		flex-basis: 100%;
 		align-items: flex-start;
 		text-align: left;
 	}
 
-	.settings-panel .flex-columns:not(.with-checkbox):not(.with-radio) .column-right {
+	.settings-panel .flex-columns:not(.with-checkbox, .with-radio) .column-right {
 		flex-basis: 100%;
 		align-items: center;
 		text-align: center;
@@ -149,7 +157,6 @@
 
 	.m-list-left {
 		width: calc(100% - 91px);
-		padding-left: 0;
 	}
 
 	#m-notify .m-list-right {
@@ -238,6 +245,8 @@
 	.lastpost .fa-fast-forward {
 		padding-left: 5px;
 		opacity: 0.2;
+		width: 1.28571429em;
+		text-align: center;
 	}
 
 	.post:not(.search) dl.postprofile {
@@ -279,75 +288,17 @@
 
 }
 
-@media (max-width: 550px) {
+@media (min-width: 701px) {
 
-	#m-name .main-menu-bottom,
-	#m-feed .main-menu-bottom,
-	#m-notify .main-menu-bottom {
-		left: 0;
-	}
-
-	#m-name {
-		position: inherit;
-	}
-
-	#m-name .main-menu-bottom{
-		width: 100%;
-	}
-
-	#m-name .main-menu-bottom,
-	#m-feed .main-menu-bottom,
-	#m-notify .main-menu-bottom {
-		right: 0;
-	}
-
-}
-
-@media (max-width: 380px) {
-
-	.wrap {
-		background-size: 550px 457px;
-	}
-
-}
-
-@media (max-width: 700px) {
-
-	.phpbb_alert {
-		top: 100px;
-	}
-
-}
-
-@media (max-height: 800px) {
-
-	.main-menu-item .main-menu-bottom{
-		max-height: 80vh;
-	}
-
-}
-
-@media (max-width: 900px) {
-	/* cp.css */
-
-	.navigation {
-		max-width: 100%;
-	}
-
-	.nojs .tabs a span, .nojs .minitabs a span {
-		letter-spacing: normal;
-	}
-
-	/* END cp.css */
-}
-
-@media (max-width: 920px) {
-
-	.wrap{
-		border-width: 0;
-		border-radius: 0;
-		box-shadow: none;
-		padding: 15px 0;
+	dd.posts,
+	dd.topics,
+	dd.views,
+	dd.extra,
+	dd.mark,
+	.flex-2centered {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
 	}
 
 }
@@ -355,8 +306,8 @@
 @media (max-width: 860px) {
 
 	.wrap {
-		margin: auto;
 		padding: 0 0 15px 0;
+		margin: auto;
 	}
 
 	#top-site-menu {
@@ -430,10 +381,6 @@
 		padding-right: 10px;
 	}
 
-	#main-menu .main-menu-item .main-menu-bottom {
-		max-height: 66vh;
-	}
-
 	#m-home,
 	#m-name,
 	#m-pagination,
@@ -502,6 +449,56 @@
 
 	.brutalform {
 		padding-top: 0px;
+	}
+
+}
+
+@media (min-width: 861px) and (max-width: 920px) {
+
+	.wrap{
+		padding: 15px 0;
+	}
+
+}
+
+@media (max-width: 900px) {
+	/* cp.css */
+
+	.navigation {
+		max-width: 100%;
+	}
+
+	.nojs .tabs a span, .nojs .minitabs a span {
+		letter-spacing: normal;
+	}
+
+	/* END cp.css */
+}
+
+@media (max-width: 920px) {
+
+	.wrap{
+		border-width: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+}
+
+@media (max-width: 1280px) {
+
+	#m-feed .main-menu-bottom,
+	#m-notify .main-menu-bottom,
+	#m-ksywa .main-menu-bottom {
+		right: 0px;
+	}
+
+}
+
+@media (max-height: 800px) {
+
+	.main-menu-item .main-menu-bottom {
+		max-height: 66vh;
 	}
 
 }
