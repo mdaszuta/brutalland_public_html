@@ -1,40 +1,46 @@
 <div class="m-list">
+
 	<!-- IF not .notifications -->
-		<p class="no_notifications info-paragraph">
-			{L_NO_NOTIFICATIONS}
-		</p>
+		<p class="no_notifications info-paragraph">{L_NO_NOTIFICATIONS}</p>
 	<!-- ENDIF -->
+
 	<!-- BEGIN notifications -->
-		<div class="<!-- IF notifications.UNREAD -->m-row2<!-- ELSE -->m-row1<!-- ENDIF --><!-- IF notifications.STYLING --> {notifications.STYLING}<!-- ENDIF --><!-- IF not notifications.URL --> no-url<!-- ENDIF -->">
-			<!-- IF notifications.UNREAD -->
-				<a href="{notifications.U_MARK_READ}" class="mark_read" data-ajax="notification.mark_read" title="{L_MARK_READ}"><i class="fa fa-check fa-2x"></i></a>
-			<!-- ENDIF -->
+	<div class="<!-- IF notifications.UNREAD -->m-row2<!-- ELSE -->m-row1<!-- ENDIF --><!-- IF notifications.STYLING --> {notifications.STYLING}<!-- ENDIF --><!-- IF not notifications.URL --> no-url<!-- ENDIF -->">
 
-			<!-- IF notifications.URL -->
-				<a class="flex notifications m-list-all" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
-			<!-- ENDIF -->
+		<!-- IF notifications.UNREAD -->
+			<a href="{notifications.U_MARK_READ}" class="mark_read" data-ajax="notification.mark_read" title="{L_MARK_READ}"><i class="fa fa-check fa-2x"></i></a>
+		<!-- ENDIF -->
 
-				<div class="meta m-list-left notification_text">
-					<div class="m-list-left-top">
-						<div class="notifications_title">
-							<!-- IF notifications.REFERENCE --><div class="notifications_reference">{notifications.REFERENCE}</div><!-- ENDIF -->
-							<!-- IF notifications.REASON --><div class="notifications_reason">{notifications.REASON}</div><!-- ENDIF -->
-							{notifications.FORMATTED_TITLE}
-						</div>
-					</div>
-					<div class="m-list-left-bottom">
-						<div class="notifications_time">{notifications.TIME}</div>
+		<!-- IF notifications.URL -->
+		<a class="flex notifications m-list-all" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
+		<!-- ENDIF -->
+
+			<div class="meta m-list-left notification_text">
+				<div class="m-list-left-top">
+					<div class="notifications_title">
+						<!-- IF notifications.REFERENCE --><div class="notifications_reference">{notifications.REFERENCE}</div><!-- ENDIF -->
+						<!-- IF notifications.REASON --><div class="notifications_reason">{notifications.REASON}</div><!-- ENDIF -->
+						{notifications.FORMATTED_TITLE}
 					</div>
 				</div>
-				<div class="m-list-right">
-					<div class="m-list-right-top">
-						<!-- IF notifications.AVATAR -->{notifications.AVATAR}<!-- ELSE --><i class="fa fa-user-circle-o"></i><!-- ENDIF -->
-					</div>
-					<div class="m-list-right-bottom"></div>
+				<div class="m-list-left-bottom">
+					<div class="notifications_time">{notifications.TIME}</div>
 				</div>
-			<!-- IF notifications.URL --></a><!-- ENDIF -->
-		</div>
+			</div>
+			<div class="m-list-right">
+				<div class="m-list-right-top">
+					<!-- IF notifications.AVATAR -->{notifications.AVATAR}<!-- ELSE --><i class="fa fa-user-circle-o"></i><!-- ENDIF -->
+				</div>
+				<div class="m-list-right-bottom"></div>
+			</div>
+
+		<!-- IF notifications.URL -->
+		</a>
+		<!-- ENDIF -->
+
+	</div>
 	<!-- END notifications -->
+
 </div>
 
 {% EVENT notification_dropdown_footer_before %}
