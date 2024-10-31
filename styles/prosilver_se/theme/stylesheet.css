@@ -76,7 +76,7 @@ select#usernames {
 	position: relative;
 }
 
-#main-menu #main-menu-middle {
+#main-menu-middle {
 	overflow: hidden;
 }
 
@@ -724,12 +724,11 @@ input[type="radio"] {
 	padding: 0 0 0 10px;
 }
 
-#mm-home,
+/*#mm-home,*/
 #mm-title,
 #mm-pagination,
 #main-menu #search,
 .main-menu-item .main-menu-top a,
-#mm-home .thegate-all,
 #main-menu #m-search-box .main-menu-top,
 #main-menu #m-search-box .search-box-hide {
 	height: 45px;
@@ -738,9 +737,9 @@ input[type="radio"] {
 #mm-home .thegate-top { height: 30px; }
 #mm-home .thegate-bottom { height: 15px; }
 
-a.sigil-all { height: 60px; }
-a.sigil-top { height: 40px; }
-a.sigil-bottom { height: 20px; }
+.sigil-all { height: 60px; }
+.sigil-top { height: 40px; }
+.sigil-bottom { height: 20px; }
 
 #mm-home a { width: inherit; }
 
