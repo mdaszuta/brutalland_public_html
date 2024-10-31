@@ -57,7 +57,6 @@ select:not(.abbc3_select) option,
 .tytulySD,
 .cp-main .notification_list .notifications,
 table.table1 tbody tr.bg3,
-.brutalform .brutalform-go-to-register,
 .brutalform-button-a,
 .brutalform-box .brutalform-label,
 .column-left label,
@@ -148,8 +147,7 @@ table.table1 tbody tr.bg3,
 	text-transform: uppercase;
 }
 
-.button,
-.brutalform .brutalform-go-to-register {
+.button {
 	text-transform: uppercase !important;
 }
 
@@ -236,8 +234,6 @@ ul.topiclist dt {
 	font-size: 1.3em;
 }
 
-.button,
-.brutalform .brutalform-go-to-register,
 .search-user .fa-search,
 .member-search strong {
 	font-size: 2em;

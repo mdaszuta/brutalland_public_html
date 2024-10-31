@@ -1599,14 +1599,15 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	width: 49%;
 }
 
-.brutalform .brutalform-go-to-register {
+/* Go to registration .button */
+
+.to-registration-button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.button,
-.brutalform .brutalform-go-to-register {
+.button {
 	width: 100%;
 	padding: 0;
 	justify-content: center;
@@ -1629,6 +1630,8 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	/*background-color: red;*/
 }
 
+/* Login button with autologin checkbox */
+
 .brutalform-autologin {
 	display: flex;
 	align-items: center;
@@ -1638,7 +1641,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 .brutalform-autologin #autologin {
 	position: absolute;
-	z-index: 999;
+	/*z-index: 999;*/
 	width: 1.4em;
 	height: 1.4em;
 }
