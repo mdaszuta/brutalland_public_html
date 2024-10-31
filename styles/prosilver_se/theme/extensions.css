@@ -436,22 +436,15 @@ p.post-number.post-number {
 
 #quick-login-panel {
 	background-color: black;
-	/*background-image: URL("./images/probka.jpg");*/
 	background-image: URL("./images/probka.webp");
 	background-size: 1295px 1077px;
-	background-position: calc(50% + 56.5px) calc(25% - 30px);
+	background-position: calc(50% + 56.5px) calc(25% - 29.5px);
 	width: 45em;
 	max-width: 100%;
 }
 
 #quick-login-panel a {
 	color: #666;
-}
-
-#quick-login-panel .content {
-	/*background-image: URL("./images/cross_invert.png");*/
-	/*background-repeat: no-repeat;*/
-	/*border-radius: 7px;*/
 }
 
 #quick-login-panel .close {
@@ -500,7 +493,7 @@ p.post-number.post-number {
 
 /* Fixes avatar aspect-ratio */
 
-#lista-top-five .topfive-avatar img { 
+#last-posts-list .topfive-avatar img { 
 	max-height: 20px;
 	vertical-align: middle;
 	width: auto;

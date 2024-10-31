@@ -884,9 +884,9 @@ input.button2 {
 	margin: 2em 0 2em 0;
 }
 
-#m-aktywne-tematy.labeled-icon {
-	min-width: 76px;
-	max-width: 76px;
+#mm-active-topics .labeled-icon {
+	min-width: 85px;
+	max-width: 85px;
 }
 
 .labeled-icon.notify-settings,
