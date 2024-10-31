@@ -1,68 +1,68 @@
-<div class="main-menu-bottom menu-all notification_list">
-
-		<div class="m-list">
-			<!-- IF not .notifications -->
-				<p class="no_notifications info-paragraph">
-					{L_NO_NOTIFICATIONS}
-				</p>
+<div class="m-list">
+	<!-- IF not .notifications -->
+		<p class="no_notifications info-paragraph">
+			{L_NO_NOTIFICATIONS}
+		</p>
+	<!-- ENDIF -->
+	<!-- BEGIN notifications -->
+		<div class="<!-- IF notifications.UNREAD -->m-row2<!-- ELSE -->m-row1<!-- ENDIF --><!-- IF notifications.STYLING --> {notifications.STYLING}<!-- ENDIF --><!-- IF not notifications.URL --> no-url<!-- ENDIF -->">
+			<!-- IF notifications.UNREAD -->
+				<a href="{notifications.U_MARK_READ}" class="mark_read" data-ajax="notification.mark_read" title="{L_MARK_READ}"><i class="fa fa-check fa-2x"></i></a>
 			<!-- ENDIF -->
-			<!-- BEGIN notifications -->
-				<div class="<!-- IF notifications.UNREAD -->m-row2<!-- ELSE -->m-row1<!-- ENDIF --><!-- IF notifications.STYLING --> {notifications.STYLING}<!-- ENDIF --><!-- IF not notifications.URL --> no-url<!-- ENDIF -->">
-					<!-- IF notifications.UNREAD -->
-						<a href="{notifications.U_MARK_READ}" class="mark_read" data-ajax="notification.mark_read" title="{L_MARK_READ}"><div class="fa fa-check fa-2x"></div></a>
-					<!-- ENDIF -->
 
-					<!-- IF notifications.URL -->
-						<a class="flex notifications m-list-all" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
-					<!-- ENDIF -->
+			<!-- IF notifications.URL -->
+				<a class="flex notifications m-list-all" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
+			<!-- ENDIF -->
 
-						<div class="meta m-list-left notification_text">
-							<div class="m-list-left-top">
-								<div class="notifications_title">
-									<!-- IF notifications.REFERENCE --><div class="notifications_reference">{notifications.REFERENCE}</div><!-- ENDIF -->
-									<!-- IF notifications.REASON --><div class="notifications_reason">{notifications.REASON}</div><!-- ENDIF -->
-									{notifications.FORMATTED_TITLE}
-								</div>
-							</div>
-							<div class="m-list-left-bottom">
-								<div class="notifications_time">{notifications.TIME}</div>
-							</div>
+				<div class="meta m-list-left notification_text">
+					<div class="m-list-left-top">
+						<div class="notifications_title">
+							<!-- IF notifications.REFERENCE --><div class="notifications_reference">{notifications.REFERENCE}</div><!-- ENDIF -->
+							<!-- IF notifications.REASON --><div class="notifications_reason">{notifications.REASON}</div><!-- ENDIF -->
+							{notifications.FORMATTED_TITLE}
 						</div>
-						<div class="m-list-right">
-							<div class="m-list-right-top">
-								<!-- IF notifications.AVATAR -->{notifications.AVATAR}<!-- ELSE --><div class="fa fa-user-circle-o"></div><!-- ENDIF -->
-							</div>
-							<div class="m-list-right-bottom"></div>
-						</div>
-					<!-- IF notifications.URL --></a><!-- ENDIF -->
+					</div>
+					<div class="m-list-left-bottom">
+						<div class="notifications_time">{notifications.TIME}</div>
+					</div>
 				</div>
-			<!-- END notifications -->
-		</div>
-
-		{% EVENT notification_dropdown_footer_before %}
-		<div class="footer switcheroo-menu">
-			<div class="switcheroo-menu-all">
-				<a href="{U_VIEW_ALL_NOTIFICATIONS}" id="n_see" class="labeled-icon labeled-icon-button">
-					<div class="fa fa-bell"></div>
-					<div class="labeled-icon-bg"><strong>{L_SEE_ALL_NOTIFICATIONS}</strong></div>
-				</a>
-				<a href="{U_NOTIFICATION_SETTINGS}" id="n_set" class="labeled-icon labeled-icon-button">
-					<div class="fa fa-cog"></div>
-					<div class="labeled-icon-bg"><strong>{L_SETTINGS}</strong></div>
-				</a>
-				<!-- IF NOTIFICATIONS_COUNT -->
-					<a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read" id="mark_all_notifications" class="labeled-icon labeled-icon-button">
-						<div class="fa fa-trash"></div>
-						<div class="labeled-icon-bg"><strong>{L_RESET}</strong></div>
-					</a>
-				<!-- ENDIF -->
-			</div>
-			<div class="switcheroo-menu-devil">
-				<div class="labeled-icon labeled-icon-button">
-					<div class="fa fa-dot-circle-o"></div>
-					<div class="labeled-icon-bg"><strong></strong></div>
+				<div class="m-list-right">
+					<div class="m-list-right-top">
+						<!-- IF notifications.AVATAR -->{notifications.AVATAR}<!-- ELSE --><i class="fa fa-user-circle-o"></i><!-- ENDIF -->
+					</div>
+					<div class="m-list-right-bottom"></div>
 				</div>
-			</div>
+			<!-- IF notifications.URL --></a><!-- ENDIF -->
 		</div>
-		{% EVENT notification_dropdown_footer_after %}
+	<!-- END notifications -->
 </div>
+
+{% EVENT notification_dropdown_footer_before %}
+<div class="footer switcheroo-menu">
+
+	<div class="switcheroo-menu-devil">
+		<div class="labeled-icon labeled-icon-button">
+			<i class="fa fa-dot-circle-o"></i>
+			<div class="labeled-icon-bg"><strong></strong></div>
+		</div>
+	</div>
+
+	<div class="switcheroo-menu-all">
+		<a href="{U_VIEW_ALL_NOTIFICATIONS}" id="n_see" class="labeled-icon labeled-icon-button">
+			<i class="fa fa-bell"></i>
+			<div class="labeled-icon-bg"><strong>{L_SEE_ALL_NOTIFICATIONS}</strong></div>
+		</a>
+		<a href="{U_NOTIFICATION_SETTINGS}" id="n_set" class="labeled-icon labeled-icon-button">
+			<i class="fa fa-cog"></i>
+			<div class="labeled-icon-bg"><strong>{L_SETTINGS}</strong></div>
+		</a>
+		<!-- IF NOTIFICATIONS_COUNT -->
+			<a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read" id="mark_all_notifications" class="labeled-icon labeled-icon-button">
+				<i class="fa fa-trash"></i>
+				<div class="labeled-icon-bg"><strong>{L_RESET}</strong></div>
+			</a>
+		<!-- ENDIF -->
+	</div>
+
+</div>
+{% EVENT notification_dropdown_footer_after %}
