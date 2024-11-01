@@ -288,6 +288,14 @@
 
 }
 
+@media (max-width: 700px) or (max-height: 800px) {
+
+	.main-menu-item .main-menu-bottom {
+		max-height: 66vh;
+	}
+
+}
+
 @media (min-width: 701px) {
 
 	dd.posts,
@@ -491,14 +499,6 @@
 	#mm-notifications .main-menu-bottom,
 	#mm-user .main-menu-bottom {
 		right: 0px;
-	}
-
-}
-
-@media (max-height: 800px) {
-
-	.main-menu-item .main-menu-bottom {
-		max-height: 66vh;
 	}
 
 }

@@ -316,17 +316,11 @@ ul.zebra-list li:nth-child(even):hover {
 
 .m-list-left {
 	border-right: 1px solid transparent;
-}
-
-.m-list-left:hover {
-	border-right: 1px solid #32D635;
-}
-
-.m-list-left {
 	transition: border-color 0.75s ease-out 0.1s;
 }
 
 .m-list-left:hover {
+	border-right: 1px solid #32D635;
 	transition: border-color 0.75s ease-out 0.1s;
 }
 

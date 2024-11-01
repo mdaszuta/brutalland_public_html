@@ -777,6 +777,7 @@ input.button2 {
 .m-list-right {
 	order: 2;
 	flex-direction: column;
+	align-items: flex-start;
 	width: 130px;
 	max-width: 130px;
 	padding-right: 10px;
@@ -803,10 +804,6 @@ input.button2 {
 .m-list-left-top,
 .m-list-left-bottom {
 	justify-content: flex-start;
-}
-
-.m-list-right {
-	align-items: flex-start;
 }
 
 .cp-main .notifications_time,
@@ -944,6 +941,14 @@ input.button2 {
 	align-items: center;
 }
 
+#m-avatar {
+	width: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+#m-avatar .avatar { margin: 0; }
+
 #mm-user .main-menu-bottom {
 	padding: 5px;
 }
@@ -956,14 +961,6 @@ input.button2 {
 #mm-user .main-menu-bottom a {
 	padding: 10px;
 }
-
-#m-avatar {
-	width: 30px;
-	display: flex;
-	justify-content: center;
-}
-
-#m-avatar .avatar { margin: 0; }
 
 div.content { padding-top: 10px; }
 
