@@ -1395,7 +1395,8 @@ table.table1 td.info a {
 	position: relative;
 }
 
-.top-with-settings div {
+.top-with-settings div,
+.top-with-settings i {
 	position: absolute;
 	right: 0;
 	top: -10px;

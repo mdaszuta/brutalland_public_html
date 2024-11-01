@@ -14,7 +14,7 @@
 
 			<dt><!-- EVENT memberlist_view_username_prepend --><!-- IF USER_COLOR --><span style="color: {USER_COLOR};" class="username-coloured"><!-- ELSE --><span class="username"><!-- ENDIF -->
 				{USERNAME}
-				<!-- IF S_ONLINE --><div class="fa fa-circle"></div><!-- ENDIF -->
+				<!-- IF S_ONLINE --><i class="fa fa-circle"></i><!-- ENDIF -->
 			</span><!-- EVENT memberlist_view_username_append --></dt>
 
 			<!-- EVENT memberlist_view_rank_avatar_before -->
@@ -116,13 +116,13 @@
 		<dl class="details">
 		<!-- IF U_EMAIL -->
 		<div class="flex-columns">
-			<dt class="column-left"><label><div class="fa fa-at"></div></label></dt>
+			<dt class="column-left"><label><i class="fa fa-at"></i></label></dt>
 			<dd class="column-right"><a href="{U_EMAIL}">{L_SEND_EMAIL_USER}</a></dd>
 		</div>
 		<!-- ENDIF -->
 		<!-- IF U_PM -->
 		<div class="flex-columns">
-			<dt class="column-left"><label><div class="fa fa-envelope"></div></label></dt>
+			<dt class="column-left"><label><i class="fa fa-envelope"></i></label></dt>
 			<dd class="column-right"><a href="{U_PM}">{L_SEND_PRIVATE_MESSAGE}</a></dd>
 		</div>
 		<!-- ENDIF -->

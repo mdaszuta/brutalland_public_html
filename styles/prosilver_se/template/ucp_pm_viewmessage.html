@@ -33,7 +33,7 @@
 				<!-- EVENT ucp_pm_viewmessage_avatar_after -->
 			</div>
 			{% EVENT ucp_pm_viewmessage_author_full_before %}
-			{MESSAGE_AUTHOR_FULL}<!-- IF S_ONLINE --><div class="fa fa-circle"></div><!-- ENDIF -->
+			{MESSAGE_AUTHOR_FULL}<!-- IF S_ONLINE --><i class="fa fa-circle"></i><!-- ENDIF -->
 			{% EVENT ucp_pm_viewmessage_author_full_after %}
 		</dt>
 
@@ -91,21 +91,21 @@
 			<!-- IF U_DELETE -->
 				<li>
 					<a href="{U_DELETE}" title="{L_DELETE_MESSAGE}" class="button-icon-only">
-						<div class="fa fa-times fa-lg" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_DELETE}</span>
+						<i class="fa fa-times fa-lg" aria-hidden="true"></i><span class="sr-only">{L_BUTTON_DELETE}</span>
 					</a>
 				</li>
 			<!-- ENDIF -->
 			<!-- IF U_EDIT -->
 				<li>
 					<a href="{U_EDIT}" title="{L_POST_EDIT_PM}" class="button-icon-only">
-						<div class="fa fa-edit fa-2x" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_EDIT}</span>
+						<i class="fa fa-edit fa-2x" aria-hidden="true"></i><span class="sr-only">{L_BUTTON_EDIT}</span>
 					</a>
 				</li>
 			<!-- ENDIF -->
 			<!-- IF U_QUOTE -->
 				<li>
 					<a href="{U_QUOTE}" title="{L_POST_QUOTE_PM}" class="button-icon-only">
-						<div class="fa fa-quote-right fa-2x" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_QUOTE}</span>
+						<i class="fa fa-quote-right fa-2x" aria-hidden="true"></i><span class="sr-only">{L_BUTTON_QUOTE}</span>
 					</a>
 				</li>
 			<!-- ENDIF -->
@@ -114,7 +114,7 @@
 			<!-- IF U_REPORT -->
 				<li>
 					<a href="{U_REPORT}" title="{L_REPORT_PM}" class="button-icon-only">
-						<div class="fa fa-flag fa-lg" aria-hidden="true"></div><span class="sr-only">{L_BUTTON_REPORT}</span>
+						<i class="fa fa-flag fa-lg" aria-hidden="true"></i><span class="sr-only">{L_BUTTON_REPORT}</span>
 					</a>
 				</li>
 			<!-- ENDIF -->

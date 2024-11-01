@@ -168,7 +168,8 @@
 		max-width: calc(100% - 66px);
 	}
 
-	.top-with-settings div {
+	.top-with-settings div,
+	.top-with-settings i {
 		top: -20px;
 		right: 10px;
 	}	
