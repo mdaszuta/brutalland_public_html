@@ -645,6 +645,7 @@ tags-input .tags .tag-item:hover {
 	text-align: center;
 	position: absolute;
 	z-index: 3;
+	width: 100%;
 }
 
 /* Topic tag remove button in posting */

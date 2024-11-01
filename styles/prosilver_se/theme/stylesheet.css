@@ -1014,7 +1014,8 @@ body.simple {
 	flex-direction: row;
 }
 
-.pagination li a, .pagination li span {
+.pagination li a,
+.pagination li span {
 	display: block;
 	line-height: 1.4;
 	min-width: 10px;
@@ -1030,9 +1031,7 @@ body.simple {
 	padding: 2px;
 }
 
-.row .pagination span i,
-a.fa-ellipsis-h::before,
-li.arrow a::before {
+.row .pagination i {
 	vertical-align: sub;
 }
 

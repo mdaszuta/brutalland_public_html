@@ -13,16 +13,6 @@
 {META}
 <title><!-- IF UNREAD_NOTIFICATIONS_COUNT -->({UNREAD_NOTIFICATIONS_COUNT}) <!-- ENDIF --><!-- IF not S_VIEWTOPIC and not S_VIEWFORUM -->{SITENAME} - <!-- ENDIF --><!-- IF S_IN_MCP -->{L_MCP} - <!-- ELSEIF S_IN_UCP -->{L_UCP} - <!-- ENDIF -->{PAGE_TITLE}<!-- IF S_VIEWTOPIC or S_VIEWFORUM --> - {SITENAME}<!-- ENDIF --></title>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Y6RQK64MN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2Y6RQK64MN');
-</script>
-
 <!-- IF S_ENABLE_FEEDS -->
 	<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{{ path('phpbb_feed_index') }}"><!-- ENDIF -->
 	<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{{ path('phpbb_feed_news') }}"><!-- ENDIF -->
@@ -68,8 +58,20 @@
 <link rel="preload" fetchpriority="high" as="font" href="{ROOT_PATH}assets/fonts/fontawesome-webfont.woff2?v=4.7.0" type="font/woff2" crossorigin>
 <!-- IF S_INDEX -->
 <link rel="preload" fetchpriority="low" as="image" href="{T_THEME_PATH}/images/forum_read.webp" type="image/webp">
-<link rel="preload" fetchpriority="low" as="image" href="{T_THEME_PATH}/images/forum_unread.webp" type="image/webp">
+<!-- IF S_USER_LOGGED_IN -->
+	<link rel="preload" fetchpriority="low" as="image" href="{T_THEME_PATH}/images/forum_unread.webp" type="image/webp">
 <!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Y6RQK64MN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2Y6RQK64MN');
+</script>
 
 <link href="{T_THEME_PATH}/prosilver3.3.13NoColours.min.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 <link href="{T_FONT_AWESOME_LINK}" rel="stylesheet">
