@@ -219,7 +219,7 @@ $(document).ready(function(){
 		*/
 		if( searchInputbox.outerWidth() != 0 ) {
 			if( windowWidth <= 860 ) {
-				var tmpSearchInputboxWidth = $("#search").outerWidth() - parseFloat(searchInputbox.css("margin-left"));
+				var tmpSearchInputboxWidth = $("#mm-search").outerWidth() - parseFloat(searchInputbox.css("margin-left"));
 				searchInputbox.css("width", tmpSearchInputboxWidth + "px");
 			}
 			else {
@@ -234,15 +234,15 @@ $(document).ready(function(){
 
 		var searchButtonTop = $(this);
 		var searchInputbox = searchButtonTop.siblings(".inputbox");
-		var searchBoxHide = searchButtonTop.siblings(".search-box-hide");
-		var searchForm = searchButtonTop.closest("#search");
+		var searchBoxHide = searchButtonTop.siblings("#search-box-hide");
+		var searchForm = searchButtonTop.closest("#mm-search");
 
 		timeoutSearchBox = setTimeout( function() {
 
 			searchForm.css("width", "100%");
-			searchInputbox.css("padding","0px 10px");
+			searchInputbox.css("padding","0px 5px");
 
-			/* jeżeli vw <= 860, input + margin-left na całą szerokość main menu */
+			/* if vw <= 860, then input + margin-left = whole width of main menu */
 			if ( windowWidth <= 860 ) {
 				var tmpSearchInputboxWidth = searchForm.width() - parseFloat(searchInputbox.css("margin-left"));
 				searchInputbox.focus().animate({ width: tmpSearchInputboxWidth + "px" }, 500 );
@@ -259,11 +259,11 @@ $(document).ready(function(){
 		clearTimeout(timeoutSearchBox);
 	});
 	
-	$(".search-box-hide").on('click', function() {
+	$("#search-box-hide").on('click', function() {
 
 		var searchBoxHide = $(this);
 		var searchInputbox = searchBoxHide.next(".inputbox");
-		var searchForm = searchBoxHide.closest("#search");
+		var searchForm = searchBoxHide.closest("#mm-search");
 
 		if ( windowWidth <= 860 ) {
 			/* animation queue */

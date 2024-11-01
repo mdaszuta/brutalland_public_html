@@ -34,7 +34,7 @@
 #mm-last-posts .main-menu-top,
 #mm-topics .main-menu-top,
 #mm-tags .main-menu-top,
-#m-search-box .main-menu-top,
+#mm-search .main-menu-top,
 #mm-notifications .main-menu-top,
 #mm-pm .main-menu-top,
 #mm-user .main-menu-top,
@@ -66,7 +66,7 @@ li.row .fa-tags,
 }
 
 .topic-reply-counter.unread,
-.search-box-hide .fa,
+#search-box-hide .fa,
 .copyright:hover {
 	opacity: 0.7;
 }
@@ -98,8 +98,8 @@ li.row:hover .topic-reply-counter.unread,
 #mm-last-posts:hover .main-menu-top,
 #mm-topics:hover .main-menu-top,
 #mm-tags:hover .main-menu-top,
-#m-search-box:hover .main-menu-top,
-.search-box-hide:hover .fa,
+#mm-search:hover .main-menu-top,
+#search-box-hide:hover .fa,
 #mm-notifications:hover .main-menu-top,
 #mm-pm:hover .main-menu-top,
 #mm-user:hover .main-menu-top,
@@ -140,7 +140,7 @@ li.row:hover .topic-reply-counter.unread,
 	}
 }
 
-#m-search-box ::placeholder,
+#mm-search ::placeholder,
 .pagination ::placeholder {
 	opacity: 1;
 }
@@ -157,8 +157,8 @@ li.row:hover .topic-reply-counter.unread,
 #mm-last-posts .main-menu-top,
 #mm-topics .main-menu-top,
 #mm-tags .main-menu-top,
-#m-search-box .main-menu-top,
-.search-box-hide .fa,
+#mm-search .main-menu-top,
+#search-box-hide .fa,
 #mm-notifications .main-menu-top,
 #mm-pm .main-menu-top,
 #mm-user .main-menu-top,

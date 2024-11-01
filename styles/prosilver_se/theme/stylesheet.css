@@ -650,12 +650,12 @@ input[type="radio"] {
 	flex-basis: 0%;
 }
 
-#main-menu #search {
+#mm-search {
 	order: 4;
 	flex-basis: 0%;
 }
 
-#main-menu #search .inputbox {
+#mm-search .inputbox {
 	padding: 0;
 }
 
@@ -709,7 +709,7 @@ input[type="radio"] {
 }
 
 .main-menu-item .main-menu-top a,
-#main-menu #m-search-box .main-menu-top {
+#mm-search .main-menu-top {
 	display: flex;
 	align-items: center;
 	padding-left: 13px;
@@ -727,10 +727,10 @@ input[type="radio"] {
 /*#mm-home,*/
 #mm-title,
 #mm-pagination,
-#main-menu #search,
+#mm-search,
 .main-menu-item .main-menu-top a,
-#main-menu #m-search-box .main-menu-top,
-#main-menu #m-search-box .search-box-hide {
+#mm-search .main-menu-top,
+#search-box-hide {
 	height: 45px;
 }
 
@@ -1171,7 +1171,7 @@ input:is(:-webkit-autofill, :autofill) {
 /* Change cursor on hover to pointer */
 
 *[onclick^="window.location.href"],
-.search-box-hide,
+#search-box-hide,
 .fa-search,
 .menu-devil,
 #picture-box-all label,
@@ -1262,8 +1262,8 @@ dd.time {
 /* Search box settings */
 
 .section-viewtopic .search-box .inputbox,
-.search-box .search-box-hide,
-.search-box .inputbox {
+.search-box .inputbox,
+#search-box-hide {
 	width: 0;
 }
 
@@ -1271,7 +1271,7 @@ dd.time {
 	position: relative;
 }
 
-.search-box .search-box-hide {
+#search-box-hide {
 	opacity: 1;
 	display: none;
 	position: absolute;
@@ -1997,7 +1997,7 @@ dl.details dd {
 }
 
 .nav-footer {
-	order: 1;
+	/*order: 1;*/
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;

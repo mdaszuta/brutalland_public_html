@@ -25,17 +25,17 @@
 				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
 			</div>
 
-			<form action="{U_SEARCH}" method="get" id="search">
-				<fieldset>
-					<div id="m-search-box" class="main-menu-item search-box" role="search">
-						<div class="main-menu-top">
-							<div class="search-box-hide"><i class="fa fa-compress"></i></div>
-							<input id="search-box-keywords" name="keywords" accesskey="s" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
-							<button id="search-box-icon" class="fa fa-search fa-2x" type="submit" title="{L_SEARCH}"></button>
-						</div>
-					</div>
-				</fieldset>
-			</form>
+			<div id="mm-search" class="main-menu-item search-box" role="search">
+				<form method="get" id="search" action="{U_SEARCH}">
+						<fieldset>
+							<div class="main-menu-top">
+								<div id="search-box-hide"><i class="fa fa-compress"></i></div>
+								<input id="search-box-keywords" name="keywords" accesskey="s" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
+								<button id="search-box-icon" class="fa fa-search fa-2x" type="submit" title="{L_SEARCH}"></button>
+							</div>
+						</fieldset>
+				</form>
+			</div>
 			
 		</div>	
 
