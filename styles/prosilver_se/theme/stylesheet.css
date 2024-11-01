@@ -626,11 +626,11 @@ input[type="radio"] {
 
 /* Left part of Top site menu */
 
-#main-menu #main-menu-left { order: 1; }
+#main-menu-left { order: 1; }
 
 /* Middle part of Top site menu */
 
-#main-menu #main-menu-middle {
+#main-menu-middle {
 	order: 2;
 	width: 100%;
 	min-height: 45px;
@@ -644,7 +644,7 @@ input[type="radio"] {
 	flex-basis: 100%;
 }
 
-#main-menu #mm-pagination {
+#mm-pagination {
 	order: 3;
 	display: flex;
 	flex-basis: 0%;
@@ -661,16 +661,16 @@ input[type="radio"] {
 
 /* Right part of Top site menu */
 
-#main-menu #main-menu-right { order: 3; }
+#main-menu-right { order: 3; }
 
-#main-menu #main-menu-right #mm-last-posts { order: 1; }
-#main-menu #main-menu-right #mm-topics { order: 2; }
-#main-menu #main-menu-right #mm-notifications { order: 3; }
-#main-menu #main-menu-right #mm-pm { order: 4; }
-#main-menu #main-menu-right #mm-tags { order: 5; }
-#main-menu #main-menu-right #mm-user { order: 6; }
-#main-menu #main-menu-right #mm-active-topics { order: 7; }
-#main-menu #main-menu-right #mm-log-in { order: 8; }
+#mm-last-posts { order: 1; }
+#mm-topics { order: 2; }
+#mm-notifications { order: 3; }
+#mm-pm { order: 4; }
+#mm-tags { order: 5; }
+#mm-user { order: 6; }
+#mm-active-topics { order: 7; }
+#mm-log-in { order: 8; }
 
 /* Main menu items */
 
@@ -811,7 +811,16 @@ input.button2 {
 	margin-left: 18px;
 }
 
-#mm-title .m-list .panel .fa {
+#mm-title .m-list {
+	width: 365px;
+	list-style-type: none;
+}
+
+#mm-title .panel p {
+    margin-bottom: 0;
+}
+
+#mm-title .panel .fa {
 	min-width: 23px;
 	min-height: 23px;
 }
@@ -821,7 +830,7 @@ input.button2 {
 	flex-direction: row;
 }
 
-#mm-notifications .main-menu-bottom .m-list {
+#mm-notifications .m-list {
 	display: flex;
 	flex-direction: column;
 	width: 450px;
@@ -860,7 +869,7 @@ input.button2 {
 	margin-left: 0;
 }
 
-#mm-notifications .m-list div[class^="m-row"] {
+#mm-notifications div[class^="m-row"] {
 	position: relative;
 }
 
@@ -926,15 +935,6 @@ input.button2 {
 #mm-tags .m-list-left { flex-basis: 83%; }
 #mm-tags .m-list-right { flex-basis: 17%; }
 #mm-tags .main-menu-bottom { width: auto; }
-
-#mm-title .panel p {
-    margin-bottom: 0;
-}
-
-#mm-title .m-list {
-	width: 365px;
-	list-style-type: none;
-}
 
 #mm-user .main-menu-top {
 	display: flex;

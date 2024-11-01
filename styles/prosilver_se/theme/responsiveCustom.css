@@ -365,11 +365,11 @@
 		margin-left: 45px;
 	}
 
-	#main-menu #main-menu-middle { order: 3; }
-	#main-menu #mm-pagination { order: 4; }
-	#main-menu #main-menu-right { order: 2; }
-	#main-menu #main-menu-right #mm-notifications { order: 6; }
-	#main-menu #main-menu-right #mm-tags { order: 5; }
+	#main-menu-middle { order: 3; }
+	#mm-pagination { order: 4; }
+	#main-menu-right { order: 2; }
+	#mm-notifications { order: 6; }
+	#mm-tags { order: 5; }
 
 	#page-header {
 		display: none;
