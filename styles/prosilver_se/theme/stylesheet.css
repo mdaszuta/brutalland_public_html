@@ -16,16 +16,16 @@ body {
 .cc-window {
 	background-color: transparent !important;
 	background: linear-gradient(to bottom, transparent 0%, #000 1em);
-	padding: 1em 1.8em 0.5em;
+	/*padding: 1em 1.8em 0.5em;*/
 	text-align: justify;
 }
 
 .cc-window.cc-floating {
-	max-width: 100%;
+	max-width: 100% !important;
 }
 
 .cc-bottom {
-	bottom: 0;
+	bottom: 0 !important;
 }
 
 .cc-link {
