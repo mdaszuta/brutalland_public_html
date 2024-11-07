@@ -373,6 +373,10 @@ a.username {
 	color: #444;
 }
 
+.spoilcontent {
+	border-top: 1px solid #444;
+}
+
 div select,
 fieldset span,
 table.table1 td,
@@ -507,6 +511,23 @@ fieldset dl:hover dt label,
 	}
 }
 
+/* Change a border color on hover */
+
+li:not(.header) .lastpost:hover {
+	border-color: #32D635 !important;
+}
+
+.m-list-left:hover {
+	border-color: #32D635;
+}
+
+.lastpost,
+li:not(.header) .lastpost:hover,
+.m-list-left,
+.m-list-left:hover {
+	transition: border-color 0.75s ease-out 0.1s;
+}
+
 .content h2,
 .panel h2,
 .panel-container .panel li.header dd,
@@ -537,12 +558,26 @@ a.username-coloured:focus,
 	color:#257EDE !important;
 }
 
+/* Subforums */
+
 ul.topiclist li.row:hover .subforum.read {
-	color: white;
+	/*color: white;*/
 }
 
 ul.topiclist li.row .subforum.read:hover {
-	color: #32D635;
+	/*color: #32D635;*/
+}
+
+.subforum.unread {
+	border-color: rgba(238, 0, 0, 0.3);
+}
+
+.subforum.unread:hover {
+	border-color: rgba(50, 214, 53, 0.3);
+}
+
+.subforum.unread:focus {
+	border-color: rgba(37, 126, 222, 0.3);
 }
 
 /* Special PM folders or groups as select option */
@@ -560,6 +595,10 @@ dd.profile-warnings {
 }
 
 /* Code block */
+
+.codebox p {
+	border-bottom-color: #333;
+}
 
 .codebox code {
 	color: #2E8B57;
@@ -651,6 +690,7 @@ dd.profile-warnings {
 /* BOX-SHADOWS */
 
 .wrap {
+	border-color: #fff;
 	box-shadow: 0 0 5px 2px #9D9A93, inset 0 3px 18px rgba(157, 154, 147, .25);
 }
 
