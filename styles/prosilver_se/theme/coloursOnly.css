@@ -300,7 +300,7 @@ a,
 fieldset span strong,
 fieldset.polls dl.voted,
 .fa-search,
-#mm-pagination .pagination a,
+#mm-pagination a,
 .m-row2:not(:hover, :focus) .notifications_reason em,
 h2,
 h3,
@@ -736,7 +736,7 @@ dd.profile-warnings {
 }
 
 #mm-title .panel.bg3,
-#mm-pagination .pagination a,
+/*#mm-pagination a,*/
 .brutalform .reset,
 li.row.bg1,
 li.row.bg2 {

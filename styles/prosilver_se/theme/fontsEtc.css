@@ -29,7 +29,7 @@ a.lastsubject:hover,
 	font-style: normal;
 }
 
-#top-site-menu .pagination li a,
+#mm-pagination a,
 .notifications_time,
 .m-list-right-bottom,
 .post-number a,
@@ -67,7 +67,7 @@ table.table1 tbody tr.bg3,
 
 /* FONT-VARIANTS */
 
-.pagination li a,
+/*.pagination li a,*/
 .button,
 .button1,
 .button2:not(.fa),

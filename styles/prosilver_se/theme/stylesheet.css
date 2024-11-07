@@ -654,7 +654,7 @@ input[type="radio"] {
 	min-height: 100%;
 }
 
-.main-menu-item .main-menu-top {
+.main-menu-top {
 	order: 1;
 	display: flex;
 	z-index: 666;
@@ -680,7 +680,7 @@ input[type="radio"] {
 	right: -50px;
 }
 
-.main-menu-item .main-menu-top a,
+.main-menu-top a,
 #mm-search .main-menu-top {
 	display: flex;
 	align-items: center;
@@ -688,11 +688,11 @@ input[type="radio"] {
 	padding-right: 13px;
 }
 
-.main-menu-item .main-menu-top .fa-history {
+.main-menu-top .fa-history {
 	padding: 0 10px 0 10px;
 }
 
-.main-menu-item .main-menu-top .fa-sign-in {
+.main-menu-top .fa-sign-in {
 	padding: 0 0 0 10px;
 }
 
@@ -700,7 +700,7 @@ input[type="radio"] {
 #mm-title,
 #mm-pagination,
 #mm-search,
-.main-menu-item .main-menu-top a,
+.main-menu-top a,
 #mm-search .main-menu-top,
 #search-box-hide {
 	height: 45px;
@@ -770,10 +770,10 @@ input.button2 {
 	box-sizing: border-box;
 	border-right: 1px solid transparent;
 }
-
+/*
 .m-list-left-top .flex { order: 1; }
 .m-list-left-bottom { order: 2; }
-
+*/
 .m-list-left-top,
 .m-list-left-bottom {
 	justify-content: flex-start;
@@ -844,6 +844,8 @@ input.button2 {
 	margin-left: 0;
 }
 
+/* Displaying mark notification as read icon */
+
 #mm-notifications div[class^="m-row"] {
 	position: relative;
 }
@@ -867,13 +869,9 @@ input.button2 {
 
 /* Labeled icons */
 
-#mm-active-topics .labeled-icon {
-	min-width: 85px;
-	max-width: 85px;
-}
-
 .labeled-icon.notify-settings,
-#mm-title .labeled-icon {
+#mm-title .labeled-icon,
+#mm-active-topics .labeled-icon {
 	min-width: 90px;
 	max-width: 90px;
 }

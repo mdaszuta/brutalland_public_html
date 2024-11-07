@@ -223,7 +223,7 @@
 		top: 5px;
 	}
 
-	.main-menu-item .main-menu-top .fa-history {
+	.main-menu-top .fa-history {
 		padding: 0;
 	}
 
@@ -386,12 +386,6 @@
 		padding: 0;
 	}
 
-	.main-menu-item .main-menu-top a/*,
-	.main-menu-item .main-menu-top #mm-search*/ {
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
 	#mm-home,
 	#mm-title,
 	#mm-pagination,
@@ -400,13 +394,20 @@
 		height: auto;
 	}
 
-	.main-menu-top-title,
-	.main-menu-item .main-menu-top a {
+	.main-menu-top a/*,
+	.main-menu-top #mm-search*/ {
+		padding-left: 10px;
+		padding-right: 10px;
 		height: 45px;
 	}
 
+	/*#titleID,*/
+	.main-menu-top a {
+		/*height: 45px;*/
+	}
+
 	#mm-topics #mm-topics-unread {
-		padding-right: 5px;
+		/*padding-right: 5px;*/
 	}
 
 	/* zmienny układ #main-menu-right zależnie czy użytkownik zalogowany czy nie */
