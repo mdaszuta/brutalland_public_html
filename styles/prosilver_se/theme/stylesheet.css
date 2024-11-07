@@ -663,7 +663,7 @@ input[type="radio"] {
 	box-sizing: border-box;
 }
 
-.main-menu-item .main-menu-bottom {
+.main-menu-bottom {
 	order: 2;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -803,6 +803,8 @@ input.button2 {
 	flex-direction: row;
 }
 
+/* Top menu & UCP notifications */
+
 #mm-notifications .m-list {
 	display: flex;
 	flex-direction: column;
@@ -863,6 +865,8 @@ input.button2 {
 	margin: 2em 0 2em 0;
 }
 
+/* Labeled icons */
+
 #mm-active-topics .labeled-icon {
 	min-width: 85px;
 	max-width: 85px;
@@ -899,15 +903,21 @@ input.button2 {
 	max-width: 100%;
 }
 
+/* Topic reply counter */
+
 .topic-reply-counter {
 	text-align: center;
 	min-width: 13px;
 	/*padding: 0 2px 0 2px;*/
 }
 
+/* Top menu tags list */
+
 #mm-tags .m-list-left { flex-basis: 83%; }
 #mm-tags .m-list-right { flex-basis: 17%; }
 #mm-tags .main-menu-bottom { width: auto; }
+
+/* Top menu avatar and user settings */
 
 #mm-user .main-menu-top {
 	display: flex;
@@ -917,6 +927,11 @@ input.button2 {
 .header-avatar {
 	width: 30px;
 	justify-content: center;
+}
+
+a.header-avatar img {
+	max-height: 30px;
+	margin: 0;
 }
 
 #mm-user .main-menu-bottom {
@@ -1143,12 +1158,9 @@ input:is(:-webkit-autofill, :autofill) {
 .fa-search,
 .menu-devil,
 #picture-box-all label,
-#list-box-all label,
-.spoilbtn {
+#list-box-all label {
 	cursor: pointer;
 }
-
-/* end of CURSOR */
 
 /* No outline */
 
@@ -1250,11 +1262,6 @@ dd.time {
 	padding-right: 6px;
 }
 
-a.header-avatar img {
-	max-height: 30px;
-	margin: 0;
-}
-
 /* Headers */
 
 h1 {
@@ -1283,6 +1290,7 @@ h3 {
 .spoilbtn {
 	padding: 2px;
 	display: block;
+	cursor: pointer;
 }
 
 .spoilwrapper_muzycy {
@@ -1917,7 +1925,7 @@ div.content,
 	box-sizing: border-box;
 }
 
-/* Golden ratio */
+/* Golden ratios */
 
 .content,
 .signature,
@@ -1957,6 +1965,8 @@ dl.details dd {
 .record-users {
 	display: none;
 }
+
+/* Page footer */
 
 .page-footer .navbar {
 	width: 100%;
@@ -2027,7 +2037,7 @@ li.row:hover dd,
 /* Border radius */
 
 .topic-reply-counter,
-.main-menu-item .main-menu-bottom {
+.main-menu-bottom {
 	border-radius: 7px;
 }
 

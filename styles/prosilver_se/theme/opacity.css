@@ -24,7 +24,7 @@
 
 .labeled-icon-button .fa,
 .post-number,
-#mm-user .main-menu-bottom a .fa {
+#mm-user .main-menu-bottom .fa {
 	opacity: 0.4;
 }
 
@@ -179,7 +179,7 @@ li.row .fa-bar-chart:hover,
 li.row .fa-paperclip:hover,
 li.row .fa-tags:hover,
 .recipients .fa-times:hover,
-#mm-user .main-menu-bottom a .fa,
+#mm-user .main-menu-bottom .fa,
 #mm-user .main-menu-bottom a:hover .fa,
 .contact-box-all .labeled-icon-button .fa,
 .contact-box-all .labeled-icon-button:hover .fa {
