@@ -301,6 +301,7 @@ fieldset span strong,
 fieldset.polls dl.voted,
 .fa-search,
 #mm-pagination a,
+#mm-user .fa-user-circle-o,
 .m-row2:not(:hover, :focus) .notifications_reason em,
 h2,
 h3,
@@ -368,8 +369,7 @@ a.username {
 }
 
 .copyright a,
-.cp-main .fa-user-circle-o,
-#mm-notifications .fa-user-circle-o {
+.fa-user-circle-o {
 	color: #444;
 }
 
@@ -425,7 +425,7 @@ option.disabled-option {
 #mm-title span,
 .info-paragraph,
 .spoilbtn,
-cite div.responsive-hide,
+/*cite div.responsive-hide,*/
 blockquote cite,
 blockquote.uncited::before {
 	color: #777;

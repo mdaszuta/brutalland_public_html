@@ -524,7 +524,8 @@ p.responsive-center.time,
 
 /* List of users on autocomplete list in memberlist search */
 
-.dropdown li, .dropdown li li {
+.dropdown li,
+.dropdown li li {
 	padding: 0.5em;
 }
 
@@ -1108,7 +1109,7 @@ dd.lastpost > span {
 
 /* Content selected by user */
 
-*::selection {
+::selection {
 	color: #32D635;
 	/*background: #444;*/
 	background-color: rgba(255, 255, 255, 0.2);

@@ -350,7 +350,8 @@ a.elonw:after {
 
 @media all and (hover: hover) and (pointer: fine) {
 
-	.mchat-buttons .dropdown-trigger:hover + .mchat-dropdown, .mchat-dropdown:hover {
+	.mchat-buttons .dropdown-trigger:hover + .mchat-dropdown,
+	.mchat-dropdown:hover {
 		display: block !important;
 	}
 
