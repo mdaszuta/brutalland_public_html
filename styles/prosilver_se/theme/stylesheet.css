@@ -226,6 +226,8 @@ dd.option {
 	border-bottom: none;
 }
 
+/* search_body input with number of shown characters */
+
 #ch {
 	border: none;
 	align-self: flex-start;
@@ -273,7 +275,6 @@ fieldset.polls dl {
 	position: absolute;
 	margin: 0;
 	right: 0;
-	/*top: 5px;*/
 }
 
 .hastouch .post-buttons {
@@ -321,7 +322,6 @@ ul.cplist {
 }
 
 .tabs .activetab > a {
-	/*margin-top: 0;*/
 	padding-bottom: 5px;
 }
 
@@ -348,7 +348,6 @@ ul.cplist {
 }
 
 .cp-main h2 {
-	/*border-bottom: none;*/
 	padding-bottom: 0.5em;
 	margin-left: 0;
 }
@@ -528,13 +527,13 @@ form#qr_postform .panel fieldset dl,
 	width: 100%;
 }
 
-/* List of users on autocomplete list  in memberlist search */
+/* List of users on autocomplete list in memberlist search */
 
 .dropdown li, .dropdown li li {
 	padding: 0.5em;
 }
 
-/* height of input with id="count" from memberlist_search, only one not set as .inputbox because of type="number" which is excluded in css rule */
+/* height of input with id="count" from memberlist_search, only one not set as .inputbox because of type="number" which is excluded in another css rule */
 
 #count.inputbox {
 	height: 24px;
@@ -634,6 +633,8 @@ input[type="radio"] {
 /* Right part of Top site menu */
 
 #main-menu-right { order: 3; }
+
+/* Right part of Top site menu - ordering items */
 
 #mm-last-posts { order: 1; }
 #mm-topics { order: 2; }
@@ -1274,6 +1275,10 @@ h3 {
 
 /* Spoilers */
 
+.spoilcontent {
+	display: none;
+}
+
 .spoilwrapper,
 .spoilcontent {
 	padding: 4px;
@@ -1286,10 +1291,6 @@ h3 {
 
 .spoilwrapper_muzycy {
 	margin: 1em 0;
-}
-
-.spoilcontent {
-	display: none;
 }
 
 /* Reviews */
@@ -1920,6 +1921,8 @@ div.content,
 	box-sizing: border-box;
 }
 
+/* Golden ratio */
+
 .content,
 .signature,
 .message-box textarea,
@@ -1966,7 +1969,6 @@ dl.details dd {
 }
 
 .nav-footer {
-	/*order: 1;*/
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
