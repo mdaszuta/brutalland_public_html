@@ -914,25 +914,21 @@ input.button2 {
 	align-items: center;
 }
 
-#m-avatar {
+.header-avatar {
 	width: 30px;
-	display: flex;
 	justify-content: center;
 }
-
-#m-avatar .avatar { margin: 0; }
 
 #mm-user .main-menu-bottom {
 	padding: 5px;
 }
 
-#mm-user .main-menu-bottom .fa {
-	width: 1.2em;
-	text-align: center;
-}
-
 #mm-user .main-menu-bottom a {
 	padding: 10px;
+}
+
+#mm-user .main-menu-bottom i {
+	margin-right: 10px;
 }
 
 div.content { padding-top: 10px; }
@@ -1256,6 +1252,7 @@ dd.time {
 
 a.header-avatar img {
 	max-height: 30px;
+	margin: 0;
 }
 
 /* Headers */
