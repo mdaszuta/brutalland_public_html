@@ -1697,7 +1697,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 /* Draft buttons on posting */
 
-#brutalform-drafts-buttons {
+#posting-drafts-buttons {
 	display: flex;
 	flex-direction: initial;
 	justify-content: space-evenly;
@@ -1705,15 +1705,15 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	flex-wrap: wrap;
 }
 
-#brutalform-drafts-buttons .button2 {
+#posting-drafts-buttons .button2 {
 	width: 50% !important;
 }
 
-#brutalform-drafts {
+#posting-drafts {
 	position: relative;
 }
 
-#brutalform-drafts .brutalform-explanation {
+#posting-drafts .brutalform-explanation {
 	position: absolute;
 	top: 1.5em;
 }
