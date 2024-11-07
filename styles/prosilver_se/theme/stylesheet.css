@@ -34,10 +34,6 @@ select#usernames {
 	margin: 0;
 }
 
-#main-menu-right .main-menu-item {
-	min-width: 50px;
-}
-
 /* Menu title ellipsis */
 
 #main-menu {
@@ -59,13 +55,6 @@ select#usernames {
 	width: 100%;
 }
 
-/* przesunięcie względem relative (#main-menu) to szerokość mm-home + padding titleID (71 + 13) - margines 17.5px */
-#mm-title .main-menu-bottom {
-	left: 66.5px;
-	width: 400px;
-	max-width: 100%;
-}
-
 #titleID {
 	white-space: nowrap;
 	overflow: hidden;
@@ -76,6 +65,13 @@ select#usernames {
 }
 
 /* end of Menu title ellipsis */
+
+/* przesunięcie względem relative (#main-menu) to szerokość mm-home + padding titleID (71 + 13) - margines 17.5px */
+#mm-title .main-menu-bottom {
+	left: 66.5px;
+	width: 400px;
+	max-width: 100%;
+}
 
 .subforum,
 a.lastsubject {
@@ -486,14 +482,13 @@ label:nth-child(1) input[type="radio"] {
 }
 
 p.jumpbox-return,
-#username_logged_in,
 h3.first,
 .topicreview .postbody h3,
 .profile-posts,
-dd.profile-joined,
+.profile-joined,
 #quickeditbox fieldset dl,
 p.responsive-center.time,
-form#qr_postform .panel fieldset dl,
+/*form#qr_postform .panel fieldset dl,*/
 #postingbox.panel h3,
 .logo {
 	display: none;
@@ -633,6 +628,10 @@ input[type="radio"] {
 /* Right part of Top site menu */
 
 #main-menu-right { order: 3; }
+
+#main-menu-right .main-menu-item {
+	min-width: 50px;
+}
 
 /* Right part of Top site menu - ordering items */
 
@@ -1874,8 +1873,8 @@ blockquote blockquote {
 }
 
 cite div.responsive-hide {
-	float: left;
-	margin-right: 5px;
+	/*float: left;*/
+	/*margin-right: 5px;*/
 }
 
 #login .column-left,
