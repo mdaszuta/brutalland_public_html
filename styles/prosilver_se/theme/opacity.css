@@ -57,13 +57,9 @@ li.row .fa-tags,
 
 .topic-reply-counter.unread,
 #search-box-hide .fa,
+.mark_read,
 .copyright:hover {
 	opacity: 0.7;
-}
-
-
-.mark_read {
-	opacity: 0.75;
 }
 
 .post-buttons:hover,
@@ -79,7 +75,6 @@ li.row .fa-tags:hover,
 }
 
 li.row:hover .topic-reply-counter.unread,
-/*#top-site-menu,*/
 #mm-title.with-main-menu-bottom .main-menu-top,
 .main-menu-item:hover .main-menu-top,
 #mm-pagination:hover .pagination,
@@ -88,7 +83,7 @@ li.row:hover .topic-reply-counter.unread,
 .lastpost:hover .fa-fast-forward,
 .flex-columns:hover .phantom-label,
 .search-user .fa-search:hover,
-/*.search*/.post:hover .to-searched-post,
+.post:hover .to-searched-post,
 .post-number:hover,
 #mm-user .main-menu-bottom a:hover .fa,
 .brutalform-box:focus ~ .brutalform-label,
@@ -114,12 +109,6 @@ li.row:hover .topic-reply-counter.unread,
 	z-index: 3;
 }
 
-@media (hover:hover) {
-	#top-site-menu:hover {
-		/*opacity: 1;*/
-	}
-}
-
 #mm-search ::placeholder,
 .pagination ::placeholder {
 	opacity: 1;
@@ -127,17 +116,13 @@ li.row:hover .topic-reply-counter.unread,
 
 /* TRANSITIONS */
 
-#top-site-menu {
-	/*transition: opacity 0.25s ease-out;*/
-}
-
 .main-menu-top,
 #search-box-hide .fa,
 .lastpost .fa-fast-forward,
 .phantom-label,
 .search-user .fa-search,
 .pagination,
-/*.search*/.post:hover .to-searched-post,
+.post:hover .to-searched-post,
 .post-number:hover,
 .post-buttons:hover,
 .mark_read:hover,
