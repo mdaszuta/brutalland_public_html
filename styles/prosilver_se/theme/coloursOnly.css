@@ -487,6 +487,7 @@ a.forumtitle:hover,
 .m-row2:hover .notifications_reference,
 .m-row2:hover .notifications_reason,
 .m-row2:hover .notifications_title,
+.fa-search:hover,
 #search-box-hide:hover,
 .posthilit,
 .inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input):hover,
@@ -500,15 +501,14 @@ fieldset dl:hover dt label,
 }
 
 @media (hover:hover) {
-	#mm-tags a:hover,
+	/*#mm-tags a:hover,
 	#mm-last-posts a:hover,
-	#main-menu-left a:hover,
 	#mm-title a:hover,
 	#mm-pagination a:hover,
 	#main-menu-right a:hover,
 	.fa-search:hover {
 		color:#32D635;
-	}
+	}*/
 }
 
 /* Change a border color on hover */

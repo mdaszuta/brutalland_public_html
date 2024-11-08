@@ -1614,12 +1614,16 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	height: 1.4em;
 }
 
+/* form box */
+
 .form-box {
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
+
+/* Registration page - language and timezone selection */
 
 #registration-language-timezone .column-left {
 	padding-top: 0;
@@ -1729,10 +1733,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	padding: 0 !important;
 }
 
-.smilies {
-	max-height: 17px;
-}
-
 /* menu-toggle, its icon and dropdown */
 
 .quickmod-box,
@@ -1799,6 +1799,10 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 .smiley-box img {
 	padding: 3px;
+}
+
+.smilies {
+	max-height: 17px;
 }
 
 /* centered color palette (seen on smaller displays) */
