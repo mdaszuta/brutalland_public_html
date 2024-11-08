@@ -554,11 +554,6 @@ input[type="radio"] {
 	margin: 0;
 }
 
-.topic-reply-counter {
-	float: left;
-	max-width: 45px;
-}
-
 .flex {
 	display: flex;
 	align-items: center;
