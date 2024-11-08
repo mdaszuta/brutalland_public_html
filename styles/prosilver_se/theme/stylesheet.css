@@ -1564,7 +1564,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	justify-content: initial;
 }
 
-#agreement.brutalform input {
+#agreement input {
 	width: 49%;
 }
 
@@ -1586,7 +1586,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 .button,
 .button1,
 .button2 a,
-.brutalform .reset,
 .terms-privacy-button,
 .error,
 .text-align-center {

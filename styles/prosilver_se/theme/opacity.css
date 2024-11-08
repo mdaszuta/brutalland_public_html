@@ -87,11 +87,11 @@ li.row:hover .topic-reply-counter.unread,
 .post-number:hover,
 #mm-user .main-menu-bottom a:hover .fa,
 .brutalform-box:focus ~ .shadow-label,
-.brutalform select:hover ~ .shadow-label,
-.brutalform .registration-timezone:hover ~ .shadow-label,
 .brutalform .inputbox:focus ~ .shadow-label,
+.brutalform select:hover ~ .shadow-label,
 .brutalform select:focus ~ .shadow-label,
-.brutalform .registration-timezone:focus ~ .shadow-label,
+.registration-timezone:hover ~ .shadow-label,
+.registration-timezone:focus ~ .shadow-label,
 .nav-footer:hover,
 .contact-box-all .labeled-icon-button:hover .fa {
 	opacity: 1;
@@ -163,13 +163,13 @@ li.row .fa-tags,
 
 .brutalform-box:hover .shadow-explanation,
 .brutalform-box:focus ~ .shadow-label,
-.brutalform .inputbox:hover ~ .shadow-explanation,
-.brutalform select:hover ~ .shadow-label,
-.brutalform .registration-timezone:hover ~ .shadow-label,
-.brutalform .inputbox:focus ~ .shadow-explanation,
 .brutalform .inputbox:focus ~ .shadow-label,
+.brutalform .inputbox:hover ~ .shadow-explanation,
+.brutalform .inputbox:focus ~ .shadow-explanation,
+.brutalform select:hover ~ .shadow-label,
 .brutalform select:focus ~ .shadow-label,
-.brutalform .registration-timezone:focus ~ .shadow-label {
+.registration-timezone:hover ~ .shadow-label,
+.registration-timezone:focus ~ .shadow-label {
 	transition: opacity 0.25s ease-in-out 0.15s;
 }
 

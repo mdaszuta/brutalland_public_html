@@ -273,7 +273,7 @@
 
 	/* END mobile width fix */
 
-	#agreement.brutalform input {
+	#agreement input {
 		width: 100%;
 	}
 
@@ -457,10 +457,6 @@
 	.message-box,
 	#muzycy-box {
 		width: auto;
-	}
-
-	.brutalform {
-		padding-top: 0px;
 	}
 
 }

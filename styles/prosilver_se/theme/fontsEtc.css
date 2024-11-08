@@ -132,8 +132,7 @@ table.table1 tbody tr.bg3,
 .labeled-icon-bg strong,
 #mm-user .main-menu-bottom a,
 .pagination,
-.submit-buttons input,
-.brutalform .reset {
+.submit-buttons input {
 	text-transform: lowercase;
 }
 
@@ -217,7 +216,6 @@ textarea,
 
 dl.details,
 .flex-columns-container-left dl,
-.brutalform .reset,
 .navbar,
 ul.topiclist dt {
 	font-size: 1.1em;
