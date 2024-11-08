@@ -444,6 +444,10 @@ p.post-number.post-number {
 
 #quick-login-panel .close {
 	background: transparent;
+	right: 0;
+	top: 0;
+	width: auto;
+	height: auto;
 }
 
 /* end of QUICK LOGIN */

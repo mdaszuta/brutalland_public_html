@@ -127,7 +127,7 @@ $(document).ready(function(){
 	* Hide menu on: mouse leave or mouse up
 	*/
 
-	$(".menu-devil").on('mouseenter', function() {
+	$(".menu-devil").on("mouseenter", function() {
 
 		var topMenu = $(this);
 		var bottomMenu = topMenu.next(".menu-all");
@@ -139,7 +139,7 @@ $(document).ready(function(){
 			}
 		}, 150);
 
-	}).on('mouseleave mouseup', function() {
+	}).on("mouseleave mouseup", function() {
 
 		clearTimeout(timeoutMenu);
 
@@ -147,7 +147,7 @@ $(document).ready(function(){
 
 	/* Toggle display / hide menu on: click */
 
-	$(".menu-devil").on('click', function(){
+	$(".menu-devil").on("click", function(){
 
 		var topMenu = $(this);
 		var bottomMenu = topMenu.next(".menu-all");
@@ -164,7 +164,7 @@ $(document).ready(function(){
 
 	/* Hide menu on: mouse leave */
 
-	$(".menu-toggle").on('mouseleave', function(){
+	$(".menu-toggle").on("mouseleave", function(){
 
 		var bottomMenu = $(this).children(".menu-all");
 
@@ -178,23 +178,23 @@ $(document).ready(function(){
 	* Last Post Feed Mobile
 	*/
 	
-	$("#mm-topics, .search-box").on('click', function( event ){
+	$("#mm-topics, .search-box").on("click", function( event ){
 
-		console.log('hastouch class: ' + $('#phpbb').hasClass('hastouch'));
+		console.log("hastouch class: " + $("#phpbb").hasClass("hastouch"));
 
-		var clicks = $(this).data('clicks');
+		var clicks = $(this).data("clicks");
 
 		if ( clicks ) {
-			console.log('number of clicks (if) ' + clicks);
+			console.log("number of clicks (if) " + clicks);
 		}
-		else if(  $('#phpbb').hasClass('hastouch') ) {
+		else if(  $("#phpbb").hasClass("hastouch") ) {
 			event.preventDefault();
-			console.log('number of clicks (else if) ' + clicks);
+			console.log("number of clicks (else if) " + clicks);
 		}
 
 		$(this).data("clicks", !clicks);
 
-		console.log('clicks: ' + clicks);
+		console.log("clicks: " + clicks);
 
 	});
 	
@@ -230,7 +230,7 @@ $(document).ready(function(){
 	
 	var timeoutSearchBox = 0;
 
-	$("#search-box-icon").on('mouseenter click', function() {
+	$("#search-box-icon").on("mouseenter click", function() {
 
 		var searchButtonTop = $(this);
 		var searchInputbox = searchButtonTop.siblings(".inputbox");
@@ -255,11 +255,11 @@ $(document).ready(function(){
 
 		}, 300);
 
-	}).on('mouseleave mouseup', function() {
+	}).on("mouseleave mouseup", function() {
 		clearTimeout(timeoutSearchBox);
 	});
 	
-	$("#search-box-hide").on('click', function() {
+	$("#search-box-hide").on("click", function() {
 
 		var searchBoxHide = $(this);
 		var searchInputbox = searchBoxHide.next(".inputbox");
@@ -288,7 +288,7 @@ $(document).ready(function(){
 	
 	var timeoutSwitcheroo = 0;
 
-	$(".switcheroo-menu").on('mouseenter click', function() {
+	$(".switcheroo-menu").on("mouseenter click", function() {
 
 		var switcherooDevil = $(this).children(".switcheroo-menu-devil");
 		var switcherooAll = $(this).children(".switcheroo-menu-all");
@@ -300,7 +300,7 @@ $(document).ready(function(){
 
 		} , 150);
 
-	}).on('mouseleave', function() {
+	}).on("mouseleave", function() {
 
 		var switcherooDevil = $(this).children(".switcheroo-menu-devil");
 		var switcherooAll = $(this).children(".switcheroo-menu-all");
