@@ -520,6 +520,12 @@ h3.first,
 	justify-content: center;
 }
 
+/* Some (flex-boxes) need to be justified accordingly */
+
+.justify-content-center {
+	justify-content: center;
+}
+
 /* Memberlist search */
 
 /* dropdown containing search by user input in memberlist_search */
@@ -540,14 +546,6 @@ h3.first,
 
 #count.inputbox {
 	height: 24px;
-}
-
-.flex-direction-row {
-	flex-direction: row !important;
-}
-
-.justify-content-center {
-	justify-content: center;
 }
 
 input[type="radio"] {
@@ -1629,6 +1627,12 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 .column-right .error {
 	text-align: left;
+}
+
+/* Some column-right class items need to be redirected from column to row */
+
+.flex-direction-row {
+	flex-direction: row !important;
 }
 
 /* Login, registration, reset password, resend activation mail etc. */
