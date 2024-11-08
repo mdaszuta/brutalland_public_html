@@ -32,7 +32,7 @@
 							{% DEFINE CAPTCHA_TAB_INDEX = 3 %}
 							{% INCLUDE ''~ CAPTCHA_TEMPLATE ~'' %}
 						{% endif %}
-						<div class="brutalform-autologin submit-buttons">
+						<div class="autologin-box submit-buttons">
 							{% if S_AUTOLOGIN_ENABLED %}
 								<input type="checkbox" checked="checked" name="autologin" id="autologin" tabindex="3" title="{{ lang('LOG_ME_IN') }}" />
 							{% endif %}

@@ -1587,7 +1587,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 .button1,
 .button2 a,
 .brutalform .reset,
-.brutalform-button-a,
+.terms-privacy-button,
 .error,
 .text-align-center {
 	text-align: center;
@@ -1601,14 +1601,14 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 /* Login button with autologin checkbox */
 
-.brutalform-autologin {
+.autologin-box {
 	display: flex;
 	align-items: center;
 	margin-top: 25px;
 	width: 100%;
 }
 
-.brutalform-autologin #autologin {
+.autologin-box #autologin {
 	position: absolute;
 	/*z-index: 999;*/
 	width: 1.4em;
@@ -1622,12 +1622,12 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	width: 100%;
 }
 
-#brutalform-lang-timezone .column-left {
+#registration-language-timezone .column-left {
 	padding-top: 0;
 	padding-bottom: 0;
 }
 
-#brutalform-lang-timezone .column-left .brutalform-box {
+#registration-language-timezone .column-left .brutalform-box {
 	align-items: flex-end;
 }
 
@@ -1637,7 +1637,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 .brutalform-box .inputbox,
 .brutalform-box select,
-.brutalform-timezone-select {
+.registration-timezone {
 	order: 2;
 }
 

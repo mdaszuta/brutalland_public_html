@@ -57,7 +57,7 @@ select:not(.abbc3_select) option,
 .tytulySD,
 .cp-main .notification_list .notifications,
 table.table1 tbody tr.bg3,
-.brutalform-button-a,
+.terms-privacy-button,
 .brutalform-box .brutalform-label,
 .column-left label,
 .page-footer .navbar,
@@ -91,7 +91,7 @@ h2,
 h3,
 table.table1 tbody tr.bg3,
 .copyright .text-strong,
-.brutalform-button-a,
+.terms-privacy-button,
 .brutalform-label {
 	font-variant: small-caps;
 }
@@ -228,7 +228,7 @@ ul.topiclist dt {
 }
 
 .register-text,
-.brutalform-button-a {
+.terms-privacy-button {
 	font-size: 1.3em;
 }
 

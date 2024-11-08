@@ -88,10 +88,10 @@ li.row:hover .topic-reply-counter.unread,
 #mm-user .main-menu-bottom a:hover .fa,
 .brutalform-box:focus ~ .brutalform-label,
 .brutalform select:hover ~ .brutalform-label,
-.brutalform .brutalform-timezone-select:hover ~ .brutalform-label,
+.brutalform .registration-timezone:hover ~ .brutalform-label,
 .brutalform .inputbox:focus ~ .brutalform-label,
 .brutalform select:focus ~ .brutalform-label,
-.brutalform .brutalform-timezone-select:focus ~ .brutalform-label,
+.brutalform .registration-timezone:focus ~ .brutalform-label,
 .nav-footer:hover,
 .contact-box-all .labeled-icon-button:hover .fa {
 	opacity: 1;
@@ -165,11 +165,11 @@ li.row .fa-tags,
 .brutalform-box:focus ~ .brutalform-label,
 .brutalform .inputbox:hover ~ .phantom-explanation,
 .brutalform select:hover ~ .brutalform-label,
-.brutalform .brutalform-timezone-select:hover ~ .brutalform-label,
+.brutalform .registration-timezone:hover ~ .brutalform-label,
 .brutalform .inputbox:focus ~ .phantom-explanation,
 .brutalform .inputbox:focus ~ .brutalform-label,
 .brutalform select:focus ~ .brutalform-label,
-.brutalform .brutalform-timezone-select:focus ~ .brutalform-label {
+.brutalform .registration-timezone:focus ~ .brutalform-label {
 	transition: opacity 0.25s ease-in-out 0.15s;
 }
 
