@@ -462,7 +462,7 @@ label:nth-child(1) input[type="radio"] {
 	display: block;
 }
 
-/* sub-panels in posting not obfuscated by phantom-explanation */
+/* sub-panels in posting not obfuscated by shadow-explanation */
 
 .tabs.sub-panels {
 	/*padding-top: 2.5em;*/
@@ -1331,7 +1331,7 @@ h3,
 table.table1 tbody tr.bg3,
 .register-text,
 .flex-columns .inputbox:not(#message),
-.flex-columns .phantom-explanation {
+.flex-columns .shadow-explanation {
 	text-align: center;
 }
 
@@ -1533,7 +1533,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 }
 
 .flex-columns .inputbox,
-.flex-columns .phantom-explanation {
+.flex-columns .shadow-explanation {
 	width: 100%;
 }
 
@@ -1641,7 +1641,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	order: 2;
 }
 
-.brutalform-box .phantom-explanation {
+.brutalform-box .shadow-explanation {
 	position: absolute;
 	top: 101%;
 	z-index: -3;
@@ -1713,7 +1713,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	position: relative;
 }
 
-#posting-drafts .phantom-explanation {
+#posting-drafts .shadow-explanation {
 	position: absolute;
 	top: 1.5em;
 }

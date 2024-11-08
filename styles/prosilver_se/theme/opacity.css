@@ -97,13 +97,13 @@ li.row:hover .topic-reply-counter.unread,
 	opacity: 1;
 }
 
-.phantom-explanation {
+.shadow-explanation {
 	opacity: 0;
 }
 
-.brutalform-box:hover .phantom-explanation,
-.brutalform .inputbox:hover ~ .phantom-explanation,
-.brutalform .inputbox:focus ~ .phantom-explanation {
+.brutalform-box:hover .shadow-explanation,
+.brutalform .inputbox:hover ~ .shadow-explanation,
+.brutalform .inputbox:focus ~ .shadow-explanation {
 	opacity: 1;
 	padding-bottom: 15px;
 	z-index: 3;
@@ -157,16 +157,16 @@ li.row .fa-tags,
 
 .to-searched-post,
 .shadow-label,
-.phantom-explanation {
+.shadow-explanation {
 	transition: opacity 0.75s ease-in-out 0.35s;
 }
 
-.brutalform-box:hover .phantom-explanation,
+.brutalform-box:hover .shadow-explanation,
 .brutalform-box:focus ~ .shadow-label,
-.brutalform .inputbox:hover ~ .phantom-explanation,
+.brutalform .inputbox:hover ~ .shadow-explanation,
 .brutalform select:hover ~ .shadow-label,
 .brutalform .registration-timezone:hover ~ .shadow-label,
-.brutalform .inputbox:focus ~ .phantom-explanation,
+.brutalform .inputbox:focus ~ .shadow-explanation,
 .brutalform .inputbox:focus ~ .shadow-label,
 .brutalform select:focus ~ .shadow-label,
 .brutalform .registration-timezone:focus ~ .shadow-label {
