@@ -14,7 +14,6 @@
 	cursor: pointer;
 }
 
-/* custom */
 #abbc3_buttons .fa,
 .abbc3_button,
 .smiley-box,
@@ -41,7 +40,6 @@
 	border: none;
 }
 
-/* custom */
 .abbc3_buttons_row {
 	width: 100%;
 	padding: 0;
@@ -98,7 +96,6 @@
 }
 
 .ModTable .exclamation {
-	/*background-color: #ff6060;*/
 	font-weight: bold;
 	font-size: 2em;
 	vertical-align: middle;
@@ -206,7 +203,6 @@ a.elonw:after {
 	padding: 0;
 }
 
-/*#mchat-body #smiley-box-all,*/
 #mchat-body #smiley-box img {
 	box-sizing: unset;
 }
@@ -342,7 +338,6 @@ a.elonw:after {
 }
 
 .mchat-buttons .dropdown .dropdown-contents {
-	/*background-color: rgba(0, 0, 0, 0.9);*/
 	border-color: transparent;
 }
 
@@ -362,7 +357,6 @@ a.elonw:after {
 
 .mention {
 	color: #257EDE;
-	/*font-weight: unset;*/
 	font-style: unset;
 }
 
