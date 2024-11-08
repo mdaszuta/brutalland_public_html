@@ -1631,7 +1631,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	align-items: flex-end;
 }
 
-.brutalform-box .brutalform-label {
+.brutalform-box .shadow-label {
 	order: 1;
 }
 

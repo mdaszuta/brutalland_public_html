@@ -58,7 +58,7 @@ select:not(.abbc3_select) option,
 .cp-main .notification_list .notifications,
 table.table1 tbody tr.bg3,
 .terms-privacy-button,
-.brutalform-box .brutalform-label,
+.brutalform-box .shadow-label,
 .column-left label,
 .page-footer .navbar,
 .username {
@@ -92,7 +92,7 @@ h3,
 table.table1 tbody tr.bg3,
 .copyright .text-strong,
 .terms-privacy-button,
-.brutalform-label {
+.shadow-label {
 	font-variant: small-caps;
 }
 
@@ -185,7 +185,7 @@ a.lastsubject,
 .notifications_reason,
 input.inputbox:not([type="number"], [type="file"]),
 textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #bandInfoInput),
-.brutalform-label {
+.shadow-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 /*
@@ -263,7 +263,7 @@ input.button2:not(.fa),
 h3,
 .postbody h3,
 .notifications_reason,
-.brutalform-label,
+.shadow-label,
 #posting-drafts .phantom-explanation,
 #pmheader-postingbox span.recipients,
 .subforum,
