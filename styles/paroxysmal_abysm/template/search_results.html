@@ -184,26 +184,24 @@
 			<!-- EVENT search_results_postprofile_before -->
 			<div class="flex-box-container">
 				<div class="flex-box">
-					<dt class="flex author"><!-- EVENT search_results_post_author_username_prepend -->{searchresults.POST_AUTHOR_FULL}<!-- EVENT search_results_post_author_username_append --></dt>
-					<div class="flex search-result-date">{searchresults.POST_DATE}</div>
+					<dt class="author"><!-- EVENT search_results_post_author_username_prepend -->{searchresults.POST_AUTHOR_FULL}<!-- EVENT search_results_post_author_username_append --></dt>
+					<div class="search-result-date">{searchresults.POST_DATE}</div>
 				</div>
 			</div>
 			<div class="flex-box-container">
 				<div class="flex-box">
-					<div class="flex">{L_REPLIES}</div>
-					<div class="flex"><strong>{searchresults.TOPIC_REPLIES}</strong></div>
+					<div>{L_REPLIES}</div>
+					<strong>{searchresults.TOPIC_REPLIES}</strong>
 				</div>
 				<div class="responsive-hide flex-box">
-					<div class="flex">{L_VIEWS}</div>
-					<div class="flex"><strong>{searchresults.TOPIC_VIEWS}</strong></div>
+					<div>{L_VIEWS}</div>
+					<strong>{searchresults.TOPIC_VIEWS}</strong>
 				</div>
 			</div>
 
 			<div class="flex-box-container">
 				<div class="flex-box">
-					<div class="flex">
-						<a href="{searchresults.U_VIEW_POST}" title="{L_JUMP_TO_POST}"><i class="to-searched-post fa fa-angle-double-right"></i></a>
-					</div>
+					<a href="{searchresults.U_VIEW_POST}" title="{L_JUMP_TO_POST}"><i class="to-searched-post fa fa-angle-double-right"></i></a>
 				</div>
 			</div>
 			<!-- EVENT search_results_postprofile_after -->
