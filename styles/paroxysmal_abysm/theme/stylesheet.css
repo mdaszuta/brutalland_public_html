@@ -28,12 +28,6 @@ select#usernames {
 	margin: auto;
 }
 
-/* Forum name link at the bottom of viewtopic_body */
-
-#back-to-forum {
-	margin: 0;
-}
-
 /* Menu title ellipsis */
 
 #main-menu {
@@ -67,6 +61,7 @@ select#usernames {
 /* end of Menu title ellipsis */
 
 /* przesunięcie względem relative (#main-menu) to szerokość mm-home + padding titleID (71 + 13) - margines 17.5px */
+
 #mm-title .main-menu-bottom {
 	left: 66.5px;
 	width: 400px;
@@ -93,8 +88,8 @@ a.lastsubject {
 
 @media (min-width: 701px) {
 	.postprofile dd, .postprofile dt {
-		margin-left: 0;
-		padding-left: 8px;
+		/*margin-left: 0;*/
+		/*padding-left: 8px;*/
 	}
 
 	.postprofile .has-avatar .avatar-container {
@@ -439,6 +434,8 @@ label:nth-child(1) input[type="radio"] {
 	margin-left: 0;
 }
 
+/* Control panel menus */
+
 .tab > a {
 	padding: 5px 9px;
 	white-space: nowrap;
@@ -468,6 +465,13 @@ label:nth-child(1) input[type="radio"] {
 	/*padding-top: 2.5em;*/
 }
 
+/* Forum name link at the bottom of viewtopic_body */
+
+#back-to-forum {
+	margin: 0;
+	padding-bottom: 0;
+}
+
 /* Hide sort-tools i przyległego mu checkboxa */
 
 .sort-tools,
@@ -481,15 +485,16 @@ label:nth-child(1) input[type="radio"] {
 	display: none;
 }
 
+/* Hide other elements */
+
 p.jumpbox-return,
 h3.first,
 .topicreview .postbody h3,
 .profile-posts,
 .profile-joined,
 #quickeditbox fieldset dl,
-p.responsive-center.time,
-/*form#qr_postform .panel fieldset dl,*/
 #postingbox.panel h3,
+.record-users,
 .logo {
 	display: none;
 }
@@ -514,6 +519,8 @@ p.responsive-center.time,
 .postprofile .flex-box {
 	justify-content: center;
 }
+
+/* Memberlist search */
 
 /* dropdown containing search by user input in memberlist_search */
 
@@ -655,8 +662,10 @@ input[type="radio"] {
 	min-height: 100%;
 }
 
+/* Main menu items - top part */
+
 .main-menu-top {
-	order: 1;
+	/*order: 1;*/
 	display: flex;
 	z-index: 666;
 	align-items: center;
@@ -664,8 +673,10 @@ input[type="radio"] {
 	box-sizing: border-box;
 }
 
+/* Main menu items - bottom part */
+
 .main-menu-bottom {
-	order: 2;
+	/*order: 2;*/
 	overflow-x: hidden;
 	overflow-y: auto;
 	max-height: 690px;
@@ -675,11 +686,15 @@ input[type="radio"] {
 	top: 100%;
 }
 
+/* Positioning of bottom parts of main menu items */
+
 #mm-last-posts .main-menu-bottom,
 #mm-notifications .main-menu-bottom,
 #mm-user .main-menu-bottom {
 	right: -50px;
 }
+
+/* Top part of main menu items settings */
 
 .main-menu-top a,
 #mm-search .main-menu-top {
@@ -697,7 +712,8 @@ input[type="radio"] {
 	padding: 0 0 0 10px;
 }
 
-/*#mm-home,*/
+/* Height of various main menu items */
+
 #mm-title,
 #mm-pagination,
 #mm-search,
@@ -710,11 +726,9 @@ input[type="radio"] {
 #mm-home .thegate-top { height: 30px; }
 #mm-home .thegate-bottom { height: 15px; }
 
-.sigil-all { height: 60px; }
-.sigil-top { height: 40px; }
-.sigil-bottom { height: 20px; }
-
 #mm-home a { width: inherit; }
+
+/* Lists shown in bottom part of main menu items */
 
 .m-list {
 	width: 545px;
@@ -771,10 +785,7 @@ input.button2 {
 	box-sizing: border-box;
 	border-right: 1px solid transparent;
 }
-/*
-.m-list-left-top .flex { order: 1; }
-.m-list-left-bottom { order: 2; }
-*/
+
 .m-list-left-top,
 .m-list-left-bottom {
 	justify-content: flex-start;
@@ -784,6 +795,8 @@ input.button2 {
 .m-list-left-bottom {
 	margin-left: 18px;
 }
+
+/* Main menu title */
 
 #mm-title .m-list {
 	width: 365px;
@@ -798,6 +811,8 @@ input.button2 {
 	min-width: 23px;
 	min-height: 23px;
 }
+
+/* Main menu topic lists */
 
 #mm-topics .main-menu-bottom {
 	padding: 15px;
@@ -845,7 +860,7 @@ input.button2 {
 	margin-left: 0;
 }
 
-/* Displaying mark notification as read icon */
+/* Displaying the mark notification as read icon */
 
 #mm-notifications div[class^="m-row"] {
 	position: relative;
@@ -902,14 +917,6 @@ input.button2 {
 	max-width: 100%;
 }
 
-/* Topic reply counter */
-
-.topic-reply-counter {
-	text-align: center;
-	min-width: 13px;
-	/*padding: 0 2px 0 2px;*/
-}
-
 /* Top menu tags list */
 
 #mm-tags .m-list-left { flex-basis: 83%; }
@@ -944,6 +951,8 @@ a.header-avatar img {
 #mm-user .main-menu-bottom i {
 	margin-right: 10px;
 }
+
+/* Other */
 
 div.content { padding-top: 10px; }
 
@@ -1052,21 +1061,33 @@ body.simple {
 	margin: 10px 0 10px 0;
 }
 
+/* Some basic classes adding a style */
+
 .info-paragraph {
 	text-align: center;
 }
 
 .flex-spaced-between {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .forabg ul.topiclist .row {
 	padding: 2px 0;
 }
 
-/* Go to last post settings */
+/* Forum topic counter / Topic reply counter shown on left in forum / topic rows */
+
+.topic-reply-counter {
+	float: left;
+	min-width: 13px;
+	max-width: 45px;
+	text-align: center;
+	/*padding: 0 2px 0 2px;*/
+}
+
+/* Go to last post */
 
 .topiclist .lastpost {
 	display: flex;
@@ -1106,6 +1127,8 @@ dd.lastpost > span {
 	font-size: 34px;
 	padding: 10px 10px 0 10px;
 }
+
+/* Pseudo-elements */
 
 /* Content selected by user */
 
@@ -1153,8 +1176,8 @@ input:is(:-webkit-autofill, :autofill) {
 /* Change cursor on hover to pointer */
 
 *[onclick^="window.location.href"],
-#search-box-hide,
 .fa-search,
+#search-box-hide,
 .menu-devil,
 #picture-box-all label,
 #list-box-all label {
@@ -1174,27 +1197,20 @@ input {
 	margin-top: 5px;
 }
 
-p.post-notice {
-	clear: both;
-	position: static;
-}
-
 /* Don't show signature in posts and PMs */
 
 .postbody .signature:not(.standalone) {
 	display: none;
 }
 
-/* nie wygląda dobrze w pm-kach */
-label[for="attach_sig"] {
-	/*display: none;*/
+/* Post notice doesn't block clicking post-buttons */
+
+p.post-notice {
+	clear: both;
+	position: static;
 }
 
-.postlink {
-	border: none;
-}
-
-/* Post buttons settings */
+/* Post buttons */
 
 .post-buttons {
 	display: flex;
@@ -1273,27 +1289,6 @@ h2 {
 
 h3 {
 	border: none;
-}
-
-/* Spoilers */
-
-.spoilcontent {
-	display: none;
-}
-
-.spoilwrapper,
-.spoilcontent {
-	padding: 4px;
-}
-
-.spoilbtn {
-	padding: 2px;
-	display: block;
-	cursor: pointer;
-}
-
-.spoilwrapper_muzycy {
-	margin: 1em 0;
 }
 
 /* Reviews */
@@ -1526,8 +1521,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 .search-user a {
 	align-self: flex-end;
 	position: absolute;
-	/* min-height: 2em; */
-	/* line-height: 2em; */
 	right: 1em;
 	top: 1em;
 }
@@ -1564,6 +1557,8 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	justify-content: initial;
 }
 
+/* Agreement on registration yes or no buttons */
+
 #agreement input {
 	width: 49%;
 }
@@ -1593,7 +1588,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 }
 
 .submit-buttons {
-	/*margin: 0;*/
 	width: 100%;
 	/*background-color: red;*/
 }
@@ -1609,7 +1603,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 .autologin-box #autologin {
 	position: absolute;
-	/*z-index: 999;*/
 	width: 1.4em;
 	height: 1.4em;
 }
@@ -1675,17 +1668,17 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 }
 
 #login .column-right,
+#quick-login-panel .column-right,
 #reset_password .column-right,
 #resend .column-right,
-#quick-login-panel .column-right,
 #register-email {
 	flex-direction: column-reverse;
 }
 
 #login fieldset.fields1 div,
+#quick-login-panel fieldset.fields1 div,
 #reset_password fieldset.fields1 div,
-#resend fieldset.fields1 div,
-#quick-login-panel fieldset.fields1 div {
+#resend fieldset.fields1 div {
 	margin-bottom: 0;
 }
 
@@ -1729,8 +1722,31 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	flex-basis: 47%;
 }
 
+/* BBCodes */
+
 .glow {
 	padding: 0 !important;
+}
+
+/* Spoilers */
+
+.spoilcontent {
+	display: none;
+}
+
+.spoilwrapper,
+.spoilcontent {
+	padding: 4px;
+}
+
+.spoilbtn {
+	padding: 2px;
+	display: block;
+	cursor: pointer;
+}
+
+.spoilwrapper_muzycy {
+	margin: 1em 0;
 }
 
 /* menu-toggle, its icon and dropdown */
@@ -1964,10 +1980,6 @@ dl.details dd {
 	margin: auto;
 }
 
-.record-users {
-	display: none;
-}
-
 /* Page footer */
 
 .page-footer .navbar {
@@ -1997,6 +2009,12 @@ dl.details dd {
 	margin: 0;
 }
 
+/* Height of copyright icon on bottom of the page */
+
+.sigil-all { height: 60px; }
+.sigil-top { height: 40px; }
+.sigil-bottom { height: 20px; }
+
 /* Other BORDERS */
 
 select,
@@ -2019,6 +2037,7 @@ hr.dashed,
 .inputbox:focus,
 .postprofile,
 .postbody .notice,
+.postlink,
 ul.topiclist dd,
 ul.topiclist dd:hover,
 table.zebra-list tr:nth-child(odd) td:hover,
