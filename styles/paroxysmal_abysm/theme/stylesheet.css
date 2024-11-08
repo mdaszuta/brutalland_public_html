@@ -17,17 +17,6 @@ body {
 	padding-top: 1px;
 }
 
-select { 
-	width: fit-content;
-	padding: 0;
-}
-
-/* center friend / foe list */
-
-select#usernames {
-	margin: auto;
-}
-
 /* Menu title ellipsis */
 
 #main-menu {
@@ -465,6 +454,17 @@ label:nth-child(1) input[type="radio"] {
 	/*padding-top: 2.5em;*/
 }
 
+select { 
+	width: fit-content;
+	padding: 0;
+}
+
+/* center friend / foe list */
+
+select#usernames {
+	margin: auto;
+}
+
 /* Forum name link at the bottom of viewtopic_body */
 
 #back-to-forum {
@@ -723,6 +723,16 @@ input[type="radio"] {
 	height: 45px;
 }
 
+/* Top logo */
+
+#thegate {
+	flex-direction: column;
+	margin: 0 13px 0 13px;
+	padding: 0;
+	width: 45px;
+	height: 45px;
+}
+
 #mm-home .thegate-top { height: 30px; }
 #mm-home .thegate-bottom { height: 15px; }
 
@@ -738,17 +748,6 @@ input[type="radio"] {
 
 .m-list ul {
 	list-style-type: none;
-}
-
-.button,
-a.button1,
-a.button2,
-input.button1,
-input.button2 {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	text-align: center;
 }
 
 .m-list-right,
@@ -959,6 +958,19 @@ div.content { padding-top: 10px; }
 body.simple {
 	min-height: 100%;
 	padding: 0 5px;
+}
+
+/* Buttons */
+
+.button,
+a.button1,
+a.button2,
+input.button1,
+input.button2 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
 }
 
 /* Action bar settings */
@@ -1398,10 +1410,7 @@ table.table1 td.info a {
 	margin: 0;
 }
 
-.postprofile,
-.search .postprofile {
-	width: 15%;
-}
+/* Postbody and postprofile width */
 
 .postbody,
 .search .postbody,
@@ -1410,47 +1419,13 @@ table.table1 td.info a {
 	width: 83%;
 }
 
+.postprofile,
+.search .postprofile {
+	width: 15%;
+}
+
 .flex-columns-container div.column-left {
 	/*align-items: center;*/
-}
-
-/* Copyright */
-
-.copyright {
-	display: flex;
-	flex-direction: column;
-	width: fit-content;
-	margin: auto;
-	padding: 5px;
-}
-
-.copyright .empty-footer-row {
-	height: 18px;
-}
-
-.copyright .text-strong {
-	width: fit-content;
-	margin: auto;
-}
-
-/* Bottom logo */
-
-#sigil {
-	display: flex;
-	flex-direction: column;
-	margin: auto;
-	width: 60px;
-	height: 60px;
-}
-
-/* Top logo */
-
-#thegate {
-	flex-direction: column;
-	margin: 0 13px 0 13px;
-	padding: 0;
-	width: 45px;
-	height: 45px;
 }
 
 .inputbox {
@@ -2007,6 +1982,35 @@ dl.details dd {
 .nav-footer .stat-block.online-list .forum-title,
 .nav-footer .see_online {
 	margin: 0;
+}
+
+/* Copyright */
+
+.copyright {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	margin: auto;
+	padding: 5px;
+}
+
+.copyright .empty-footer-row {
+	height: 18px;
+}
+
+.copyright .text-strong {
+	width: fit-content;
+	margin: auto;
+}
+
+/* Bottom logo */
+
+#sigil {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	width: 60px;
+	height: 60px;
 }
 
 /* Height of copyright icon on bottom of the page */
