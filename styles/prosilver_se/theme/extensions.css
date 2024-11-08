@@ -547,7 +547,7 @@ p.post-number.post-number {
 	justify-content: center;
 }
 
-/* Not .inputbox, but retains ordering of brutalform-box with shadow-label and shadow-explanation */
+/* Not .inputbox, but retains ordering of form-box with shadow-label and shadow-explanation */
 
 #tagowarka_edit > .ng-scope {
 	order: 2;

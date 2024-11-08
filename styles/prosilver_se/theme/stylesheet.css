@@ -1481,7 +1481,7 @@ table.table1 td.info a {
 	text-align: justify;
 }
 
-.brutalform-box span,
+.form-box span,
 .register-text span,
 #login span,
 #reset_password span,
@@ -1494,7 +1494,7 @@ table.table1 td.info a {
 	box-sizing: border-box;
 }
 
-.brutalform-box input:not(.button2) {
+.form-box input:not(.button2) {
 	width: 100%;
 }
 
@@ -1614,7 +1614,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	height: 1.4em;
 }
 
-.brutalform-box {
+.form-box {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -1626,21 +1626,21 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	padding-bottom: 0;
 }
 
-#registration-language-timezone .column-left .brutalform-box {
+#registration-language-timezone .column-left .form-box {
 	align-items: flex-end;
 }
 
-.brutalform-box .shadow-label {
+.form-box .shadow-label {
 	order: 1;
 }
 
-.brutalform-box .inputbox,
-.brutalform-box select,
+.form-box .inputbox,
+.form-box select,
 .registration-timezone {
 	order: 2;
 }
 
-.brutalform-box .shadow-explanation {
+.form-box .shadow-explanation {
 	position: absolute;
 	top: 101%;
 	z-index: -3;

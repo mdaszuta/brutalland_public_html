@@ -33,27 +33,27 @@
 	<!-- EVENT ucp_register_credentials_before -->
 	<div class="flex-columns">
 		<div class="column-left">
-			<div class="brutalform-box">
+			<div class="form-box">
 				<input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" autocomplete="off" />
 				<span class="shadow-label">{L_USERNAME}</span>
 				<span class="shadow-explanation">{L_USERNAME_EXPLAIN}</span>
 			</div>
-			<div class="brutalform-box">
+			<div class="form-box">
 				<input type="password" tabindex="2" name="new_password" id="new_password" size="25" value="{PASSWORD}" placeholder="{L_PASSWORD}" class="inputbox" autocomplete="off" />
 				<span class="shadow-label">{L_PASSWORD}</span>
 				<span class="shadow-explanation">{L_PASSWORD_EXPLAIN}</span>
 			</div>
-			<div class="brutalform-box">
+			<div class="form-box">
 				<input type="password" tabindex="3" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" placeholder="{L_CONFIRM_PASSWORD}" class="inputbox" autocomplete="off" />
 				<span class="shadow-label">{L_CONFIRM_PASSWORD}</span>
 			</div>
 		</div>
 		<div class="column-right" id="register-email">
-			<div class="brutalform-box">
+			<div class="form-box">
 				<input type="email" tabindex="4" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" placeholder="{L_EMAIL_ADDRESS}" class="inputbox" autocomplete="off" />
 				<span class="shadow-label">{L_EMAIL_ADDRESS}</span>
 			</div>
-			<div class="brutalform-box">
+			<div class="form-box">
 				<!-- IF ERROR --><div class="error">{ERROR}</div><!-- ENDIF -->
 				<!-- IF L_REG_COND --><strong>{L_REG_COND}</strong><!-- ENDIF -->
 			</div>
@@ -118,13 +118,13 @@
 			<div class="column-left">
 				<fieldset class="fields2">
 					{% if S_LANG_OPTIONS %}
-					<div class="brutalform-box">
+					<div class="form-box">
 						<select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{{ lang('LANGUAGE') }}">{{ S_LANG_OPTIONS }}</select>
 						<span class="shadow-label">{{ lang('LANGUAGE') }}</span>
 					</div>
 					{% endif %}
 
-					<div class="brutalform-box">
+					<div class="form-box">
 						<div class="registration-timezone">
 						<!-- IF .timezone_date -->
 						<div id="tz_select_date" style="display: none;">

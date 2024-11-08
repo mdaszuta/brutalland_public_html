@@ -9,12 +9,12 @@
 
 		<div class="flex-columns">
 			<div class="column-left">
-				<div class="brutalform-box">
+				<div class="form-box">
 					<input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" placeholder="{L_USERNAME}" class="inputbox" autocomplete="username" />
 					<span class="shadow-label">{L_USERNAME}</span>
 				</div>
 
-				<div class="brutalform-box">
+				<div class="form-box">
 					<input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" class="inputbox" placeholder="{L_PASSWORD}" autocomplete="current-password" />
 					<span class="shadow-label">{L_PASSWORD}</span>
 				</div>
@@ -24,7 +24,7 @@
 				{S_HIDDEN_FIELDS}
 
 				<!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION) -->
-					<div class="brutalform-box">
+					<div class="form-box">
 					<!-- IF U_SEND_PASSWORD --><a href="{U_SEND_PASSWORD}" class="forgot-pass">{L_FORGOT_PASS}</a><!-- ENDIF -->
 					<!-- IF U_RESEND_ACTIVATION --><a href="{U_RESEND_ACTIVATION}">{L_RESEND_ACTIVATION}</a><!-- ENDIF -->
 					</div>
@@ -56,7 +56,7 @@
 			</div>
 
 			<div class="column-right">
-				<div class="brutalform-box submit-buttons">
+				<div class="form-box submit-buttons">
 					<a href="{U_REGISTER}" tabindex="5" class="to-registration-button button submit">{L_REGISTER}</a>
 				</div>
 			</div>
@@ -67,10 +67,10 @@
 			</div>
 			<div class="column-right">
 				<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
-					<div class="brutalform-box">
+					<div class="form-box">
 						<a href="{U_TERMS_USE}" tabindex="7" class="terms-privacy-button">{L_TERMS_USE}</a>
 					</div>
-					<div class="brutalform-box">
+					<div class="form-box">
 						<a href="{U_PRIVACY}" tabindex="6" class="terms-privacy-button">{L_PRIVACY}</a>
 					</div>
 					<!-- ENDIF -->

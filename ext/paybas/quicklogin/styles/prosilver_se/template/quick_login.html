@@ -9,12 +9,12 @@
 				<div class="flex-columns">
 					<div>
 
-						<div class="brutalform-box">
+						<div class="form-box">
 							<input type="text" tabindex="1" name="username" id="ql-username" size="25" value="{{ USERNAME }}" placeholder="{{ lang('USERNAME') }}" class="inputbox" autocomplete="username" />
 							<span class="shadow-label">{{ lang('USERNAME') }}</span>
 						</div>
 
-						<div class="brutalform-box">
+						<div class="form-box">
 							<input type="password" tabindex="2" id="ql-password" name="password" size="25" placeholder="{{ lang('PASSWORD') }}" class="inputbox" autocomplete="current-password" />
 							<span class="shadow-label">{{ lang('PASSWORD') }}</span>
 						</div>
@@ -23,7 +23,7 @@
 						{{ S_HIDDEN_FIELDS }}
 
 						{% if U_SEND_PASSWORD_EXT %}
-							<div class="brutalform-box">
+							<div class="form-box">
 								<a href="{{ U_SEND_PASSWORD_EXT }}" class="forgot-pass">{{ lang('FORGOT_PASS') }}</a>
 							</div>
 						{% endif %}
@@ -40,7 +40,7 @@
 						</div>
 
 						{% if not S_ADMIN_AUTH and S_REGISTER_ENABLED %}
-						<div class="brutalform-box submit-buttons">
+						<div class="form-box submit-buttons">
 							<a href="{{ U_REGISTER }}" tabindex="5" class="to-registration-button button submit">{{ lang('REGISTER') }}</a>
 						</div>
 						{% endif %}
