@@ -127,7 +127,7 @@ $(document).ready(function(){
 	* Hide menu on: mouse leave or mouse up
 	*/
 
-	$(".menu-devil").on("mouseenter", function() {
+	$(".menu-root").on("mouseenter", function() {
 
 		var topMenu = $(this);
 		var bottomMenu = topMenu.next(".menu-all");
@@ -147,7 +147,7 @@ $(document).ready(function(){
 
 	/* Toggle display / hide menu on: click */
 
-	$(".menu-devil").on("click", function(){
+	$(".menu-root").on("click", function(){
 
 		var topMenu = $(this);
 		var bottomMenu = topMenu.next(".menu-all");
@@ -290,23 +290,23 @@ $(document).ready(function(){
 
 	$(".switcheroo-menu").on("mouseenter click", function() {
 
-		var switcherooDevil = $(this).children(".switcheroo-menu-devil");
+		var switcherooRoot = $(this).children(".switcheroo-menu-root");
 		var switcherooAll = $(this).children(".switcheroo-menu-all");
 
 		timeoutSwitcheroo = setTimeout( function() {
 
-			switcherooDevil.fadeOut(0);
+			switcherooRoot.fadeOut(0);
 			switcherooAll.fadeIn(200).css("display","flex");
 
 		} , 150);
 
 	}).on("mouseleave", function() {
 
-		var switcherooDevil = $(this).children(".switcheroo-menu-devil");
+		var switcherooRoot = $(this).children(".switcheroo-menu-root");
 		var switcherooAll = $(this).children(".switcheroo-menu-all");
 
 		switcherooAll.fadeOut(0);
-		switcherooDevil.fadeIn(0).css("display","flex");
+		switcherooRoot.fadeIn(0).css("display","flex");
 
 		clearTimeout(timeoutSwitcheroo);
 

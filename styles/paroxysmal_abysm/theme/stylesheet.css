@@ -1183,7 +1183,7 @@ input:is(:-webkit-autofill, :autofill) {
 *[onclick^="window.location.href"],
 .fa-search,
 #search-box-hide,
-.menu-devil,
+.menu-root,
 #picture-box-all label,
 #list-box-all label {
 	cursor: pointer;
@@ -1726,7 +1726,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 /* menu-toggle, its icon and dropdown */
 
 .quickmod-box,
-#info-box-devil,
+#info-box-root,
 #info-box-all,
 #picture-box-all {
 	text-align: center;
@@ -1773,13 +1773,13 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	height: 100px;
 }
 
-#smiley-box-devil {
+#smiley-box-root {
 	width: 30px;
 	height: 24px;
 	background: url("/images/smilies/icon_twisted_bw.gif") center no-repeat;
 }
 
-#smiley-box:hover #smiley-box-devil {
+#smiley-box:hover #smiley-box-root {
 	background: url("/images/smilies/icon_twisted_bw_red_eyes.gif") center no-repeat;
 }
 
@@ -1826,7 +1826,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	width: 95%;
 }
 
-.switcheroo-menu-devil,
+.switcheroo-menu-root,
 .switcheroo-menu-all {
 	justify-content: space-around;
 	justify-content: space-evenly;
