@@ -175,7 +175,7 @@ $(document).ready(function(){
 	});
 	
 	/**
-	* Last Post Feed Mobile
+	* Unread or Active topics feeds & Displaying search input on Mobile
 	*/
 	
 	$("#mm-topics, .search-box").on("click", function( event ){
