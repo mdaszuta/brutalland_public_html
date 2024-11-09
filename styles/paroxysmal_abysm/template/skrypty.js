@@ -319,7 +319,7 @@ $(document).ready(function(){
 */
 
 function bandInfo() {
-	var bandInfoInput = document.getElementById('bandInfoInput');
+	var bandInfoInput = document.getElementById('band-info-input');
 	var bandInfoOutput = document.getElementById('message');
 	  
 	var str = bandInfoInput.value;

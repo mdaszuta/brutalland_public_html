@@ -1462,7 +1462,7 @@ table.table1 td.info a {
 }
 
 input.inputbox:not([type="number"], [type="file"]),
-textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #bandInfoInput) {
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #band-info-input) {
 	min-height: 2em;
 	line-height: 2em;
 }
@@ -1769,7 +1769,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	max-width: 550px;
 }
 
-#bandInfoInput {
+#band-info-input {
 	height: 100px;
 }
 
