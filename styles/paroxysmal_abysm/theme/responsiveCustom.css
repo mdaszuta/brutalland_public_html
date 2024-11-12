@@ -444,7 +444,7 @@
 
 }
 
-@media (min-width: 861px) and (max-width: 920px) {
+@media (min-width: 861px) and (max-width: 900px) {
 
 	.wrap{
 		padding: 15px 0;
@@ -453,6 +453,12 @@
 }
 
 @media (max-width: 900px) {
+
+	.wrap {
+		border-width: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}
 
 	/* cp.css */
 
@@ -465,16 +471,6 @@
 	}
 
 	/* END cp.css */
-
-}
-
-@media (max-width: 920px) {
-
-	.wrap {
-		border-width: 0;
-		border-radius: 0;
-		box-shadow: none;
-	}
 
 }
 
