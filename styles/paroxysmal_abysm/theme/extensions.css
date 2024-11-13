@@ -355,6 +355,20 @@ a.elonw:after {
 }
 /* end of MCHAT ICONS MENU */
 
+/* MEDIAEMBED */
+
+span[data-s9e-mediaembed="youtube"] {
+	aspect-ratio: 16/9;
+	/*max-height: 360px;*/
+}
+
+span[data-s9e-mediaembed="bandcamp"] {
+	aspect-ratio: 1/1;
+	/*max-height: 400px;*/
+}
+
+/* end of MEDIAEMBED */
+
 /* MENTION */
 
 .mention {
