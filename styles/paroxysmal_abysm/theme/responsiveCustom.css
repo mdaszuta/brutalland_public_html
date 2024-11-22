@@ -194,8 +194,7 @@
 		top: -1.618em;
 	}
 
-	span.author-mobile.responsive-show,
-	span.author-postnumber-mobile.responsive-show {
+	span.author-mobile.responsive-show {
 		display: inline !important;
 	}
 

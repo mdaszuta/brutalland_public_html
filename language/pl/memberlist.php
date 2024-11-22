@@ -92,7 +92,7 @@ $lang = array_merge($lang, array(
 	'IM_USER'				=> 'Wyślij wiadomość',
 
 	'LAST_ACTIVE'				=> 'Ostatnio aktywny',
-	'LESS_THAN'					=> 'Liczba < niż',
+	'LESS_THAN'					=> 'Liczba &lt; niż',
 	'LIST_USERS'				=> array(
 		1	=> 'Użytkownicy: %d',
 		2	=> 'Użytkownicy: %d',
