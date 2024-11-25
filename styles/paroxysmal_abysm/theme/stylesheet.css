@@ -75,6 +75,12 @@ a.lastsubject {
 
 /* override prosilver\common.css */
 
+body,
+.copyright,
+.footer-row {
+	font-size: 0.625rem;
+}
+
 @media (min-width: 701px) {
 	.postprofile dd, .postprofile dt {
 		/*margin-left: 0;*/
@@ -405,6 +411,15 @@ input.search {
 }
 
 /* END form.css */
+
+/* override prosilver\icons.css */
+
+.icon, .button .icon, blockquote cite:before, .uncited:before {
+	/*font-size: 14px;*/
+	font-size: 0.875rem; /* 14 / 16 */
+}
+
+/* END icons.css */
 
 /* end of OVERRIDING STYLE FILES FROM PROSILVER */
 /* *********************************************************************************************************************************** */
@@ -1020,10 +1035,6 @@ input.button2 {
 	text-align: center;
 }
 
-.pagination li.active span {
-	font-size: 1em;
-}
-
 .pagination .arrow a {
 	padding: 2px;
 }
@@ -1033,6 +1044,7 @@ input.button2 {
 }
 
 .pagination li.active span {
+	font-size: 1em;
 	font-weight: bold;
 	font-family: inherit;
 	border: none;
@@ -1129,7 +1141,8 @@ dd.lastpost > span {
 /* Go to searched post */
 
 .to-searched-post {
-	font-size: 34px;
+	/*font-size: 34px;*/
+	font-size: 2.125rem; /* 34 / 16 */
 	padding: 10px 10px 0 10px;
 }
 

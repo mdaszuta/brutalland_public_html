@@ -214,6 +214,10 @@ textarea,
 	transform: rotate(180deg);
 }
 
+.agreement {
+	font-size: 1em;
+}
+
 dl.details,
 .flex-columns-container-left dl,
 .navbar,
@@ -223,11 +227,6 @@ ul.topiclist dt {
 
 .notifications_title {
 	font-size: 1.2em;
-}
-
-.register-text,
-.terms-privacy-button {
-	font-size: 1.3em;
 }
 
 .search-user .fa-search,
@@ -245,11 +244,23 @@ ul.topiclist dt {
 
 .spoilbtn,
 .labeled-icon-bg {
-	font-size: 12px;
+	/*font-size: 12px;*/
+	font-size: 0.75rem; /* 12 / 16 */
+}
+
+.attachbox {
+	/*font-size: 13px;*/
+	font-size: 0.8125; /* 13 / 16 */
 }
 
 #mm-user .main-menu-bottom {
-	font-size: 14px;
+	/*font-size: 14px;*/
+	font-size: 0.875rem; /* 14 / 16 */
+}
+
+.register-text,
+.terms-privacy-button {
+	font-size: 0.9375rem; /* 15 / 16 */
 }
 
 select:not(.abbc3_select),
@@ -267,7 +278,8 @@ h3,
 .subforum,
 li.row .vertical-separator,
 a.lastsubject {
-	font-size: 17px;
+	/*font-size: 17px;*/
+	font-size: 1.0625rem; /* 17 / 16 */
 }
 
 .button,
@@ -279,7 +291,8 @@ a.topictitle,
 .notifications_reference,
 input.inputbox:not([type="number"], [type="file"]),
 textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #band-info-input) {
-	font-size: 21px;
+	/*font-size: 21px;*/
+	font-size: 1.3125rem; /* 21 / 16 */
 }
 
 /* PSEUDOAVATARY */
@@ -287,8 +300,10 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 #mm-notifications .fa-user-circle-o,
 .cp-main .notification_list .fa-user-circle-o {
 	font-size: 50px;
+	/*font-size: 3.125rem;*/
 }
 
 .cp-main .fa-user-circle-o {
 	font-size: 120px;
+	/*font-size: 7.5rem;*/
 }
