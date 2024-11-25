@@ -362,9 +362,9 @@
 	#main-menu-right { order: 2; }
 	#main-menu-middle { order: 3; }
 
-	#mm-pagination { order: 4; }
+	/*#mm-pagination { order: 4; }
 	#mm-notifications { order: 6; }
-	#mm-tags { order: 5; }
+	#mm-tags { order: 5; }*/
 
 	#page-header {
 		display: none;
