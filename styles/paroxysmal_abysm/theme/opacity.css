@@ -2,7 +2,7 @@
 
 .lastpost .fa-fast-forward,
 .phantom-label,
-.post-buttons #post-buttons-row-2,
+.post-buttons .post-buttons-row-2,
 .shadow-label {
 	opacity: 0;
 }
@@ -31,8 +31,8 @@
 .main-menu-top,
 #mm-pagination .pagination,
 .topic-forumtitle,
-.post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
-.post-buttons #post-buttons-row-2:hover,
+.post-buttons .post-buttons-row-1:hover ~ .post-buttons-row-2,
+.post-buttons .post-buttons-row-2:hover,
 #page-header,
 ul.button,
 .pagination {
@@ -142,8 +142,8 @@ li.row .fa-tags:hover,
 
 .post-number,
 .post-buttons,
-.post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
-.post-buttons #post-buttons-row-2:hover,
+.post-buttons .post-buttons-row-1:hover ~ .post-buttons-row-2,
+.post-buttons .post-buttons-row-2:hover,
 .mark_read,
 li.row .fa-question,
 li.row .fa-flag,

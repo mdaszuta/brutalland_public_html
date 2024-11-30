@@ -21,7 +21,7 @@
 			<!-- IF $SHOW_PM_HISTORY_POST_BUTTONS -->
 			<div class="post-buttons" data-skip-responsive="true">
 				<!-- EVENT ucp_pm_history_post_buttons_before -->
-				<ul id="post-buttons-row-1">
+				<ul class="post-buttons-row-1">
 				<li>
 					<a <!-- IF history_row.U_QUOTE -->href="{history_row.U_QUOTE}"<!-- ELSE -->href="#postingbox" onclick="addquote({history_row.MSG_ID}, '{history_row.MESSAGE_AUTHOR_QUOTE}', '{LA_WROTE}', {time:{history_row.MESSAGE_TIME},user_id:{history_row.USER_ID}});"<!-- ENDIF --> title="{L_QUOTE} {history_row.MESSAGE_AUTHOR}" class="button-icon-only">
 						<i class="fa fa-quote-right fa-2x" aria-hidden="true"></i><span class="sr-only">{L_QUOTE} {history_row.MESSAGE_AUTHOR}</span>

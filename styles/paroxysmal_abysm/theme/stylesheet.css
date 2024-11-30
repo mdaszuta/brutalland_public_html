@@ -1184,17 +1184,17 @@ p.post-notice {
 	list-style: none;
 }
 
-.post-buttons #post-buttons-row-1 {
+.post-buttons .post-buttons-row-1 {
 	display: flex;
 	justify-content: flex-end;
 }
 
-.post-buttons #post-buttons-row-2 {
+.post-buttons .post-buttons-row-2 {
 	display: none;
 }
 
-.post-buttons #post-buttons-row-1:hover ~ #post-buttons-row-2,
-.post-buttons #post-buttons-row-2:hover {
+.post-buttons .post-buttons-row-1:hover ~ .post-buttons-row-2,
+.post-buttons .post-buttons-row-2:hover {
 	display: flex;
 	justify-content: flex-end;
 }
