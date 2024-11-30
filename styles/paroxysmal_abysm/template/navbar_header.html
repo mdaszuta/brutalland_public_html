@@ -168,13 +168,14 @@
 					</a>
 				</div>
 				<div class="main-menu-bottom menu-all">
-					<!-- IF U_RESTORE_PERMISSIONS --><a href="{U_RESTORE_PERMISSIONS}"><i class="fa fa-user-times fa-fw fa-lg"></i>{L_RESTORE_PERMISSIONS}</a><!-- ENDIF -->
+					<!-- IF U_RESTORE_PERMISSIONS --><a href="{U_RESTORE_PERMISSIONS}"><i class="fa fa-user-times fa-fw fa-lg"></i>{L_RESTORE_PERMISSIONS}</a><hr><!-- ENDIF -->
 					<a href="{{ U_SENKY_NOTES }}"><i class="fa fa-pencil-square-o fa-fw fa-lg"></i>{{ lang('NOTES') }}</a>
 					<a href="{U_PROFILE}" title="{L_PROFILE}"><i class="fa fa-cogs fa-fw fa-lg"></i>{L_PROFILE}</a>
 					<!-- IF U_USER_PROFILE --><a href="{U_USER_PROFILE}" title="{L_READ_PROFILE}"><i class="fa fa-id-card-o fa-fw fa-lg"></i>{L_READ_PROFILE}</a><!-- ENDIF -->
-					<!-- IF S_DISPLAY_MEMBERLIST --><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}"><i class="fa fa-users fa-fw fa-lg"></i>{L_MEMBERLIST}</a><!-- ENDIF -->
+					<!-- IF S_DISPLAY_MEMBERLIST --><hr><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}"><i class="fa fa-users fa-fw fa-lg"></i>{L_MEMBERLIST}</a><!-- ENDIF -->
 					<!-- IF U_TEAM --><a href="{U_TEAM}"><i class="fa fa-shield fa-fw fa-lg"></i>{L_THE_TEAM}</a><!-- ENDIF -->
-					<a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x"><i class="fa fa-sign-out fa-fw fa-lg"></i>{L_LOGIN_LOGOUT}</a>
+					<hr><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x"><i class="fa fa-sign-out fa-fw fa-lg"></i>{L_LOGIN_LOGOUT}</a>
+					<!-- IF U_MCP or U_ACP --><hr><!-- ENDIF -->
 					<!-- IF U_MCP --><a href="{U_MCP}" title="{L_MCP}"><i class="fa fa-wrench fa-fw fa-lg"></i>{L_MCP_SHORT}</a><!-- ENDIF -->
 					<!-- IF U_ACP --><a href="{U_ACP}" title="{L_ACP}"><i class="fa fa-unlock-alt fa-fw fa-lg"></i>{L_ACP_SHORT}</a><!-- ENDIF -->
 				</div>
