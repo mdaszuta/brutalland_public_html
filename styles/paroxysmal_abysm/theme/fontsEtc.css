@@ -238,6 +238,10 @@ ul.topiclist dt {
 	font-size: 2.3em;
 }
 
+.main-menu-top .fa:not(.fa-compress) {
+	/*font-size: 25px;*/
+}
+
 #mm-title .labeled-icon .fa {
 	font-size: 4em;
 }

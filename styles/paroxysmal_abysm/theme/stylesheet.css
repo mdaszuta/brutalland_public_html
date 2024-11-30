@@ -82,11 +82,6 @@ body,
 }
 
 @media (min-width: 701px) {
-	.postprofile dd, .postprofile dt {
-		/*margin-left: 0;*/
-		/*padding-left: 8px;*/
-	}
-
 	.postprofile .has-avatar .avatar-container {
 		margin-bottom: 5px;
 	}
@@ -140,10 +135,6 @@ li.header dt, li.header dd {
 
 ul.topiclist li.row dt .subforum {
 	padding: 0;
-}
-
-.vertical-separator {
-	padding: 0 5px;
 }
 
 li.row {
@@ -673,7 +664,6 @@ input[type="radio"] {
 /* Main menu items - top part */
 
 .main-menu-top {
-	/*order: 1;*/
 	display: flex;
 	z-index: 666;
 	align-items: center;
@@ -684,7 +674,6 @@ input[type="radio"] {
 /* Main menu items - bottom part */
 
 .main-menu-bottom {
-	/*order: 2;*/
 	overflow-x: hidden;
 	overflow-y: auto;
 	max-height: 690px;
@@ -824,6 +813,10 @@ input[type="radio"] {
 #mm-topics .main-menu-bottom {
 	padding: 15px;
 	flex-direction: row;
+}
+
+.vertical-separator {
+	padding: 0 5px;
 }
 
 /* Top menu & UCP notifications */
@@ -1377,13 +1370,8 @@ table.table1 td.info a {
 	width: 15%;
 }
 
-.flex-columns-container div.column-left {
-	/*align-items: center;*/
-}
-
 .inputbox {
 	width: 100%;
-	/*padding: 2px;*/
 	box-sizing: border-box;
 }
 
@@ -1800,11 +1788,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 #color-palette-all { /*margin-left: -215px;*/ }
 #smiley-box-all { /*margin-left: -70px;*/ }
 
-#picture-box-all a,
-#list-box-all a {
-	/*margin-bottom: 10px;*/
-}
-
 #search-box-keywords {
 	/*background-color: blueviolet;*/
 }
@@ -1827,11 +1810,6 @@ blockquote,
 blockquote blockquote {
 	padding-bottom: 10px;
 	margin: 15px 0 15px 7px;
-}
-
-cite div.responsive-hide {
-	/*float: left;*/
-	/*margin-right: 5px;*/
 }
 
 #login .column-left,
@@ -2102,7 +2080,6 @@ img.postimage,
 
 ::selection {
 	color: #32D635;
-	/*background: #444;*/
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -2117,7 +2094,6 @@ img.postimage,
 /* Scrollbar track */
 
 ::-webkit-scrollbar-track {
-	/*box-shadow: inset 0 0 5px #666;*/
 	border-radius: 7px;
 	background: transparent;
 }

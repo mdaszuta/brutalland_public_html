@@ -321,6 +321,17 @@ a.username {
 	color: white;
 }
 
+/*
+.flex-columns:hover > .column-right,
+.flex-columns:hover > .column-left span {
+	color: #999;
+}
+
+.flex-columns:hover > .column-right * {
+	color: white;
+}
+*/
+
 .post:target .content {
 	color: #eee;
 }
