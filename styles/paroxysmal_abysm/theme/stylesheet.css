@@ -888,22 +888,25 @@ input[type="radio"] {
 .labeled-icon.notify-settings,
 #mm-title .labeled-icon,
 #mm-active-topics .labeled-icon {
-	min-width: 90px;
-	max-width: 90px;
+	/*min-width: 90px;*/
+	/*max-width: 90px;*/
+	width: 90px;
 }
 
 .labeled-icon {
 	position: relative;
 	display: flex;
 	justify-content: center;
-	text-align: center;
-	min-height: 45px;
-	max-height: 45px;
-	min-width: 50px;
-	max-width: 50px;
+	/*text-align: center;*/
+	/*min-height: 45px;*/
+	/*max-height: 45px;*/
+	/*min-width: 50px;*/
+	/*max-width: 50px;*/
+	height: 45px;
+	width: 50px;
+	box-sizing: border-box;
 	padding-left: 3px !important;
 	padding-right: 3px !important;
-	box-sizing: border-box;
 }
 
 .labeled-icon .fa,
@@ -913,8 +916,9 @@ input[type="radio"] {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	min-width: 100%;
-	max-width: 100%;
+	width: 100%;
+	/*min-width: 100%;*/
+	/*max-width: 100%;*/
 }
 
 /* Top menu tags list */
