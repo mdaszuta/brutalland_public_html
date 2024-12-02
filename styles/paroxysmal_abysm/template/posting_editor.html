@@ -33,7 +33,7 @@
 		<!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
 			<div class="form-box">
 				<!-- EVENT posting_editor_subject_prepend -->
-				<input type="text" name="subject" id="subject" size="45" maxlength="<!-- IF S_NEW_MESSAGE -->120<!-- ELSE -->124<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox" placeholder="{L_SUBJECT}" oninput="show_name_post_real_time(event)" autocomplete="off" />
+				<input type="text" name="subject" id="subject" size="45" maxlength="<!-- IF S_NEW_MESSAGE -->120<!-- ELSE -->124<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox" placeholder="{L_SUBJECT}" oninput="showTopicNameInRealTime(event)" autocomplete="off" />
 				<span class="shadow-label">{L_SUBJECT}</span>
 				<!-- EVENT posting_editor_subject_append -->
 			</div>

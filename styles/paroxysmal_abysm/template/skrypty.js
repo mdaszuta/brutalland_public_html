@@ -68,9 +68,9 @@
       var elem = e.target;
 
       if(this.scrollIfAnchor(elem.getAttribute('href'), true)) {
-	  	console.log('e: ' + JSON.stringify(e));
+	  	/*console.log('e: ' + JSON.stringify(e));
 		console.log('target: ' + e.target);
-		console.log("elem.getAttribute('href') " + elem.getAttribute('href'));
+		console.log("elem.getAttribute('href') " + elem.getAttribute('href'));*/
         e.preventDefault();
       }
     }
@@ -83,7 +83,7 @@
 * Nazwa wpisywanego tematu real time, wczytuje do tytułu menu wpisywaną wartość String
 */
 	
-function show_name_post_real_time(event) {
+function showTopicNameInRealTime(event) {
 
 	var x = event.key;
 
