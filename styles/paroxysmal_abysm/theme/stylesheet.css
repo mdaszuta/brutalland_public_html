@@ -607,25 +607,28 @@ input[type="radio"] {
 	order: 2;
 	width: 100%;
 	min-height: 45px;
-	flex-wrap: nowrap;
-	justify-content: space-between;
+	/*flex-wrap: nowrap;*/
+	/*justify-content: space-between;*/
 }
 
 #mm-title {
 	order: 2;
-	display: flex;
-	flex-basis: 100%;
+	/*display: flex;*/
+	/*flex-basis: 100%;*/
+	flex: 1;
 }
 
 #mm-pagination {
 	order: 3;
-	display: flex;
-	flex-basis: 0%;
+	/*display: flex;*/
+	/*flex-basis: 0%;*/
+	flex: 0;
 }
 
 #mm-search {
 	order: 4;
-	flex-basis: 0%;
+	/*flex-basis: 0%;*/
+	flex: 0;
 }
 
 #mm-search .inputbox {
