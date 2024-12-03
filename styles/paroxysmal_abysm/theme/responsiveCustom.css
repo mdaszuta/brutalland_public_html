@@ -390,16 +390,28 @@
 	/* zmienny układ #main-menu-right zależnie czy użytkownik zalogowany czy nie */
 
 	#main-menu-right {
-		width: calc(100% - 55px);
-		justify-content: space-between !important;
+		/*width: calc(100% - 55px);*/
+		/*justify-content: space-between !important;*/
+		flex: 1;
+		justify-content: space-between;
 	}
 
 	.menu-registered-user #main-menu-right {
-		width: calc(100% - 16.67%);
+		/*width: calc(100% - 16.67%);*/
+	}
+
+	.menu-registered-user/*,
+	.menu-registered-user #main-menu-right*/ {
+		column-gap: calc((100% - (5 * 50px + 45px)) / 5);
+	}
+
+	.menu-unregistered-user/*,
+	.menu-unregistered-user #main-menu-right*/ {
+		column-gap: calc((100% - (2 * 50px + 45px + 90px)) / 3);
 	}
 
 	.menu-unregistered-user #main-menu-right {
-		width: calc(100% - 25%);
+		/*width: calc(100% - 25%);*/
 	}
 
 	.main-menu-row {
