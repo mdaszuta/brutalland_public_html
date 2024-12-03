@@ -83,10 +83,6 @@
 		top: 100px;
 	}
 
-	.flex-box {
-		flex-basis: 100%;
-	}
-
 	.submit-buttons .flex-columns,
 	#postingbox .flex-columns,
 	.flex-columns-container {
@@ -301,6 +297,10 @@
 		display: flex !important;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.flex-box {
+		flex-basis: 50%;
 	}
 
 }
