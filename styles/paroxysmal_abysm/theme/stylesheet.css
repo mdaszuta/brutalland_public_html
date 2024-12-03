@@ -943,7 +943,10 @@ input[type="radio"] {
 }
 
 a.header-avatar img {
-	max-height: 30px;
+	/*max-height: 30px;*/
+	max-height: 66.67%;
+	max-width: 100%;
+	height: auto;
 	margin: 0;
 }
 
@@ -1160,6 +1163,11 @@ dd.lastpost > span {
 .postbody,
 .topicreview .postbody {
 	margin-top: 5px;
+}
+
+/* Keep aspect ratio when scaling */
+.postbody img {
+	height: auto;
 }
 
 /* Don't show signature in posts and PMs */
