@@ -913,7 +913,7 @@ input[type="radio"] {
 }
 
 .labeled-icon .fa,
-.labeled-icon-bg {
+.labeled-icon-text {
 	position: absolute;
 	display: flex;
 	justify-content: center;
@@ -2026,7 +2026,7 @@ li.row:hover dd,
 	border-radius: 7px;
 }
 
-.labeled-icon-bg strong,
+.labeled-icon-text strong,
 blockquote,
 .member-search,
 .phpbb_alert {

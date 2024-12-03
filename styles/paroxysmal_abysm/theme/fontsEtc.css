@@ -129,7 +129,7 @@ table.table1 tbody tr.bg3,
 
 #mm-title .m-list,
 #mm-topics,
-.labeled-icon-bg strong,
+.labeled-icon-text strong,
 #mm-user .main-menu-bottom a,
 .pagination,
 .submit-buttons input {
@@ -247,7 +247,7 @@ ul.topiclist dt {
 }
 
 .spoilbtn,
-.labeled-icon-bg {
+.labeled-icon-text {
 	/*font-size: 12px;*/
 	font-size: 0.75rem; /* 12 / 16 */
 }
