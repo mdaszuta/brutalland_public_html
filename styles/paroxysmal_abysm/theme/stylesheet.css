@@ -761,7 +761,7 @@ input[type="radio"] {
 }
 
 .m-list-right {
-	order: 2;
+	/*order: 2;*/
 	flex-direction: column;
 	align-items: flex-start;
 	width: 130px;
@@ -776,9 +776,10 @@ input[type="radio"] {
 }
 
 .m-list-left {
-	order: 1;
+	/*order: 1;*/
 	flex-direction: column;
-	width: calc(100% - 130px); /* 100% - m-list-right width */
+	/*width: calc(100% - 130px); *//* 100% - m-list-right width */
+	flex: 1;
 	padding-right: 10px;
 	padding-left: 10px;
 	box-sizing: border-box;
@@ -855,8 +856,9 @@ input[type="radio"] {
 }
 
 .m-list-left.notification_text {
-	width: calc(100% - 76px);
-	max-width: calc(100% - 76px);
+	/*width: calc(100% - 76px);*/
+	/*max-width: calc(100% - 76px);*/
+	/*flex: 1;*/
 }
 
 .notification_text {

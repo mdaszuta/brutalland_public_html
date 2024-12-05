@@ -146,7 +146,7 @@
 	}
 
 	.m-list-left {
-		width: calc(100% - 91px);
+		/*width: calc(100% - 91px);*/
 	}
 
 	#mm-notifications .m-list-right {
@@ -154,8 +154,8 @@
 	}
 
 	.m-list-left.notification_text {
-		width: calc(100% - 66px);
-		max-width: calc(100% - 66px);
+		/*width: calc(100% - 66px);*/
+		/*max-width: calc(100% - 66px);*/
 	}
 
 	.top-with-settings div,
@@ -359,7 +359,9 @@
 		font-weight: bold;
 	}
 
-	#main-menu-middle { order: 4; }
+	#main-menu-middle {
+		order: 4;
+	}
 
 	#page-header {
 		display: none;
