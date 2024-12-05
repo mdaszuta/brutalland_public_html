@@ -95,20 +95,12 @@ $(document).ready(function(){
 
 	"use strict";
 
-	/**
-	* Show / Hide menus
-	*/
-
-	var timeoutMenu = 0;
-
 	/** Function calculateMenuAllWidthOrMarginLeft calculates and sets values of .menu-all:
 	* width: if chosen menu is a .contact-box
 	* margin-left: if chosen menu is not a top menu item (.main-menu-item), quick topic tools (.quickmod-box) or tags in viewtopic_body (.tag-box)
 	*/
 
 	function calculateMenuAllWidthOrMarginLeft(top, bottom) {
-
-		var marginValue = 0;
 
 		if ( bottom.hasClass("contact-box-all") ) {
 			/* for .contact-box, width of .menu-all is based on .postprofile width */
@@ -117,11 +109,17 @@ $(document).ready(function(){
 
 		if ( !bottom.hasClass("main-menu-bottom") && !bottom.hasClass("quickmod-box-all") && !bottom.hasClass("tag-box-all") ) {
 			/* center the bottom part of a menu based on width of it and the width of it's top icon */
-			marginValue = -((parseFloat(bottom.css("width")) - parseFloat(top.css("width")))/2);
+			let marginValue = -((parseFloat(bottom.css("width")) - parseFloat(top.css("width")))/2);
 			bottom.css("margin-left", marginValue);
 		}
 
 	}
+
+	/**
+	* Show / Hide menus
+	*/
+
+	var timeoutMenu = 0;
 
 	/* Display menu on: mouse enter (delay the display by set Timeout)
 	* Hide menu on: mouse leave or mouse up
@@ -129,8 +127,8 @@ $(document).ready(function(){
 
 	$(".menu-root").on("mouseenter", function() {
 
-		var topMenu = $(this);
-		var bottomMenu = topMenu.next(".menu-all");
+		let topMenu = $(this);
+		let bottomMenu = topMenu.next(".menu-all");
 
 		timeoutMenu = setTimeout( function() {
 			if ( bottomMenu.css("display") == "none" ){
@@ -149,8 +147,8 @@ $(document).ready(function(){
 
 	$(".menu-root").on("click", function(){
 
-		var topMenu = $(this);
-		var bottomMenu = topMenu.next(".menu-all");
+		let topMenu = $(this);
+		let bottomMenu = topMenu.next(".menu-all");
 
 		if ( bottomMenu.css("display") == "none" ){
 			bottomMenu.fadeIn(150).css("display","flex");
@@ -166,7 +164,7 @@ $(document).ready(function(){
 
 	$(".menu-toggle").on("mouseleave", function(){
 
-		var bottomMenu = $(this).children(".menu-all");
+		let bottomMenu = $(this).children(".menu-all");
 
 		if ( bottomMenu.css("display") == "flex" ){
 			bottomMenu.fadeOut(0);
@@ -207,7 +205,7 @@ $(document).ready(function(){
 
 	/* if viewport resized, do */
 
-	$(window).on( "resize", function() {
+	$(window).on("resize", function() {
 
 		var searchInputbox = $("#search-box-keywords");
 
@@ -290,8 +288,8 @@ $(document).ready(function(){
 
 	$(".switcheroo-menu").on("mouseenter click", function() {
 
-		var switcherooRoot = $(this).children(".switcheroo-menu-root");
-		var switcherooAll = $(this).children(".switcheroo-menu-all");
+		let switcherooRoot = $(this).children(".switcheroo-menu-root");
+		let switcherooAll = $(this).children(".switcheroo-menu-all");
 
 		timeoutSwitcheroo = setTimeout( function() {
 
@@ -302,8 +300,8 @@ $(document).ready(function(){
 
 	}).on("mouseleave", function() {
 
-		var switcherooRoot = $(this).children(".switcheroo-menu-root");
-		var switcherooAll = $(this).children(".switcheroo-menu-all");
+		let switcherooRoot = $(this).children(".switcheroo-menu-root");
+		let switcherooAll = $(this).children(".switcheroo-menu-all");
 
 		switcherooAll.fadeOut(0);
 		switcherooRoot.fadeIn(0).css("display","flex");
