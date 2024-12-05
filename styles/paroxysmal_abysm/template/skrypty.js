@@ -176,26 +176,31 @@ $(document).ready(function(){
 	* Unread or Active topics feeds & Displaying search input on Mobile
 	*/
 	
-	$("#mm-topics, .search-box").on("click", function( event ){
+	$("#mm-topics, #search-box-icon").on("click", function(event){
+		if( $("#phpbb").hasClass("hastouch") ) {
+			let clickedIcon = $(this);
+			let clicks = clickedIcon.data("clicks");
 
-		console.log("hastouch class: " + $("#phpbb").hasClass("hastouch"));
+			if ( clicks ) {
+				/*console.log("if " + clicks);*/
+			}
+			else {
+				event.preventDefault();
+				/*console.log("else if " + clicks);*/
+			}
 
-		var clicks = $(this).data("clicks");
-
-		if ( clicks ) {
-			console.log("number of clicks (if) " + clicks);
+			clickedIcon.data("clicks", !clicks);
+			/*console.log("clicks: " + clicks);*/
 		}
-		else if(  $("#phpbb").hasClass("hastouch") ) {
-			event.preventDefault();
-			console.log("number of clicks (else if) " + clicks);
-		}
-
-		$(this).data("clicks", !clicks);
-
-		console.log("clicks: " + clicks);
-
 	});
 	
+	$("#search-box-hide").on("click", function(){
+		if( $("#phpbb").hasClass("hastouch") ) {
+			$("#search-box-icon").data("clicks", false);
+			/*console.log("clicks searchboxa: " + $("#search-box-icon").data("clicks"));*/
+		}
+	});
+
 	/**
 	* Search box width show and hide
 	*/
