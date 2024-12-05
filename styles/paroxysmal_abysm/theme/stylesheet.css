@@ -777,7 +777,7 @@ input[type="radio"] {
 
 .m-list-left {
 	/*order: 1;*/
-	flex-direction: column;
+	/*flex-direction: column;*/
 	/*width: calc(100% - 130px); *//* 100% - m-list-right width */
 	flex: 1;
 	padding-right: 10px;
