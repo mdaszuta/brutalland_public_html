@@ -85,7 +85,7 @@
 	
 function showTopicNameInRealTime(event) {
 
-	var x = event.key;
+	let x = event.key;
 
 	document.getElementById("titleID").innerText = document.getElementById("subject").value;
 
@@ -119,7 +119,7 @@ $(document).ready(function(){
 	* Show / Hide menus
 	*/
 
-	var timeoutMenu = 0;
+	let timeoutMenu = 0;
 
 	/* Display menu on: mouse enter (delay the display by set Timeout)
 	* Hide menu on: mouse leave or mouse up
@@ -205,14 +205,15 @@ $(document).ready(function(){
 	* Search box width show and hide
 	*/
 
-	var windowWidth = parseFloat(window.innerWidth);
-	var desktopSearchInputboxWidth = "200px";
+	let windowWidth = parseFloat(window.innerWidth);
+	const desktopSearchInputboxWidth = "200px";
+	const searchBreakpoint = 860;
 
 	/* if viewport resized, do */
 
 	$(window).on("resize", function() {
 
-		var searchInputbox = $("#search-box-keywords");
+		let searchInputbox = $("#search-box-keywords");
 
 		windowWidth = parseFloat(window.innerWidth);
 
@@ -221,24 +222,24 @@ $(document).ready(function(){
 		* if vw > 860px - width defined as desktopSearchInputboxWidth variable
 		*/
 		if( searchInputbox.outerWidth() != 0 ) {
-			if( windowWidth <= 860 ) {
-				var tmpSearchInputboxWidth = $("#mm-search").outerWidth() - parseFloat(searchInputbox.css("margin-left"));
+			if( windowWidth <= searchBreakpoint ) {
+				let tmpSearchInputboxWidth = $("#mm-search").outerWidth() - parseFloat(searchInputbox.css("margin-left"));
 				searchInputbox.css("width", tmpSearchInputboxWidth + "px");
 			}
 			else {
 				searchInputbox.css("width", desktopSearchInputboxWidth);
 			}
 		}
-	} );
+	});
 	
-	var timeoutSearchBox = 0;
+	let timeoutSearchBox = 0;
 
 	$("#search-box-icon").on("mouseenter click", function() {
 
-		var searchButtonTop = $(this);
-		var searchInputbox = searchButtonTop.siblings(".inputbox");
-		var searchBoxHide = searchButtonTop.siblings("#search-box-hide");
-		var searchForm = searchButtonTop.closest("#mm-search");
+		let searchButtonTop = $(this);
+		let searchInputbox = searchButtonTop.siblings(".inputbox");
+		let searchBoxHide = searchButtonTop.siblings("#search-box-hide");
+		let searchForm = searchButtonTop.closest("#mm-search");
 
 		timeoutSearchBox = setTimeout( function() {
 
@@ -246,8 +247,8 @@ $(document).ready(function(){
 			searchInputbox.css("padding","0px 5px");
 
 			/* if vw <= 860, then input + margin-left = whole width of main menu */
-			if ( windowWidth <= 860 ) {
-				var tmpSearchInputboxWidth = searchForm.width() - parseFloat(searchInputbox.css("margin-left"));
+			if ( windowWidth <= searchBreakpoint ) {
+				let tmpSearchInputboxWidth = searchForm.width() - parseFloat(searchInputbox.css("margin-left"));
 				searchInputbox.focus().animate({ width: tmpSearchInputboxWidth + "px" }, 500 );
 			}
 			else {
@@ -264,11 +265,11 @@ $(document).ready(function(){
 	
 	$("#search-box-hide").on("click", function() {
 
-		var searchBoxHide = $(this);
-		var searchInputbox = searchBoxHide.next(".inputbox");
-		var searchForm = searchBoxHide.closest("#mm-search");
+		let searchBoxHide = $(this);
+		let searchInputbox = searchBoxHide.next(".inputbox");
+		let searchForm = searchBoxHide.closest("#mm-search");
 
-		if ( windowWidth <= 860 ) {
+		if ( windowWidth <= searchBreakpoint ) {
 			/* animation queue */
 			searchInputbox.animate({ width: "0px" }, 500 );
 			searchInputbox.animate({ padding: "0" }, 500 );
@@ -289,7 +290,7 @@ $(document).ready(function(){
 	* Switcheroo switch
 	*/
 	
-	var timeoutSwitcheroo = 0;
+	let timeoutSwitcheroo = 0;
 
 	$(".switcheroo-menu").on("mouseenter click", function() {
 
