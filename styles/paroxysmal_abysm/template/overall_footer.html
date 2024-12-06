@@ -86,24 +86,24 @@ $(document).ready(function(){
 		timeoutId = setTimeout( function(){
 			console.log("timoutowane");
 			if(lastPostsList == ''){
-				lastPostsList = `<!-- BEGIN top_five_topic -->
-					<!-- IF top_five_topic.NO_TOPIC_TITLE-->
-						{top_five_topic.NO_TOPIC_TITLE}
-					<!-- ELSE -->
-						<div class="flex <!-- IF top_five_topic.S_ROW_COUNT is odd -->m-row1<!-- ELSE -->m-row2<!-- ENDIF --> m-list-all">
-							<div class="m-list-left" onclick="window.location.href='<!-- IF top_five_topic.S_UNREAD -->{top_five_topic.U_TOPIC_UNREAD}<!-- ELSE -->{top_five_topic.U_TOPIC}<!-- ENDIF -->'" title="<!-- IF top_five_topic.S_UNREAD -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_GOTO_LAST_POST}<!-- ENDIF -->">
-								<a href="<!-- IF top_five_topic.S_UNREAD -->{top_five_topic.U_TOPIC_UNREAD}<!-- ELSE -->{top_five_topic.U_TOPIC}<!-- ENDIF -->" class="flex topictitle<!-- IF top_five_topic.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF --> m-list-left-top">
-									{top_five_topic.TOPIC_TITLE}
-								</a>
-								<span class="flex meta m-list-left-bottom"><a href="{top_five_topic.U_FORUM}" class="topic-forumtitle<!-- IF top_five_topic.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_JUMP_TO} {L_FORUM_SMALL}">{top_five_topic.FORUM_NAME}</a></span>											
-							</div>
-							<span class="flex meta m-list-right" onclick="window.location.href='{top_five_topic.U_TOPIC}'" title="{L_GOTO_LAST_POST}">
-								<div class="m-list-right-top">{top_five_topic.USERNAME_FULL}</div>
-								<div class="m-list-right-bottom">{top_five_topic.LAST_TOPIC_TIME}</div>
-							</span>
-						</div>
-					<!-- ENDIF -->
-				<!-- END top_five_topic -->`;
+				lastPostsList = `{% for top_five_topic in loops.top_five_topic %}
+									{% if top_five_topic.NO_TOPIC_TITLE %}
+										{{ top_five_topic.NO_TOPIC_TITLE }}
+									{% else %}
+										<div class="flex {% if top_five_topic.S_ROW_COUNT is odd %}m-row1{% else %}m-row2{% endif %} m-list-all">
+											<div class="m-list-left" onclick="window.location.href='{% if top_five_topic.S_UNREAD %}{{ top_five_topic.U_TOPIC_UNREAD }}{% else %}{{ top_five_topic.U_TOPIC }}{% endif %}'" title="{% if top_five_topic.S_UNREAD %}{{ lang('VIEW_NEWEST_POST') }}{% else %}{{ lang('GOTO_LAST_POST') }}{% endif %}">
+												<a href="{% if top_five_topic.S_UNREAD %}{{ top_five_topic.U_TOPIC_UNREAD }}{% else %}{{ top_five_topic.U_TOPIC }}{% endif %}" class="flex topictitle{% if top_five_topic.S_UNREAD %} unread{% else %} read{% endif %} m-list-left-top">
+													{{ top_five_topic.TOPIC_TITLE }}
+												</a>
+												<span class="flex meta m-list-left-bottom"><a href="{{ top_five_topic.U_FORUM }}" class="topic-forumtitle{% if top_five_topic.S_UNREAD %} unread{% else %} read{% endif %}" title="{{ lang('JUMP_TO') }} {{ lang('FORUM_SMALL') }}">{{ top_five_topic.FORUM_NAME }}</a></span>
+											</div>
+											<span class="flex meta m-list-right" onclick="window.location.href='{{ top_five_topic.U_TOPIC }}'" title="{{ lang('GOTO_LAST_POST') }}">
+												<div class="m-list-right-top">{{ top_five_topic.USERNAME_FULL }}</div>
+												<div class="m-list-right-bottom">{{ top_five_topic.LAST_TOPIC_TIME }}</div>
+											</span>
+										</div>
+									{% endif %}
+								{% endfor %}`;
 
 				document.getElementById('last-posts-list').innerHTML = lastPostsList;
 				console.log("loaded");
