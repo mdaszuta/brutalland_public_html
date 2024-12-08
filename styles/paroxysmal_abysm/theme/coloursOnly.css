@@ -502,7 +502,6 @@ a.forumtitle:hover,
 .inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input):hover,
 .postprofile strong,
 .postprofile .fa-comment-o:hover,
-dl.mini h3,
 .online .fa-circle,
 fieldset dl:hover dt label,
 .flex-columns:hover > .column-left label {

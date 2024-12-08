@@ -5,7 +5,7 @@
 		<div class="cp-mini">
 			<div class="inner">
 				<dl class="mini">
-					<dt><h3>{L_FRIENDS}</h3></dt>
+					<dt>{L_FRIENDS}</dt>
 
 					<!-- BEGIN friends_online -->
 						<dd class="friend-online" title="{L_FRIENDS_ONLINE}">{% EVENT ucp_header_friends_online_username_full_prepend %}{friends_online.USERNAME_FULL}{% EVENT ucp_header_friends_online_username_full_append %} <!-- IF S_SHOW_PM_BOX --> <input type="submit" name="add_to[{friends_online.USER_ID}]" value="{L_ADD}" class="button2" /><!-- ENDIF --><!-- IF friends_online.S_LAST_ROW and .friends_offline --><hr /><!-- ENDIF --></dd>
