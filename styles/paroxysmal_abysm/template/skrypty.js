@@ -354,7 +354,7 @@ function bandInfo() {
 		var wother_single =/\[single\]/gmi;
 		var wother_boxed_set =/\[boxed set\]/gmi;
 		
-		for(var i=0;i<wydawnictwo.length;i++){
+		for(let i=0;i<wydawnictwo.length;i++){
 			var wydawnictwoTmp = "";
 			wydawnictwoTmp = wydawnictwo[i].split('\t');
 			wydawnictwo[i] = wydawnictwoTmp[2] + ' - ' + wydawnictwoTmp[0] + ' [' + wydawnictwoTmp[1].toLowerCase() + ']';
@@ -427,9 +427,9 @@ function bandInfo() {
 		console.log('past (live): ' + str);
 		
 		var muzyk = str.split("\n");
-		var str = "";
+		str = "";
 
-		for(var i=0;i<muzyk.length;i++){
+		for(let i=0;i<muzyk.length;i++){
 
 			if ( muzyk[i].search("See also: ") != -1 ) {
 				muzyk[i] = muzyk[i].replace("See also: ",' [l]') + "[/l]";
@@ -499,7 +499,7 @@ function bandInfo() {
 				muzycy_koncertowi = muzycy_koncertowi + '\r\n\r\n';
 			}
 			
-			muzycy_koncertowi = muzycy_koncertowi + muzycy_koncertowi_byli + '[/muzycy-live]'
+			muzycy_koncertowi = muzycy_koncertowi + muzycy_koncertowi_byli + '[/muzycy-live]';
 		}
 
 		console.log(muzycy_aktualny_sklad);
@@ -514,8 +514,8 @@ function bandInfo() {
 		//ZAMIANA TABOW
 		str = str.replace(/\t/gm,' - ');
 		
-		hehe = str.search(/\(R.I.P/gm);
-		console.log("PRZED RIP1: " + hehe);
+		var strrip = str.search(/\(R.I.P/gm);
+		console.log("PRZED RIP1: " + strrip);
 		console.log("PRZED RIP2: " + str);
 		
 		
