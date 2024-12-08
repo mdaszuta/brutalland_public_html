@@ -425,6 +425,7 @@
 
 	.search .postprofile {
 		display: flex;
+		min-height: auto;
 	}
 
 	.postprofile .search-result-date {
@@ -432,7 +433,7 @@
 	}
 
 	.post-buttons .post-buttons-row-2 {
-		opacity: 0.8;
+		/*opacity: 0.8;*/
 	}
 
 	/* unika wyjeżdżania poza vw przy rozwijaniu menu w posting buttons */
@@ -498,6 +499,7 @@
 		display: flex;
 		justify-content: flex-end;
 		width: 100%;
+		opacity: 0.8;
 	}
 
 }
