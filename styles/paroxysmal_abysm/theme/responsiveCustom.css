@@ -272,10 +272,6 @@
 		padding: 0;
 	}
 
-	.postprofile .search-result-date {
-		margin-bottom: 0;
-	}
-
 }
 
 @media (max-width: 700px) or (max-height: 800px) {
@@ -429,6 +425,10 @@
 
 	.search .postprofile {
 		display: flex;
+	}
+
+	.postprofile .search-result-date {
+		margin-bottom: 0;
 	}
 
 	.post-buttons .post-buttons-row-2 {

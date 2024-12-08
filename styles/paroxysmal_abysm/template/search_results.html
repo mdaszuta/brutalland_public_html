@@ -164,6 +164,7 @@
 				<li class="header">
 					<dl class="row-item">
 						<dt><div class="list-inner">{L_JUST_RESULTS}{L_COLON} {TOTAL_MATCHES}<!-- IF IGNORED_WORDS --> [{L_IGNORED_TERMS}{L_COLON} <strong>{IGNORED_WORDS}</strong>]<!-- ENDIF --></div></dt>
+						<dd></dd>
 					</dl>
 				</li>
 			</ul>
@@ -182,13 +183,13 @@
 	<!-- ELSE -->
 		<dl class="postprofile">
 			<!-- EVENT search_results_postprofile_before -->
-			<div class="flex-box-container">
+			<dt class="flex-box-container">
 				<div class="flex-box">
-					<dt class="author"><!-- EVENT search_results_post_author_username_prepend -->{searchresults.POST_AUTHOR_FULL}<!-- EVENT search_results_post_author_username_append --></dt>
+					<div class="author"><!-- EVENT search_results_post_author_username_prepend -->{searchresults.POST_AUTHOR_FULL}<!-- EVENT search_results_post_author_username_append --></div>
 					<div class="search-result-date">{searchresults.POST_DATE}</div>
 				</div>
-			</div>
-			<div class="flex-box-container">
+			</dt>
+			<dd class="flex-box-container">
 				<div class="flex-box">
 					<div>{L_REPLIES}</div>
 					<strong>{searchresults.TOPIC_REPLIES}</strong>
@@ -197,13 +198,13 @@
 					<div>{L_VIEWS}</div>
 					<strong>{searchresults.TOPIC_VIEWS}</strong>
 				</div>
-			</div>
+			</dd>
 
-			<div class="flex-box-container">
+			<dd class="flex-box-container">
 				<div class="flex-box">
 					<a href="{searchresults.U_VIEW_POST}" title="{L_JUMP_TO_POST}"><i class="to-searched-post fa fa-angle-double-right"></i></a>
 				</div>
-			</div>
+			</dd>
 			<!-- EVENT search_results_postprofile_after -->
 		</dl>
 
