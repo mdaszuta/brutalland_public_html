@@ -11,12 +11,10 @@
 			<div class="column-right"><!-- IF AVATAR -->{AVATAR}<!-- ELSE --><i class="fa fa-user-circle-o"></i><!-- ENDIF --></div>
 		</div>
 		<!-- IF AVATAR -->
-		<label for="avatar_delete">
-			<div class="flex-columns with-checkbox">
-				<div class="column-left"><input type="checkbox" name="avatar_delete" id="avatar_delete" /></div>
-				<div class="column-right">{L_DELETE_AVATAR}</div>
-			</div>
-		</label>
+		<div class="flex-columns with-checkbox">
+			<div class="column-left"><input type="checkbox" name="avatar_delete" id="avatar_delete" /></div>
+			<label for="avatar_delete" class="column-right">{L_DELETE_AVATAR}</label>
+		</div>
 		<!-- ENDIF -->
 	</fieldset>
 

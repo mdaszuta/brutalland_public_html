@@ -414,8 +414,7 @@ dl.faq dt,
 .flex-columns-container-left dd,
 dl.details dd,
 dd label,
-.column-right label,
-label.column-right {
+.column-right label {
 	color: #666;
 }
 

@@ -7,12 +7,10 @@
 
 	<fieldset class="fields2">
 	<!-- IF S_POLL_DELETE -->
-		<label for="poll_delete">
-			<div class="flex-columns with-checkbox">
-				<div class="column-left"><input type="checkbox" name="poll_delete" id="poll_delete"<!-- IF S_POLL_DELETE_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
-				<div class="column-right">{L_POLL_DELETE}</div>
-			</div>
-		</label>
+		<div class="flex-columns with-checkbox">
+			<div class="column-left"><input type="checkbox" name="poll_delete" id="poll_delete"<!-- IF S_POLL_DELETE_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
+			<label for="poll_delete" class="column-right">{L_POLL_DELETE}</label>
+		</div>
 	<!-- ENDIF -->
 
 	<!-- IF S_SHOW_POLL_BOX -->
@@ -39,12 +37,10 @@
 		<!-- IF S_POLL_VOTE_CHANGE -->
 			<hr class="dashed" />
 
-			<label for="poll_vote_change">
-				<div class="flex-columns with-checkbox">
-					<div class="column-left"><input type="checkbox" id="poll_vote_change" name="poll_vote_change"{VOTE_CHANGE_CHECKED} /></div>
-					<div class="column-right">{L_POLL_VOTE_CHANGE}</div>
-				</div>
-			</label>
+			<div class="flex-columns with-checkbox">
+				<div class="column-left"><input type="checkbox" id="poll_vote_change" name="poll_vote_change"{VOTE_CHANGE_CHECKED} /></div>
+				<label for="poll_vote_change" class="column-right">{L_POLL_VOTE_CHANGE}</label>
+			</div>
 		<!-- ENDIF -->
 	<!-- ENDIF -->
 

@@ -39,25 +39,18 @@
 
 		<hr class="dashed" />
 
-		<label for="desc_parse_bbcode">
-			<div class="flex-columns with-checkbox">
-				<div class="column-left"><input type="checkbox" class="radio" name="desc_parse_bbcode" id="desc_parse_bbcode"<!-- IF S_DESC_BBCODE_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
-				<div class="column-right">{L_PARSE_BBCODE}</div>
-			</div>
-		</label>
-		<label for="desc_parse_smilies">
-			<div class="flex-columns with-checkbox">
-				<div class="column-left"><input type="checkbox" class="radio" name="desc_parse_smilies" id="desc_parse_smilies"<!-- IF S_DESC_SMILIES_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
-				<div class="column-right">{L_PARSE_SMILIES}</div>
-			</div>
-		</label>
-		<label for="desc_parse_urls">
-			<div class="flex-columns with-checkbox">
-				<div class="column-left"><input type="checkbox" class="radio" name="desc_parse_urls" id="desc_parse_urls"<!-- IF S_DESC_URLS_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
-				<div class="column-right">{L_PARSE_URLS}
-				</div>
-			</div>
-		</label>
+		<div class="flex-columns with-checkbox">
+			<div class="column-left"><input type="checkbox" class="radio" name="desc_parse_bbcode" id="desc_parse_bbcode"<!-- IF S_DESC_BBCODE_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
+			<label for="desc_parse_bbcode" class="column-right">{L_PARSE_BBCODE}</label>
+		</div>
+		<div class="flex-columns with-checkbox">
+			<div class="column-left"><input type="checkbox" class="radio" name="desc_parse_smilies" id="desc_parse_smilies"<!-- IF S_DESC_SMILIES_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
+			<label for="desc_parse_smilies" class="column-right">{L_PARSE_SMILIES}</label>
+		</div>
+		<div class="flex-columns with-checkbox">
+			<div class="column-left"><input type="checkbox" class="radio" name="desc_parse_urls" id="desc_parse_urls"<!-- IF S_DESC_URLS_CHECKED --> checked="checked"<!-- ENDIF --> /></div>
+			<label for="desc_parse_urls" class="column-right">{L_PARSE_URLS}</label>
+		</div>
 		<!-- IF not S_SPECIAL_GROUP -->
 		<div class="flex-columns">
 			<div class="column-left">

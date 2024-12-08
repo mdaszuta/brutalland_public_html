@@ -159,36 +159,28 @@
 		<fieldset class="fields1">
 			<!-- EVENT posting_editor_options_prepend -->
 			<!-- IF S_SIG_ALLOWED -->
-				<label for="attach_sig">
-					<div class="flex-columns with-checkbox">
-						<div class="column-left"><input type="checkbox" name="attach_sig" id="attach_sig"{S_SIGNATURE_CHECKED} /></div>
-						<div class="column-right">{L_ATTACH_SIG}</div>
-					</div>
-				</label>
+				<div class="flex-columns with-checkbox">
+					<div class="column-left"><input type="checkbox" name="attach_sig" id="attach_sig"{S_SIGNATURE_CHECKED} /></div>
+					<label for="attach_sig" class="column-right">{L_ATTACH_SIG}</label>
+				</div>
 			<!-- ENDIF -->
 			<!-- IF S_NOTIFY_ALLOWED -->
-				<label for="notify">
-					<div class="flex-columns with-checkbox">
-						<div class="column-left"><input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} /></div>
-						<div class="column-right">{L_NOTIFY_REPLY}</div>
-					</div>
-				</label>
+				<div class="flex-columns with-checkbox">
+					<div class="column-left"><input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} /></div>
+					<label for="notify" class="column-right">{L_NOTIFY_REPLY}</label>
+				</div>
 			<!-- ENDIF -->
 			<!-- IF S_LOCK_TOPIC_ALLOWED -->
-				<label for="lock_topic">
-					<div class="flex-columns with-checkbox">
-						<div class="column-left"><input type="checkbox" name="lock_topic" id="lock_topic"{S_LOCK_TOPIC_CHECKED} /></div>
-						<div class="column-right">{L_LOCK_TOPIC}</div>
-					</div>
-				</label>
+				<div class="flex-columns with-checkbox">
+					<div class="column-left"><input type="checkbox" name="lock_topic" id="lock_topic"{S_LOCK_TOPIC_CHECKED} /></div>
+					<label for="lock_topic" class="column-right">{L_LOCK_TOPIC}</label>
+				</div>
 			<!-- ENDIF -->
 			<!-- IF S_LOCK_POST_ALLOWED -->
-				<label for="lock_post">
-					<div class="flex-columns with-checkbox">
-						<div class="column-left"><input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} /></div>
-						<div class="column-right">{L_LOCK_POST_EXPLAIN}</div>
-					</div>
-				</label>
+				<div class="flex-columns with-checkbox">
+					<div class="column-left"><input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} /></div>
+					<label for="lock_post" class="column-right">{L_LOCK_POST_EXPLAIN}</label>
+				</div>
 			<!-- ENDIF -->
 
 			<!-- IF S_TYPE_TOGGLE -->
@@ -218,20 +210,16 @@
 
 			{% if S_SOFTDELETE_ALLOWED || S_DELETE_ALLOWED %}
 				{% if S_SOFTDELETE_ALLOWED %}
-				<label for="delete">
-					<div class="flex-columns with-checkbox">
-						<div class="column-left"><input type="checkbox" name="delete" id="delete" {{ S_SOFTDELETE_CHECKED }}></div>
-						<div class="column-right">{{ lang('DELETE_POST_WARN') }}</div>
-					</div>
-				</label>
+				<div class="flex-columns with-checkbox">
+					<div class="column-left"><input type="checkbox" name="delete" id="delete" {{ S_SOFTDELETE_CHECKED }}></div>
+					<label for="delete" class="column-right">{{ lang('DELETE_POST_WARN') }}</label>
+				</div>
 				{% endif %}
 				{% if S_DELETE_ALLOWED %}
-				<label for="delete_permanent">
-					<div class="flex-columns with-checkbox">
-						<div class="column-left"><input type="checkbox" name="delete_permanent" id="delete_permanent"></div>
-						<div class="column-right">{{ lang('DELETE_POST_PERMANENTLY') }}</div>
-					</div>
-				</label>
+				<div class="flex-columns with-checkbox">
+					<div class="column-left"><input type="checkbox" name="delete_permanent" id="delete_permanent"></div>
+					<label for="delete_permanent" class="column-right">{{ lang('DELETE_POST_PERMANENTLY') }}</label>
+				</div>
 				{% endif %}
 			{% endif %}
 

@@ -5,12 +5,10 @@
 
 		<!-- IF not S_SHADOW_TOPICS -->
 		<!-- IF not S_SOFTDELETED and S_ALLOWED_DELETE and S_ALLOWED_SOFTDELETE -->
-			<label for="delete_permanent">
-				<div class="flex-columns with-checkbox">
-					<div class="column-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
-					<div class="column-right"><!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
-				</div>
-			</label>
+			<div class="flex-columns with-checkbox">
+				<div class="column-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
+				<label for="delete_permanent" class="column-right"><!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></label>
+			</div>
 		<!-- ENDIF -->
 
 		<div class="flex-columns">
@@ -43,12 +41,10 @@
 	<!-- IF not S_SHADOW_TOPICS -->
 	<fieldset class="fields1">
 		<!-- IF not S_SOFTDELETED and S_ALLOWED_DELETE and S_ALLOWED_SOFTDELETE -->
-			<label for="delete_permanent">
-				<div class="flex-columns with-checkbox">
-					<div class="column-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
-					<div class="column-right">{L_DELETE_PERMANENTLY} <!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></div>
-				</div>
-			</label>
+			<div class="flex-columns with-checkbox">
+				<div class="column-left"><input id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /></div>
+				<label for="delete_permanent" class="column-right">{L_DELETE_PERMANENTLY} <!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></label>
+			</div>
 		<!-- ENDIF -->
 
 		{% EVENT confirm_delete_body_delete_reason_before %}
