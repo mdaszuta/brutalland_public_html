@@ -2,13 +2,13 @@
 	<!-- IF not S_SHOW_DRAFTS -->
 
 		<!-- IF S_GROUP_OPTIONS -->
-			<dl class="pmlist">
+			<div class="pmlist">
 				<select name="group_list[]" id="group_list" multiple="multiple" size="3" class="inputbox">{S_GROUP_OPTIONS}</select>
-			</dl>
+			</div>
 		<!-- ENDIF -->
 		<!-- IF S_ALLOW_MASS_PM -->
 			<!-- IF not S_EDIT_POST -->
-			<dl class="pmlist">
+			<div class="pmlist">
 				<span class="recipients">
 				<input type="submit" name="add_to" value="{L_ADD}" class="button2" tabindex="1" />
 				<input type="submit" name="add_bcc" value="{L_ADD_BCC}" class="button2" tabindex="1" />
@@ -19,10 +19,11 @@
 				<!-- EVENT posting_pm_header_find_username_after -->
 				<textarea id="username_list" name="username_list" class="inputbox" placeholder="{L_TO_ADD_MASS}" cols="50" rows="1" tabindex="1"></textarea>
 				</div>
-			</dl>
+			</div>
 			<!-- ENDIF -->
 			<!-- IF .to_recipient -->
 				<dl>
+					<dt></dt>
 					<dd class="recipients">
 					<ul class="recipients">
 						<!-- BEGIN to_recipient -->
@@ -60,7 +61,7 @@
 			<!-- ENDIF -->
 		<!-- ELSE -->
 			<!-- IF not S_EDIT_POST -->
-			<dl class="pmlist">
+			<div class="pmlist">
 				<span class="recipients">
 					<input type="submit" name="add_to" value="{L_ADD}" class="button2" tabindex="1" />
 				</span>
@@ -70,11 +71,12 @@
 					<!-- EVENT posting_pm_header_find_username_after -->
 					<input class="inputbox" type="text" name="username_list" id="username_list" placeholder="{L_TO_ADD}" size="20" value="" />
 				</div>
-			</dl>
+			</div>
 
 			<!-- ENDIF -->
 			<!-- IF .to_recipient -->
 			<dl>
+				<dt></dt>
 				<dd class="recipients">
 					<ul class="recipients">
 						<!-- BEGIN to_recipient -->
