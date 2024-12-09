@@ -70,7 +70,7 @@ a.lastsubject {
 	border-bottom: 1px solid transparent;
 }
 
-/* Flexbox instead of -margin-right / margin-right for positioning as it's done in prosilver */
+/* Flexbox instead of float: left and -margin-right / margin-right for positioning as it's done in prosilver */
 
 li.header dl,
 ul.topiclist li.row dl {
@@ -216,7 +216,7 @@ dd.lastpost > span, ul.topiclist dd.info > span, ul.topiclist dd.time > span, dd
 	padding-left: 0;
 }
 
-/* menu w grupy\zarządzanie grupami */
+/* menu w grupy > zarządzanie grupami */
 
 dd.option {
 	width: unset;
@@ -480,12 +480,6 @@ label:nth-child(1) input[type="radio"] {
 	clear: both;
 	content: '';
 	display: block;
-}
-
-/* sub-panels in posting not obfuscated by shadow-explanation */
-
-.tabs.sub-panels {
-	/*padding-top: 2.5em;*/
 }
 
 select { 
@@ -1659,7 +1653,8 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 #reset_password .submit-buttons,
 #resend .submit-buttons {
-	margin-top: 77px;
+	/*margin-top: 77px;*/
+	margin-top: 4.8125rem; /* 77px / 16px */
 }
 
 .forgot-pass {
