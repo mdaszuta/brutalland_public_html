@@ -75,7 +75,7 @@ a.lastsubject {
 li.header dl,
 ul.topiclist li.row dl {
 	display: flex;
-	align-items: flex-start;
+	/*align-items: flex-start;*/
 }
 
 li.header dt,

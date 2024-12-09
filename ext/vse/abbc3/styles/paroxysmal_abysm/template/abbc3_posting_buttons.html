@@ -43,7 +43,7 @@
 
 		<div id="picture-box" class="rozwijany-box menu-toggle">
 			<div id="picture-box-root" class="rozwijany-box-root menu-root">
-				<button type="button" class="abbc3_button button-icon-only"><i class="fa fa-picture-o"></i></button>
+				<button type="button" class="abbc3_button button-icon-only" aria-label="{{ lang('BBCODE_P_HELP') }}"><i class="fa fa-picture-o"></i></button>
 			</div>
 			<div id="picture-box-all" class="rozwijany-box-all menu-all">
 				{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before_in_image_box %}
@@ -57,7 +57,7 @@
 
 		<div id="list-box" class="rozwijany-box menu-toggle">
 			<div id="list-box-root" class="rozwijany-box-root menu-root">
-				<button type="button" class="abbc3_button button-icon-only"><i class="fa fa-list-ul"></i></button>
+				<button type="button" class="abbc3_button button-icon-only" aria-label="{{ lang('BBCODE_L_HELP') }}"><i class="fa fa-list-ul"></i></button>
 			</div>
 			<div id="list-box-all" class="rozwijany-box-all menu-all">
 				<label>{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listb_false, 'bbcode-list', 'l', 10, 'List', 'BBCODE_L_HELP', 'fa-list', ROOT_PATH) }} {{ lang('BBCODE_L_HELP') }}</label>
