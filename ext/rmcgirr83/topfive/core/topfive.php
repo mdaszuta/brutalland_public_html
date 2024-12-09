@@ -218,7 +218,7 @@ class topfive
 			$user_avatar = phpbb_get_user_avatar($row);
 			$display_avatar = (!empty($this->config['top_five_avatars']) && $this->user->optionget('viewavatars') && !empty($user_avatar)) ? true : false;
 
-			$user_avatar = $display_avatar ? '<span class="topfive-avatar">' . $user_avatar . '</span>&nbsp;' : '';
+			$user_avatar = $display_avatar ? '<span class="topfive-avatar">' . $user_avatar . '</span>' : '';
 
 			// relativedates installed?
 			if ($this->relativedates !== null)

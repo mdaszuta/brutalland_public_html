@@ -512,10 +512,11 @@ p.post-number.post-number {
 
 /* Fixes avatar aspect-ratio */
 
-#last-posts-list .topfive-avatar img { 
+#last-posts-list .topfive-avatar img {
 	max-height: 20px;
 	vertical-align: middle;
 	width: auto;
+	margin-right: 3px;
 }
 
 /* end of TOP FIVE */
