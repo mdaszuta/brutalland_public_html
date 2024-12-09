@@ -70,6 +70,34 @@ a.lastsubject {
 	border-bottom: 1px solid transparent;
 }
 
+/* Flexbox instead of -margin-right / margin-right for positioning as it's done in prosilver */
+
+li.header dl,
+ul.topiclist li.row dl {
+	display: flex;
+	align-items: flex-start;
+}
+
+li.header dt,
+ul.topiclist dt,
+ul.topiclist.forums dt,
+ul.topiclist.missing-column dt,
+ul.topiclist.two-long-columns dt,
+ul.topiclist.two-columns dt {
+	margin-right: 0;
+	float: none;
+	flex: 1;
+}
+
+li.header dt .list-inner,
+ul.topiclist dt .list-inner,
+ul.topiclist.forums dt .list-inner,
+ul.topiclist.missing-column dt .list-inner,
+ul.topiclist.two-long-columns dt .list-inner,
+ul.topiclist.two-columns dt .list-inner {
+	margin-right: 0;
+}
+
 /* *********************************************************************************************************************************** */
 /* OVERRIDING STYLE FILES FROM PROSILVER */
 
@@ -86,7 +114,7 @@ body,
 		margin-bottom: 5px;
 	}
 }
-
+/*
 @media (min-width: 701px) and (max-width: 950px) {
 	ul.topiclist dt,
 	li.header dt {
@@ -108,7 +136,7 @@ body,
 		margin-right: 345px;
 	}
 }
-
+*/
 /* END common.css */
 
 /* override prosilver\content.css */
