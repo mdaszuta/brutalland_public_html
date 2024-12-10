@@ -83,6 +83,12 @@
 		top: 100px;
 	}
 
+	.flex-columns-container-left,
+	.flex-columns-container-right {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
 	.submit-buttons .flex-columns,
 	#postingbox .flex-columns,
 	.flex-columns-container {
@@ -171,7 +177,7 @@
 	}
 
 	#titleID {
-		padding: 0 5px 0 5px;
+		/*padding: 0 5px 0 5px;*/
 	}
 
 	.pagination .menu-all {
@@ -252,6 +258,11 @@
 	.action-bar .column-left,
 	.action-bar .column-right {
 		flex-basis: 100%;
+	}
+
+	fieldset.display-actions {
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	/* mobile width fix */

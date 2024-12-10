@@ -3,6 +3,7 @@ body {
 }
 
 .wrap {
+	min-width: 0;
 	margin: -11px auto auto auto;
 	border: 2px solid transparent;
 	border-radius: 15px;
