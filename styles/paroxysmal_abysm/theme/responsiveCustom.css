@@ -136,8 +136,8 @@
 		flex-wrap: wrap;
 	}
 
-	.flex-columns select {
-		max-width: 90vw;
+	/*.flex-columns */select {
+		max-width: 85vw;
 	}
 
 	.lastpost.responsive-show span {

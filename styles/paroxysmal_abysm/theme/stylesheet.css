@@ -487,6 +487,9 @@ label:nth-child(1) input[type="radio"] {
 
 select { 
 	width: fit-content;
+	max-width: 100%;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
 	padding: 0;
 }
 
