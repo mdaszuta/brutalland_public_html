@@ -106,21 +106,6 @@ table.table1 tbody tr.bg3,
 
 /* PLACEHOLDER FONTS */
 
-::-moz-placeholder {
-	font-weight: bold;
-	font-variant: small-caps;
-}
-
-::-webkit-input-placeholder {
-	font-weight: bold;
-	font-variant: small-caps;
-}
-
-::-ms-input-placeholder {
-	font-weight: bold;
-	font-variant: small-caps;
-}
-
 ::placeholder {
 	font-weight: bold;
 	font-variant: small-caps;

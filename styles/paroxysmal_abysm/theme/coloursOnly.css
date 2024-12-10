@@ -338,39 +338,12 @@ a.username {
 
 /* placeholder colors */
 
-*::-moz-placeholder {
-	color: #444;
-}
-
-*::-webkit-input-placeholder {
-	color:#444;
-}
-
-*::-ms-input-placeholder {
-	color:#444;
-}
-
 *:not(.search)::placeholder {
 	color:#444;
 	transition: all .35s linear;
 }
 
 /* znikanie placeholdera po focusie na input, textarea etc */
-
-*:focus::-moz-placeholder {
-	color: transparent;
-	text-shadow: none;
-}
-
-*:focus::-webkit-input-placeholder {
-	color: transparent;
-	text-shadow: none;
-}
-
-*:focus::-ms-input-placeholder {
-	color: transparent;
-	text-shadow: none;
-}
 
 *:focus::placeholder {
 	/* color: red !important; */
@@ -663,17 +636,20 @@ dd.profile-warnings {
 
 /* search-box & pagination placeholder colors */
 
-.search-box ::placeholder, .pagination ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */ color: #bb0000;}
-.search-box ::-webkit-input-placeholder, .pagination ::-webkit-input-placeholder { /* Internet Explorer 10-11 */ color: #bb0000;}
-.search-box ::-ms-input-placeholder, .pagination ::-ms-input-placeholder { /* Microsoft Edge */ color: #bb0000;}
+.search-box ::placeholder,
+.pagination ::placeholder {
+	color: #bb0000;
+}
 
-.search-box input:hover::placeholder, .pagination input:hover::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */ color: #32D635;}
-.search-box input:hover::-webkit-input-placeholder, .pagination input:hover::-webkit-input-placeholder { /* Internet Explorer 10-11 */ color: #32D635;}
-.search-box input:hover::-ms-input-placeholder, .pagination input:hover::-ms-input-placeholder { /* Microsoft Edge */ color: #32D635;}
+.search-box input:hover::placeholder,
+.pagination input:hover::placeholder {
+	color: #32D635;
+}
 
-.search-box input:focus::placeholder, .pagination input:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */ color: #257EDE;}
-.search-box input:focus::-webkit-input-placeholder, .pagination input:focus::-webkit-input-placeholder { /* Internet Explorer 10-11 */ color: #257EDE;}
-.search-box input:focus::-ms-input-placeholder, .pagination input:focus::-ms-input-placeholder { /* Microsoft Edge */ color: #257EDE;}
+.search-box input:focus::placeholder,
+.pagination input:focus::placeholder {
+	color: #257EDE;
+}
 
 /* END COLORS */
 
