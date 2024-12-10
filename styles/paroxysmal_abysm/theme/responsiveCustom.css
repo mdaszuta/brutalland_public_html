@@ -164,6 +164,8 @@
 		right: 10px;
 	}	
 
+	/* E-mail stays in one line */
+
 	table.table1#notification-settings-table .mark {
 		white-space: nowrap;
 	}

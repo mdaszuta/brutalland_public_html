@@ -1539,6 +1539,12 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	width: 49%;
 }
 
+/* Select language in agreement - added padding for better presentation in Firefox */
+
+.rightside #lang {
+	padding-left: 5px;
+}
+
 /* Go to registration .button */
 
 .to-registration-button {

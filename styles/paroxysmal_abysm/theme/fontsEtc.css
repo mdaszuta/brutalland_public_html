@@ -240,7 +240,7 @@ ul.topiclist dt {
 
 .attachbox {
 	/*font-size: 13px;*/
-	font-size: 0.8125; /* 13 / 16 */
+	font-size: 0.8125rem; /* 13 / 16 */
 }
 
 #mm-user .main-menu-bottom {
