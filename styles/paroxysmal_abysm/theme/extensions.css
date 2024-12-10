@@ -699,7 +699,7 @@ tags-input .autocomplete .suggestion-item {
 	font-size: 1.4em;
 	font-variant: small-caps;
 	cursor: pointer;
-	white-space: nowrap;
+	white-space: normal;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }

@@ -325,6 +325,7 @@ ul.cplist {
 .tabs .tab > a,
 .minitabs .tab > a {
 	border-radius: 3px;
+	white-space: normal;
 }
 
 .tabs .activetab > a {
@@ -462,7 +463,8 @@ label:nth-child(1) input[type="radio"] {
 
 .tab > a {
 	padding: 5px 9px;
-	white-space: nowrap;
+	/*white-space: nowrap;*/
+	white-space: normal;
 }
 
 .tabs,
@@ -1005,7 +1007,8 @@ input.button1,
 input.button2 {
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	/*white-space: nowrap;*/
+	white-space: normal;
 	text-align: center;
 }
 
@@ -1129,6 +1132,7 @@ input.button2 {
 	min-width: 13px;
 	max-width: 45px;
 	text-align: center;
+	word-wrap: normal;
 	/*padding: 0 2px 0 2px;*/
 }
 
@@ -1368,7 +1372,9 @@ table.table1 tbody td {
 }
 
 table.table1 td.info a {
-	word-break: break-word;
+	word-break: normal;
+	overflow-wrap: anywhere;
+	/*word-break: break-word;*/
 	/*max-width: 195px;*/
 	/*overflow: hidden;*/
 	/*white-space: nowrap;*/
