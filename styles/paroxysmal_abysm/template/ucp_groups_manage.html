@@ -125,6 +125,7 @@
 <!-- ELSEIF S_LIST -->
 
 	<!-- IF .leader -->
+	<div class="table-container">
 	<table class="table1">
 	<thead>
 	<tr>
@@ -147,10 +148,12 @@
 	<!-- END leader -->
 	</tbody>
 	</table>
+	</div>
 	<!-- ENDIF -->
 
 	<!-- BEGIN member -->
 		<!-- IF member.S_PENDING -->
+			<div class="table-container">
 			<table class="table1">
 			<thead>
 			<tr>
@@ -166,7 +169,9 @@
 			<!-- IF S_PENDING_SET -->
 				</tbody>
 				</table>
+				</div>
 			<!-- ENDIF -->
+			<div class="table-container">
 			<table class="table1">
 			<thead>
 			<tr>
@@ -188,6 +193,7 @@
 			</tr>
 		<!-- ENDIF -->
 	<!-- BEGINELSE -->
+		<div class="table-container">
 		<table class="table1">
 		<thead>
 		<tr>
@@ -201,6 +207,7 @@
 	<!-- END member -->
 	</tbody>
 	</table>
+	</div>
 
 	</div>
 </div>
