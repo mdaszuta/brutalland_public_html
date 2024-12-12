@@ -1001,6 +1001,14 @@ body.simple {
 	padding: 0 5px;
 }
 
+/* Break very long words */
+
+.topictitle,
+.notifications_reference {
+	word-break: normal;
+	overflow-wrap: anywhere;
+}
+
 /* Buttons */
 
 .button,
