@@ -972,13 +972,14 @@ input[type="radio"] {
 }
 
 .header-avatar {
-	width: 30px;
-	justify-content: center;
+	/*width: 30px;*/
+	/*justify-content: center;*/
 }
 
 a.header-avatar img {
 	/*max-height: 30px;*/
-	max-height: 66.67%;
+	/*max-height: 66.67%;*/
+	max-height: 80%;
 	max-width: 100%;
 	height: auto;
 	margin: 0;
