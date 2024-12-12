@@ -17,12 +17,12 @@
 @media (max-width: 550px) {
 
 	#mm-title .main-menu-bottom,
-	#mm-last-posts .main-menu-bottom,
 	#mm-notifications .main-menu-bottom {
 		left: 0;
 	}
 
-	#mm-title .main-menu-bottom {
+	#mm-title .main-menu-bottom,
+	#mm-last-posts .main-menu-bottom {
 		width: 100%;
 		right: 0;
 	}
@@ -372,6 +372,11 @@
 		order: 4;
 	}
 
+	#mm-last-posts .main-menu-bottom {
+		left: 0;
+		right: auto;
+	}
+
 	#page-header {
 		display: none;
 	}
@@ -496,12 +501,19 @@
 
 }
 
+@media (min-width: 861px) and (max-width: 1280px) {
+
+	#mm-last-posts .main-menu-bottom {
+		right: 0;
+	}
+
+}
+
 @media (max-width: 1280px) {
 
-	#mm-last-posts .main-menu-bottom,
 	#mm-notifications .main-menu-bottom,
 	#mm-user .main-menu-bottom {
-		right: 0px;
+		right: 0;
 	}
 
 }
