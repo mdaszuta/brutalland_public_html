@@ -222,10 +222,6 @@
 		top: 5px;
 	}
 
-	.main-menu-top .fa-history {
-		padding: 0;
-	}
-
 	div.content {
 		margin: 0;
 	}
@@ -370,6 +366,10 @@
 
 	#main-menu-middle {
 		order: 4;
+	}
+
+	#last-posts-icon {
+		width: 50px;
 	}
 
 	#mm-last-posts .main-menu-bottom {

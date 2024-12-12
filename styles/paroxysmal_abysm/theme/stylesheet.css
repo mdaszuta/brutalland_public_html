@@ -732,8 +732,12 @@ input[type="radio"] {
 	padding-right: 13px;
 }
 
+#last-posts-icon {
+	width: 65px;
+}
+
 .main-menu-top .fa-history {
-	padding: 0 10px 0 10px;
+	/*padding: 0 10px 0 10px;*/
 }
 
 .main-menu-top .fa-sign-in {
