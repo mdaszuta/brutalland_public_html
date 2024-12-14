@@ -35,13 +35,13 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 
 $lang = array_merge($lang, [
-	'MCHAT_TITLE'					=> 'UGH',
+	'MCHAT_TITLE'					=> 'Chat',
 	'MCHAT_TITLE_COUNT'				=> [
 		0 => 'mChat',
 		1 => 'mChat [<strong>%1$d</strong>]',
 	],
 	'MCHAT_NAVBAR_CUSTOM_PAGE'		=> 'Strona mChat',
-	'MCHAT_NAVBAR_ARCHIVE'			=> 'ARGHiwum',
+	'MCHAT_NAVBAR_ARCHIVE'			=> 'Archiwum',
 	'MCHAT_NAVBAR_RULES'			=> 'Zasady',
 
 	// Who is chatting

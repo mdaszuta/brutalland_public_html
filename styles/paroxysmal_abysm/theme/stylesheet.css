@@ -181,7 +181,11 @@ li.header dl.row-item dt .list-inner {
 }
 
 dl.row-item {
-	background-size: 25px;
+	/*background-size: 25px;*/
+	/*background-size: 32px;*/
+	/*background-position: 5px 50%;*/
+	background-size: 43px;
+	background-position: 0px 50%;
 }
 
 dl.row-item dt .list-inner {
@@ -1137,7 +1141,8 @@ input.button2 {
 	justify-content: space-between;
 }
 
-.forabg ul.topiclist .row {
+.forabg ul.topiclist .row,
+.forumbg ul.topiclist .row {
 	padding: 2px 0;
 }
 

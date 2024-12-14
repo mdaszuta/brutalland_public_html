@@ -197,7 +197,7 @@ textarea,
 }
 
 #mm-topics .main-menu-bottom span {
-	transform: rotate(180deg);
+	/*transform: rotate(180deg);*/
 }
 
 .agreement {

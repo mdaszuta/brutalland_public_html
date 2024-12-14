@@ -61,8 +61,8 @@
 					<!-- ENDIF -->
 				</div>
 				<div class="main-menu-bottom menu-all">
-					<a href="{U_SEARCH_SELF}">{L_AB_MINE}</a><span class="vertical-separator">&dagger;</span>
-					<a href="{U_SEARCH_ACTIVE_TOPICS}">{L_AB_ACTIVE}</a><span class="vertical-separator">&dagger;</span>
+					<a href="{U_SEARCH_SELF}">{L_AB_MINE}</a><span class="vertical-separator">&bull;</span>
+					<a href="{U_SEARCH_ACTIVE_TOPICS}">{L_AB_ACTIVE}</a><span class="vertical-separator">&bull;</span>
 					<a href="{U_SEARCH_NEW}">{L_AB_NEW}</a>
 				</div>
 			</div>
@@ -105,53 +105,8 @@
 
 			<!-- ENDIF -->
 
-			<!-- IF SCRIPT_NAME == 'insane' -->
+			<!-- IF false -->
 			<div id="mm-tags" class="main-menu-item menu-toggle">
-				<div class="main-menu-top menu-root">
-					<a><i class="fa fa-tags fa-lg"></i></a>
-				</div>
-				<div class="main-menu-bottom menu-all">
-
-					<h3><a href="{RH_TOPICTAGS_TAGCLOUD_LINK}"><i class="fa fa-tag fa-lg"></i>{RH_TOPICTAGS_TAGCLOUD_TAG_COUNT}</a></h3>
-
-					<!-- IF S_USER_LOGGED_IN && SCRIPT_NAME != 'posting' -->
-					<div id="m-tagowarka">
-						<div ng-app="rhTopicTagsInputApp2" ng-controller="rhTopicTagsInputCtrl2">
-							<div id="m-tagowarka_ui" class="m-list-all">
-								<div class="m-list-left">
-									<div id="rhTopicTagsInputApp2Scope" class="rh_topictags_tags"></div>
-									<tags-input ng-model="tags" id="tagSearchClickInput" add-on-comma="false" replace-spaces-with-dashes="false" placeholder="wpisz tagi" tabindex="2" enable-editing-last-tag="true" min-length="2" allowed-tags-pattern="{RH_TOPICTAGS_ALLOWED_TAGS_REGEX}">
-										<auto-complete source="loadTags($query)"></auto-complete>
-									</tags-input>
-									<input type="hidden" name="rh_topictags" id="rh_topictags" value="{[{ jsonRep2 }]}"></input>
-								</div>
-								<a href="" onclick="tagSearchClick(); return false;" class="m-list-right" title="Szukaj po tagach"><i class="fa fa-search fa-2x"></i></a>
-
-								<script>
-								function tagSearchClick() {
-									if (String(document.getElementById('rh_topictags').value) != "[]" & String(document.getElementById('rh_topictags').value) != "{[{ jsonRep2 }]}" )
-										location.href='/app.php/tag/'+String(document.getElementById('rh_topictags').value).replace('[','').replace(']','').replace(/ /g,'+');
-									else
-										document.getElementById("tagSearchClickInput").focus();
-								}
-								</script>
-							</div>
-						</div>
-					</div>
-					<!-- ENDIF -->
-
-					<!-- IF .rh_topictags_tags -->
-					<div class="rh_topictags_tagcloud">
-							<!-- BEGIN rh_topictags_tags -->
-							<div class="flex <!-- IF rh_topictags_tags.S_ROW_COUNT is odd -->m-row1<!-- ELSE -->m-row2<!-- ENDIF --> m-list-all">
-								<a href="{rh_topictags_tags.LINK}" class="{rh_topictags_tags.CSS_CLASS} m-list-left m-list-left-top">{rh_topictags_tags.NAME}</a>
-								<!-- IF RH_TOPICTAGS_TAGCLOUD_SHOW_COUNT --><span class="rh_topictags_count m-list-right m-list-right-bottom">{rh_topictags_tags.COUNT}</span><!-- ENDIF -->
-							</div>
-							<!-- END rh_topictags_tags -->
-					</div>
-					<!-- ENDIF -->
-
-				</div>
 			</div>
 			<!-- ENDIF -->
 

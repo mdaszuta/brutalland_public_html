@@ -28,7 +28,7 @@ body,
 }
 
 #page-header {
-	background: URL("./images/logo.webp");
+	/*background: URL("./images/logo.webp");*/
 	background-position: 0 22px;
 	background-size: 595px 270px;
 	background-repeat: no-repeat;
@@ -247,12 +247,12 @@ ul.zebra-list li:nth-child(even):hover {
 .announce_unread_locked_mine		{ background-image: url("./images/announce_unread_locked_mine.svg"); }
 
 .forum_link							{ background-image: url("./images/forum_link.svg"); }
-.forum_read							{ background-image: url("./images/forum_read.webp"); }
+.forum_read							{ background-image: url("./images/forum_read.svg"); }
 .forum_read_locked					{ background-image: url("./images/forum_read_locked.svg"); }
-.forum_read_subforum				{ background-image: url("./images/forum_read.webp"); }
-.forum_unread						{ background-image: url("./images/forum_unread.webp"); }
+.forum_read_subforum				{ background-image: url("./images/forum_read_subforum.svg"); }
+.forum_unread						{ background-image: url("./images/forum_unread.svg"); }
 .forum_unread_locked				{ background-image: url("./images/forum_unread_locked.svg"); }
-.forum_unread_subforum				{ background-image: url("./images/forum_unread.webp"); }
+.forum_unread_subforum				{ background-image: url("./images/forum_unread_subforum.svg"); }
 
 .sticky_read						{ background-image: url("./images/sticky_read.svg"); }
 .sticky_read_mine					{ background-image: url("./images/sticky_read_mine.svg"); }
