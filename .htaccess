@@ -43,6 +43,27 @@ RewriteRule ^(.*)$ app.php [QSA,L]
 	Options -MultiViews
 </IfModule>
 
+# CACHING
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|swf|mp3|mp4|svg|woff2)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "max-age=31536000, public"
+	</IfModule>
+</FilesMatch>
+<FilesMatch "\.(js|css)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "max-age=31536000, public"
+		Header unset Etag
+		FileETag none
+		Header unset Last-Modified
+	</IfModule>
+</FilesMatch>
+<FilesMatch "\.(html|htm)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "no-cache"
+		FileETag MTime Size
+	</IfModule>
+</FilesMatch>
+
 # With Apache 2.4 the "Order, Deny" syntax has been deprecated and moved from
 # module mod_authz_host to a new module called mod_access_compat (which may be
 # disabled) and a new "Require" syntax has been introduced to mod_authz_host.
