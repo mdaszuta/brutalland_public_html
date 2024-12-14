@@ -14,4 +14,4 @@ Disallow: /privmsg.php
 Disallow: /viewonline.php
 Disallow: /search.php
 
-Sitemap: https://brutalland.pl/sitemap/sitemap.xml
+Sitemap: https://responsivedesign.pl/sitemap/sitemap.xml
