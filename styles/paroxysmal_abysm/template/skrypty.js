@@ -80,9 +80,9 @@
 * Nazwa wpisywanego tematu real time, wczytuje do tytułu menu wpisywaną wartość String
 */
 	
-function showTopicNameInRealTime(event) {
+function showTopicNameInRealTime() {
 
-	let x = event.key;
+	"use strict";
 
 	document.getElementById("titleID").innerText = document.getElementById("subject").value;
 
