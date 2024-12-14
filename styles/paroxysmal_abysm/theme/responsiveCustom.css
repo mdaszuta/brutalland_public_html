@@ -151,17 +151,8 @@
 		max-width: 91px;
 	}
 
-	.m-list-left {
-		/*width: calc(100% - 91px);*/
-	}
-
 	#mm-notifications .m-list-right {
 		width: 66px;
-	}
-
-	.m-list-left.notification_text {
-		/*width: calc(100% - 66px);*/
-		/*max-width: calc(100% - 66px);*/
 	}
 
 	.top-with-settings div,
@@ -174,10 +165,6 @@
 
 	table.table1#notification-settings-table .mark {
 		white-space: nowrap;
-	}
-
-	#titleID {
-		/*padding: 0 5px 0 5px;*/
 	}
 
 	.pagination .menu-all {
@@ -325,8 +312,6 @@
 	}
 
 	#mm-title {
-		/*order: 3;*/
-		/*width: auto;*/
 		margin-left: 45px;
 	}
 
@@ -335,8 +320,6 @@
 		position: absolute;
 		z-index: 1001;
 		background: black;
-		/*background: blueviolet;*/
-		/*width: 100%;*/
 		min-height: auto;
 		align-items: flex-start;
 	}
@@ -406,28 +389,16 @@
 	/* zmienny układ #main-menu-right zależnie czy użytkownik zalogowany czy nie */
 
 	#main-menu-right {
-		/*width: calc(100% - 55px);*/
-		/*justify-content: space-between !important;*/
 		flex: 1;
 		justify-content: space-between;
 	}
 
-	.menu-registered-user #main-menu-right {
-		/*width: calc(100% - 16.67%);*/
-	}
-
-	.menu-registered-user/*,
-	.menu-registered-user #main-menu-right*/ {
+	.menu-registered-user {
 		column-gap: calc((100% - (5 * 50px + 45px)) / 5);
 	}
 
-	.menu-unregistered-user/*,
-	.menu-unregistered-user #main-menu-right*/ {
+	.menu-unregistered-user {
 		column-gap: calc((100% - (2 * 50px + 45px + 90px)) / 3);
-	}
-
-	.menu-unregistered-user #main-menu-right {
-		/*width: calc(100% - 25%);*/
 	}
 
 	.main-menu-row {
@@ -450,10 +421,6 @@
 		margin-bottom: 0;
 	}
 
-	.post-buttons .post-buttons-row-2 {
-		/*opacity: 0.8;*/
-	}
-
 	/* unika wyjeżdżania poza vw przy rozwijaniu menu w posting buttons */
 
 	.abbc3_buttons_row .menu-all,
@@ -473,7 +440,6 @@
 
 @media (max-width: 860px) and (hover: hover) and (pointer: fine) {
 
-	/*.main-menu-top .labeled-icon:hover .fa::after,*/
 	.main-menu-top .labeled-icon:hover::after {
 		content: '';
 		top: 100%;

@@ -10,11 +10,11 @@ jQuery(function ($) {
 
 	"use strict";
 
-	console.log($(window).outerWidth());
+	/*console.log($(window).outerWidth());*/
 
 if ($(window).outerWidth() <= 700 ) {
 
-	console.log($(window).outerWidth() <= 700);
+	/*console.log($(window).outerWidth() <= 700);*/
 
 	var $container = $('.dropdown-container-mchat-message-icons');
 	$container.on('click', 'a', function() {

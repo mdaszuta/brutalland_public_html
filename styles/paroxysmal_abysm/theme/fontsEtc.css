@@ -68,7 +68,6 @@ table.table1 tbody tr.bg3,
 
 /* FONT-VARIANTS */
 
-/*.pagination li a,*/
 .button,
 .button1,
 .button2:not(.fa),
@@ -173,13 +172,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 .shadow-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
-/*
-@font-face {
-	font-family: "Palatino Numbers";
-	src: local("Book Antiqua");
-	unicode-range: U+21-40;
-}
-*/
 
 .spoilbtn,
 .username,
@@ -194,10 +186,6 @@ textarea,
 
 .notification_text .m-list-left-bottom {
 	font-size: unset;
-}
-
-#mm-topics .main-menu-bottom span {
-	/*transform: rotate(180deg);*/
 }
 
 .agreement {
@@ -222,10 +210,6 @@ ul.topiclist dt {
 
 .labeled-icon .fa {
 	font-size: 2.3em;
-}
-
-.main-menu-top .fa:not(.fa-compress) {
-	/*font-size: 25px;*/
 }
 
 #mm-title .labeled-icon .fa {
@@ -290,10 +274,8 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 #mm-notifications .fa-user-circle-o,
 .cp-main .notification_list .fa-user-circle-o {
 	font-size: 50px;
-	/*font-size: 3.125rem;*/
 }
 
 .cp-main .fa-user-circle-o {
 	font-size: 120px;
-	/*font-size: 7.5rem;*/
 }

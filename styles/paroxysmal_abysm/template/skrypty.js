@@ -68,9 +68,6 @@
       var elem = e.target;
 
       if(this.scrollIfAnchor(elem.getAttribute('href'), true)) {
-	  	/*console.log('e: ' + JSON.stringify(e));
-		console.log('target: ' + e.target);
-		console.log("elem.getAttribute('href') " + elem.getAttribute('href'));*/
         e.preventDefault();
       }
     }

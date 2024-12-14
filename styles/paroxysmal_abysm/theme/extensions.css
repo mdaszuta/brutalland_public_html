@@ -21,7 +21,6 @@
 	min-width: 30px;
 	border: none;
 	text-align: center;
-	/*box-sizing: border-box;*/
 }
 
 #abbc3_buttons select {
@@ -146,17 +145,6 @@ a.collapse-btn {
 
 /* end of COLLAPSIBLE CATEGORIES */
 
-/* EXTERNAL LINKS OPEN IN NEW WINDOW */
-
-/*
-a.elonw:after {
-	font-size: 11px;
-	font-size: 0.6875rem;
-}
-*/
-
-/* end of EXTERNAL LINKS OPEN IN NEW WINDOW */
-
 /* IMGUR */
 
 .imgur-button.abbc3_button {
@@ -227,7 +215,6 @@ a.elonw:after {
 
 #mchat-main {
 	position: static;
-	/*margin-top: 8px;*/
 	margin-top: 25px;
 }
 
@@ -280,7 +267,6 @@ a.elonw:after {
 
 .mchat-messages-top .mchat-nav-archive {
 	text-align: center;
-	/*font-size: 17px;*/
 	/*font-size: 20px;*/
 	font-size: 1.25rem; /* 20 / 16 */
 }
@@ -363,12 +349,10 @@ a.elonw:after {
 
 span[data-s9e-mediaembed="youtube"] {
 	aspect-ratio: 16/9;
-	/*max-height: 360px;*/
 }
 
 span[data-s9e-mediaembed="bandcamp"] {
 	aspect-ratio: 1/1;
-	/*max-height: 400px;*/
 }
 
 /* end of MEDIAEMBED */

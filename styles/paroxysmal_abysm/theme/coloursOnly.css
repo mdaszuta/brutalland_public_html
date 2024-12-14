@@ -28,10 +28,7 @@ body,
 }
 
 #page-header {
-	/*background: URL("./images/logo.webp");*/
-	background-position: 0 22px;
 	background-size: 595px 270px;
-	background-repeat: no-repeat;
 }
 
 .main-menu-bottom {
@@ -163,7 +160,6 @@ table.table1 tbody tr.bg2:hover {
 blockquote,
 .codebox {
 	background-color: rgba(238, 0, 0, 0.1);
-	/* background-color: rgba(102, 102, 102, 0.2); */
 }
 
 /* Nested quotes */
@@ -207,25 +203,6 @@ ul.zebra-list li:nth-child(even):hover {
 	background: URL('./images/gateway.svg');
 	background-size: 60px 60px;
 }
-
-/* Icon images
----------------------------------------- */
-
-/*.contact-icon						{ background-image: url("./images/icons_contact.png"); }*/
-
-/* Profile & navigation icons */
-/*.pm-icon							{ background-position: 0 0; }
-.email-icon							{ background-position: -21px 0; }
-.jabber-icon						{ background-position: -80px 0; }
-.phpbb_icq-icon						{ background-position: -61px 0 ; }
-.phpbb_wlm-icon						{ background-position: -182px 0; }
-.phpbb_aol-icon						{ background-position: -244px 0; }
-.phpbb_website-icon					{ background-position: -40px 0; }
-.phpbb_youtube-icon					{ background-position: -98px 0; }
-.phpbb_facebook-icon				{ background-position: -119px 0; }
-.phpbb_skype-icon					{ background-position: -161px 0; }
-.phpbb_twitter-icon					{ background-position: -203px 0; }
-.phpbb_yahoo-icon					{ background-position: -224px 0; }*/
 
 /* Forum icons & Topic icons */
 .global_read						{ background-image: url("./images/announce_read.svg"); }
@@ -321,17 +298,6 @@ a.username {
 	color: white;
 }
 
-/*
-.flex-columns:hover > .column-right,
-.flex-columns:hover > .column-left span {
-	color: #999;
-}
-
-.flex-columns:hover > .column-right * {
-	color: white;
-}
-*/
-
 .post:target .content {
 	color: #eee;
 }
@@ -346,7 +312,6 @@ a.username {
 /* znikanie placeholdera po focusie na input, textarea etc */
 
 *:focus::placeholder {
-	/* color: red !important; */
 	color: transparent;
 	text-shadow: none;
 	transition: all .25s linear;
