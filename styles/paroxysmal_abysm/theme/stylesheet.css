@@ -1137,7 +1137,8 @@ input.button2 {
 	justify-content: space-between;
 }
 
-.forabg ul.topiclist .row {
+.forabg ul.topiclist .row,
+.forumbg ul.topiclist .row {
 	padding: 2px 0;
 }
 
@@ -1219,6 +1220,7 @@ dd.lastpost > span {
 }
 
 /* Keep aspect ratio when scaling */
+
 .postbody img {
 	height: auto;
 }
