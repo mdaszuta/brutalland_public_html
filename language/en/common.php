@@ -947,22 +947,8 @@ $lang = array_merge($lang, array(
 	'FORUM_SMALL'				=> 'forum',
 	'JUST_OK'					=> 'OK',
 	'JUMP_PAGE_NR'				=> 'Page #',
-	'JOIN'						=> 'Join',
 	'SHOW_PROFILE'				=> 'Show profile',
 	'SEE_ALL_NOTIFICATIONS'		=> 'All',
-	'READING_TOPIC_FORUM'		=> 'Reading topic %2$s in %1$s',
-	'REPLYING_MESSAGE_TOPIC'	=> 'Replying to message in topic %2$s in %1$s',
-
-	// Info BBCode - unused
-	'ABBC3_INFO_SHOW'	=> '► Info:',
-	'ABBC3_INFO_HIDE'	=> '▼ Info:',
-	'ABBC3_D_SHOW'		=> '▼ Discography',
-	'ABBC3_D_HIDE'		=> '▲ Discography',
-	'ABBC3_M_SHOW'		=> 'Lineup ▼',
-	'ABBC3_M_HIDE'		=> 'Lineup ▲',
-
-	// RH Topic Tags
-	'RH_TOPICTAGS_TAG'			=> 'Tag',
 
 	/**
 	* END OF ADDED LANGUAGE

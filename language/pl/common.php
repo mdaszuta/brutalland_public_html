@@ -970,22 +970,8 @@ $lang = array_merge($lang, array(
 	'FORUM_SMALL'				=> 'działu',
 	'JUST_OK'					=> 'OK',
 	'JUMP_PAGE_NR'				=> 'Strona #',
-	'JOIN'						=> 'Dołącz',
 	'SHOW_PROFILE'				=> 'Pokaż profil',
 	'SEE_ALL_NOTIFICATIONS'		=> 'Wszystkie',
-	'READING_TOPIC_FORUM'		=> 'Czyta temat %2$s na forum %1$s',
-	'REPLYING_MESSAGE_TOPIC'	=> 'Odpowiada na wiadomość w temacie %2$s na forum %1$s',
-
-	// Info BBCode - unused
-	'ABBC3_INFO_SHOW'	=> '► Informacje:',
-	'ABBC3_INFO_HIDE'	=> '▼ Informacje:',
-	'ABBC3_D_SHOW'		=> '▼ Dyskografia',
-	'ABBC3_D_HIDE'		=> '▲ Dyskografia',
-	'ABBC3_M_SHOW'		=> 'Skład ▼',
-	'ABBC3_M_HIDE'		=> 'Skład ▲',
-
-	// RH Topic Tags
-	'RH_TOPICTAGS_TAG'			=> 'Tag',
 
 	/**
 	* END OF ADDED LANGUAGE
