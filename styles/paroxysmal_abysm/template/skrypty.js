@@ -587,6 +587,14 @@ async function addLineup(url, output) {
 
 			console.log("regexTest: " + regexTest.toString());
 
+			if ( !regexTest[0] && !regexTest[1] ) { /* If no lineupHeaders */
+				if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
+					completeLineup.push("[t]Ostatni skład:[/t]");
+				} else {
+					completeLineup.push("[t]Skład:[/t]");
+				}
+			}
+
 			const seeAlsoPattern = /^See also:\s+/;
 			const ripPattern = /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/;
 
@@ -651,17 +659,9 @@ async function addLineup(url, output) {
 
 			});
 
-			if ( !regexTest[0] && !regexTest[1] ) { /* Jeżeli nie ma lineupHeaders */
-				if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
-					completeLineup.unshift("[t]Ostatni skład:[/t]");
-				} else {
-					completeLineup.unshift("[t]Skład:[/t]");
-				}
-			}
-
-			if ( regexTest[3] || regexTest[4] ) { /* Jeżeli są muzycy live */
+			if ( regexTest[3] || regexTest[4] ) { /* If Lineup - (Live) */
 				completeLineup.push(completeLineup.pop() + "\n[/muzycy-live]");
-			} else if ( regexTest[2] ) { /* Jeżeli są byli muzycy */
+			} else if ( regexTest[2] ) { /* If Lineup - Past */
 				completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
 			}
 
