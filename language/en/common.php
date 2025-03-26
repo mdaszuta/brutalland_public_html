@@ -949,6 +949,8 @@ $lang = array_merge($lang, array(
 	'JUMP_PAGE_NR'				=> 'Page #',
 	'SHOW_PROFILE'				=> 'Show profile',
 	'SEE_ALL_NOTIFICATIONS'		=> 'All',
+	'LINK_TO_MA'				=> 'Link to Metal Archives',
+	'LINK_TO_MA_EXPLANATION'	=> 'Paste link to band’s page on Metal Archives and its lineup, discography and that link will be added at the end of the post.',
 
 	/**
 	* END OF ADDED LANGUAGE
