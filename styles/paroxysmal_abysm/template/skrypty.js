@@ -324,22 +324,8 @@ $(document).ready(function(){
 
 function bandInfo() {
 
-	/* NOWE */
-
 	let bandInfoInput = document.getElementById('band-info-input');
 	let bandInfoOutput = document.getElementById('message');
-
-
-	/* wywołanie automatycznego wypełniania składu i dyskografii */
-	/*const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\//;
-	if ( metallumPattern.test(bandInfoInput.value) ) {
-		console.log("Link OK");
-		addBandInfo(bandInfoInput.value, bandInfoOutput);
-	} else {
-		console.log("Incorrect link.");
-	}*/
-
-	/* end of NOWE */
 	  
 	var str = bandInfoInput.value;
 	console.log(str);
