@@ -1495,7 +1495,7 @@ table.table1 td.info a {
 }
 
 input.inputbox:not([type="number"], [type="file"]),
-textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #band-info-input) {
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input) {
 	min-height: 2em;
 	line-height: 2em;
 }
@@ -1766,8 +1766,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 /* menu-toggle, its icon and dropdown */
 
 .quickmod-box,
-#info-box-root,
-#info-box-all,
 #picture-box-all {
 	text-align: center;
 }
@@ -1804,13 +1802,16 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	width: auto;
 }
 
-#info-box-all {
-	width: 40%;
-	max-width: 550px;
+#info-box { 
+	display: none;
 }
 
-#band-info-input {
-	height: 100px;
+.postingbox-bottom .form-box {
+	margin-bottom: 15px;
+}
+
+.postingbox-bottom .shadow-explanation {
+	top: 103%;
 }
 
 #smiley-box-root {
@@ -1874,7 +1875,6 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 
 .ellipsis-box-all { /*margin-left: -105px;*/ }
 .contact-box-all { /*margin-left: -70px;*/ }
-#info-box-all { /*margin-left: -6%;*/ }
 #picture-box-all { /*margin-left: -110px;*/ }
 #list-box-all { /*margin-left: -145px;*/ }
 #color-palette-all { /*margin-left: -215px;*/ }

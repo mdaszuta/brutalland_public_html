@@ -117,9 +117,12 @@ table.table1 tbody tr.bg2:hover {
 
 .message-box textarea,
 .message-box textarea:hover,
-.message-box textarea:focus,
-#muzycy-box textarea {
+.message-box textarea:focus {
 	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.postingbox-bottom .shadow-explanation {
+	background-color: rgba(0, 0, 0, 0.9);
 }
 
 .panel.bg1,

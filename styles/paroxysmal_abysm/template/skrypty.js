@@ -331,13 +331,13 @@ function bandInfo() {
 
 
 	/* wywołanie automatycznego wypełniania składu i dyskografii */
-	const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\//;
+	/*const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\//;
 	if ( metallumPattern.test(bandInfoInput.value) ) {
 		console.log("Link OK");
 		addBandInfo(bandInfoInput.value, bandInfoOutput);
 	} else {
 		console.log("Incorrect link.");
-	}
+	}*/
 
 	/* end of NOWE */
 	  
@@ -670,13 +670,13 @@ async function addLineup(url, output) {
 		}
 
 		if ( regexTest[3] || regexTest[4] ) { /* Jeżeli są muzycy live */
-			completeLineup.push(completeLineup.pop() + "[/muzycy-live]");
+			completeLineup.push(completeLineup.pop() + "\n[/muzycy-live]");
 		} else if ( regexTest[2] ) { /* Jeżeli są byli muzycy */
-			completeLineup.push(completeLineup.pop() + "[/muzycy-byli]");
+			completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
 		}
 
 		let completeLineupString = "\n\n" + completeLineup.join("\n");
-		completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace("[/muzycy-live]", "\n[/muzycy-live]");
+		completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]");
 		output.value += completeLineupString;
 		console.log(completeLineupString);
 
@@ -749,21 +749,37 @@ function addLinkToMA(url, output) {
 		output.value += "\n\nMA: " + url;
 	} else {
 		console.log("Link to MA is already in the topic.");
+		/*output.value = output.value.replace("\n\nMA: " + url, "");*/
 	}
 
 }
 
-function addBandInfo(url, output) {
+function addBandInfo() {
 
 	"use strict";
 
-	/* Check for hash in url and if there is one, trim it */
-	const metallumPatternWithHash = /^https:\/\/www\.metal-archives\.com\/bands\/.+\/\d+#.*/;
-	if ( metallumPatternWithHash.test(url) ) {
-		console.log("Link has hash and is being trimmed.");
-		url = url.replace(/#.*$/, "");
-	}
+	const addBandInfo = document.getElementById('add-band-info');
+	let url = addBandInfo.value;
+	const output = document.getElementById('message');
 
-	addLineup(url, output).then(() => addDiscography(url, output).then(() => addLinkToMA(url, output)));
+	
+	const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\//;
+	if ( metallumPattern.test(url) ) {
+
+		/* Check for hash in url and if there is one, trim it */
+		const hashPattern = /#.*$/;
+		if ( hashPattern.test(url) ) {
+			console.log("Link has hash and is being trimmed.");
+			url = url.replace(hashPattern, "");
+			addBandInfo.value = url;
+		}
+
+		/* Call automatic adding of lineup, discography and link to MA in correct sequence */
+		addLineup(url, output).then(() => addDiscography(url, output).then(() => addLinkToMA(url, output)));
+		addBandInfo.blur();
+
+	} else {
+		console.log("Incorrect link.");
+	}
 
 }

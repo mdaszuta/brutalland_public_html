@@ -85,7 +85,7 @@ a.lastsubject,
 .notify-settings,
 .cp-main .notification_list .notifications,
 input.inputbox:not([type="number"], [type="file"]),
-textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #band-info-input),
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input),
 #top-site-menu,
 .action-bar,
 h2,
@@ -169,7 +169,7 @@ a.lastsubject,
 .notifications_reference,
 .notifications_reason,
 input.inputbox:not([type="number"], [type="file"]),
-textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #band-info-input),
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input),
 .shadow-label {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
@@ -280,7 +280,7 @@ a.topictitle,
 #titleID,
 .notifications_reference,
 input.inputbox:not([type="number"], [type="file"]),
-textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input, #band-info-input) {
+textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-input) {
 	/*font-size: 21px;*/
 	font-size: 1.3125rem; /* 21 / 16 */
 }

@@ -62,10 +62,14 @@
 	</div>
 
 	<!-- IF S_NEW_MESSAGE && (SCRIPT_NAME != 'ucp')-->
-	<div class="flex-columns">
+	<div class="flex-columns postingbox-bottom">
 		<div class="column-left">
 		</div>
 		<div class="column-right">
+			<div class="form-box">
+				<input type="text" name="add-band-info" id="add-band-info" size="45" class="inputbox" placeholder="Link do Metal Archives" oninput="addBandInfo();" autocomplete="off" />
+				<span class="shadow-explanation">Wklej link do strony zespołu na Metal Archives, a jego skład, dyskografia oraz ten link zostaną dodane na koniec posta.</span>
+			</div>
 			<div id="info-box" class="rozwijany-box menu-toggle">
 
 				<div id="info-box-root" class="rozwijany-box-root menu-root">

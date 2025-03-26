@@ -456,16 +456,14 @@
 
 	/* unika wyjeżdżania poza vw przy rozwijaniu menu w posting buttons */
 
-	.abbc3_buttons_row .menu-all,
-	#info-box-all {
+	.abbc3_buttons_row .menu-all {
 		margin: auto !important; /* nadpisuje margin obliczany przez javascript */
 		width: auto !important; /* nadpisuje wartości #smiley-box-all */
 		left: 1em;
 		right: 1em;
 	}
 
-	.message-box,
-	#muzycy-box {
+	.message-box {
 		width: auto;
 	}
 
