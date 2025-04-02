@@ -669,8 +669,9 @@ async function addLineup(url, output) {
 			}
 
 			let completeLineupString = "\n\n" + completeLineup.join("\n");
-			completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]");
 			output.value += completeLineupString;
+			completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n?\[muzycy-live\]/, "\n\n[muzycy-live]");
+
 			console.log(completeLineupString);
 
 		}
@@ -757,7 +758,7 @@ function addLinkToMA(url, output) {
 
 }
 
-function addBandInfo() {
+async function addBandInfo() {
 
 	"use strict";
 
@@ -777,7 +778,15 @@ function addBandInfo() {
 		}
 
 		/* Call automatic adding of lineup, discography and link to MA in correct sequence */
-		addLineup(url, output).then(() => addDiscography(url, output).then(() => addLinkToMA(url, output)));
+		/*addLineup(url, output).then(() => addDiscography(url, output).then(() => addLinkToMA(url, output)));*/
+		try {
+			await addLineup(url, output);
+			await addDiscography(url, output);
+			addLinkToMA(url, output);
+		} catch (error) {
+			console.error("Error adding band info:", error);
+		}
+		
 		addBandInfo.blur();
 
 	} else {
