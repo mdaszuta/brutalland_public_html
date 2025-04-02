@@ -150,7 +150,7 @@ $(document).ready(function(){
 		let topMenu = $(this);
 		let bottomMenu = topMenu.next(".menu-all");
 
-		if ( bottomMenu.css("display") == "none" ){
+		if ( bottomMenu.css("display") == "none" ) {
 			bottomMenu.fadeIn(150).css("display","flex");
 			calculateMenuAllWidthOrMarginLeft(topMenu, bottomMenu);
 		}
@@ -166,7 +166,7 @@ $(document).ready(function(){
 
 		let bottomMenu = $(this).children(".menu-all");
 
-		if ( bottomMenu.css("display") == "flex" ){
+		if ( bottomMenu.css("display") == "flex" ) {
 			bottomMenu.fadeOut(0);
 		}
 
@@ -561,6 +561,9 @@ async function addLineup(url, output) {
 			return;
 		} else {
 
+			const lineupTableString = lineupTable.outerHTML;
+			console.log(lineupTableString);
+
 			let completeLineup = [];
 			let lineupRows = lineupTable.querySelectorAll("tr");
 
@@ -575,14 +578,14 @@ async function addLineup(url, output) {
 			const pattern = [];
 			let regexTest = [];
 
-			pattern[0] = /(\<td colspan\=\"2\" align\=\"right\"\>\s*Current\s*\<\/td\>|\<td colspan\=\"2\" align\=\"right\"\>\s*Current lineup\s*\<\/td\>)/;
-			pattern[1] = /(\<td colspan\=\"2\" align\=\"right\"\>\s*Last known\s*\<\/td\>|\<td colspan\=\"2\" align\=\"right\"\>\s*Last known lineup\s*\<\/td\>)/;
-			pattern[2] = /\<td colspan\=\"2\" align\=\"right\"\>\s*Past\s*\<\/td\>/;
-			pattern[3] = /\<td colspan\=\"2\" align\=\"right\"\>\s*Current\s*\(Live\)\s*\<\/td\>/;
-			pattern[4] = /(\<td colspan\=\"2\" align\=\"right\"\>\s*Past\s*\(Live\)\s*\<\/td\>)|(\<td colspan\=\"2\" align\=\"right\"\>\s*Last known\s*\(Live\)\s*\<\/td\>)/;
+			pattern[0] = /(<td colspan\=\"2\" align\=\"right\">\s*Current\s*<\/td>|<td colspan\=\"2\" align\=\"right\">\s*Current lineup\s*<\/td>)/;
+			pattern[1] = /(<td colspan\=\"2\" align\=\"right\">\s*Last known\s*<\/td>|<td colspan\=\"2\" align\=\"right\">\s*Last known lineup\s*<\/td>)/;
+			pattern[2] = /<td colspan\=\"2\" align\=\"right\">\s*Past\s*<\/td>/;
+			pattern[3] = /<td colspan\=\"2\" align\=\"right\">\s*Current\s*\(Live\)\s*<\/td>/;
+			pattern[4] = /(<td colspan\=\"2\" align\=\"right\">\s*Past\s*\(Live\)\s*<\/td>)|(<td colspan\=\"2\" align\=\"right\">\s*Last known\s*\(Live\)\s*<\/td>)/;
 
 			for (let i=0; i<pattern.length; i++) {
-				regexTest[i] = pattern[i].test(textLineup);
+				regexTest[i] = pattern[i].test(lineupTableString);
 			}
 
 			console.log("regexTest: " + regexTest.toString());
@@ -758,11 +761,11 @@ function addBandInfo() {
 
 	"use strict";
 
-	const addBandInfo = document.getElementById('add-band-info');
+	const addBandInfo = document.getElementById("add-band-info");
 	let url = addBandInfo.value;
-	const output = document.getElementById('message');
+	const output = document.getElementById("message");
 
-	const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\//;
+	const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\/[^/]+\/\d+/;
 	if ( metallumPattern.test(url) ) {
 
 		/* Check for hash in url and if there is one, trim it */
