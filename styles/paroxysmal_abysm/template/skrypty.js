@@ -539,6 +539,17 @@ function bandInfo() {
 * KONIEC - Wklejanie dyskografii i składu pół-automat - KONIEC
 */
 
+async function fetchPage(url) {
+
+    const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+    if ( !response.ok ) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const text = await response.text();
+	return new DOMParser().parseFromString(text, "text/html");
+
+}
+
 /* LINEUP */
 
 async function addLineup(url, output) {
@@ -547,13 +558,7 @@ async function addLineup(url, output) {
 
 	try {
 		/* Fetch the page content using CORS proxy and find the lineup table */
-		const responseLineup = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
-		if ( !responseLineup.ok ) {
-			throw new Error(`HTTP error! Status: ${responseLineup.status}`);
-		}
-		const textLineup = await responseLineup.text();
-		const parserLineup = new DOMParser();
-		const docLineup = parserLineup.parseFromString(textLineup, "text/html");
+		const docLineup = await fetchPage(url);
 		const lineupTable = docLineup.querySelector("#band_members table.lineupTable");
 
 		if ( !lineupTable ) {
@@ -695,13 +700,7 @@ async function addDiscography(url, output) {
 		console.log(urlDiscography);
 
 		/* Fetch the page content using CORS proxy and find the discography table */
-		const responseDiscography = await fetch(`https://corsproxy.io/?${encodeURIComponent(urlDiscography)}`);
-		if ( !responseDiscography.ok ) {
-			throw new Error(`HTTP error! Status: ${responseDiscography.status}`);
-		}
-		const textDiscography = await responseDiscography.text();
-		const parserDiscography = new DOMParser();
-		const docDiscography = parserDiscography.parseFromString(textDiscography, "text/html");
+		const docDiscography = await fetchPage(urlDiscography);
 		const discographyTable = docDiscography.querySelector(".discog");
 
 		if ( !discographyTable ) {
