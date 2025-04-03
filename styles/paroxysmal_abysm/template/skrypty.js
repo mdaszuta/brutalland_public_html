@@ -91,6 +91,28 @@ function showTopicNameInRealTime() {
 
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+
+	"use strict";
+
+	const addBandInfo = document.getElementById("add-band-info");
+	const messageElement = document.getElementById("message");
+	if ( !addBandInfo || !messageElement ) return;
+
+	console.log("message READY!!!");
+
+	const messageValue = messageElement.value ?? "";
+	const match = messageValue.match(/^MA: (https:\/\/www\.metal-archives\.com\/bands\/[^/]+\/\d+)/m);
+	if ( !match ) return;
+
+	const matchValue = match[1];
+	console.log(matchValue);
+	addBandInfo.setAttribute("value", matchValue);
+
+});
+
+/* jQuery section */
+
 $(document).ready(function(){
 
 	"use strict";
@@ -314,6 +336,28 @@ $(document).ready(function(){
 
 		clearTimeout(timeoutSwitcheroo);
 
+	});
+
+	/**
+	* Refresh icon finishes a full spin after mouseleave
+	*/
+
+	$("#refresh-band-info-icon").on("mouseenter", function() {
+	
+		let spinningIcon = $(this);
+		spinningIcon.addClass("fa-spin-hover").addClass("mouse-has-entered");
+	
+		let spinStopDelay = setInterval( function() {
+			if ( !spinningIcon.hasClass("mouse-has-entered") ) {
+				spinningIcon.removeClass("fa-spin-hover");
+				clearTimeout(spinStopDelay);
+			}
+		}, 1000); // Make sure this 1 second delay is the same with one in the .fa-spin-hover css
+	
+	}).on("mouseleave", function() {
+
+		$(this).removeClass("mouse-has-entered");
+	
 	});
 	
 });
@@ -541,6 +585,8 @@ function bandInfo() {
 
 async function fetchPage(url) {
 
+	"use strict";
+
     const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
     if ( !response.ok ) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -567,7 +613,7 @@ async function addLineup(url, output) {
 		}
 
 			const lineupTableString = lineupTable.outerHTML;
-			console.log(lineupTableString);
+			/*console.log(lineupTableString);*/
 
 			let completeLineup = [];
 			let lineupRows = lineupTable.querySelectorAll("tr");

@@ -1209,6 +1209,7 @@ dd.lastpost > span {
 .fa-search,
 #search-box-hide,
 .menu-root,
+#refresh-band-info-icon:hover,
 #picture-box-all label,
 #list-box-all label {
 	cursor: pointer;
@@ -1217,6 +1218,32 @@ dd.lastpost > span {
 .postbody,
 .topicreview .postbody {
 	margin-top: 5px;
+}
+
+.lineup,
+.discography {
+	/*margin: 1.618em 0;*/
+}
+
+.refresh-band-info {
+	display: none;
+}
+
+#add-band-info[value] ~ .refresh-band-info {
+	display: block;
+	position: absolute;
+	z-index: 4;
+	top: -1.2em;
+	right: calc(50% - 0.625em);
+	/* font-size: 1.3125rem; */
+	font-size: 1.25em;
+	padding: 2px;
+	min-height: 2em;
+	line-height: 2em;
+}
+
+.fa-spin-hover {
+	animation: fa-spin 1s infinite linear;
 }
 
 /* Keep aspect ratio when scaling */

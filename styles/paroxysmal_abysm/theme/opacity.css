@@ -57,6 +57,7 @@ li.row .fa-tags,
 
 .topic-reply-counter.unread,
 #search-box-hide .fa,
+.postingbox-bottom .fa-refresh,
 .mark_read,
 .copyright:hover {
 	opacity: 0.7;
@@ -70,6 +71,7 @@ li.row .fa-recycle:hover,
 li.row .fa-bar-chart:hover,
 li.row .fa-paperclip:hover,
 li.row .fa-tags:hover,
+.postingbox-bottom .fa-refresh:hover,
 .recipients .fa-times:hover {
 	opacity: 0.9;
 }
@@ -134,6 +136,7 @@ li.row .fa-recycle:hover,
 li.row .fa-bar-chart:hover,
 li.row .fa-paperclip:hover,
 li.row .fa-tags:hover,
+.postingbox-bottom .fa-refresh:hover,
 .recipients .fa-times:hover,
 #mm-user .main-menu-bottom .fa,
 #mm-user .main-menu-bottom a:hover .fa,
@@ -153,6 +156,7 @@ li.row .fa-recycle,
 li.row .fa-bar-chart,
 li.row .fa-paperclip,
 li.row .fa-tags,
+.postingbox-bottom .fa-refresh,
 .recipients .fa-times {
 	transition: opacity 0.75s ease-out 666666s;
 }

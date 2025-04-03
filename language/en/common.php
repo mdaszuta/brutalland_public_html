@@ -951,6 +951,7 @@ $lang = array_merge($lang, array(
 	'SEE_ALL_NOTIFICATIONS'		=> 'All',
 	'LINK_TO_MA'				=> 'Link to Metal Archives',
 	'LINK_TO_MA_EXPLANATION'	=> 'Paste link to band’s page on Metal Archives and its lineup, discography and that link will be added at the end of the post.',
+	'REFRESH_MA_INFO'			=> 'Update band info from Metal Archives',
 
 	/**
 	* END OF ADDED LANGUAGE
