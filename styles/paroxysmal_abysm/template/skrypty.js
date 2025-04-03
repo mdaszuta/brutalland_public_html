@@ -709,7 +709,7 @@ async function addDiscography(url, output) {
 		} else if ( discographyTable.querySelectorAll("tbody td").length == 1 ) {
 			console.log("No discography found.");
 			return;
-		} else {
+		}
 
 			let completeDiscography = [];
 			let discographyRows = discographyTable.querySelectorAll("tbody tr");
@@ -744,7 +744,6 @@ async function addDiscography(url, output) {
 			output.value += completeDiscographyString;
 			console.log(completeDiscographyString);
 
-		}
 	} catch (error) {
 		console.error("Error fetching the page:", error);
 	}
