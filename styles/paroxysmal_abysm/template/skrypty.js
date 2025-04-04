@@ -91,26 +91,6 @@ function showTopicNameInRealTime() {
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-
-	"use strict";
-
-	const addBandInfo = document.getElementById("add-band-info");
-	const messageElement = document.getElementById("message");
-	if ( !addBandInfo || !messageElement ) return;
-
-	console.log("message READY!!!");
-
-	const messageValue = messageElement.value ?? "";
-	const match = messageValue.match(/^MA: (https:\/\/www\.metal-archives\.com\/bands\/[^/]+\/\d+)/m);
-	if ( !match ) return;
-
-	const matchValue = match[1];
-	console.log(matchValue);
-	addBandInfo.setAttribute("value", matchValue);
-
-});
-
 /* jQuery section */
 
 $(document).ready(function(){
@@ -583,6 +563,24 @@ function bandInfo() {
 * KONIEC - Wklejanie dyskografii i składu pół-automat - KONIEC
 */
 
+document.addEventListener("DOMContentLoaded", () => {
+
+	"use strict";
+
+	const addBandInfo = document.getElementById("add-band-info");
+	const messageElement = document.getElementById("message");
+	if ( !addBandInfo || !messageElement ) return;
+
+	const messageValue = messageElement.value ?? "";
+	const match = messageValue.match(/^MA: (https:\/\/www\.metal-archives\.com\/bands\/[^/]+\/\d+)/m);
+	if ( !match ) return;
+
+	const matchValue = match[1];
+	console.log("MA: " + matchValue);
+	addBandInfo.setAttribute("value", matchValue);
+
+});
+
 /* FETCH */
 
 async function fetchPage(url) {
@@ -667,7 +665,7 @@ async function addLineup(url, output) {
 				}
 
 				if ( regexTest[2] && regexTest[3] ) { /* Past & Current (Live) */
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[3], "<td>[/muzycy-byli]\n\n[muzycy-live]</td>");
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[3], "<td>[/muzycy-byli][muzycy-live]</td>");
 				} else if ( regexTest[3] ) { /* Current (Live) */
 					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[3], "<td>[muzycy-live]</td>");
 				}
@@ -675,7 +673,7 @@ async function addLineup(url, output) {
 				if ( regexTest[3] && regexTest[4] ) { /* Current (Live) & Past (Live) */
 					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td></td>");
 				} else if ( regexTest[2] && regexTest[4] ) { /* Past & Past (Live) */
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td>[/muzycy-byli]\n\n[muzycy-live]</td>");
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td>[/muzycy-byli][muzycy-live]</td>");
 				} else if ( regexTest[4] ) { /* Past (Live)) */
 					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td>[muzycy-live]</td>");
 				}
@@ -695,7 +693,7 @@ async function addLineup(url, output) {
 					ripInfo = " (R.I.P.)";
 				}
 				lineupCells[0] = lineupCells[0].replace(ripPattern, "");
-				//console.log("THE PAST IS ALIVE!!! " + ripDate);
+				/*console.log("THE PAST IS ALIVE!!! " + ripDate);*/
 			}
 
 			if ( lineupRow.classList.contains("lineupRow") ) {
@@ -802,6 +800,8 @@ async function addDiscography(url, output) {
 	}
 }
 
+/* LINK TO MA */
+
 function addLinkToMA(url, output) {
 
 	"use strict";
@@ -818,6 +818,8 @@ function addLinkToMA(url, output) {
 async function addBandInfo() {
 
 	"use strict";
+
+	const stoperStart = performance.now();
 
 	const addBandInfo = document.getElementById("add-band-info");
 	let url = addBandInfo.value;
@@ -848,5 +850,8 @@ async function addBandInfo() {
 	} else {
 		console.log("Incorrect link.");
 	}
+
+	const stoperEnd = performance.now();
+	console.log(`Execution time: ${stoperEnd - stoperStart} ms`);
 
 }
