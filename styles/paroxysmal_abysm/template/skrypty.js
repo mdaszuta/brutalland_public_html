@@ -583,6 +583,8 @@ function bandInfo() {
 * KONIEC - Wklejanie dyskografii i składu pół-automat - KONIEC
 */
 
+/* FETCH */
+
 async function fetchPage(url) {
 
 	"use strict";
@@ -612,121 +614,121 @@ async function addLineup(url, output) {
 			return;
 		}
 
-			const lineupTableString = lineupTable.outerHTML;
-			let completeLineup = [];
-			let lineupRows = lineupTable.querySelectorAll("tr");
+		const lineupTableString = lineupTable.outerHTML;
+		let completeLineup = [];
+		let lineupRows = lineupTable.querySelectorAll("tr");
 
-			/** Check Members list for Current, Last known, Past, Current (live) and Past (live) members, where:
-			* i=0 -> Current | Current lineup
-			* i=1 -> Last known | Last known lineup
-			* i=2 -> Past
-			* i=3 -> Current (Live)
-			* i=4 -> Past (Live) | Last known (Live)
-			*/
+		/** Check Members list for Current, Last known, Past, Current (live) and Past (live) members, where:
+		* i=0 -> Current | Current lineup
+		* i=1 -> Last known | Last known lineup
+		* i=2 -> Past
+		* i=3 -> Current (Live)
+		* i=4 -> Past (Live) | Last known (Live)
+		*/
 
-			const pattern = [];
-			let regexTest = [];
+		const pattern = [];
+		let regexTest = [];
 
-			pattern[0] = /(<td colspan="2" align="right">\s*Current\s*<\/td>|<td colspan="2" align="right">\s*Current lineup\s*<\/td>)/;
-			pattern[1] = /(<td colspan="2" align="right">\s*Last known\s*<\/td>|<td colspan="2" align="right">\s*Last known lineup\s*<\/td>)/;
-			pattern[2] = /<td colspan="2" align="right">\s*Past\s*<\/td>/;
-			pattern[3] = /<td colspan="2" align="right">\s*Current\s*\(Live\)\s*<\/td>/;
-			pattern[4] = /(<td colspan="2" align="right">\s*Past\s*\(Live\)\s*<\/td>)|(<td colspan="2" align="right">\s*Last known\s*\(Live\)\s*<\/td>)/;
+		pattern[0] = /(<td colspan="2" align="right">\s*Current\s*<\/td>|<td colspan="2" align="right">\s*Current lineup\s*<\/td>)/;
+		pattern[1] = /(<td colspan="2" align="right">\s*Last known\s*<\/td>|<td colspan="2" align="right">\s*Last known lineup\s*<\/td>)/;
+		pattern[2] = /<td colspan="2" align="right">\s*Past\s*<\/td>/;
+		pattern[3] = /<td colspan="2" align="right">\s*Current\s*\(Live\)\s*<\/td>/;
+		pattern[4] = /(<td colspan="2" align="right">\s*Past\s*\(Live\)\s*<\/td>)|(<td colspan="2" align="right">\s*Last known\s*\(Live\)\s*<\/td>)/;
 
-			for (let i=0; i<pattern.length; i++) {
-				regexTest[i] = pattern[i].test(lineupTableString);
-			}
+		for (let i=0; i<pattern.length; i++) {
+			regexTest[i] = pattern[i].test(lineupTableString);
+		}
 
-			console.log("regexTest: " + regexTest.toString());
+		console.log("regexTest: " + regexTest.toString());
 
-			if ( !regexTest[0] && !regexTest[1] ) { /* If no lineupHeaders */
-				if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
-					completeLineup.push("[t]Ostatni skład:[/t]");
-				} else {
-					completeLineup.push("[t]Skład:[/t]");
-				}
-			}
-
-			const seeAlsoPattern = /^See also:\s+/;
-			const ripPattern = /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/;
-
-			lineupRows.forEach(lineupRow => {
-
-				if ( lineupRow.classList.contains("lineupHeaders") ) {
-
-					if ( regexTest[0] ) { /* Current */
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[0], "<td>[t]Skład:[/t]</td>");
-					} else if ( regexTest[1] ) { /* Last known */
-						lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[1], "<td>[t]Ostatni skład:[/t]</td>");
-					}
-
-					if ( regexTest[2] ) { /* Past */
-						lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[2], "<td>[muzycy-byli]</td>");
-					}
-
-					if ( regexTest[2] && regexTest[3] ) { /* Past & Current (Live) */
-						lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[3], "<td>[/muzycy-byli]\n\n[muzycy-live]</td>");
-					} else if ( regexTest[3] ) { /* Current (Live) */
-						lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[3], "<td>[muzycy-live]</td>");
-					}
-
-					if ( regexTest[3] && regexTest[4] ) { /* Current (Live) & Past (Live) */
-						lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td></td>");
-					} else if ( regexTest[2] && regexTest[4] ) { /* Past & Past (Live) */
-						lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td>[/muzycy-byli]\n\n[muzycy-live]</td>");
-					} else if ( regexTest[4] ) { /* Past (Live)) */
-						lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td>[muzycy-live]</td>");
-					}
-
-				}
-
-				lineupRow.innerHTML = lineupRow.innerHTML.trim(); /* Trim spaces around row */
-				let lineupCells = Array.from(lineupRow.querySelectorAll("td")).map(td => td.textContent.trim()); /* Trim spaces in <td> */
-				let ripInfo = "";
-				/* console.log(lineupCells); */
-
-				if ( ripPattern.test(lineupCells[0]) ) {
-					let ripDate  = lineupCells[0].match(/\d+/);
-					if ( ripDate ) {
-						ripInfo = " (R.I.P. " + ripDate[0] + ")";
-					} else {
-						ripInfo = " (R.I.P.)";
-					}
-					lineupCells[0] = lineupCells[0].replace(ripPattern, "");
-					//console.log("THE PAST IS ALIVE!!! " + ripDate);
-				}
-
-				if ( lineupRow.classList.contains("lineupRow") ) {
-					let musician = lineupCells.join(" - ");
-					completeLineup.push(musician + ripInfo);
-				} else if ( lineupRow.classList.contains("lineupBandsRow") ) {
-					lineupCells = lineupCells.map(lineupCell => " [l]" + lineupCell.replace(seeAlsoPattern, "") + "[/l]");
-					completeLineup.push(completeLineup.pop() + ripInfo + lineupCells.join());
-				} else {
-					completeLineup.push(lineupCells.join());
-				}
-
-			});
-
-			if ( regexTest[3] || regexTest[4] ) { /* If Lineup - (Live) */
-				completeLineup.push(completeLineup.pop() + "\n[/muzycy-live]");
-			} else if ( regexTest[2] ) { /* If Lineup - Past */
-				completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
-			}
-
-			let completeLineupString = completeLineup.join("\n");
-			completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
-
-			const lineupPattern = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
-			if ( output.value.match(lineupPattern) ) {
-				console.log("Updating lineup...");
-				console.log(output.value.match(lineupPattern));
-				output.value = output.value.replace(lineupPattern, completeLineupString + "\n\n");
+		if ( !regexTest[0] && !regexTest[1] ) { /* If no lineupHeaders */
+			if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
+				completeLineup.push("[t]Ostatni skład:[/t]");
 			} else {
-				output.value += "\n\n" + completeLineupString;
+				completeLineup.push("[t]Skład:[/t]");
+			}
+		}
+
+		const seeAlsoPattern = /^See also:\s+/;
+		const ripPattern = /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/;
+
+		lineupRows.forEach(lineupRow => {
+
+			if ( lineupRow.classList.contains("lineupHeaders") ) {
+
+				if ( regexTest[0] ) { /* Current */
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[0], "<td>[t]Skład:[/t]</td>");
+				} else if ( regexTest[1] ) { /* Last known */
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[1], "<td>[t]Ostatni skład:[/t]</td>");
+				}
+
+				if ( regexTest[2] ) { /* Past */
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[2], "<td>[muzycy-byli]</td>");
+				}
+
+				if ( regexTest[2] && regexTest[3] ) { /* Past & Current (Live) */
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[3], "<td>[/muzycy-byli]\n\n[muzycy-live]</td>");
+				} else if ( regexTest[3] ) { /* Current (Live) */
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[3], "<td>[muzycy-live]</td>");
+				}
+
+				if ( regexTest[3] && regexTest[4] ) { /* Current (Live) & Past (Live) */
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td></td>");
+				} else if ( regexTest[2] && regexTest[4] ) { /* Past & Past (Live) */
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td>[/muzycy-byli]\n\n[muzycy-live]</td>");
+				} else if ( regexTest[4] ) { /* Past (Live)) */
+					lineupRow.innerHTML = lineupRow.innerHTML.replace(pattern[4], "<td>[muzycy-live]</td>");
+				}
+
 			}
 
-			console.log(completeLineupString);
+			lineupRow.innerHTML = lineupRow.innerHTML.trim(); /* Trim spaces around row */
+			let lineupCells = Array.from(lineupRow.querySelectorAll("td")).map(td => td.textContent.trim()); /* Trim spaces in <td> */
+			let ripInfo = "";
+			/* console.log(lineupCells); */
+
+			if ( ripPattern.test(lineupCells[0]) ) {
+				let ripDate  = lineupCells[0].match(/\d+/);
+				if ( ripDate ) {
+					ripInfo = " (R.I.P. " + ripDate[0] + ")";
+				} else {
+					ripInfo = " (R.I.P.)";
+				}
+				lineupCells[0] = lineupCells[0].replace(ripPattern, "");
+				//console.log("THE PAST IS ALIVE!!! " + ripDate);
+			}
+
+			if ( lineupRow.classList.contains("lineupRow") ) {
+				let musician = lineupCells.join(" - ");
+				completeLineup.push(musician + ripInfo);
+			} else if ( lineupRow.classList.contains("lineupBandsRow") ) {
+				lineupCells = lineupCells.map(lineupCell => " [l]" + lineupCell.replace(seeAlsoPattern, "") + "[/l]");
+				completeLineup.push(completeLineup.pop() + ripInfo + lineupCells.join());
+			} else {
+				completeLineup.push(lineupCells.join());
+			}
+
+		});
+
+		if ( regexTest[3] || regexTest[4] ) { /* If Lineup - (Live) */
+			completeLineup.push(completeLineup.pop() + "\n[/muzycy-live]");
+		} else if ( regexTest[2] ) { /* If Lineup - Past */
+			completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
+		}
+
+		let completeLineupString = completeLineup.join("\n");
+		completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
+
+		const lineupPattern = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
+		if ( output.value.match(lineupPattern) ) {
+			console.log("Updating lineup...");
+			console.log(output.value.match(lineupPattern));
+			output.value = output.value.replace(lineupPattern, completeLineupString + "\n\n");
+		} else {
+			output.value += "\n\n" + completeLineupString;
+		}
+
+		console.log(completeLineupString);
 
 	} catch (error) {
 		console.error("Error fetching the page:", error);
@@ -756,44 +758,44 @@ async function addDiscography(url, output) {
 			return;
 		}
 
-			let completeDiscography = [];
-			let discographyRows = discographyTable.querySelectorAll("tbody tr");
+		let completeDiscography = [];
+		let discographyRows = discographyTable.querySelectorAll("tbody tr");
 
-			completeDiscography.push("[t]Dyskografia:[/t]");
+		completeDiscography.push("[t]Dyskografia:[/t]");
 
-			discographyRows.forEach(discographyRow => {
+		discographyRows.forEach(discographyRow => {
 
-				discographyRow.innerHTML = discographyRow.innerHTML.trim(); /* Trim spaces around row */
-				let discographyCells = Array.from(discographyRow.querySelectorAll("td")).map(td => td.textContent.trim()); /* Trim spaces in <td> */
-				let release = "";
+			discographyRow.innerHTML = discographyRow.innerHTML.trim(); /* Trim spaces around row */
+			let discographyCells = Array.from(discographyRow.querySelectorAll("td")).map(td => td.textContent.trim()); /* Trim spaces in <td> */
+			let release = "";
 
-				if ( discographyCells[1] == "Full-length" ) {
-					release = "[w-album]" + discographyCells[2] + " - " + discographyCells[0] + "[/w-album]";
-				} else if ( discographyCells[1] == "Demo" ) {
-					release = "[w-demo]" + discographyCells[2] + " - " + discographyCells[0] + " [" + discographyCells[1].toLowerCase() + "]" + "[/w-demo]";
-				} else if ( discographyCells[1] == "EP" || discographyCells[1] == "Collaboration" ) {
-					release = "[w-norm]" + discographyCells[2] + " - " + discographyCells[0] + " [" + discographyCells[1] + "]" + "[/w-norm]";
-				} else {
-					release = "[w-other]" + discographyCells[2] + " - " + discographyCells[0] + " [" + discographyCells[1].toLowerCase() + "]" + "[/w-other]";
-				}
-
-				completeDiscography.push(release);
-
-			});
-
-			let completeDiscographyString = completeDiscography.join("\n");
-			completeDiscographyString = completeDiscographyString.replaceAll("[live album]", "[live]").replaceAll("[Collaboration]", "[kolaboracja]").replaceAll("[compilation]", "[kompilacja]");
-
-			const discographyPattern = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/;
-			if ( output.value.match(discographyPattern) ) {
-				console.log("Updating discography...");
-				console.log(output.value.match(discographyPattern));
-				output.value = output.value.replace(discographyPattern, completeDiscographyString + "\n\n");
+			if ( discographyCells[1] == "Full-length" ) {
+				release = "[w-album]" + discographyCells[2] + " - " + discographyCells[0] + "[/w-album]";
+			} else if ( discographyCells[1] == "Demo" ) {
+				release = "[w-demo]" + discographyCells[2] + " - " + discographyCells[0] + " [" + discographyCells[1].toLowerCase() + "]" + "[/w-demo]";
+			} else if ( discographyCells[1] == "EP" || discographyCells[1] == "Collaboration" ) {
+				release = "[w-norm]" + discographyCells[2] + " - " + discographyCells[0] + " [" + discographyCells[1] + "]" + "[/w-norm]";
 			} else {
-				output.value += "\n\n" + completeDiscographyString;
+				release = "[w-other]" + discographyCells[2] + " - " + discographyCells[0] + " [" + discographyCells[1].toLowerCase() + "]" + "[/w-other]";
 			}
 
-			console.log(completeDiscographyString);
+			completeDiscography.push(release);
+
+		});
+
+		let completeDiscographyString = completeDiscography.join("\n");
+		completeDiscographyString = completeDiscographyString.replaceAll("[live album]", "[live]").replaceAll("[Collaboration]", "[kolaboracja]").replaceAll("[compilation]", "[kompilacja]");
+
+		const discographyPattern = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/;
+		if ( output.value.match(discographyPattern) ) {
+			console.log("Updating discography...");
+			console.log(output.value.match(discographyPattern));
+			output.value = output.value.replace(discographyPattern, completeDiscographyString + "\n\n");
+		} else {
+			output.value += "\n\n" + completeDiscographyString;
+		}
+
+		console.log(completeDiscographyString);
 
 	} catch (error) {
 		console.error("Error fetching the page:", error);
