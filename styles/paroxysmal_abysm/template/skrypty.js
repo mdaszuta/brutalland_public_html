@@ -702,14 +702,11 @@ async function addLineup(url, output) {
 
 				if ( lineupRow.classList.contains("lineupRow") ) {
 					let musician = lineupCells.join(" - ");
-					//console.log("musician: " + musician);
 					completeLineup.push(musician + ripInfo);
-				}
-				else if ( lineupRow.classList.contains("lineupBandsRow") ) {
+				} else if ( lineupRow.classList.contains("lineupBandsRow") ) {
 					lineupCells = lineupCells.map(lineupCell => " [l]" + lineupCell.replace(seeAlsoPattern, "") + "[/l]");
 					completeLineup.push(completeLineup.pop() + ripInfo + lineupCells.join());
-				}
-				else {
+				} else {
 					completeLineup.push(lineupCells.join());
 				}
 
