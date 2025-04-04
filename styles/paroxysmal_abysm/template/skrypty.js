@@ -720,9 +720,17 @@ async function addLineup(url, output) {
 
 			//completeLineup.push("[/lineup]");
 
-			let completeLineupString = "\n\n" + completeLineup.join("\n");
-			output.value += completeLineupString;
+			let completeLineupString = completeLineup.join("\n");
 			completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
+
+			const lineupPattern = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
+			if ( output.value.match(lineupPattern) ) {
+				console.log("Updating lineup...");
+				console.log(output.value.match(lineupPattern));
+				output.value = output.value.replace(lineupPattern, completeLineupString + "\n\n");
+			} else {
+				output.value += "\n\n" + completeLineupString;
+			}
 
 			console.log(completeLineupString);
 
@@ -782,9 +790,18 @@ async function addDiscography(url, output) {
 
 			//completeDiscography.push("[/discography]");
 
-			let completeDiscographyString = "\n\n" + completeDiscography.join("\n");
+			let completeDiscographyString = completeDiscography.join("\n");
 			completeDiscographyString = completeDiscographyString.replaceAll("[live album]", "[live]").replaceAll("[Collaboration]", "[kolaboracja]").replaceAll("[compilation]", "[kompilacja]");
-			output.value += completeDiscographyString;
+
+			const discographyPattern = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/;
+			if ( output.value.match(discographyPattern) ) {
+				console.log("Updating discography...");
+				console.log(output.value.match(discographyPattern));
+				output.value = output.value.replace(discographyPattern, completeDiscographyString + "\n\n");
+			} else {
+				output.value += "\n\n" + completeDiscographyString;
+			}
+
 			console.log(completeDiscographyString);
 
 	} catch (error) {
