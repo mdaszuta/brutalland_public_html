@@ -1215,6 +1215,13 @@ dd.lastpost > span {
 	cursor: pointer;
 }
 
+/* Change cursor when improtant scripts are running */
+
+body.waiting,
+body.waiting * {
+	cursor: progress !important;
+}
+
 .postbody,
 .topicreview .postbody {
 	margin-top: 5px;

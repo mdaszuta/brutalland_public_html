@@ -596,6 +596,16 @@ async function fetchPage(url) {
 
 }
 
+/* PROGRESS CURSOR */
+
+function showProgressCursor() {
+	document.body.classList.add('waiting');
+}
+  
+function hideProgressCursor() {
+	document.body.classList.remove('waiting');
+}
+
 /* LINEUP */
 
 async function addLineup(url, output) {
@@ -717,11 +727,11 @@ async function addLineup(url, output) {
 		let completeLineupString = completeLineup.join("\n");
 		completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
 
-		const lineupPattern = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
-		if ( output.value.match(lineupPattern) ) {
+		const lineupPatternToUpdate = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
+		if ( output.value.match(lineupPatternToUpdate) ) {
 			console.log("Updating lineup...");
-			console.log(output.value.match(lineupPattern));
-			output.value = output.value.replace(lineupPattern, completeLineupString + "\n\n");
+			console.log(output.value.match(lineupPatternToUpdate)[0]);
+			output.value = output.value.replace(lineupPatternToUpdate, completeLineupString + "\n\n");
 		} else {
 			output.value += "\n\n" + completeLineupString;
 		}
@@ -784,11 +794,11 @@ async function addDiscography(url, output) {
 		let completeDiscographyString = completeDiscography.join("\n");
 		completeDiscographyString = completeDiscographyString.replaceAll("[live album]", "[live]").replaceAll("[Collaboration]", "[kolaboracja]").replaceAll("[compilation]", "[kompilacja]");
 
-		const discographyPattern = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/;
-		if ( output.value.match(discographyPattern) ) {
+		const discographyPatternToUpdate = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/; /* *? - so it looks for shortest string match */
+		if ( output.value.match(discographyPatternToUpdate) ) {
 			console.log("Updating discography...");
-			console.log(output.value.match(discographyPattern));
-			output.value = output.value.replace(discographyPattern, completeDiscographyString + "\n\n");
+			console.log(output.value.match(discographyPatternToUpdate)[0]);
+			output.value = output.value.replace(discographyPatternToUpdate, completeDiscographyString + "\n\n");
 		} else {
 			output.value += "\n\n" + completeDiscographyString;
 		}
@@ -836,6 +846,8 @@ async function addBandInfo() {
 			addBandInfo.value = url;
 		}
 
+		showProgressCursor();
+
 		/* Call automatic adding of lineup, discography and link to MA - in correct sequence */
 		try {
 			await addLineup(url, output);
@@ -843,6 +855,8 @@ async function addBandInfo() {
 			addLinkToMA(url, output);
 		} catch (error) {
 			console.error("Error adding band info:", error);
+		} finally {
+			hideProgressCursor();
 		}
 		
 		addBandInfo.blur();
