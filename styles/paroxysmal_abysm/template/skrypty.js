@@ -613,8 +613,6 @@ async function addLineup(url, output) {
 		}
 
 			const lineupTableString = lineupTable.outerHTML;
-			/*console.log(lineupTableString);*/
-
 			let completeLineup = [];
 			let lineupRows = lineupTable.querySelectorAll("tr");
 
@@ -640,8 +638,6 @@ async function addLineup(url, output) {
 			}
 
 			console.log("regexTest: " + regexTest.toString());
-
-			//completeLineup.push("[lineup]");
 
 			if ( !regexTest[0] && !regexTest[1] ) { /* If no lineupHeaders */
 				if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
@@ -718,8 +714,6 @@ async function addLineup(url, output) {
 				completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
 			}
 
-			//completeLineup.push("[/lineup]");
-
 			let completeLineupString = completeLineup.join("\n");
 			completeLineupString = completeLineupString.replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
 
@@ -765,7 +759,6 @@ async function addDiscography(url, output) {
 			let completeDiscography = [];
 			let discographyRows = discographyTable.querySelectorAll("tbody tr");
 
-			//completeDiscography.push("[discography]");
 			completeDiscography.push("[t]Dyskografia:[/t]");
 
 			discographyRows.forEach(discographyRow => {
@@ -787,8 +780,6 @@ async function addDiscography(url, output) {
 				completeDiscography.push(release);
 
 			});
-
-			//completeDiscography.push("[/discography]");
 
 			let completeDiscographyString = completeDiscography.join("\n");
 			completeDiscographyString = completeDiscographyString.replaceAll("[live album]", "[live]").replaceAll("[Collaboration]", "[kolaboracja]").replaceAll("[compilation]", "[kompilacja]");
@@ -841,8 +832,7 @@ async function addBandInfo() {
 			addBandInfo.value = url;
 		}
 
-		/* Call automatic adding of lineup, discography and link to MA in correct sequence */
-		/*addLineup(url, output).then(() => addDiscography(url, output).then(() => addLinkToMA(url, output)));*/
+		/* Call automatic adding of lineup, discography and link to MA - in correct sequence */
 		try {
 			await addLineup(url, output);
 			await addDiscography(url, output);
