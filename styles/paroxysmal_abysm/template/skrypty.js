@@ -599,11 +599,11 @@ async function fetchPage(url) {
 /* PROGRESS CURSOR */
 
 function showProgressCursor() {
-	document.body.classList.add('waiting');
+	document.body.classList.add('function-in-progress');
 }
   
 function hideProgressCursor() {
-	document.body.classList.remove('waiting');
+	document.body.classList.remove('function-in-progress');
 }
 
 /* LINEUP */

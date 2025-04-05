@@ -1217,8 +1217,8 @@ dd.lastpost > span {
 
 /* Change cursor when improtant scripts are running */
 
-body.waiting,
-body.waiting * {
+body.function-in-progress,
+body.function-in-progress * {
 	cursor: progress !important;
 }
 
