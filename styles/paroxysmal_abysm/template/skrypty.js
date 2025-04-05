@@ -563,6 +563,18 @@ function bandInfo() {
 * KONIEC - Wklejanie dyskografii i składu pół-automat - KONIEC
 */
 
+/* PROGRESS CURSOR */
+
+function showProgressCursor() {
+	document.body.classList.add('function-in-progress');
+}
+  
+function hideProgressCursor() {
+	document.body.classList.remove('function-in-progress');
+}
+
+/* CHECK FOR MA URL IN MESSAGE TEXTAREA */
+
 document.addEventListener("DOMContentLoaded", () => {
 
 	"use strict";
@@ -594,16 +606,6 @@ async function fetchPage(url) {
     const text = await response.text();
 	return new DOMParser().parseFromString(text, "text/html");
 
-}
-
-/* PROGRESS CURSOR */
-
-function showProgressCursor() {
-	document.body.classList.add('function-in-progress');
-}
-  
-function hideProgressCursor() {
-	document.body.classList.remove('function-in-progress');
 }
 
 /* LINEUP */
