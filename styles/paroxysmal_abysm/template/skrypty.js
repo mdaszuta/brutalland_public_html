@@ -614,13 +614,23 @@ function getTrimmedCellValues(row) {
 
 /* LINEUP */
 
-async function addLineup(url, output) {
+let fetchLineup;
+let fetchDiscography;
+
+async function addLineup(url, output, update) {
 
 	"use strict";
 
 	try {
 		/* Fetch the page content using CORS proxy and find the lineup table */
+		const fetchStart = performance.now();
+
 		const docLineup = await fetchPage(url);
+
+		const fetchEnd = performance.now();
+		fetchLineup = fetchEnd - fetchStart;
+		console.log(`Fetch lineup execution time: ${fetchEnd - fetchStart} ms`);
+
 		const lineupTable = docLineup.querySelector("#band_members table.lineupTable");
 
 		if ( !lineupTable ) {
@@ -634,11 +644,11 @@ async function addLineup(url, output) {
 
 		/* Definition of regex patterns */
 		const patterns = {
-			current: /(<td colspan="2" align="right">\s*Current\s*<\/td>|<td colspan="2" align="right">\s*Current lineup\s*<\/td>)/,
-			lastKnown: /(<td colspan="2" align="right">\s*Last known\s*<\/td>|<td colspan="2" align="right">\s*Last known lineup\s*<\/td>)/,
+			current: /<td colspan="2" align="right">\s*Current(?: lineup)?\s*<\/td>/,
+			lastKnown: /<td colspan="2" align="right">\s*Last known(?: lineup)?\s*<\/td>/,
 			past: /<td colspan="2" align="right">\s*Past\s*<\/td>/,
 			currentLive: /<td colspan="2" align="right">\s*Current\s*\(Live\)\s*<\/td>/,
-			pastLive: /(<td colspan="2" align="right">\s*Past\s*\(Live\)\s*<\/td>)|(<td colspan="2" align="right">\s*Last known\s*\(Live\)\s*<\/td>)/,
+			pastLive: /<td colspan="2" align="right">\s*(?:Past|Last known)\s*\(Live\)\s*<\/td>/,
 			seeAlso: /^See also:\s+/,
 			rip: /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/
 		};
@@ -654,7 +664,7 @@ async function addLineup(url, output) {
 
 		console.log("Header pattern existence check:", headerPatternExists);
 
-		if ( !headerPatternExists.current && !headerPatternExists.lastKnown ) { /* If no lineupHeaders */
+		if ( !headerPatternExists.current && !headerPatternExists.lastKnown ) {
 			if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
 				completeLineup.push("[t]Ostatni skład:[/t]");
 			} else {
@@ -726,7 +736,8 @@ async function addLineup(url, output) {
 		const completeLineupString = completeLineup.join("\n").replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
 
 		const lineupPatternToUpdate = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
-		if ( output.value.match(lineupPatternToUpdate) ) {
+
+		if ( update && output.value.match(lineupPatternToUpdate) ) {
 			console.log("Updating lineup...");
 			console.log(output.value.match(lineupPatternToUpdate)[0]);
 			output.value = output.value.replace(lineupPatternToUpdate, completeLineupString + "\n\n");
@@ -743,7 +754,7 @@ async function addLineup(url, output) {
 
 /* DISCOGRAPHY */
 
-async function addDiscography(url, output) {
+async function addDiscography(url, output, update) {
 
 	"use strict";
 
@@ -753,7 +764,14 @@ async function addDiscography(url, output) {
 		console.log("Discography URL:", urlDiscography);
 
 		/* Fetch the page content using CORS proxy and find the discography table */
+		const fetchStart = performance.now();
+
 		const docDiscography = await fetchPage(urlDiscography);
+
+		const fetchEnd = performance.now();
+		fetchDiscography = fetchEnd - fetchStart;
+		console.log(`Fetch discography execution time: ${fetchEnd - fetchStart} ms`);
+
 		const discographyTable = docDiscography.querySelector(".discog");
 
 		if ( !discographyTable ) {
@@ -807,7 +825,8 @@ async function addDiscography(url, output) {
 		}
 
 		const discographyPatternToUpdate = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/; /* *? - so it looks for shortest string match */
-		if ( discographyPatternToUpdate.test(output.value) ) {
+
+		if ( update && discographyPatternToUpdate.test(output.value) ) {
 			console.log("Updating discography...");
 			console.log(output.value.match(discographyPatternToUpdate)[0]);
 			output.value = output.value.replace(discographyPatternToUpdate, completeDiscographyString + "\n\n");
@@ -832,12 +851,11 @@ function addLinkToMA(url, output) {
 		output.value += "\n\nMA: " + url;
 	} else {
 		console.log("Link to MA is already in the topic.");
-		/*output.value = output.value.replace("\n\nMA: " + url, "");*/
 	}
 
 }
 
-async function addBandInfo() {
+async function addBandInfo(update) {
 
 	"use strict";
 
@@ -865,8 +883,8 @@ async function addBandInfo() {
 
 	/* Call automatic adding of lineup, discography and link to MA - in correct sequence */
 	try {
-		await addLineup(url, output);
-		await addDiscography(url, output);
+		await addLineup(url, output, update);
+		await addDiscography(url, output, update);
 		addLinkToMA(url, output);
 	} catch (error) {
 		console.error("Error adding band info:", error);
@@ -878,5 +896,6 @@ async function addBandInfo() {
 
 	const stoperEnd = performance.now();
 	console.log(`Execution time: ${stoperEnd - stoperStart} ms`);
+	console.log(`Execution time without fetch times: ${stoperEnd - stoperStart - fetchLineup - fetchDiscography} ms`);
 
 }
