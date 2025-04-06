@@ -563,86 +563,106 @@ function bandInfo() {
 * KONIEC - Wklejanie dyskografii i składu pół-automat - KONIEC
 */
 
-/* PROGRESS CURSOR */
+/* PROGRESS CURSOR HANDLING
+* Adds or removes a CSS class to signal that a function is in progress.
+*/
 
 function showProgressCursor() {
+	/* Add a CSS class to change the cursor or display a loading animation */
 	document.body.classList.add('function-in-progress');
 }
   
 function hideProgressCursor() {
+	/* Remove the CSS class to return to the normal cursor */
 	document.body.classList.remove('function-in-progress');
 }
 
-/* CHECK FOR MA URL IN MESSAGE TEXTAREA */
+/* CHECK FOR MA URL IN MESSAGE TEXTAREA
+* On DOMContentLoaded, this script looks for a Metal Archives URL within the message textarea and, if found, pre-fills the input field with that URL.
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
-
 	"use strict";
 
-	const addBandInfo = document.getElementById("add-band-info");
+	/* Get DOM elements for the band info input and the message textarea */
+	const addBandInfoInput = document.getElementById("add-band-info");
 	const messageElement = document.getElementById("message");
-	if ( !addBandInfo || !messageElement ) return;
+	if ( !addBandInfoInput || !messageElement ) return;
 
+	/* Retrieve the current message and look for a MA URL pattern */
 	const messageValue = messageElement.value ?? "";
 	const match = messageValue.match(/^MA: (https:\/\/www\.metal-archives\.com\/bands\/[^/]+\/\d+)/m);
 	if ( !match ) return;
 
+	/* Extract the matched URL and set it in the input field */
 	const matchValue = match[1];
 	console.log("MA: " + matchValue);
-	addBandInfo.setAttribute("value", matchValue);
+	addBandInfoInput.setAttribute("value", matchValue);
 
 });
 
-/* FETCH */
+/* FETCH PAGE VIA CORS PROXY
+* Fetches an HTML document using a CORS proxy and parses it into a DOM.
+*/
 
 async function fetchPage(url) {
-
 	"use strict";
 
-    const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
-    if ( !response.ok ) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+	/* Request the URL via a CORS proxy. */
+	const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+	if ( !response.ok ) {
+		/* Throw an error if the response is not OK. */
+		throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    const text = await response.text();
+	const text = await response.text();
+	/* Parse the HTML text into a document. */
 	return new DOMParser().parseFromString(text, "text/html");
 
 }
 
+/* UTILITY: GET TRIMMED CELL VALUES
+* Returns an array of trimmed text content from all <td> elements in a given row.
+*/
+
 function getTrimmedCellValues(row) {
+	/* Use Array.from to convert NodeList of <td> elements to array and map each <td>'s text. */
 	return Array.from(row.querySelectorAll("td")).map(td => td.textContent.trim());
 }
 
-/* LINEUP */
+/* ADD LINEUP
+* Fetches and formats band lineup table. Handles both current and past member lists.
+*/
 
-let fetchLineup;
-let fetchDiscography;
+let fetchLineup = 0;
 
 async function addLineup(url, output, update) {
-
 	"use strict";
 
 	try {
-		/* Fetch the page content using CORS proxy and find the lineup table */
+		/* Record the start time before fetching the lineup page */
 		const fetchStart = performance.now();
 
+		/* Fetch the band page content using the CORS proxy */
 		const docLineup = await fetchPage(url);
 
+		/* Record the end time and compute the fetch duration */
 		const fetchEnd = performance.now();
 		fetchLineup = fetchEnd - fetchStart;
 		console.log(`Fetch lineup execution time: ${fetchEnd - fetchStart} ms`);
 
+		/* Locate the lineup table within the document */
 		const lineupTable = docLineup.querySelector("#band_members table.lineupTable");
-
 		if ( !lineupTable ) {
 			console.log("Lineup table not found.");
 			return;
 		}
 
+		/* Convert the table's HTML to a string for regex processing */
 		const lineupTableString = lineupTable.outerHTML;
 		const completeLineup = [];
 		const lineupRows = lineupTable.querySelectorAll("tr");
 
-		/* Definition of regex patterns */
+		/* Definition of regex patterns for detecting header types and special cases */
 		const patterns = {
 			current: /<td colspan="2" align="right">\s*Current(?: lineup)?\s*<\/td>/,
 			lastKnown: /<td colspan="2" align="right">\s*Last known(?: lineup)?\s*<\/td>/,
@@ -653,7 +673,7 @@ async function addLineup(url, output, update) {
 			rip: /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/
 		};
 	
-		/* Checking for regex patterns in headers */
+		/* Check which header patterns exist in the lineup table */
 		const headerPatternExists = {
 			current: patterns.current.test(lineupTableString),
 			lastKnown: patterns.lastKnown.test(lineupTableString),
@@ -664,6 +684,7 @@ async function addLineup(url, output, update) {
 
 		console.log("Header pattern existence check:", headerPatternExists);
 
+		/* If no "current" or "last known" headers exist, add a default header based on band status */
 		if ( !headerPatternExists.current && !headerPatternExists.lastKnown ) {
 			if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
 				completeLineup.push("[t]Ostatni skład:[/t]");
@@ -672,8 +693,10 @@ async function addLineup(url, output, update) {
 			}
 		}
 
+		/* Process each row in the lineup table */
 		lineupRows.forEach(lineupRow => {
 
+			/* If the row is a header row, update its content based on the detected header type */
 			if ( lineupRow.classList.contains("lineupHeaders") ) {
 
 				if ( headerPatternExists.current ) {
@@ -702,41 +725,51 @@ async function addLineup(url, output, update) {
 
 			}
 
+			/* Trim any leading/trailing whitespace from the row's HTML */
 			lineupRow.innerHTML = lineupRow.innerHTML.trim();
+			/* Extract trimmed text from each cell in the row */
 			const lineupCells = getTrimmedCellValues(lineupRow);
 			let ripInfo = "";
 			/* console.log(lineupCells); */
 
+			/* If the first cell contains R.I.P. information, extract and format it */
 			if ( patterns.rip.test(lineupCells[0]) ) {
 				const ripDate  = lineupCells[0].match(/\d+/);
 				ripInfo = ripDate ? " (R.I.P. " + ripDate[0] + ")" : " (R.I.P.)";
+				/* Remove the R.I.P. segment from the cell text */
 				lineupCells[0] = lineupCells[0].replace(patterns.rip, "");
 				/*console.log("THE PAST IS ALIVE!!! " + ripDate);*/
 			}
 
+			/* Format the row based on its type and add it to the complete lineup */
 			if ( lineupRow.classList.contains("lineupRow") ) {
-				/* musician - instrument (start date - end date) (R.I.P. year) */
+				/* Basic lineup row: musician - instrument (start date - end date) (R.I.P. year) */
 				completeLineup.push(lineupCells.join(" - ") + ripInfo);
 			} else if ( lineupRow.classList.contains("lineupBandsRow") ) {
-				/* musician - instrument (start date - end date) (R.I.P. year) [l]past bands[/l] */
+				/* Additional bands row: append extra information (e.g., [l]past bands[/l]) */
 				const otherBands = lineupCells.map(lineupCell => " [l]" + lineupCell.replace(patterns.seeAlso, "") + "[/l]");
 				completeLineup.push(completeLineup.pop() + ripInfo + otherBands.join());
 			} else {
+				/* Fallback: join all cells with default formatting */
 				completeLineup.push(lineupCells.join());
 			}
 
 		});
 
+		/* Append closing tags for live or past member sections if applicable */
 		if ( headerPatternExists.currentLive || headerPatternExists.pastLive ) {
 			completeLineup.push(completeLineup.pop() + "\n[/muzycy-live]");
 		} else if ( headerPatternExists.past ) {
 			completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
 		}
 
+		/* Combine all lineup rows into a single formatted string and clean up spacing */
 		const completeLineupString = completeLineup.join("\n").replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
 
+		/* Regex to detect an existing lineup block in the output message */
 		const lineupPatternToUpdate = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
 
+		/* If update mode is enabled and an existing lineup block is found, replace it; otherwise, append the new lineup */
 		if ( update && output.value.match(lineupPatternToUpdate) ) {
 			console.log("Updating lineup...");
 			console.log(output.value.match(lineupPatternToUpdate)[0]);
@@ -748,32 +781,38 @@ async function addLineup(url, output, update) {
 		console.log(completeLineupString);
 
 	} catch (error) {
+		/* Log any errors that occur during fetching or processing */
 		console.error("Error fetching the page:", error);
 	}
 }
 
-/* DISCOGRAPHY */
+/* ADD DISCOGRAPHY
+* Fetches and formats the band's discography table and updates the output message.
+*/
+
+let fetchDiscography = 0;
 
 async function addDiscography(url, output, update) {
-
 	"use strict";
 
 	try {
-		/* Create a link to band discography table */
+		/* Build the discography table URL by modifying the base band URL */
 		const urlDiscography = url.replace(/\/bands\/.*\//, "/band/discography/id/") + "/tab/all/";
 		console.log("Discography URL:", urlDiscography);
 
-		/* Fetch the page content using CORS proxy and find the discography table */
+		/* Record the start time for fetching the discography */
 		const fetchStart = performance.now();
 
+		/* Fetch the discography page via the CORS proxy */
 		const docDiscography = await fetchPage(urlDiscography);
 
+		/* Compute and log the fetch duration */
 		const fetchEnd = performance.now();
 		fetchDiscography = fetchEnd - fetchStart;
 		console.log(`Fetch discography execution time: ${fetchEnd - fetchStart} ms`);
 
+		/* Locate the discography table in the document */
 		const discographyTable = docDiscography.querySelector(".discog");
-
 		if ( !discographyTable ) {
 			console.log("Discography table not found.");
 			return;
@@ -785,13 +824,7 @@ async function addDiscography(url, output, update) {
 		const completeDiscography = [];
 		const discographyRows = discographyTable.querySelectorAll("tbody tr");
 
-		const replacements = {
-			"[ep]": "[EP]",
-			"[live album]": "[live]",
-			"[collaboration]": "[kolaboracja]",
-			"[compilation]": "[kompilacja]"
-		};
-
+		/* Mapping for release types to corresponding BBCode tags */
 		const releaseTypeBBCode = {
 			"Full-length": "w-album",
 			"Demo": "w-demo",
@@ -799,33 +832,51 @@ async function addDiscography(url, output, update) {
 			"Collaboration": "w-norm"
 		};
 
+		/* Replacements to clean up specific text patterns in the output */
+		const replacements = {
+			"[ep]": "[EP]",
+			"[live album]": "[live]",
+			"[collaboration]": "[kolaboracja]",
+			"[compilation]": "[kompilacja]"
+		};
+
+		/* Add a header for the discography section */
 		completeDiscography.push("[t]Dyskografia:[/t]");
 
+		/* Process each row in the discography table */
 		discographyRows.forEach(discographyRow => {
 
 			discographyRow.innerHTML = discographyRow.innerHTML.trim();
 			const discographyCells = getTrimmedCellValues(discographyRow);
 
-			const releaseType = discographyCells[1];
+			/* Extract release details: year, title and type */
 			const releaseYear = discographyCells[2];
 			const releaseTitle = discographyCells[0];
+			const releaseType = discographyCells[1];
 
+			/* Determine the appropriate BBCode tag for the release type */
 			const bbcode = releaseTypeBBCode[releaseType] || "w-other";
+			/* If not a full-length album, add the release type in lowercase */
 			const type = ( bbcode === "w-album" ) ? "" : ` [${releaseType.toLowerCase()}]`
 
+			/* Construct the formatted release string */
 			const release = `[${bbcode}]${releaseYear} - ${releaseTitle}${type}[/${bbcode}]`;
 
 			completeDiscography.push(release);
 
 		});
 
+		/* Combine all release strings into a single discography string */
 		let completeDiscographyString = completeDiscography.join("\n");
+		/* Apply replacements for any legacy formatting issues */
 		for ( const [search, replace] of Object.entries(replacements) ) {
 			completeDiscographyString = completeDiscographyString.replaceAll(search, replace);
 		}
 
-		const discographyPatternToUpdate = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/; /* *? - so it looks for shortest string match */
+		/* Regex to detect an existing discography block in the output message (*? - so it looks for shortest string match instead of longest) */
+		const discographyPatternToUpdate = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/;
 
+		/* If update mode is enabled and a discography block exists, replace it; otherwise, append the new discography */
 		if ( update && discographyPatternToUpdate.test(output.value) ) {
 			console.log("Updating discography...");
 			console.log(output.value.match(discographyPatternToUpdate)[0]);
@@ -837,16 +888,19 @@ async function addDiscography(url, output, update) {
 		console.log(completeDiscographyString);
 
 	} catch (error) {
+		/* Log errors encountered during fetching or processing */
 		console.error("Error fetching the page:", error);
 	}
 }
 
-/* LINK TO MA */
+/* ADD LINK TO METAL ARCHIVES
+* Appends a "MA: <url>" line to the message if it's not already present.
+*/
 
 function addLinkToMA(url, output) {
-
 	"use strict";
 
+	/* Check if the output already includes this exact MA link; if not, add it */
 	if ( !output.value.match("MA: " + url) ) {
 		output.value += "\n\nMA: " + url;
 	} else {
@@ -855,28 +909,29 @@ function addLinkToMA(url, output) {
 
 }
 
-/* CHECK FOR BD LINKS */
+/* CHECK FOR BANDCAMP LINKS
+* Finds Bandcamp album links in the message, converts them to general /music links, and appends them to the message if not already present.
+*/
 
 function checkForBandcampLinks(output) {
-
 	"use strict";
 
-	/* Get the current message value from the output element. */
+	/* Get the current message value */
 	const messageValue = output.value ?? "";
-	/* Define a regex to capture Bandcamp album links. */
+	/* Define a regex to capture Bandcamp album links */
 	const bandcampPattern = /(https:\/\/[^/]+\.bandcamp\.com\/)album\/[^/\s]+/g;
 
-	/* Find all Bandcamp album links in the message. */
-	let matches = messageValue.match(bandcampPattern);
+	/* Find all Bandcamp album links in the message */
+	const matches = messageValue.match(bandcampPattern);
 	if ( !matches ) return;
 
 	console.log("BC:", matches);
 
-	/* Process each found link. */
+	/* Process each found link */
 	matches.forEach(match => {
-		/* Replace the album part with "music" using the captured base URL. */
+		/* Replace the "album" segment with "music" using the captured base URL. */
 		const transformed = match.replace(bandcampPattern, "$1music");
-		/* Only add the transformed link if it doesn't already exist in the message (prefixed by "BC: "). */
+		/* Only add the transformed link if it's not already in the output (prefixed with "BC: "). */
 		if (!output.value.includes("BC: " + transformed)) {
 			output.value += "\nBC: " + transformed;
 		}
@@ -884,46 +939,58 @@ function checkForBandcampLinks(output) {
 
 }
 
-async function addBandInfo(update) {
+/* ADD BAND INFO
+* Orchestrates the fetching and updating of band lineup, discography, MA link, and Bandcamp links. Handles URL cleanup, error logging, progress indication, and performance measurement.
+*/
 
+async function addBandInfo(update) {
 	"use strict";
 
+	/* Record the starting time for performance logging */
 	const stoperStart = performance.now();
 
-	const addBandInfo = document.getElementById("add-band-info");
-	let url = addBandInfo.value;
+	/* Get the input field and output message elements */
+	const addBandInfoInput = document.getElementById("add-band-info");
+	let url = addBandInfoInput.value;
 	const output = document.getElementById("message");
+	if ( !output ) return;
 
+	/* Validate that the URL matches the expected Metal Archives band URL pattern */
 	const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\/[^/]+\/\d+/;
 	if ( !metallumPattern.test(url) ) {
 		console.log("Incorrect link.");
 		return;
 	}
 
-	/* Check for hash in url and if there is one, trim it */
+	/* Check for hash in url (like #tabs) and if there is one, trim it */
 	const hashPattern = /#.*$/;
 	if ( hashPattern.test(url) ) {
 		console.log("Link has hash and is being trimmed.");
 		url = url.replace(hashPattern, "");
-		addBandInfo.value = url;
+		addBandInfoInput.value = url;
 	}
 
+	/* Show the progress cursor while processing */
 	showProgressCursor();
 
-	/* Call automatic adding of lineup, discography and link to MA - in correct sequence */
 	try {
+		/* Call sub-functions to fetch and add or update lineup and discography, and add MA and Bandcamp links - in correct sequence */
 		await addLineup(url, output, update);
 		await addDiscography(url, output, update);
 		addLinkToMA(url, output);
 		checkForBandcampLinks(output);
 	} catch (error) {
+		/* Log any errors encountered during processing */
 		console.error("Error adding band info:", error);
 	} finally {
+		/* Hide the progress cursor regardless of success or failure */
 		hideProgressCursor();
 	}
-	
-	addBandInfo.blur();
 
+	/* Remove focus from the input field */
+	addBandInfoInput.blur();
+
+	/* Record and log the total execution time with and without fetching pages */
 	const stoperEnd = performance.now();
 	console.log(`Execution time: ${stoperEnd - stoperStart} ms`);
 	console.log(`Execution time without fetch times: ${stoperEnd - stoperStart - fetchLineup - fetchDiscography} ms`);
