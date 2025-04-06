@@ -855,6 +855,35 @@ function addLinkToMA(url, output) {
 
 }
 
+/* CHECK FOR BD LINKS */
+
+function checkForBandcampLinks(output) {
+
+	"use strict";
+
+	/* Get the current message value from the output element. */
+	const messageValue = output.value ?? "";
+	/* Define a regex to capture Bandcamp album links. */
+	const bandcampPattern = /(https:\/\/[^/]+\.bandcamp\.com\/)album\/[^/\s]+/g;
+
+	/* Find all Bandcamp album links in the message. */
+	let matches = messageValue.match(bandcampPattern);
+	if ( !matches ) return;
+
+	console.log("BC:", matches);
+
+	/* Process each found link. */
+	matches.forEach(match => {
+		/* Replace the album part with "music" using the captured base URL. */
+		const transformed = match.replace(bandcampPattern, "$1music");
+		/* Only add the transformed link if it doesn't already exist in the message (prefixed by "BC: "). */
+		if (!output.value.includes("BC: " + transformed)) {
+			output.value += "\nBC: " + transformed;
+		}
+	});
+
+}
+
 async function addBandInfo(update) {
 
 	"use strict";
@@ -886,6 +915,7 @@ async function addBandInfo(update) {
 		await addLineup(url, output, update);
 		await addDiscography(url, output, update);
 		addLinkToMA(url, output);
+		checkForBandcampLinks(output);
 	} catch (error) {
 		console.error("Error adding band info:", error);
 	} finally {
