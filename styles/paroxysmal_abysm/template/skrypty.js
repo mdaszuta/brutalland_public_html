@@ -612,7 +612,7 @@ async function fetchPage(url) {
 	if ( !response.ok ) {
 		/* Throw an error if the response is not OK. */
 		throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+	}
 	const text = await response.text();
 	/* Parse the HTML text into a document. */
 	return new DOMParser().parseFromString(text, "text/html");
@@ -915,27 +915,40 @@ function addLinkToMA(url, output) {
 function checkForBandcampLinks(output) {
 	"use strict";
 
-	/* Get the current message value */
-	const messageValue = output.value ?? "";
-	/* Define a regex to capture Bandcamp album links */
-	const bandcampPattern = /(https:\/\/[^/]+\.bandcamp\.com\/)album\/[^/\s]+/g;
+	// Get the current message value
+	let messageValue = output.value ?? "";
+	// Define a regex to capture Bandcamp album links
+	const bandcampPattern = /(https:\/\/[^/]+\.bandcamp\.com)\/album\/[^/\s]+/g;
 
-	/* Find all Bandcamp album links in the message */
+	// Find all Bandcamp album links in the message
 	const matches = messageValue.match(bandcampPattern);
-	if ( !matches ) return;
+	if (!matches) return;
 
 	console.log("BC:", matches);
 
-	/* Process each found link */
+	// Process each found link
 	matches.forEach(match => {
-		/* Replace the "album" segment with "music" using the captured base URL. */
-		const transformed = match.replace(bandcampPattern, "$1music");
-		/* Only add the transformed link if it's not already in the output (prefixed with "BC: "). */
-		if (!output.value.includes("BC: " + transformed)) {
-			output.value += "\nBC: " + transformed;
+		// Extract the base Bandcamp URL (without /album/...), then form the desired version of the link (/music instead of /album/...), lastly add "BC: " prefix
+		const baseUrl = match.replace(bandcampPattern, "$1");
+		const finalUrl = baseUrl + "/music";
+		const bandcampPage = "BC: " + finalUrl;
+
+		// Regex to find partial versions: e.g., "BC: https://band.bandcamp.com" or with trailing slash
+		// Pattern starts (^) with "BC: ", then replace slash with escaped slash for regex, escaped \/? for optional trailing slash at the end of the line ($), "m" flag for ^ and $ in multiline string
+		const partialPattern = `^BC: ${baseUrl.replace(/\//g, "\\/")}\\/?$`;
+		const partialRegex = new RegExp(partialPattern, "m");
+
+		if ( partialRegex.test(messageValue) ) {
+			// If there's a partial version, replace it with the full version
+			messageValue = messageValue.replace(partialRegex, bandcampPage);
+		} else if ( !messageValue.includes(bandcampPage) ) {
+			// Otherwise, if it's not already added, append the new /music link
+			messageValue += "\n" + bandcampPage;
 		}
 	});
 
+	// Write the final updated message back to the output
+	output.value = messageValue;
 }
 
 /* ADD BAND INFO
