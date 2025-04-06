@@ -82,9 +82,8 @@
 /**
 * Nazwa wpisywanego tematu real time, wczytuje do tytułu menu wpisywaną wartość String
 */
-	
-function showTopicNameInRealTime() {
 
+function showTopicNameInRealTime() {
 	"use strict";
 
 	document.getElementById("titleID").innerText = document.getElementById("subject").value;
@@ -94,7 +93,6 @@ function showTopicNameInRealTime() {
 /* jQuery section */
 
 $(document).ready(function(){
-
 	"use strict";
 
 	/** Function calculateMenuAllWidthOrMarginLeft calculates and sets values of .menu-all:
@@ -597,7 +595,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* Extract the matched URL and set it in the input field */
 	const matchValue = match[1];
 	console.log("MA: " + matchValue);
-	addBandInfoInput.setAttribute("value", matchValue);
+	addBandInfoInput.value = matchValue;
+	addBandInfoInput.classList.add("has-band-info-link");
 
 });
 
@@ -974,11 +973,12 @@ async function addBandInfo(update) {
 	showProgressCursor();
 
 	try {
-		/* Call sub-functions to fetch and add or update lineup and discography, and add MA and Bandcamp links - in correct sequence */
+		/* Call sub-functions to fetch and add or update lineup and discography, and add MA and Bandcamp links then shows refresh button - in correct sequence */
 		await addLineup(url, output, update);
 		await addDiscography(url, output, update);
 		addLinkToMA(url, output);
 		checkForBandcampLinks(output);
+		addBandInfoInput.classList.add("has-band-info-link");
 	} catch (error) {
 		/* Log any errors encountered during processing */
 		console.error("Error adding band info:", error);
