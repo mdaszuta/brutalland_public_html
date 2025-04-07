@@ -1837,7 +1837,7 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 }
 
 #info-box { 
-	display: none;
+	/*display: none;*/
 }
 
 .postingbox-bottom .form-box {
