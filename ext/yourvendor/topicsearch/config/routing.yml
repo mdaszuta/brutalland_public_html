@@ -1,0 +1,5 @@
+topicsearch_ajax:
+    path: /topicsearch/ajax
+    defaults:
+        _controller: 'yourvendor.topicsearch.ajax_search:handle'
+    methods: [GET]

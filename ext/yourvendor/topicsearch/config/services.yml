@@ -1,0 +1,8 @@
+services:
+  yourvendor.topicsearch.ajax_search:
+    class: yourvendor\topicsearch\controller\ajax_search
+    arguments:
+      - '@dbal.conn'
+      - '@request'
+      - '@user'
+      - '@auth'
