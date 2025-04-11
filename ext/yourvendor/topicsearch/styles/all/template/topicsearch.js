@@ -11,11 +11,12 @@ function renderResults(results, query) {
     resultBox.innerHTML = '';
     results.forEach((topic, index) => {
         const item = document.createElement('div');
-        item.className = 'flex m-row1 m-list-all autocomplete-item';
+		const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1';
+        item.className = `flex ${rowClass} m-list-all autocomplete-item`;
         item.setAttribute('data-index', index);
 		// Note: Use backticks for template literals.
         item.innerHTML = `
-			<div class="m-list-left">
+			<div class="m-list-left" onclick="window.location.href='viewtopic.php?t=${topic.id}'">
 				<a href="viewtopic.php?t=${topic.id}" tabindex="-1" class="flex topictitle m-list-left-top">
 					${highlightMatch(topic.title, query)}
 				</a>
