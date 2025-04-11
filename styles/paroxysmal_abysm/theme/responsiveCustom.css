@@ -354,6 +354,7 @@
 	}
 
 	#search-box-hide {
+		position: absolute;
 		z-index: 1001;
 	}
 
@@ -362,6 +363,10 @@
 		z-index: 1000;
 		margin-left: 45px;
 		font-weight: bold;
+	}
+
+	#mm-search .main-menu-bottom {
+		top: 3em;
 	}
 
 	#main-menu-middle {

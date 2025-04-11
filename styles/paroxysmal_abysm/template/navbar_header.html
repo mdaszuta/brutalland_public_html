@@ -25,13 +25,16 @@
 				<div class="pagination"><!-- IF .pagination --><!-- INCLUDE pagination.html --><!-- ENDIF --></div>
 			</div>
 
-			<div id="mm-search" class="main-menu-item search-box" role="search">
+			<div id="mm-search" class="main-menu-item menu-toggle search-box" role="search">
 				<form method="get" id="search" action="{U_SEARCH}">
 						<fieldset>
-							<div class="main-menu-top">
+							<div id="mm-search-root" class="main-menu-top menu-root">
+								<input id="search-box-keywords" name="keywords" accesskey="s" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" autocomplete="off" />
+								<button id="search-box-icon" type="submit" title="{L_SEARCH}"><i class="fa fa-search"></i></button>
 								<div id="search-box-hide"><i class="fa fa-compress"></i></div>
-								<input id="search-box-keywords" name="keywords" accesskey="s" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
-								<button id="search-box-icon" type="submit" title="{L_SEARCH}"><i class="fa fa-search fa-2x"></i></button>
+							</div>
+							<div class="main-menu-bottom menu-all">
+								{% EVENT mm_search_box_after %}
 							</div>
 						</fieldset>
 				</form>

@@ -732,6 +732,10 @@ input[type="radio"] {
 	padding-right: 13px;
 }
 
+#mm-search .main-menu-top {
+	padding-right: 0;
+}
+
 #last-posts-icon {
 	width: 65px;
 }
@@ -1325,18 +1329,27 @@ dd.time {
 }
 
 .search-box {
-	position: relative;
+	/*position: relative;*/
+}
+
+#search-box-icon {
+	display: flex;
 }
 
 #search-box-hide {
 	opacity: 1;
-	display: none;
-	position: absolute;
+	/*display: none;*/
+	display: flex;
+	/*position: absolute;*/
 	right: 0px;
 	justify-content: center;
 	align-items: center;
-	padding-left: 6px;
+	padding-left: 7px;
 	padding-right: 6px;
+}
+
+#search-box-hide .fa {
+	display: none;
 }
 
 /* Headers */

@@ -154,7 +154,7 @@ $(document).ready(function(){
 			bottomMenu.fadeIn(150).css("display","flex");
 			calculateMenuAllWidthOrMarginLeft(topMenu, bottomMenu);
 		}
-		else {
+		else if ( topMenu.attr("id") != "mm-search-root" ) {
 			bottomMenu.fadeOut(0);
 		}
 
@@ -199,6 +199,7 @@ $(document).ready(function(){
 			$("#search-box-icon").data("clicks", false);
 			/*console.log("clicks searchboxa: " + $("#search-box-icon").data("clicks"));*/
 		}
+		/*$("#search-box-keywords").val("");*/
 	});
 
 	/**
@@ -238,7 +239,7 @@ $(document).ready(function(){
 
 		let searchButtonTop = $(this);
 		let searchInputbox = searchButtonTop.siblings(".inputbox");
-		let searchBoxHide = searchButtonTop.siblings("#search-box-hide");
+		let searchBoxHideIcon = searchButtonTop.siblings("#search-box-hide").children(".fa");
 		let searchForm = searchButtonTop.closest("#mm-search");
 
 		timeoutSearchBox = setTimeout( function() {
@@ -255,7 +256,7 @@ $(document).ready(function(){
 				searchInputbox.focus().animate({ width: desktopSearchInputboxWidth }, 500 );
 			}
 
-			searchBoxHide.fadeIn(500).css("display","flex");
+			searchBoxHideIcon.fadeIn(500).css("display","flex");
 
 		}, 300);
 
@@ -266,7 +267,8 @@ $(document).ready(function(){
 	$("#search-box-hide").on("click", function() {
 
 		let searchBoxHide = $(this);
-		let searchInputbox = searchBoxHide.next(".inputbox");
+		let searchBoxHideIcon = searchBoxHide.children(".fa");
+		let searchInputbox = searchBoxHide.siblings(".inputbox");
 		let searchForm = searchBoxHide.closest("#mm-search");
 
 		if ( windowWidth <= searchBreakpoint ) {
@@ -278,7 +280,7 @@ $(document).ready(function(){
 			searchInputbox.animate({ width: "0px", padding: "0" }, 500 );
 		}
 
-		searchBoxHide.fadeOut(500);
+		searchBoxHideIcon.fadeOut(500);
 
 		setTimeout( function() {
 			searchForm.css("width", "auto");
