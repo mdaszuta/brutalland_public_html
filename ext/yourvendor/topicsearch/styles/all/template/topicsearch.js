@@ -73,7 +73,7 @@ searchBox.addEventListener('input', function () {
 
     debounceTimer = setTimeout(() => {
         fetchResults(query);
-    }, 200); // 200ms delay
+    }, 150); // 150ms delay
 });
 /*
 searchBox.addEventListener('keydown', function (e) {

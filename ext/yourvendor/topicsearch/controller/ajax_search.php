@@ -27,7 +27,7 @@ class ajax_search
         // Start session and basic setup, if needed.
         // (Usually, phpBB has already initiated these in the front controller.)
 
-        header('Content-Type: application/json');
+        // header('Content-Type: application/json');
 
         // Retrieve and normalize search term.
         $q = trim((string) $this->request->variable('q', '', true));
