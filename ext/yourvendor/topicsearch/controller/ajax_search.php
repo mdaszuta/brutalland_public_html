@@ -22,14 +22,29 @@ class ajax_search
         $this->auth    = $auth;
     }
 
+    private function normalization_map()
+    {
+        return [
+            'ß' => 'ss', 'þ' => 'th', 'ƿ' => 'w', 'ð' => 'd', 'ø' => 'o', 'æ' => 'ae', 'œ' => 'oe', 'ł' => 'l', '§' => 's', 'µ' => 'u', '¡' => '!', '¿' => '?',
+        ];
+    }
+
     private function normalize_string($str)
     {
-        $map = [
-            'ß' => 'ss',
-            'ø' => 'o', 'œ' => 'o', 'ł' => 'l',
-            'Ø' => 'O', 'Œ' => 'O', 'Ł' => 'L',
-        ];
-        return strtr($str, $map);
+        return strtr($str, $this->normalization_map());
+    }
+
+    private function build_normalize_sql($column)
+    {
+        $map = $this->normalization_map();
+        $sql = "LOWER($column)";
+        foreach ($map as $from => $to) {
+            // Escape single quotes for SQL
+            $from_escaped = str_replace("'", "\\'", $from);
+            $to_escaped = str_replace("'", "\\'", $to);
+            $sql = "REPLACE($sql, '$from_escaped', '$to_escaped')";
+        }
+        return $sql;
     }
 
     public function handle()
@@ -61,17 +76,8 @@ class ajax_search
         }
         $allowed_forums_list = implode(',', $allowed_forums);
 
-        // Cleaned-up normalization SQL
-        $normalize_sql = "
-        REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
-            LOWER(t.topic_title),
-            'ß','ss'),
-            'ø','o'),
-            'œ','o'),
-            'ł','l'),
-            'Ø','O'),
-            'Œ','O'),
-            'Ł','L')";
+        // Dynamically build normalization SQL
+        $normalize_sql = $this->build_normalize_sql('t.topic_title');
 
         $sql_union = "
         (
