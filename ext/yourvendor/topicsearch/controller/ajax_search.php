@@ -24,24 +24,16 @@ class ajax_search
 
     private function normalize_string($str)
     {
-        // Add more replacements as needed
         $map = [
-            'ą'=>'a', 'ć'=>'c', 'ę'=>'e', 'ł'=>'l', 'ń'=>'n', 'ó'=>'o', 'ś'=>'s', 'ź'=>'z', 'ż'=>'z',
-            'ä'=>'a', 'ö'=>'o', 'ü'=>'u', 'ß'=>'ss', 'ø'=>'o', 'œ'=>'o', 'ç'=>'c', 'á'=>'a', 'é'=>'e', 'í'=>'i', 'ó'=>'o', 'ú'=>'u',
-            'Ą'=>'A', 'Ć'=>'C', 'Ę'=>'E', 'Ł'=>'L', 'Ń'=>'N', 'Ó'=>'O', 'Ś'=>'S', 'Ź'=>'Z', 'Ż'=>'Z',
-            'Ä'=>'A', 'Ö'=>'O', 'Ü'=>'U', 'Ø'=>'O', 'Œ'=>'O', 'Ç'=>'C', 'Á'=>'A', 'É'=>'E', 'Í'=>'I', 'Ú'=>'U'
+            'ß' => 'ss',
+            'ø' => 'o', 'œ' => 'o', 'ł' => 'l',
+            'Ø' => 'O', 'Œ' => 'O', 'Ł' => 'L',
         ];
         return strtr($str, $map);
     }
 
     public function handle()
     {
-        // Start session and basic setup, if needed.
-        // (Usually, phpBB has already initiated these in the front controller.)
-
-        // header('Content-Type: application/json');
-
-        // Retrieve and normalize search term.
         $q = trim((string) $this->request->variable('q', '', true));
         if (utf8_strlen($q) < 2)
         {
@@ -51,7 +43,6 @@ class ajax_search
         $normalized_search = $this->normalize_string($search_term);
         $escaped = $this->db->sql_escape($normalized_search);
 
-        // Get allowed forum IDs based on user permissions.
         $allowed_forums = [];
         $sql = 'SELECT forum_id FROM ' . FORUMS_TABLE;
         $result = $this->db->sql_query($sql);
@@ -66,23 +57,22 @@ class ajax_search
 
         if (empty($allowed_forums))
         {
-            // No access to any forums.
             return new JsonResponse([]);
         }
         $allowed_forums_list = implode(',', $allowed_forums);
 
-        // Build normalization SQL for topic_title
-        $normalize_sql = "REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
+        // Cleaned-up normalization SQL
+        $normalize_sql = "
+        REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
             LOWER(t.topic_title),
-            'ą','a'),'ć','c'),'ę','e'),'ł','l'),'ń','n'),'ó','o'),'ś','s'),'ź','z'),'ż','z')";
-        // Add more REPLACE() for other characters as needed (see the PHP map above)
+            'ß','ss'),
+            'ø','o'),
+            'œ','o'),
+            'ł','l'),
+            'Ø','O'),
+            'Œ','O'),
+            'Ł','L')";
 
-        // For Scandinavian/Germanic etc.
-        $normalize_sql = "REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
-            $normalize_sql,
-            'ä','a'),'ö','o'),'ü','u'),'ß','ss'),'ø','o'),'œ','o'),'ç','c'),'á','a'),'é','e'),'í','i'),'ú','u')";
-
-        // Build UNION query with priorities.
         $sql_union = "
         (
           SELECT 
