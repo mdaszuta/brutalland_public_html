@@ -3,8 +3,95 @@ const resultBox = document.getElementById('autocomplete');
 let activeIndex = -1;
 
 function highlightMatch(text, query) {
-    const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
-    return text.replace(regex, '<mark>$1</mark>');
+    if (!query) {
+        return text;
+    }
+
+    // 1) Your custom lowercase‐only map
+    const charMap = {
+        'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
+        'æ': 'ae', 'œ': 'oe', 'ł': 'l', 'ı': 'i',
+        '§': 's', 'µ': 'u', '¡': '!', '¿': '?'
+    };
+
+    // Normalize a single character: map → NFD strip → lowercase
+    const normalizeChar = ch => {
+        const mapped = charMap[ch] || ch;
+        return mapped
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
+    };
+
+    // Build the full normalized text & query
+    const normText  = Array.from(text).map(normalizeChar).join('');
+    const normQuery = Array.from(query).map(normalizeChar).join('');
+
+    // 2) Find all [start,end) spans of normQuery in normText
+    const spans = [];
+    let pos = 0;
+    while (true) {
+        const idx = normText.indexOf(normQuery, pos);
+        if (idx === -1) break;
+        spans.push([idx, idx + normQuery.length]);
+        pos = idx + normQuery.length;
+    }
+    if (!spans.length) {
+        return text;
+    }
+
+    // 3) Precompute cumulative normalized lengths at each original index
+    const normOffsets = [];
+    let cum = 0;
+    for (let i = 0; i < text.length; i++) {
+        cum += normalizeChar(text[i]).length;
+        normOffsets[i] = cum;
+    }
+    // Map a normalized‐index back to original text index
+    const origIndex = normIdx => {
+        for (let i = 0; i < normOffsets.length; i++) {
+            if (normOffsets[i] > normIdx) return i;
+        }
+        return text.length;
+    };
+
+    // 4) Reconstruct output by iterating original chars
+    let out = '';
+    let curNorm = 0;
+
+    for (let i = 0; i < text.length; i++) {
+        const tChar = text[i];
+        const mapped = normalizeChar(tChar);
+        const len = mapped.length;
+        const spanStart = curNorm;
+        const spanEnd = curNorm + len;
+        curNorm = spanEnd;
+
+        // Check each normalized‐span intersection against each match‐span
+        let wrap = false;
+        for (const [mStart, mEnd] of spans) {
+            const interStart = Math.max(spanStart, mStart);
+            const interEnd   = Math.min(spanEnd, mEnd);
+            if (interStart < interEnd) {
+                // for each normalized index inside the overlap
+                for (let ni = interStart; ni < interEnd; ni++) {
+                    const qIdx = ni - mStart;
+                    if (
+                        qIdx >= 0 && qIdx < query.length &&
+                        tChar.toLowerCase() === query[qIdx].toLowerCase()
+                    ) {
+                        wrap = true;
+                        break;
+                    }
+                }
+            }
+            if (wrap) break;
+        }
+
+        out += wrap ? `<mark>${tChar}</mark>` : tChar;
+    }
+
+    return out;
 }
 
 function renderResults(results, query) {
