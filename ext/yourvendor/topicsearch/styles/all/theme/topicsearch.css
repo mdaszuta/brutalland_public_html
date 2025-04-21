@@ -27,8 +27,10 @@
 			background-color: #eef;
 		}
 		.autocomplete-item mark {
-			color: #32D635;
 			background-color: rgba(255, 255, 255, 0.2);
+		}
+		.autocomplete-item mark.marked-fully {
+			color: #32D635;
 		}
         .autocomplete-item a {
             /*color: #0077cc;*/

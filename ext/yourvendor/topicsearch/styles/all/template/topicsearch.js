@@ -1,53 +1,57 @@
+// DOM Elements
 const searchBox = document.getElementById('search-box-keywords');
 const resultBox = document.getElementById('autocomplete');
 let activeIndex = -1;
 
+/**
+ * Highlight query matches within a given text, using fuzzy Unicode-aware matching.
+ * Handles multi-character mappings (e.g., 'æ' -> 'ae') and accent stripping.
+ */
 function highlightMatch(text, query) {
-    if (!query) {
-        return text;
-    }
+    if (!query) return text;
 
-    // 1) Your custom lowercase‐only map
+    // Custom character normalization map (lowercase only)
     const charMap = {
-        'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
-        'æ': 'ae', 'œ': 'oe', 'ł': 'l', 'ı': 'i',
-        '§': 's', 'µ': 'u', '¡': '!', '¿': '?'
-    };
+		// Lowercase
+		'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
+		'æ': 'ae', 'œ': 'oe', 'ł': 'l', 'ı': 'i',
+		'§': 's', 'µ': 'u', '¡': '!', '¿': '?',
+	
+		// Uppercase
+		'Þ': 'Th', 'Ƿ': 'W', 'Ð': 'D', 'Ø': 'O',
+		'Æ': 'Ae', 'Œ': 'Oe', 'Ł': 'L', 'İ': 'I',
+		'§': 'S', 'Μ': 'U'
+	};
 
-    // Normalize a single character: map → NFD strip → lowercase
+    // Normalize character: apply charMap, strip accents, lowercase
     const normalizeChar = ch => {
         const mapped = charMap[ch] || ch;
-        return mapped
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase();
+        return mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     };
 
-    // Build the full normalized text & query
+    // Normalize entire text and query
     const normText  = Array.from(text).map(normalizeChar).join('');
     const normQuery = Array.from(query).map(normalizeChar).join('');
 
-    // 2) Find all [start,end) spans of normQuery in normText
+    // Find all matching spans in the normalized text
     const spans = [];
     let pos = 0;
-    while (true) {
-        const idx = normText.indexOf(normQuery, pos);
-        if (idx === -1) break;
-        spans.push([idx, idx + normQuery.length]);
-        pos = idx + normQuery.length;
-    }
-    if (!spans.length) {
-        return text;
+    while ((pos = normText.indexOf(normQuery, pos)) !== -1) {
+        spans.push([pos, pos + normQuery.length]);
+        pos += normQuery.length;
     }
 
-    // 3) Precompute cumulative normalized lengths at each original index
+    if (!spans.length) return text;
+
+    // Precompute cumulative lengths of normalized characters at each original index
     const normOffsets = [];
-    let cum = 0;
+    let cumulative = 0;
     for (let i = 0; i < text.length; i++) {
-        cum += normalizeChar(text[i]).length;
-        normOffsets[i] = cum;
+        cumulative += normalizeChar(text[i]).length;
+        normOffsets[i] = cumulative;
     }
-    // Map a normalized‐index back to original text index
+
+    // Map a normalized index back to the original character index
     const origIndex = normIdx => {
         for (let i = 0; i < normOffsets.length; i++) {
             if (normOffsets[i] > normIdx) return i;
@@ -55,99 +59,116 @@ function highlightMatch(text, query) {
         return text.length;
     };
 
-    // 4) Reconstruct output by iterating original chars
-    let out = '';
+    // Build the final highlighted output
+    let output = '';
     let curNorm = 0;
 
     for (let i = 0; i < text.length; i++) {
-        const tChar = text[i];
-        const mapped = normalizeChar(tChar);
-        const len = mapped.length;
+        const char = text[i];
+        const normalized = normalizeChar(char);
         const spanStart = curNorm;
-        const spanEnd = curNorm + len;
+        const spanEnd = curNorm + normalized.length;
         curNorm = spanEnd;
 
-        // Check each normalized‐span intersection against each match‐span
-        let wrap = false;
+        // Determine if current character falls within a match span
+        let shouldHighlight = false;
         for (const [mStart, mEnd] of spans) {
-            const interStart = Math.max(spanStart, mStart);
-            const interEnd   = Math.min(spanEnd, mEnd);
-            if (interStart < interEnd) {
-                // for each normalized index inside the overlap
-                for (let ni = interStart; ni < interEnd; ni++) {
-                    const qIdx = ni - mStart;
+            const overlapStart = Math.max(spanStart, mStart);
+            const overlapEnd   = Math.min(spanEnd, mEnd);
+            if (overlapStart < overlapEnd) {
+                for (let ni = overlapStart; ni < overlapEnd; ni++) {
+                    const queryIdx = ni - mStart;
                     if (
-                        qIdx >= 0 && qIdx < query.length &&
-                        tChar.toLowerCase() === query[qIdx].toLowerCase()
+                        queryIdx >= 0 && queryIdx < query.length &&
+                        char.toLowerCase() === query[queryIdx].toLowerCase()
                     ) {
-                        wrap = true;
+                        shouldHighlight = true;
                         break;
                     }
                 }
             }
-            if (wrap) break;
+            if (shouldHighlight) break;
         }
 
-        out += wrap ? `<mark>${tChar}</mark>` : tChar;
+        output += shouldHighlight ? `<mark class="marked-fully">${char}</mark>` : char;
     }
 
-    return out;
+    return output;
 }
 
+/**
+ * Render the autocomplete results into the result box.
+ * Highlights query matches within each topic title.
+ */
 function renderResults(results, query) {
     resultBox.innerHTML = '';
+
     results.forEach((topic, index) => {
         const item = document.createElement('div');
-		const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1';
+        const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1';
+
         item.className = `flex ${rowClass} m-list-all autocomplete-item`;
         item.setAttribute('data-index', index);
-		// Note: Use backticks for template literals.
+
         item.innerHTML = `
-			<div class="m-list-left" onclick="window.location.href='viewtopic.php?t=${topic.id}'">
-				<a href="viewtopic.php?t=${topic.id}" tabindex="-1" class="flex topictitle m-list-left-top">
-					${highlightMatch(topic.title, query)}
-				</a>
-				<span class="flex meta m-list-left-bottom"><a href="viewforum.php?f=${topic.forum_id}" class="topic-forumtitle">${topic.forum}</a></span>
-			</div>
+            <div class="m-list-left" onclick="window.location.href='viewtopic.php?t=${topic.id}'">
+                <a href="viewtopic.php?t=${topic.id}" tabindex="-1" class="flex topictitle m-list-left-top">
+                    ${highlightMatch(topic.title, query)}
+                </a>
+                <span class="flex meta m-list-left-bottom">
+                    <a href="viewforum.php?f=${topic.forum_id}" class="topic-forumtitle">${topic.forum}</a>
+                </span>
+            </div>
         `;
+
         resultBox.appendChild(item);
     });
+
     resultBox.style.display = results.length > 0 ? 'block' : 'none';
 }
 
+// Simple cache for storing recent queries
 const cache = {};
 const maxCacheEntries = 50;
 
+/**
+ * Add a result set to the cache, evicting the oldest if needed.
+ */
 function addToCache(query, results) {
     if (Object.keys(cache).length >= maxCacheEntries) {
-        delete cache[Object.keys(cache)[0]]; // Delete oldest
+        delete cache[Object.keys(cache)[0]]; // Remove oldest
     }
     cache[query] = results;
 }
 
+/**
+ * Fetch search results via AJAX or serve from cache.
+ */
 function fetchResults(query) {
-    // Use cached result if available
     if (cache[query]) {
         renderResults(cache[query], query);
         return;
     }
 
-    // Use the URL injected by the PHP extension
-    const ajaxUrl = (typeof U_TOPICSEARCH_AJAX !== "undefined") ? U_TOPICSEARCH_AJAX : 'topicsearch/ajax';
+    const ajaxUrl = (typeof U_TOPICSEARCH_AJAX !== "undefined")
+        ? U_TOPICSEARCH_AJAX
+        : 'topicsearch/ajax';
 
     fetch(ajaxUrl + '?q=' + encodeURIComponent(query))
         .then(res => res.json())
         .then(data => {
-            addToCache(query, data); // Store in cache
+            addToCache(query, data);
             renderResults(data, query);
         })
-        .catch(err => {
-            console.error('Search error:', err);
-        });
+        .catch(err => console.error('Search error:', err));
 }
 
+// Debounce timer to reduce request spam
 let debounceTimer = null;
 
+/**
+ * Event: on user input in the search box
+ */
 searchBox.addEventListener('input', function () {
     const query = this.value.trim();
 
@@ -160,8 +181,10 @@ searchBox.addEventListener('input', function () {
 
     debounceTimer = setTimeout(() => {
         fetchResults(query);
-    }, 150); // 150ms delay
+    }, 150); // 150ms debounce delay
 });
+
+// Optional: Keyboard navigation support for result list
 /*
 searchBox.addEventListener('keydown', function (e) {
     const items = resultBox.querySelectorAll('.autocomplete-item');
@@ -185,7 +208,12 @@ searchBox.addEventListener('keydown', function (e) {
         resultBox.style.display = 'none';
     }
 });
+*/
 
+/**
+ * Highlight the active result item
+ */
+/*
 function updateActive(items) {
     items.forEach(item => item.classList.remove('active'));
     if (activeIndex >= 0 && items[activeIndex]) {
@@ -193,11 +221,12 @@ function updateActive(items) {
         items[activeIndex].scrollIntoView({ block: 'nearest' });
     }
 }
-
+*/
+// Optional: Hide results when clicking outside
+/*
 document.addEventListener('click', (e) => {
     if (!resultBox.contains(e.target) && e.target !== searchBox) {
         resultBox.style.display = 'none';
     }
 });
-
 */
