@@ -1,57 +1,73 @@
 // DOM Elements
-const searchBox = document.getElementById('search-box-keywords');
-const resultBox = document.getElementById('autocomplete');
-let activeIndex = -1;
+const searchBox = document.getElementById('search-box-keywords'); // The search input element
+const resultBox = document.getElementById('autocomplete');        // The container where autocomplete results are displayed
+let activeIndex = -1;                                             // Tracks the currently highlighted result for keyboard navigation
 
 /**
- * Highlight query matches within a given text, using fuzzy Unicode-aware matching.
- * Handles multi-character mappings (e.g., 'æ' -> 'ae') and accent stripping.
+ * Highlight query matches within a given text using fuzzy Unicode-aware matching.
+ * This handles special cases like character decomposition (accents) and multi-letter mappings
+ * (e.g., 'æ' becoming 'ae') so that user queries like "aegir" will still match "Ægir".
  */
 function highlightMatch(text, query) {
-    if (!query) return text;
+    if (!query) return text; // No query? Just return original text, nothing to highlight.
 
-    // Custom character normalization map (lowercase only)
+    // Custom character normalization map to handle special characters and ligatures
     const charMap = {
-		// Lowercase
-		'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
-		'æ': 'ae', 'œ': 'oe', 'ł': 'l', 'ı': 'i',
-		'§': 's', 'µ': 'u', '¡': '!', '¿': '?',
-	
-		// Uppercase
-		'Þ': 'Th', 'Ƿ': 'W', 'Ð': 'D', 'Ø': 'O',
-		'Æ': 'Ae', 'Œ': 'Oe', 'Ł': 'L', 'İ': 'I',
-		'§': 'S', 'Μ': 'U'
-	};
+        // Lowercase equivalents
+        'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
+        'æ': 'ae', 'œ': 'oe', 'ł': 'l', 'ı': 'i',
+        '§': 's', 'µ': 'u', '¡': '!', '¿': '?',
 
-    // Normalize character: apply charMap, strip accents, lowercase
+        // Uppercase equivalents
+        'Þ': 'Th', 'Ƿ': 'W', 'Ð': 'D', 'Ø': 'O',
+        'Æ': 'Ae', 'Œ': 'Oe', 'Ł': 'L', 'İ': 'I',
+        '§': 'S', 'Μ': 'U'
+    };
+
+    /**
+     * Normalize a single character:
+     * - Apply custom map if present (e.g., 'æ' -> 'ae')
+     * - Use NFD normalization to split accents off base characters
+     * - Remove all combining accent marks
+     * - Convert to lowercase for case-insensitive matching
+     */
     const normalizeChar = ch => {
         const mapped = charMap[ch] || ch;
         return mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     };
 
-    // Normalize entire text and query
+    // Normalize the entire input text and the query
     const normText  = Array.from(text).map(normalizeChar).join('');
     const normQuery = Array.from(query).map(normalizeChar).join('');
 
-    // Find all matching spans in the normalized text
+    // Find all matching spans (start and end indexes) of the normalized query in the normalized text
     const spans = [];
     let pos = 0;
     while ((pos = normText.indexOf(normQuery, pos)) !== -1) {
-        spans.push([pos, pos + normQuery.length]);
-        pos += normQuery.length;
+        spans.push([pos, pos + normQuery.length]); // Store match range
+        pos += normQuery.length; // Move past this match
     }
 
+    // If nothing matched, return the original text unmodified
     if (!spans.length) return text;
 
-    // Precompute cumulative lengths of normalized characters at each original index
-    const normOffsets = [];
+    /**
+     * We now need to map character positions from the normalized version back to the original.
+     * Because characters like 'æ' become two characters ('ae') in the normalized form, we
+     * build an offset map to help track how far each character expands.
+     */
+    const normOffsets = []; // Array of cumulative normalized character lengths
     let cumulative = 0;
     for (let i = 0; i < text.length; i++) {
-        cumulative += normalizeChar(text[i]).length;
+        cumulative += normalizeChar(text[i]).length; // Count characters added by normalization
         normOffsets[i] = cumulative;
     }
 
-    // Map a normalized index back to the original character index
+    /**
+     * Helper: Convert an index in normalized text to an index in the original string.
+     * This allows us to know which character in the original text corresponds to a position
+     * in the normalized string where a match was found.
+     */
     const origIndex = normIdx => {
         for (let i = 0; i < normOffsets.length; i++) {
             if (normOffsets[i] > normIdx) return i;
@@ -59,23 +75,29 @@ function highlightMatch(text, query) {
         return text.length;
     };
 
-    // Build the final highlighted output
+    /**
+     * Final rendering: go through the original text and check if each character
+     * overlaps a matching normalized span.
+     */
     let output = '';
-    let curNorm = 0;
+    let curNorm = 0; // Position in normalized text
 
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
-        const normalized = normalizeChar(char);
+        const normalized = normalizeChar(char); // Normalized version of this char (may be > 1 char)
         const spanStart = curNorm;
         const spanEnd = curNorm + normalized.length;
-        curNorm = spanEnd;
+        curNorm = spanEnd; // Advance cursor in normalized space
 
-        // Determine if current character falls within a match span
         let shouldHighlight = false;
+
+        // Check each match span to see if this character overlaps it
         for (const [mStart, mEnd] of spans) {
             const overlapStart = Math.max(spanStart, mStart);
             const overlapEnd   = Math.min(spanEnd, mEnd);
+
             if (overlapStart < overlapEnd) {
+                // Within a match span: double-check that the original char roughly aligns with query char
                 for (let ni = overlapStart; ni < overlapEnd; ni++) {
                     const queryIdx = ni - mStart;
                     if (
@@ -87,9 +109,11 @@ function highlightMatch(text, query) {
                     }
                 }
             }
+
             if (shouldHighlight) break;
         }
 
+        // Wrap matched character in <mark>, else just append raw char
         output += shouldHighlight ? `<mark class="marked-fully">${char}</mark>` : char;
     }
 
@@ -98,17 +122,17 @@ function highlightMatch(text, query) {
 
 /**
  * Render the autocomplete results into the result box.
- * Highlights query matches within each topic title.
+ * Each result shows topic title and forum name.
  */
 function renderResults(results, query) {
-    resultBox.innerHTML = '';
+    resultBox.innerHTML = ''; // Clear previous results
 
     results.forEach((topic, index) => {
         const item = document.createElement('div');
-        const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1';
+        const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1'; // Alternate row styling
 
         item.className = `flex ${rowClass} m-list-all autocomplete-item`;
-        item.setAttribute('data-index', index);
+        item.setAttribute('data-index', index); // For keyboard navigation
 
         item.innerHTML = `
             <div class="m-list-left" onclick="window.location.href='viewtopic.php?t=${topic.id}'">
@@ -124,25 +148,27 @@ function renderResults(results, query) {
         resultBox.appendChild(item);
     });
 
-    resultBox.style.display = results.length > 0 ? 'block' : 'none';
+    resultBox.style.display = results.length > 0 ? 'block' : 'none'; // Show or hide box
 }
 
-// Simple cache for storing recent queries
+// Simple in-memory cache for previously fetched query results
 const cache = {};
 const maxCacheEntries = 50;
 
 /**
- * Add a result set to the cache, evicting the oldest if needed.
+ * Add a query and its result set to the cache.
+ * If full, evict the oldest query to stay within size limit.
  */
 function addToCache(query, results) {
     if (Object.keys(cache).length >= maxCacheEntries) {
-        delete cache[Object.keys(cache)[0]]; // Remove oldest
+        delete cache[Object.keys(cache)[0]]; // Remove the oldest cached query
     }
     cache[query] = results;
 }
 
 /**
- * Fetch search results via AJAX or serve from cache.
+ * Fetch results from server or use cache if available.
+ * Calls `renderResults` when data is ready.
  */
 function fetchResults(query) {
     if (cache[query]) {
@@ -151,8 +177,8 @@ function fetchResults(query) {
     }
 
     const ajaxUrl = (typeof U_TOPICSEARCH_AJAX !== "undefined")
-        ? U_TOPICSEARCH_AJAX
-        : 'topicsearch/ajax';
+        ? U_TOPICSEARCH_AJAX // Use template-provided URL if available
+        : 'topicsearch/ajax'; // Default fallback
 
     fetch(ajaxUrl + '?q=' + encodeURIComponent(query))
         .then(res => res.json())
@@ -163,28 +189,31 @@ function fetchResults(query) {
         .catch(err => console.error('Search error:', err));
 }
 
-// Debounce timer to reduce request spam
+// Debounce timer ID used to delay fetch calls during fast typing
 let debounceTimer = null;
 
 /**
- * Event: on user input in the search box
+ * Event handler: triggers when user types in the search box.
+ * Debounces the input and fetches results if query is long enough.
  */
 searchBox.addEventListener('input', function () {
     const query = this.value.trim();
 
-    if (debounceTimer) clearTimeout(debounceTimer);
+    if (debounceTimer) clearTimeout(debounceTimer); // Clear previous timer
 
     if (query.length < 2) {
-        resultBox.style.display = 'none';
+        resultBox.style.display = 'none'; // Too short: hide results
         return;
     }
 
     debounceTimer = setTimeout(() => {
         fetchResults(query);
-    }, 150); // 150ms debounce delay
+    }, 150); // Wait 150ms after user stops typing
 });
 
-// Optional: Keyboard navigation support for result list
+// ------------------------
+// OPTIONAL: Keyboard Navigation
+// ------------------------
 /*
 searchBox.addEventListener('keydown', function (e) {
     const items = resultBox.querySelectorAll('.autocomplete-item');
@@ -211,7 +240,8 @@ searchBox.addEventListener('keydown', function (e) {
 */
 
 /**
- * Highlight the active result item
+ * Highlight the currently active result item.
+ * Scrolls it into view.
  */
 /*
 function updateActive(items) {
@@ -222,7 +252,10 @@ function updateActive(items) {
     }
 }
 */
-// Optional: Hide results when clicking outside
+
+// ------------------------
+// OPTIONAL: Hide results when clicking outside
+// ------------------------
 /*
 document.addEventListener('click', (e) => {
     if (!resultBox.contains(e.target) && e.target !== searchBox) {
