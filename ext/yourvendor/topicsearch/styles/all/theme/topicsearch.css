@@ -32,6 +32,13 @@
 		.autocomplete-item mark.marked-fully {
 			color: #32D635;
 		}
+		#mm-search .m-list-right {
+			width: 50px;
+			align-items: center;
+		}
+		#mm-search .m-list-right-top {
+			margin-bottom: 0;
+		}
         .autocomplete-item a {
             /*color: #0077cc;*/
             /*text-decoration: none;*/

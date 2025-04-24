@@ -143,6 +143,10 @@ function renderResults(results, query) {
                     <a href="viewforum.php?f=${topic.forum_id}" class="topic-forumtitle">${topic.forum}</a>
                 </span>
             </div>
+			<span class="flex meta m-list-right lastpost" onclick="window.location.href='viewtopic.php?p=${topic.topic_last_post_id}#p${topic.topic_last_post_id}'" title="{L_GOTO_LAST_POST}">
+				<div class="m-list-right-top"><a href="viewtopic.php?p=${topic.topic_last_post_id}#p${topic.topic_last_post_id}"><i class="fa fa-fast-forward fa-lg"></i></a></div>
+				<div class="m-list-right-bottom"></div>
+			</span>
         `;
 
         resultBox.appendChild(item);

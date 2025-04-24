@@ -84,6 +84,7 @@ class ajax_search
           SELECT 
             t.topic_id, 
             t.topic_title, 
+            t.topic_last_post_id, 
             f.forum_id, 
             f.forum_name,
             1 AS priority
@@ -99,6 +100,7 @@ class ajax_search
           SELECT 
             t.topic_id, 
             t.topic_title, 
+            t.topic_last_post_id, 
             f.forum_id, 
             f.forum_name,
             2 AS priority
@@ -121,6 +123,7 @@ class ajax_search
             $topics[] = [
                 'id'       => (int) $row['topic_id'],
                 'title'    => $row['topic_title'],
+                'topic_last_post_id' => (int) $row['topic_last_post_id'],
                 'forum'    => $row['forum_name'],
                 'forum_id' => (int) $row['forum_id']
             ];
