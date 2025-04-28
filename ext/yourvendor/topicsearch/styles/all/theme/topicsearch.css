@@ -39,6 +39,10 @@
 		#mm-search .m-list-right-top {
 			margin-bottom: 0;
 		}
+		#mm-search a.topictitle.unread,
+		#mm-search a.topic-forumtitle.unread {
+			color: #ee0000;
+		}
         .autocomplete-item a {
             /*color: #0077cc;*/
             /*text-decoration: none;*/

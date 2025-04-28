@@ -130,17 +130,19 @@ function renderResults(results, query) {
     results.forEach((topic, index) => {
         const item = document.createElement('div');
         const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1'; // Alternate row styling
+        const readClass = topic.unread ? 'unread' : 'read';
+        const topicUrl = topic.unread ? `viewtopic.php?t=${topic.id}&amp;view=unread#unread` : `viewtopic.php?t=${topic.id}`;
 
         item.className = `flex ${rowClass} m-list-all autocomplete-item`;
         item.setAttribute('data-index', index); // For keyboard navigation
 
         item.innerHTML = `
-            <div class="m-list-left" onclick="window.location.href='viewtopic.php?t=${topic.id}'">
-                <a href="viewtopic.php?t=${topic.id}" tabindex="-1" class="flex topictitle m-list-left-top">
+            <div class="m-list-left" onclick="window.location.href='${topicUrl}'">
+                <a href="${topicUrl}" tabindex="-1" class="flex topictitle ${readClass} m-list-left-top">
                     ${highlightMatch(topic.title, query)}
                 </a>
                 <span class="flex meta m-list-left-bottom">
-                    <a href="viewforum.php?f=${topic.forum_id}" class="topic-forumtitle">${topic.forum}</a>
+                    <a href="viewforum.php?f=${topic.forum_id}" class="topic-forumtitle ${readClass}">${topic.forum}</a>
                 </span>
             </div>
 			<span class="flex meta m-list-right lastpost" onclick="window.location.href='viewtopic.php?p=${topic.topic_last_post_id}#p${topic.topic_last_post_id}'" title="{L_GOTO_LAST_POST}">

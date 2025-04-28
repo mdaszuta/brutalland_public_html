@@ -47,6 +47,38 @@ class ajax_search
         return $sql;
     }
 
+    private function is_topic_unread($topic_id, $forum_id, $topic_last_post_time)
+    {
+        global $user, $db;
+
+        // Check if user is a guest
+        if ($user->data['user_id'] == ANONYMOUS) {
+            return false;
+        }
+
+        // Get topic mark time
+        $sql = 'SELECT mark_time
+            FROM ' . TOPICS_TRACK_TABLE . '
+            WHERE user_id = ' . (int) $user->data['user_id'] . '
+                AND topic_id = ' . (int) $topic_id;
+        $result = $db->sql_query($sql);
+        $topic_mark_time = (int) $db->sql_fetchfield('mark_time');
+        $db->sql_freeresult($result);
+
+        // Get forum mark time
+        $sql = 'SELECT mark_time
+            FROM ' . FORUMS_TRACK_TABLE . '
+            WHERE user_id = ' . (int) $user->data['user_id'] . '
+                AND forum_id = ' . (int) $forum_id;
+        $result = $db->sql_query($sql);
+        $forum_mark_time = (int) $db->sql_fetchfield('mark_time');
+        $db->sql_freeresult($result);
+
+        $last_mark_time = max($topic_mark_time, $forum_mark_time, (int) $user->data['user_lastmark']);
+
+        return ($topic_last_post_time > $last_mark_time);
+    }
+
     public function handle()
     {
         $q = trim((string) $this->request->variable('q', '', true));
@@ -85,6 +117,7 @@ class ajax_search
             t.topic_id, 
             t.topic_title, 
             t.topic_last_post_id, 
+            t.topic_last_post_time, 
             f.forum_id, 
             f.forum_name,
             1 AS priority
@@ -101,6 +134,7 @@ class ajax_search
             t.topic_id, 
             t.topic_title, 
             t.topic_last_post_id, 
+            t.topic_last_post_time, 
             f.forum_id, 
             f.forum_name,
             2 AS priority
@@ -120,12 +154,14 @@ class ajax_search
         $topics = [];
         while ($row = $this->db->sql_fetchrow($result))
         {
+            $unread = $this->is_topic_unread($row['topic_id'], $row['forum_id'], $row['topic_last_post_time']);
             $topics[] = [
                 'id'       => (int) $row['topic_id'],
                 'title'    => $row['topic_title'],
                 'topic_last_post_id' => (int) $row['topic_last_post_id'],
                 'forum'    => $row['forum_name'],
-                'forum_id' => (int) $row['forum_id']
+                'forum_id' => (int) $row['forum_id'],
+                'unread'   => $unread,
             ];
         }
         $this->db->sql_freeresult($result);
