@@ -131,22 +131,28 @@ function renderResults(results, query) {
         const item = document.createElement('div');
         const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1'; // Alternate row styling
         const readClass = topic.unread ? 'unread' : 'read';
-        const topicUrl = topic.unread ? `viewtopic.php?t=${topic.id}&amp;view=unread#unread` : `viewtopic.php?t=${topic.id}`;
+
+        const topicUrl = topic.unread ? `./viewtopic.php?t=${topic.id}&amp;view=unread#unread` : `./viewtopic.php?t=${topic.id}`;
+        const forumUrl = `./viewforum.php?f=${topic.forum_id}`;
+        const lastPostUrl = `./viewtopic.php?p=${topic.topic_last_post_id}#p${topic.topic_last_post_id}`;
+
+        const topicTooltip = topic.unread ? `${phpbbLang.viewNewestPost}` : `${phpbbLang.viewTopic}`;
+        const jumpToForumSmall = phpbbLang.jumpTo + " " + phpbbLang.forumSmall;
 
         item.className = `flex ${rowClass} m-list-all autocomplete-item`;
         item.setAttribute('data-index', index); // For keyboard navigation
 
         item.innerHTML = `
-            <div class="m-list-left" onclick="window.location.href='${topicUrl}'">
+            <div class="m-list-left" onclick="window.location.href='${topicUrl}'" title="${topicTooltip}">
                 <a href="${topicUrl}" tabindex="-1" class="flex topictitle ${readClass} m-list-left-top">
                     ${highlightMatch(topic.title, query)}
                 </a>
                 <span class="flex meta m-list-left-bottom">
-                    <a href="viewforum.php?f=${topic.forum_id}" class="topic-forumtitle ${readClass}">${topic.forum}</a>
+                    <a href="${forumUrl}" class="topic-forumtitle ${readClass}" title="${jumpToForumSmall}">${topic.forum}</a>
                 </span>
             </div>
-			<span class="flex meta m-list-right lastpost" onclick="window.location.href='viewtopic.php?p=${topic.topic_last_post_id}#p${topic.topic_last_post_id}'" title="{L_GOTO_LAST_POST}">
-				<div class="m-list-right-top"><a href="viewtopic.php?p=${topic.topic_last_post_id}#p${topic.topic_last_post_id}"><i class="fa fa-fast-forward fa-lg"></i></a></div>
+			<span class="flex meta m-list-right lastpost" onclick="window.location.href='${lastPostUrl}'" title="${phpbbLang.goToLastPost}">
+				<div class="m-list-right-top"><a href="${lastPostUrl}"><i class="fa fa-fast-forward fa-lg"></i></a></div>
 				<div class="m-list-right-bottom"></div>
 			</span>
         `;
