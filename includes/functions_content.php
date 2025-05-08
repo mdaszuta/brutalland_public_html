@@ -1492,7 +1492,7 @@ function truncate_string($string, $max_length = 60, $max_store_length = 255, $al
 function get_username_string($mode, $user_id, $username, $username_colour = '', $guest_username = false, $custom_profile_url = false)
 {
 	static $_profile_cache;
-	global $phpbb_dispatcher;
+	global $phpbb_dispatcher, $user;
 
 	// We cache some common variables we need within this function
 	if (empty($_profile_cache))
@@ -1503,11 +1503,11 @@ function get_username_string($mode, $user_id, $username, $username_colour = '', 
 		$_profile_cache['base_url'] = append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&amp;u={USER_ID}');
 		$_profile_cache['tpl_noprofile'] = '<span class="username">{USERNAME}</span>';
 		$_profile_cache['tpl_noprofile_colour'] = '<span style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</span>';
-		$_profile_cache['tpl_profile'] = '<a href="{PROFILE_URL}" class="username">{USERNAME}</a>';
-		$_profile_cache['tpl_profile_colour'] = '<a href="{PROFILE_URL}" style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</a>';
+		$_profile_cache['tpl_profile'] = '<a href="{PROFILE_URL}" class="username" title="'.$user->lang['SHOW_PROFILE'].'">{USERNAME}</a>';
+		$_profile_cache['tpl_profile_colour'] = '<a href="{PROFILE_URL}" style="color: {USERNAME_COLOUR};" class="username-coloured" title="'.$user->lang['SHOW_PROFILE'].'">{USERNAME}</a>';
 	}
 
-	global $user, $auth;
+	global $auth;
 
 	// This switch makes sure we only run code required for the mode
 	switch ($mode)
