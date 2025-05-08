@@ -1,5 +1,5 @@
 <?php
-namespace yourvendor\topicsearch\controller;
+namespace mdaszuta\topicsearch\controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use phpbb\request\request_interface;

@@ -1,5 +1,5 @@
 {
-    "name": "yourvendor/topicsearch",
+    "name": "mdaszuta/topicsearch",
     "type": "phpbb-extension",
     "description": "Search box autocomplete that finds topics starting with or including searched phrase",
     "version": "1.0.0",
@@ -7,7 +7,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Your Name",
+            "name": "Maciej Daszuta",
             "email": "your@email.com"
         }
     ],

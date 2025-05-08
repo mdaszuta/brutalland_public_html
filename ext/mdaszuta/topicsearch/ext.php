@@ -1,5 +1,5 @@
 <?php
-namespace yourvendor\topicsearch;
+namespace mdaszuta\topicsearch;
 
 class ext extends \phpbb\extension\base
 {

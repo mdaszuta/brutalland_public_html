@@ -1,6 +1,6 @@
 services:
-  yourvendor.topicsearch.ajax_search:
-    class: yourvendor\topicsearch\controller\ajax_search
+  mdaszuta.topicsearch.ajax_search:
+    class: mdaszuta\topicsearch\controller\ajax_search
     arguments:
       - '@dbal.conn'
       - '@request'

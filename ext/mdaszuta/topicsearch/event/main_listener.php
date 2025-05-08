@@ -1,5 +1,5 @@
 <?php
-namespace yourvendor\topicsearch\event;
+namespace mdaszuta\topicsearch\event;
 
 use phpbb\event\data as event_data;
 
@@ -42,8 +42,8 @@ class main_listener
             'U_TOPICSEARCH_AJAX' => $ajax_url,
         ]);
 
-        // Add the script file (assuming you placed it under /ext/yourvendor/topicsearch/styles/all/template/topicsearch.js)
-        $asset_file = 'ext/yourvendor/topicsearch/styles/all/template/topicsearch.js';
+        // Add the script file (assuming you placed it under /ext/mdaszuta/topicsearch/styles/all/template/topicsearch.js)
+        $asset_file = 'ext/mdaszuta/topicsearch/styles/all/template/topicsearch.js';
         $this->template->assign_vars([
             'S_TOPICSEARCH_JS' => '<script src="' . $this->phpbb_root_path . $asset_file . '?assets_version=' . $this->assets_version . '"></script>'
         ]);
