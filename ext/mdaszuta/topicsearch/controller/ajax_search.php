@@ -112,28 +112,31 @@ class ajax_search
 
         $topics_raw = [];
         $forum_topics = [];
+		$track_topics = ($this->user->data['user_id'] != ANONYMOUS);
 
         while ($row = $this->db->sql_fetchrow($result))
         {
             $topics_raw[] = $row;
+
+			if ($track_topics) {
             $forum_id = (int)$row['forum_id'];
             $topic_id = (int)$row['topic_id'];
+
             if (!isset($forum_topics[$forum_id])) {
                 $forum_topics[$forum_id] = [];
             }
             $forum_topics[$forum_id][] = $topic_id;
         }
+		}
         $this->db->sql_freeresult($result);
 
 		$topics = [];
 	
-        if ($this->user->data['user_id'] != ANONYMOUS) {
+		if ($track_topics) {
             $topic_tracking_info = [];
             foreach ($forum_topics as $forum_id => $topic_ids) {
                 $topic_tracking_info += get_complete_topic_tracking($forum_id, $topic_ids);
             }
-        } else {
-            $topic_tracking_info = [];
         }
 
         foreach ($topics_raw as $row)
@@ -142,7 +145,7 @@ class ajax_search
             $forum_id = (int)$row['forum_id'];
 
                 $unread = false;
-			if ($this->user->data['user_id'] != ANONYMOUS) {
+			if ($track_topics) {
 				$last_post_time = (int)$row['topic_last_post_time'];
                 $last_read = isset($topic_tracking_info[$topic_id]) ? (int)$topic_tracking_info[$topic_id] : 0;
                 $unread = ($last_post_time > $last_read);
