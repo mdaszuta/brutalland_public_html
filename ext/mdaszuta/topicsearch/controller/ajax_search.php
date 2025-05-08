@@ -47,38 +47,6 @@ class ajax_search
         return $sql;
     }
 
-    private function is_topic_unread($topic_id, $forum_id, $topic_last_post_time)
-    {
-        global $user, $db;
-
-        // Check if user is a guest
-        if ($user->data['user_id'] == ANONYMOUS) {
-            return false;
-        }
-
-        // Get topic mark time
-        $sql = 'SELECT mark_time
-            FROM ' . TOPICS_TRACK_TABLE . '
-            WHERE user_id = ' . (int) $user->data['user_id'] . '
-                AND topic_id = ' . (int) $topic_id;
-        $result = $db->sql_query($sql);
-        $topic_mark_time = (int) $db->sql_fetchfield('mark_time');
-        $db->sql_freeresult($result);
-
-        // Get forum mark time
-        $sql = 'SELECT mark_time
-            FROM ' . FORUMS_TRACK_TABLE . '
-            WHERE user_id = ' . (int) $user->data['user_id'] . '
-                AND forum_id = ' . (int) $forum_id;
-        $result = $db->sql_query($sql);
-        $forum_mark_time = (int) $db->sql_fetchfield('mark_time');
-        $db->sql_freeresult($result);
-
-        $last_mark_time = max($topic_mark_time, $forum_mark_time, (int) $user->data['user_lastmark']);
-
-        return ($topic_last_post_time > $last_mark_time);
-    }
-
     public function handle()
     {
         $q = trim((string) $this->request->variable('q', '', true));
@@ -151,20 +119,58 @@ class ajax_search
         ";
 
         $result = $this->db->sql_query($sql_union);
-        $topics = [];
+
+        // Gather topics and forums for tracking
+        $topics_raw = [];
+        $forum_topics = [];
+
         while ($row = $this->db->sql_fetchrow($result))
         {
-            $unread = $this->is_topic_unread($row['topic_id'], $row['forum_id'], $row['topic_last_post_time']);
+            $topics_raw[] = $row;
+            $forum_id = (int)$row['forum_id'];
+            $topic_id = (int)$row['topic_id'];
+            if (!isset($forum_topics[$forum_id])) {
+                $forum_topics[$forum_id] = [];
+            }
+            $forum_topics[$forum_id][] = $topic_id;
+        }
+        $this->db->sql_freeresult($result);
+
+        // Only get tracking info for registered users
+        if ($this->user->data['user_id'] != ANONYMOUS) {
+            $topic_tracking_info = [];
+            foreach ($forum_topics as $forum_id => $topic_ids) {
+                // get_complete_topic_tracking returns [topic_id => last_read_time]
+                $topic_tracking_info += get_complete_topic_tracking($forum_id, $topic_ids);
+            }
+        } else {
+            $topic_tracking_info = [];
+        }
+
+        $topics = [];
+        foreach ($topics_raw as $row)
+        {
+            $topic_id = (int)$row['topic_id'];
+            $forum_id = (int)$row['forum_id'];
+
+            // For guests, always mark as read
+            if ($this->user->data['user_id'] == ANONYMOUS) {
+                $unread = false;
+            } else {
+				$last_post_time = (int)$row['topic_last_post_time'];
+                $last_read = isset($topic_tracking_info[$topic_id]) ? (int)$topic_tracking_info[$topic_id] : 0;
+                $unread = ($last_post_time > $last_read);
+            }
+
             $topics[] = [
-                'id'       => (int) $row['topic_id'],
+                'id'       => $topic_id,
                 'title'    => $row['topic_title'],
                 'topic_last_post_id' => (int) $row['topic_last_post_id'],
                 'forum'    => $row['forum_name'],
-                'forum_id' => (int) $row['forum_id'],
+                'forum_id' => $forum_id,
                 'unread'   => $unread,
             ];
         }
-        $this->db->sql_freeresult($result);
 
         return new JsonResponse($topics);
     }
