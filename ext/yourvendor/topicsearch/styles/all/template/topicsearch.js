@@ -3,6 +3,17 @@ const searchBox = document.getElementById('search-box-keywords'); // The search 
 const resultBox = document.getElementById('autocomplete');        // The container where autocomplete results are displayed
 let activeIndex = -1;                                             // Tracks the currently highlighted result for keyboard navigation
 
+/* Create a lang object to hold language strings. */
+let lang = {};
+try {
+    const langScript = document.getElementById('topicsearch-lang');
+    if ( langScript ) {
+        lang = JSON.parse(langScript.textContent);
+    }
+} catch (e) {
+    console.warn('Failed to parse topic search language JSON:', e);
+}
+
 /**
  * Highlight query matches within a given text using fuzzy Unicode-aware matching.
  * This handles special cases like character decomposition (accents) and multi-letter mappings
@@ -136,8 +147,8 @@ function renderResults(results, query) {
         const forumUrl = `./viewforum.php?f=${topic.forum_id}`;
         const lastPostUrl = `./viewtopic.php?p=${topic.topic_last_post_id}#p${topic.topic_last_post_id}`;
 
-        const topicTooltip = topic.unread ? `${phpbbLang.viewNewestPost}` : `${phpbbLang.viewTopic}`;
-        const jumpToForumSmall = phpbbLang.jumpTo + " " + phpbbLang.forumSmall;
+        const topicTooltip = topic.unread ? `${lang.viewNewestPost}` : `${lang.viewTopic}`;
+        const jumpToForumSmall = lang.jumpTo + " " + lang.forumSmall;
 
         item.className = `flex ${rowClass} m-list-all autocomplete-item`;
         item.setAttribute('data-index', index); // For keyboard navigation
@@ -151,7 +162,7 @@ function renderResults(results, query) {
                     <a href="${forumUrl}" class="topic-forumtitle ${readClass}" title="${jumpToForumSmall}">${topic.forum}</a>
                 </span>
             </div>
-			<span class="flex meta m-list-right lastpost" onclick="window.location.href='${lastPostUrl}'" title="${phpbbLang.goToLastPost}">
+			<span class="flex meta m-list-right lastpost" onclick="window.location.href='${lastPostUrl}'" title="${lang.goToLastPost}">
 				<div class="m-list-right-top"><a href="${lastPostUrl}"><i class="fa fa-fast-forward fa-lg"></i></a></div>
 				<div class="m-list-right-bottom"></div>
 			</span>
