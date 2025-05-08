@@ -58,25 +58,15 @@ class ajax_search
         $normalized_search = $this->normalize_string($search_term);
         $escaped = $this->db->sql_escape($normalized_search);
 
-        $allowed_forums = [];
-        $sql = 'SELECT forum_id FROM ' . FORUMS_TABLE;
-        $result = $this->db->sql_query($sql);
-        while ($row = $this->db->sql_fetchrow($result))
-        {
-            if ($this->auth->acl_get('f_list', $row['forum_id']))
-            {
-                $allowed_forums[] = (int) $row['forum_id'];
-            }
-        }
-        $this->db->sql_freeresult($result);
+		// ✅ Cached allowed forums
+		$allowed_forums = array_keys($this->auth->acl_getf('f_list', true));
 
         if (empty($allowed_forums))
         {
             return new JsonResponse([]);
         }
-        $allowed_forums_list = implode(',', $allowed_forums);
+		$allowed_forums_list = implode(',', array_map('intval', $allowed_forums));
 
-        // Dynamically build normalization SQL
         $normalize_sql = $this->build_normalize_sql('t.topic_title');
 
         $sql_union = "
@@ -120,7 +110,6 @@ class ajax_search
 
         $result = $this->db->sql_query($sql_union);
 
-        // Gather topics and forums for tracking
         $topics_raw = [];
         $forum_topics = [];
 
@@ -136,27 +125,24 @@ class ajax_search
         }
         $this->db->sql_freeresult($result);
 
-        // Only get tracking info for registered users
+		$topics = [];
+	
         if ($this->user->data['user_id'] != ANONYMOUS) {
             $topic_tracking_info = [];
             foreach ($forum_topics as $forum_id => $topic_ids) {
-                // get_complete_topic_tracking returns [topic_id => last_read_time]
                 $topic_tracking_info += get_complete_topic_tracking($forum_id, $topic_ids);
             }
         } else {
             $topic_tracking_info = [];
         }
 
-        $topics = [];
         foreach ($topics_raw as $row)
         {
             $topic_id = (int)$row['topic_id'];
             $forum_id = (int)$row['forum_id'];
 
-            // For guests, always mark as read
-            if ($this->user->data['user_id'] == ANONYMOUS) {
                 $unread = false;
-            } else {
+			if ($this->user->data['user_id'] != ANONYMOUS) {
 				$last_post_time = (int)$row['topic_last_post_time'];
                 $last_read = isset($topic_tracking_info[$topic_id]) ? (int)$topic_tracking_info[$topic_id] : 0;
                 $unread = ($last_post_time > $last_read);
