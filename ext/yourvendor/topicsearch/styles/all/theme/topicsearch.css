@@ -27,10 +27,13 @@
 			background-color: #eef;
 		}
 		.autocomplete-item mark {
-			background-color: rgba(255, 255, 255, 0.2);
+			/*background-color: rgba(255, 255, 255, 0.2);*/
+		}
+		.autocomplete-item mark.posthilit {
+			padding: 0;
 		}
 		.autocomplete-item mark.marked-fully {
-			color: #32D635;
+			/*color: #32D635;*/
 		}
 		#mm-search .m-list-right {
 			width: 50px;

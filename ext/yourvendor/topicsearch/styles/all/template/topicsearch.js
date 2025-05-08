@@ -125,7 +125,7 @@ function highlightMatch(text, query) {
         }
 
         // Wrap matched character in <mark>, else just append raw char
-        output += shouldHighlight ? `<mark class="marked-fully">${char}</mark>` : char;
+        output += shouldHighlight ? `<mark class="posthilit">${char}</mark>` : char;
     }
 
     return output;
@@ -230,7 +230,10 @@ searchBox.addEventListener('input', function () {
     }
 
     debounceTimer = setTimeout(() => {
+		const stoperStart = performance.now();
         fetchResults(query);
+		const stoperEnd = performance.now();
+		console.log(`Execution time of fetching topics list: ${stoperEnd - stoperStart} ms`);
     }, 150); // Wait 150ms after user stops typing
 });
 
