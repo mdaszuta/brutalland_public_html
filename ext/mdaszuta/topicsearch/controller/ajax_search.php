@@ -63,11 +63,11 @@ class ajax_search
 		}
 		$search_term = utf8_strtolower($q);
 		$normalized_search = $this->normalize_string($search_term);
-		$escaped = $this->db->sql_escape($normalized_search);
+		// escape and neutralize any literal % or _ in user input
+		$escaped = addcslashes($this->db->sql_escape($normalized_search), '%_');
 
 		// ✅ Cached allowed forums
 		$allowed_forums = array_keys($this->auth->acl_getf('f_list', true));
-
 		if (empty($allowed_forums))
 		{
 			return new JsonResponse([]);
@@ -77,9 +77,11 @@ class ajax_search
 		// Build normalization expression once for use in subquery
 		$normalized_expr = $this->build_normalize_sql('t.topic_title');
 
+		// Prepare LIKE patterns
 		$like_prefix = $escaped . '%';
 		$like_anywhere = '%' . $escaped . '%';
 
+		// Main SQL: normalize in a subquery, then apply prefix/substring logic
 		$sql_block = "
 			SELECT * FROM (
 				SELECT 
@@ -89,7 +91,7 @@ class ajax_search
 					t.topic_last_post_time, 
 					f.forum_id, 
 					f.forum_name,
-					" . $normalized_expr . " AS normalized_title
+					{$normalized_expr} AS normalized_title
 				FROM " . TOPICS_TABLE . " t
 				JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
 				WHERE 
@@ -104,10 +106,19 @@ class ajax_search
 					ELSE 2
 				END,
 				sub.topic_title ASC
-		LIMIT 20
+			LIMIT 20
 		";
 
+		// Execute and handle any SQL errors gracefully
 		$result = $this->db->sql_query($sql_block);
+		if (!$result) {
+			$err = $this->db->sql_error();
+			trigger_error(
+				'TopicSearch SQL failed: ' . $err['message'] . ' (code ' . $err['code'] . ')',
+				E_USER_WARNING
+			);
+			return new JsonResponse([], 500);
+		}
 
 		$topics_raw = [];
 		$forum_topics = [];
@@ -116,11 +127,9 @@ class ajax_search
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$topics_raw[] = $row;
-
 			if ($track_topics) {
-				$forum_id = (int)$row['forum_id'];
-				$topic_id = (int)$row['topic_id'];
-
+				$forum_id = (int) $row['forum_id'];
+				$topic_id = (int) $row['topic_id'];
 				if (!isset($forum_topics[$forum_id])) {
 					$forum_topics[$forum_id] = [];
 				}
@@ -140,13 +149,13 @@ class ajax_search
 
 		foreach ($topics_raw as $row)
 		{
-			$topic_id = (int)$row['topic_id'];
-			$forum_id = (int)$row['forum_id'];
+			$topic_id = (int) $row['topic_id'];
+			$forum_id = (int) $row['forum_id'];
 
 			$unread = false;
 			if ($track_topics) {
-				$last_post_time = (int)$row['topic_last_post_time'];
-				$last_read = isset($topic_tracking_info[$topic_id]) ? (int)$topic_tracking_info[$topic_id] : 0;
+				$last_post_time = (int) $row['topic_last_post_time'];
+				$last_read = isset($topic_tracking_info[$topic_id]) ? (int) $topic_tracking_info[$topic_id] : 0;
 				$unread = ($last_post_time > $last_read);
 			}
 
