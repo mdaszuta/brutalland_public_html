@@ -14,6 +14,9 @@ class ajax_search
 	protected $user;
 	protected $auth;
 
+	/** @var string The SQL expression that normalizes t.topic_title */
+	private $normalizedExpr;
+
 	private const NORMALIZATION_MAP = [
 		'ß' => 'ss', 'þ' => 'th', 'ƿ' => 'w', 'ð' => 'd', 'ø' => 'o',
 		'æ' => 'ae', 'œ' => 'oe', 'ł' => 'l', 'ı' => 'i', '§' => 's',
@@ -26,6 +29,9 @@ class ajax_search
 		$this->request = $request;
 		$this->user    = $user;
 		$this->auth    = $auth;
+
+		// Build and cache the normalization SQL once
+		$this->normalizedExpr = $this->build_normalize_sql('t.topic_title');
 	}
 
 	/**
@@ -74,8 +80,8 @@ class ajax_search
 		}
 		$allowed_forums_sql = implode(',', array_map('intval', $allowed_forums));
 
-		// Build normalization expression once for use in subquery
-		$normalized_expr = $this->build_normalize_sql('t.topic_title');
+		// Use the pre-built normalization expression
+		$normalized_expr = $this->normalizedExpr;
 
 		// Prepare LIKE patterns
 		$like_prefix = $escaped . '%';
