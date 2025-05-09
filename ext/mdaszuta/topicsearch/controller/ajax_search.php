@@ -14,6 +14,12 @@ class ajax_search
 	protected $user;
 	protected $auth;
 
+	private const NORMALIZATION_MAP = [
+		'ß' => 'ss', 'þ' => 'th', 'ƿ' => 'w', 'ð' => 'd', 'ø' => 'o',
+		'æ' => 'ae', 'œ' => 'oe', 'ł' => 'l', 'ı' => 'i', '§' => 's',
+		'µ' => 'u', '¡' => '!', '¿' => '?',
+	];
+
 	public function __construct(driver_interface $db, request_interface $request, user $user, auth $auth)
 	{
 		$this->db      = $db;
@@ -22,23 +28,15 @@ class ajax_search
 		$this->auth    = $auth;
 	}
 
-	private function normalization_map()
-	{
-		return [
-			'ß' => 'ss', 'þ' => 'th', 'ƿ' => 'w', 'ð' => 'd', 'ø' => 'o', 'æ' => 'ae', 'œ' => 'oe', 'ł' => 'l', 'ı' => 'i', '§' => 's', 'µ' => 'u', '¡' => '!', '¿' => '?',
-		];
-	}
-
 	private function normalize_string($str)
 	{
-		return strtr($str, $this->normalization_map());
+		return strtr($str, self::NORMALIZATION_MAP);
 	}
 
 	private function build_normalize_sql($column)
 	{
-		$map = $this->normalization_map();
 		$sql = "LOWER($column)";
-		foreach ($map as $from => $to) {
+		foreach (self::NORMALIZATION_MAP as $from => $to) {
 			// Escape single quotes for SQL
 			$from_escaped = str_replace("'", "\\'", $from);
 			$to_escaped = str_replace("'", "\\'", $to);
