@@ -65,14 +65,14 @@ class ajax_search
 		}
 		$allowed_forums_sql = implode(',', array_map('intval', $allowed_forums));
 
-		$normalize_sql = $this->build_normalize_sql('t.topic_title');
+		// Build normalization expression once for use in subquery
+		$normalized_expr = $this->build_normalize_sql('t.topic_title');
 
 		$like_prefix = $escaped . '%';
 		$like_anywhere = '%' . $escaped . '%';
 
-		$sql_block = function ($priority, $like_expr, $not_like_expr = null) use ($normalize_sql, $allowed_forums_sql) {
-			$not_clause = $not_like_expr ? "$normalize_sql NOT LIKE '$not_like_expr' AND " : '';
-			return "
+		$sql_block = "
+			SELECT * FROM (
 				SELECT 
 					t.topic_id, 
 					t.topic_title, 
@@ -80,22 +80,25 @@ class ajax_search
 					t.topic_last_post_time, 
 					f.forum_id, 
 					f.forum_name,
-					$priority AS priority
+					" . $normalized_expr . " AS normalized_title
 				FROM " . TOPICS_TABLE . " t
 				JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
 				WHERE 
-					$not_clause$normalize_sql LIKE '$like_expr'
-					AND t.topic_status <> " . ITEM_MOVED . "
+					t.topic_status <> " . ITEM_MOVED . "
 					AND t.forum_id IN ($allowed_forums_sql)
-			";
-		};
-
-		$sql_union = $sql_block(1, $like_prefix) . "\nUNION ALL\n" . $sql_block(2, $like_anywhere, $like_prefix) . "
-		ORDER BY priority ASC, topic_title ASC
+			) sub
+			WHERE sub.normalized_title LIKE '$like_prefix'
+				OR (sub.normalized_title LIKE '$like_anywhere' AND sub.normalized_title NOT LIKE '$like_prefix')
+			ORDER BY 
+				CASE 
+					WHEN sub.normalized_title LIKE '$like_prefix' THEN 1
+					ELSE 2
+				END,
+				sub.topic_title ASC
 		LIMIT 20
 		";
 
-		$result = $this->db->sql_query($sql_union);
+		$result = $this->db->sql_query($sql_block);
 
 		$topics_raw = [];
 		$forum_topics = [];
