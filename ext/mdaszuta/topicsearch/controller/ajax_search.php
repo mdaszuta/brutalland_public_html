@@ -65,45 +65,34 @@ class ajax_search
 		{
 			return new JsonResponse([]);
 		}
-		$allowed_forums_list = implode(',', array_map('intval', $allowed_forums));
+		$allowed_forums_sql = implode(',', array_map('intval', $allowed_forums));
 
 		$normalize_sql = $this->build_normalize_sql('t.topic_title');
 
-		$sql_union = "
-		(
-		  SELECT 
-			t.topic_id, 
-			t.topic_title, 
-			t.topic_last_post_id, 
-			t.topic_last_post_time, 
-			f.forum_id, 
-			f.forum_name,
-			1 AS priority
-		  FROM " . TOPICS_TABLE . " t
-		  JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
-		  WHERE 
-			$normalize_sql LIKE '" . $escaped . "%'
-			AND t.topic_status <> " . ITEM_MOVED . "
-			AND t.forum_id IN ($allowed_forums_list)
-		)
-		UNION ALL
-		(
-		  SELECT 
-			t.topic_id, 
-			t.topic_title, 
-			t.topic_last_post_id, 
-			t.topic_last_post_time, 
-			f.forum_id, 
-			f.forum_name,
-			2 AS priority
-		  FROM " . TOPICS_TABLE . " t
-		  JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
-		  WHERE 
-			$normalize_sql NOT LIKE '" . $escaped . "%'
-			AND $normalize_sql LIKE '%" . $escaped . "%'
-			AND t.topic_status <> " . ITEM_MOVED . "
-			AND t.forum_id IN ($allowed_forums_list)
-		)
+		$like_prefix = $escaped . '%';
+		$like_anywhere = '%' . $escaped . '%';
+
+		$sql_block = function ($priority, $like_expr, $not_like_expr = null) use ($normalize_sql, $allowed_forums_sql) {
+			$not_clause = $not_like_expr ? "$normalize_sql NOT LIKE '$not_like_expr' AND " : '';
+			return "
+				SELECT 
+					t.topic_id, 
+					t.topic_title, 
+					t.topic_last_post_id, 
+					t.topic_last_post_time, 
+					f.forum_id, 
+					f.forum_name,
+					$priority AS priority
+				FROM " . TOPICS_TABLE . " t
+				JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
+				WHERE 
+					$not_clause$normalize_sql LIKE '$like_expr'
+					AND t.topic_status <> " . ITEM_MOVED . "
+					AND t.forum_id IN ($allowed_forums_sql)
+			";
+		};
+
+		$sql_union = $sql_block(1, $like_prefix) . "\nUNION ALL\n" . $sql_block(2, $like_anywhere, $like_prefix) . "
 		ORDER BY priority ASC, topic_title ASC
 		LIMIT 20
 		";
