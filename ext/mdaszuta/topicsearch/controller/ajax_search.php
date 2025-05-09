@@ -28,16 +28,25 @@ class ajax_search
 		$this->auth    = $auth;
 	}
 
+	/**
+	 * Returns the normalization map used for both PHP and SQL normalization.
+	 * If you update this map, ensure both normalize_string() and build_normalize_sql() stay in sync.
+	 */
+	private function get_normalization_map()
+	{
+		return self::NORMALIZATION_MAP;
+	}
+
 	private function normalize_string($str)
 	{
-		return strtr($str, self::NORMALIZATION_MAP);
+		return strtr($str, $this->get_normalization_map());
 	}
 
 	private function build_normalize_sql($column)
 	{
+		$map = $this->get_normalization_map();
 		$sql = "LOWER($column)";
-		foreach (self::NORMALIZATION_MAP as $from => $to) {
-			// Escape single quotes for SQL
+		foreach ($map as $from => $to) {
 			$from_escaped = str_replace("'", "\\'", $from);
 			$to_escaped = str_replace("'", "\\'", $to);
 			$sql = "REPLACE($sql, '$from_escaped', '$to_escaped')";
