@@ -15,7 +15,7 @@ class ajax_search
 	protected $auth;
 
 	/** @var string The SQL expression that normalizes t.topic_title */
-	private $normalizedExpr;
+	private $normalizedTitleSql;
 
 	private const MIN_QUERY_LENGTH = 2;
 	private const MAX_RESULTS = 20;
@@ -34,24 +34,24 @@ class ajax_search
 		$this->auth    = $auth;
 
 		// Build and cache the normalization SQL once
-		$this->normalizedExpr = $this->build_normalize_sql('t.topic_title');
+		$this->normalizedTitleSql = $this->build_normalized_title_sql('t.topic_title');
 	}
 
 	/**
 	 * Returns the normalization map used for both PHP and SQL normalization.
-	 * If you update this map, ensure both normalize_string() and build_normalize_sql() stay in sync.
+	 * If you update this map, ensure both normalize_search_string() and build_normalized_title_sql() stay in sync.
 	 */
 	private function get_normalization_map()
 	{
 		return self::NORMALIZATION_MAP;
 	}
 
-	private function normalize_string($str)
+	private function normalize_search_string($str)
 	{
 		return strtr($str, $this->get_normalization_map());
 	}
 
-	private function build_normalize_sql($column)
+	private function build_normalized_title_sql($column)
 	{
 		$map = $this->get_normalization_map();
 		$sql = "LOWER($column)";
@@ -70,10 +70,10 @@ class ajax_search
 		{
 			return new JsonResponse([]);
 		}
-		$search_term = utf8_strtolower($q);
-		$normalized_search = $this->normalize_string($search_term);
+		$lowercase_search = utf8_strtolower($q);
+		$normalized_search = $this->normalize_search_string($lowercase_search);
 		// escape and neutralize any literal % or _ in user input
-		$escaped = addcslashes($this->db->sql_escape($normalized_search), '%_');
+		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '%_');
 
 		// ✅ Cached allowed forums
 		$allowed_forums = array_keys($this->auth->acl_getf('f_list', true));
@@ -81,19 +81,19 @@ class ajax_search
 		{
 			return new JsonResponse([]);
 		}
-		$allowed_forums_sql = implode(',', array_map('intval', $allowed_forums));
+		$allowed_forum_ids_sql = implode(',', array_map('intval', $allowed_forums));
 
 		// Prepare LIKE patterns
-		$like_prefix = $escaped . '%';
-		$like_anywhere = '%' . $escaped . '%';
+		$like_prefix = $escaped_search . '%';
+		$like_anywhere = '%' . $escaped_search . '%';
 
 		// Main SQL: normalize in a subquery, then apply prefix/substring logic
-		$topics_raw = $this->get_topics($escaped, $like_prefix, $like_anywhere, $allowed_forums_sql);
+		$matched_topics = $this->get_topics($escaped_search, $like_prefix, $like_anywhere, $allowed_forum_ids_sql);
 
 		$forum_topics = [];
 		$track_topics = ($this->user->data['user_id'] != ANONYMOUS);
 
-		foreach ($topics_raw as $row)
+		foreach ($matched_topics as $row)
 		{
 			if ($track_topics) {
 				$forum_id = (int) $row['forum_id'];
@@ -109,13 +109,13 @@ class ajax_search
 
 		// 🚀 Skip tracking if there are no results
 		$topic_tracking_info = [];
-		if ($track_topics && !empty($topics_raw)) {
+		if ($track_topics && !empty($matched_topics)) {
 			foreach ($forum_topics as $forum_id => $topic_ids) {
 				$topic_tracking_info += get_complete_topic_tracking($forum_id, $topic_ids);
 			}
 		}
 
-		foreach ($topics_raw as $row)
+		foreach ($matched_topics as $row)
 		{
 			$topic_id = (int) $row['topic_id'];
 			$forum_id = (int) $row['forum_id'];
@@ -140,9 +140,9 @@ class ajax_search
 		return new JsonResponse($topics);
 	}
 
-	private function get_topics(string $escaped_search, string $like_prefix, string $like_anywhere, string $allowed_forums_sql): array
+	private function get_topics(string $escaped_search, string $like_prefix, string $like_anywhere, string $allowed_forum_ids_sql): array
 	{
-		$normalized_expr = $this->normalizedExpr;
+		$normalized_expr = $this->normalizedTitleSql;
 
 		$sql = "
 			SELECT 
@@ -165,7 +165,7 @@ class ajax_search
 				JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
 				WHERE 
 					t.topic_status <> " . ITEM_MOVED . "
-					AND t.forum_id IN ($allowed_forums_sql)
+					AND t.forum_id IN ($allowed_forum_ids_sql)
 			) sub
 			WHERE sub.normalized_title LIKE '$like_prefix'
 				OR (sub.normalized_title LIKE '$like_anywhere' AND sub.normalized_title NOT LIKE '$like_prefix')
@@ -175,18 +175,18 @@ class ajax_search
 					ELSE 2
 				END,
 				sub.topic_title ASC
-			LIMIT " . self::MAX_RESULTS
-		;
+			LIMIT " . self::MAX_RESULTS . "
+		";
 
 		$result = $this->db->sql_query($sql);
 
-		$rows = [];
+		$topic_rows = [];
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$rows[] = $row;
+			$topic_rows[] = $row;
 		}
 		$this->db->sql_freeresult($result);
 
-		return $rows;
+		return $topic_rows;
 	}
 }
