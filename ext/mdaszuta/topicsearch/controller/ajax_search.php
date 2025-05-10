@@ -89,7 +89,14 @@ class ajax_search
 
 		// Main SQL: normalize in a subquery, then apply prefix/substring logic
 		$sql_block = "
-			SELECT * FROM (
+			SELECT 
+				sub.topic_id,
+				sub.topic_title,
+				sub.topic_last_post_id,
+				sub.topic_last_post_time,
+				sub.forum_id,
+				sub.forum_name
+			FROM (
 				SELECT 
 					t.topic_id, 
 					t.topic_title, 
@@ -115,16 +122,7 @@ class ajax_search
 			LIMIT 20
 		";
 
-		// Execute and handle any SQL errors gracefully
 		$result = $this->db->sql_query($sql_block);
-		if (!$result) {
-			$err = $this->db->sql_error();
-			trigger_error(
-				'TopicSearch SQL failed: ' . $err['message'] . ' (code ' . $err['code'] . ')',
-				E_USER_WARNING
-			);
-			return new JsonResponse([], 500);
-		}
 
 		$topics_raw = [];
 		$forum_topics = [];
@@ -146,8 +144,9 @@ class ajax_search
 
 		$topics = [];
 
-		if ($track_topics) {
-			$topic_tracking_info = [];
+		// 🚀 Skip tracking if there are no results
+		$topic_tracking_info = [];
+		if ($track_topics && !empty($topics_raw)) {
 			foreach ($forum_topics as $forum_id => $topic_ids) {
 				$topic_tracking_info += get_complete_topic_tracking($forum_id, $topic_ids);
 			}
