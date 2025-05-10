@@ -131,7 +131,7 @@ $(document).ready(function(){
 		let bottomMenu = topMenu.next(".menu-all");
 
 		timeoutMenu = setTimeout( function() {
-			if ( bottomMenu.css("display") == "none" ){
+			if ( bottomMenu.css("display") == "none" ) {
 				bottomMenu.fadeIn(150).css("display","flex");
 				calculateMenuAllWidthOrMarginLeft(topMenu, bottomMenu);
 			}
@@ -145,7 +145,7 @@ $(document).ready(function(){
 
 	/* Toggle display / hide menu on: click */
 
-	$(".menu-root").on("click", function(){
+	$(".menu-root").on("click", function() {
 
 		let topMenu = $(this);
 		let bottomMenu = topMenu.next(".menu-all");
@@ -162,7 +162,7 @@ $(document).ready(function(){
 
 	/* Hide menu on: mouse leave */
 
-	$(".menu-toggle").on("mouseleave", function(){
+	$(".menu-toggle").on("mouseleave", function() {
 
 		let bottomMenu = $(this).children(".menu-all");
 
@@ -176,7 +176,7 @@ $(document).ready(function(){
 	* Unread or Active topics feeds & Displaying search input on Mobile
 	*/
 	
-	$("#mm-topics, #search-box-icon").on("click", function(event){
+	$("#mm-topics, #search-box-icon").on("click", function(event) {
 		if( $("#phpbb").hasClass("hastouch") ) {
 			let clickedIcon = $(this);
 			let clicks = clickedIcon.data("clicks");
@@ -194,12 +194,11 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#search-box-hide").on("click", function(){
+	$("#search-box-hide").on("click", function() {
 		if( $("#phpbb").hasClass("hastouch") ) {
 			$("#search-box-icon").data("clicks", false);
 			/*console.log("clicks searchboxa: " + $("#search-box-icon").data("clicks"));*/
 		}
-		/*$("#search-box-keywords").val("");*/
 	});
 
 	/**
@@ -284,6 +283,7 @@ $(document).ready(function(){
 
 		setTimeout( function() {
 			searchForm.css("width", "auto");
+			searchInputbox.val("");
 		}, 500);
 
 	});
