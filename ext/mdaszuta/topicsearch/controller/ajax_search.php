@@ -17,6 +17,9 @@ class ajax_search
 	/** @var string The SQL expression that normalizes t.topic_title */
 	private $normalizedExpr;
 
+	private const MIN_QUERY_LENGTH = 2;
+	private const MAX_RESULTS = 20;
+
 	private const NORMALIZATION_MAP = [
 		'ß' => 'ss', 'þ' => 'th', 'ƿ' => 'w', 'ð' => 'd', 'ø' => 'o',
 		'æ' => 'ae', 'œ' => 'oe', 'ł' => 'l', 'ı' => 'i', '§' => 's',
@@ -63,7 +66,7 @@ class ajax_search
 	public function handle()
 	{
 		$q = trim((string) $this->request->variable('q', '', true));
-		if (utf8_strlen($q) < 2)
+		if (utf8_strlen($q) < self::MIN_QUERY_LENGTH)
 		{
 			return new JsonResponse([]);
 		}
@@ -80,57 +83,18 @@ class ajax_search
 		}
 		$allowed_forums_sql = implode(',', array_map('intval', $allowed_forums));
 
-		// Use the pre-built normalization expression
-		$normalized_expr = $this->normalizedExpr;
-
 		// Prepare LIKE patterns
 		$like_prefix = $escaped . '%';
 		$like_anywhere = '%' . $escaped . '%';
 
 		// Main SQL: normalize in a subquery, then apply prefix/substring logic
-		$sql_block = "
-			SELECT 
-				sub.topic_id,
-				sub.topic_title,
-				sub.topic_last_post_id,
-				sub.topic_last_post_time,
-				sub.forum_id,
-				sub.forum_name
-			FROM (
-				SELECT 
-					t.topic_id, 
-					t.topic_title, 
-					t.topic_last_post_id, 
-					t.topic_last_post_time, 
-					f.forum_id, 
-					f.forum_name,
-					{$normalized_expr} AS normalized_title
-				FROM " . TOPICS_TABLE . " t
-				JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
-				WHERE 
-					t.topic_status <> " . ITEM_MOVED . "
-					AND t.forum_id IN ($allowed_forums_sql)
-			) sub
-			WHERE sub.normalized_title LIKE '$like_prefix'
-				OR (sub.normalized_title LIKE '$like_anywhere' AND sub.normalized_title NOT LIKE '$like_prefix')
-			ORDER BY 
-				CASE 
-					WHEN sub.normalized_title LIKE '$like_prefix' THEN 1
-					ELSE 2
-				END,
-				sub.topic_title ASC
-			LIMIT 20
-		";
+		$topics_raw = $this->get_topics($escaped, $like_prefix, $like_anywhere, $allowed_forums_sql);
 
-		$result = $this->db->sql_query($sql_block);
-
-		$topics_raw = [];
 		$forum_topics = [];
 		$track_topics = ($this->user->data['user_id'] != ANONYMOUS);
 
-		while ($row = $this->db->sql_fetchrow($result))
+		foreach ($topics_raw as $row)
 		{
-			$topics_raw[] = $row;
 			if ($track_topics) {
 				$forum_id = (int) $row['forum_id'];
 				$topic_id = (int) $row['topic_id'];
@@ -140,7 +104,6 @@ class ajax_search
 				$forum_topics[$forum_id][] = $topic_id;
 			}
 		}
-		$this->db->sql_freeresult($result);
 
 		$topics = [];
 
@@ -175,5 +138,55 @@ class ajax_search
 		}
 
 		return new JsonResponse($topics);
+	}
+
+	private function get_topics(string $escaped_search, string $like_prefix, string $like_anywhere, string $allowed_forums_sql): array
+	{
+		$normalized_expr = $this->normalizedExpr;
+
+		$sql = "
+			SELECT 
+				sub.topic_id,
+				sub.topic_title,
+				sub.topic_last_post_id,
+				sub.topic_last_post_time,
+				sub.forum_id,
+				sub.forum_name
+			FROM (
+				SELECT 
+					t.topic_id, 
+					t.topic_title, 
+					t.topic_last_post_id, 
+					t.topic_last_post_time, 
+					f.forum_id, 
+					f.forum_name,
+					{$normalized_expr} AS normalized_title
+				FROM " . TOPICS_TABLE . " t
+				JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
+				WHERE 
+					t.topic_status <> " . ITEM_MOVED . "
+					AND t.forum_id IN ($allowed_forums_sql)
+			) sub
+			WHERE sub.normalized_title LIKE '$like_prefix'
+				OR (sub.normalized_title LIKE '$like_anywhere' AND sub.normalized_title NOT LIKE '$like_prefix')
+			ORDER BY 
+				CASE 
+					WHEN sub.normalized_title LIKE '$like_prefix' THEN 1
+					ELSE 2
+				END,
+				sub.topic_title ASC
+			LIMIT " . self::MAX_RESULTS
+		;
+
+		$result = $this->db->sql_query($sql);
+
+		$rows = [];
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$rows[] = $row;
+		}
+		$this->db->sql_freeresult($result);
+
+		return $rows;
 	}
 }
