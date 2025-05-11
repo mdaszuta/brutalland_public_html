@@ -107,26 +107,27 @@ class ajax_search
 
 		// ✅ Cached allowed forums with read access
 		$allowed_forums = $this->get_allowed_forums();
+		if (empty($allowed_forums))
+		{
+			return new JsonResponse([]);
+		}
+
 		$can_approve_forums = array_keys($this->auth->acl_getf('m_approve', true));
 
 		// Forums where the user can't approve, we must enforce topic_visibility = 1
 		$enforce_visibility_forums = array_diff($allowed_forums, $can_approve_forums);
 
-		if (empty($allowed_forums))
-		{
-			return new JsonResponse([]);
-		}
 		$allowed_forum_ids_sql = implode(',', array_map('intval', $allowed_forums));
 		$visibility_filter_sql = !empty($enforce_visibility_forums)
 			? ' AND (t.topic_visibility = 1 OR t.forum_id NOT IN (' . implode(',', array_map('intval', $enforce_visibility_forums)) . '))'
 			: '';
 
-		// Prepare LIKE patterns
-		$like_prefix = $escaped_search . '%';
-		$like_anywhere = '%' . $escaped_search . '%';
 
 		// Main SQL: normalize in a subquery, then apply prefix/substring logic
-		$matched_topics = $this->get_topics($escaped_search, $like_prefix, $like_anywhere, $allowed_forum_ids_sql, $visibility_filter_sql);
+		$matched_topics = $this->get_topics($escaped_search, $allowed_forum_ids_sql, $visibility_filter_sql);
+		if (empty($matched_topics)) {
+			return new JsonResponse([]);
+		}
 
 		$forum_topics = [];
 		$track_topics = ($this->user->data['user_id'] != ANONYMOUS);
@@ -147,7 +148,7 @@ class ajax_search
 
 		// 🚀 Skip tracking if there are no results
 		$topic_tracking_info = [];
-		if ($track_topics && !empty($matched_topics)) {
+		if ($track_topics) {
 			foreach ($forum_topics as $forum_id => $topic_ids) {
 				$topic_tracking_info += get_complete_topic_tracking($forum_id, $topic_ids);
 			}
@@ -178,9 +179,9 @@ class ajax_search
 		return new JsonResponse($topics);
 	}
 
-	private function get_topics(string $escaped_search, string $like_prefix, string $like_anywhere, string $allowed_forum_ids_sql, string $visibility_filter_sql): array
+	private function get_topics(string $escaped_search, string $allowed_forum_ids_sql, string $visibility_filter_sql): array
 	{
-		$sql = $this->build_search_query($escaped_search, $like_prefix, $like_anywhere, $allowed_forum_ids_sql, $visibility_filter_sql);
+		$sql = $this->build_search_query($escaped_search, $allowed_forum_ids_sql, $visibility_filter_sql);
 
 		$result = $this->db->sql_query($sql);
 
@@ -194,8 +195,12 @@ class ajax_search
 		return $topic_rows;
 	}
 
-	private function build_search_query(string $escaped_search, string $like_prefix, string $like_anywhere, string $allowed_forum_ids_sql, string $visibility_filter_sql): string
+	private function build_search_query(string $escaped_search, string $allowed_forum_ids_sql, string $visibility_filter_sql): string
 	{
+		// Prepare LIKE patterns
+		$like_prefix = $escaped_search . '%';
+		$like_anywhere = '%' . $escaped_search . '%';
+
 		$normalized_expr = $this->normalizedTitleSql;
 
 		return "
