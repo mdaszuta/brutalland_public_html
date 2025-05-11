@@ -20,6 +20,7 @@ class ajax_search
 	private $normalizedTitleSql;
 
 	private const MIN_QUERY_LENGTH = 2;
+	private const MAX_QUERY_LENGTH = 100;
 	private const MAX_RESULTS = 20;
 	private const ALLOWED_FORUMS_CACHE_DURATION = 60; // seconds
 
@@ -94,13 +95,14 @@ class ajax_search
 	public function handle()
 	{
 		$q = trim((string) $this->request->variable('q', '', true));
-		if (utf8_strlen($q) < self::MIN_QUERY_LENGTH)
+		$q_len = utf8_strlen($q);
+		if ($q_len < self::MIN_QUERY_LENGTH || $q_len > self::MAX_QUERY_LENGTH)
 		{
-			return new JsonResponse([]);
+			return new JsonResponse([], 204);
 		}
 		$lowercase_search = utf8_strtolower($q);
 		$normalized_search = $this->normalize_search_string($lowercase_search);
-		// escape and neutralize any literal % or _ in user input
+		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
 		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '%_');
 
 		// ✅ Cached allowed forums with read access
