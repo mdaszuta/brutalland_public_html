@@ -6,3 +6,4 @@ services:
       - '@request'
       - '@user'
       - '@auth'
+      - '@cache.driver'

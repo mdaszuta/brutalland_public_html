@@ -6,6 +6,7 @@ use phpbb\request\request_interface;
 use phpbb\db\driver\driver_interface;
 use phpbb\user;
 use phpbb\auth\auth;
+use phpbb\cache\driver\driver_interface as cache_interface;
 
 class ajax_search
 {
@@ -13,6 +14,7 @@ class ajax_search
 	protected $request;
 	protected $user;
 	protected $auth;
+	protected $cache;
 
 	/** @var string The SQL expression that normalizes t.topic_title */
 	private $normalizedTitleSql;
@@ -26,12 +28,13 @@ class ajax_search
 		'µ' => 'u', '¡' => '!', '¿' => '?',
 	];
 
-	public function __construct(driver_interface $db, request_interface $request, user $user, auth $auth)
+	public function __construct(driver_interface $db, request_interface $request, user $user, auth $auth, cache_interface $cache)
 	{
 		$this->db      = $db;
 		$this->request = $request;
 		$this->user    = $user;
 		$this->auth    = $auth;
+		$this->cache   = $cache;
 
 		// Build and cache the normalization SQL once
 		$this->normalizedTitleSql = $this->build_normalized_title_sql('t.topic_title');
@@ -63,6 +66,26 @@ class ajax_search
 		return $sql;
 	}
 
+	private function get_allowed_forums(): array
+	{
+		$is_guest = ($this->user->data['user_id'] == ANONYMOUS);
+		$cache_key = $is_guest
+			? 'topicsearch_allowed_forums_guest'
+			: 'topicsearch_allowed_forums_' . (int) $this->user->data['user_id'];
+
+		$cached = $this->cache->get($cache_key);
+		if ($cached !== false && is_array($cached)) {
+			//error_log("[topicsearch] Cache HIT for {$cache_key}");
+			return $cached;
+		}
+			//error_log("[topicsearch] Cache MISS for {$cache_key}");
+
+		$allowed = array_keys($this->auth->acl_getf('f_read', true));
+		$this->cache->put($cache_key, $allowed, 60); // cache for 60 seconds
+
+		return $allowed;
+	}
+
 	public function handle()
 	{
 		$q = trim((string) $this->request->variable('q', '', true));
@@ -76,7 +99,7 @@ class ajax_search
 		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '%_');
 
 		// ✅ Cached allowed forums with read access
-		$allowed_forums = array_keys($this->auth->acl_getf('f_read', true));
+		$allowed_forums = $this->get_allowed_forums();
 		$can_approve_forums = array_keys($this->auth->acl_getf('m_approve', true));
 
 		// Forums where the user can't approve, we must enforce topic_visibility = 1
