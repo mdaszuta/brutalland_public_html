@@ -142,9 +142,25 @@ class ajax_search
 
 	private function get_topics(string $escaped_search, string $like_prefix, string $like_anywhere, string $allowed_forum_ids_sql): array
 	{
+		$sql = $this->build_search_query($escaped_search, $like_prefix, $like_anywhere, $allowed_forum_ids_sql);
+
+		$result = $this->db->sql_query($sql);
+
+		$topic_rows = [];
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$topic_rows[] = $row;
+		}
+		$this->db->sql_freeresult($result);
+
+		return $topic_rows;
+	}
+
+	private function build_search_query(string $escaped_search, string $like_prefix, string $like_anywhere, string $allowed_forum_ids_sql): string
+	{
 		$normalized_expr = $this->normalizedTitleSql;
 
-		$sql = "
+		return "
 			SELECT 
 				sub.topic_id,
 				sub.topic_title,
@@ -177,16 +193,6 @@ class ajax_search
 				sub.topic_title ASC
 			LIMIT " . self::MAX_RESULTS . "
 		";
-
-		$result = $this->db->sql_query($sql);
-
-		$topic_rows = [];
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			$topic_rows[] = $row;
-		}
-		$this->db->sql_freeresult($result);
-
-		return $topic_rows;
 	}
+
 }
