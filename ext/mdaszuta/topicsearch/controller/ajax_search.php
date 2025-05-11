@@ -21,7 +21,12 @@ class ajax_search
 
 	private const MIN_QUERY_LENGTH = 2;
 	private const MAX_RESULTS = 20;
+	private const ALLOWED_FORUMS_CACHE_DURATION = 60; // seconds
 
+	/**
+	 * Character normalization map used for both PHP and SQL string comparisons.
+	 * Keep this consistent with frontend normalization in highlightMatch().
+	 */
 	private const NORMALIZATION_MAP = [
 		'ß' => 'ss', 'þ' => 'th', 'ƿ' => 'w', 'ð' => 'd', 'ø' => 'o',
 		'æ' => 'ae', 'œ' => 'oe', 'ł' => 'l', 'ı' => 'i', '§' => 's',
@@ -81,7 +86,7 @@ class ajax_search
 			//error_log("[topicsearch] Cache MISS for {$cache_key}");
 
 		$allowed = array_keys($this->auth->acl_getf('f_read', true));
-		$this->cache->put($cache_key, $allowed, 60); // cache for 60 seconds
+		$this->cache->put($cache_key, $allowed, self::ALLOWED_FORUMS_CACHE_DURATION);
 
 		return $allowed;
 	}
