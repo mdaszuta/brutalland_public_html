@@ -57,27 +57,28 @@ class ajax_search
 
 	private function normalize_search_string($str)
 	{
-		return strtr($str, $this->get_normalization_map());
+		return strtr(utf8_strtolower($str), $this->get_normalization_map());
 	}
 
 	private function build_normalized_title_sql($column)
 	{
 		$map = $this->get_normalization_map();
 		$sql = "LOWER($column)";
-		foreach ($map as $from => $to) {
-			$from_escaped = str_replace("'", "\\'", $from);
-			$to_escaped = str_replace("'", "\\'", $to);
-			$sql = "REPLACE($sql, '$from_escaped', '$to_escaped')";
+		foreach ($map as $map_from => $map_to) {
+			$map_from_escaped = str_replace("'", "\\'", $map_from);
+			$map_to_escaped = str_replace("'", "\\'", $map_to);
+			$sql = "REPLACE($sql, '$map_from_escaped', '$map_to_escaped')";
 		}
 		return $sql;
 	}
 
 	private function get_allowed_forums(): array
 	{
-		$is_guest = ($this->user->data['user_id'] == ANONYMOUS);
-		$cache_key = $is_guest
-			? 'topicsearch_allowed_forums_guest'
-			: 'topicsearch_allowed_forums_' . (int) $this->user->data['user_id'];
+		$prefix = 'mdaszuta_topicsearch_allowed_forums_user_';
+		$user_id = (int) $this->user->data['user_id'];
+		$cache_key = ($user_id === ANONYMOUS)
+			? $prefix . 'guest'
+			: sprintf('%s%d', $prefix, $user_id);
 
 		$cached = $this->cache->get($cache_key);
 		if ($cached !== false && is_array($cached)) {
@@ -100,10 +101,9 @@ class ajax_search
 		{
 			return new JsonResponse([], 204);
 		}
-		$lowercase_search = utf8_strtolower($q);
-		$normalized_search = $this->normalize_search_string($lowercase_search);
+		$normalized_search = $this->normalize_search_string($q);
 		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
-		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '%_');
+		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '\\%_');
 
 		// ✅ Cached allowed forums with read access
 		$allowed_forums = $this->get_allowed_forums();
@@ -130,7 +130,7 @@ class ajax_search
 		}
 
 		$forum_topics = [];
-		$track_topics = ($this->user->data['user_id'] != ANONYMOUS);
+		$track_topics = ((int) $this->user->data['user_id'] !== ANONYMOUS);
 
 		foreach ($matched_topics as $row)
 		{
