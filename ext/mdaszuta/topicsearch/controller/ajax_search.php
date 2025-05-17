@@ -62,8 +62,8 @@ class ajax_search
 		$map = $this->get_normalization_map();
 		$sql = "LOWER($column_title)";
 		foreach ($map as $map_from => $map_to) {
-			$map_from_escaped = str_replace("'", "\\'", $map_from);
-			$map_to_escaped = str_replace("'", "\\'", $map_to);
+			$map_from_escaped = $this->db->sql_escape($map_from);
+			$map_to_escaped = $this->db->sql_escape($map_to);
 			$sql = "REPLACE($sql, '$map_from_escaped', '$map_to_escaped')";
 		}
 		//error_log("sql: {$sql}");
