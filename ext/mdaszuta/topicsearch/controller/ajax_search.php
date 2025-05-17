@@ -57,6 +57,9 @@ class ajax_search
 
 	private function normalize_search_string($str)
 	{
+		if (preg_match('/^[\x00-\x7F]*$/', $str)) {
+			return utf8_strtolower($str); // Skip map
+		}
 		return strtr(utf8_strtolower($str), $this->get_normalization_map());
 	}
 
@@ -69,6 +72,7 @@ class ajax_search
 			$map_to_escaped = str_replace("'", "\\'", $map_to);
 			$sql = "REPLACE($sql, '$map_from_escaped', '$map_to_escaped')";
 		}
+		//error_log("sql: {$sql}");
 		return $sql;
 	}
 
