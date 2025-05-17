@@ -60,10 +60,10 @@ class ajax_search
 		return strtr(utf8_strtolower($str), $this->get_normalization_map());
 	}
 
-	private function build_normalized_title_sql($column)
+	private function build_normalized_title_sql($column_title)
 	{
 		$map = $this->get_normalization_map();
-		$sql = "LOWER($column)";
+		$sql = "LOWER($column_title)";
 		foreach ($map as $map_from => $map_to) {
 			$map_from_escaped = str_replace("'", "\\'", $map_from);
 			$map_to_escaped = str_replace("'", "\\'", $map_to);
