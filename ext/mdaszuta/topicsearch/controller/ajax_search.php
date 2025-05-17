@@ -16,9 +16,6 @@ class ajax_search
 	protected $auth;
 	protected $cache;
 
-	/** @var string The SQL expression that normalizes t.topic_title */
-	private $normalizedTitleSql;
-
 	private const MIN_QUERY_LENGTH = 2;
 	private const MAX_QUERY_LENGTH = 100;
 	private const MAX_RESULTS = 20;
@@ -41,9 +38,6 @@ class ajax_search
 		$this->user    = $user;
 		$this->auth    = $auth;
 		$this->cache   = $cache;
-
-		// Build and cache the normalization SQL once
-		$this->normalizedTitleSql = $this->build_normalized_title_sql('t.topic_title');
 	}
 
 	/**
@@ -55,10 +49,10 @@ class ajax_search
 		return self::NORMALIZATION_MAP;
 	}
 
-	private function normalize_search_string($str)
+	private function normalize_search_string(string $str): string
 	{
-		if (preg_match('/^[\x00-\x7F]*$/', $str)) {
-			return utf8_strtolower($str); // Skip map
+		if (self::is_ascii($str)) {
+			return utf8_strtolower($str); // ASCII → just lowercase
 		}
 		return strtr(utf8_strtolower($str), $this->get_normalization_map());
 	}
@@ -74,6 +68,17 @@ class ajax_search
 		}
 		//error_log("sql: {$sql}");
 		return $sql;
+	}
+
+	/**
+	 * Return true when the string contains only ASCII bytes (0x00‑0x7F).
+	 * Fastest method: strspn() counts the initial segment that matches the
+	 * allowed range; if that length equals strlen($s), every byte is ASCII.
+	 */
+	private static function is_ascii(string $s): bool
+	{
+		// Empty string is ASCII by definition
+		return $s === '' || strspn($s, "\0-\x7F") === strlen($s);
 	}
 
 	private function get_allowed_forums(): array
@@ -205,7 +210,7 @@ class ajax_search
 		$like_prefix = $escaped_search . '%';
 		$like_anywhere = '%' . $escaped_search . '%';
 
-		$normalized_expr = $this->normalizedTitleSql;
+		$normalized_expr = $this->build_normalized_title_sql('t.topic_title');
 
 		return "
 			SELECT 
