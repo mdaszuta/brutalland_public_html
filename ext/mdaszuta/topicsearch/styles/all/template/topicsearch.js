@@ -14,6 +14,10 @@ try {
     console.warn('Failed to parse topic search language JSON:', e);
 }
 
+function isAscii(str) {
+    return /^[\x00-\x7F]*$/.test(str);
+}
+
 /**
  * Highlight query matches within a given text using fuzzy Unicode-aware matching.
  * This handles special cases like character decomposition (accents) and multi-letter mappings
@@ -22,6 +26,20 @@ try {
 function highlightMatch(text, query) {
     if (!query) return text; // No query? Just return original text, nothing to highlight.
 
+    if (isAscii(text) && isAscii(query)) {
+        const i = text.toLocaleLowerCase('en').indexOf(query.toLocaleLowerCase('en'));
+		console.log("query: ", query, "text:", text);
+        if (i === -1) return text;
+        return (
+            text.slice(0, i) +
+            '<mark class="posthilit">' +
+            text.slice(i, i + query.length) +
+            '</mark>' +
+            text.slice(i + query.length)
+        );
+
+    }
+	console.log("starting normalization");
     // Custom character normalization map to handle special characters and ligatures
     const charMap = {
         // Lowercase equivalents
@@ -32,7 +50,7 @@ function highlightMatch(text, query) {
         // Uppercase equivalents
         'Þ': 'Th', 'Ƿ': 'W', 'Ð': 'D', 'Ø': 'O',
         'Æ': 'Ae', 'Œ': 'Oe', 'Ł': 'L', 'İ': 'I',
-        '§': 'S', 'Μ': 'U'
+        'Μ': 'U'
     };
 
     /**
@@ -136,6 +154,10 @@ function highlightMatch(text, query) {
  * Each result shows topic title and forum name.
  */
 function renderResults(results, query) {
+	if (!Array.isArray(results)) {
+		console.warn("Unexpected data format from server:", results);
+		return;
+	} // Defensive check
     resultBox.innerHTML = ''; // Clear previous results
 
     results.forEach((topic, index) => {
