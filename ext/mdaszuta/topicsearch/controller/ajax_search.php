@@ -104,13 +104,13 @@ class ajax_search
 
 	public function handle()
 	{
-		$q = trim((string) $this->request->variable('q', '', true));
-		$q_len = utf8_strlen($q);
-		if ($q_len < self::MIN_QUERY_LENGTH || $q_len > self::MAX_QUERY_LENGTH)
+		$query = trim((string) $this->request->variable('q', '', true));
+		$query_len = utf8_strlen($query);
+		if ($query_len < self::MIN_QUERY_LENGTH || $query_len > self::MAX_QUERY_LENGTH)
 		{
 			return new JsonResponse([], 204);
 		}
-		$normalized_search = $this->normalize_search_string($q);
+		$normalized_search = $this->normalize_search_string($query);
 		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
 		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '\\%_');
 
@@ -177,7 +177,7 @@ class ajax_search
 
 			$topics[] = [
 				'id'					=> $topic_id,
-				'title'					=> $row['topic_title'],
+				'title' => html_entity_decode($row['topic_title'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
 				'topic_last_post_id'	=> (int) $row['topic_last_post_id'],
 				'forum'					=> $row['forum_name'],
 				'forum_id'				=> $forum_id,
