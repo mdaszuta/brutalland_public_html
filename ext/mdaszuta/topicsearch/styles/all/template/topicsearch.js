@@ -256,10 +256,10 @@ searchBox.addEventListener('input', function () {
     }
 
     debounceTimer = setTimeout(() => {
-		const stoperStart = performance.now();
+        const stoperStart = performance.now();
         fetchResults(query);
-		const stoperEnd = performance.now();
-		console.log(`Execution time of fetching topics list: ${stoperEnd - stoperStart} ms`);
+        const stoperEnd = performance.now();
+        console.log(`Execution time of fetching topics list: ${stoperEnd - stoperStart} ms`);
     }, 150); // Wait 150ms after user stops typing
 });
 
