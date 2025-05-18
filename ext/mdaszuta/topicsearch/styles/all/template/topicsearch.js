@@ -123,7 +123,7 @@ function highlightMatch(text, query) {
         // Check each match span to see if this character overlaps it
         for (const [mStart, mEnd] of spans) {
             const overlapStart = Math.max(spanStart, mStart);
-            const overlapEnd   = Math.min(spanEnd, mEnd);
+            const overlapEnd = Math.min(spanEnd, mEnd);
 
             if (overlapStart < overlapEnd) {
                 // Within a match span: double-check that the original char roughly aligns with query char
@@ -205,8 +205,9 @@ const maxCacheEntries = 50;
  * If full, evict the oldest query to stay within size limit.
  */
 function addToCache(query, results) {
-    if (Object.keys(cache).length >= maxCacheEntries) {
-        delete cache[Object.keys(cache)[0]]; // Remove the oldest cached query
+    const keys = Object.keys(cache);
+    if (keys.length >= maxCacheEntries) {
+        delete cache[keys[0]]; // Remove the oldest cached query
     }
     cache[query] = results;
 }
@@ -226,12 +227,19 @@ function fetchResults(query) {
         : 'topicsearch/ajax'; // Default fallback
 
     fetch(ajaxUrl + '?q=' + encodeURIComponent(query))
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+            return res.json();
+        })
         .then(data => {
+            if (!Array.isArray(data)) {
+                console.warn("Unexpected search result format", data);
+                return;
+            }
             addToCache(query, data);
             renderResults(data, query);
         })
-        .catch(err => console.error('Search error:', err));
+        .catch(err => console.error("Error fetching search results:", err));
 }
 
 // Debounce timer ID used to delay fetch calls during fast typing
