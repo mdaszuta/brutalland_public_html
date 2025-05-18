@@ -27,19 +27,30 @@ function highlightMatch(text, query) {
     if (!query) return text; // No query? Just return original text, nothing to highlight.
 
     if (isAscii(text) && isAscii(query)) {
-        const i = text.toLocaleLowerCase('en').indexOf(query.toLocaleLowerCase('en'));
-		console.log("query: ", query, "text:", text);
-        if (i === -1) return text;
-        return (
-            text.slice(0, i) +
-            '<mark class="posthilit">' +
-            text.slice(i, i + query.length) +
-            '</mark>' +
-            text.slice(i + query.length)
-        );
+        const lowercaseText = text.toLowerCase();
+        const lowercaseQuery = query.toLowerCase();
+        let i = 0;
+        let out = '';
 
+        while (i < text.length) {
+            const idx = lowercaseText.indexOf(lowercaseQuery, i);
+            if (idx === -1) {
+                // no more matches – append the rest untouched
+                out += text.slice(i);
+                break;
+            }
+
+            // copy segment before the match
+            out += text.slice(i, idx);
+            // wrap the matched segment
+            out += '<mark class="posthilit">' + text.slice(idx, idx + query.length) + '</mark>';
+            // move past this match
+            i = idx + query.length;
+        }
+        return out;
     }
-	console.log("starting normalization");
+
+    console.log("starting normalization");
     // Custom character normalization map to handle special characters and ligatures
     const charMap = {
         'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
