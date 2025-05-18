@@ -42,15 +42,11 @@ function highlightMatch(text, query) {
 	console.log("starting normalization");
     // Custom character normalization map to handle special characters and ligatures
     const charMap = {
-        // Lowercase equivalents
         'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
         'æ': 'ae', 'œ': 'oe', 'ł': 'l', 'ı': 'i',
         '§': 's', 'µ': 'u', '¡': '!', '¿': '?',
-
-        // Uppercase equivalents
         'Þ': 'Th', 'Ƿ': 'W', 'Ð': 'D', 'Ø': 'O',
-        'Æ': 'Ae', 'Œ': 'Oe', 'Ł': 'L', 'İ': 'I',
-        'Μ': 'U'
+        'Æ': 'Ae', 'Œ': 'Oe', 'Ł': 'L', 'İ': 'I'
     };
 
     /**
