@@ -72,11 +72,23 @@ function highlightMatch(text, query) {
         return mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     };
 
-    // Normalize the entire input text and the query
-    const normText  = Array.from(text).map(normalizeChar).join('');
+    // Preprocess: normalize text once, store per-char normalized chunks and offset map
+    const normChunks = [];
+    const normOffsets = [];
+    let normText = '';
+    let cumulative = 0;
+
+    for (let i = 0; i < text.length; i++) {
+        const norm = normalizeChar(text[i]);
+        normChunks[i] = norm;
+        normText += norm;
+        cumulative += norm.length;
+        normOffsets[i] = cumulative;
+    }
+
     const normQuery = Array.from(query).map(normalizeChar).join('');
 
-    // Find all matching spans (start and end indexes) of the normalized query in the normalized text
+    // Find match spans in normalized string
     const spans = [];
     let pos = 0;
     while ((pos = normText.indexOf(normQuery, pos)) !== -1) {
@@ -86,18 +98,6 @@ function highlightMatch(text, query) {
 
     // If nothing matched, return the original text unmodified
     if (!spans.length) return text;
-
-    /**
-     * We now need to map character positions from the normalized version back to the original.
-     * Because characters like 'æ' become two characters ('ae') in the normalized form, we
-     * build an offset map to help track how far each character expands.
-     */
-    const normOffsets = []; // Array of cumulative normalized character lengths
-    let cumulative = 0;
-    for (let i = 0; i < text.length; i++) {
-        cumulative += normalizeChar(text[i]).length; // Count characters added by normalization
-        normOffsets[i] = cumulative;
-    }
 
     /**
      * Helper: Convert an index in normalized text to an index in the original string.
@@ -120,7 +120,7 @@ function highlightMatch(text, query) {
 
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
-        const normalized = normalizeChar(char); // Normalized version of this char (may be > 1 char)
+        const normalized = normChunks[i]; // Normalized version of this char (may be > 1 char)
         const spanStart = curNorm;
         const spanEnd = curNorm + normalized.length;
         curNorm = spanEnd; // Advance cursor in normalized space
