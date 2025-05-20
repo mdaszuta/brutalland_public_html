@@ -1,4 +1,3 @@
-// DOM Elements
 const searchBox = document.getElementById('search-box-keywords'); // The search input element
 const resultBox = document.getElementById('autocomplete');        // The container where autocomplete results are displayed
 let activeIndex = -1;                                             // Tracks the currently highlighted result for keyboard navigation

@@ -444,8 +444,8 @@ async function addLineup(url, output, update) {
 			current: /<td colspan="2" align="right">\s*Current(?: lineup)?\s*<\/td>/,
 			lastKnown: /<td colspan="2" align="right">\s*Last known(?: lineup)?\s*<\/td>/,
 			past: /<td colspan="2" align="right">\s*Past\s*<\/td>/,
-			currentLive: /<td colspan="2" align="right">\s*Current\s*\(Live\)\s*<\/td>/,
-			pastLive: /<td colspan="2" align="right">\s*(?:Past|Last known)\s*\(Live\)\s*<\/td>/,
+			currentLive: /<td colspan="2" align="right">\s*(?:Current|Last known)\s*\(Live\)\s*<\/td>/,
+			pastLive: /<td colspan="2" align="right">\s*Past\s*\(Live\)\s*<\/td>/,
 			seeAlso: /^See also:\s+/,
 			rip: /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/
 		};

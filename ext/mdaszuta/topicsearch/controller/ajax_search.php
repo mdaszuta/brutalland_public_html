@@ -177,7 +177,7 @@ class ajax_search
 
 			$topics[] = [
 				'id'					=> $topic_id,
-				'title' => html_entity_decode($row['topic_title'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+				'title'					=> html_entity_decode($row['topic_title'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
 				'topic_last_post_id'	=> (int) $row['topic_last_post_id'],
 				'forum'					=> $row['forum_name'],
 				'forum_id'				=> $forum_id,
