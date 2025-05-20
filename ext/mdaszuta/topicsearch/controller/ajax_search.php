@@ -20,6 +20,7 @@ class ajax_search
 	private const MAX_QUERY_LENGTH = 100;
 	private const MAX_RESULTS = 20;
 	private const ALLOWED_FORUMS_CACHE_DURATION = 60; // seconds
+	private const ALLOWED_FORUMS_CACHE_PREFIX = 'mdaszuta_topicsearch_allowed_forums_user_';
 
 	/**
 	 * Character normalization map used for both PHP and SQL string comparisons.
@@ -83,7 +84,7 @@ class ajax_search
 
 	private function get_allowed_forums(): array
 	{
-		$prefix = 'mdaszuta_topicsearch_allowed_forums_user_';
+		$prefix = self::ALLOWED_FORUMS_CACHE_PREFIX;
 		$user_id = (int) $this->user->data['user_id'];
 		$cache_key = ($user_id === ANONYMOUS)
 			? $prefix . 'guest'
@@ -138,17 +139,13 @@ class ajax_search
 			return new JsonResponse([]);
 		}
 
-		$forum_topics = [];
 		$track_topics = ((int) $this->user->data['user_id'] !== ANONYMOUS);
+		$forum_topics = [];
 
-		foreach ($matched_topics as $row)
-		{
-			if ($track_topics) {
+		if ($track_topics) {
+			foreach ($matched_topics as $row) {
 				$forum_id = (int) $row['forum_id'];
 				$topic_id = (int) $row['topic_id'];
-				if (!isset($forum_topics[$forum_id])) {
-					$forum_topics[$forum_id] = [];
-				}
 				$forum_topics[$forum_id][] = $topic_id;
 			}
 		}
