@@ -111,9 +111,6 @@ class ajax_search
 		{
 			return new JsonResponse([], 204);
 		}
-		$normalized_search = $this->normalize_search_string($query);
-		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
-		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '\\%_');
 
 		// ✅ Cached allowed forums with read access
 		$allowed_forums = $this->get_allowed_forums();
@@ -121,6 +118,10 @@ class ajax_search
 		{
 			return new JsonResponse([]);
 		}
+
+		$normalized_search = $this->normalize_search_string($query);
+		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
+		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '\\%_');
 
 		$can_approve_forums = array_keys($this->auth->acl_getf('m_approve', true));
 
