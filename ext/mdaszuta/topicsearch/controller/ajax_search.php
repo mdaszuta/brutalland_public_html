@@ -109,6 +109,11 @@ class ajax_search
 
 	public function handle()
 	{
+		if (!$this->request->is_ajax())
+		{
+			return new JsonResponse(['error' => 'Invalid request'], 400);
+		}
+
 		$query = trim((string) $this->request->variable('q', '', true));
 		$query_len = utf8_strlen($query);
 		if ($query_len < self::MIN_QUERY_LENGTH || $query_len > self::MAX_QUERY_LENGTH)

@@ -232,7 +232,11 @@ function fetchResults(query) {
         ? U_TOPICSEARCH_AJAX // Use template-provided URL if available
         : 'topicsearch/ajax'; // Default fallback
 
-    fetch(ajaxUrl + '?q=' + encodeURIComponent(query))
+    fetch(ajaxUrl + '?q=' + encodeURIComponent(query), {
+		headers: {
+			'X-Requested-With': 'XMLHttpRequest'
+		}
+	})
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error ${res.status}`);
             return res.json();
