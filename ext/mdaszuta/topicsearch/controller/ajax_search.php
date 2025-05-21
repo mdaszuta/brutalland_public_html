@@ -193,12 +193,7 @@ class ajax_search
 		$sql = $this->build_search_query($escaped_search, $allowed_forum_ids_sql, $visibility_filter_sql);
 
 		$result = $this->db->sql_query($sql);
-
-		$topic_rows = [];
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			$topic_rows[] = $row;
-		}
+		$topic_rows = $this->db->sql_fetchrowset($result);
 		$this->db->sql_freeresult($result);
 
 		return $topic_rows;
