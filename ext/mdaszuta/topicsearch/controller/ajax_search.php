@@ -132,9 +132,9 @@ class ajax_search
 		// Forums where the user can't approve, we must enforce topic_visibility = 1
 		$enforce_visibility_forums = array_diff($allowed_forums, $can_approve_forums);
 
-		$allowed_forum_ids_sql = flatten_forum_ids($allowed_forums);
+		$allowed_forum_ids_sql = implode(',', array_map('intval', $allowed_forums));
 		$visibility_filter_sql = !empty($enforce_visibility_forums)
-			? ' AND (t.topic_visibility = 1 OR t.forum_id NOT IN (' . flatten_forum_ids($enforce_visibility_forums) . '))'
+			? ' AND (t.topic_visibility = 1 OR t.forum_id NOT IN (' . implode(',', array_map('intval', $enforce_visibility_forums)) . '))'
 			: '';
 
 		// Main SQL: normalize in a subquery, then apply prefix/substring logic
