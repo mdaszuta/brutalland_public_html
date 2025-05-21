@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace mdaszuta\topicsearch;
 
 class ext extends \phpbb\extension\base

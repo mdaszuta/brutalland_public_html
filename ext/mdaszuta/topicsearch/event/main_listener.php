@@ -1,21 +1,24 @@
 <?php
+declare(strict_types=1);
+
 namespace mdaszuta\topicsearch\event;
 
 use phpbb\event\data as event_data;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class main_listener
+class main_listener implements EventSubscriberInterface
 {
     protected $template;
     protected $phpbb_root_path;
-    protected $assets_version;
     protected $controller_helper;
+    protected $config;
 
-    public function __construct(\phpbb\template\template $template, $phpbb_root_path, $assets_version, \phpbb\controller\helper $controller_helper)
+    public function __construct(\phpbb\template\template $template, $phpbb_root_path, \phpbb\controller\helper $controller_helper, \phpbb\config\config $config)
     {
         $this->template         = $template;
         $this->phpbb_root_path  = $phpbb_root_path;
-        $this->assets_version   = $assets_version;
         $this->controller_helper = $controller_helper;
+        $this->config           = $config;
     }
 
     static public function getSubscribedEvents()
@@ -44,8 +47,13 @@ class main_listener
 
         // Add the script file (assuming you placed it under /ext/mdaszuta/topicsearch/styles/all/template/topicsearch.js)
         $asset_file = 'ext/mdaszuta/topicsearch/styles/all/template/topicsearch.js';
-        $this->template->assign_vars([
-            'S_TOPICSEARCH_JS' => '<script src="' . $this->phpbb_root_path . $asset_file . '?assets_version=' . $this->assets_version . '"></script>'
-        ]);
+        $assets_version = (int) $this->config['assets_version'];
+        $js_url = $this->phpbb_root_path . $asset_file . '?assets_version=' . $assets_version;
+
+        $this->template->assign_var('S_TOPICSEARCH_JS', '<script src="' . $js_url . '"></script>');
+
+        // Load normalization map from config
+        $normalization_map = require __DIR__ . '/../config/normalization_map.php';
+        $this->template->assign_var('NORMALIZATION_MAP', json_encode($normalization_map, JSON_UNESCAPED_UNICODE));
     }
 }

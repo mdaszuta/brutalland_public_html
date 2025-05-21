@@ -4,13 +4,16 @@ let activeIndex = -1;                                             // Tracks the 
 
 /* Create a lang object to hold language strings. */
 let lang = {};
+let normalizationMap = {};
 try {
     const langScript = document.getElementById('topicsearch-lang');
     if ( langScript ) {
         lang = JSON.parse(langScript.textContent);
+        normalizationMap = lang.normalizationMap || {};
+        extendNormalizationMapWithUppercase(normalizationMap);
     }
 } catch (e) {
-    console.warn('Failed to parse topic search language JSON:', e);
+    console.warn('Failed to parse topic search language and normalization map JSON:', e);
 }
 
 function isAscii(str) {
@@ -49,15 +52,8 @@ function highlightMatch(text, query) {
         return out;
     }
 
-    console.log("starting normalization");
-    // Custom character normalization map to handle special characters and ligatures
-    const charMap = {
-        'ß': 'ss', 'þ': 'th', 'ƿ': 'w', 'ð': 'd', 'ø': 'o',
-        'æ': 'ae', 'œ': 'oe', 'ł': 'l', 'ı': 'i',
-        '§': 's', 'µ': 'u', '¡': '!', '¿': '?',
-        'Þ': 'Th', 'Ƿ': 'W', 'Ð': 'D', 'Ø': 'O',
-        'Æ': 'Ae', 'Œ': 'Oe', 'Ł': 'L', 'İ': 'I'
-    };
+    // Use the shared normalization map from backend
+    const charMap = normalizationMap;
 
     /**
      * Normalize a single character:
@@ -276,6 +272,28 @@ searchBox.addEventListener('input', function () {
         console.log(`Execution time of fetching topics list: ${stoperEnd - stoperStart} ms`);
     }, 150); // Wait 150ms after user stops typing
 });
+
+// After: normalizationMap
+
+function extendNormalizationMapWithUppercase(map) {
+    const normalizationMapUppercaseChars = {};
+    for (const [key, value] of Object.entries(map)) {
+        // If key is a single lowercase letter with an uppercase variant
+        if (key.length === 1 && key !== key.toUpperCase()) {
+            const uppercaseKey = key.toUpperCase();
+            // Only add if not already present
+            if (!(uppercaseKey in map)) {
+                // Capitalize the first letter of the replacement (if it's a letter)
+                let uppercaseValue = value;
+                if (value.length > 0) {
+                    uppercaseValue = value[0].toUpperCase() + value.slice(1);
+                }
+                normalizationMapUppercaseChars[uppercaseKey] = uppercaseValue;
+            }
+        }
+    }
+    Object.assign(map, normalizationMapUppercaseChars);
+}
 
 // ------------------------
 // OPTIONAL: Keyboard Navigation

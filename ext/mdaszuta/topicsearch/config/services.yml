@@ -7,3 +7,13 @@ services:
       - '@user'
       - '@auth'
       - '@cache.driver'
+
+  mdaszuta.topicsearch.event.listener:
+    class: mdaszuta\topicsearch\event\main_listener
+    arguments:
+      - '@template'
+      - '%core.root_path%'
+      - '@controller.helper'
+      - '@config'
+    tags:
+      - { name: event.listener }

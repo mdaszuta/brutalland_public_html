@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace mdaszuta\topicsearch\controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,16 +24,6 @@ class ajax_search
 	private const ALLOWED_FORUMS_CACHE_DURATION = 60; // seconds
 	private const ALLOWED_FORUMS_CACHE_PREFIX = 'mdaszuta_topicsearch_allowed_forums_user_';
 
-	/**
-	 * Character normalization map used for both PHP and SQL string comparisons.
-	 * Keep this consistent with frontend normalization in highlightMatch().
-	 */
-	private const NORMALIZATION_MAP = [
-		'ß' => 'ss', 'þ' => 'th', 'ƿ' => 'w', 'ð' => 'd', 'ø' => 'o',
-		'æ' => 'ae', 'œ' => 'oe', 'ł' => 'l', 'ı' => 'i', '§' => 's',
-		'µ' => 'u', '¡' => '!', '¿' => '?',
-	];
-
 	public function __construct(driver_interface $db, request_interface $request, user $user, auth $auth, cache_interface $cache)
 	{
 		$this->db      = $db;
@@ -47,7 +39,11 @@ class ajax_search
 	 */
 	private function get_normalization_map()
 	{
-		return self::NORMALIZATION_MAP;
+		static $normalization_map = null;
+		if ($normalization_map === null) {
+			$normalization_map = require __DIR__ . '/../config/normalization_map.php';
+		}
+		return $normalization_map;
 	}
 
 	private function normalize_search_string(string $str): string
