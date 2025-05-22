@@ -3,18 +3,24 @@
     const resultBox = document.getElementById('autocomplete');        // The container where autocomplete results are displayed
     let activeIndex = -1;                                             // Tracks the currently highlighted result for keyboard navigation
 
-    /* Create a lang object to hold language strings. */
-    let lang = {};
-    let normalizationMap = {};
-    try {
-        const langScript = document.getElementById('topicsearch-lang');
-        if ( langScript ) {
-            lang = JSON.parse(langScript.textContent);
-            normalizationMap = lang.normalizationMap || {};
-            extendNormalizationMapWithUppercase(normalizationMap);
+    let lang, normalizationMap;
+    let langInitialized = false;
+
+    function initLangAndNormalization() {
+        if (langInitialized) return;
+        lang = {};
+        normalizationMap = {};
+        try {
+            const langScript = document.getElementById('topicsearch-lang');
+            if (langScript) {
+                lang = JSON.parse(langScript.textContent);
+                normalizationMap = lang.normalizationMap || {};
+                extendNormalizationMapWithUppercase(normalizationMap);
+            }
+        } catch (e) {
+            console.warn('Failed to parse topic search language and normalization map JSON:', e);
         }
-    } catch (e) {
-        console.warn('Failed to parse topic search language and normalization map JSON:', e);
+        langInitialized = true;
     }
 
     function isAscii(str) {
@@ -281,6 +287,9 @@
         }
 
         debounceTimer = setTimeout(() => {
+            // Initialize lang/normalization only when actually fetching
+            initLangAndNormalization();
+
             const stoperStart = performance.now();
             fetchResults(query);
             const stoperEnd = performance.now();
