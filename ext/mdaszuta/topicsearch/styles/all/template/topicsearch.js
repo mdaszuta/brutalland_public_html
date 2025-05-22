@@ -374,13 +374,12 @@
     // ------------------------
     // OPTIONAL: Hide results when clicking outside
     // ------------------------
-    /*
+
     document.addEventListener('click', (e) => {
         if (!resultBox.contains(e.target) && e.target !== searchBox) {
             resultBox.style.display = 'none';
         }
     });
-    */
 
     resultBox.setAttribute('role', 'listbox');
     searchBox.setAttribute('aria-controls', resultBox.id);
