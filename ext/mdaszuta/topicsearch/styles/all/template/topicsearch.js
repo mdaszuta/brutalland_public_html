@@ -127,7 +127,7 @@
             const spanEnd = curNorm + normalized.length;
             curNorm = spanEnd; // Advance cursor in normalized space
 
-            let shouldHighlight = false;
+            let highlightType = null; // null, 'perfect', or 'normalized'
 
             // Check each match span to see if this character overlaps it
             for (const [mStart, mEnd] of spans) {
@@ -135,24 +135,34 @@
                 const overlapEnd = Math.min(spanEnd, mEnd);
 
                 if (overlapStart < overlapEnd) {
-                    // Within a match span: double-check that the original char roughly aligns with query char
                     for (let ni = overlapStart; ni < overlapEnd; ni++) {
                         const queryIdx = ni - mStart;
                         if (
-                            queryIdx >= 0 && queryIdx < query.length &&
-                            char.toLowerCase() === query[queryIdx].toLowerCase()
+                            queryIdx >= 0 && queryIdx < query.length
                         ) {
-                            shouldHighlight = true;
-                            break;
+                            if (char === query[queryIdx]) {
+                                highlightType = 'perfect';
+                                break;
+                            } else if (char.toLowerCase() === query[queryIdx].toLowerCase()) {
+                                highlightType = 'perfect';
+                                break;
+                            } else {
+                                // It's a normalization match (e.g., 'æ' vs 'ae')
+                                highlightType = 'normalized';
+                            }
                         }
                     }
                 }
-
-                if (shouldHighlight) break;
+                if (highlightType) break;
             }
 
-            // Wrap matched character in <mark>, else just append raw char
-            output += shouldHighlight ? `<mark class="posthilit">${char}</mark>` : char;
+            if (highlightType === 'perfect') {
+                output += `<mark class="posthilit">${char}</mark>`;
+            } else if (highlightType === 'normalized') {
+                output += `<mark class="posthilit marked-by-normalization">${char}</mark>`;
+            } else {
+                output += char;
+            }
         }
 
         return output;

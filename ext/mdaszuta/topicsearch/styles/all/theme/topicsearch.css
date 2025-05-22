@@ -32,8 +32,10 @@
 		.autocomplete-item mark.posthilit {
 			padding: 0;
 		}
-		.autocomplete-item mark.marked-fully {
-			/*color: #32D635;*/
+		.autocomplete-item mark.marked-by-normalization {
+			color: rgba(50, 214, 53, 0.66) !important;
+			/*color: #26A128 !important;*/
+			/*color: inherit !important;*/
 		}
 		#mm-search .m-list-right {
 			width: 50px;
