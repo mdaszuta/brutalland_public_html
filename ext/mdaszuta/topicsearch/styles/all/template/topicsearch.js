@@ -177,6 +177,8 @@
 
             item.className = `flex ${rowClass} m-list-all autocomplete-item`;
             item.setAttribute('data-index', index); // For keyboard navigation
+            item.setAttribute('role', 'option');
+            item.setAttribute('aria-selected', activeIndex === index ? 'true' : 'false');
 
             item.innerHTML = `
                 <div class="m-list-left" onclick="window.location.href='${topicUrl}'" title="${topicTooltip}">
@@ -197,6 +199,18 @@
         });
 
         resultBox.style.display = results.length > 0 ? 'block' : 'none'; // Show or hide box
+
+        // Announce results to screen readers
+        const statusBox = document.getElementById('autocomplete-status');
+        if (statusBox) {
+            if (results.length === 0) {
+                statusBox.textContent = 'No topics found.';
+            } else if (results.length === 1) {
+                statusBox.textContent = '1 topic found.';
+            } else {
+                statusBox.textContent = results.length + ' topics found.';
+            }
+        }
     }
 
     // Simple in-memory cache for previously fetched query results
@@ -348,5 +362,9 @@
         }
     });
     */
+
+    resultBox.setAttribute('role', 'listbox');
+    searchBox.setAttribute('aria-controls', resultBox.id);
+    searchBox.setAttribute('aria-autocomplete', 'list');
 
 })(window, document);
