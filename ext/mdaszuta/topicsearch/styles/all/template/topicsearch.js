@@ -219,8 +219,8 @@
         }
     }
 
-    // Simple in-memory cache for previously fetched query results
-    const cache = {};
+    // Simple in-memory cache using Map to preserve insertion order
+    const cache = new Map();
     const maxCacheEntries = 50;
 
     /**
@@ -228,11 +228,11 @@
      * If full, evict the oldest query to stay within size limit.
      */
     function addToCache(query, results) {
-        const keys = Object.keys(cache);
-        if (keys.length >= maxCacheEntries) {
-            delete cache[keys[0]]; // Remove the oldest cached query
+        cache.set(query, results);
+        if (cache.size > maxCacheEntries) {
+            const firstKey = cache.keys().next().value;
+            cache.delete(firstKey); // Evict the oldest cached query
         }
-        cache[query] = results;
     }
 
     /**
@@ -240,8 +240,8 @@
      * Calls `renderResults` when data is ready.
      */
     function fetchResults(query) {
-        if (cache[query]) {
-            renderResults(cache[query], query);
+        if (cache.has(query)) {
+            renderResults(cache.get(query), query);
             return;
         }
 
