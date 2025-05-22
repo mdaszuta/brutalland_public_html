@@ -114,7 +114,7 @@ class ajax_search
 		$query_len = utf8_strlen($query);
 		if ($query_len < self::MIN_QUERY_LENGTH || $query_len > self::MAX_QUERY_LENGTH)
 		{
-			return new JsonResponse([], 204);
+			return new JsonResponse([]);
 		}
 
 		// ✅ Cached allowed forums with read access
@@ -126,7 +126,8 @@ class ajax_search
 
 		$normalized_search = $this->normalize_search_string($query);
 		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
-		$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '\\%_');
+		//$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '\\%_');
+		$escaped_search = $this->db->sql_escape(addcslashes($normalized_search, '\\%_'));
 
 		$can_approve_forums = array_keys($this->auth->acl_getf('m_approve', true));
 		// Forums where the user can't approve, we must enforce topic_visibility = 1
