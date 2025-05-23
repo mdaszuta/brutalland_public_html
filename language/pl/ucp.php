@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-10-07 18:24:32 Zespół Olympus.pl $
-* @Polska wersja językowa phpBB 3.3.11 - 24.10.2023, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.15 - 07.04.2025, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -116,7 +116,7 @@ $lang = array_merge($lang, array(
 	'AVATAR_DRIVER_REMOTE_EXPLAIN'	=> 'Odnośnik do awatara znajdującego się na innej stronie internetowej.',
 	'AVATAR_DRIVER_UPLOAD_TITLE'	=> 'Prześlij awatar',
 	'AVATAR_DRIVER_UPLOAD_EXPLAIN'	=> 'Prześlij swój awatar.',
-	'AVATAR_EXPLAIN'		=> 'Maksymalne wymiary<br /><strong>%1$s</strong> x <strong>%2$s</strong><br /><strong>%3$.2f KiB</strong>',
+	'AVATAR_EXPLAIN'		=> 'Maksymalne wymiary<br><strong>%1$s</strong> x <strong>%2$s</strong><br><strong>%3$.2f KiB</strong>',
 	'AVATAR_EXPLAIN_NO_FILESIZE'	=> 'Maksymalne wymiary: szerokość – %1$s, wysokość – %2$s.',
 	'AVATAR_FEATURES_DISABLED'		=> 'Funkcje awatarów są wyłączone.',
 	'AVATAR_GALLERY'				=> 'Galeria lokalna',
@@ -510,7 +510,7 @@ $lang = array_merge($lang, array(
 	'SEARCH_YOUR_POSTS'			=> 'Wyświetl moje posty',
 	'SENT_AT'					=> 'Wysłano',			// Used before dates in private messages
 	'SHOW_EMAIL'				=> 'Użytkownicy mogą kontaktować się ze mną za pomocą e-maili',
-	'SIGNATURE_EXPLAIN'			=> 'Zawartość poniższego okna będzie dołączana jako twój podpis do napisanych przez ciebie postów/wiadomości.<br />Maksymalna dozwolona liczba znaków: %d.',
+	'SIGNATURE_EXPLAIN'			=> 'Zawartość poniższego okna będzie dołączana jako twój podpis do napisanych przez ciebie postów/wiadomości.<br>Maksymalna dozwolona liczba znaków: %d.',
 	'SIGNATURE_PREVIEW'			=> 'Tak będzie wyglądał twój podpis',
 	'SIGNATURE_TOO_LONG'		=> 'Podpis jest za długi.',
 	'SELECT_CURRENT_TIME'		=> 'Określ aktualny czas',

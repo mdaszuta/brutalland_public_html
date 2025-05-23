@@ -7,8 +7,8 @@
 # mod_authz_core (which should be on 2.4 or higher only) as a best guess.
 <IfModule mod_version.c>
 	<IfVersion < 2.4>
-	Order Allow,Deny
-	Deny from All
+		Order Allow,Deny
+		Deny from All
 	</IfVersion>
 	<IfVersion >= 2.4>
 		Require all denied

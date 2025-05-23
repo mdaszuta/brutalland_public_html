@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-11-29 18:24:32 Zespół Olympus.pl $
-* @Polska wersja językowa phpBB 3.3.12 - 11.06.2024, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.15 - 07.04.2025, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -367,6 +367,7 @@ $lang = array_merge($lang, array(
 	'HIDE_ME'						=> 'Ukryj mój status podczas tej sesji',
 	'HOURS'							=> 'godz.',
 	'HOME'							=> 'Strona domowa',
+	'HTTP_HANDLER_NOT_FOUND'		=> 'Operacja nie mogła zostać ukończona, ponieważ rozszerzenie cURL PHP i ustawienie allow_url_fopen PHP ini zostały wyłączone i nie można było znaleźć innego programu obsługi HTTP.',
 
 	'ICQ'						=> 'ICQ',
 	'IF'						=> 'Jeśli',
@@ -420,7 +421,7 @@ $lang = array_merge($lang, array(
 	'LOGIN_ERROR_PASSWORD_CONVERT'		=> 'Nie można było dokonać konwersji hasła w czasie aktualizacji skryptu witryny. %sPoproś o nowe hasło%s. Jeśli nadal będą występowały problemy, skontaktuj się z %sadministratorem%s witryny.',
 	'LOGIN_ERROR_USERNAME'				=> 'Podano nieprawidłową nazwę użytkownika. Sprawdź ją i spróbuj ponownie. Jeśli problem nadal będzie się powtarzał, skontaktuj się z %sadministratorem%s witryny.',
 	'LOGIN_FORUM'						=> 'Aby przeglądać lub pisać posty na tym forum trzeba podać hasło forum.',
-	'LOGIN_INFO'						=> 'Aby się zalogować, musisz być zarejestrowanym użytkownikiem witryny. Rejestracja zajmuje tylko chwilę, a znacznie zwiększa możliwości korzystania z witryny.<br /><br />Przed rejestracją zapoznaj się z regulaminem oraz zasadami ochrony danych osobowych, gdzie wyjaśniono podstawowe zagadnienia dotyczące funkcjonowania witryny.',
+	'LOGIN_INFO'						=> 'Aby się zalogować, musisz być zarejestrowanym użytkownikiem witryny. Rejestracja zajmuje tylko chwilę, a znacznie zwiększa możliwości korzystania z witryny.<br><br>Przed rejestracją zapoznaj się z regulaminem oraz zasadami ochrony danych osobowych, gdzie wyjaśniono podstawowe zagadnienia dotyczące funkcjonowania witryny.',
 	'LOGIN_VIEWFORUM'					=> 'Aby przeglądać to forum, trzeba być zarejestrowanym i zalogowanym użytkownikiem.',
 	'LOGIN_EXPLAIN_EDIT'				=> 'Aby dokonywać zmian w postach na tym forum, trzeba być zarejestrowanym i zalogowanym użytkownikiem.',
 	'LOGIN_EXPLAIN_VIEWONLINE'			=> 'Aby sprawdzać kto przegląda forum, trzeba być zarejestrowanym i zalogowanym użytkownikiem.',

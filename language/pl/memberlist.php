@@ -70,7 +70,7 @@ $lang = array_merge($lang, array(
 	'EMPTY_SUBJECT_EMAIL'	=> 'Należy podać temat wiadomości.',
 	'EQUAL_TO'				=> 'Liczba równa',
 
-	'FIND_USERNAME_EXPLAIN'	=> 'Tego formularza można użyć do szukania użytkowników. Nie trzeba wypełniać wszystkich pól. Można użyć gwiazdki (<strong>*</strong>) jako zamiennika dowolnego ciągu znaków.<br />Można też na poniżej wyświetlonej liście odszukać użytkownika, kliknąć jego nazwę, by zobaczyć profil tego użytkownika lub kliknąć odnośnik <strong>[Wybierz]</strong>, aby przeprowadzać dalsze operacje.',
+	'FIND_USERNAME_EXPLAIN'	=> 'Tego formularza można użyć do szukania użytkowników. Nie trzeba wypełniać wszystkich pól. Można użyć gwiazdki (<strong>*</strong>) jako zamiennika dowolnego ciągu znaków.<br>Można też na poniżej wyświetlonej liście odszukać użytkownika, kliknąć jego nazwę, by zobaczyć profil tego użytkownika lub kliknąć odnośnik <strong>[Wybierz]</strong>, aby przeprowadzać dalsze operacje.',
 	'FLOOD_EMAIL_LIMIT'		=> 'Nie możesz teraz wysłać kolejnej wiadomości. Spróbuj ponownie za chwilę.',
 
 	'GROUP_LEADER'			=> 'Lider grupy',
