@@ -44,17 +44,13 @@
 			while (i < text.length) {
 				const idx = lowercaseText.indexOf(lowercaseQuery, i);
 				if (idx === -1) {
-					// no more matches – append the rest untouched
-					out += text.slice(i);
+					out += text.slice(i); // no more matches – append the rest untouched
 					break;
 				}
 
-				// copy segment before the match
-				out += text.slice(i, idx);
-				// wrap the matched segment
-				out += '<mark class="posthilit">' + text.slice(idx, idx + query.length) + '</mark>';
-				// move past this match
-				i = idx + query.length;
+				out += text.slice(i, idx); // copy segment before the match
+				out += '<mark class="posthilit">' + text.slice(idx, idx + query.length) + '</mark>'; // wrap the matched segment
+				i = idx + query.length; // move past this match
 			}
 			return out;
 		}
@@ -142,8 +138,7 @@
 								highlightType = 'perfect';
 								break;
 							} else {
-								// It's a normalization match (e.g., 'æ' vs 'ae')
-								highlightType = 'normalized';
+								highlightType = 'normalized'; // It's a normalization match (e.g., 'æ' vs 'ae')
 							}
 						}
 					}
@@ -171,11 +166,12 @@
 		if (!Array.isArray(results)) {
 			console.warn("Unexpected data format from server:", results);
 			return;
-		} // Defensive check
+		}
+
 		activeIndex = -1; // Reset active index
 		resultBox.innerHTML = ''; // Clear previous results
 
-		const fragment = document.createDocumentFragment(); // ✅ Use fragment
+		const fragment = document.createDocumentFragment(); // Use fragment to minimize DOM reflows
 
 		results.forEach((topic, index) => {
 			const item = document.createElement('div');
@@ -209,10 +205,10 @@
 				</span>
 			`;
 
-			fragment.appendChild(item); // ✅ Append to fragment, not DOM
+			fragment.appendChild(item); // Append to fragment, not DOM
 		});
 
-		resultBox.appendChild(fragment); // ✅ Append once
+		resultBox.appendChild(fragment); // Append to DOM once
 
 		resultBox.style.display = results.length > 0 ? 'block' : 'none'; // Show or hide box
 
@@ -247,12 +243,11 @@
 	 * Calls `renderResults` when data is ready.
 	 */
 	let abortController = null;
-	let currentVersion = 0; // 🔄 Tracks the latest request version
+	let currentVersion = 0; // Tracks the latest request version
 
 	function fetchResults(query) {
-		// 🔄 Bump version for every new query
-		const version = ++currentVersion;
-		const startTime = performance.now(); // ✅ Start here
+		const version = ++currentVersion; // Bump version for every new query
+		const startTime = performance.now();
 
 		if (cache.has(query)) {
 			if (query.length >= 2) {
@@ -264,9 +259,8 @@
 			return;
 		}
 
-		// 🚫 Abort previous fetch if still ongoing
 		if (abortController) {
-			abortController.abort();
+			abortController.abort(); // Abort previous fetch if still ongoing
 		}
 
 		abortController = new AbortController();
@@ -277,7 +271,7 @@
 			headers: {
 				'X-Requested-With': 'XMLHttpRequest'
 			},
-			signal: abortController.signal, // 🔑 Pass the abort signal
+			signal: abortController.signal, // Pass the abort signal
 		})
 		.then(res => {
 			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
@@ -289,7 +283,7 @@
 				return;
 			}
 
-			//  ✅ Only render if this is the latest version and check if query is still long enough before rendering:
+			//  Only render if this is the latest version and check if query is still long enough before rendering:
 			if (version === currentVersion && searchBox.value.trim() === query && query.length >= 2) {
 				addToCache(query, data);
 				renderResults(data, query);
@@ -323,12 +317,11 @@
 		if (debounceTimer) clearTimeout(debounceTimer); // Clear previous timer
 
 		if (query.length < 2) {
-			resultBox.style.display = 'none'; // Too short: hide results
+			resultBox.style.display = 'none';
 			return;
 		}
 
 		debounceTimer = setTimeout(() => {
-			// Initialize lang/normalization only when actually fetching
 			initLangAndNormalization();
 			fetchResults(query);
 		}, 150); // Wait 150ms after user stops typing
