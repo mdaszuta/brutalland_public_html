@@ -304,13 +304,12 @@
 		});
 	}
 
-	// Debounce timer ID used to delay fetch calls during fast typing
-	let debounceTimer = null;
-
 	/**
 	 * Event handler: triggers when user types in the search box.
 	 * Debounces the input and fetches results if query is long enough.
 	 */
+	let debounceTimer = null; // Debounce timer ID used to delay fetch calls during fast typing
+
 	searchBox.addEventListener('input', function () {
 		const query = this.value.trim();
 
