@@ -117,7 +117,7 @@ class ajax_search
 			return new JsonResponse([]);
 		}
 
-		// ✅ Cached allowed forums with read access
+		// Cached allowed forums with read access
 		$allowed_forums = $this->get_allowed_forums();
 		if (empty($allowed_forums))
 		{
@@ -156,7 +156,7 @@ class ajax_search
 
 		$topics = [];
 
-		// 🚀 Skip tracking if there are no results
+		// Skip tracking if there are no results
 		$topic_tracking_info = [];
 		if ($track_topics) {
 			foreach ($forum_topics as $forum_id => $topic_ids) {

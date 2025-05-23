@@ -7,7 +7,8 @@
 	let langInitialized = false;
 
 	function initLangAndNormalization() {
-		if (langInitialized) return;
+		if (langInitialized) { return; } // Already initialized
+
 		lang = {};
 		normalizationMap = {};
 		try {
@@ -33,7 +34,7 @@
 	 * (e.g., 'æ' becoming 'ae') so that user queries like "aegir" will still match "Ægir".
 	 */
 	function highlightMatch(text, query, normalizedQuery) {
-		if (!query) return text; // No query? Just return original text, nothing to highlight.
+		if (!query) { return text; } // No query? Just return original text, nothing to highlight.
 
 		if (isAscii(text) && isAscii(query)) {
 			const lowercaseText = text.toLowerCase();
@@ -80,7 +81,7 @@
 		}
 
 		// If nothing matched, return the original text unmodified
-		if (!spans.length) return text;
+		if (!spans.length) { return text; }
 
 		/**
 		 * Final rendering: go through the original text and check if each character
@@ -119,7 +120,7 @@
 						}
 					}
 				}
-				if (highlightType) break;
+				if (highlightType) { break; }
 			}
 
 			if (highlightType === 'perfect') {
@@ -251,7 +252,7 @@
 			signal: abortController.signal, // Pass the abort signal
 		})
 		.then(res => {
-			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+			if (!res.ok) { throw new Error(`HTTP error ${res.status}`); }
 			return res.json();
 		})
 		.then(data => {
@@ -290,7 +291,7 @@
 	searchBox.addEventListener('input', function () {
 		const query = this.value.trim();
 
-		if (debounceTimer) clearTimeout(debounceTimer); // Clear previous timer
+		if (debounceTimer) { clearTimeout(debounceTimer); } // Clear previous timer
 
 		if (query.length < 2) {
 			resultBox.style.display = 'none';
@@ -332,10 +333,12 @@
 	const charCache = new Map();
 
 	function normalizeChar(ch) {
-		if (charCache.has(ch)) return charCache.get(ch);
+		if (charCache.has(ch)) { return charCache.get(ch); }
+
 		const mapped = normalizationMap[ch] || ch;
 		const normalized = mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 		charCache.set(ch, normalized);
+
 		return normalized;
 	}
 
@@ -345,7 +348,7 @@
 	/*
 	searchBox.addEventListener('keydown', function (e) {
 		const items = resultBox.querySelectorAll('.autocomplete-item');
-		if (!items.length) return;
+		if (!items.length) { return; }
 
 		if (e.key === 'ArrowDown') {
 			e.preventDefault();
@@ -359,7 +362,7 @@
 			e.preventDefault();
 			if (activeIndex >= 0 && items[activeIndex]) {
 				const link = items[activeIndex].querySelector('a');
-				if (link) window.location.href = link.href;
+				if (link) { window.location.href = link.href; }
 			}
 		} else if (e.key === 'Escape') {
 			resultBox.style.display = 'none';
