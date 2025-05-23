@@ -61,7 +61,7 @@
 
 		// Use the shared normalization map from backend
 		const charMap = normalizationMap;
-		const charCache = Object.create(null);
+		const charCache = new Map();
 
 		/**
 		 * Normalize a single character:
@@ -71,11 +71,13 @@
 		 * - Convert to lowercase for case-insensitive matching
 		 */
 		const normalizeChar = ch => {
-			if (charCache[ch] !== undefined) return charCache[ch];
+			if (charCache.has(ch)) {
+				return charCache.get(ch);
+			}
 
 			const mapped = charMap[ch] || ch;
 			const normalized = mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-			charCache[ch] = normalized;
+			charCache.set(ch, normalized);
 			return normalized;
 		};
 
@@ -330,23 +332,21 @@
 	// After: normalizationMap
 
 	function extendNormalizationMapWithUppercase(map) {
-		const normalizationMapUppercaseChars = {};
 		for (const [key, value] of Object.entries(map)) {
 			// If key is a single lowercase letter with an uppercase variant
+			// Only single lowercase keys without uppercase counterpart
 			if (key.length === 1 && key !== key.toUpperCase()) {
 				const uppercaseKey = key.toUpperCase();
 				// Only add if not already present
 				if (!(uppercaseKey in map)) {
-					// Capitalize the first letter of the replacement (if it's a letter)
-					let uppercaseValue = value;
-					if (value.length > 0) {
-						uppercaseValue = value[0].toUpperCase() + value.slice(1);
-					}
-					normalizationMapUppercaseChars[uppercaseKey] = uppercaseValue;
+					// Capitalize the first letter of the replacement string
+					const uppercaseValue = value.length > 0
+						? value[0].toUpperCase() + value.slice(1)
+						: value;
+					map[uppercaseKey] = uppercaseValue;
 				}
 			}
 		}
-		Object.assign(map, normalizationMapUppercaseChars);
 	}
 
 	// ------------------------
