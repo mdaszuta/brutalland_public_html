@@ -128,9 +128,7 @@
 				if (overlapStart < overlapEnd) {
 					for (let ni = overlapStart; ni < overlapEnd; ni++) {
 						const queryIdx = ni - mStart;
-						if (
-							queryIdx >= 0 && queryIdx < query.length
-						) {
+						if (queryIdx >= 0 && queryIdx < query.length) {
 							if (char === query[queryIdx]) {
 								highlightType = 'perfect';
 								break;
