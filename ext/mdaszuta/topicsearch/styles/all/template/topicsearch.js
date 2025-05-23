@@ -172,6 +172,7 @@
 			console.warn("Unexpected data format from server:", results);
 			return;
 		} // Defensive check
+		activeIndex = -1; // Reset active index
 		resultBox.innerHTML = ''; // Clear previous results
 
 		const fragment = document.createDocumentFragment(); // ✅ Use fragment
