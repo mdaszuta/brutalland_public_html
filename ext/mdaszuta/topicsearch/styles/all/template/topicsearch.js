@@ -102,18 +102,6 @@
 		if (!spans.length) return text;
 
 		/**
-		 * Helper: Convert an index in normalized text to an index in the original string.
-		 * This allows us to know which character in the original text corresponds to a position
-		 * in the normalized string where a match was found.
-		 */
-		const origIndex = normIdx => {
-			for (let i = 0; i < normOffsets.length; i++) {
-				if (normOffsets[i] > normIdx) return i;
-			}
-			return text.length;
-		};
-
-		/**
 		 * Final rendering: go through the original text and check if each character
 		 * overlaps a matching normalized span.
 		 */
@@ -179,6 +167,8 @@
 		} // Defensive check
 		resultBox.innerHTML = ''; // Clear previous results
 
+		const fragment = document.createDocumentFragment(); // ✅ Use fragment
+
 		results.forEach((topic, index) => {
 			const item = document.createElement('div');
 			const rowClass = (index % 2 === 0) ? 'm-row2' : 'm-row1'; // Alternate row styling
@@ -211,21 +201,20 @@
 				</span>
 			`;
 
-			resultBox.appendChild(item);
+			fragment.appendChild(item); // ✅ Append to fragment, not DOM
 		});
+
+		resultBox.appendChild(fragment); // ✅ Append once
 
 		resultBox.style.display = results.length > 0 ? 'block' : 'none'; // Show or hide box
 
 		// Announce results to screen readers
 		const statusBox = document.getElementById('autocomplete-status');
 		if (statusBox) {
-			if (results.length === 0) {
-				statusBox.textContent = 'No topics found.';
-			} else if (results.length === 1) {
-				statusBox.textContent = '1 topic found.';
-			} else {
-				statusBox.textContent = results.length + ' topics found.';
-			}
+			statusBox.textContent =
+				results.length === 0 ? 'No topics found.'
+				: results.length === 1 ? '1 topic found.'
+				: results.length + ' topics found.';
 		}
 	}
 
@@ -255,9 +244,11 @@
 	function fetchResults(query) {
 		// 🔄 Bump version for every new query
 		const version = ++currentVersion;
+		const startTime = performance.now(); // ✅ Start here
 
 		if (cache.has(query)) {
 			renderResults(cache.get(query), query);
+			console.log(`(cached) Fetch + render: ${performance.now() - startTime} ms`);
 			return;
 		}
 
@@ -268,9 +259,7 @@
 
 		abortController = new AbortController();
 
-		const ajaxUrl = (typeof U_TOPICSEARCH_AJAX !== "undefined")
-			? U_TOPICSEARCH_AJAX // Use template-provided URL if available
-			: 'topicsearch/ajax'; // Default fallback
+		const ajaxUrl = (typeof U_TOPICSEARCH_AJAX !== "undefined") ? U_TOPICSEARCH_AJAX : 'topicsearch/ajax';
 
 		fetch(ajaxUrl + '?q=' + encodeURIComponent(query), {
 			headers: {
@@ -292,6 +281,7 @@
 			if (version === currentVersion) {
 				addToCache(query, data);
 				renderResults(data, query);
+				console.log(`(ajax) Fetch + render: ${performance.now() - startTime} ms`);
 			} else {
 				console.log(`Ignored out-of-date result for query: ${query}`);
 			}
@@ -315,21 +305,20 @@
 	searchBox.addEventListener('input', function () {
 		const query = this.value.trim();
 
-		if (debounceTimer) clearTimeout(debounceTimer); // Clear previous timer
-
 		if (query.length < 2) {
 			resultBox.style.display = 'none'; // Too short: hide results
 			return;
 		}
 
+		if (debounceTimer) clearTimeout(debounceTimer); // Clear previous timer
+
 		debounceTimer = setTimeout(() => {
+			//const stoperStart = performance.now();
 			// Initialize lang/normalization only when actually fetching
 			initLangAndNormalization();
-
-			const stoperStart = performance.now();
 			fetchResults(query);
-			const stoperEnd = performance.now();
-			console.log(`Execution time of fetching topics list: ${stoperEnd - stoperStart} ms`);
+			//const stoperEnd = performance.now();
+			//console.log(`Execution time of fetching topics list: ${stoperEnd - stoperStart} ms`);
 		}, 150); // Wait 150ms after user stops typing
 	});
 
