@@ -126,7 +126,6 @@ class ajax_search
 
 		$normalized_search = $this->normalize_search_string($query);
 		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
-		//$escaped_search = addcslashes($this->db->sql_escape($normalized_search), '\\%_');
 		$escaped_search = $this->db->sql_escape(addcslashes($normalized_search, '\\%_'));
 
 		$can_approve_forums = array_keys($this->auth->acl_getf('m_approve', true));

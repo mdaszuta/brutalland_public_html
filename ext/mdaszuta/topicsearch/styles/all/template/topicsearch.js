@@ -61,6 +61,7 @@
 
 		// Use the shared normalization map from backend
 		const charMap = normalizationMap;
+		const charCache = Object.create(null);
 
 		/**
 		 * Normalize a single character:
@@ -70,8 +71,12 @@
 		 * - Convert to lowercase for case-insensitive matching
 		 */
 		const normalizeChar = ch => {
+			if (charCache[ch] !== undefined) return charCache[ch];
+
 			const mapped = charMap[ch] || ch;
-			return mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+			const normalized = mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+			charCache[ch] = normalized;
+			return normalized;
 		};
 
 		// Preprocess: normalize text once, store per-char normalized chunks and offset map
