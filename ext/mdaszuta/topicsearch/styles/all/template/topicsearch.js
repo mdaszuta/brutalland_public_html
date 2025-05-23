@@ -32,7 +32,7 @@
 	 * This handles special cases like character decomposition (accents) and multi-letter mappings
 	 * (e.g., 'æ' becoming 'ae') so that user queries like "aegir" will still match "Ægir".
 	 */
-	function highlightMatch(text, query) {
+	function highlightMatch(text, query, normalizedQuery) {
 		if (!query) return text; // No query? Just return original text, nothing to highlight.
 
 		if (isAscii(text) && isAscii(query)) {
@@ -55,28 +55,6 @@
 			return out;
 		}
 
-		// Use the shared normalization map from backend
-		const charMap = normalizationMap;
-		const charCache = new Map();
-
-		/**
-		 * Normalize a single character:
-		 * - Apply custom map if present (e.g., 'æ' -> 'ae')
-		 * - Use NFD normalization to split accents off base characters
-		 * - Remove all combining accent marks
-		 * - Convert to lowercase for case-insensitive matching
-		 */
-		const normalizeChar = ch => {
-			if (charCache.has(ch)) {
-				return charCache.get(ch);
-			}
-
-			const mapped = charMap[ch] || ch;
-			const normalized = mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-			charCache.set(ch, normalized);
-			return normalized;
-		};
-
 		// Preprocess: normalize text once, store per-char normalized chunks and offset map
 		const normChunks = [];
 		const normOffsets = [];
@@ -91,7 +69,7 @@
 			normOffsets[i] = cumulative;
 		}
 
-		const normQuery = Array.from(query).map(normalizeChar).join('');
+		const normQuery = normalizedQuery ?? Array.from(query).map(normalizeChar).join('');
 
 		// Find match spans in normalized string
 		const spans = [];
@@ -170,6 +148,7 @@
 		resultBox.innerHTML = ''; // Clear previous results
 
 		const fragment = document.createDocumentFragment(); // Use fragment to minimize DOM reflows
+		const normalizedQuery = Array.from(query).map(normalizeChar).join('');
 
 		results.forEach((topic, index) => {
 			const item = document.createElement('div');
@@ -191,7 +170,7 @@
 			item.innerHTML = `
 				<div class="m-list-left" onclick="window.location.href='${topicUrl}'" title="${topicTooltip}">
 					<a href="${topicUrl}" tabindex="-1" class="flex topictitle ${readClass} m-list-left-top">
-						${highlightMatch(topic.title, query)}
+						${highlightMatch(topic.title, query, normalizedQuery)}
 					</a>
 					<span class="flex meta m-list-left-bottom">
 						<a href="${forumUrl}" class="topic-forumtitle ${readClass}" title="${jumpToForumSmall}">${topic.forum}</a>
@@ -341,6 +320,23 @@
 				}
 			}
 		}
+	}
+
+	/**
+	 * Normalize a single character:
+	 * - Apply custom map if present (e.g., 'æ' -> 'ae')
+	 * - Use NFD normalization to split accents off base characters
+	 * - Remove all combining accent marks
+	 * - Convert to lowercase for case-insensitive matching
+	 */
+	const charCache = new Map();
+
+	function normalizeChar(ch) {
+		if (charCache.has(ch)) return charCache.get(ch);
+		const mapped = normalizationMap[ch] || ch;
+		const normalized = mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+		charCache.set(ch, normalized);
+		return normalized;
 	}
 
 	// ------------------------
