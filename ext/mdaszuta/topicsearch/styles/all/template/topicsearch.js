@@ -249,35 +249,61 @@
      * Fetch results from server or use cache if available.
      * Calls `renderResults` when data is ready.
      */
-    function fetchResults(query) {
-        if (cache.has(query)) {
-            renderResults(cache.get(query), query);
-            return;
-        }
+	let abortController = null;
+	let currentVersion = 0; // 🔄 Tracks the latest request version
 
-        const ajaxUrl = (typeof U_TOPICSEARCH_AJAX !== "undefined")
-            ? U_TOPICSEARCH_AJAX // Use template-provided URL if available
-            : 'topicsearch/ajax'; // Default fallback
+	function fetchResults(query) {
+		// 🔄 Bump version for every new query
+		const version = ++currentVersion;
 
-        fetch(ajaxUrl + '?q=' + encodeURIComponent(query), {
-    		headers: {
-    			'X-Requested-With': 'XMLHttpRequest'
-    		}
-    	})
-            .then(res => {
-                if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-                return res.json();
-            })
-            .then(data => {
-                if (!Array.isArray(data)) {
-                    console.warn("Unexpected search result format", data);
-                    return;
-                }
-                addToCache(query, data);
-                renderResults(data, query);
-            })
-            .catch(err => console.error("Error fetching search results:", err));
-    }
+		if (cache.has(query)) {
+			renderResults(cache.get(query), query);
+			return;
+		}
+
+		// 🚫 Abort previous fetch if still ongoing
+		if (abortController) {
+			abortController.abort();
+		}
+
+		abortController = new AbortController();
+
+		const ajaxUrl = (typeof U_TOPICSEARCH_AJAX !== "undefined")
+			? U_TOPICSEARCH_AJAX // Use template-provided URL if available
+			: 'topicsearch/ajax'; // Default fallback
+
+		fetch(ajaxUrl + '?q=' + encodeURIComponent(query), {
+			headers: {
+				'X-Requested-With': 'XMLHttpRequest'
+			},
+			signal: abortController.signal, // 🔑 Pass the abort signal
+		})
+		.then(res => {
+			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+			return res.json();
+		})
+		.then(data => {
+			if (!Array.isArray(data)) {
+				console.warn("Unexpected search result format", data);
+				return;
+			}
+
+			// ✅ Only render if this is the latest version
+			if (version === currentVersion) {
+				addToCache(query, data);
+				renderResults(data, query);
+			} else {
+				console.log(`Ignored out-of-date result for query: ${query}`);
+			}
+		})
+		.catch(err => {
+			if (err.name === 'AbortError') {
+				console.log('Fetch aborted for query:', query);
+			} else {
+				console.error("Error fetching search results:", err);
+			}
+		});
+	}
 
     // Debounce timer ID used to delay fetch calls during fast typing
     let debounceTimer = null;
