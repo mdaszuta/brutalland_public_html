@@ -254,7 +254,11 @@
 		const startTime = performance.now(); // ✅ Start here
 
 		if (cache.has(query)) {
-			renderResults(cache.get(query), query);
+			if (query.length >= 2) {
+				renderResults(cache.get(query), query);
+			} else {
+				resultBox.style.display = 'none';
+			}
 			console.log(`(cached) Fetch + render: ${performance.now() - startTime} ms`);
 			return;
 		}
@@ -284,13 +288,16 @@
 				return;
 			}
 
-			// ✅ Only render if this is the latest version
-			if (version === currentVersion) {
+			//  ✅ Only render if this is the latest version and check if query is still long enough before rendering:
+			if (version === currentVersion && searchBox.value.trim() === query && query.length >= 2) {
 				addToCache(query, data);
 				renderResults(data, query);
 				console.log(`(ajax) Fetch + render: ${performance.now() - startTime} ms`);
 			} else {
-				console.log(`Ignored out-of-date result for query: ${query}`);
+				console.log(`Ignored stale or invalid result for query: ${query}`);
+				if (searchBox.value.trim().length < 2) {
+					resultBox.style.display = 'none';
+				}
 			}
 		})
 		.catch(err => {
@@ -312,20 +319,17 @@
 	searchBox.addEventListener('input', function () {
 		const query = this.value.trim();
 
+		if (debounceTimer) clearTimeout(debounceTimer); // Clear previous timer
+
 		if (query.length < 2) {
 			resultBox.style.display = 'none'; // Too short: hide results
 			return;
 		}
 
-		if (debounceTimer) clearTimeout(debounceTimer); // Clear previous timer
-
 		debounceTimer = setTimeout(() => {
-			//const stoperStart = performance.now();
 			// Initialize lang/normalization only when actually fetching
 			initLangAndNormalization();
 			fetchResults(query);
-			//const stoperEnd = performance.now();
-			//console.log(`Execution time of fetching topics list: ${stoperEnd - stoperStart} ms`);
 		}, 150); // Wait 150ms after user stops typing
 	});
 
@@ -333,7 +337,6 @@
 
 	function extendNormalizationMapWithUppercase(map) {
 		for (const [key, value] of Object.entries(map)) {
-			// If key is a single lowercase letter with an uppercase variant
 			// Only single lowercase keys without uppercase counterpart
 			if (key.length === 1 && key !== key.toUpperCase()) {
 				const uppercaseKey = key.toUpperCase();
