@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript (kleine letters maken boven de basis regel van de tekst): [sub]tekst[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Superscript (Kleine letters maken boven de tekst regel): [sup]tekst[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE' => 'Embed MP4/OGG/WEBM videobestanden: URL moet beginnen met <samp class="error">https</samp> of <samp class="error">http</samp> en eindigen met <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> of <samp class="error">.webm</samp> (geen BBCode nodig). Houd er rekening mee dat browserondersteuning en GUI-implementatie variëren.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopieer geselecteerde tekst',
@@ -82,25 +82,25 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Maak tabellen',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Maak tabellen met behulp van een van deze ASCII-stijl formaten.',
+	'ABBC3_PIPE_DOCUMENTATION'	 => 'Gebruikershandleiding',
+	'ABBC3_PIPE_SIMPLE'			=> 'Eenvoudige tabel',
+	'ABBC3_PIPE_COMPACT'		   => 'Compacte tabel',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'   => 'De buitenste pipes en spaties rondom pipes zijn optioneel.',
+	'ABBC3_PIPE_ALIGNMENT'		 => 'Tekstuitlijning',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
-	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_SIMPLE_EX'		 => "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
-	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
+	'ABBC3_PIPE_ALIGNMENT_EX'	  => "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'De volgorde van de BBcodes is bijgewerkt.',
-	'ABBC3_BBCODE_GROUP'		=> 'Beheer groepen die deze BBcode kunnen gebruiken',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Als je geen groep hebt geselecteerd, kunnen alle groepen deze BBcode gebruiken. Gebruik CTRL+KLIK (of CMD+KLIK bij Mac) om meer dan één groep te selecteren/deselecteren.',
+	'ABBC3_BBCODE_ORDERED'		 => 'De volgorde van de BBcodes is bijgewerkt.',
+	'ABBC3_BBCODE_GROUP'		   => 'Beheer groepen die deze BBcode kunnen gebruiken',
+	'ABBC3_BBCODE_GROUP_INFO'	  => 'Als je geen groep hebt geselecteerd, kunnen alle groepen deze BBcode gebruiken. Gebruik CTRL+KLIK (of CMD+KLIK bij Mac) om meer dan één groep te selecteren/deselecteren.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'De snelle bruine vos springt over de luie hond',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Voorbeeld:</strong><br>%2$s<br><br><strong>Resultaat:</strong><br>%3$s<hr />',
 ));
