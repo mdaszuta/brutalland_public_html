@@ -24,6 +24,7 @@
 
 .labeled-icon-button .fa,
 .post-number,
+cite .fa-arrow-circle-up,
 #mm-user .main-menu-bottom .fa {
 	opacity: 0.4;
 }
@@ -89,6 +90,7 @@ li.row:hover .topic-reply-counter.unread,
 .search-user .fa-search:hover,
 .post:hover .to-searched-post,
 .post-number:hover,
+cite .fa-arrow-circle-up:hover,
 #mm-user .main-menu-bottom a:hover .fa,
 .form-box:focus ~ .shadow-label,
 .form-box .inputbox:focus ~ .shadow-label,
@@ -128,6 +130,8 @@ li.row:hover .topic-reply-counter.unread,
 .pagination,
 .post:hover .to-searched-post,
 .post-number:hover,
+cite .fa-arrow-circle-up,
+cite .fa-arrow-circle-up:hover,
 .post-buttons:hover,
 .mark_read:hover,
 li.row .fa-question:hover,
