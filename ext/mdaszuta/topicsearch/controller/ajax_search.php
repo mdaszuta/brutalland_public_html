@@ -36,8 +36,9 @@ class ajax_search
 	/**
 	 * Returns the normalization map used for both PHP and SQL normalization.
 	 * If you update this map, ensure both normalize_search_string() and build_normalized_title_sql() stay in sync.
+	 * @return array<string, string>
 	 */
-	private function get_normalization_map()
+	private function get_normalization_map(): array
 	{
 		static $normalization_map = null;
 		if ($normalization_map === null) {
@@ -54,7 +55,7 @@ class ajax_search
 		return strtr(utf8_strtolower($str), $this->get_normalization_map());
 	}
 
-	private function build_normalized_title_sql($column_title)
+	private function build_normalized_title_sql(string $column_title): string
 	{
 		$map = $this->get_normalization_map();
 		$sql = "LOWER($column_title)";
@@ -78,6 +79,7 @@ class ajax_search
 		return $s === '' || strspn($s, "\0-\x7F") === strlen($s);
 	}
 
+	/** @return array<int> */
 	private function get_allowed_forums(): array
 	{
 		$prefix = self::ALLOWED_FORUMS_CACHE_PREFIX;
@@ -99,28 +101,26 @@ class ajax_search
 		return $allowed;
 	}
 
-	private function flatten_forum_ids(array $ids): string {
-    	return implode(',', array_map('intval', $ids));
+	private function flatten_forum_ids(array $ids): string
+	{
+		return implode(',', array_map('intval', $ids));
 	}
 
-	public function handle()
+	public function handle(): JsonResponse
 	{
-		if (!$this->request->is_ajax())
-		{
+		if (!$this->request->is_ajax()) {
 			return new JsonResponse(['error' => 'Invalid request'], 400);
 		}
 
 		$query = trim((string) $this->request->variable('q', '', true));
 		$query_len = utf8_strlen($query);
-		if ($query_len < self::MIN_QUERY_LENGTH || $query_len > self::MAX_QUERY_LENGTH)
-		{
+		if ($query_len < self::MIN_QUERY_LENGTH || $query_len > self::MAX_QUERY_LENGTH) {
 			return new JsonResponse([]);
 		}
 
 		// Cached allowed forums with read access
 		$allowed_forums = $this->get_allowed_forums();
-		if (empty($allowed_forums))
-		{
+		if (empty($allowed_forums)) {
 			return new JsonResponse([]);
 		}
 
@@ -138,8 +138,7 @@ class ajax_search
 			: '';
 
 		$matched_topics = $this->get_topics($escaped_search, $allowed_forum_ids_sql, $visibility_filter_sql);
-		if (empty($matched_topics))
-		{
+		if (empty($matched_topics)) {
 			return new JsonResponse([]);
 		}
 
@@ -155,9 +154,8 @@ class ajax_search
 		}
 
 		$topics = [];
-
-		// Skip tracking if there are no results
 		$topic_tracking_info = [];
+
 		if ($track_topics) {
 			foreach ($forum_topics as $forum_id => $topic_ids) {
 				$topic_tracking_info += get_complete_topic_tracking($forum_id, $topic_ids);
