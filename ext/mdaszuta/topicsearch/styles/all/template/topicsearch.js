@@ -1,4 +1,10 @@
 (function(window, document) {
+	"use strict";
+
+	const DEBOUNCE_DELAY_MS = 150;
+	const MIN_QUERY_LENGTH = 2;
+	const MAX_CACHE_ENTRIES = 50;
+
 	const searchBox = document.getElementById('search-box-keywords');	// The search input element
 	const resultBox = document.getElementById('autocomplete');			// The container where autocomplete results are displayed
 	let activeIndex = -1;												// Tracks the currently highlighted result for keyboard navigation
@@ -22,6 +28,49 @@
 			console.warn('Failed to parse topic search language and normalization map JSON:', e);
 		}
 		langInitialized = true;
+	}
+
+	/**
+	 * Extends shared normalization map with uppercase versions of single lowercase characters.
+	 * This allows matching uppercase characters in user queries against lowercase text.
+	 * For example, if 'a' maps to 'ae', it will also add 'A' -> 'Ae'.
+	 * This is useful for case-insensitive matching of characters that have special mappings.
+	 */
+
+	function extendNormalizationMapWithUppercase(map) {
+		for (const [key, value] of Object.entries(map)) {
+			// Only single lowercase keys without uppercase counterpart
+			if (key.length === 1 && key !== key.toUpperCase()) {
+				const uppercaseKey = key.toUpperCase();
+				// Only add if not already present
+				if (!(uppercaseKey in map)) {
+					// Capitalize the first letter of the replacement string
+					const uppercaseValue = value.length > 0
+						? value[0].toUpperCase() + value.slice(1)
+						: value;
+					map[uppercaseKey] = uppercaseValue;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Normalize a single character:
+	 * - Apply custom map if present (e.g., 'æ' -> 'ae')
+	 * - Use NFD normalization to split accents off base characters
+	 * - Remove all combining accent marks with regex replace
+	 * - Convert to lowercase for case-insensitive matching
+	 */
+	const charCache = new Map();
+
+	function normalizeChar(ch) {
+		if (charCache.has(ch)) { return charCache.get(ch); }
+
+		const mapped = normalizationMap[ch] || ch;
+		const normalized = mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+		charCache.set(ch, normalized);
+
+		return normalized;
 	}
 
 	function isAscii(str) {
@@ -202,7 +251,6 @@
 
 	// Simple in-memory cache using Map to preserve insertion order
 	const cache = new Map();
-	const maxCacheEntries = 50;
 
 	/**
 	 * Add a query and its result set to the cache.
@@ -210,7 +258,7 @@
 	 */
 	function addToCache(query, results) {
 		cache.set(query, results);
-		if (cache.size > maxCacheEntries) {
+		if (cache.size > MAX_CACHE_ENTRIES) {
 			const firstKey = cache.keys().next().value;
 			cache.delete(firstKey); // Evict the oldest cached query
 		}
@@ -228,7 +276,7 @@
 		const startTime = performance.now();
 
 		if (cache.has(query)) {
-			if (query.length >= 2) {
+			if (query.length >= MIN_QUERY_LENGTH) {
 				renderResults(cache.get(query), query);
 			} else {
 				resultBox.style.display = 'none';
@@ -262,13 +310,13 @@
 			}
 
 			//  Only render if this is the latest version and check if query is still long enough before rendering:
-			if (version === currentVersion && searchBox.value.trim() === query && query.length >= 2) {
+			if (version === currentVersion && searchBox.value.trim() === query && query.length >= MIN_QUERY_LENGTH) {
 				addToCache(query, data);
 				renderResults(data, query);
 				console.log(`(ajax) Fetch + render: ${performance.now() - startTime} ms`);
 			} else {
 				console.log(`Ignored stale or invalid result for query: ${query}`);
-				if (searchBox.value.trim().length < 2) {
+				if (searchBox.value.trim().length < MIN_QUERY_LENGTH) {
 					resultBox.style.display = 'none';
 				}
 			}
@@ -293,7 +341,7 @@
 
 		if (debounceTimer) { clearTimeout(debounceTimer); } // Clear previous timer
 
-		if (query.length < 2) {
+		if (query.length < MIN_QUERY_LENGTH) {
 			resultBox.style.display = 'none';
 			return;
 		}
@@ -301,46 +349,11 @@
 		debounceTimer = setTimeout(() => {
 			initLangAndNormalization();
 			fetchResults(query);
-		}, 150); // Wait 150ms after user stops typing
+		}, DEBOUNCE_DELAY_MS); // Wait DEBOUNCE_DELAY_MS after user stops typing
 	});
 
-	// After: normalizationMap
-
-	function extendNormalizationMapWithUppercase(map) {
-		for (const [key, value] of Object.entries(map)) {
-			// Only single lowercase keys without uppercase counterpart
-			if (key.length === 1 && key !== key.toUpperCase()) {
-				const uppercaseKey = key.toUpperCase();
-				// Only add if not already present
-				if (!(uppercaseKey in map)) {
-					// Capitalize the first letter of the replacement string
-					const uppercaseValue = value.length > 0
-						? value[0].toUpperCase() + value.slice(1)
-						: value;
-					map[uppercaseKey] = uppercaseValue;
-				}
-			}
-		}
-	}
-
 	/**
-	 * Normalize a single character:
-	 * - Apply custom map if present (e.g., 'æ' -> 'ae')
-	 * - Use NFD normalization to split accents off base characters
-	 * - Remove all combining accent marks
-	 * - Convert to lowercase for case-insensitive matching
 	 */
-	const charCache = new Map();
-
-	function normalizeChar(ch) {
-		if (charCache.has(ch)) { return charCache.get(ch); }
-
-		const mapped = normalizationMap[ch] || ch;
-		const normalized = mapped.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-		charCache.set(ch, normalized);
-
-		return normalized;
-	}
 
 	// ------------------------
 	// OPTIONAL: Keyboard Navigation
