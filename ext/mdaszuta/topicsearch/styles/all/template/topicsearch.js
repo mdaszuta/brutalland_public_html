@@ -194,7 +194,7 @@
 			return;
 		}
 
-		activeIndex = -1; // Reset active index
+		resetActiveIndex(); // Reset active index
 		resultBox.innerHTML = ''; // Clear previous results
 
 		const fragment = document.createDocumentFragment(); // Use fragment to minimize DOM reflows
@@ -353,53 +353,73 @@
 	});
 
 	/**
+	 * Keyboard navigation handler:
+	 * - ArrowDown/ArrowUp: Navigate through results
+	 * - Enter: Select the currently highlighted result
+	 * - Escape: Clear the search box and hide results
+	 * - Reset active index when input changes or search box is clicked
 	 */
-
-	// ------------------------
-	// OPTIONAL: Keyboard Navigation
-	// ------------------------
-	/*
 	searchBox.addEventListener('keydown', function (e) {
 		const items = resultBox.querySelectorAll('.autocomplete-item');
 		if (!items.length) { return; }
 
-		if (e.key === 'ArrowDown') {
+		if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && resultBox.style.display !== 'none') {
 			e.preventDefault();
-			activeIndex = (activeIndex + 1) % items.length;
+			activeIndex = (e.key === 'ArrowDown')
+				? (activeIndex + 1) % items.length
+				: (activeIndex - 1 + items.length) % items.length;
 			updateActive(items);
-		} else if (e.key === 'ArrowUp') {
+		} else if (e.key === 'Enter' && activeIndex >= 0) {
 			e.preventDefault();
-			activeIndex = (activeIndex - 1 + items.length) % items.length;
-			updateActive(items);
-		} else if (e.key === 'Enter') {
-			e.preventDefault();
-			if (activeIndex >= 0 && items[activeIndex]) {
+			if (items[activeIndex]) {
 				const link = items[activeIndex].querySelector('a');
 				if (link) { window.location.href = link.href; }
 			}
 		} else if (e.key === 'Escape') {
-			resultBox.style.display = 'none';
+				searchBox.value = '';
+				resultBox.style.display = 'none';
+				resetActiveIndex();
+				if (debounceTimer) {
+					clearTimeout(debounceTimer);
+				}
 		}
 	});
-	*/
 
 	/**
 	 * Highlight the currently active result item.
 	 * Scrolls it into view.
 	 */
-	/*
 	function updateActive(items) {
-		items.forEach(item => item.classList.remove('active'));
+		items.forEach(item => {
+			item.classList.remove('active');
+			item.setAttribute('aria-selected', 'false');
+		});
 		if (activeIndex >= 0 && items[activeIndex]) {
 			items[activeIndex].classList.add('active');
+			items[activeIndex].setAttribute('aria-selected', 'true');
 			items[activeIndex].scrollIntoView({ block: 'nearest' });
 		}
 	}
-	*/
 
-	// ------------------------
-	// OPTIONAL: Hide results when clicking outside
-	// ------------------------
+	/**
+	 * Reset active index when input changes or search box is clicked.
+	 * This clears the 'active' class and aria-selected attributes from all items.
+	 * It ensures that the autocomplete results are in a clean state when the user starts typing again.
+	 * This is important for accessibility and user experience, as it prevents stale state from previous searches.
+	 */
+	function resetActiveIndex() {
+		activeIndex = -1;
+
+		// Remove 'active' class and aria-selected="true" from all items
+		const activeItems = resultBox.querySelectorAll('.autocomplete-item.active, .autocomplete-item[aria-selected="true"]');
+		activeItems.forEach(item => {
+			item.classList.remove('active');
+			item.setAttribute('aria-selected', 'false');
+		});
+	}
+
+	searchBox.addEventListener('input', resetActiveIndex);
+	searchBox.addEventListener('click', resetActiveIndex);
 
 	document.addEventListener('click', (e) => {
 		if (!resultBox.contains(e.target) && e.target !== searchBox) {
