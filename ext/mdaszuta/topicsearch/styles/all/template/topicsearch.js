@@ -12,6 +12,15 @@
 	let lang, normalizationMap;
 	let langInitialized = false;
 
+	/**
+	 * Initialize language and normalization map from the script tag.
+	 * This is called once when the script loads to avoid repeated parsing.
+	 * It sets up the `lang` object and `normalizationMap` for character normalization.
+	 * The normalization map is used to handle special character mappings (e.g., 'æ' -> 'ae').
+	 * It also extends the map with uppercase versions of single lowercase characters
+	 * to ensure case-insensitive matching works correctly.
+	 */
+
 	function initLangAndNormalization() {
 		if (langInitialized) { return; } // Already initialized
 
@@ -73,6 +82,10 @@
 		return normalized;
 	}
 
+	/**
+	 * Check if a string contains only ASCII characters.
+	 */
+	
 	function isAscii(str) {
 		return /^[\x00-\x7F]*$/.test(str);
 	}
@@ -187,6 +200,17 @@
 	/**
 	 * Render the autocomplete results into the result box.
 	 * Each result shows topic title and forum name.
+	 * This function is called after fetching results from the server or using cached data.
+	 * It handles the following:
+	 * - Resets the active index for keyboard navigation
+	 * - Clears previous results
+	 * - Creates a document fragment to minimize DOM reflows
+	 * - Iterates over the results, creating a new item for each topic
+	 * - Applies alternating row styles for better readability
+	 * - Highlights matches in topic titles using the `highlightMatch` function
+	 * - Sets up click handlers for navigating to topic and forum pages
+	 * - Updates the result box visibility based on the number of results
+	 * - Announces the number of results to screen readers
 	 */
 	function renderResults(results, query) {
 		if (!Array.isArray(results)) {
@@ -254,7 +278,8 @@
 
 	/**
 	 * Add a query and its result set to the cache.
-	 * If full, evict the oldest query to stay within size limit.
+	 * If the cache exceeds the maximum size, evict the oldest entry.
+	 * This keeps the cache size manageable and ensures we don't use too much memory.
 	 */
 	function addToCache(query, results) {
 		cache.set(query, results);
@@ -265,8 +290,12 @@
 	}
 
 	/**
-	 * Fetch results from server or use cache if available.
-	 * Calls `renderResults` when data is ready.
+	 * Fetch results from the server or use cache if available.
+	 * This function is responsible for:
+	 * - Checking if the query is already cached
+	 * - If cached, rendering results immediately
+	 * - If not cached, making an AJAX request to fetch results
+	 * - Handling aborts for previous requests
 	 */
 	let abortController = null;
 	let currentVersion = 0; // Tracks the latest request version
@@ -421,12 +450,18 @@
 	searchBox.addEventListener('input', resetActiveIndex);
 	searchBox.addEventListener('click', resetActiveIndex);
 
+	/**
+	 * Click handler: hides the result box if clicked outside of it or the search box.
+	 * This is important for user experience, as it allows users to dismiss the results easily.
+	 * It also ensures that the results box does not remain open when the user clicks elsewhere on the page.
+	 */
 	document.addEventListener('click', (e) => {
 		if (!resultBox.contains(e.target) && e.target !== searchBox) {
 			resultBox.style.display = 'none';
 		}
 	});
 
+	// Set ARIA attributes for accessibility
 	resultBox.setAttribute('role', 'listbox');
 	searchBox.setAttribute('aria-controls', resultBox.id);
 	searchBox.setAttribute('aria-autocomplete', 'list');
