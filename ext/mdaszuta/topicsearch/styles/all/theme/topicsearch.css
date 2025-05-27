@@ -26,6 +26,16 @@
 		.autocomplete-item.active {
 			background-color: rgba(0, 0, 0, 0.35);
 		}
+		.autocomplete-item.active .m-list-left {
+			border-color: #32D635;
+		}
+		.autocomplete-item.active .m-list-left a {
+			color: #32D635;
+		}
+		.autocomplete-item .m-list-left,
+		.autocomplete-item.active .m-list-left {
+			transition: border-color 0.75s ease-out 0.1s;
+		}
 		.autocomplete-item mark {
 			/*background-color: rgba(255, 255, 255, 0.2);*/
 		}

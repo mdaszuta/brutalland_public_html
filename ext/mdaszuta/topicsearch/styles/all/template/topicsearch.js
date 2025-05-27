@@ -9,6 +9,11 @@
 	const resultBox = document.getElementById('autocomplete');			// The container where autocomplete results are displayed
 	let activeIndex = -1;												// Tracks the currently highlighted result for keyboard navigation
 
+	// Set ARIA attributes for accessibility
+	searchBox.setAttribute('aria-controls', resultBox.id);
+	searchBox.setAttribute('aria-autocomplete', 'list');
+	searchBox.setAttribute('aria-expanded', 'false');
+
 	let lang, normalizationMap;
 	let langInitialized = false;
 
@@ -237,9 +242,11 @@
 			const jumpToForumSmall = lang.jumpTo + " " + lang.forumSmall;
 
 			item.className = `flex ${rowClass} m-list-all autocomplete-item`;
-			item.setAttribute('data-index', index); // For keyboard navigation
+
+			item.id = `autocomplete-item-${index}`;
 			item.setAttribute('role', 'option');
 			item.setAttribute('aria-selected', activeIndex === index ? 'true' : 'false');
+			item.setAttribute('data-index', index); // For keyboard navigation
 
 			item.innerHTML = `
 				<div class="m-list-left" onclick="window.location.href='${topicUrl}'" title="${topicTooltip}">
@@ -262,14 +269,16 @@
 		resultBox.appendChild(fragment); // Append to DOM once
 
 		resultBox.style.display = results.length > 0 ? 'block' : 'none'; // Show or hide box
+		searchBox.setAttribute('aria-expanded', results.length > 0 ? 'true' : 'false');
 
 		// Announce results to screen readers
 		const statusBox = document.getElementById('autocomplete-status');
 		if (statusBox) {
+			const topTitle = results[0]?.title ?? '';
 			statusBox.textContent =
 				results.length === 0 ? 'No topics found.'
-				: results.length === 1 ? '1 topic found.'
-				: results.length + ' topics found.';
+				: results.length === 1 ? `1 topic found: ${topTitle}. Use arrow keys to navigate.`
+				: `${results.length} topics found. Use arrow keys to navigate. Top result: ${topTitle}.`;
 		}
 	}
 
@@ -308,7 +317,7 @@
 			if (query.length >= MIN_QUERY_LENGTH) {
 				renderResults(cache.get(query), query);
 			} else {
-				resultBox.style.display = 'none';
+				hideResultsBox();
 			}
 			console.log(`(cached) Fetch + render: ${performance.now() - startTime} ms`);
 			return;
@@ -346,7 +355,7 @@
 			} else {
 				console.log(`Ignored stale or invalid result for query: ${query}`);
 				if (searchBox.value.trim().length < MIN_QUERY_LENGTH) {
-					resultBox.style.display = 'none';
+					hideResultsBox();
 				}
 			}
 		})
@@ -371,7 +380,7 @@
 		if (debounceTimer) { clearTimeout(debounceTimer); } // Clear previous timer
 
 		if (query.length < MIN_QUERY_LENGTH) {
-			resultBox.style.display = 'none';
+			hideResultsBox();
 			return;
 		}
 
@@ -406,7 +415,7 @@
 			}
 		} else if (e.key === 'Escape') {
 				searchBox.value = '';
-				resultBox.style.display = 'none';
+				hideResultsBox();
 				resetActiveIndex();
 				if (debounceTimer) {
 					clearTimeout(debounceTimer);
@@ -415,18 +424,30 @@
 	});
 
 	/**
-	 * Highlight the currently active result item.
-	 * Scrolls it into view.
+	 * Update active item:
+	 * - Highlights the currently active result item
+	 * - Scrolls it into view if necessary
+	 * - Sets aria-selected attribute for accessibility
+	 * - Updates aria-activedescendant attribute on the search box
+	 * This function is called whenever the active index changes due to keyboard navigation.
+	 * It ensures that the user can see which result is currently selected,
+	 * and it provides a smooth user experience by scrolling the active item into view.
+	 * It also updates ARIA attributes to improve accessibility for screen readers.
 	 */
 	function updateActive(items) {
-		items.forEach(item => {
+		items.forEach((item, index) => {
 			item.classList.remove('active');
 			item.setAttribute('aria-selected', 'false');
 		});
 		if (activeIndex >= 0 && items[activeIndex]) {
-			items[activeIndex].classList.add('active');
-			items[activeIndex].setAttribute('aria-selected', 'true');
-			items[activeIndex].scrollIntoView({ block: 'nearest' });
+			const activeItem = items[activeIndex];
+			activeItem.classList.add('active');
+			activeItem.setAttribute('aria-selected', 'true');
+			activeItem.scrollIntoView({ block: 'nearest' });
+
+			searchBox.setAttribute('aria-activedescendant', activeItem.id);
+		} else {
+			searchBox.removeAttribute('aria-activedescendant');
 		}
 	}
 
@@ -437,14 +458,13 @@
 	 * This is important for accessibility and user experience, as it prevents stale state from previous searches.
 	 */
 	function resetActiveIndex() {
-		activeIndex = -1;
-
-		// Remove 'active' class and aria-selected="true" from all items
 		const activeItems = resultBox.querySelectorAll('.autocomplete-item.active, .autocomplete-item[aria-selected="true"]');
 		activeItems.forEach(item => {
 			item.classList.remove('active');
 			item.setAttribute('aria-selected', 'false');
 		});
+		activeIndex = -1;
+		searchBox.removeAttribute('aria-activedescendant');
 	}
 
 	searchBox.addEventListener('input', resetActiveIndex);
@@ -457,13 +477,20 @@
 	 */
 	document.addEventListener('click', (e) => {
 		if (!resultBox.contains(e.target) && e.target !== searchBox) {
-			resultBox.style.display = 'none';
+			hideResultsBox();
+			if (debounceTimer) { clearTimeout(debounceTimer); }
 		}
 	});
 
-	// Set ARIA attributes for accessibility
-	resultBox.setAttribute('role', 'listbox');
-	searchBox.setAttribute('aria-controls', resultBox.id);
-	searchBox.setAttribute('aria-autocomplete', 'list');
+	/**
+	 * Hide results box:
+	 * - Sets display to 'none' to hide the results box
+	 * - Updates ARIA attributes to indicate the box is closed
+	 * This function is called when the user clears the search box or clicks outside the results box.
+	 */
+	function hideResultsBox() {
+		resultBox.style.display = 'none';
+		searchBox.setAttribute('aria-expanded', 'false');
+	}
 
 })(window, document);
