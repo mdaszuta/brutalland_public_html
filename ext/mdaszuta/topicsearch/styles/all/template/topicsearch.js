@@ -167,13 +167,13 @@
 			let highlightType = null; // null, 'perfect', or 'normalized'
 
 			// Check each match span to see if this character overlaps it
-			for (const [mStart, mEnd] of spans) {
-				const overlapStart = Math.max(spanStart, mStart);
-				const overlapEnd = Math.min(spanEnd, mEnd);
+			for (const [matchStart, matchEnd] of spans) {
+				const overlapStart = Math.max(spanStart, matchStart);
+				const overlapEnd = Math.min(spanEnd, matchEnd);
 
 				if (overlapStart < overlapEnd) {
 					for (let ni = overlapStart; ni < overlapEnd; ni++) {
-						const queryIdx = ni - mStart;
+						const queryIdx = ni - matchStart;
 						if (queryIdx >= 0 && queryIdx < query.length) {
 							if (char === query[queryIdx]) {
 								highlightType = 'perfect';
