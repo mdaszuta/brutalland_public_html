@@ -103,24 +103,25 @@
 	function highlightMatch(text, query, normalizedQuery) {
 		if (!query) { return text; } // No query? Just return original text, nothing to highlight.
 
+		let highlightedText = '';
+
 		if (isAscii(text) && isAscii(query)) {
 			const lowercaseText = text.toLowerCase();
 			const lowercaseQuery = query.toLowerCase();
 			let i = 0;
-			let out = '';
 
 			while (i < text.length) {
 				const idx = lowercaseText.indexOf(lowercaseQuery, i);
 				if (idx === -1) {
-					out += text.slice(i); // no more matches – append the rest untouched
+					highlightedText += text.slice(i); // no more matches – append the rest untouched
 					break;
 				}
 
-				out += text.slice(i, idx); // copy segment before the match
-				out += '<mark class="posthilit">' + text.slice(idx, idx + query.length) + '</mark>'; // wrap the matched segment
+				highlightedText += text.slice(i, idx); // copy segment before the match
+				highlightedText += '<mark class="posthilit">' + text.slice(idx, idx + query.length) + '</mark>'; // wrap the matched segment
 				i = idx + query.length; // move past this match
 			}
-			return out;
+			return highlightedText;
 		}
 
 		// Preprocess: normalize text once, store per-char normalized chunks and offset map
@@ -154,7 +155,6 @@
 		 * Final rendering: go through the original text and check if each character
 		 * overlaps a matching normalized span.
 		 */
-		let output = '';
 		let curNorm = 0; // Position in normalized text
 
 		for (let i = 0; i < text.length; i++) {
@@ -191,15 +191,15 @@
 			}
 
 			if (highlightType === 'perfect') {
-				output += `<mark class="posthilit">${char}</mark>`;
+				highlightedText += `<mark class="posthilit">${char}</mark>`;
 			} else if (highlightType === 'normalized') {
-				output += `<mark class="posthilit marked-by-normalization">${char}</mark>`;
+				highlightedText += `<mark class="posthilit marked-by-normalization">${char}</mark>`;
 			} else {
-				output += char;
+				highlightedText += char;
 			}
 		}
 
-		return output;
+		return highlightedText;
 	}
 
 	/**
@@ -223,7 +223,7 @@
 			return;
 		}
 
-		resetActiveIndex(); // Reset active index
+		resetActiveIndex();
 		resultBox.innerHTML = ''; // Clear previous results
 
 		const fragment = document.createDocumentFragment(); // Use fragment to minimize DOM reflows
