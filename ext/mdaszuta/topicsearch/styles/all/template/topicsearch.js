@@ -138,14 +138,12 @@
 			normOffsets[i] = cumulative;
 		}
 
-		const normQuery = normalizedQuery ?? Array.from(query).map(normalizeChar).join('');
-
 		// Find match spans in normalized string
 		const spans = [];
 		let pos = 0;
-		while ((pos = normText.indexOf(normQuery, pos)) !== -1) {
-			spans.push([pos, pos + normQuery.length]); // Store match range
-			pos += normQuery.length; // Move past this match
+		while ((pos = normText.indexOf(normalizedQuery, pos)) !== -1) {
+			spans.push([pos, pos + normalizedQuery.length]); // Store match range
+			pos += normalizedQuery.length; // Move past this match
 		}
 
 		// If nothing matched, return the original text unmodified
@@ -175,10 +173,7 @@
 					for (let ni = overlapStart; ni < overlapEnd; ni++) {
 						const queryIdx = ni - matchStart;
 						if (queryIdx >= 0 && queryIdx < query.length) {
-							if (char === query[queryIdx]) {
-								highlightType = 'perfect';
-								break;
-							} else if (char.toLowerCase() === query[queryIdx].toLowerCase()) {
+							if (char === query[queryIdx] || char.toLowerCase() === query[queryIdx].toLowerCase()) {
 								highlightType = 'perfect';
 								break;
 							} else {
