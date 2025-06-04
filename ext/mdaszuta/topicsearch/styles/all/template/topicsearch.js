@@ -9,6 +9,8 @@
 	const resultBox = document.getElementById('autocomplete');			// The container where autocomplete results are displayed
 	let activeIndex = -1;												// Tracks the currently highlighted result for keyboard navigation
 
+	if (!searchBox || !resultBox) { return; }
+
 	// Set ARIA attributes for accessibility
 	searchBox.setAttribute('aria-controls', resultBox.id);
 	searchBox.setAttribute('aria-autocomplete', 'list');
@@ -108,73 +110,69 @@
 		if (isAscii(text) && isAscii(query)) {
 			const lowercaseText = text.toLowerCase();
 			const lowercaseQuery = query.toLowerCase();
-			let i = 0;
+			let start = 0;
 
-			while (i < text.length) {
-				const idx = lowercaseText.indexOf(lowercaseQuery, i);
-				if (idx === -1) {
-					highlightedText += text.slice(i); // no more matches – append the rest untouched
+			while (start < text.length) {
+				const index = lowercaseText.indexOf(lowercaseQuery, start);
+				if (index === -1) {
+					highlightedText += text.slice(start); // no more matches – append the rest untouched
 					break;
 				}
 
-				highlightedText += text.slice(i, idx); // copy segment before the match
-				highlightedText += '<mark class="posthilit">' + text.slice(idx, idx + query.length) + '</mark>'; // wrap the matched segment
-				i = idx + query.length; // move past this match
+				highlightedText += text.slice(start, index); // copy segment before the match
+				highlightedText += '<mark class="posthilit">' + text.slice(index, index + query.length) + '</mark>'; // wrap the matched segment
+				start = index + query.length; // move past this match
 			}
 			return highlightedText;
 		}
 
 		// Preprocess: normalize text once, store per-char normalized chunks and offset map
-		const normChunks = [];
-		const normOffsets = [];
-		let normText = '';
-		let cumulative = 0;
+		const normalizedChunks = []; // Normalized string per original char
+		let normalizedText = '';
 
 		for (let i = 0; i < text.length; i++) {
 			const norm = normalizeChar(text[i]);
-			normChunks[i] = norm;
-			normText += norm;
-			cumulative += norm.length;
-			normOffsets[i] = cumulative;
+			normalizedChunks[i] = norm;
+			normalizedText += norm;
 		}
 
-		// Find match spans in normalized string
-		const spans = [];
-		let pos = 0;
-		while ((pos = normText.indexOf(normalizedQuery, pos)) !== -1) {
-			spans.push([pos, pos + normalizedQuery.length]); // Store match range
-			pos += normalizedQuery.length; // Move past this match
+		// Identify match spans in normalizedText
+		const matchSpans = [];
+		let position = 0;
+		while ((position = normalizedText.indexOf(normalizedQuery, position)) !== -1) {
+			matchSpans.push([position, position + normalizedQuery.length]); // Store match range
+			position += normalizedQuery.length; // Move past this match
 		}
 
 		// If nothing matched, return the original text unmodified
-		if (!spans.length) { return text; }
+		if (!matchSpans.length) { return text; }
 
 		/**
 		 * Final rendering: go through the original text and check if each character
 		 * overlaps a matching normalized span.
 		 */
-		let curNorm = 0; // Position in normalized text
+		let currentNormPos = 0; // Position in normalized text
 
 		for (let i = 0; i < text.length; i++) {
-			const char = text[i];
-			const normalized = normChunks[i]; // Normalized version of this char (may be > 1 char)
-			const spanStart = curNorm;
-			const spanEnd = curNorm + normalized.length;
-			curNorm = spanEnd; // Advance cursor in normalized space
+			const originalChar = text[i];
+			const normalizedChar = normalizedChunks[i]; // Normalized version of this char (may be > 1 char)
+			const spanStart = currentNormPos;
+			const spanEnd = currentNormPos + normalizedChar.length;
+			currentNormPos = spanEnd; // Advance cursor in normalized space
 
-			let highlightType = null; // null, 'perfect', or 'normalized'
+			let highlightType = null; // null, 'exact', or 'normalized'
 
 			// Check each match span to see if this character overlaps it
-			for (const [matchStart, matchEnd] of spans) {
+			for (const [matchStart, matchEnd] of matchSpans) {
 				const overlapStart = Math.max(spanStart, matchStart);
 				const overlapEnd = Math.min(spanEnd, matchEnd);
 
 				if (overlapStart < overlapEnd) {
 					for (let ni = overlapStart; ni < overlapEnd; ni++) {
-						const queryIdx = ni - matchStart;
-						if (queryIdx >= 0 && queryIdx < query.length) {
-							if (char === query[queryIdx] || char.toLowerCase() === query[queryIdx].toLowerCase()) {
-								highlightType = 'perfect';
+						const queryIndex = ni - matchStart;
+						if (queryIndex >= 0 && queryIndex < query.length) {
+							if (originalChar === query[queryIndex] || originalChar.toLowerCase() === query[queryIndex].toLowerCase()) {
+								highlightType = 'exact';
 								break;
 							} else {
 								highlightType = 'normalized'; // It's a normalization match (e.g., 'æ' vs 'ae')
@@ -185,12 +183,12 @@
 				if (highlightType) { break; }
 			}
 
-			if (highlightType === 'perfect') {
-				highlightedText += `<mark class="posthilit">${char}</mark>`;
+			if (highlightType === 'exact') {
+				highlightedText += `<mark class="posthilit">${originalChar}</mark>`;
 			} else if (highlightType === 'normalized') {
-				highlightedText += `<mark class="posthilit marked-by-normalization">${char}</mark>`;
+				highlightedText += `<mark class="posthilit marked-by-normalization">${originalChar}</mark>`;
 			} else {
-				highlightedText += char;
+				highlightedText += originalChar;
 			}
 		}
 
