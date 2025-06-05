@@ -127,12 +127,12 @@
 		}
 
 		// Preprocess: normalize text once, store per-char normalized chunks and offset map
-		const normalizedChunks = []; // Normalized string per original char
+		const normalizedChars = []; // Normalized string per original char
 		let normalizedText = '';
 
 		for (let i = 0; i < text.length; i++) {
 			const norm = normalizeChar(text[i]);
-			normalizedChunks[i] = norm;
+			normalizedChars[i] = norm;
 			normalizedText += norm;
 		}
 
@@ -155,9 +155,8 @@
 
 		for (let i = 0; i < text.length; i++) {
 			const originalChar = text[i];
-			const normalizedChar = normalizedChunks[i]; // Normalized version of this char (may be > 1 char)
 			const spanStart = currentNormPos;
-			const spanEnd = currentNormPos + normalizedChar.length;
+			const spanEnd = currentNormPos + normalizedChars[i].length; // normalizedChars[i] is a normalized version of this char (may be > 1 char)
 			currentNormPos = spanEnd; // Advance cursor in normalized space
 
 			let highlightType = null; // null, 'exact', or 'normalized'
