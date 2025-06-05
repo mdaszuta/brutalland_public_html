@@ -98,11 +98,27 @@
 	}
 
 	/**
-	 * Highlight query matches within a given text using fuzzy Unicode-aware matching.
-	 * This handles special cases like character decomposition (accents) and multi-letter mappings
-	 * (e.g., 'æ' becoming 'ae') so that user queries like "aegir" will still match "Ægir".
+	 * Build a mapping from each position in the normalized query string
+	 * to the index of the original query character that produced it.
+	 * This should be called once per query and passed to highlightMatch.
 	 */
-	function highlightMatch(text, query, normalizedQuery) {
+	function buildNormalizedQueryOffsetMap(query) {
+		const normalizedQueryPositionToQueryIndex = [];
+		let normalizedQueryPosition = 0;
+		for (let i = 0; i < query.length; i++) {
+			const norm = normalizeChar(query[i]);
+			for (let j = 0; j < norm.length; j++) {
+				normalizedQueryPositionToQueryIndex[normalizedQueryPosition++] = i;
+			}
+		}
+		return normalizedQueryPositionToQueryIndex;
+	}
+
+	/**
+	 * Highlight query matches within a given text using fuzzy Unicode-aware matching.
+	 * Accepts a precomputed normalizedQuery and normalizedQueryOffsetMap for efficiency.
+	 */
+	function highlightMatch(text, query, normalizedQuery, normalizedQueryOffsetMap) {
 		if (!query) { return text; } // No query? Just return original text, nothing to highlight.
 
 		let highlightedText = '';
@@ -126,7 +142,6 @@
 			return highlightedText;
 		}
 
-		// Preprocess: normalize text once, store per-char normalized chunks and offset map
 		const normalizedChars = []; // Normalized string per original char
 		let normalizedText = '';
 
@@ -161,22 +176,21 @@
 
 			let highlightType = null; // null, 'exact', or 'normalized'
 
-			// Check each match span to see if this character overlaps it
 			for (const [matchStart, matchEnd] of matchSpans) {
 				const overlapStart = Math.max(spanStart, matchStart);
 				const overlapEnd = Math.min(spanEnd, matchEnd);
 
-				if (overlapStart < overlapEnd) {
-					for (let ni = overlapStart; ni < overlapEnd; ni++) {
-						const queryIndex = ni - matchStart;
-						if (queryIndex >= 0 && queryIndex < query.length) {
-							if (originalChar === query[queryIndex] || originalChar.toLowerCase() === query[queryIndex].toLowerCase()) {
-								highlightType = 'exact';
-								break;
-							} else {
-								highlightType = 'normalized'; // It's a normalization match (e.g., 'æ' vs 'ae')
-							}
-						}
+				for (let normPos = overlapStart; normPos < overlapEnd; normPos++) {
+					const queryNormPos = normPos - matchStart;
+					const queryIndex = normalizedQueryOffsetMap[queryNormPos];
+					if (
+						(queryIndex >= 0 && queryIndex < query.length) &&
+						(originalChar === query[queryIndex] || originalChar.toLowerCase() === query[queryIndex].toLowerCase())
+					) {
+						highlightType = 'exact';
+						break;
+					} else {
+						highlightType = 'normalized'; // It's a normalization match (e.g., 'æ' vs 'ae')
 					}
 				}
 				if (highlightType) { break; }
@@ -220,6 +234,7 @@
 
 		const fragment = document.createDocumentFragment(); // Use fragment to minimize DOM reflows
 		const normalizedQuery = Array.from(query).map(normalizeChar).join('');
+		const normalizedQueryOffsetMap = buildNormalizedQueryOffsetMap(query);
 
 		results.forEach((topic, index) => {
 			const item = document.createElement('div');
@@ -243,7 +258,7 @@
 			item.innerHTML = `
 				<div class="m-list-left" onclick="window.location.href='${topicUrl}'" title="${topicTooltip}">
 					<a href="${topicUrl}" tabindex="-1" class="flex topictitle ${readClass} m-list-left-top">
-						${highlightMatch(topic.title, query, normalizedQuery)}
+						${highlightMatch(topic.title, query, normalizedQuery, normalizedQueryOffsetMap)}
 					</a>
 					<span class="flex meta m-list-left-bottom">
 						<a href="${forumUrl}" class="topic-forumtitle ${readClass}" title="${jumpToForumSmall}">${topic.forum}</a>
