@@ -106,8 +106,8 @@
 		const normalizedQueryPositionToQueryIndex = [];
 		let normalizedQueryPosition = 0;
 		for (let i = 0; i < query.length; i++) {
-			const norm = normalizeChar(query[i]);
-			for (let j = 0; j < norm.length; j++) {
+			const normalizedCharTmp = normalizeChar(query[i]);
+			for (let j = 0; j < normalizedCharTmp.length; j++) {
 				normalizedQueryPositionToQueryIndex[normalizedQueryPosition++] = i;
 			}
 		}
@@ -146,9 +146,9 @@
 		let normalizedText = '';
 
 		for (let i = 0; i < text.length; i++) {
-			const norm = normalizeChar(text[i]);
-			normalizedChars[i] = norm;
-			normalizedText += norm;
+			const normalizedCharTmp = normalizeChar(text[i]);
+			normalizedChars[i] = normalizedCharTmp;
+			normalizedText += normalizedCharTmp;
 		}
 
 		// Identify match spans in normalizedText
@@ -163,16 +163,19 @@
 		if (!matchSpans.length) { return text; }
 
 		/**
-		 * Final rendering: go through the original text and check if each character
-		 * overlaps a matching normalized span.
+		 * Iterate over the original text and highlight matches.
+		 * For each character in the original text, we check if it overlaps with any match spans.
+		 * If it does, we determine if it's an exact match or a normalization match.
+		 * We then wrap the matched characters in <mark> tags for highlighting.
+		 * This allows us to handle both exact matches and normalization matches (e.g., 'æ' vs 'ae').
 		 */
-		let currentNormPos = 0; // Position in normalized text
+		let normalizedTextOffset = 0;
 
 		for (let i = 0; i < text.length; i++) {
 			const originalChar = text[i];
-			const spanStart = currentNormPos;
-			const spanEnd = currentNormPos + normalizedChars[i].length; // normalizedChars[i] is a normalized version of this char (may be > 1 char)
-			currentNormPos = spanEnd; // Advance cursor in normalized space
+			const spanStart = normalizedTextOffset;
+			const spanEnd = normalizedTextOffset + normalizedChars[i].length; // normalizedChars[i] is a normalized version of this char (may be > 1 char)
+			normalizedTextOffset = spanEnd; // Advance cursor in normalized space
 
 			let highlightType = null; // null, 'exact', or 'normalized'
 
@@ -180,9 +183,9 @@
 				const overlapStart = Math.max(spanStart, matchStart);
 				const overlapEnd = Math.min(spanEnd, matchEnd);
 
-				for (let normPos = overlapStart; normPos < overlapEnd; normPos++) {
-					const queryNormPos = normPos - matchStart;
-					const queryIndex = normalizedQueryOffsetMap[queryNormPos];
+				for (let normalizedTextPosition = overlapStart; normalizedTextPosition < overlapEnd; normalizedTextPosition++) {
+					const normalizedQueryPosition = normalizedTextPosition - matchStart;
+					const queryIndex = normalizedQueryOffsetMap[normalizedQueryPosition];
 					if (
 						(queryIndex >= 0 && queryIndex < query.length) &&
 						(originalChar === query[queryIndex] || originalChar.toLowerCase() === query[queryIndex].toLowerCase())

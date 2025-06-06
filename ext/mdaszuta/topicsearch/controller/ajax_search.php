@@ -72,10 +72,10 @@ class ajax_search
 	 * Return true when the string contains only ASCII bytes (0x00‑0x7F).
 	 * Fastest method: strspn() counts the initial segment that matches the
 	 * allowed range; if that length equals strlen($s), every byte is ASCII.
+	 * Empty string is ASCII by definition.
 	 */
 	private static function is_ascii(string $s): bool
 	{
-		// Empty string is ASCII by definition
 		return $s === '' || strspn($s, "\0-\x7F") === strlen($s);
 	}
 
