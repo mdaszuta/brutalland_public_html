@@ -24,6 +24,15 @@ class ajax_search
 	private const ALLOWED_FORUMS_CACHE_DURATION = 60; // seconds
 	private const ALLOWED_FORUMS_CACHE_PREFIX = 'mdaszuta_topicsearch_allowed_forums_user_';
 
+	/**
+	 * Constructor for the ajax_search class.
+	 * Initializes the database driver, request handler, user object, auth system, and cache.
+	 * @param driver_interface $db Database driver instance
+	 * @param request_interface $request Request handler instance
+	 * @param user $user User object
+	 * @param auth $auth Authentication system
+	 * @param cache_interface $cache Cache driver instance
+	 */
 	public function __construct(driver_interface $db, request_interface $request, user $user, auth $auth, cache_interface $cache)
 	{
 		$this->db      = $db;
@@ -34,9 +43,11 @@ class ajax_search
 	}
 
 	/**
-	 * Returns the normalization map used for both PHP and SQL normalization.
-	 * If you update this map, ensure both normalize_search_string() and build_normalized_title_sql() stay in sync.
-	 * @return array<string, string>
+	 * Get the normalization map for special character replacements.
+	 * This map is used to ensure that both PHP and SQL use the same normalization rules
+	 * for case-insensitive and special character-insensitive comparisons.
+	 * The map is loaded from a configuration file.
+	 * @return array<string, string> The normalization map
 	 */
 	private function get_normalization_map(): array
 	{
@@ -47,6 +58,14 @@ class ajax_search
 		return $normalization_map;
 	}
 
+	/**
+	 * Normalize the search string for case-insensitive and special character-insensitive comparison.
+	 * This function converts the string to lowercase and replaces special characters
+	 * according to the normalization map defined in config/normalization_map.php.
+	 * It ensures that both PHP and SQL use the same normalization rules.
+	 * @param string $str The input search string
+	 * @return string The normalized search string
+	 */
 	private function normalize_search_string(string $str): string
 	{
 		if (self::is_ascii($str)) {
@@ -55,6 +74,13 @@ class ajax_search
 		return strtr(utf8_strtolower($str), $this->get_normalization_map());
 	}
 
+	/**
+	 * Build a SQL expression that normalizes the topic title for case-insensitive
+	 * and special character-insensitive comparison.
+	 * This is used in the SQL WHERE clause to match the normalized search string.
+	 * @param string $column_title The name of the column containing the topic title
+	 * @return string The SQL expression for normalized title comparison
+	 */
 	private function build_normalized_title_sql(string $column_title): string
 	{
 		$map = $this->get_normalization_map();
@@ -74,12 +100,18 @@ class ajax_search
 	 * allowed range; if that length equals strlen($s), every byte is ASCII.
 	 * Empty string is ASCII by definition.
 	 */
-	private static function is_ascii(string $s): bool
+	private static function is_ascii(string $str): bool
 	{
-		return $s === '' || strspn($s, "\0-\x7F") === strlen($s);
+		return $str === '' || strspn($str, "\0-\x7F") === strlen($str);
 	}
 
-	/** @return array<int> */
+	/**
+	 * Get the list of allowed forums for the current user.
+	 * This function checks the cache for allowed forums based on user ID.
+	 * If not cached, it retrieves the allowed forums from the auth system,
+	 * caches them, and returns the list.
+	 * @return array<int> List of forum IDs that the user can read
+	 */
 	private function get_allowed_forums(): array
 	{
 		$prefix = self::ALLOWED_FORUMS_CACHE_PREFIX;
@@ -101,11 +133,24 @@ class ajax_search
 		return $allowed;
 	}
 
+	/**
+	 * Flatten an array of forum IDs into a comma-separated string.
+	 * This is used to construct the SQL IN clause for allowed forums.
+	 * @param array<int> $ids Array of forum IDs
+	 * @return string Comma-separated list of forum IDs
+	 */
 	private function flatten_forum_ids(array $ids): string
 	{
 		return implode(',', array_map('intval', $ids));
 	}
 
+	/**
+	 * Handle the AJAX search request.
+	 * This method processes the search query, retrieves allowed forums,
+	 * normalizes the search string, and fetches matching topics from the database.
+	 * It returns a JSON response with the list of matching topics.
+	 * @return JsonResponse JSON response containing the search results
+	 */
 	public function handle(): JsonResponse
 	{
 		if (!$this->request->is_ajax()) {
@@ -187,6 +232,16 @@ class ajax_search
 		return new JsonResponse($topics);
 	}
 
+	/**
+	 * Retrieve topics matching the search query from the database.
+	 * This method constructs and executes the SQL query to find topics
+	 * that match the normalized search string, within allowed forums.
+	 * It returns an array of topic rows with relevant information.
+	 * @param string $escaped_search The normalized and escaped search string
+	 * @param string $allowed_forum_ids_sql Comma-separated list of allowed forum IDs
+	 * @param string $visibility_filter_sql Additional SQL conditions for topic visibility
+	 * @return array Array of topic rows matching the search criteria
+	 */
 	private function get_topics(string $escaped_search, string $allowed_forum_ids_sql, string $visibility_filter_sql): array
 	{
 		$sql = $this->build_search_query($escaped_search, $allowed_forum_ids_sql, $visibility_filter_sql);
@@ -198,6 +253,16 @@ class ajax_search
 		return $topic_rows;
 	}
 
+	/**
+	 * Build the SQL query to search for topics matching the normalized search string.
+	 * This method constructs a SQL query that searches for topics whose titles
+	 * match the normalized search string, within the allowed forums.
+	 * It uses LIKE patterns to find matches at the beginning or anywhere in the title.
+	 * @param string $escaped_search The normalized and escaped search string
+	 * @param string $allowed_forum_ids_sql Comma-separated list of allowed forum IDs
+	 * @param string $visibility_filter_sql Additional SQL conditions for topic visibility
+	 * @return string The SQL query string
+	 */
 	private function build_search_query(string $escaped_search, string $allowed_forum_ids_sql, string $visibility_filter_sql): string
 	{
 		// Prepare LIKE patterns
