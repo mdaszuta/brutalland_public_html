@@ -418,11 +418,9 @@
 				: (activeIndex - 1 + items.length) % items.length;
 			updateActive(items);
 		} else if (e.key === 'Enter' && activeIndex >= 0) {
-			e.preventDefault();
-			if (items[activeIndex]) {
-				const link = items[activeIndex].querySelector('a');
+				e.preventDefault();
+				const link = items[activeIndex]?.querySelector('a');
 				if (link) { window.location.href = link.href; }
-			}
 		} else if (e.key === 'Escape') {
 				searchBox.value = '';
 				hideResultsBox();
