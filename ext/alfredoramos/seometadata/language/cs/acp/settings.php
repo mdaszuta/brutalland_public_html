@@ -2,7 +2,7 @@
 
 /**
  * SEO Metadata extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@protonmail.com>
+ * @author Alfredo Ramos <alfredo.ramos@proton.me>
  * @copyright 2018 Alfredo Ramos
  * @license GNU GPL-2.0-only
  */
@@ -44,7 +44,7 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_IMAGE_DIMENSIONS' => 'Podle rozměru',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE' => 'Výchozí obrázek',
-	'ACP_SEO_METADATA_DEFAULT_IMAGE_EXPLAIN' => 'URL adresa výchozího obrázku pro metatagy (např. <samp>og:image</samp>). Tento obrázek bude použit jen v případě, že v nebude na stránce nalezený žádný jiný. Jeho velikost musí být větší než <samp>200</samp>x<samp>200</samp>px a jeho URL relativní k <samp>%s</samp>.',
+	'ACP_SEO_METADATA_DEFAULT_IMAGE_EXPLAIN' => 'URL adresa výchozího obrázku pro metatagy (např. <samp>og:image</samp>). Tento obrázek bude použit jen v případě, že v nebude na stránce nalezený žádný jiný. Jeho velikost musí být větší než <samp>%1$d</samp>x<samp>%1$d</samp>px a jeho URL relativní k <samp>%1$s</samp>',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS' => 'Výchozí rozměry obrázku',
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS_EXPLAIN' => 'Výška a šířka výchozího obrázku.',
@@ -66,6 +66,9 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_POST_METADATA' => 'Metadata příspěvku',
 	'ACP_SEO_METADATA_POST_METADATA_EXPLAIN' => 'Generovat metadata také pro URL adresy konkrétních příspěvků.',
 
+	'ACP_SEO_METADATA_MAX_IMAGES' => 'Počet obrázků',
+	'ACP_SEO_METADATA_MAX_IMAGES_EXPLAIN' => 'Maximální počet obrázků k extrakci na příspěvek. Uvědomte si, že zvýšení tohoto čísla může negativně ovlivnit dobu prvního načítání, pokud obrázky nebyly dříve extrahovány pro téma nebo příspěvek. Má tvrdou maximální hodnotu <samp>%d</samp>.',
+
 	'ACP_SEO_METADATA_DATA_EXPLAIN' => 'Metadata jsou generována dynamicky z obsahu vašeho fóra.',
 
 	'ACP_SEO_METADATA_GLOBAL_SETTINGS' => 'Globální nastavení',
@@ -86,7 +89,7 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_JSON_LD_SETTINGS' => 'JSON-LD',
 	'ACP_SEO_METADATA_JSON_LD' => 'Povolit JSON-LD',
 	'ACP_SEO_METADATA_JSON_LD_LOGO' => 'Logo vydavatele',
-	'ACP_SEO_METADATA_JSON_LD_LOGO_EXPLAIN' => 'Vlastní logo použité ve výsledcích vyhledávání na Googlu. Jeho velikost musí být větší než <samp>200</samp>x<samp>200</samp>px a jeho URL relativní k <samp>%s</samp>.',
+	'ACP_SEO_METADATA_JSON_LD_LOGO_EXPLAIN' => 'Vlastní logo použité ve výsledcích vyhledávání na Googlu. Jeho velikost musí být větší než <samp>112</samp> x <samp>112</samp> px a jeho URL relativní k <samp>%s</samp>.',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS' => 'Rozměry loga vydavatele',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS_EXPLAIN' => 'Šířka a výška loga vydavatele.',
 
@@ -94,6 +97,6 @@ $lang = array_merge($lang, [
 
 	'ACP_SEO_METADATA_VALIDATE_INVALID_FIELDS' => 'Neplatné hodnoty pro pole: %s',
 	'ACP_SEO_METADATA_VALIDATE_INVALID_IMAGE' => 'Hodnota zadaná pro obrázek <samp>%1$s</samp> vygenerovala prázdnou URL.<br>To může být proto, že obrázek neexistuje, nebo jeho cesta směřovala mimo adresář <samp>/images/</samp>.',
-	'ACP_SEO_METADATA_VALIDATE_SMALL_IMAGE' => 'Rozměry obrázku <samp>%1$s</samp> musí být větší než <samp>%2$s</samp>x<samp>%3$s</samp>px',
+	'ACP_SEO_METADATA_VALIDATE_SMALL_IMAGE' => 'Rozměry obrázku <samp>%1$s</samp> musí být větší než <samp>%2$s</samp> x <samp>%3$s</samp> px.',
 	'ACP_SEO_METADATA_VALIDATE_INVALID_MIME_TYPE' => 'MIME typ <samp>%2$s</samp> obrázku <samp>%1$s</samp> není povolený.'
 ]);

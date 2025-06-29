@@ -2,7 +2,7 @@
 
 /**
  * SEO Metadata extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@protonmail.com>
+ * @author Alfredo Ramos <alfredo.ramos@proton.me>
  * @copyright 2018 Alfredo Ramos
  * @license GNU GPL-2.0-only
  */
@@ -44,7 +44,7 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_IMAGE_DIMENSIONS' => 'Dimensions de l’image',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE' => 'Image par défaut',
-	'ACP_SEO_METADATA_DEFAULT_IMAGE_EXPLAIN' => 'URL de l’image par défaut pour les balises meta de type <samp>og:image</samp>. Cette image ne sera utilisée que si aucune autre image ne peut être trouvée sur la page courante. Elle doit être plus grande que <samp>200</samp> x <samp>200</samp> pixels et être relative à <samp>%s</samp>',
+	'ACP_SEO_METADATA_DEFAULT_IMAGE_EXPLAIN' => 'URL de l’image par défaut pour les balises meta de type <samp>og:image</samp>. Cette image ne sera utilisée que si aucune autre image ne peut être trouvée sur la page courante. Elle doit être plus grande que <samp>%1$d</samp> x <samp>%1$d</samp> pixels et être relative à <samp>%2$s</samp>',
 
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS' => 'Dimensions par défaut de l’image',
 	'ACP_SEO_METADATA_DEFAULT_IMAGE_DIMENSIONS_EXPLAIN' => 'Largeur x hauteur de l’image par défaut.',
@@ -66,6 +66,9 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_POST_METADATA' => 'Balises meta de message',
 	'ACP_SEO_METADATA_POST_METADATA_EXPLAIN' => 'Générer également des métadonnées pour des URL de publication spécifiques.',
 
+	'ACP_SEO_METADATA_MAX_IMAGES' => 'Nombre d’images',
+	'ACP_SEO_METADATA_MAX_IMAGES_EXPLAIN' => 'Nombre maximal d’images à extraire par article. Sachez que l’augmentation de ce nombre peut affecter négativement le temps de premier chargement si aucune image n’a été extraite auparavant pour le sujet ou l’article. Sa valeur maximale est de <samp>%d</samp>.',
+
 	'ACP_SEO_METADATA_DATA_EXPLAIN' => 'Les balises meta sont générées dynamiquement depuis les données de votre forum.',
 
 	'ACP_SEO_METADATA_GLOBAL_SETTINGS' => 'Paramètres généraux',
@@ -86,7 +89,7 @@ $lang = array_merge($lang, [
 	'ACP_SEO_METADATA_JSON_LD_SETTINGS' => 'Paramètres JSON-LD',
 	'ACP_SEO_METADATA_JSON_LD' => 'Activer JSON-LD',
 	'ACP_SEO_METADATA_JSON_LD_LOGO' => 'Logo éditeur',
-	'ACP_SEO_METADATA_JSON_LD_LOGO_EXPLAIN' => 'Un logo personnalisé utilisé par Google dans les résultats des recherches. Il doit mesurer un minimum de <samp>112</samp>x<samp>112</samp>pixels et être relatif à <samp>%s</samp>',
+	'ACP_SEO_METADATA_JSON_LD_LOGO_EXPLAIN' => 'Un logo personnalisé utilisé par Google dans les résultats des recherches. Il doit mesurer un minimum de <samp>112</samp> x <samp>112</samp> pixels et être relatif à <samp>%s</samp>',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS' => 'Dimensions du logo éditeur',
 	'ACP_SEO_METADATA_JSON_LD_LOGO_DIMENSIONS_EXPLAIN' => 'Largeur x hauteur du logo éditeur.',
 
@@ -94,6 +97,6 @@ $lang = array_merge($lang, [
 
 	'ACP_SEO_METADATA_VALIDATE_INVALID_FIELDS' => 'Valeurs incorrectes pour les champs: %s',
 	'ACP_SEO_METADATA_VALIDATE_INVALID_IMAGE' => 'La valeur indiquée pour l’image <samp>%1$s</samp> à générée une URL vide.<br>Ceci peut être provoqué par le fait que cette image est inexistante ou que le nom de fichier tente de sortir du chemin d’accès <samp>/images/</samp>.',
-	'ACP_SEO_METADATA_VALIDATE_SMALL_IMAGE' => 'Les dimensions de l’image <samp>%1$s</samp> doivent être supérieures à <samp>%2$s</samp> x <samp>%3$s</samp> pixels',
+	'ACP_SEO_METADATA_VALIDATE_SMALL_IMAGE' => 'Les dimensions de l’image <samp>%1$s</samp> doivent être supérieures à <samp>%2$s</samp> x <samp>%3$s</samp> pixels.',
 	'ACP_SEO_METADATA_VALIDATE_INVALID_MIME_TYPE' => 'Le type MIME <samp>%2$s</samp> pour l’image <samp>%1$s</samp> n’est pas autorisé.'
 ]);

@@ -7,7 +7,7 @@
  * @license GPL-2.0-only
  */
 
-namespace alfredoramos\seometadata\migrations\v13x;
+namespace alfredoramos\seometadata\migrations\v14x;
 
 use phpbb\db\migration\migration;
 
@@ -20,7 +20,7 @@ class m00_configuration extends migration
 	 */
 	static public function depends_on()
 	{
-		return ['\alfredoramos\seometadata\migrations\v12x\m00_configuration'];
+		return ['\alfredoramos\seometadata\migrations\v13x\m00_configuration'];
 	}
 
 	/**
@@ -33,19 +33,7 @@ class m00_configuration extends migration
 		return [
 			[
 				'config.add',
-				['seo_metadata_json_ld_logo', '']
-			],
-			[
-				'config.add',
-				['seo_metadata_json_ld_logo_width', 0]
-			],
-			[
-				'config.add',
-				['seo_metadata_json_ld_logo_height', 0]
-			],
-			[
-				'config.add',
-				['seo_metadata_post_metadata', 0]
+				['seo_metadata_max_images', 5]
 			]
 		];
 	}
