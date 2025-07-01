@@ -80,8 +80,8 @@
 })(window.document, window.history, window.location);
 
 /**
-* Nazwa wpisywanego tematu real time, wczytuje do tytułu menu wpisywaną wartość String
-*/
+ * Nazwa wpisywanego tematu real time, wczytuje do tytułu menu wpisywaną wartość String
+ */
 
 function showTopicNameInRealTime() {
 	"use strict";
@@ -96,9 +96,9 @@ $(document).ready(function(){
 	"use strict";
 
 	/** Function calculateMenuAllWidthOrMarginLeft calculates and sets values of .menu-all:
-	* width: if chosen menu is a .contact-box
-	* margin-left: if chosen menu is not a top menu item (.main-menu-item), quick topic tools (.quickmod-box) or tags in viewtopic_body (.tag-box)
-	*/
+	 * width: if chosen menu is a .contact-box
+	 * margin-left: if chosen menu is not a top menu item (.main-menu-item), quick topic tools (.quickmod-box) or tags in viewtopic_body (.tag-box)
+	 */
 
 	function calculateMenuAllWidthOrMarginLeft(top, bottom) {
 
@@ -116,14 +116,14 @@ $(document).ready(function(){
 	}
 
 	/**
-	* Show / Hide menus
-	*/
+	 * Show / Hide menus
+	 */
 
 	let timeoutMenu = 0;
 
 	/* Display menu on: mouse enter (delay the display by set Timeout)
-	* Hide menu on: mouse leave or mouse up
-	*/
+	 * Hide menu on: mouse leave or mouse up
+	 */
 
 	$(".menu-root").on("mouseenter", function() {
 
@@ -173,8 +173,8 @@ $(document).ready(function(){
 	});
 	
 	/**
-	* Unread or Active topics feeds & Displaying search input on Mobile
-	*/
+	 * Unread or Active topics feeds & Displaying search input on Mobile
+	 */
 	
 	$("#mm-topics, #search-box-icon").on("click", function(event) {
 		if( $("#phpbb").hasClass("hastouch") ) {
@@ -202,8 +202,8 @@ $(document).ready(function(){
 	});
 
 	/**
-	* Search box width show and hide
-	*/
+	 * Search box width show and hide
+	 */
 
 	let windowWidth = parseFloat(window.innerWidth);
 	const desktopSearchInputboxWidth = "200px";
@@ -218,9 +218,9 @@ $(document).ready(function(){
 		windowWidth = parseFloat(window.innerWidth);
 
 		/** if search input is expanded and viewport was resized, resize it too if needed
-		* if vw <= 860px - calculate input width based on viewport width
-		* if vw > 860px - width defined as desktopSearchInputboxWidth variable
-		*/
+		 * if vw <= 860px - calculate input width based on viewport width
+		 * if vw > 860px - width defined as desktopSearchInputboxWidth variable
+		 */
 		if( searchInputbox.outerWidth() != 0 ) {
 			if( windowWidth <= searchBreakpoint ) {
 				let tmpSearchInputboxWidth = $("#mm-search").outerWidth() - parseFloat(searchInputbox.css("margin-left"));
@@ -289,8 +289,8 @@ $(document).ready(function(){
 	});
 	
 	/**
-	* Switcheroo switch
-	*/
+	 * Switcheroo switch
+	 */
 	
 	let timeoutSwitcheroo = 0;
 
@@ -319,8 +319,8 @@ $(document).ready(function(){
 	});
 
 	/**
-	* Refresh icon finishes a full spin after mouseleave
-	*/
+	 * Refresh icon finishes a full spin after mouseleave
+	 */
 
 	$("#refresh-band-info-icon").on("mouseenter", function() {
 	
@@ -342,9 +342,9 @@ $(document).ready(function(){
 	
 });
 
-/* PROGRESS CURSOR HANDLING
-* Adds or removes a CSS class to signal that a function is in progress by changing mouse cursor.
-*/
+/** PROGRESS CURSOR HANDLING
+ * Adds or removes a CSS class to signal that a function is in progress by changing mouse cursor.
+ */
 
 function showProgressCursor() {
 	document.body.classList.add('function-in-progress');
@@ -354,9 +354,9 @@ function hideProgressCursor() {
 	document.body.classList.remove('function-in-progress');
 }
 
-/* CHECK FOR MA URL IN MESSAGE TEXTAREA
-* On DOMContentLoaded, this script looks for a Metal Archives URL within the message textarea and, if found, pre-fills the input field with that URL.
-*/
+/** CHECK FOR MA URL IN MESSAGE TEXTAREA
+ * On DOMContentLoaded, this script looks for a Metal Archives URL within the message textarea and, if found, pre-fills the input field with that URL.
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
 	"use strict";
@@ -379,9 +379,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* FETCH PAGE VIA CORS PROXY
-* Fetches an HTML document using a CORS proxy and parses it into a DOM.
-*/
+/** FETCH PAGE VIA CORS PROXY
+ * Fetches an HTML document using a CORS proxy and parses it into a DOM.
+ */
 
 async function fetchPage(url) {
 	"use strict";
@@ -397,18 +397,18 @@ async function fetchPage(url) {
 
 }
 
-/* UTILITY: GET TRIMMED CELL VALUES
-* Returns an array of trimmed text content from all <td> elements in a given row.
-*/
+/** UTILITY: GET TRIMMED CELL VALUES
+ * Returns an array of trimmed text content from all <td> elements in a given row.
+ */
 
 function getTrimmedCellValues(row) {
 	// Use Array.from to convert NodeList of <td> elements to array and map each <td>'s text.
 	return Array.from(row.querySelectorAll("td")).map(td => td.textContent.trim());
 }
 
-/* ADD LINEUP
-* Fetches and formats band lineup table. Handles both current and past member lists.
-*/
+/** ADD LINEUP
+ * Fetches and formats band lineup table. Handles both current and past member lists.
+ */
 
 let fetchLineup = 0;
 
@@ -563,9 +563,9 @@ async function addLineup(url, output, update) {
 	}
 }
 
-/* ADD DISCOGRAPHY
-* Fetches and formats the band's discography table and updates the output message.
-*/
+/** ADD DISCOGRAPHY
+ * Fetches and formats the band's discography table and updates the output message.
+ */
 
 let fetchDiscography = 0;
 
@@ -671,9 +671,9 @@ async function addDiscography(url, output, update) {
 	}
 }
 
-/* ADD LINK TO METAL ARCHIVES
-* Appends a "MA: <url>" line to the message if it's not already present.
-*/
+/** ADD LINK TO METAL ARCHIVES
+ * Appends a "MA: <url>" line to the message if it's not already present.
+ */
 
 function addLinkToMA(url, output) {
 	"use strict";
@@ -687,9 +687,9 @@ function addLinkToMA(url, output) {
 
 }
 
-/* CHECK FOR BANDCAMP LINKS
-* Finds Bandcamp album links in the message, converts them to general /music links, and appends them to the message if not already present.
-*/
+/** CHECK FOR BANDCAMP LINKS
+ * Finds Bandcamp album links in the message, converts them to general /music links, and appends them to the message if not already present.
+ */
 
 function checkForBandcampLinks(output) {
 	"use strict";
