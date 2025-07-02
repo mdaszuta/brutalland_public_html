@@ -355,7 +355,11 @@ a.username {
 	transition: all .25s linear;
 }
 
-.copyright a,
+.copyright a {
+	color: #b4b4b4;
+}
+
+.copyright a.text-strong,
 .fa-user-circle-o {
 	color: #444;
 }
