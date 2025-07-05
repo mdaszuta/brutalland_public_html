@@ -730,9 +730,47 @@ function checkForBandcampLinks(output) {
 	output.value = messageValue;
 }
 
-/* ADD BAND INFO
-* Orchestrates the fetching and updating of band lineup, discography, MA link, and Bandcamp links. Handles URL cleanup, error logging, progress indication, and performance measurement.
-*/
+/** ALIGN IMAGES
+ * Merges adjacent [align=center] blocks in the message text, ensuring that images are properly aligned.
+ * This function looks for two consecutive [align=center]...[/align] blocks, joined by whitespace,
+ * and merges them into a single block with a double line break between the contents.
+ * It continues merging until no more adjacent blocks are found.
+ */
+
+function alignImages(output) {
+	"use strict";
+
+	if (!output || typeof output.value !== "string") { return; }
+
+	let messageValue = output.value;
+	console.log("Aligning images in message...");
+
+	// Define a regex pattern to match two adjacent [align=center] blocks with optional whitespace in between
+	// This pattern captures the content of each block and any whitespace that follows the second block.
+	// It uses the 'g' flag for global matching and 'i' for case-insensitive matching.
+	// The pattern captures two groups of content between the [align=center] and [/align] tags,
+	// allowing for any characters including newlines, and matches optional whitespace after the second [/align] tag.
+	// The '([\s\S]*?)' captures any content, // including newlines, between the opening and closing tags
+	// and the '(\s*)' captures any whitespace after the second closing tag.
+	const alignJoinPattern = /\[align=center\]([\s\S]*?)\[\/align\]\s*\[align=center\]([\s\S]*?)\[\/align\](\s*)/gi;
+
+	// Iteratively replace adjacent [align=center] blocks until no more replacements can be made.
+	// This loop continues until all adjacent blocks are merged, then adds triple newlines after the merged block.
+	let previous = "";
+	while (messageValue !== previous) {
+		previous = messageValue;
+		messageValue = messageValue.replace(alignJoinPattern, (_, content1, content2) => {
+			return `[align=center]${content1}\n\n${content2}[/align]\n\n\n`;
+		});
+	}
+
+	// Write the final updated message back to the output
+	output.value = messageValue;
+}
+
+/** ADD BAND INFO
+ * Orchestrates the fetching and updating of band lineup, discography, MA link, and Bandcamp links. Handles URL cleanup, error logging, progress indication, and performance measurement.
+ */
 
 async function addBandInfo(update) {
 	"use strict";
@@ -770,6 +808,7 @@ async function addBandInfo(update) {
 		await addDiscography(url, output, update);
 		addLinkToMA(url, output);
 		checkForBandcampLinks(output);
+		alignImages(output);
 		addBandInfoInput.classList.add("has-band-info-link");
 	} catch (error) {
 		console.error("Error adding band info:", error);
