@@ -386,13 +386,32 @@ document.addEventListener("DOMContentLoaded", () => {
 async function fetchPage(url) {
 	"use strict";
 
-	// Request the URL via a CORS proxy.
-	const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
-	if ( !response.ok ) {
-		throw new Error(`HTTP error! Status: ${response.status}`);
-	}
+	// Request the URL via the proxy
+	const response = await fetch(`/metalarchivesproxy.php?url=${encodeURIComponent(url)}`);
+	const contentType = response.headers.get("content-type") || "";
 	const text = await response.text();
-	// Parse the HTML text into a document.
+
+	// If the proxy sent an error in JSON format
+	if ( contentType.includes("application/json") ) {
+		try {
+			const err = JSON.parse(text);
+			throw new Error(`Proxy error ${response.status}: ${err.error || text}`);
+		} catch {
+			throw new Error(`Proxy error ${response.status}: ${text}`);
+		}
+	}
+
+	// If the proxy sent an HTTP error status (>=400) but not JSON
+	if ( !response.ok ) {
+		throw new Error(`Proxy returned HTTP ${response.status}: ${text}`);
+	}
+
+	// Heuristic fallback: if it doesn’t look like HTML
+	if ( !text.trim().startsWith("<") ) {
+		throw new Error(`Proxy returned a non-HTML response: ${text}`);
+	}
+
+	// Parse the HTML text into a document
 	return new DOMParser().parseFromString(text, "text/html");
 
 }
