@@ -7,6 +7,15 @@ const CACHE_TTL = 60;        // Browser cache in seconds
 const RATE_WINDOW = 60;      // Rate limit window in seconds
 const RATE_LIMIT = 30;       // Max requests in rate window per IP
 
+// Whitelisted origins
+const ALLOWED_ORIGINS = [
+    'https://brutalland.pl',
+    'https://localhost',
+    'https://127.0.0.1',
+    'http://localhost',
+    'http://127.0.0.1',
+];
+
 // Whitelist only these hosts
 const ALLOWED_HOSTS = [
     'metal-archives.com',
@@ -16,12 +25,23 @@ const ALLOWED_HOSTS = [
 // Fixed UA (can later rotate if needed)
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0 Safari/537.36";
 
-// CORS header
-header("Access-Control-Allow-Origin: *");
+function add_security_headers(): void {
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+    if (in_array($origin, ALLOWED_ORIGINS, true)) {
+        header("Access-Control-Allow-Origin: $origin");
+        header("Vary: Origin"); // important for caching/CDN
+    }
+
+    header("X-Content-Type-Options: nosniff");
+    header("X-Frame-Options: DENY");
+    header("Referrer-Policy: no-referrer");
+}
 
 // === HELPER: consistent JSON error output ===
 function proxy_error(int $status, string $message): void {
     http_response_code($status);
+    add_security_headers();
     header("Content-Type: application/json; charset=UTF-8");
     header("Cache-Control: no-store, no-cache, must-revalidate");
     echo json_encode(['error' => $message], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
@@ -31,15 +51,30 @@ function proxy_error(int $status, string $message): void {
 // === RATE LIMIT PROTECTION ===
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 if (!is_dir(CACHE_DIR)) {
-    mkdir(CACHE_DIR, 0700, true);
+    if (!mkdir(CACHE_DIR, 0700, true) && !is_dir(CACHE_DIR)) {
+        error_log("Rate limit: failed to create cache dir " . CACHE_DIR);
+        proxy_error(500, "Server error: cache unavailable");
+    }
 }
 
 $rate_file = CACHE_DIR . "proxy_rate_" . md5($ip) . ".json";
 $now = time();
 
-$requests = file_exists($rate_file)
-    ? array_filter(json_decode(file_get_contents($rate_file), true) ?: [], fn($t) => $t > $now - RATE_WINDOW)
-    : [];
+$requests = [];
+if (is_file($rate_file) && is_readable($rate_file)) {
+    $data = file_get_contents($rate_file);
+    if ($data === false) {
+        error_log("Rate limit: failed to read $rate_file for $ip");
+    } else {
+        $decoded = json_decode($data, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            $requests = array_filter($decoded, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+        } else {
+            // Fail-open if file corrupted
+            error_log("Rate limit file corrupted for $ip: $rate_file");
+        }
+    }
+}
 
 if (count($requests) >= RATE_LIMIT) {
     proxy_error(429, "Rate limit exceeded. Try again later.");
@@ -47,14 +82,20 @@ if (count($requests) >= RATE_LIMIT) {
 
 // Save updated timestamps
 $requests[] = $now;
-file_put_contents($rate_file, json_encode(array_values($requests)), LOCK_EX);
-@chmod($rate_file, 0600);
+$json = json_encode(array_values($requests));
+if ($json === false) {
+    error_log("Rate limit: json_encode failed for $ip: " . json_last_error_msg());
+} elseif (file_put_contents($rate_file, $json, LOCK_EX) === false) {
+    error_log("Rate limit: failed to write $rate_file for $ip");
+}
 
-// Occasionally clean up old rate files (~2% chance per request)
-if (mt_rand(1, 50) === 1) {
+// Occasionally clean up old rate files (~5% chance per request)
+if (mt_rand(1, 20) === 1) {
     foreach (glob(CACHE_DIR . "proxy_rate_*.json") as $file) {
         if (filemtime($file) < $now - RATE_WINDOW) {
-            @unlink($file);
+            if (!unlink($file)) {
+                error_log("Rate limit: failed to delete stale file $file");
+            }
         }
     }
 }
@@ -143,6 +184,7 @@ if ($contentType === '') {
 }
 
 // === OUTPUT ===
+add_security_headers();
 header("Content-Type: $contentType");
 header("Cache-Control: public, max-age=" . CACHE_TTL);
 echo $response;
