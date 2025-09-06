@@ -3,9 +3,10 @@
 
 // === CONFIG ===
 const CACHE_DIR = __DIR__ . '/cache/production/metalarchivesproxy/';
-const CACHE_TTL = 60;        // Browser cache in seconds
-const RATE_WINDOW = 60;      // Rate limit window in seconds
-const RATE_LIMIT = 30;       // Max requests in rate window per IP
+const CACHE_TTL = 60;            // Browser cache in seconds
+const RATE_WINDOW = 60;          // Rate limit window in seconds
+const RATE_LIMIT = 30;           // Max requests in rate window per IP
+const CLEANUP_INTERVAL = 86400; // Cleanup rate limit files older than this (seconds) - each 24h
 
 // Whitelisted origins
 const ALLOWED_ORIGINS = [
@@ -52,64 +53,79 @@ function proxy_error(int $status, string $message): void {
     exit;
 }
 
-// === RATE LIMIT PROTECTION ===
-$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-if (!is_dir(CACHE_DIR)) {
-    if (!mkdir(CACHE_DIR, 0700, true) && !is_dir(CACHE_DIR)) {
-        error_log("Rate limit: failed to create cache dir " . CACHE_DIR);
-        proxy_error(500, "Server error: cache unavailable");
-    }
-}
-
-$rate_file = CACHE_DIR . "proxy_rate_" . md5($ip) . ".json";
-$now = time();
-
-$requests = [];
-if (is_readable($rate_file)) {
-    $data = file_get_contents($rate_file);
-    if ($data === false) {
-        error_log("Rate limit: failed to read $rate_file for $ip");
-    } else {
-        $decoded = json_decode($data, true);
-        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-            $requests = array_filter($decoded, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
-        } else {
-            // Fail-open if file corrupted
-            error_log("Rate limit file corrupted for $ip: $rate_file");
+/**
+ * Ensure that the cache directory exists and is writable.
+ */
+function ensure_cache_dir(): void {
+    if (!is_dir(CACHE_DIR)) {
+        if (!mkdir(CACHE_DIR, 0700, true) && !is_dir(CACHE_DIR)) {
+            error_log("Failed to create cache dir " . CACHE_DIR);
+            proxy_error(500, "Server error: cache unavailable");
         }
     }
 }
 
-if (count($requests) >= RATE_LIMIT) {
-    proxy_error(429, "Rate limit exceeded. Try again later.");
-}
+/**
+ * Enforce per-IP rate limiting.
+ * Blocks if RATE_LIMIT requests exceeded in RATE_WINDOW seconds.
+ */
+function enforce_rate_limit(): void {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $now = time();
+    $rate_file = CACHE_DIR . "proxy_rate_" . md5($ip) . ".json";
 
-// Save updated timestamps
-$requests[] = $now;
-$json = json_encode(array_values($requests));
-if ($json === false) {
-    error_log("Rate limit: json_encode failed for $ip: " . json_last_error_msg());
-} elseif (file_put_contents($rate_file, $json, LOCK_EX) === false) {
-    error_log("Rate limit: failed to write $rate_file for $ip");
-}
-
-// === CLEANUP (once per 60 minutes) ===
-$cleanup_marker = CACHE_DIR . "cleanup_marker";
-$last_cleanup   = is_file($cleanup_marker) ? filemtime($cleanup_marker) : 0;
-
-if ($now - $last_cleanup > 3600) { // 60 minutes
-    foreach (glob(CACHE_DIR . "proxy_rate_*.json") as $file) {
-        if (filemtime($file) < $now - RATE_WINDOW) {
-            if (!unlink($file)) {
-                error_log("Rate limit: failed to delete stale file $file");
+    // Load request history
+    $requests = [];
+    if (is_readable($rate_file)) {
+        $data = file_get_contents($rate_file);
+        if ($data === false) {
+            error_log("Rate limit: failed to read $rate_file for $ip");
+        } else {
+            $decoded = json_decode($data, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $requests = array_filter($decoded, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+            } else {
+                // Fail-open if corrupted
+                error_log("Rate limit file corrupted for $ip: $rate_file");
             }
         }
     }
-    // Update marker timestamp
-    if (!touch($cleanup_marker)) {
-        error_log("Rate limit: failed to update cleanup marker");
+
+    // Check current count
+    if (count($requests) >= RATE_LIMIT) {
+        proxy_error(429, "Rate limit exceeded. Try again later.");
+    }
+
+    // Record new request
+    $requests[] = $now;
+    $json = json_encode(array_values($requests));
+    if ($json === false) {
+        error_log("Rate limit: json_encode failed for $ip: " . json_last_error_msg());
+    } elseif (file_put_contents($rate_file, $json, LOCK_EX) === false) {
+        error_log("Rate limit: failed to write $rate_file for $ip");
     }
 }
+
+/**
+ * Cleanup old rate limit files once per 60 minutes.
+ */
+function cleanup_rate_limit_files(): void {
+    $now = time();
+    $cleanup_marker = CACHE_DIR . "cleanup_marker";
+    $last_cleanup   = is_file($cleanup_marker) ? filemtime($cleanup_marker) : 0;
+
+    if ($now - $last_cleanup > CLEANUP_INTERVAL) {
+        foreach (glob(CACHE_DIR . "proxy_rate_*.json") as $file) {
+            @unlink($file); // don’t care if some fail
+        }
+        @touch($cleanup_marker);
+    }
+}
+
+// === INITIALIZE RATE LIMIT PROTECTION ===
+ensure_cache_dir();
+enforce_rate_limit();
+cleanup_rate_limit_files();
 
 // === VALIDATE INPUT ===
 if (!isset($_GET['url'])) {
@@ -154,7 +170,6 @@ curl_setopt_array($proxyRequest, [
     CURLOPT_MAXREDIRS       => 5,
     CURLOPT_USERAGENT       => USER_AGENT,
     CURLOPT_SSL_VERIFYPEER  => true,
-    CURLOPT_SSL_VERIFYHOST  => 2,
     CURLOPT_PROTOCOLS       => CURLPROTO_HTTPS,
     CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
     CURLOPT_TIMEOUT         => 15,
@@ -199,7 +214,7 @@ if ($contentType === '') {
 add_security_headers();
 header("Content-Type: $contentType");
 if (str_starts_with($lowercaseContentType, 'application/json')) {
-    header("Cache-Control: private, no-store, no-cache, must-revalidate");
+    header("Cache-Control: no-store, no-cache, must-revalidate");
 } else {
     header("Cache-Control: public, max-age=" . CACHE_TTL);
 }
