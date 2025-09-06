@@ -93,14 +93,21 @@ if ($json === false) {
     error_log("Rate limit: failed to write $rate_file for $ip");
 }
 
-// Occasionally clean up old rate files (~5% chance per request)
-if (mt_rand(1, 20) === 1) {
+// === CLEANUP (once per 60 minutes) ===
+$cleanup_marker = CACHE_DIR . "cleanup_marker";
+$last_cleanup   = is_file($cleanup_marker) ? filemtime($cleanup_marker) : 0;
+
+if ($now - $last_cleanup > 3600) { // 60 minutes
     foreach (glob(CACHE_DIR . "proxy_rate_*.json") as $file) {
         if (filemtime($file) < $now - RATE_WINDOW) {
             if (!unlink($file)) {
                 error_log("Rate limit: failed to delete stale file $file");
             }
         }
+    }
+    // Update marker timestamp
+    if (!touch($cleanup_marker)) {
+        error_log("Rate limit: failed to update cleanup marker");
     }
 }
 
