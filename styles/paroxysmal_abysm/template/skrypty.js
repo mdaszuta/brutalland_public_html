@@ -387,7 +387,9 @@ async function fetchPage(url) {
 	"use strict";
 
 	// Request the URL via the proxy
-	const response = await fetch(`/metalarchivesproxy.php?url=${encodeURIComponent(url)}`);
+	const response = await fetch(`/metalarchivesproxy.php?url=${encodeURIComponent(url)}`, {
+		headers: { 'X-Requested-With': 'XMLHttpRequest' }
+	});
 	const contentType = response.headers.get("content-type") || "";
 	const text = await response.text();
 

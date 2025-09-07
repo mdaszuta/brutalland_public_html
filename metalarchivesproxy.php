@@ -74,6 +74,7 @@ function enforce_rate_limit(): void {
 
     // Load request history
     $requests = [];
+
     if (is_readable($rate_file)) {
         $data = file_get_contents($rate_file);
         if ($data === false) {
@@ -94,12 +95,17 @@ function enforce_rate_limit(): void {
         proxy_error(429, "Rate limit exceeded. Try again later.");
     }
 
-    // Record new request
+    // Add current request timestamp
     $requests[] = $now;
+
+    // Save updated state
     $json = json_encode(array_values($requests));
     if ($json === false) {
         error_log("Rate limit: json_encode failed for $ip: " . json_last_error_msg());
-    } elseif (file_put_contents($rate_file, $json, LOCK_EX) === false) {
+        return;
+    }
+
+    if (file_put_contents($rate_file, $json, LOCK_EX) === false) {
         error_log("Rate limit: failed to write $rate_file for $ip");
     }
 }
@@ -112,11 +118,23 @@ function cleanup_rate_limit_files(): void {
     $cleanup_marker = RATE_DIR . "cleanup_marker";
     $last_cleanup   = is_file($cleanup_marker) ? filemtime($cleanup_marker) : 0;
 
-    if ($now - $last_cleanup > CLEANUP_INTERVAL) {
-        foreach (glob(RATE_DIR . "proxy_rate_*.json") as $file) {
-            @unlink($file); // don’t care if some fail
-        }
-        @touch($cleanup_marker);
+    if ($now - $last_cleanup <= CLEANUP_INTERVAL) {
+        return;
+    }
+
+    foreach (glob(RATE_DIR . "proxy_rate_*.json") as $file) {
+        @unlink($file); // ignore failures
+    }
+    @touch($cleanup_marker);
+}
+
+/**
+ * Enforce that the request is made via AJAX (to prevent direct access).
+ */
+function enforce_frontend_only(): void {
+    $isAjax = ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest';
+    if (!$isAjax) {
+        proxy_error(403, "Direct access forbidden");
     }
 }
 
@@ -124,8 +142,14 @@ function cleanup_rate_limit_files(): void {
 ensure_rate_dir();
 enforce_rate_limit();
 cleanup_rate_limit_files();
+enforce_frontend_only();
 
 // === VALIDATE INPUT ===
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+    header('Allow: GET');
+    proxy_error(405, "Method not allowed");
+}
+
 if (!isset($_GET['url'])) {
     proxy_error(400, "Missing url parameter");
 }
@@ -173,26 +197,22 @@ curl_setopt_array($proxyRequest, [
     CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
     CURLOPT_TIMEOUT         => 15,
     CURLOPT_CONNECTTIMEOUT  => 5,
-    CURLOPT_ENCODING        => 'gzip',
-    CURLOPT_FAILONERROR     => true,   // aborts on 4xx/5xx
+    CURLOPT_ENCODING        => '',        // accept gzip/deflate/br
+    CURLOPT_FAILONERROR     => true,      // aborts on 4xx/5xx
 ]);
 
 $response = curl_exec($proxyRequest);
+$httpcode = curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
+$contentType = trim(curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE) ?? '');
+$err = curl_error($proxyRequest);
+curl_close($proxyRequest);
 
 if ($response === false) {
-    $err = curl_error($proxyRequest);
-    $httpcode = curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
-    curl_close($proxyRequest);
-
     if ($httpcode >= 400) {
         proxy_error($httpcode, "Upstream error $httpcode on $path");
     }
-
     proxy_error(500, "cURL error: " . $err);
 }
-
-$contentType = trim(curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE) ?? '');
-curl_close($proxyRequest);
 
 // === CONTENT-TYPE HANDLING ===
 $lowercaseContentType = strtolower($contentType);
@@ -203,11 +223,7 @@ if (!str_starts_with($lowercaseContentType, 'text/html') && !str_starts_with($lo
 }
 
 // Always enforce UTF-8 for HTML responses
-if ($contentType === '') {
-    // Upstream didn’t send a Content-Type → pick a safe default
-    $contentType = 'text/html; charset=UTF-8';
-} elseif (str_starts_with($lowercaseContentType, 'text/html') && !str_contains($lowercaseContentType, 'charset=')) {
-    // Upstream sent a type but no charset → preserve type, add charset
+if (str_starts_with($lowercaseContentType, 'text/html') && !str_contains($lowercaseContentType, 'charset=')) {
     $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
 }
 
