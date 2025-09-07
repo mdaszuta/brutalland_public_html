@@ -52,6 +52,16 @@ function proxy_error(int $status, string $message): void {
 }
 
 /**
+ * Enforce that the request is made via AJAX (to prevent direct access).
+ */
+function enforce_frontend_access(): void {
+    $isAjax = ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest';
+    if (!$isAjax) {
+        proxy_error(403, "Direct access forbidden");
+    }
+}
+
+/**
  * Ensure that the cache directory exists and is writable.
  */
 function ensure_rate_dir(): void {
@@ -128,21 +138,11 @@ function cleanup_rate_limit_files(): void {
     @touch($cleanup_marker);
 }
 
-/**
- * Enforce that the request is made via AJAX (to prevent direct access).
- */
-function enforce_frontend_only(): void {
-    $isAjax = ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest';
-    if (!$isAjax) {
-        proxy_error(403, "Direct access forbidden");
-    }
-}
-
 // === INITIALIZE RATE LIMIT PROTECTION ===
+enforce_frontend_access();
 ensure_rate_dir();
 enforce_rate_limit();
 cleanup_rate_limit_files();
-enforce_frontend_only();
 
 // === VALIDATE INPUT ===
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -178,10 +178,8 @@ if (!empty($parts['user']) || !empty($parts['pass'])) {
     proxy_error(400, "Userinfo not allowed in URL");
 }
 
-// Ensure path always starts with '/'
+// Ensure path always starts with '/', then reconstruct canonical safe URL (scheme + host + path + query)
 $path = '/' . ltrim($parts['path'] ?? '', '/');
-
-// Rebuild canonical safe URL (scheme + host + path + query)
 $safeUrl = "https://$host$path" . (!empty($parts['query']) ? '?' . $parts['query'] : '');
 
 // === FETCH WITH cURL ===
@@ -217,12 +215,11 @@ if ($response === false) {
 // === CONTENT-TYPE HANDLING ===
 $lowercaseContentType = strtolower($contentType);
 
-// Allow only HTML or JSON
+// Allow only HTML or JSON, then always enforce UTF-8 for HTML responses
 if (!str_starts_with($lowercaseContentType, 'text/html') && !str_starts_with($lowercaseContentType, 'application/json')) {
     proxy_error(502, "Unexpected content type: $contentType");
 }
 
-// Always enforce UTF-8 for HTML responses
 if (str_starts_with($lowercaseContentType, 'text/html') && !str_contains($lowercaseContentType, 'charset=')) {
     $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
 }
