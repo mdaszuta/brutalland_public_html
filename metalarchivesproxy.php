@@ -8,15 +8,6 @@ const RATE_WINDOW = 60;          // Rate limit window in seconds
 const RATE_LIMIT = 30;           // Max requests in rate window per IP
 const CLEANUP_INTERVAL = 86400;  // Cleanup interval in seconds (24 hours)
 
-// Whitelisted origins
-const ALLOWED_ORIGINS = [
-    'https://brutalland.pl' => true,
-    'https://localhost'     => true,
-    'https://127.0.0.1'     => true,
-    'http://localhost'      => true,
-    'http://127.0.0.1'      => true,
-];
-
 // Whitelist only these hosts
 const ALLOWED_HOSTS = [
     'metal-archives.com'     => true,
@@ -27,18 +18,12 @@ const ALLOWED_HOSTS = [
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0 Safari/537.36";
 
 function add_security_headers(): void {
-    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-
-    if (isset(ALLOWED_ORIGINS[$origin])) {
-        header("Access-Control-Allow-Origin: $origin");
-        header("Vary: Origin"); // important for caching/CDN
-    }
-
     header("X-Content-Type-Options: nosniff");
     header("X-Frame-Options: DENY");
     header("Referrer-Policy: no-referrer");
+    header("Cross-Origin-Resource-Policy: same-origin");
     header("Cross-Origin-Opener-Policy: same-origin");
-    header("Permissions-Policy: geolocation=(), microphone=(), camera=()");
+    header("Permissions-Policy: geolocation=(), microphone=(), camera=(), usb=(), payment=()");
 }
 
 // === HELPER: consistent JSON error output ===
@@ -55,8 +40,7 @@ function proxy_error(int $status, string $message): void {
  * Enforce that the request is made via AJAX (to prevent direct access).
  */
 function enforce_frontend_access(): void {
-    $isAjax = ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest';
-    if (!$isAjax) {
+    if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') !== 'XMLHttpRequest') {
         proxy_error(403, "Direct access forbidden");
     }
 }
@@ -82,41 +66,27 @@ function enforce_rate_limit(): void {
     $now = time();
     $rate_file = RATE_DIR . "proxy_rate_" . md5($ip) . ".json";
 
-    // Load request history
     $requests = [];
-
     if (is_readable($rate_file)) {
         $data = file_get_contents($rate_file);
-        if ($data === false) {
-            error_log("Rate limit: failed to read $rate_file for $ip");
-        } else {
+        if ($data !== false) {
             $decoded = json_decode($data, true);
             if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
                 $requests = array_filter($decoded, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
             } else {
-                // Fail-open if corrupted
                 error_log("Rate limit file corrupted for $ip: $rate_file");
             }
         }
     }
 
-    // Check current count
     if (count($requests) >= RATE_LIMIT) {
         proxy_error(429, "Rate limit exceeded. Try again later.");
     }
 
-    // Add current request timestamp
     $requests[] = $now;
-
-    // Save updated state
     $json = json_encode(array_values($requests));
-    if ($json === false) {
-        error_log("Rate limit: json_encode failed for $ip: " . json_last_error_msg());
-        return;
-    }
-
-    if (file_put_contents($rate_file, $json, LOCK_EX) === false) {
-        error_log("Rate limit: failed to write $rate_file for $ip");
+    if ($json !== false) {
+        file_put_contents($rate_file, $json, LOCK_EX);
     }
 }
 
@@ -195,8 +165,11 @@ curl_setopt_array($proxyRequest, [
     CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
     CURLOPT_TIMEOUT         => 15,
     CURLOPT_CONNECTTIMEOUT  => 5,
-    CURLOPT_ENCODING        => '',        // accept gzip/deflate/br
-    CURLOPT_FAILONERROR     => true,      // aborts on 4xx/5xx
+    CURLOPT_ENCODING        => '',
+    CURLOPT_FAILONERROR     => true,
+    CURLOPT_HTTPHEADER      => [
+        'Accept: text/html,application/json',
+    ],
 ]);
 
 $response = curl_exec($proxyRequest);
@@ -215,22 +188,19 @@ if ($response === false) {
 // === CONTENT-TYPE HANDLING ===
 $lowercaseContentType = strtolower($contentType);
 
-// Allow only HTML or JSON, then always enforce UTF-8 for HTML responses
-if (!str_starts_with($lowercaseContentType, 'text/html') && !str_starts_with($lowercaseContentType, 'application/json')) {
+if (str_starts_with($lowercaseContentType, 'text/html')) {
+    if (!str_contains($lowercaseContentType, 'charset=')) {
+        $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
+    }
+    $cacheControl = "public, max-age=" . CACHE_TTL;
+} elseif (str_starts_with($lowercaseContentType, 'application/json')) {
+    $cacheControl = "no-store, no-cache, must-revalidate";
+} else {
     proxy_error(502, "Unexpected content type: $contentType");
-}
-
-if (str_starts_with($lowercaseContentType, 'text/html') && !str_contains($lowercaseContentType, 'charset=')) {
-    $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
 }
 
 // === OUTPUT ===
 add_security_headers();
 header("Content-Type: $contentType");
-if (str_starts_with($lowercaseContentType, 'application/json')) {
-    header("Cache-Control: no-store, no-cache, must-revalidate");
-} else {
-    header("Cache-Control: public, max-age=" . CACHE_TTL);
-}
-
+header("Cache-Control: $cacheControl");
 echo $response;
