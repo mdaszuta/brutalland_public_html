@@ -7,6 +7,7 @@ const CACHE_TTL = 60;            // Browser cache in seconds
 const RATE_WINDOW = 60;          // Rate limit window in seconds
 const RATE_LIMIT = 30;           // Max requests in rate window per IP
 const CLEANUP_INTERVAL = 86400;  // Cleanup interval in seconds (24 hours)
+const FILE_EXPIRY = 7 * CLEANUP_INTERVAL;       // Expire per-IP rate files older than 7 CLEANUP_INTERVALs
 
 const ALLOWED_HOSTS = [
     'metal-archives.com'     => true,
@@ -99,6 +100,7 @@ function enforce_rate_limit(): void {
 
 /**
  * Cleanup old rate limit files once per 24 hours.
+ * Removes only files older than FILE_EXPIRY.
  */
 function cleanup_rate_limit_files(): void {
     $now = time();
@@ -110,8 +112,11 @@ function cleanup_rate_limit_files(): void {
     }
 
     foreach (glob(RATE_DIR . "proxy_rate_*.json") as $file) {
-        @unlink($file); // ignore failures
+        if (filemtime($file) < $now - FILE_EXPIRY) {
+            @unlink($file); // ignore failures
+        }
     }
+
     @touch($cleanup_marker);
 }
 
@@ -170,13 +175,14 @@ curl_setopt_array($proxyRequest, [
     CURLOPT_SSL_VERIFYHOST  => 2,
     CURLOPT_PROTOCOLS       => CURLPROTO_HTTPS,
     CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
-    CURLOPT_TIMEOUT         => 15,
-    CURLOPT_CONNECTTIMEOUT  => 5,
+    CURLOPT_TIMEOUT         => 10,
+    CURLOPT_CONNECTTIMEOUT  => 3,
     CURLOPT_ENCODING        => '',
     CURLOPT_FAILONERROR     => true,
     CURLOPT_HTTPHEADER      => [
         'Accept: text/html,application/json',
     ],
+    CURLOPT_MAXFILESIZE => 5 * 1024 * 1024, // 5 MB
 ]);
 
 $response = curl_exec($proxyRequest);
