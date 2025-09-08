@@ -8,15 +8,17 @@ const RATE_WINDOW = 60;          // Rate limit window in seconds
 const RATE_LIMIT = 30;           // Max requests in rate window per IP
 const CLEANUP_INTERVAL = 86400;  // Cleanup interval in seconds (24 hours)
 
-// Whitelist only these hosts
 const ALLOWED_HOSTS = [
     'metal-archives.com'     => true,
     'www.metal-archives.com' => true,
 ];
 
-// Fixed UA
+// User-Agent string to use for outgoing cURL requests
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0 Safari/537.36";
 
+/**
+ * Add security headers to the response.
+ */
 function add_security_headers(): void {
     header("X-Content-Type-Options: nosniff");
     header("X-Frame-Options: DENY");
@@ -26,7 +28,11 @@ function add_security_headers(): void {
     header("Permissions-Policy: geolocation=(), microphone=(), camera=(), usb=(), payment=()");
 }
 
-// === HELPER: consistent JSON error output ===
+/**
+ * Send an error response and exit.
+ * @param int $status HTTP status code
+ * @param string $message Error message
+ */
 function proxy_error(int $status, string $message): void {
     http_response_code($status);
     add_security_headers();
@@ -46,7 +52,7 @@ function enforce_frontend_access(): void {
 }
 
 /**
- * Ensure that the cache directory exists and is writable.
+ * Ensure the rate limit directory exists.
  */
 function ensure_rate_dir(): void {
     if (!is_dir(RATE_DIR)) {
@@ -58,8 +64,9 @@ function ensure_rate_dir(): void {
 }
 
 /**
- * Enforce per-IP rate limiting.
- * Blocks if RATE_LIMIT requests exceeded in RATE_WINDOW seconds.
+ * Enforce rate limiting based on client IP.
+ * If the limit is exceeded, send a 429 response and exit.
+ * This function also updates the rate limit file for the IP.
  */
 function enforce_rate_limit(): void {
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
@@ -199,7 +206,7 @@ if (str_starts_with($lowercaseContentType, 'text/html')) {
     proxy_error(502, "Unexpected content type: $contentType");
 }
 
-// === OUTPUT ===
+// === OUTPUT RESPONSE ===
 add_security_headers();
 header("Content-Type: $contentType");
 header("Cache-Control: $cacheControl");
