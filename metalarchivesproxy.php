@@ -27,6 +27,7 @@ function add_security_headers(): void {
     header("Cross-Origin-Resource-Policy: same-origin");
     header("Cross-Origin-Opener-Policy: same-origin");
     header("Permissions-Policy: geolocation=(), microphone=(), camera=(), usb=(), payment=()");
+    header("Content-Security-Policy: default-src 'none'; base-uri 'none'; form-action 'none'");
 }
 
 /**
@@ -65,37 +66,53 @@ function ensure_rate_dir(): void {
 }
 
 /**
- * Enforce rate limiting based on client IP.
- * If the limit is exceeded, send a 429 response and exit.
- * This function also updates the rate limit file for the IP.
+ * Enforce rate limiting based on client IP, with race-safe file writes.
+ * Uses a simple JSON file per IP to track request timestamps.
+ * Exits with 429 if rate limit is exceeded.
  */
 function enforce_rate_limit(): void {
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
     $now = time();
-    $rate_file = RATE_DIR . "proxy_rate_" . md5($ip) . ".json";
+    $rateFilePath = RATE_DIR . "proxy_rate_" . md5($ip) . ".json";
 
+    $rateFile = fopen($rateFilePath, 'c+');
+    if (!$rateFile) {
+        error_log("Failed to open rate file for $ip: $rateFilePath");
+        proxy_error(500, "Server error: rate limit unavailable");
+    }
+
+    if (!flock($rateFile, LOCK_EX)) {
+        fclose($rateFile);
+        proxy_error(500, "Server error: rate limit locking failed");
+    }
+
+    rewind($rateFile);
+    $data = stream_get_contents($rateFile);
     $requests = [];
-    if (is_readable($rate_file)) {
-        $data = file_get_contents($rate_file);
-        if ($data !== false) {
-            $decoded = json_decode($data, true);
-            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-                $requests = array_filter($decoded, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
-            } else {
-                error_log("Rate limit file corrupted for $ip: $rate_file");
-            }
+    if ($data !== false && $data !== '') {
+        $decoded = json_decode($data, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            $requests = array_filter($decoded, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+        } else {
+            error_log("Corrupted rate file for $ip: $rateFilePath");
         }
     }
 
     if (count($requests) >= RATE_LIMIT) {
+        flock($rateFile, LOCK_UN);
+        fclose($rateFile);
         proxy_error(429, "Rate limit exceeded. Try again later.");
     }
 
     $requests[] = $now;
-    $json = json_encode(array_values($requests));
-    if ($json !== false) {
-        file_put_contents($rate_file, $json, LOCK_EX);
-    }
+
+    ftruncate($rateFile, 0);
+    rewind($rateFile);
+    fwrite($rateFile, json_encode(array_values($requests)));
+    fflush($rateFile);
+
+    flock($rateFile, LOCK_UN);
+    fclose($rateFile);
 }
 
 /**
@@ -178,11 +195,10 @@ curl_setopt_array($proxyRequest, [
     CURLOPT_TIMEOUT         => 10,
     CURLOPT_CONNECTTIMEOUT  => 3,
     CURLOPT_ENCODING        => '',
-    CURLOPT_FAILONERROR     => true,
     CURLOPT_HTTPHEADER      => [
-        'Accept: text/html,application/json',
+        'Accept: text/html, application/json',
     ],
-    CURLOPT_MAXFILESIZE => 5 * 1024 * 1024, // 5 MB
+    CURLOPT_MAXFILESIZE     => 5 * 1024 * 1024, // 5 MB
 ]);
 
 $response = curl_exec($proxyRequest);
@@ -192,10 +208,11 @@ $err = curl_error($proxyRequest);
 curl_close($proxyRequest);
 
 if ($response === false) {
-    if ($httpcode >= 400) {
-        proxy_error($httpcode, "Upstream error $httpcode on $path");
-    }
     proxy_error(500, "cURL error: " . $err);
+}
+
+if ($httpcode >= 400) {
+    proxy_error($httpcode, "Upstream error $httpcode on $path");
 }
 
 // === CONTENT-TYPE HANDLING ===
