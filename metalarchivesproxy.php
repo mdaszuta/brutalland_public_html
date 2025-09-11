@@ -216,17 +216,22 @@ if ($httpcode >= 400) {
 }
 
 // === CONTENT-TYPE HANDLING ===
-if (!preg_match('/^(?:text\/html|application\/json)(?:\s*;.*)?$/i', $contentType)) {
-    proxy_error(502, "Unexpected content type: $contentType");
-}
+$mediaType = strtolower(trim(explode(';', $contentType, 2)[0]));
 
-if (stripos($contentType, 'text/html') === 0) {
-    if (!str_contains($contentType, 'charset=')) {
+switch ($mediaType) {
+    case 'text/html':
+        if (!str_contains(strtolower($contentType), 'charset=')) {
             $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
         }
         $cacheControl = "public, max-age=" . CACHE_TTL;
-} else {
-    $cacheControl = "no-store, no-cache, must-revalidate";
+        break;
+
+    case 'application/json':
+        $cacheControl = "no-store, no-cache, must-revalidate";
+        break;
+
+    default:
+        proxy_error(502, "Unexpected content type: $contentType");
 }
 
 // === OUTPUT RESPONSE ===
