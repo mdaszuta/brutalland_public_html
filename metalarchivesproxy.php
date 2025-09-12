@@ -2,12 +2,9 @@
 // metalarchivesproxy.php — cURL-based proxy for Metal Archives
 
 // === CONFIG ===
-const RATE_DIR = __DIR__ . '/cache/production/metalarchivesproxy/';
 const CACHE_TTL = 60;            // Browser cache in seconds
 const RATE_WINDOW = 60;          // Rate limit window in seconds
 const RATE_LIMIT = 30;           // Max requests in rate window per IP
-const CLEANUP_INTERVAL = 86400;  // Cleanup interval in seconds (24 hours)
-const FILE_EXPIRY = 7 * CLEANUP_INTERVAL;       // Expire per-IP rate files older than 7 CLEANUP_INTERVALs
 
 const ALLOWED_HOSTS = [
     'metal-archives.com'     => true,
@@ -53,90 +50,6 @@ function enforce_frontend_access(): void {
     if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') !== 'XMLHttpRequest') {
         proxy_error(403, "Direct access forbidden");
     }
-}
-
-/**
- * Ensure the rate limit directory exists.
- */
-function ensure_rate_dir(): void {
-    if (!is_dir(RATE_DIR)) {
-        if (!mkdir(RATE_DIR, 0700, true) && !is_dir(RATE_DIR)) {
-            error_log("Failed to create cache dir " . RATE_DIR);
-            proxy_error(500, "Server error: cache unavailable");
-        }
-    }
-}
-
-/**
- * Enforce rate limiting based on client IP, with race-safe file writes.
- * Uses a simple JSON file per IP to track request timestamps.
- * Exits with 429 if rate limit is exceeded.
- */
-function enforce_rate_limit(): void {
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-    $now = time();
-    $rateFilePath = RATE_DIR . "proxy_rate_" . md5($ip) . ".json";
-
-    $rateFile = fopen($rateFilePath, 'c+');
-    if (!$rateFile) {
-        error_log("Failed to open rate file for $ip: $rateFilePath");
-        proxy_error(500, "Server error: rate limit unavailable");
-    }
-
-    if (!flock($rateFile, LOCK_EX)) {
-        fclose($rateFile);
-        proxy_error(500, "Server error: rate limit locking failed");
-    }
-
-    rewind($rateFile);
-    $data = stream_get_contents($rateFile);
-    $requests = [];
-    if ($data !== false && $data !== '') {
-        $decoded = json_decode($data, true);
-        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-            $requests = array_filter($decoded, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
-        } else {
-            error_log("Corrupted rate file for $ip: $rateFilePath");
-        }
-    }
-
-    if (count($requests) >= RATE_LIMIT) {
-        flock($rateFile, LOCK_UN);
-        fclose($rateFile);
-        proxy_error(429, "Rate limit exceeded. Try again later.");
-    }
-
-    $requests[] = $now;
-
-    ftruncate($rateFile, 0);
-    rewind($rateFile);
-    fwrite($rateFile, json_encode(array_values($requests)));
-    fflush($rateFile);
-
-    flock($rateFile, LOCK_UN);
-    fclose($rateFile);
-}
-
-/**
- * Cleanup old rate limit files once per 24 hours.
- * Removes only files older than FILE_EXPIRY.
- */
-function cleanup_rate_limit_files(): void {
-    $now = time();
-    $cleanup_marker = RATE_DIR . "cleanup_marker";
-    $last_cleanup   = is_file($cleanup_marker) ? filemtime($cleanup_marker) : 0;
-
-    if ($now - $last_cleanup <= CLEANUP_INTERVAL) {
-        return;
-    }
-
-    foreach (glob(RATE_DIR . "proxy_rate_*.json") as $file) {
-        if (filemtime($file) < $now - FILE_EXPIRY) {
-            @unlink($file); // ignore failures
-        }
-    }
-
-    @touch($cleanup_marker);
 }
 
 /**
@@ -203,7 +116,7 @@ if (!isset($_GET['url'])) {
 $url = $_GET['url'];
 $parts = parse_url($url);
 
-if (!$parts || !isset($parts['scheme'], $parts['host'])) {
+if (!$parts || empty($parts['scheme']) || empty($parts['host'])) {
     proxy_error(400, "Invalid URL");
 }
 
@@ -245,11 +158,6 @@ if (!empty($parts['query'])) {
 $safeUrl = "https://$host$path$query";
 
 // === INITIALIZE RATE LIMIT PROTECTION ===
-/*
-ensure_rate_dir();
-enforce_rate_limit();
-cleanup_rate_limit_files();
-*/
 enforce_rate_limit_apcu();
 
 // === FETCH WITH cURL ===
