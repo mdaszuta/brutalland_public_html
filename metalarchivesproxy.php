@@ -139,6 +139,40 @@ function cleanup_rate_limit_files(): void {
     @touch($cleanup_marker);
 }
 
+/**
+ * Enforce rate limiting using APCu.
+ * Tracks request timestamps per IP in memory.
+ * Exits with 429 if the rate limit is exceeded.
+ */
+function enforce_rate_limit_apcu(): void {
+    if (!function_exists('apcu_fetch')) {
+        proxy_error(500, "Server error: APCu not available");
+    }
+
+    $ip  = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $now = time();
+    $key = "metalarchivesproxy:rate:" . md5($ip);
+
+    // Atomic fetch-or-init
+    $requests = apcu_fetch($key);
+    if (!is_array($requests)) {
+        $requests = [];
+    }
+
+    // Filter to keep only recent timestamps
+    $requests = array_filter($requests, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+
+    if (count($requests) >= RATE_LIMIT) {
+        proxy_error(429, "Rate limit exceeded. Try again later.");
+    }
+
+    // Add current timestamp
+    $requests[] = $now;
+
+    // Store back into APCu with TTL slightly > RATE_WINDOW
+    apcu_store($key, $requests, RATE_WINDOW + 5);
+}
+
 enforce_frontend_access();
 
 // === VALIDATE INPUT ===
@@ -196,9 +230,10 @@ if (!empty($parts['query'])) {
 $safeUrl = "https://$host$path$query";
 
 // === INITIALIZE RATE LIMIT PROTECTION ===
-ensure_rate_dir();
-enforce_rate_limit();
-cleanup_rate_limit_files();
+//ensure_rate_dir();
+//enforce_rate_limit();
+//cleanup_rate_limit_files();
+enforce_rate_limit_apcu();
 
 // === FETCH WITH cURL ===
 $proxyRequest = curl_init($safeUrl);
