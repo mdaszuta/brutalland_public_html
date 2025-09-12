@@ -140,7 +140,7 @@ function cleanup_rate_limit_files(): void {
 }
 
 /**
- * Enforce rate limiting using APCu.
+ * Enforce rate limiting using APCu with CAS and auto-TTL refresh.
  * Tracks request timestamps per IP in memory.
  * Exits with 429 if the rate limit is exceeded.
  */
@@ -153,24 +153,39 @@ function enforce_rate_limit_apcu(): void {
     $now = time();
     $key = "metalarchivesproxy:rate:" . md5($ip);
 
-    // Atomic fetch-or-init
-    $requests = apcu_fetch($key);
-    if (!is_array($requests)) {
-        $requests = [];
+    // First request for this IP → initialize atomically with TTL
+    if (apcu_add($key, [$now], RATE_WINDOW + 5)) {
+        return;
     }
 
-    // Filter to keep only recent timestamps
-    $requests = array_filter($requests, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+    $attempts = 0;
+    while ($attempts++ < 5) {
+        $old = apcu_fetch($key, $success);
+        if (!$success || !is_array($old)) {
+            $old = [];
+        }
 
-    if (count($requests) >= RATE_LIMIT) {
-        proxy_error(429, "Rate limit exceeded. Try again later.");
+        // Keep only timestamps inside the sliding window
+        $filtered = array_filter($old, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+
+        if (count($filtered) >= RATE_LIMIT) {
+            proxy_error(429, "Rate limit exceeded. Try again later.");
+        }
+
+        $new = $filtered;
+        $new[] = $now;
+
+        // CAS update ensures no race conditions between requests
+        if (apcu_cas($key, $old, $new)) {
+            // refresh TTL so entry expires RATE_WINDOW after last request
+            apcu_store($key, $new, RATE_WINDOW + 5);
+            return;
+        }
+
+        usleep(1000); // tiny backoff before retry
     }
 
-    // Add current timestamp
-    $requests[] = $now;
-
-    // Store back into APCu with TTL slightly > RATE_WINDOW
-    apcu_store($key, $requests, RATE_WINDOW + 5);
+    proxy_error(500, "Server error: rate limit contention");
 }
 
 enforce_frontend_access();
@@ -230,9 +245,11 @@ if (!empty($parts['query'])) {
 $safeUrl = "https://$host$path$query";
 
 // === INITIALIZE RATE LIMIT PROTECTION ===
-//ensure_rate_dir();
-//enforce_rate_limit();
-//cleanup_rate_limit_files();
+/*
+ensure_rate_dir();
+enforce_rate_limit();
+cleanup_rate_limit_files();
+*/
 enforce_rate_limit_apcu();
 
 // === FETCH WITH cURL ===
