@@ -179,7 +179,21 @@ unset($parts['fragment']);
 
 // Ensure path always starts with '/' and query is normalized, then reconstruct canonical safe URL (scheme + host + path + query)
 $path = '/' . ltrim($parts['path'] ?? '', '/');
-$safeUrl = "https://$host$path" . (!empty($parts['query']) ? '?' . $parts['query'] : '');
+
+if ($path === '/' || !preg_match('#^/(bands|band/discography)/#', $path)) {
+    proxy_error(400, "Path not allowed");
+}
+
+$query = '';
+if (!empty($parts['query'])) {
+    $queryArray = [];
+    parse_str($parts['query'], $queryArray);
+    if (!empty($queryArray)) {
+        $query = '?' . http_build_query($queryArray, '', '&', PHP_QUERY_RFC3986);
+    }
+}
+
+$safeUrl = "https://$host$path$query";
 
 // === INITIALIZE RATE LIMIT PROTECTION ===
 ensure_rate_dir();
