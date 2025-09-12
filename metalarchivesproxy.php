@@ -14,8 +14,10 @@ const ALLOWED_HOSTS = [
     'www.metal-archives.com' => true,
 ];
 
-// User-Agent string to use for outgoing cURL requests
-const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0 Safari/537.36";
+// User-Agent string and headers to use for outgoing cURL requests, mimicking a common browser
+const FP_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
+const FP_ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8";
+const FP_ACCEPT_LANGUAGE = "en-US,en;q=0.9";
 
 /**
  * Add security headers to the response.
@@ -137,11 +139,7 @@ function cleanup_rate_limit_files(): void {
     @touch($cleanup_marker);
 }
 
-// === INITIALIZE RATE LIMIT PROTECTION ===
 enforce_frontend_access();
-ensure_rate_dir();
-enforce_rate_limit();
-cleanup_rate_limit_files();
 
 // === VALIDATE INPUT ===
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -177,9 +175,16 @@ if (!empty($parts['user']) || !empty($parts['pass'])) {
     proxy_error(400, "Userinfo not allowed in URL");
 }
 
-// Ensure path always starts with '/', then reconstruct canonical safe URL (scheme + host + path + query)
+unset($parts['fragment']);
+
+// Ensure path always starts with '/' and query is normalized, then reconstruct canonical safe URL (scheme + host + path + query)
 $path = '/' . ltrim($parts['path'] ?? '', '/');
 $safeUrl = "https://$host$path" . (!empty($parts['query']) ? '?' . $parts['query'] : '');
+
+// === INITIALIZE RATE LIMIT PROTECTION ===
+ensure_rate_dir();
+enforce_rate_limit();
+cleanup_rate_limit_files();
 
 // === FETCH WITH cURL ===
 $proxyRequest = curl_init($safeUrl);
@@ -187,7 +192,7 @@ curl_setopt_array($proxyRequest, [
     CURLOPT_RETURNTRANSFER  => true,
     CURLOPT_FOLLOWLOCATION  => true,
     CURLOPT_MAXREDIRS       => 5,
-    CURLOPT_USERAGENT       => USER_AGENT,
+    CURLOPT_USERAGENT       => FP_USER_AGENT,
     CURLOPT_SSL_VERIFYPEER  => true,
     CURLOPT_SSL_VERIFYHOST  => 2,
     CURLOPT_PROTOCOLS       => CURLPROTO_HTTPS,
@@ -196,9 +201,9 @@ curl_setopt_array($proxyRequest, [
     CURLOPT_CONNECTTIMEOUT  => 3,
     CURLOPT_ENCODING        => '',
     CURLOPT_HTTPHEADER      => [
-        'Accept: text/html, application/json',
+        "Accept: " . FP_ACCEPT,
+        "Accept-Language: " . FP_ACCEPT_LANGUAGE,
     ],
-    CURLOPT_MAXFILESIZE     => 5 * 1024 * 1024, // 5 MB
 ]);
 
 $response = curl_exec($proxyRequest);

@@ -394,7 +394,7 @@ async function fetchPage(url) {
 	const text = await response.text();
 
 	// If the proxy returned JSON content, it indicates an error
-	if ( contentType.includes("application/json") ) {
+	if ( contentType.split(";")[0].trim() === "application/json" ) {
 		try {
 			const err = JSON.parse(text);
 			throw new Error(`Proxy error ${response.status}: ${err.error || text}`);
