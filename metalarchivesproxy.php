@@ -55,6 +55,7 @@ function enforce_frontend_access(): void {
 /**
  * Enforce rate limiting using APCu with sliding window and exponential backoff.
  * Tracks request timestamps per IP in memory.
+ * Uses integer microseconds for precise time tracking.
  * Retries on race conditions to reduce lost updates.
  */
 function enforce_rate_limit_apcu(): void {
@@ -63,7 +64,7 @@ function enforce_rate_limit_apcu(): void {
     }
 
     $ip  = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-    $now = time();
+    $now = (int) (hrtime(true) / 1000); // current time in µs (monotonic clock)
     $key = "metalarchivesproxy:rate:" . md5($ip);
 
     $attempts = 0;
@@ -74,8 +75,8 @@ function enforce_rate_limit_apcu(): void {
             $requests = [];
         }
 
-        // Keep only timestamps within the sliding window
-        $requests = array_filter($requests, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+        // Keep only timestamps within the sliding window (µs precision, monotonic)
+        $requests = array_filter($requests, fn($t) => is_int($t) && $t > $now - (RATE_WINDOW * 1_000_000));
 
         if (count($requests) >= RATE_LIMIT) {
             proxy_error(429, "Rate limit exceeded. Try again later.");
@@ -83,16 +84,22 @@ function enforce_rate_limit_apcu(): void {
 
         $requests[] = $now;
 
-        // Try to store back, extending TTL
-        if (apcu_store($key, $requests, RATE_WINDOW + 5)) {
-            // Optional: expose headers for debugging / monitoring
-            header("X-RateLimit-Limit: " . RATE_LIMIT);
-            header("X-RateLimit-Remaining: " . max(0, RATE_LIMIT - count($requests)));
-            header("X-RateLimit-Reset: " . ($now + RATE_WINDOW));
-            return; // success
+        // Keep only the newest RATE_LIMIT entries
+        if (count($requests) > RATE_LIMIT) {
+            $requests = array_slice($requests, -RATE_LIMIT);
         }
 
-        // Exponential backoff: 2^(n-1)ms
+        // Store back with TTL relative to RATE_WINDOW
+        if (apcu_store($key, $requests, RATE_WINDOW)) {
+            // Debug / monitoring headers
+            header("X-RateLimit-Limit: " . RATE_LIMIT);
+            header("X-RateLimit-Remaining: " . max(0, RATE_LIMIT - count($requests)));
+            // Reset time should be reported in wall clock seconds, not monotonic
+            header("X-RateLimit-Reset: " . time() + RATE_WINDOW);
+            return;
+        }
+
+        // Exponential backoff: 2^(n-1) ms
         usleep(1000 * (1 << ($attempts - 1)));
     }
 
