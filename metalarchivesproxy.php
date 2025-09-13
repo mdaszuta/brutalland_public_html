@@ -53,9 +53,9 @@ function enforce_frontend_access(): void {
 }
 
 /**
- * Enforce rate limiting using APCu with CAS and auto-TTL refresh.
+ * Enforce rate limiting using APCu with sliding window.
  * Tracks request timestamps per IP in memory.
- * Exits with 429 if the rate limit is exceeded.
+ * Retries on race conditions to reduce lost updates.
  */
 function enforce_rate_limit_apcu(): void {
     if (!function_exists('apcu_fetch')) {
@@ -66,36 +66,30 @@ function enforce_rate_limit_apcu(): void {
     $now = time();
     $key = "metalarchivesproxy:rate:" . md5($ip);
 
-    // First request for this IP → initialize atomically with TTL
-    if (apcu_add($key, [$now], RATE_WINDOW + 5)) {
-        return;
-    }
-
     $attempts = 0;
     while ($attempts++ < 5) {
-        $old = apcu_fetch($key, $success);
-        if (!$success || !is_array($old)) {
-            $old = [];
+        $requests = apcu_fetch($key, $success);
+
+        if (!$success || !is_array($requests)) {
+            $requests = [];
         }
 
-        // Keep only timestamps inside the sliding window
-        $filtered = array_filter($old, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
+        // Keep only timestamps within the sliding window
+        $requests = array_filter($requests, fn($t) => is_int($t) && $t > $now - RATE_WINDOW);
 
-        if (count($filtered) >= RATE_LIMIT) {
+        if (count($requests) >= RATE_LIMIT) {
             proxy_error(429, "Rate limit exceeded. Try again later.");
         }
 
-        $new = $filtered;
-        $new[] = $now;
+        $requests[] = $now;
 
-        // CAS update ensures no race conditions between requests
-        if (apcu_cas($key, $old, $new)) {
-            // refresh TTL so entry expires RATE_WINDOW after last request
-            apcu_store($key, $new, RATE_WINDOW + 5);
-            return;
+        // Try to store back, extending TTL
+        if (apcu_store($key, $requests, RATE_WINDOW + 5)) {
+            return; // success
         }
 
-        usleep(1000); // tiny backoff before retry
+        // if we failed (another request updated it), back off briefly and retry
+        usleep(1000);
     }
 
     proxy_error(500, "Server error: rate limit contention");
