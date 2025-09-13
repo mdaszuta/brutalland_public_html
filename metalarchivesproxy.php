@@ -53,7 +53,7 @@ function enforce_frontend_access(): void {
 }
 
 /**
- * Enforce rate limiting using APCu with sliding window.
+ * Enforce rate limiting using APCu with sliding window and exponential backoff.
  * Tracks request timestamps per IP in memory.
  * Retries on race conditions to reduce lost updates.
  */
@@ -85,11 +85,15 @@ function enforce_rate_limit_apcu(): void {
 
         // Try to store back, extending TTL
         if (apcu_store($key, $requests, RATE_WINDOW + 5)) {
+            // Optional: expose headers for debugging / monitoring
+            header("X-RateLimit-Limit: " . RATE_LIMIT);
+            header("X-RateLimit-Remaining: " . max(0, RATE_LIMIT - count($requests)));
+            header("X-RateLimit-Reset: " . ($now + RATE_WINDOW));
             return; // success
         }
 
-        // if we failed (another request updated it), back off briefly and retry
-        usleep(1000);
+        // Exponential backoff: 2^(n-1)ms
+        usleep(1000 * (1 << ($attempts - 1)));
     }
 
     proxy_error(500, "Server error: rate limit contention");
