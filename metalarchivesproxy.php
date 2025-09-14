@@ -30,6 +30,16 @@ function add_security_headers(): void {
 }
 
 /**
+ * Add content-specific headers (type + caching).
+ * @param string $contentType Content-Type header value
+ * @param string $cacheControl Cache-Control header value
+ */
+function add_content_headers(string $contentType, string $cacheControl): void {
+    header("Content-Type: $contentType");
+    header("Cache-Control: $cacheControl");
+}
+
+/**
  * Send an error response and exit.
  * @param int $status HTTP status code
  * @param string $message Error message
@@ -37,8 +47,7 @@ function add_security_headers(): void {
 function proxy_error(int $status, string $message): void {
     http_response_code($status);
     add_security_headers();
-    header("Content-Type: application/json; charset=UTF-8");
-    header("Cache-Control: no-store, no-cache, must-revalidate");
+    add_content_headers("application/json; charset=UTF-8", "no-store, no-cache, must-revalidate");
     echo json_encode(['error' => $message], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -51,8 +60,7 @@ function proxy_error(int $status, string $message): void {
  */
 function proxy_output(string $body, string $contentType, string $cacheControl): void {
     add_security_headers();
-    header("Content-Type: $contentType");
-    header("Cache-Control: $cacheControl");
+    add_content_headers($contentType, $cacheControl);
     echo $body;
 }
 
