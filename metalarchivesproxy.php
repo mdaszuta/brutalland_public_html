@@ -44,6 +44,19 @@ function proxy_error(int $status, string $message): void {
 }
 
 /**
+ * Output the response with appropriate headers.
+ * @param string $body Response body
+ * @param string $contentType Content-Type header value
+ * @param string $cacheControl Cache-Control header value
+ */
+function proxy_output(string $body, string $contentType, string $cacheControl): void {
+    add_security_headers();
+    header("Content-Type: $contentType");
+    header("Cache-Control: $cacheControl");
+    echo $body;
+}
+
+/**
  * Enforce that the request is made via AJAX (to prevent direct access).
  */
 function enforce_frontend_access(): void {
@@ -107,8 +120,13 @@ function enforce_rate_limit_apcu(): void {
 }
 
 enforce_frontend_access();
-
-// === VALIDATE INPUT ===
+/**
+ * Validate that the request method is GET and the `url` parameter is present.
+ * Returns the raw `url` parameter string.
+ *
+ * @return string
+ */
+function get_raw_url_param(): string {
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     header('Allow: GET');
     proxy_error(405, "Method not allowed");
@@ -118,8 +136,18 @@ if (!isset($_GET['url'])) {
     proxy_error(400, "Missing url parameter");
 }
 
-$url = $_GET['url'];
-$parts = parse_url($url);
+    return $_GET['url'];
+}
+
+/**
+ * Validate and sanitize the incoming `url` parameter.
+ * Returns a canonical safe URL string for cURL.
+ *
+ * @param string $rawUrl
+ * @return string
+ */
+function validate_and_build_safe_url(string $rawUrl): string {
+    $parts = parse_url($rawUrl);
 
 if (!$parts || empty($parts['scheme']) || empty($parts['host'])) {
     proxy_error(400, "Invalid URL");
@@ -144,7 +172,7 @@ if (!empty($parts['user']) || !empty($parts['pass'])) {
 
 unset($parts['fragment']);
 
-// Ensure path always starts with '/' and query is normalized, then reconstruct canonical safe URL (scheme + host + path + query)
+// Ensure path always starts with '/' and query is normalized
 $path = '/' . ltrim($parts['path'] ?? '', '/');
 
 if ($path === '/' || !preg_match('#^/(bands|band/discography)/#', $path)) {
@@ -160,9 +188,11 @@ if (!empty($parts['query'])) {
     }
 }
 
-$safeUrl = "https://$host$path$query";
+    return "https://$host$path$query";
+}
 
-// === INITIALIZE RATE LIMIT PROTECTION ===
+$rawUrl  = get_raw_url_param();
+$safeUrl = validate_and_build_safe_url($rawUrl);
 enforce_rate_limit_apcu();
 
 // === FETCH WITH cURL ===
@@ -196,7 +226,7 @@ if ($response === false) {
 }
 
 if ($httpcode >= 400) {
-    proxy_error($httpcode, "Upstream error $httpcode on $path");
+    proxy_error($httpcode, "Upstream server responded with an error");
 }
 
 // === CONTENT-TYPE HANDLING ===
@@ -218,8 +248,4 @@ switch ($mediaType) {
         proxy_error(502, "Unexpected content type: $contentType");
 }
 
-// === OUTPUT RESPONSE ===
-add_security_headers();
-header("Content-Type: $contentType");
-header("Cache-Control: $cacheControl");
-echo $response;
+proxy_output($response, $contentType, $cacheControl);
