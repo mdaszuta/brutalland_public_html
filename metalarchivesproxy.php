@@ -112,8 +112,7 @@ function enforce_rate_limit_apcu(): void {
             return;
         }
 
-        // Exponential backoff: 2^(n-1) ms
-        usleep(1000 * (1 << ($attempts - 1)));
+        usleep(1000 * (1 << ($attempts - 1))); // Exponential backoff: 2^(n-1) ms
     }
 
     proxy_error(500, "Server error: rate limit contention");
