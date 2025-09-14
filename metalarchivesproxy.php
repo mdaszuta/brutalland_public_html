@@ -190,35 +190,48 @@ function validate_and_build_safe_url(string $rawUrl): string {
     return "https://$host$path$query";
 }
 
+/**
+ * Fetch a URL from Metal Archives with standard proxy defaults.
+ *
+ * @param string $url
+ * @return array [string|false $body, int $httpcode, string $contentType, string $error]
+ */
+function fetch_with_curl(string $url): array {
+    $proxyRequest = curl_init($url);
+
+    curl_setopt_array($proxyRequest, [
+        CURLOPT_RETURNTRANSFER  => true,
+        CURLOPT_FOLLOWLOCATION  => true,
+        CURLOPT_MAXREDIRS       => 5,
+        CURLOPT_USERAGENT       => FP_USER_AGENT,
+        CURLOPT_SSL_VERIFYPEER  => true,
+        CURLOPT_SSL_VERIFYHOST  => 2,
+        CURLOPT_PROTOCOLS       => CURLPROTO_HTTPS,
+        CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
+        CURLOPT_TIMEOUT         => 10,
+        CURLOPT_CONNECTTIMEOUT  => 3,
+        CURLOPT_ENCODING        => '',
+        CURLOPT_HTTPHEADER      => [
+            "Accept: " . FP_ACCEPT,
+            "Accept-Language: " . FP_ACCEPT_LANGUAGE,
+        ],
+    ]);
+
+    $response = curl_exec($proxyRequest);
+    $httpcode = curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
+    $contentType = trim(curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE) ?? '');
+    $err = curl_error($proxyRequest);
+
+    curl_close($proxyRequest);
+
+    return [$response, $httpcode, $contentType, $err];
+}
+
 $rawUrl  = get_raw_url_param();
 $safeUrl = validate_and_build_safe_url($rawUrl);
 enforce_rate_limit_apcu();
 
-// === FETCH WITH cURL ===
-$proxyRequest = curl_init($safeUrl);
-curl_setopt_array($proxyRequest, [
-    CURLOPT_RETURNTRANSFER  => true,
-    CURLOPT_FOLLOWLOCATION  => true,
-    CURLOPT_MAXREDIRS       => 5,
-    CURLOPT_USERAGENT       => FP_USER_AGENT,
-    CURLOPT_SSL_VERIFYPEER  => true,
-    CURLOPT_SSL_VERIFYHOST  => 2,
-    CURLOPT_PROTOCOLS       => CURLPROTO_HTTPS,
-    CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
-    CURLOPT_TIMEOUT         => 10,
-    CURLOPT_CONNECTTIMEOUT  => 3,
-    CURLOPT_ENCODING        => '',
-    CURLOPT_HTTPHEADER      => [
-        "Accept: " . FP_ACCEPT,
-        "Accept-Language: " . FP_ACCEPT_LANGUAGE,
-    ],
-]);
-
-$response = curl_exec($proxyRequest);
-$httpcode = curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
-$contentType = trim(curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE) ?? '');
-$err = curl_error($proxyRequest);
-curl_close($proxyRequest);
+[$response, $httpcode, $contentType, $err] = fetch_with_curl($safeUrl);
 
 if ($response === false) {
     proxy_error(500, "cURL error: " . $err);
