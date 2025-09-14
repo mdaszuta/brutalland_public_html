@@ -127,14 +127,14 @@ enforce_frontend_access();
  * @return string
  */
 function get_raw_url_param(): string {
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    header('Allow: GET');
-    proxy_error(405, "Method not allowed");
-}
+    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+        header('Allow: GET');
+        proxy_error(405, "Method not allowed");
+    }
 
-if (!isset($_GET['url'])) {
-    proxy_error(400, "Missing url parameter");
-}
+    if (!isset($_GET['url'])) {
+        proxy_error(400, "Missing url parameter");
+    }
 
     return $_GET['url'];
 }
@@ -149,44 +149,44 @@ if (!isset($_GET['url'])) {
 function validate_and_build_safe_url(string $rawUrl): string {
     $parts = parse_url($rawUrl);
 
-if (!$parts || empty($parts['scheme']) || empty($parts['host'])) {
-    proxy_error(400, "Invalid URL");
-}
-
-if (strtolower($parts['scheme']) !== 'https') {
-    proxy_error(400, "Only HTTPS is allowed");
-}
-
-$host = strtolower(rtrim($parts['host'], '.'));
-if (!isset(ALLOWED_HOSTS[$host])) {
-    proxy_error(403, "Forbidden host");
-}
-
-if (isset($parts['port'])) {
-    proxy_error(400, "Ports are not allowed");
-}
-
-if (!empty($parts['user']) || !empty($parts['pass'])) {
-    proxy_error(400, "Userinfo not allowed in URL");
-}
-
-unset($parts['fragment']);
-
-// Ensure path always starts with '/' and query is normalized
-$path = '/' . ltrim($parts['path'] ?? '', '/');
-
-if ($path === '/' || !preg_match('#^/(bands|band/discography)/#', $path)) {
-    proxy_error(400, "Path not allowed");
-}
-
-$query = '';
-if (!empty($parts['query'])) {
-    $queryArray = [];
-    parse_str($parts['query'], $queryArray);
-    if (!empty($queryArray)) {
-        $query = '?' . http_build_query($queryArray, '', '&', PHP_QUERY_RFC3986);
+    if (!$parts || empty($parts['scheme']) || empty($parts['host'])) {
+        proxy_error(400, "Invalid URL");
     }
-}
+
+    if (strtolower($parts['scheme']) !== 'https') {
+        proxy_error(400, "Only HTTPS is allowed");
+    }
+
+    $host = strtolower(rtrim($parts['host'], '.'));
+    if (!isset(ALLOWED_HOSTS[$host])) {
+        proxy_error(403, "Forbidden host");
+    }
+
+    if (isset($parts['port'])) {
+        proxy_error(400, "Ports are not allowed");
+    }
+
+    if (!empty($parts['user']) || !empty($parts['pass'])) {
+        proxy_error(400, "Userinfo not allowed in URL");
+    }
+
+    unset($parts['fragment']);
+
+    // Ensure path always starts with '/' and query is normalized
+    $path = '/' . ltrim($parts['path'] ?? '', '/');
+
+    if ($path === '/' || !preg_match('#^/(bands|band/discography)/#', $path)) {
+        proxy_error(400, "Path not allowed");
+    }
+
+    $query = '';
+    if (!empty($parts['query'])) {
+        $queryArray = [];
+        parse_str($parts['query'], $queryArray);
+        if (!empty($queryArray)) {
+            $query = '?' . http_build_query($queryArray, '', '&', PHP_QUERY_RFC3986);
+        }
+    }
 
     return "https://$host$path$query";
 }
