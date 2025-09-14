@@ -68,7 +68,7 @@ function enforce_rate_limit_apcu(): void {
     $key = "metalarchivesproxy:rate:" . md5($ip);
 
     $attempts = 0;
-    while ($attempts++ < 5) {
+    while ($attempts++ < 3) {
         $requests = apcu_fetch($key, $success);
 
         if (!$success || !is_array($requests)) {
@@ -76,7 +76,13 @@ function enforce_rate_limit_apcu(): void {
         }
 
         // Keep only timestamps within the sliding window (µs precision, monotonic)
-        $requests = array_filter($requests, fn($t) => is_int($t) && $t > $now - (RATE_WINDOW * 1_000_000));
+        $windowStart = $now - (RATE_WINDOW * 1_000_000);
+        $requests = array_filter($requests, fn($t) => is_int($t) && $t > $windowStart);
+
+        // Cap array length (keep only the last RATE_LIMIT - 1 entries)
+        if (count($requests) > RATE_LIMIT - 1) {
+            $requests = array_slice($requests, -(RATE_LIMIT - 1));
+        }
 
         if (count($requests) >= RATE_LIMIT) {
             proxy_error(429, "Rate limit exceeded. Try again later.");
@@ -84,18 +90,12 @@ function enforce_rate_limit_apcu(): void {
 
         $requests[] = $now;
 
-        // Keep only the newest RATE_LIMIT entries
-        if (count($requests) > RATE_LIMIT) {
-            $requests = array_slice($requests, -RATE_LIMIT);
-        }
-
         // Store back with TTL relative to RATE_WINDOW
         if (apcu_store($key, $requests, RATE_WINDOW)) {
             // Debug / monitoring headers
             header("X-RateLimit-Limit: " . RATE_LIMIT);
             header("X-RateLimit-Remaining: " . max(0, RATE_LIMIT - count($requests)));
-            // Reset time should be reported in wall clock seconds, not monotonic
-            header("X-RateLimit-Reset: " . time() + RATE_WINDOW);
+            header("X-RateLimit-Reset: " . time() + RATE_WINDOW); // Reset time should be reported in wall clock seconds, not monotonic
             return;
         }
 
