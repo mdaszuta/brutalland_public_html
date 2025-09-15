@@ -1,7 +1,7 @@
 <?php
 // metalarchivesproxy.php — cURL-based proxy for Metal Archives
 
-// === CONFIG ===
+// Config
 const CACHE_TTL = 60;            // Browser cache in seconds
 const RATE_WINDOW = 60;          // Rate limit window in seconds
 const RATE_LIMIT = 30;           // Max requests in rate window per IP
@@ -31,6 +31,7 @@ function add_security_headers(): void {
 
 /**
  * Add content-specific headers (type + caching).
+ *
  * @param string $contentType Content-Type header value
  * @param string $cacheControl Cache-Control header value
  */
@@ -41,6 +42,7 @@ function add_content_headers(string $contentType, string $cacheControl): void {
 
 /**
  * Send an error response and exit.
+ *
  * @param int $status HTTP status code
  * @param string $message Error message
  */
@@ -54,6 +56,7 @@ function proxy_error(int $status, string $message): void {
 
 /**
  * Output the response with appropriate headers.
+ *
  * @param string $body Response body
  * @param string $contentType Content-Type header value
  * @param string $cacheControl Cache-Control header value
@@ -249,7 +252,7 @@ if ($httpcode >= 400) {
     proxy_error($httpcode, "Upstream server responded with an error");
 }
 
-// === CONTENT-TYPE HANDLING ===
+// Determine content type and caching policy
 $mediaType = strtolower(trim(explode(';', $contentType, 2)[0]));
 
 switch ($mediaType) {
