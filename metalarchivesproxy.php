@@ -103,16 +103,18 @@ function enforce_rate_limit_apcu(): void {
         $windowStart = $now - (RATE_WINDOW * 1_000_000);
         $requests = array_filter($requests, fn($t) => is_int($t) && $t > $windowStart);
 
-        // Cap array length (keep only the last RATE_LIMIT - 1 entries)
-        if (count($requests) > RATE_LIMIT - 1) {
-            $requests = array_slice($requests, -(RATE_LIMIT - 1));
-        }
-
+        // --- Check limit *before* appending ---
         if (count($requests) >= RATE_LIMIT) {
             proxy_error(429, "Rate limit exceeded. Try again later.");
         }
 
+        // Record this request
         $requests[] = $now;
+
+        // --- Cap array length afterwards to avoid unbounded growth ---
+        if (count($requests) > RATE_LIMIT) {
+            $requests = array_slice($requests, -RATE_LIMIT);
+        }
 
         // Store back with TTL relative to RATE_WINDOW
         if (apcu_store($key, $requests, RATE_WINDOW)) {
