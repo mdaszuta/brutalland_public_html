@@ -11,6 +11,9 @@ const ALLOWED_HOSTS = [
     'www.metal-archives.com' => true,
 ];
 
+// Define maximum allowed upstream response size (in bytes)
+const MAX_RESPONSE_SIZE = 2 * 1024* 1024; // 2 MB
+
 // User-Agent string and headers to use for outgoing cURL requests, mimicking a common browser
 const FP_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
 const FP_ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8";
@@ -212,6 +215,8 @@ function validate_and_build_safe_url(string $rawUrl): string {
 function fetch_with_curl(string $url): array {
     $proxyRequest = curl_init($url);
 
+    $maxSize = MAX_RESPONSE_SIZE;
+
     curl_setopt_array($proxyRequest, [
         CURLOPT_RETURNTRANSFER  => true,
         CURLOPT_FOLLOWLOCATION  => true,
@@ -228,12 +233,22 @@ function fetch_with_curl(string $url): array {
             "Accept: " . FP_ACCEPT,
             "Accept-Language: " . FP_ACCEPT_LANGUAGE,
         ],
+        // Enforce response size limit
+        CURLOPT_NOPROGRESS      => false,
+        CURLOPT_PROGRESSFUNCTION => function ($ch, $dltotal, $dlnow) use ($maxSize) {
+            return ($dlnow > $maxSize) ? 1 : 0;
+        },
     ]);
 
     $response = curl_exec($proxyRequest);
     $httpcode = curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
     $contentType = trim(curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE) ?? '');
     $err = curl_error($proxyRequest);
+
+    // If callback aborted the transfer due to size limit, override error message
+    if (curl_errno($proxyRequest) === CURLE_ABORTED_BY_CALLBACK) {
+        $err = sprintf("Response exceeded size limit of %d bytes (%.3f MB).", $maxSize, $maxSize / 1048576);
+    }
 
     curl_close($proxyRequest);
 
