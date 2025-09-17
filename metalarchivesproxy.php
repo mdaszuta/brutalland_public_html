@@ -122,9 +122,9 @@ function enforce_rate_limit_apcu(): void {
         // Store back with TTL relative to RATE_WINDOW
         if (apcu_store($key, $requests, RATE_WINDOW)) {
             // Debug / monitoring headers
-            header("X-RateLimit-Limit: " . RATE_LIMIT);
+            /*header("X-RateLimit-Limit: " . RATE_LIMIT);
             header("X-RateLimit-Remaining: " . max(0, RATE_LIMIT - count($requests)));
-            header("X-RateLimit-Reset: " . time() + RATE_WINDOW); // Reset time should be reported in wall clock seconds, not monotonic
+            header("X-RateLimit-Reset: " . time() + RATE_WINDOW);*/ // Reset time should be reported in wall clock seconds, not monotonic
             return;
         }
 
@@ -134,7 +134,6 @@ function enforce_rate_limit_apcu(): void {
     proxy_error(500, "Server error: rate limit contention");
 }
 
-enforce_frontend_access();
 /**
  * Validate that the request method is GET and the `url` parameter is present.
  * Returns the raw `url` parameter string.
@@ -147,11 +146,17 @@ function get_raw_url_param(): string {
         proxy_error(405, "Method not allowed");
     }
 
-    if (!isset($_GET['url'])) {
+    $rawUrl = $_GET['url'] ?? null;
+
+    if ($rawUrl === null) {
         proxy_error(400, "Missing url parameter");
     }
 
-    return $_GET['url'];
+    if (strlen($rawUrl) > 2048) {
+        proxy_error(400, "Url too long");
+    }
+
+    return $rawUrl;
 }
 
 /**
@@ -255,6 +260,7 @@ function fetch_with_curl(string $url): array {
     return [$response, $httpcode, $contentType, $err];
 }
 
+enforce_frontend_access();
 $rawUrl  = get_raw_url_param();
 $safeUrl = validate_and_build_safe_url($rawUrl);
 enforce_rate_limit_apcu();
