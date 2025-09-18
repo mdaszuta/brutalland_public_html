@@ -12,7 +12,7 @@ const ALLOWED_HOSTS = [
 ];
 
 // Define maximum allowed upstream response size (in bytes)
-const MAX_RESPONSE_SIZE = 2 * 1024* 1024; // 2 MB
+const MAX_RESPONSE_SIZE = 2 * 1024 * 1024; // 2 MB
 
 // User-Agent string and headers to use for outgoing cURL requests, mimicking a common browser
 const FP_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
@@ -35,8 +35,8 @@ function add_security_headers(): void {
 /**
  * Add content-specific headers (type + caching).
  *
- * @param string $contentType Content-Type header value
- * @param string $cacheControl Cache-Control header value
+ * @param string $contentType - Content-Type header value
+ * @param string $cacheControl - Cache-Control header value
  */
 function add_content_headers(string $contentType, string $cacheControl): void {
     header("Content-Type: $contentType");
@@ -46,8 +46,8 @@ function add_content_headers(string $contentType, string $cacheControl): void {
 /**
  * Send an error response and exit.
  *
- * @param int $status HTTP status code
- * @param string $message Error message
+ * @param int $status - HTTP status code
+ * @param string $message - Error message
  */
 function proxy_error(int $status, string $message): void {
     http_response_code($status);
@@ -60,9 +60,9 @@ function proxy_error(int $status, string $message): void {
 /**
  * Output the response with appropriate headers.
  *
- * @param string $body Response body
- * @param string $contentType Content-Type header value
- * @param string $cacheControl Cache-Control header value
+ * @param string $body - response body
+ * @param string $contentType - Content-Type header value
+ * @param string $cacheControl - Cache-Control header value
  */
 function proxy_output(string $body, string $contentType, string $cacheControl): void {
     add_security_headers();
@@ -138,7 +138,7 @@ function enforce_rate_limit_apcu(): void {
  * Validate that the request method is GET and the `url` parameter is present.
  * Returns the raw `url` parameter string.
  *
- * @return string
+ * @return string - raw URL parameter
  */
 function get_raw_url_param(): string {
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -163,8 +163,8 @@ function get_raw_url_param(): string {
  * Validate and sanitize the incoming `url` parameter.
  * Returns a canonical safe URL string for cURL.
  *
- * @param string $rawUrl
- * @return string
+ * @param string $rawUrl - raw URL parameter
+ * @return string - validated and sanitized URL
  */
 function validate_and_build_safe_url(string $rawUrl): string {
     $parts = parse_url($rawUrl);
@@ -214,8 +214,8 @@ function validate_and_build_safe_url(string $rawUrl): string {
 /**
  * Fetch a URL from Metal Archives with standard proxy defaults.
  *
- * @param string $url
- * @return array [string|false $body, int $httpcode, string $contentType, string $error]
+ * @param string $url - validated URL to fetch
+ * @return array [string|false $body, int $httpcode, string $contentType, string $error] - response details
  */
 function fetch_with_curl(string $url): array {
     $proxyRequest = curl_init($url);
@@ -260,6 +260,7 @@ function fetch_with_curl(string $url): array {
     return [$response, $httpcode, $contentType, $err];
 }
 
+// Main execution flow
 enforce_frontend_access();
 $rawUrl  = get_raw_url_param();
 $safeUrl = validate_and_build_safe_url($rawUrl);
