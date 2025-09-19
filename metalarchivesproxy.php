@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 // metalarchivesproxy.php — cURL-based proxy for Metal Archives
 
 // Config
@@ -92,7 +93,7 @@ function enforce_rate_limit_apcu(): void {
 
     $ip  = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
     $now = (int) (hrtime(true) / 1000); // current time in µs (monotonic clock)
-    $key = "metalarchivesproxy:rate:" . md5($ip);
+    $key = "metalarchivesproxy:rate:" . $ip;
 
     $attempts = 0;
     while ($attempts++ < 3) {
@@ -218,9 +219,9 @@ function validate_and_build_safe_url(string $rawUrl): string {
  * @return array [string|false $body, int $httpcode, string $contentType, string $error] - response details
  */
 function fetch_with_curl(string $url): array {
-    $proxyRequest = curl_init($url);
-
     $maxSize = MAX_RESPONSE_SIZE;
+
+    $proxyRequest = curl_init($url);
 
     curl_setopt_array($proxyRequest, [
         CURLOPT_RETURNTRANSFER  => true,
@@ -248,6 +249,7 @@ function fetch_with_curl(string $url): array {
     $response = curl_exec($proxyRequest);
     $httpcode = curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
     $contentType = trim(curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE) ?? '');
+    $finalUrl = curl_getinfo($proxyRequest, CURLINFO_EFFECTIVE_URL) ?: '';
     $err = curl_error($proxyRequest);
 
     // If callback aborted the transfer due to size limit, override error message
@@ -256,6 +258,14 @@ function fetch_with_curl(string $url): array {
     }
 
     curl_close($proxyRequest);
+
+    if ($finalUrl !== '') {
+        $finalParts = parse_url($finalUrl);
+        $finalHost = strtolower(rtrim($finalParts['host'] ?? '', '.'));
+        if (!isset(ALLOWED_HOSTS[$finalHost])) {
+            return [false, 502, '', "Redirected to disallowed host: $finalHost"];
+        }
+    }
 
     return [$response, $httpcode, $contentType, $err];
 }
@@ -269,7 +279,11 @@ enforce_rate_limit_apcu();
 [$response, $httpcode, $contentType, $err] = fetch_with_curl($safeUrl);
 
 if ($response === false) {
-    proxy_error(500, "cURL error: " . $err);
+    if ($httpcode === 502) {
+        proxy_error(502, $err);
+    } else {
+        proxy_error(500, "cURL error: " . $err);
+    }
 }
 
 if ($httpcode >= 400) {
