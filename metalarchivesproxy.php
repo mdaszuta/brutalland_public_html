@@ -226,7 +226,7 @@ function fetch_with_curl(string $url): array {
     curl_setopt_array($proxyRequest, [
         CURLOPT_RETURNTRANSFER  => true,
         CURLOPT_FOLLOWLOCATION  => true,
-        CURLOPT_MAXREDIRS       => 5,
+        CURLOPT_MAXREDIRS       => 3,
         CURLOPT_USERAGENT       => FP_USER_AGENT,
         CURLOPT_SSL_VERIFYPEER  => true,
         CURLOPT_SSL_VERIFYHOST  => 2,
