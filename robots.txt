@@ -12,6 +12,5 @@ Disallow: /posting.php
 Disallow: /profile.php
 Disallow: /privmsg.php
 Disallow: /viewonline.php
-Disallow: /search.php
 
 Sitemap: https://brutalland.pl/sitemap/sitemap.xml
