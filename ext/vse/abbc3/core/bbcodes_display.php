@@ -15,7 +15,9 @@ use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
 use phpbb\textformatter\s9e\parser;
+use phpbb\textformatter\s9e\renderer;
 use phpbb\user;
+use s9e\TextFormatter\Utils;
 
 /**
  * ABBC3 core BBCodes display class
@@ -42,6 +44,9 @@ class bbcodes_display
 
 	/** @var array */
 	protected $memberships;
+
+	/** @var array */
+	protected $render_params_set = [];
 
 	/**
 	 * Constructor
@@ -104,6 +109,56 @@ class bbcodes_display
 				$service->disable_bbcode($bbcode_name);
 			}
 		}
+	}
+
+	/**
+	 * Set parameter variables for use in bbcode templates
+	 *
+	 * @param renderer $renderer
+	 * @param array $params Key-value pairs for renderer parameters
+	 * @return void
+	 */
+	public function set_renderer_params($renderer, $params)
+	{
+		$params_to_set = array_diff_key($params, $this->render_params_set);
+
+		if ($params_to_set)
+		{
+			$renderer->get_renderer()->setParameters($params_to_set);
+			$this->render_params_set = array_merge($this->render_params_set, $params_to_set);
+		}
+	}
+
+	/**
+	 * Remove inline attachments inside [hidden] for guests and bots.
+	 *
+	 * @param array $attachments Parsed attachments grouped by post ID
+	 * @param array $row Post row containing original parsed text
+	 * @return array
+	 */
+	public function remove_hidden_attachments(array $attachments, array $row)
+	{
+		if (ANONYMOUS !== (int) $this->user->data['user_id'] && empty($this->user->data['is_bot']))
+		{
+			return $attachments;
+		}
+
+		if (empty($row['post_text']))
+		{
+			return $attachments;
+		}
+
+		$post_id = $row['post_id'];
+		$indexes = array_diff(
+			Utils::getAttributeValues($row['post_text'], 'ATTACHMENT', 'index'),
+			Utils::getAttributeValues(Utils::removeTag($row['post_text'], 'HIDDEN'), 'ATTACHMENT', 'index')
+		);
+		foreach ($indexes as $index)
+		{
+			unset($attachments[$post_id][(int) $index]);
+		}
+
+		return $attachments;
 	}
 
 	/**

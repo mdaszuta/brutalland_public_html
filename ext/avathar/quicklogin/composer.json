@@ -1,0 +1,43 @@
+{
+    "name": "avathar/quicklogin",
+    "type": "phpbb-extension",
+    "description": "Adds a simple quick login popup lightbox using JavaScript",
+    "homepage": "https://github.com/avatharbe/QuickLogin",
+    "version": "1.2.0",
+    "time": "2026-03-13",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "PayBas",
+            "email": "admin@pbwow.com",
+            "homepage": "http://www.paybas.com",
+            "role": "Previous developer"
+        },
+        {
+            "name": "Sajaki",
+            "email": "sajaki@avathar.be",
+            "homepage": "https://www.avathar.be",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "phpbb/phpbb": ">=3.3.0",
+        "composer/installers": "~1.0 || ~2.0"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "Quick Login",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.3.0"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/quick_login",
+            "filename": "version_check",
+            "ssl": true
+        }
+    }
+}

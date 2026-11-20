@@ -9,7 +9,7 @@
 * For full copyright and license information, please see
 * the docs/CREDITS.txt file.
 * @Polish locale 2014-10-07 18:24:32 Zespół Olympus.pl $
-* @Polska wersja językowa phpBB 3.3.15 - 07.04.2025, Mateusz Dutko (vader) www.rnavspotters.pl
+* @Polska wersja językowa phpBB 3.3.19 - 26.09.2026, Mateusz Dutko (vader) www.rnavspotters.pl
 */
 
 /**
@@ -66,9 +66,11 @@ $lang = array_merge($lang, array(
 	<br><br>
 	W czasie przeglądania „%1$s” możemy też utworzyć ciasteczka niezależne od oprogramowania phpBB, ale ich ten dokument nie dotyczy – ma on opisywać tylko strony stworzone przez oprogramowanie phpBB. Drugi sposób, w jaki zbieramy informacje o tobie, to dane wysyłane przez ciebie do nas. Mogą być to między innymi posty napisane przez ciebie jako anonimowy użytkownik zwane dalej „anonimowe posty”, konta użytkownika założone na „%1$s” zwane dalej „twoje konto” i posty napisane przez ciebie po rejestracji i zalogowaniu zwane dalej „twoje posty”.
 	<br><br>
-	Twoje konto będzie zawierać przynajmniej unikalną identyfikacyjną nazwę zwaną dalej „twoja nazwa użytkownika”, hasło używane do logowania zwane dalej „twoje hasło” i osobisty aktywny adres e-mail zwany dalej „twój adres e-mail”. Informacje podane dla twojego konta na „%1$s” są chronione przez prawa dotyczące ochrony danych osobowych w państwie, w którym stoi nasz serwer. Mamy prawo wymagać podania dodatkowych informacji przy rejestracji, i to my ustalamy czy podanie ich jest konieczne, czy nie. W każdym przypadku, masz możliwość wybrania, które informacje o twoim koncie są wyświetlane publicznie. Co więcej, w panelu zarządzania kontem masz możliwość włączenia lub wyłączenia wysyłania do ciebie automatycznie generowanych przez oprogramowanie phpBB e-maili.
+	Drugim sposobem, w jaki gromadzimy informacje, są dane przekazywane nam przez użytkowników. Obejmują one między innymi: publikowanie postów jako użytkownik anonimowy (zwane dalej „postami anonimowymi”), rejestrację na stronie „%1$s” (zwaną dalej „twoim kontem”) oraz posty publikowane po rejestracji i po zalogowaniu się (zwane dalej „twoimi postami”).
 	<br><br>
-	Twoje hasło jest zaszyfrowane, więc jest bezpieczne, niemniej nie należy używać tego samego hasła na różnych witrynach internetowych. Hasło to umożliwia dostęp do twojego konta na „%1$s”, więc chroń je i w żadnym wypadku nie podawaj <strong>nikomu</strong>. Jeśli je zapomnisz, użyj funkcji „Nie pamiętam hasła”. Witryna poprosi cię o podanie nazwy użytkownika i adresu e-mail. Po podaniu tych danych zostanie wygenerowane nowe hasło i przesłane na podany przez ciebie adres e-mail. Umożliwi ono odzyskanie dostępu do twojego konta.
+	Twoje konto będzie zawierać przynajmniej unikalną identyfikacyjną nazwę zwaną dalej „twoja nazwa użytkownika”, hasło używane do logowania zwane dalej „twoje hasło” i aktywny adres e-mail zwany dalej „twój adres e-mail”. Informacje podane dla twojego konta na „%1$s” są chronione przez prawa dotyczące ochrony danych osobowych w państwie, w którym stoi nasz serwer. Wszelkie informacje poza nazwą użytkownika, hasłem i adresem e-mail, o które prosimy podczas rejestracji, mogą być obowiązkowe lub opcjonalne, według uznania „%1$s”. W każdym przypadku, masz możliwość wybrania, które informacje o twoim koncie są wyświetlane publicznie. Możesz również wyrazić zgodę lub zrezygnować z automatycznie generowanych wiadomości e-mail od oprogramowania phpBB.
+	<br><br>
+	Twoje hasło jest zapisane w postaci jednokierunkowego skrótu (a one-way hash), aby zapewnić bezpieczeństwo. Niemniej nie należy używać tego samego hasła na różnych witrynach internetowych. Hasło to umożliwia dostęp do twojego konta na „%1$s”, więc chroń je i w żadnym wypadku nie podawaj <strong>nikomu</strong>. Jeśli je zapomnisz, użyj funkcji „Nie pamiętam hasła”. Witryna poprosi cię o podanie nazwy użytkownika i adresu e-mail. Po podaniu tych danych zostanie wygenerowane nowe hasło i przesłane na podany przez ciebie adres e-mail. Umożliwi ono odzyskanie dostępu do twojego konta.
 	</div>
 	',
 ));
@@ -84,8 +86,8 @@ $lang = array_merge($lang, array(
 	'ACCOUNT_EMAIL_CHANGED_ADMIN'	=> 'Twoje konto zostało zaktualizowane. Ta witryna przy zmianie adresu e-mail wymaga ponownej aktywacji kont przez administratora. Została już do niego wysłana informacja w tej sprawie. Gdy twoje konto zostanie ponownie aktywowane, otrzymasz stosowne powiadomienie.',
 	'ACCOUNT_INACTIVE'				=> 'Twoje konto zostało utworzone. Ta witryna jednak wymaga aktywacji konta poprzez podanie klucza aktywującego. Klucz ten otrzymasz w specjalnej wiadomości e-mail, sprawdź również folder spam. W niej też znajdziesz dalsze instrukcje. Może to chwilę potrwać, prosimy o cierpliwość.',
 	'ACCOUNT_INACTIVE_ADMIN'		=> 'Twoje konto zostało utworzone. Ta witryna wymaga aktywacji konta przez administratora. Został on już poinformowany o utworzeniu nowego konta. Z chwilą aktywowania konta otrzymasz stosowne powiadomienie.',
-	'ACTIVATION_EMAIL_SENT'			=> 'E-mail aktywacyjny został wysłany na twój adres mailowy.',
-	'ACTIVATION_EMAIL_SENT_ADMIN'	=> 'E-mail aktywacyjny został wysłany na adresy mailowe administratorów.',
+	'ACTIVATION_EMAIL_SENT'			=> 'Jeśli podana nazwa użytkownika i adres e-mail są poprawne, na podany adres wysłano wiadomość e-mail z linkiem aktywacyjnym. Wiadomości aktywacyjne są wysyłane nie częściej niż raz na 24 godziny. Jeśli nadal występują problemy z aktywacją konta, prosimy o kontakt z administratorem forum.',
+	'ACTIVATION_EMAIL_SENT_ADMIN'	=> 'Jeśli podana nazwa użytkownika i adres e-mail są poprawne, na adresy e-mail administratorów wysłano wiadomość e-mail z linkiem aktywacyjnym. Wiadomości aktywacyjne są wysyłane nie częściej niż raz na 24 godziny. Jeśli nadal występują problemy z aktywacją konta, prosimy o kontakt z administratorem forum.',
 	'ADD'							=> 'Dodaj',
 	'ADD_BCC'						=> 'Dodaj [ukryta kopia]',
 	'ADD_FOES'						=> 'Dodaj wroga',
@@ -369,6 +371,7 @@ $lang = array_merge($lang, array(
 	'NOTIFICATION_TYPE_REPORT_PM_CLOSED'				=> 'Zgłoszenie dotyczące prywatnej wiadomości zostało zamknięte przez moderatora',
 	'NOTIFICATION_TYPE_TOPIC'							=> 'Utworzono temat na obserwowanym forum',
 	'NOTIFICATION_TYPE_ADMIN_ACTIVATE_USER'				=> 'Użytkownik wymaga aktywacji',
+	'NOTIFICATION_TYPE_UPDATE_MAINTENANCE'				=> 'Nowa wersja skryptu phpBB',
 
 	'NOTIFY_METHOD'					=> 'Sposób powiadamiania',
 	'NOTIFY_METHOD_BOTH'			=> 'Oba sposoby',

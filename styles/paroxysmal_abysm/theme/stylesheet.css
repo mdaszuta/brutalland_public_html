@@ -962,6 +962,10 @@ input[type="radio"] {
 	/*max-width: 100%;*/
 }
 
+.labeled-icon .fa:before {
+	padding-right: 0;
+}
+
 /* Top menu tags list */
 
 #mm-tags .m-list-left { flex-basis: 83%; }

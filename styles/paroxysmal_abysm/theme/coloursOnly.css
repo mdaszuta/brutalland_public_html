@@ -412,7 +412,7 @@ option.disabled-option {
 }
 
 #back-to-forum a,
-#mm-title span,
+#mm-title .panel span,
 .info-paragraph,
 .spoilbtn,
 blockquote cite,

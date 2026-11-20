@@ -1,27 +1,47 @@
 .pmbars-outer {
-	background-color: #ebebeb;
+	background-color: #ecedee;
 	border-radius: 30px;
-	overflow-x: hidden;
+	overflow: hidden;
 	width: 100%;
 	height: 8px;
 	margin: -8px 0 8px;
 }
 
 .pmbars-inner {
-	background: #32cd32;
+	background: #28a745;
 	border-radius: 30px;
-	width: 0;
-	max-width: 100%;
 	height: 100%;
+	/* stylelint-disable order/properties-order */
+	transform: scaleX(0);
+	transform-origin: left;
+	will-change: transform;
+	animation: pmbars-animate 1s ease-out forwards;
+	/* stylelint-enable order/properties-order */
+}
+
+.pmbars-inner.pmbars-no-animate {
+	transform: scaleX(1);
+	animation: none;
+}
+
+.rtl .pmbars-inner {
+	transform-origin: right;
 }
 
 .pmbars-danger {
-	background: #d31141;
-	background: -webkit-linear-gradient(left, #32cd32 85%, #d31141 95%);
-	background: linear-gradient(to right, #32cd32 85%, #d31141 95%);
+	background: linear-gradient(to right, #28a745 85%, #dc3545 95%);
 }
 
 .rtl .pmbars-danger {
-	background: -webkit-linear-gradient(right, #32cd32 85%, #d31141 95%);
-	background: linear-gradient(to left, #32cd32 85%, #d31141 95%);
+	background: linear-gradient(to left, #28a745 85%, #dc3545 95%);
+}
+
+@keyframes pmbars-animate {
+	from {
+		transform: scaleX(0);
+	}
+
+	to {
+		transform: scaleX(1);
+	}
 }

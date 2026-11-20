@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Bu mesaj panosunda gizli içeriği görüntülemek için kayıt olmanız ve giriş yapmanız gerekmektedir.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Spoiler’ı Göster',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Spoiler’ı Gizle',
+	'ABBC3_SPOILER_SHOW'		=> 'Spoiler’ı Göster',
+	'ABBC3_SPOILER_HIDE'		=> 'Spoiler’ı Gizle',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Konu Dışı',
@@ -63,8 +63,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Üstü çizili metin: [s]metin[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Alt simge metni: [sub]metin[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Üst simge metni: [sup]text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Videosu: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Gömülü MP4/OGG/WEBM video dosyaları: URL, <samp class="error">https</samp> veya <samp class="error">http</samp> ile başlamalı ve <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> veya <samp class="error">.webm</samp> ile bitmelidir (BBCode gerekmez). Tarayıcı desteğinin ve GUI uygulamasının değişiklik gösterdiğini unutmayın.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Seçilen metni kopyala',
@@ -96,11 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sırası güncellendi.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode sırası güncellenemedi.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'BBCode tablo adı alınmadı.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'BBCode sipariş verisi alınmadı.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Hiçbir BBCode satırı güncellenmedi.',
 	'ABBC3_BBCODE_GROUP'		=> 'Bu BBCode’u kullanabilen grupları yönetin',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer hiç bir grup seçilmezse, tüm kullanıcılar bu BBCode’u kullanabilirler. Birden fazla grup seçmek ya da seçimi bırakmak için CTRL+SAĞ TIK (ya da Mac bilgisayarlarda CMD+SAĞ TIK) klavye ile mouse kombinasyonunu kullanın.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCode’ları',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Hızlı kahverengi tilki tembel köpeğin üzerinden atlar',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Örnek:</strong><br>%2$s<br><br><strong>Sonuç:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Örnek:</strong><br>%2$s<br><br><strong>Sonuç:</strong><br>%3$s<hr>',
 ));

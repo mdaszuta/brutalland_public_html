@@ -30,8 +30,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Este forum requer que esteja registado e conectado para ver o conteúdo oculto.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Mostrar «spoiler»',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Esconder «spoiler»',
+	'ABBC3_SPOILER_SHOW'		=> 'Mostrar «spoiler»',
+	'ABBC3_SPOILER_HIDE'		=> 'Esconder «spoiler»',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Fora de tópico',
@@ -65,7 +65,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Texto subscrito: [sub]texto[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texto sobrescrito: [sup]texto[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vídeo no YouTube: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Incorporar arquivos de vídeo MP4/OGG/WEBM: o URL deve começar com <samp class="error">https</samp> ou <samp class="error">http</samp> e terminar com <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ou <samp class="error">.webm</samp> (não é necessário BBCode). Observe que o suporte do navegador e a implementação da GUI variam.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copiar texto seleccionado',
@@ -97,11 +97,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'A ordem do BBCode foi actualizada.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'O pedido do BBCode não pôde ser atualizado.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nenhum nome de tabela BBCode foi recebido.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Nenhum dado de pedido BBCode foi recebido.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nenhuma linha do BBCode foi atualizada.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gerir os grupos que podem usar este BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Se nenhum grupo for seleccionado, então todos os utilizadores podem usar estes BBCode. Use CTRL+CLIQUE (or CMD+CLIQUE no Mac) para seleccionar/desmarcar mais de um grupo.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Caixa BBCode avançada BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Bancos fúteis pagavam-lhe queijo, whisky e xadrez.',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemplo:</strong><br>%2$s<br><br><strong>Resultado:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemplo:</strong><br>%2$s<br><br><strong>Resultado:</strong><br>%3$s<hr>',
 ));

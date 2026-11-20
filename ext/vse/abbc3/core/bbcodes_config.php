@@ -99,37 +99,4 @@ class bbcodes_config
 			]
 		);
 	}
-
-	/**
-	 * Configure Hidden BBCode
-	 *
-	 * @param Configurator $configurator
-	 * @access public
-	 */
-	public function hidden(Configurator $configurator)
-	{
-		if (!isset($configurator->BBCodes['hidden']))
-		{
-			return;
-		}
-
-		unset($configurator->BBCodes['hidden'], $configurator->tags['hidden']);
-		$configurator->BBCodes->addCustom(
-			'[hidden]{TEXT}[/hidden]',
-			'<xsl:choose>
-				<xsl:when test="$S_USER_LOGGED_IN and not($S_IS_BOT)">
-					<div class="hidebox hidebox_visible">
-						<div class="hidebox_title hidebox_visible">{L_ABBC3_HIDDEN_OFF}</div>
-						<div class="hidebox_visible">{TEXT}</div>
-					</div>
-				</xsl:when>
-				<xsl:otherwise>
-					<div class="hidebox hidebox_hidden">
-						<div class="hidebox_title hidebox_hidden">{L_ABBC3_HIDDEN_ON}</div>
-						<div class="hidebox_hidden">{L_ABBC3_HIDDEN_EXPLAIN}</div>
-					</div>
-				</xsl:otherwise>
-			</xsl:choose>'
-		);
-	}
 }

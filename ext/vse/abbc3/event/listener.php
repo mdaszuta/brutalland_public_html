@@ -54,22 +54,32 @@ class listener implements EventSubscriberInterface
 	/** @var user */
 	protected $user;
 
+	/** @var string */
+	protected $phpbb_root_path;
+
+	/** @var string */
+	protected $php_ext;
+
+	/** @var bool */
 	protected $quick_reply = false;
 
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_config  $bbcodes_config
+	 * @param bbcodes_config $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
-	 * @param bbcodes_help    $bbcodes_help
-	 * @param config          $config
-	 * @param db_text         $db_text
-	 * @param helper          $helper
-	 * @param language        $language
-	 * @param template        $template
+	 * @param bbcodes_help $bbcodes_help
+	 * @param config $config
+	 * @param db_text $db_text
+	 * @param helper $helper
+	 * @param language $language
+	 * @param template $template
+	 * @param user $user
+	 * @param string $phpbb_root_path
+	 * @param string $phpEx
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user, $phpbb_root_path, $phpEx)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
@@ -79,6 +89,9 @@ class listener implements EventSubscriberInterface
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->language = $language;
+		$this->user = $user;
+		$this->phpbb_root_path = $phpbb_root_path;
+		$this->php_ext = $phpEx;
 	}
 
 	/**
@@ -101,11 +114,20 @@ class listener implements EventSubscriberInterface
 
 			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
 			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force the lowest priority
+			'core.text_formatter_s9e_renderer_setup'	=> 'set_hidden_bbcode_params',
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 
 			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
 			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
+			'core.viewtopic_modify_post_row'					=> 'remove_hidden_attachments',
+
+			// These are meant to fix inline attachment sorting until phpBB can fix this issue,
+			// which can be an issue if inline attachments are bbcodes like hidden, spoiler, etc.
+			// Not all areas in the phpBB with this issue have events, so we only fix these.
+			'core.search_modify_rowset'					=> 'sort_attachments',
+			'core.topic_review_modify_post_list'		=> 'sort_attachments',
+			'core.mcp_topic_modify_post_data'			=> 'sort_attachments',
 		];
 	}
 
@@ -225,7 +247,73 @@ class listener implements EventSubscriberInterface
 		$this->bbcodes_config->pipes($configurator);
 		$this->bbcodes_config->bbvideo($configurator);
 		$this->bbcodes_config->auto_video($configurator);
-		$this->bbcodes_config->hidden($configurator);
+	}
+
+	/**
+	 * Set [hidden] BBCode parameters for anonymous users,
+	 * sets the register and login with redirect URLs.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function set_hidden_bbcode_params($event)
+	{
+		if (ANONYMOUS !== (int) $this->user->data['user_id'])
+		{
+			return;
+		}
+
+		$urls = [
+			'U_LOGIN' => append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=login&redirect=' . rawurlencode($this->user->page['page'])),
+			'U_REGISTER' => append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=register'),
+		];
+
+		$this->bbcodes_display->set_renderer_params($event['renderer'], $urls);
+	}
+
+	/**
+	 * Keep inline attachment indexes aligned with viewtopic.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function sort_attachments($event)
+	{
+		$attachments = $event['attachments'];
+
+		foreach ($attachments as &$post_attachments)
+		{
+			if (count($post_attachments) < 2)
+			{
+				continue;
+			}
+
+			usort($post_attachments, static function ($a, $b) {
+				return (int) $b['attach_id'] <=> (int) $a['attach_id'];
+			});
+		}
+		unset($post_attachments);
+
+		$event['attachments'] = $attachments;
+	}
+
+	/**
+	 * Remove hidden inline attachments left behind as detached attachments.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function remove_hidden_attachments($event)
+	{
+		$post_id = $event['row']['post_id'];
+		$attachments = $this->bbcodes_display->remove_hidden_attachments($event['attachments'], $event['row']);
+
+		$post_row = $event['post_row'];
+		$post_row['S_HAS_ATTACHMENTS'] = !empty($attachments[$post_id]);
+		$post_row['S_MULTIPLE_ATTACHMENTS'] = !empty($attachments[$post_id]) && count($attachments[$post_id]) > 1;
+
+		$event['attachments'] = $attachments;
+		$event['post_row'] = $post_row;
 	}
 
 	/**
@@ -244,7 +332,7 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * If Quick Reply allowed, set our quick_reply property.
-	 * Added compatibility check for Quick Reply Reloaded (qr_bbcode).
+	 * Added a compatibility check for Quick Reply Reloaded (qr_bbcode).
 	 *
 	 * @access public
 	 */

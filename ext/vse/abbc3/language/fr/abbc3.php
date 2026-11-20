@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Vous devez être inscrit et connecté sur ce forum pour voir le contenu caché.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Afficher le texte',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Masquer le texte',
+	'ABBC3_SPOILER_SHOW'		=> 'Afficher le texte',
+	'ABBC3_SPOILER_HIDE'		=> 'Masquer le texte',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Hors-sujet',
@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Texte en indice : [sub]texte[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texte en exposant : [sup]texte[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vidéo YouTube : [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Intégrer des fichiers vidéo MP4/OGG/WEBM : l’URL doit commencer par <samp class="error">https</samp> ou <samp class="error">http</samp> et se terminer par <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ou <samp class="error">.webm</samp> (aucun BBCode requis). Notez que la prise en charge du navigateur et la mise en œuvre de l’interface graphique varient.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copier le texte sélectionné',
@@ -96,11 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'L’ordre des BBcode a été mis à jour.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'L’ordre BBCode n’a pas pu être mis à jour.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Aucun nom de table BBCode n’a été reçu.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Aucune donnée de commande BBCode n’a été reçue.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Aucune ligne BBCode n’a été mise à jour.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestion des groupes pouvant utiliser ce BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si aucun groupe n’est sélectionné, tous les utilisateurs pourront utiliser ce BBCode. Appuyer sur la touche <samp>CTRL</samp> (ou <samp>&#8984;CMD</samp> sur Mac) tout en cliquant pour sélectionner / désélectionner plus d’un groupe.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Boite des BBCodes avancés',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Le renard brun et rapide saute sur le chien paresseux.',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemple :</strong><br>%2$s<br><br><strong>Résultat :</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemple :</strong><br>%2$s<br><br><strong>Résultat :</strong><br>%3$s<hr>',
 ));

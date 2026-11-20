@@ -120,18 +120,18 @@
 								{% endfor %}
 							</select>
 						{% else %}
-							<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
+							<div class="abbc3_dropdown_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
 								<a href="#" class="dropdown-trigger button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ lang('ABBC3_FONT_BBCODE') }} <i class="icon fa-fw fa-caret-down"></i></a>
 								<div class="dropdown">
 									<ul class="dropdown-contents" role="menu">
 										{% for group, fonts in ABBC3_BBCODE_FONTS %}
 											{% if loop.length > 1 %}
-											<li class="abbc3_font_menu_disabled">{{ lang(group) }}</li>
+											<li class="abbc3_dropdown_menu_disabled">{{ lang(group) }}</li>
 											<li>
 												<ul>
 											{% endif %}
 													{% for font in fonts %}
-														<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
+														<li class="abbc3_dropdown_menu_item abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
 													{% endfor %}
 											{% if loop.length > 1 %}
 												</ul>

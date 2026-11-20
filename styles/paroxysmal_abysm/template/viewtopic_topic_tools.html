@@ -72,34 +72,34 @@
 
 	<li class="switcheroo-menu">
 		<div class="switcheroo-static">
-			<!-- IF U_WATCH_TOPIC -->
-			<a href="{U_WATCH_TOPIC}" class="watch-topic-link labeled-icon labeled-icon-button" data-ajax="toggle_link" data-toggle-text="{S_WATCH_TOPIC_TOGGLE}" data-toggle-url="{U_WATCH_TOPIC_TOGGLE}" data-update-all=".watch-topic-link">
-				<i class="fa <!-- IF S_WATCHING_TOPIC -->fa-eye-slash<!-- ELSE -->fa-eye<!-- ENDIF -->"></i>
-				<div class="labeled-icon-text"><strong>{S_WATCH_TOPIC_TITLE}</strong></div>
+			{% if U_WATCH_TOPIC %}
+			<a href="{{ U_WATCH_TOPIC }}" class="watch-topic-link labeled-icon labeled-icon-button" data-ajax="toggle_link" data-toggle-class="icon fa {{ !S_WATCHING_TOPIC ? 'fa-eye-slash' : 'fa-eye' }}" data-toggle-text="{{ S_WATCH_TOPIC_TOGGLE }}" data-toggle-url="{{ U_WATCH_TOPIC_TOGGLE }}" data-update-all=".watch-topic-link">
+				<i class="icon fa {{ S_WATCHING_TOPIC ? 'fa-eye-slash' : 'fa-eye' }}"></i>
+				<span class="labeled-icon-text"><strong>{{ S_WATCH_TOPIC_TITLE }}</strong></span>
 			</a>
-			<!-- ENDIF -->
+			{% endif %}
 			<!-- IF U_BOOKMARK_TOPIC -->
 			<a href="{U_BOOKMARK_TOPIC}" class="bookmark-link labeled-icon labeled-icon-button" data-ajax="alt_text" data-alt-text="{S_BOOKMARK_TOGGLE}" data-update-all=".bookmark-link">
-				<i class="fa fa-bookmark"></i>
-				<div class="labeled-icon-text"><strong>{S_BOOKMARK_TOPIC}</strong></div>
+				<i class="icon fa fa-bookmark"></i>
+				<span class="labeled-icon-text"><strong>{S_BOOKMARK_TOPIC}</strong></span>
 			</a>
 			<!-- ENDIF -->
 			<!-- IF U_BUMP_TOPIC -->
 			<a href="{U_BUMP_TOPIC}" data-ajax="true" class="labeled-icon labeled-icon-button">
-				<i class="fa fa-flash"></i>
-				<div class="labeled-icon-text"><strong>{L_BUMP_TOPIC}</strong></div>
+				<i class="icon fa fa-flash"></i>
+				<span class="labeled-icon-text"><strong>{L_BUMP_TOPIC}</strong></span>
 			</a>
 			<!-- ENDIF -->
 			<!-- IF U_EMAIL_TOPIC -->
 			<a href="{U_EMAIL_TOPIC}" class="labeled-icon labeled-icon-button">
-				<i class="fa fa-envelope"></i>
-				<div class="labeled-icon-text"><strong>{L_EMAIL_TOPIC}</strong></div>
+				<i class="icon fa fa-envelope"></i>
+				<span class="labeled-icon-text"><strong>{L_EMAIL_TOPIC}</strong></span>
 			</a>
 			<!-- ENDIF -->
 			<!-- IF U_PRINT_TOPIC -->
 			<a href="{U_PRINT_TOPIC}" accesskey="p" class="labeled-icon labeled-icon-button">
-				<i class="fa fa-print"></i>
-				<div class="labeled-icon-text"><strong>{L_PRINT_TOPIC}</strong></div>
+				<i class="icon fa fa-print"></i>
+				<span class="labeled-icon-text"><strong>{L_PRINT_TOPIC}</strong></span>
 			</a>
 			<!-- ENDIF -->
 		</div>
@@ -127,22 +127,22 @@
 
 	<li class="switcheroo-menu">
 		<div class="switcheroo-static">
-			<!-- IF U_WATCH_FORUM_LINK and not S_IS_BOT -->
-			<a href="{U_WATCH_FORUM_LINK}" class="labeled-icon labeled-icon-button" id="subscribe" data-last-responsive="true" data-ajax="toggle_link" data-toggle-text="{S_WATCH_FORUM_TOGGLE}" data-toggle-url="{U_WATCH_FORUM_TOGGLE}">
-				<i class="fa fa-<!-- IF not S_WATCHING_FORUM -->eye<!-- ELSE -->eye-slash<!-- ENDIF -->"></i>
-				<div class="labeled-icon-text"><strong>{S_WATCH_FORUM_TITLE}</strong></div>
+			{% if U_WATCH_FORUM_LINK and not S_IS_BOT %}
+			<a href="{{ U_WATCH_FORUM_LINK }}" class="labeled-icon labeled-icon-button" id="subscribe" data-last-responsive="true" data-ajax="toggle_link" data-toggle-class="icon fa {{ !S_WATCHING_FORUM ? 'fa-eye-slash' : 'fa-eye' }}" data-toggle-text="{{ S_WATCH_FORUM_TOGGLE }}" data-toggle-url="{{ U_WATCH_FORUM_TOGGLE }}">
+				<i class="icon fa {{ S_WATCHING_FORUM ? 'fa-eye-slash' : 'fa-eye' }}"></i>
+				<span class="labeled-icon-text"><strong>{{ S_WATCH_FORUM_TITLE }}</strong></span>
 			</a>
-			<!-- ENDIF -->
+			{% endif %}
 			<!-- IF S_HAS_SUBFORUM and not S_IS_BOT and U_MARK_FORUMS -->
 			<a href="{U_MARK_FORUMS}" class="mark-read labeled-icon labeled-icon-button" data-ajax="mark_forums_read">
-				<i class="fa fa-trash-o"></i>
-				<div class="labeled-icon-text"><strong>{L_MARK_SUBFORUMS_READ}</strong></div>
+				<i class="icon fa fa-trash-o"></i>
+				<span class="labeled-icon-text"><strong>{L_MARK_SUBFORUMS_READ}</strong></span>
 			</a>
 			<!-- ENDIF -->
 			<!-- IF not S_IS_BOT and U_MARK_TOPICS and .topicrow -->
 			<a href="{U_MARK_TOPICS}" data-ajax="mark_topics_read" class="mark labeled-icon labeled-icon-button">
-				<i class="fa fa-trash"></i>
-				<div class="labeled-icon-text"><strong>{L_MARK_TOPICS_READ}</strong></div>
+				<i class="icon fa fa-trash"></i>
+				<span class="labeled-icon-text"><strong>{L_MARK_TOPICS_READ}</strong></span>
 			</a>
 			<!-- ENDIF -->
 		</div>

@@ -1,9 +1,43 @@
 # Changelog
 
+## 3.3.12 - 2026-08-22
+
+- Improved Google Font validation when saving ACP settings:
+  - All submitted names are normalised and checked locally before remote validation.
+  - Fonts are verified against the Google Fonts CSS2 endpoint with bounded timeout and redirect handling.
+  - Existing font settings are preserved if any submitted font is invalid or Google Fonts cannot be reached.
+  - Unchanged font settings no longer trigger unnecessary remote requests.
+  - Connection failures now show a distinct message instead of reporting a valid font as invalid.
+- Updated the ACP icon-type selector for compatibility with both phpBB 3 and phpBB 4 configuration menu formats.
+- Removed a redundant database query when disabling ABBC3 BBCodes during extension cleanup.
+
+## 3.3.11 - 2026-07-05
+
+- In the ABBC3 BBCode toolbar, the **Font Size** BBCode is now a stylized drop-menu that matches the **Fonts** font-family BBCode drop-menu.
+- Replaced the third-party JavaScript library TableDnD with a custom version that is compatible with phpBB 3.3.x.
+- Modernized ABBC3's JavaScript and dropped the use of minified JS and CSS files (this should be a QOL improvement for those who need to patch or customize ABBC3).
+- Fixed cases where attachments could be sorted in the wrong order in search results and topic reviews. This could cause them to be unintentionally displayed when they were hidden by a spoiler or hidden bbcode.
+- Fixed cases where the spoiler would not work due to a JavaScript error. Also restored legacy spoiler support for cases where the spoiler BBCode is still using the legacy version.
+- Added `rel="noopener noreferrer"` to all `target="_blank"` links to prevent tabnabbing and reduce referrer leakage.
+- Hardened Google Font validation against potential XSS attacks.
+- Dropped legacy support for PHP 5.
+
+## 3.3.10 - 2026-04-20
+
+- Fixed an issue where some installations could fail while trying to install a BBCode with an emoji on boards with legacy or incompatible schema charset.
+- Updated the Polish translation.
+
+## 3.3.9 - 2026-03-19
+
+- The [highlight] BBCode will now use a text color that contrasts well with the highlight color.
+- Redesigned the [hidden], [offtopic], [spoiler] and [mod] BBCodes.
+- BBCode popup wizards for [url], [bbvideo] and [pipes] will now work on mobile/touch devices.
+- If YouTube is disabled (via Media Embed Extension), then the BBVideo popup wizard will show another site as an example.
+
 ## 3.3.8 - 2024-11-08
 
 - Fixed minor issues that could occur if the Google Fonts field was left empty.
-- No longer using minified CSS files so it's easier to modify them for specific style tweaks.
+- No longer using minified CSS files, so it's easier to modify them for specific style tweaks.
 - Moved some HTML links and icons code out of the language files and into the template files.
 - Notifications in the ACP when arranging BBCodes now support browser dark mode.
 - Fixes for ScaffoldBB style.
@@ -12,17 +46,17 @@
 
 - Auto Video PlugIn: This optional feature enables direct links to MP3, OGG, and WEBM files to be presented in an HTML5 video player.
 - Google Fonts Validation: Added a validation check in the ACP to ensure that the entered font names are valid Google Fonts.
-- ACP settings now detects the presence of phpBB Media Embed extension and recommends its installation if it's not already installed.
+- ACP settings now detect the presence of phpBB Media Embed extension and recommend its installation if it's not already installed.
 - Updated the appearance of the toast-style notification that appears when rearranging BBCode order through drag-n-drop.
 - Improved compatibility with RTL languages when using the [dir] BBCode.
 - Resized the BBCode toolbar to properly fit with the message editor.
 - Optimized the behavior of the popup wizards for BBVideo, IMG, and URL in mobile devices to ensure better responsiveness.
 - Prevented unnecessary reparsing of text for first-time installations.
-- Made numerous smaller enhancements to enhance the overall functioning and efficiency.
+- Made many smaller enhancements to enhance the overall functioning and efficiency.
 
 ## 3.3.5 - 2022-09-25
 
-- Google fonts will only be loaded when phpBB's CDN option allows 3rd-party content to be loaded to better comply with GDPR.
+- Google fonts will only be loaded when phpBB's CDN option allows third-party content to be loaded to better comply with GDPR.
 - Minor tweaks to the FONT BBCode drop down menu.
 - Added sans-serif as a fall-back font to the FONT BBCode to avoid using the browser's default font when a custom font can't be loaded.
 
@@ -38,7 +72,7 @@
   - Added Google font support to the FONT BBCode; add Google fonts via the ABBC3 settings in the ACP.
   - Removed non-universal font styles from the FONT BBCode menu.
   - These changes will not break existing posts.
-- Switched the text scrolling BBCode (marquee effect) to an HTML-valid CSS-only method.
+- Switched the text-scrolling BBCode (marquee effect) to an HTML-valid CSS-only method.
 - Various minor code updates.
 
 ## 3.3.2 - 2021-01-16
@@ -50,7 +84,7 @@
 
 ## 3.3.1 - 2020-11-07
 
-- Fixed missing IMG, URL and FLASH BBCode buttons from Quick Reply.
+- Fixed missing IMG, URL, and FLASH BBCode buttons from Quick Reply.
 - Fixed issues with duplication of BBCode button bars in Quick Reply when using Quick Reply Reloaded and other Quick Reply extensions.
 - Fixed the names of example sites in the BBVideo/Media Embed Wizard.
 - Added European Portuguese translation
@@ -59,12 +93,12 @@
 
 - Replaced the antiquated, pixelated GIF BBCode icons with two new SVG and PNG icon sets.
 - Added BBCodes to Quick Reply.
-- Added an all new ACP settings section to the Extensions tab of the ACP:
+- Added all new ACP settings sections to the Extensions tab of the ACP:
   - Toggle between SVG or PNG icon sets for the ABBC3 Icon bar.
   - Enable or disable the ABBC3 Icon bar.
   - Enable or disable the Quick Reply BBCodes.
   - Enable or disable the Pipe Tables plugin.
-- Created an ABBC3 folder in phpBB's images folder. Now you can add your BBCode icons to this folder which won't be deleted when updating ABBC3.
+- Created an ABBC3 folder in phpBB's images folder. Now you can add your BBCode icons to this folder, which won't be deleted when updating ABBC3.
 - BBCodes with no associated icon image will display like a standard phpBB BBCode.
 - BBVideo deprecation continues: 
   - If you have the phpBB Media Embed PlugIn installed, its `[media]` BBCode button now behaves just like the `[bbvideo]` button and opens the BBVideo wizard. You may now hide the `[bbvideo]` BBCode if you prefer to use the `[media]` BBCode (or vice versa) by turning off its display on posting page setting.
@@ -80,14 +114,14 @@
 
 ## 3.2.2 - 2019-04-29
 
-- BBCode URL/BBVideo Wizard is now a modal/overlay, to solve some issues where it might have been obscured from view.
-- Ensure BBVideos are sorted alphabetically in the BBCode Wizard's examples drop down menu.
+- BBCode URL/BBVideo Wizard is now a modal / overlay to solve some issues where it might have been obscured from view.
+- Ensure BBVideos are sorted alphabetically in the BBCode Wizard's drop-down example menu.
 - Added Slovak translation.
 - Additional minor code improvements.
 
 ## 3.2.1 - 2018-06-07
 
-- Improved BBVideo's compatibility with phpBB Media Embed PlugIn extension. For best results, install phpBB Media Embed Plugin extension to have the ability to manage which sites area allowed and to control parsing plain URLs.
+- Improved BBVideo's compatibility with phpBB Media Embed PlugIn extension. For best results, install phpBB Media Embed Plugin extension to be able to manage which sites area allowed and to control parsing plain URLs.
 - ABBC3 now has a BBCode entry in the ACP for the Pipe Tables plugin. This way you can arrange where you want the Pipe Tables BBCode to appear in the BBCode bar. You may also choose to not display the Pipe Table BBCode on the posting page, or you can delete the BBCode to remove the Pipe Tables functionality.
 - Fixed an issue since 3.2.0 where deleting the `[BBVideo]` and `[hidden]` BBCodes did not stop them from still being *secretly* available to continue being used. Now, if they get deleted, they are functionally gone (unless you completely reinstall ABBC3).
 
@@ -104,10 +138,10 @@
     - Raw URLs for compatible media sites will automatically be converted into content even without being wrapped in the BBVideo tag.
     - The original URLs will no longer display if they can be converted to embedded content.
     - All Posts and PM's will be reparsed after updating, over time using CRON jobs to fix broken posts with BBVideos.
-    - Incompatible BBVideos will remain broken (sorry 'bout that, but moving on usually means leaving old stuff behind).
+    - Incompatible BBVideos will remain broken (sorry about that, but moving on usually means leaving old stuff behind).
 - Improved align BBCode when used on non-text like images, videos, etc.
 - Show AJAX loading indicators while loading BBCode wizards
-- Improved ABBC3 deletion. Now if you delete ABBC3, all the BBCodes it installed will no longer be displayed on the posting pages, returning the BBCodes toolbar to the default appearance. You may then choose to manually display or delete each of the BBCodes in the ACP Posting page.
+- Improved ABBC3 deletion. Now if you delete ABBC3, all the BBCodes it installed will no longer be displayed on the posting pages, returning the BBCodes toolbar to the default appearance. You may then choose to manually display or delete each of the BBCodes on the ACP Posting page.
 - Internal improvements for phpBB 3.2 and 3.3
 - End of compatibility for phpBB 3.1
 - Added Vietnamese translation
@@ -136,16 +170,16 @@
 ## 3.1.2 - 2015-12-01
 
 - Includes compatibility with phpBB 3.2.0-a1
-- Updated soundcloud.com BBcode
+- Updated soundcloud.com BBCode
 - Updated facebook.com BBVideo
 - Updated gamespot.com BBVideo
 - Updated veoh.com BBVideo
 - Removed gametrailers.com BBVideo
-- Added the URL BBcode wizard to subsilver2
+- Added the URL BBCode wizard to subsilver2
 - Complete conversion to TWIG syntax
 - Template events added to the ABBC3's bbcode button bars
 - Improve CSS for drop down menus (Font Name and Font Size select menus)
-- Installer removes BBcodes with negative IDs from the database (leftover from ABBC3.0)
+- Installer removes BBCodes with negative IDs from the database (leftover from ABBC3.0)
 - Added Estonian language
 - Added Swedish language
 - Added Turkish language
@@ -177,8 +211,8 @@
 - BBVideos are all mobile device friendly
 - Updated several BBVideos
 - Added new BBVideos: Instagram, tu.tv, revision3.com, testtube.com, kickstarter.com
-- Arabic and Dutch translations added
-- Better backwards compatibility - most BBCodes will continue to work even after disabling or uninstalling ABBC3
+- Arabic and Dutch translations are added
+- Better backwards compatibility—most BBCodes will continue to work even after disabling or uninstalling ABBC3
 
 ## 3.1.0-b2 - 2014-07-12
 

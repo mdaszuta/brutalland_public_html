@@ -1,5 +1,16 @@
 <IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.(.*) [NC]
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
 RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
+RewriteRule .* ? [F,L]
 
 #
 # Uncomment the statement below if URL rewriting doesn't
@@ -10,6 +21,10 @@ RewriteEngine on
 # the statement RewriteBase /phpBB/
 #
 #RewriteBase /
+
+RewriteBase /
+RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
 
 #
 # Uncomment the statement below if you want to make use of
@@ -43,6 +58,27 @@ RewriteRule ^(.*)$ app.php [QSA,L]
 	Options -MultiViews
 </IfModule>
 
+# CACHING
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|swf|mp3|mp4|svg|woff2)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "max-age=31536000, public"
+	</IfModule>
+</FilesMatch>
+<FilesMatch "\.(js|css)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "max-age=31536000, public"
+		Header unset Etag
+		FileETag none
+		Header unset Last-Modified
+	</IfModule>
+</FilesMatch>
+<FilesMatch "\.(html|htm)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "no-cache"
+		FileETag MTime Size
+	</IfModule>
+</FilesMatch>
+
 # With Apache 2.4 the "Order, Deny" syntax has been deprecated and moved from
 # module mod_authz_host to a new module called mod_access_compat (which may be
 # disabled) and a new "Require" syntax has been introduced to mod_authz_host.
@@ -60,12 +96,26 @@ RewriteRule ^(.*)$ app.php [QSA,L]
 			Order Allow,Deny
 			Deny from All
 		</Files>
+		<Files "composer.json">
+			Order Allow,Deny
+			Deny from All
+		</Files>
+		<Files "composer.lock">
+			Order Allow,Deny
+			Deny from All
+		</Files>
 	</IfVersion>
 	<IfVersion >= 2.4>
 		<Files "config.php">
 			Require all denied
 		</Files>
 		<Files "common.php">
+			Require all denied
+		</Files>
+		<Files "composer.json">
+			Require all denied
+		</Files>
+		<Files "composer.lock">
 			Require all denied
 		</Files>
 	</IfVersion>
@@ -80,12 +130,26 @@ RewriteRule ^(.*)$ app.php [QSA,L]
 			Order Allow,Deny
 			Deny from All
 		</Files>
+		<Files "composer.json">
+			Order Allow,Deny
+			Deny from All
+		</Files>
+		<Files "composer.lock">
+			Order Allow,Deny
+			Deny from All
+		</Files>
 	</IfModule>
 	<IfModule mod_authz_core.c>
 		<Files "config.php">
 			Require all denied
 		</Files>
 		<Files "common.php">
+			Require all denied
+		</Files>
+		<Files "composer.json">
+			Require all denied
+		</Files>
+		<Files "composer.lock">
 			Require all denied
 		</Files>
 	</IfModule>

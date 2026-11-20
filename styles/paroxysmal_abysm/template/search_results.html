@@ -60,17 +60,17 @@
 			<!-- EVENT search_results_topic_before -->
 			<li class="row<!-- IF searchresults.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 				<dl class="row-item {searchresults.TOPIC_IMG_STYLE}">
-					<dt<!-- IF searchresults.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="<!-- IF searchresults.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->" onclick="window.location.href='<!-- IF searchresults.S_UNREAD_TOPIC -->{searchresults.U_NEWEST_POST}<!-- ELSE -->{searchresults.U_VIEW_TOPIC}<!-- ENDIF -->'">
+					<dt<!-- IF searchresults.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --><!-- IF searchresults.U_VIEW_TOPIC --> title="<!-- IF searchresults.U_NEWEST_POST and searchresults.S_UNREAD_TOPIC -->{L_VIEW_NEWEST_POST}<!-- ELSE -->{L_VIEW_TOPIC}<!-- ENDIF -->" onclick="window.location.href='<!-- IF searchresults.U_NEWEST_POST and searchresults.S_UNREAD_TOPIC -->{searchresults.U_NEWEST_POST}<!-- ELSE -->{searchresults.U_VIEW_TOPIC}<!-- ENDIF -->'"<!-- ENDIF -->>
 
 					<!-- IF not S_IS_BOT -->
 					<!-- IF searchresults.TOPIC_REPLIES -->
-						<div class="topic-reply-counter<!-- IF searchresults.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_REPLIES}">{searchresults.TOPIC_REPLIES} <dfn>{L_REPLIES}</dfn></div>
+						<div class="topic-reply-counter<!-- IF searchresults.U_NEWEST_POST and searchresults.S_UNREAD_TOPIC --> unread<!-- ELSE --> read<!-- ENDIF -->" title="{L_REPLIES}">{searchresults.TOPIC_REPLIES} <dfn>{L_REPLIES}</dfn></div>
 					<!-- ENDIF -->
 					<!-- ENDIF -->
 
 						<div class="list-inner">
 							<!-- EVENT topiclist_row_prepend -->
-							<a href="<!-- IF searchresults.S_UNREAD_TOPIC -->{searchresults.U_NEWEST_POST}<!-- ELSE -->{searchresults.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{searchresults.TOPIC_TITLE}</a>
+							<!-- IF searchresults.U_VIEW_TOPIC --><a href="<!-- IF searchresults.U_NEWEST_POST and searchresults.S_UNREAD_TOPIC -->{searchresults.U_NEWEST_POST}<!-- ELSE -->{searchresults.U_VIEW_TOPIC}<!-- ENDIF -->" class="topictitle">{searchresults.TOPIC_TITLE}</a><!-- ELSE -->{searchresults.TOPIC_TITLE}<!-- ENDIF -->
 							<!-- EVENT search_results_topic_title_after -->
 							<!-- IF searchresults.S_TOPIC_UNAPPROVED or searchresults.S_POSTS_UNAPPROVED -->
 								<a href="{searchresults.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">
@@ -108,7 +108,7 @@
 							</div>
 							<!-- ENDIF -->
 							<br />
-							<!-- IF not S_IS_BOT -->
+							{% if not S_IS_BOT and searchresults.U_LAST_POST %}
 							<div class="lastpost responsive-show" style="display: none;">
 								<span>
 									<span class="lastpost-poster"><!-- EVENT search_results_last_post_author_username_prepend -->{searchresults.LAST_POST_AUTHOR_FULL}<!-- EVENT search_results_last_post_author_username_append --></span>
@@ -117,7 +117,7 @@
 									</a>
 								</span>
 							</div>
-							<!-- ENDIF -->
+							{% endif %}
 
 							<div class="responsive-hide left-box">
 								{% EVENT topiclist_row_topic_by_author_before %}
@@ -133,7 +133,7 @@
 						</div>
 					</dt>
 					<dd class="views">{searchresults.TOPIC_VIEWS} <dfn>{L_VIEWS}</dfn></dd>
-					<dd class="lastpost" onclick="window.location.href='{searchresults.U_LAST_POST}'" title="{L_GOTO_LAST_POST}">
+					<dd class="lastpost"{% if not S_IS_BOT and searchresults.U_LAST_POST %} onclick="window.location.href='{{ searchresults.U_LAST_POST }}'" title="{{ lang('GOTO_LAST_POST') }}"{% endif %}>
 						<span>
 							<span class="lastpost-poster"><!-- EVENT search_results_last_post_author_username_prepend -->{searchresults.LAST_POST_AUTHOR_FULL}<!-- EVENT search_results_last_post_author_username_append --></span>
 							<span class="lastpost-time"><time datetime="{searchresults.LAST_POST_TIME_RFC3339}">{searchresults.LAST_POST_TIME}</time> <i class="fa fa-fast-forward fa-lg"></i></span>

@@ -1,44 +1,41 @@
 {% if FOLDER_PERCENT %}
 <script>
-
-(function($) {
-
+(function() {
 	'use strict';
 
-	$.fn.showBar = function() {
-
-		var settings = {
-			folder: 'pmbars:{{ CUR_FOLDER_ID }}',
-			percent: {{ FOLDER_PERCENT }},
-			dangerZone: 80,
-			speed: 1000
-		};
-
-		this.toggleClass('pmbars-danger', (settings.percent > settings.dangerZone));
-
-		if (sessionStorage.getItem(settings.folder)) {
-			this.css('width', settings.percent + '%');
-		} else {
-			this.animate({
-				width: settings.percent + '%'
-			}, settings.speed, function() {
-				sessionStorage.setItem(settings.folder, settings.percent);
-			});
-		}
-
-		return this;
+	const settings = {
+		folder: 'pmbars:{{ CUR_FOLDER_ID|escape('js') }}',
+		percent: Number('{{ FOLDER_PERCENT|escape('js') }}')
 	};
 
-	var $outer = $('<div class="pmbars-outer"></div>');
-	var $inner = $('<div class="pmbars-inner"></div>');
+	const viewFolder = document.getElementById('viewfolder');
+	if (!viewFolder) return;
 
-	$('#viewfolder')
-		.find('p')
-		.filter(':first')
-		.after($outer);
-	$inner.appendTo($outer).showBar();
+	const firstParagraph = viewFolder.querySelector('p');
+	if (!firstParagraph) return;
 
-})(jQuery);
+	const outerDiv = document.createElement('div');
+	const innerDiv = document.createElement('div');
 
+	innerDiv.style.width = settings.percent + '%';
+
+	outerDiv.className = 'pmbars-outer';
+	innerDiv.className = 'pmbars-inner{% if FOLDER_PERCENT > 80 %} pmbars-danger{% endif %}';
+
+	// Check if animation should be skipped
+	try {
+		const cachedPercent = parseFloat(sessionStorage.getItem(settings.folder));
+		if (cachedPercent === settings.percent) {
+			innerDiv.classList.add('pmbars-no-animate');
+		} else {
+			sessionStorage.setItem(settings.folder, String(settings.percent));
+		}
+	} catch (e) {
+		// SessionStorage failed, animation will play normally
+	}
+
+	outerDiv.appendChild(innerDiv);
+	firstParagraph.insertAdjacentElement('afterend', outerDiv);
+})();
 </script>
 {% endif %}

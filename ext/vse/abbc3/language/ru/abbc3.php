@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Для просмотра скрытого текста необходимо быть авторизованным пользователем.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Показать',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Скрыть',
+	'ABBC3_SPOILER_SHOW'		=> 'Показать',
+	'ABBC3_SPOILER_HIDE'		=> 'Скрыть',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Офтопик',
@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Подстрочный текст: [sub]текст[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Надстрочный текст: [sup]текст[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Видео с YouTube: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Встраивайте видеофайлы MP4/OGG/WEBM: URL-адрес должен начинаться с <samp class="error">https</samp> или <samp class="error">http</samp> и заканчиваться <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> или <samp class="error">.webm</samp> (BB-код не требуется). Обратите внимание, что поддержка браузеров и реализация графического интерфейса различаются.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Копировать выделенный текст',
@@ -95,11 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BBCode изменён.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Не удалось обновить порядок BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Имя таблицы BBCode не получено.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Данные заказа BBCode не были получены.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Ни одна строка BBCode не была обновлена.',
 	'ABBC3_BBCODE_GROUP'		=> 'Группы, которые могут использовать BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Если группа выбрана, то все её пользователи могут использовать BBCode. Используйте CTRL+клик (или CMD+клик на Mac) для выбора нескольких групп.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Пример:</strong><br>%2$s<br><br><strong>Результат:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Пример:</strong><br>%2$s<br><br><strong>Результат:</strong><br>%3$s<hr>',
 ));

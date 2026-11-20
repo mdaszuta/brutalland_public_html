@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Um diesen versteckten Text lesen zu können, musst du registriert und angemeldet sein.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Text anzeigen',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Text verstecken',
+	'ABBC3_SPOILER_SHOW'		=> 'Text anzeigen',
+	'ABBC3_SPOILER_HIDE'		=> 'Text verstecken',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off-Topic',
@@ -96,11 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Der BBCode Auftrag wurde neu synchronisiert.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Die BBCode-Reihenfolge konnte nicht aktualisiert werden.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Es wurde kein BBCode-Tabellenname empfangen.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Es wurden keine BBCode-Bestelldaten empfangen.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Es wurden keine BBCode-Zeilen aktualisiert.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gruppen verwalten, die diesen BBCode verwenden können.',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Wenn keine Gruppen ausgewählt sind, können alle Benutzer diesen BBCode verwenden. Verwende STRG+CLICK (oder CMD+CLICK auf Mac) mehr als eine Gruppe zu aktivieren/deaktivieren.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Erweiterte BBCode-Box BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Der schnelle braune Fuchs springt über den faulen Hund',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Beispiel:</strong><br>%2$s<br><br><strong>Ergebnis:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Beispiel:</strong><br>%2$s<br><br><strong>Ergebnis:</strong><br>%3$s<hr>',
 ));

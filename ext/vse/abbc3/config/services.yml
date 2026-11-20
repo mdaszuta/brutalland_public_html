@@ -42,6 +42,9 @@ services:
             - '@routing.helper'
             - '@language'
             - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
         tags:
             - { name: event.listener }
 
@@ -49,7 +52,6 @@ services:
         class: vse\abbc3\event\acp_listener
         arguments:
             - '@vse.abbc3.acp_manager'
-            - '%core.root_path%'
         tags:
             - { name: event.listener }
 

@@ -23,13 +23,13 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	// Hidden BBCode
-	'ABBC3_HIDDEN_ON'			=> 'Hidden Content',
-	'ABBC3_HIDDEN_OFF'			=> 'Hidden Content (for members only)',
-	'ABBC3_HIDDEN_EXPLAIN'		=> 'This board requires you to be registered and logged-in to view hidden content.',
+	'ABBC3_HIDDEN_ON'			=> 'Hidden content',
+	'ABBC3_HIDDEN_OFF'			=> 'Hidden content (visible to members)',
+	'ABBC3_HIDDEN_EXPLAIN'		=> 'Log in or register to view this post.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Show Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Hide Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> 'Show Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> 'Hide Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
@@ -95,11 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP Common
 	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
 	'ABBC3_BBCODE_GROUP'		=> 'Manage groups that can use this BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'If no groups are selected, then all users can use this BBCode. Use CTRL+CLICK (or CMD+CLICK on Mac) to select/deselect more than one group.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
 ));
