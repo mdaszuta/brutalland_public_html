@@ -16,7 +16,7 @@ const ALLOWED_HOSTS = [
 const MAX_RESPONSE_SIZE = 2 * 1024 * 1024; // 2 MB
 
 // User-Agent string and headers to use for outgoing cURL requests, mimicking a common browser
-const FP_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
+const FP_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36";
 const FP_ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8";
 const FP_ACCEPT_LANGUAGE = "en-US,en;q=0.9";
 
