@@ -449,8 +449,13 @@ input.button2 {
 .m-row2 .notifications_reason,
 .topic-reply-counter.unread,
 #mm-last-posts a.topictitle.unread,
-#mm-last-posts a.topic-forumtitle.unread {
+#mm-last-posts a.topic-forumtitle.unread,
+.form-box span.has-error-status {
 	color: #ee0000;
+}
+
+.form-box span.has-warning-status {
+	color: #FF4000;
 }
 
 .button:hover,

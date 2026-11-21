@@ -109,7 +109,8 @@ cite .fa-arrow-circle-up:hover,
 
 .form-box:hover .shadow-explanation,
 .form-box .inputbox:hover ~ .shadow-explanation,
-.form-box .inputbox:focus ~ .shadow-explanation {
+.form-box .inputbox:focus ~ .shadow-explanation,
+.form-box .shadow-explanation.has-visible-status {
 	opacity: 1;
 	/*padding-bottom: 15px;*/
 	z-index: 3;
@@ -176,6 +177,7 @@ li.row .fa-tags,
 .form-box .inputbox:focus ~ .shadow-label,
 .form-box .inputbox:hover ~ .shadow-explanation,
 .form-box .inputbox:focus ~ .shadow-explanation,
+.form-box .shadow-explanation.has-visible-status,
 .form-box select:hover ~ .shadow-label,
 .form-box select:focus ~ .shadow-label,
 .registration-timezone:hover ~ .shadow-label,

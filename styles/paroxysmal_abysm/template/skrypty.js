@@ -354,6 +354,96 @@ function hideProgressCursor() {
 	document.body.classList.remove('function-in-progress');
 }
 
+/** BAND INFO STATUS MESSAGE HANDLING
+ * Displays status/error messages as independent lines in .postingbox-bottom .form-box .shadow-explanation
+ * and restores the original explanation text 3 seconds after addBandInfo() finishes.
+ */
+
+let bandInfoStatusHideTimer = null;
+let bandInfoStatusResetTimer = null;
+let bandInfoStatusMessages = [];
+
+function getShadowExplanationElement() {
+	return document.querySelector(".postingbox-bottom .form-box .shadow-explanation");
+}
+
+function resetBandInfoStatus() {
+	const shadowExplanationElement = getShadowExplanationElement();
+	clearTimeout(bandInfoStatusHideTimer);
+	clearTimeout(bandInfoStatusResetTimer);
+	bandInfoStatusMessages = [];
+
+	if ( shadowExplanationElement ) {
+		// Save original {L_LINK_TO_MA_EXPLANATION} once before any status message overwrites it
+		if ( shadowExplanationElement.dataset.originalText === undefined ) {
+			shadowExplanationElement.dataset.originalText = shadowExplanationElement.textContent;
+		}
+		shadowExplanationElement.classList.remove("has-visible-status");
+		// Setting textContent removes all child .status-line elements and their severity classes and restores the original explanation text
+		shadowExplanationElement.textContent = shadowExplanationElement.dataset.originalText;
+	}
+}
+
+function showBandInfoStatus(message, type = "info") {
+	const shadowExplanationElement = getShadowExplanationElement();
+	if ( !shadowExplanationElement ) return;
+
+	if ( shadowExplanationElement.dataset.originalText === undefined ) {
+		shadowExplanationElement.dataset.originalText = shadowExplanationElement.textContent;
+	}
+
+	clearTimeout(bandInfoStatusHideTimer);
+	clearTimeout(bandInfoStatusResetTimer);
+
+	// Normalize whitespace and cap overly long error responses (e.g., raw HTML from 500/502)
+	const safeMessage = String(message).replace(/\s+/g, " ").trim();
+	const displayMessage = safeMessage.length > 200 ? safeMessage.slice(0, 197) + "..." : safeMessage;
+
+	if ( !bandInfoStatusMessages.includes(displayMessage) ) {
+		// On the first message of a run, clear the original explanation text
+		if ( bandInfoStatusMessages.length === 0 ) {
+			shadowExplanationElement.textContent = "";
+		}
+		bandInfoStatusMessages.push(displayMessage);
+
+		const statusLine = document.createElement("span");
+		statusLine.className = "status-line";
+
+		// Apply severity class
+		if ( type === "error" ) {
+			statusLine.classList.add("has-error-status");
+		}
+		else if ( type === "warning" ) {
+			statusLine.classList.add("has-warning-status");
+		}
+		statusLine.textContent = displayMessage;
+
+		shadowExplanationElement.appendChild(statusLine);
+	}
+
+	shadowExplanationElement.classList.add("has-visible-status");
+}
+
+function scheduleHideBandInfoStatus(delayMs = 3000) {
+	const shadowExplanationElement = getShadowExplanationElement();
+	if ( !shadowExplanationElement || !shadowExplanationElement.classList.contains("has-visible-status") ) return;
+
+	clearTimeout(bandInfoStatusHideTimer);
+	clearTimeout(bandInfoStatusResetTimer);
+
+	bandInfoStatusHideTimer = setTimeout(() => {
+		shadowExplanationElement.classList.remove("has-visible-status");
+
+		// Restore original explanation text (and clear severity classes by removing child .status-line nodes) after fade-out finishes (0.15s delay + 0.25s duration = 400ms)
+		bandInfoStatusResetTimer = setTimeout(() => {
+			if ( !shadowExplanationElement.classList.contains("has-visible-status") && shadowExplanationElement.dataset.originalText !== undefined ) {
+				shadowExplanationElement.textContent = shadowExplanationElement.dataset.originalText;
+				bandInfoStatusMessages = [];
+			}
+		}, 450);
+	}, delayMs);
+}
+
 /** CHECK FOR MA URL IN MESSAGE TEXTAREA
  * On DOMContentLoaded, this script looks for a Metal Archives URL within the message textarea and, if found, pre-fills the input field with that URL.
  */
@@ -455,6 +545,7 @@ async function addLineup(url, output, update) {
 		const lineupTable = docLineup.querySelector("#band_members table.lineupTable");
 		if ( !lineupTable ) {
 			console.log("Lineup table not found.");
+ 			showBandInfoStatus("Lineup table not found.", "warning");
 			return;
 		}
 
@@ -573,10 +664,12 @@ async function addLineup(url, output, update) {
 		// If update mode is enabled and an existing lineup block is found, replace it; otherwise, append the lineup
 		if ( update && output.value.match(lineupPatternToUpdate) ) {
 			console.log("Updating lineup...");
+ 			showBandInfoStatus("Updating lineup...");
 			console.log(output.value.match(lineupPatternToUpdate)[0]);
 			output.value = output.value.replace(lineupPatternToUpdate, completeLineupString + "\n\n");
 		} else {
 			output.value += "\n\n" + completeLineupString;
+ 			showBandInfoStatus("Adding lineup...");
 		}
 
 		console.log(completeLineupString);
@@ -584,6 +677,7 @@ async function addLineup(url, output, update) {
 	} catch (error) {
 		// Log any errors that occur during fetching or processing
 		console.error("Error fetching the page:", error);
+		throw error;
 	}
 }
 
@@ -616,9 +710,11 @@ async function addDiscography(bandId, output, update) {
 		const discographyTable = docDiscography.querySelector(".discog");
 		if ( !discographyTable ) {
 			console.log("Discography table not found.");
+ 			showBandInfoStatus("Discography table not found.", "warning");
 			return;
 		} else if ( discographyTable.querySelectorAll("tbody td").length === 1 ) {
 			console.log("No discography found.");
+ 			showBandInfoStatus("No discography found.", "warning");
 			return;
 		}
 
@@ -681,10 +777,12 @@ async function addDiscography(bandId, output, update) {
 		// If update mode is enabled and a discography block exists, replace it; otherwise, append the discography
 		if ( update && discographyPatternToUpdate.test(output.value) ) {
 			console.log("Updating discography...");
+ 			showBandInfoStatus("Updating discography...");
 			console.log(output.value.match(discographyPatternToUpdate)[0]);
 			output.value = output.value.replace(discographyPatternToUpdate, completeDiscographyString + "\n\n");
 		} else {
 			output.value += "\n\n" + completeDiscographyString;
+ 			showBandInfoStatus("Adding discography...");
 		}
 
 		console.log(completeDiscographyString);
@@ -692,6 +790,7 @@ async function addDiscography(bandId, output, update) {
 	} catch (error) {
 		// Log errors encountered during fetching or processing
 		console.error("Error fetching the page:", error);
+		throw error;
 	}
 }
 
@@ -707,6 +806,7 @@ function addLinkToMA(url, output) {
 		output.value += "\n\nMA: " + url;
 	} else {
 		console.log("Link to MA is already in the topic.");
+		showBandInfoStatus("Link to MA is already in the topic.");
 	}
 
 }
@@ -768,6 +868,7 @@ function alignImages(output) {
 
 	let messageValue = output.value;
 	console.log("Aligning images in message...");
+ 	showBandInfoStatus("Aligning images in message...");
 
 	// Define a regex pattern to match two adjacent [align=center] blocks with optional whitespace in between
 	// This pattern captures the content of each block and any whitespace that follows the second block.
@@ -810,6 +911,13 @@ async function addBandInfo(update) {
 	const output = document.getElementById("message");
 	if ( !addBandInfoInput || !output ) return;
 
+	// Reset any previous status message and cancel pending hide timers
+	resetBandInfoStatus();
+
+	const rawInputMetallumUrl = addBandInfoInput.value.trim();
+	// Do not show "Incorrect link." when user simply clears the input field
+	if ( !rawInputMetallumUrl ) return;
+
 	/** Validate the band URL against the expected Metal Archives URL pattern, considering various input formats (with or without protocol, "www.", trailing slash, query params, or hash fragment).
 	 * Non-capturing groups (?:...) are used so that only the band name and ID are captured for later use and always in the same order as [1] and [2] regardless of the input format.
 	 * Regex breakdown:
@@ -825,13 +933,13 @@ async function addBandInfo(update) {
 	 *   $                            - End of string
 	 *   /i                           - Case-insensitive flag (allows e.g. "HTTPS://WWW.Metal-Archives.com/...")
 	 */
-
-	const rawInputMetallumUrl = addBandInfoInput.value.trim();
 	const metallumPattern = /^(?:https?:\/\/)?(?:www\.)?metal-archives\.com\/bands\/([^/?#]+)\/(\d+)(?:[/?#].*)?$/i;
 	const matchMetallumUrl = rawInputMetallumUrl.match(metallumPattern);
 
 	if ( !matchMetallumUrl ) {
 		console.log("Incorrect link.");
+		showBandInfoStatus("Incorrect link.", "warning");
+		scheduleHideBandInfoStatus(3000);
 		return;
 	}
 
@@ -858,14 +966,16 @@ async function addBandInfo(update) {
 		addBandInfoInput.classList.add("has-band-info-link");
 	} catch (error) {
 		console.error("Error adding band info:", error);
+		showBandInfoStatus(error?.message || "Error fetching the page.", "error");
 	} finally {
 		// Change cursor to default regardless of success or failure
 		isFetchingBandInfo = false;
 		hideProgressCursor();
+		scheduleHideBandInfoStatus(3000);
 	}
 
 	// Remove focus from the input field
-	addBandInfoInput.blur();
+	//addBandInfoInput.blur();
 
 	// Record and log the total execution time with and without fetching pages
 	const stoperEnd = performance.now();

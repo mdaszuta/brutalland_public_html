@@ -1701,6 +1701,10 @@ textarea.inputbox:not(#message, #signature, #poll_option_text, #notepad, #mchat-
 	z-index: -3;
 }
 
+.form-box .shadow-explanation .status-line {
+	display: block;
+}
+
 .column-right,
 .flex-columns-container-right {
 	order: 2;
