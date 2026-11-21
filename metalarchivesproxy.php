@@ -257,7 +257,8 @@ function fetch_with_curl(string $url): array {
         $err = sprintf("Response exceeded size limit of %d bytes (%.3f MB).", $maxSize, $maxSize / 1048576);
     }
 
-    curl_close($proxyRequest);
+    //curl_close($proxyRequest);
+    unset($proxyRequest);
 
     if ($finalUrl !== '') {
         $finalParts = parse_url($finalUrl);
@@ -275,6 +276,20 @@ enforce_frontend_access();
 $rawUrl  = get_raw_url_param();
 $safeUrl = validate_and_build_safe_url($rawUrl);
 enforce_rate_limit_apcu();
+
+// Initialize phpBB session for user authentication - we include the common.php file to access user session data.
+// Note: Adjust the path to common.php if this script is placed in a different directory relative to phpBB's root.
+define('IN_PHPBB', true);
+$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
+$phpEx = substr(strrchr(__FILE__, '.'), 1);
+require($phpbb_root_path . 'common.' . $phpEx);
+
+$user->session_begin(false); // false = doesn't rewrite "Who is online" table, since this is a proxy request
+
+// Check if the user is logged in and not a bot
+if (!$user->data['is_registered'] || $user->data['is_bot']) {
+    proxy_error(403, "Authentication required");
+}
 
 [$response, $httpcode, $contentType, $err] = fetch_with_curl($safeUrl);
 
@@ -298,7 +313,7 @@ switch ($mediaType) {
         if (!str_contains(strtolower($contentType), 'charset=')) {
             $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
         }
-        $cacheControl = "public, max-age=" . CACHE_TTL;
+        $cacheControl = "private, max-age=" . CACHE_TTL;
         break;
 
     case 'application/json':

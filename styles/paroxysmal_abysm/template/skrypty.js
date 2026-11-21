@@ -395,12 +395,15 @@ async function fetchPage(url) {
 
 	// If the proxy returned JSON content, it indicates an error
 	if ( contentType.split(";")[0].trim() === "application/json" ) {
+		let errMsg = text;
 		try {
 			const err = JSON.parse(text);
-			throw new Error(`Proxy error ${response.status}: ${err.error || text}`);
+			errMsg = err.error || text;
 		} catch {
-			throw new Error(`Proxy error ${response.status}: ${text}`);
+			// if JSON parsing fails, keep the original text as the error message
 		}
+		// Throw an error with the proxy's HTTP status and the error message
+		throw new Error(`Proxy error ${response.status}: ${errMsg}`);
 	}
 
 	// If the proxy sent an HTTP error status (>=400) but not JSON, treat it as an error
@@ -590,12 +593,12 @@ async function addLineup(url, output, update) {
 
 let fetchDiscography = 0;
 
-async function addDiscography(url, output, update) {
+async function addDiscography(bandId, output, update) {
 	"use strict";
 
 	try {
 		// Build the discography table URL by modifying the base band URL
-		const urlDiscography = url.replace(/\/bands\/.*\//, "/band/discography/id/") + "/tab/all/";
+		const urlDiscography = `https://www.metal-archives.com/band/discography/id/${bandId}/tab/all/`;
 		console.log("Discography URL:", urlDiscography);
 
 		// Record the start time for fetching the discography
@@ -700,7 +703,7 @@ function addLinkToMA(url, output) {
 	"use strict";
 
 	// Check if the output already includes this exact MA link; if not, add it
-	if ( !output.value.match("MA: " + url) ) {
+	if ( !output.value.includes("MA: " + url) ) {
 		output.value += "\n\nMA: " + url;
 	} else {
 		console.log("Link to MA is already in the topic.");
@@ -793,40 +796,62 @@ function alignImages(output) {
  * Orchestrates the fetching and updating of band lineup, discography, MA link, and Bandcamp links. Handles URL cleanup, error logging, progress indication, and performance measurement.
  */
 
+let isFetchingBandInfo = false;
+
 async function addBandInfo(update) {
 	"use strict";
 
+	if ( isFetchingBandInfo ) return;
 	// Record the starting time for performance logging
 	const stoperStart = performance.now();
 
 	// Get the input field and output message elements
 	const addBandInfoInput = document.getElementById("add-band-info");
-	let url = addBandInfoInput.value;
 	const output = document.getElementById("message");
-	if ( !output ) return;
+	if ( !addBandInfoInput || !output ) return;
 
-	// Validate that the URL matches the expected Metal Archives band URL pattern
-	const metallumPattern = /^https:\/\/www\.metal-archives\.com\/bands\/[^/]+\/\d+/;
-	if ( !metallumPattern.test(url) ) {
+	/** Validate the band URL against the expected Metal Archives URL pattern, considering various input formats (with or without protocol, "www.", trailing slash, query params, or hash fragment).
+	 * Non-capturing groups (?:...) are used so that only the band name and ID are captured for later use and always in the same order as [1] and [2] regardless of the input format.
+	 * Regex breakdown:
+	 *   ^                            - Start of string (prevents matching embedded or spoofed URLs)
+	 *   (?:https?:\/\/)?             - Optional non-capturing protocol ("http://" or "https://")
+	 *   (?:www\.)?                   - Optional non-capturing "www." subdomain
+	 *   metal-archives\.com\/bands\/ - Literal domain and required "/bands/" path segment
+	 *   ([^/?#]+)                    - Capture group 1 (bandName): band slug (1+ chars except "/", "?", "#")
+	 *   \/                           - Literal "/" separator between band name and ID
+	 *   (\d+)                        - Capture group 2 (bandId): numeric band ID (1+ digits)
+	 *   (?:[/?#].*)?                 - Optional non-capturing trailing slash, query ("?..."), or hash ("#...")
+	 *                                  to be ignored/stripped; also rejects trailing junk glued to ID (e.g. "145abc")
+	 *   $                            - End of string
+	 *   /i                           - Case-insensitive flag (allows e.g. "HTTPS://WWW.Metal-Archives.com/...")
+	 */
+
+	const rawInputMetallumUrl = addBandInfoInput.value.trim();
+	const metallumPattern = /^(?:https?:\/\/)?(?:www\.)?metal-archives\.com\/bands\/([^/?#]+)\/(\d+)(?:[/?#].*)?$/i;
+	const matchMetallumUrl = rawInputMetallumUrl.match(metallumPattern);
+
+	if ( !matchMetallumUrl ) {
 		console.log("Incorrect link.");
 		return;
 	}
 
-	// Check for hash in url (like #tabs) and if there is one, trim it
-	const hashPattern = /#.*$/;
-	if ( hashPattern.test(url) ) {
-		console.log("Link has hash and is being trimmed.");
-		url = url.replace(hashPattern, "");
+	const bandName = matchMetallumUrl[1];
+	const bandId = matchMetallumUrl[2];
+
+	// Standardized clean Metallum URL without #hash, ?query nor trailing slash /
+	const url = `https://www.metal-archives.com/bands/${bandName}/${bandId}`;
+	if ( addBandInfoInput.value !== url ) {
 		addBandInfoInput.value = url;
 	}
 
+	isFetchingBandInfo = true;
 	// Show the progress cursor while processing
 	showProgressCursor();
 
 	try {
 		// Call sub-functions to fetch and add or update lineup and discography, and add MA and Bandcamp links then shows refresh button - in correct sequence
 		await addLineup(url, output, update);
-		await addDiscography(url, output, update);
+		await addDiscography(bandId, output, update);
 		addLinkToMA(url, output);
 		checkForBandcampLinks(output);
 		alignImages(output);
@@ -835,6 +860,7 @@ async function addBandInfo(update) {
 		console.error("Error adding band info:", error);
 	} finally {
 		// Change cursor to default regardless of success or failure
+		isFetchingBandInfo = false;
 		hideProgressCursor();
 	}
 
