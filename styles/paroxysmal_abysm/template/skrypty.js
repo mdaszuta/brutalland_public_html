@@ -384,7 +384,16 @@ function resetBandInfoStatus() {
 	}
 }
 
-function showBandInfoStatus(message, type = "info") {
+function showBandInfoStatus(message, type = "info", error = null) {
+
+	if ( type === "error" ) {
+		error ? console.error(message, error) : console.error(message);
+	} else if ( type === "warning" ) {
+		console.warn(message);
+	} else {
+		console.log(message);
+	}
+
 	const shadowExplanationElement = getShadowExplanationElement();
 	if ( !shadowExplanationElement ) return;
 
@@ -544,7 +553,6 @@ async function addLineup(url, output, update) {
 		// Locate the lineup table within the document
 		const lineupTable = docLineup.querySelector("#band_members table.lineupTable");
 		if ( !lineupTable ) {
-			console.log("Lineup table not found.");
  			showBandInfoStatus("Lineup table not found.", "warning");
 			return;
 		}
@@ -663,7 +671,6 @@ async function addLineup(url, output, update) {
 
 		// If update mode is enabled and an existing lineup block is found, replace it; otherwise, append the lineup
 		if ( update && output.value.match(lineupPatternToUpdate) ) {
-			console.log("Updating lineup...");
  			showBandInfoStatus("Updating lineup...");
 			console.log(output.value.match(lineupPatternToUpdate)[0]);
 			output.value = output.value.replace(lineupPatternToUpdate, completeLineupString + "\n\n");
@@ -709,11 +716,9 @@ async function addDiscography(bandId, output, update) {
 		// Locate the discography table in the document and checking if it's not empty
 		const discographyTable = docDiscography.querySelector(".discog");
 		if ( !discographyTable ) {
-			console.log("Discography table not found.");
  			showBandInfoStatus("Discography table not found.", "warning");
 			return;
 		} else if ( discographyTable.querySelectorAll("tbody td").length === 1 ) {
-			console.log("No discography found.");
  			showBandInfoStatus("No discography found.", "warning");
 			return;
 		}
@@ -776,7 +781,6 @@ async function addDiscography(bandId, output, update) {
 
 		// If update mode is enabled and a discography block exists, replace it; otherwise, append the discography
 		if ( update && discographyPatternToUpdate.test(output.value) ) {
-			console.log("Updating discography...");
  			showBandInfoStatus("Updating discography...");
 			console.log(output.value.match(discographyPatternToUpdate)[0]);
 			output.value = output.value.replace(discographyPatternToUpdate, completeDiscographyString + "\n\n");
@@ -804,10 +808,8 @@ function addLinkToMA(url, output) {
 	// Check if the output already includes this exact MA link; if not, add it
 	if ( !output.value.includes("MA: " + url) ) {
 		output.value += "\n\nMA: " + url;
-		console.log("Adding link to MA...");
 		showBandInfoStatus("Adding link to MA...");
 	} else {
-		console.log("Link to MA is already in the topic.");
 		showBandInfoStatus("Link to MA is already in the topic.");
 	}
 
@@ -859,7 +861,6 @@ function checkForBandcampLinks(output) {
 		// Write the final updated message back to the output
 		output.value = messageValue;
 		const statusMsg = changedCount === 1 ? "Adding link to BC..." : "Adding links to BC...";
-		console.log(statusMsg);
 		showBandInfoStatus(statusMsg);
 	}
 }
@@ -900,7 +901,6 @@ function alignImages(output) {
 	if ( messageValue !== output.value ) {
 		// Write the final updated message back to the output
 		output.value = messageValue;
-		console.log("Aligning images in message...");
 		showBandInfoStatus("Aligning images in message...");
 	}
 }
@@ -949,7 +949,6 @@ async function addBandInfo(update) {
 	const matchMetallumUrl = rawInputMetallumUrl.match(metallumPattern);
 
 	if ( !matchMetallumUrl ) {
-		console.log("Incorrect link.");
 		showBandInfoStatus("Incorrect link.", "warning");
 		scheduleHideBandInfoStatus(3000);
 		return;
@@ -964,7 +963,10 @@ async function addBandInfo(update) {
 		addBandInfoInput.value = url;
 	}
 
+	fetchLineup = 0;
+	fetchDiscography = 0;
 	isFetchingBandInfo = true;
+
 	// Show the progress cursor while processing
 	showProgressCursor();
 
@@ -976,9 +978,8 @@ async function addBandInfo(update) {
 		checkForBandcampLinks(output);
 		alignImages(output);
 		addBandInfoInput.classList.add("has-band-info-link");
-	} catch (error) {
-		console.error("Error adding band info:", error);
-		showBandInfoStatus(error?.message || "Error fetching the page.", "error");
+	} catch ( error ) {
+		showBandInfoStatus(error?.message || "Error fetching the page.", "error", error);
 	} finally {
 		// Change cursor to default regardless of success or failure
 		isFetchingBandInfo = false;
