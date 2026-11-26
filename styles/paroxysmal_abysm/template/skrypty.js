@@ -804,6 +804,8 @@ function addLinkToMA(url, output) {
 	// Check if the output already includes this exact MA link; if not, add it
 	if ( !output.value.includes("MA: " + url) ) {
 		output.value += "\n\nMA: " + url;
+		console.log("Adding link to MA...");
+		showBandInfoStatus("Adding link to MA...");
 	} else {
 		console.log("Link to MA is already in the topic.");
 		showBandInfoStatus("Link to MA is already in the topic.");
@@ -820,12 +822,13 @@ function checkForBandcampLinks(output) {
 
 	// Get the current message value
 	let messageValue = output.value ?? "";
+	let changedCount = 0;
 	// Define a regex to capture Bandcamp album links
 	const bandcampPattern = /(https:\/\/[^/]+\.bandcamp\.com)\/album\/[^/\s]+/g;
 
 	// Find all Bandcamp album links in the message
 	const matches = messageValue.match(bandcampPattern);
-	if (!matches) return;
+	if ( !matches ) return;
 
 	console.log("BC:", matches);
 
@@ -844,14 +847,21 @@ function checkForBandcampLinks(output) {
 		if ( partialRegex.test(messageValue) ) {
 			// If there's a partial version, replace it with the full version
 			messageValue = messageValue.replace(partialRegex, bandcampPage);
+			changedCount++;
 		} else if ( !messageValue.includes(bandcampPage) ) {
 			// Otherwise, if it's not already added, append the new /music link
 			messageValue += "\n" + bandcampPage;
+			changedCount++;
 		}
 	});
 
-	// Write the final updated message back to the output
-	output.value = messageValue;
+	if ( changedCount > 0 ) {
+		// Write the final updated message back to the output
+		output.value = messageValue;
+		const statusMsg = changedCount === 1 ? "Adding link to BC..." : "Adding links to BC...";
+		console.log(statusMsg);
+		showBandInfoStatus(statusMsg);
+	}
 }
 
 /** ALIGN IMAGES
@@ -864,33 +874,35 @@ function checkForBandcampLinks(output) {
 function alignImages(output) {
 	"use strict";
 
-	if (!output || typeof output.value !== "string") { return; }
+	if ( !output || typeof output.value !== "string" ) { return; }
 
 	let messageValue = output.value;
-	console.log("Aligning images in message...");
- 	showBandInfoStatus("Aligning images in message...");
 
 	// Define a regex pattern to match two adjacent [align=center] blocks with optional whitespace in between
 	// This pattern captures the content of each block and any whitespace that follows the second block.
 	// It uses the 'g' flag for global matching and 'i' for case-insensitive matching.
 	// The pattern captures two groups of content between the [align=center] and [/align] tags,
 	// allowing for any characters including newlines, and matches optional whitespace after the second [/align] tag.
-	// The '([\s\S]*?)' captures any content, // including newlines, between the opening and closing tags
+	// The '([\s\S]*?)' captures any content, including newlines, between the opening and closing tags
 	// and the '(\s*)' captures any whitespace after the second closing tag.
 	const alignJoinPattern = /\[align=center\]([\s\S]*?)\[\/align\]\s*\[align=center\]([\s\S]*?)\[\/align\](\s*)/gi;
 
 	// Iteratively replace adjacent [align=center] blocks until no more replacements can be made.
 	// This loop continues until all adjacent blocks are merged, then adds triple newlines after the merged block.
 	let previous = "";
-	while (messageValue !== previous) {
+	while ( messageValue !== previous ) {
 		previous = messageValue;
 		messageValue = messageValue.replace(alignJoinPattern, (_, content1, content2) => {
 			return `[align=center]${content1}\n\n${content2}[/align]\n\n\n`;
 		});
 	}
 
-	// Write the final updated message back to the output
-	output.value = messageValue;
+	if ( messageValue !== output.value ) {
+		// Write the final updated message back to the output
+		output.value = messageValue;
+		console.log("Aligning images in message...");
+		showBandInfoStatus("Aligning images in message...");
+	}
 }
 
 /** ADD BAND INFO
