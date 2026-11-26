@@ -538,154 +538,147 @@ let fetchLineup = 0;
 async function addLineup(url, output, update) {
 	"use strict";
 
-	try {
-		// Record the start time before fetching the lineup page
-		const fetchStart = performance.now();
+	// Record the start time before fetching the lineup page
+	const fetchStart = performance.now();
 
-		// Fetch the band page content using the CORS proxy
-		const docLineup = await fetchPage(url);
+	// Fetch the band page content using the CORS proxy
+	const docLineup = await fetchPage(url);
 
-		// Record the end time and compute the fetch duration
-		const fetchEnd = performance.now();
-		fetchLineup = fetchEnd - fetchStart;
-		console.log(`Fetch lineup execution time: ${fetchEnd - fetchStart} ms`);
+	// Record the end time and compute the fetch duration
+	const fetchEnd = performance.now();
+	fetchLineup = fetchEnd - fetchStart;
+	console.log(`Fetch lineup execution time: ${fetchEnd - fetchStart} ms`);
 
-		// Locate the lineup table within the document
-		const lineupTable = docLineup.querySelector("#band_members table.lineupTable");
-		if ( !lineupTable ) {
- 			showBandInfoStatus("Lineup table not found.", "warning");
-			return;
-		}
-
-		// Convert the table's HTML to a string for regex processing
-		const lineupTableString = lineupTable.outerHTML;
-		const completeLineup = [];
-		const lineupRows = lineupTable.querySelectorAll("tr");
-
-		// Definition of regex patterns for detecting header types and special cases
-		const patterns = {
-			current: /<td colspan="2" align="right">\s*Current(?: lineup)?\s*<\/td>/,
-			lastKnown: /<td colspan="2" align="right">\s*Last known(?: lineup)?\s*<\/td>/,
-			past: /<td colspan="2" align="right">\s*Past\s*<\/td>/,
-			currentLive: /<td colspan="2" align="right">\s*(?:Current|Last known)\s*\(Live\)\s*<\/td>/,
-			pastLive: /<td colspan="2" align="right">\s*Past\s*\(Live\)\s*<\/td>/,
-			seeAlso: /^See also:\s+/,
-			rip: /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/
-		};
-	
-		// Check which header patterns exist in the lineup table
-		const headerPatternExists = {
-			current: patterns.current.test(lineupTableString),
-			lastKnown: patterns.lastKnown.test(lineupTableString),
-			past: patterns.past.test(lineupTableString),
-			currentLive: patterns.currentLive.test(lineupTableString),
-			pastLive: patterns.pastLive.test(lineupTableString)
-		};
-
-		console.log("Header pattern existence check:", headerPatternExists);
-
-		// If no "current" or "last known" headers exist, add a default header based on band status
-		if ( !headerPatternExists.current && !headerPatternExists.lastKnown ) {
-			if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
-				completeLineup.push("[t]Ostatni skład:[/t]");
-			} else {
-				completeLineup.push("[t]Skład:[/t]");
-			}
-		}
-
-		// Process each row in the lineup table
-		lineupRows.forEach(lineupRow => {
-
-			// If the row is a header row, update its content based on the detected header type
-			if ( lineupRow.classList.contains("lineupHeaders") ) {
-
-				if ( headerPatternExists.current ) {
-				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.current, "<td>[t]Skład:[/t]</td>");
-				} else if ( headerPatternExists.lastKnown ) {
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.lastKnown, "<td>[t]Ostatni skład:[/t]</td>");
-				}
-
-				if ( headerPatternExists.past ) {
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.past, "<td>[muzycy-byli]</td>");
-				}
-
-				if ( headerPatternExists.past && headerPatternExists.currentLive ) {
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.currentLive, "<td>[/muzycy-byli][muzycy-live]</td>");
-				} else if ( headerPatternExists.currentLive ) {
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.currentLive, "<td>[muzycy-live]</td>");
-				}
-
-				if ( headerPatternExists.currentLive && headerPatternExists.pastLive ) {
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.pastLive, "<td></td>");
-				} else if ( headerPatternExists.past && headerPatternExists.pastLive ) {
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.pastLive, "<td>[/muzycy-byli][muzycy-live]</td>");
-				} else if ( headerPatternExists.pastLive ) {
-					lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.pastLive, "<td>[muzycy-live]</td>");
-				}
-
-			}
-
-			// Trim any leading/trailing whitespace from the row's HTML and extract trimmed text from each cell in the row
-			lineupRow.innerHTML = lineupRow.innerHTML.trim();
-			const lineupCells = getTrimmedCellValues(lineupRow);
-			let ripInfo = "";
-			/* console.log(lineupCells); */
-
-			// If the first cell contains R.I.P. information, extract and format it
-			if ( patterns.rip.test(lineupCells[0]) ) {
-				const ripDate  = lineupCells[0].match(/\d+/);
-				ripInfo = ripDate ? " (R.I.P. " + ripDate[0] + ")" : " (R.I.P.)";
-				// Remove the R.I.P. segment from the cell text
-				lineupCells[0] = lineupCells[0].replace(patterns.rip, "");
-				/* console.log("THE PAST IS ALIVE!!! ", ripDate); */
-			}
-
-			// Format the row based on its type and add it to the complete lineup
-			if ( lineupRow.classList.contains("lineupRow") ) {
-				// Basic lineup row: musician - instrument (start date - end date) (R.I.P. year)
-				completeLineup.push(lineupCells.join(" - ") + ripInfo);
-			} else if ( lineupRow.classList.contains("lineupBandsRow") ) {
-				// Additional bands row: append extra information (e.g., [l]past bands[/l])
-				const otherBands = lineupCells.map(lineupCell => " [l]" + lineupCell.replace(patterns.seeAlso, "") + "[/l]");
-				completeLineup.push(completeLineup.pop() + ripInfo + otherBands.join());
-			} else {
-				// Fallback: join all cells (like lineupHeaders) with default formatting
-				completeLineup.push(lineupCells.join());
-			}
-
-		});
-
-		// Append closing tags for live or past member sections if applicable
-		if ( headerPatternExists.currentLive || headerPatternExists.pastLive ) {
-			completeLineup.push(completeLineup.pop() + "\n[/muzycy-live]");
-		} else if ( headerPatternExists.past ) {
-			completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
-		}
-
-		// Combine all lineup rows into a single formatted string and clean up spacing
-		const completeLineupString = completeLineup.join("\n").replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
-
-		// Regex to detect an existing lineup block in the output message
-		// Looks for end of live musicians list; if not found - past musicians list; if not found - shortest string containing double new line
-		const lineupPatternToUpdate = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
-
-		// If update mode is enabled and an existing lineup block is found, replace it; otherwise, append the lineup
-		if ( update && output.value.match(lineupPatternToUpdate) ) {
- 			showBandInfoStatus("Updating lineup...");
-			console.log(output.value.match(lineupPatternToUpdate)[0]);
-			output.value = output.value.replace(lineupPatternToUpdate, completeLineupString + "\n\n");
-		} else {
-			output.value += "\n\n" + completeLineupString;
- 			showBandInfoStatus("Adding lineup...");
-		}
-
-		console.log(completeLineupString);
-
-	} catch (error) {
-		// Log any errors that occur during fetching or processing
-		console.error("Error fetching the page:", error);
-		throw error;
+	// Locate the lineup table within the document
+	const lineupTable = docLineup.querySelector("#band_members table.lineupTable");
+	if ( !lineupTable ) {
+		showBandInfoStatus("Lineup table not found.", "warning");
+		return;
 	}
+
+	// Convert the table's HTML to a string for regex processing
+	const lineupTableString = lineupTable.outerHTML;
+	const completeLineup = [];
+	const lineupRows = lineupTable.querySelectorAll("tr");
+
+	// Definition of regex patterns for detecting header types and special cases
+	const patterns = {
+		current: /<td colspan="2" align="right">\s*Current(?: lineup)?\s*<\/td>/,
+		lastKnown: /<td colspan="2" align="right">\s*Last known(?: lineup)?\s*<\/td>/,
+		past: /<td colspan="2" align="right">\s*Past\s*<\/td>/,
+		currentLive: /<td colspan="2" align="right">\s*(?:Current|Last known)\s*\(Live\)\s*<\/td>/,
+		pastLive: /<td colspan="2" align="right">\s*Past\s*\(Live\)\s*<\/td>/,
+		seeAlso: /^See also:\s+/,
+		rip: /(^\(R\.I\.P\. \d*\)\s+)|(^\(R\.I\.P\.\)\s+)|(\s+\(R\.I\.P\. \d*\)\s*)|(\s+\(R\.I\.P\.\)\s*)/
+	};
+
+	// Check which header patterns exist in the lineup table
+	const headerPatternExists = {
+		current: patterns.current.test(lineupTableString),
+		lastKnown: patterns.lastKnown.test(lineupTableString),
+		past: patterns.past.test(lineupTableString),
+		currentLive: patterns.currentLive.test(lineupTableString),
+		pastLive: patterns.pastLive.test(lineupTableString)
+	};
+
+	console.log("Header pattern existence check:", headerPatternExists);
+
+	// If no "current" or "last known" headers exist, add a default header based on band status
+	if ( !headerPatternExists.current && !headerPatternExists.lastKnown ) {
+		if ( docLineup.querySelector("#band_stats .split_up") || docLineup.querySelector("#band_stats .changed_name") ) {
+			completeLineup.push("[t]Ostatni skład:[/t]");
+		} else {
+			completeLineup.push("[t]Skład:[/t]");
+		}
+	}
+
+	// Process each row in the lineup table
+	lineupRows.forEach(lineupRow => {
+
+		// If the row is a header row, update its content based on the detected header type
+		if ( lineupRow.classList.contains("lineupHeaders") ) {
+
+			if ( headerPatternExists.current ) {
+			lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.current, "<td>[t]Skład:[/t]</td>");
+			} else if ( headerPatternExists.lastKnown ) {
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.lastKnown, "<td>[t]Ostatni skład:[/t]</td>");
+			}
+
+			if ( headerPatternExists.past ) {
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.past, "<td>[muzycy-byli]</td>");
+			}
+
+			if ( headerPatternExists.past && headerPatternExists.currentLive ) {
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.currentLive, "<td>[/muzycy-byli][muzycy-live]</td>");
+			} else if ( headerPatternExists.currentLive ) {
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.currentLive, "<td>[muzycy-live]</td>");
+			}
+
+			if ( headerPatternExists.currentLive && headerPatternExists.pastLive ) {
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.pastLive, "<td></td>");
+			} else if ( headerPatternExists.past && headerPatternExists.pastLive ) {
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.pastLive, "<td>[/muzycy-byli][muzycy-live]</td>");
+			} else if ( headerPatternExists.pastLive ) {
+				lineupRow.innerHTML = lineupRow.innerHTML.replace(patterns.pastLive, "<td>[muzycy-live]</td>");
+			}
+
+		}
+
+		// Trim any leading/trailing whitespace from the row's HTML and extract trimmed text from each cell in the row
+		//lineupRow.innerHTML = lineupRow.innerHTML.trim();
+		const lineupCells = getTrimmedCellValues(lineupRow);
+		let ripInfo = "";
+		/* console.log(lineupCells); */
+
+		// If the first cell contains R.I.P. information, extract and format it
+		if ( patterns.rip.test(lineupCells[0]) ) {
+			const ripDate  = lineupCells[0].match(/\d+/);
+			ripInfo = ripDate ? " (R.I.P. " + ripDate[0] + ")" : " (R.I.P.)";
+			// Remove the R.I.P. segment from the cell text
+			lineupCells[0] = lineupCells[0].replace(patterns.rip, "");
+			/* console.log("THE PAST IS ALIVE!!! ", ripDate); */
+		}
+
+		// Format the row based on its type and add it to the complete lineup
+		if ( lineupRow.classList.contains("lineupRow") ) {
+			// Basic lineup row: musician - instrument (start date - end date) (R.I.P. year)
+			completeLineup.push(lineupCells.join(" - ") + ripInfo);
+		} else if ( lineupRow.classList.contains("lineupBandsRow") ) {
+			// Additional bands row: append extra information (e.g., [l]past bands[/l])
+			const otherBands = lineupCells.map(lineupCell => " [l]" + lineupCell.replace(patterns.seeAlso, "") + "[/l]");
+			completeLineup.push(completeLineup.pop() + ripInfo + otherBands.join());
+		} else {
+			// Fallback: join all cells (like lineupHeaders) with default formatting
+			completeLineup.push(lineupCells.join());
+		}
+
+	});
+
+	// Append closing tags for live or past member sections if applicable
+	if ( headerPatternExists.currentLive || headerPatternExists.pastLive ) {
+		completeLineup.push(completeLineup.pop() + "\n[/muzycy-live]");
+	} else if ( headerPatternExists.past ) {
+		completeLineup.push(completeLineup.pop() + "\n[/muzycy-byli]");
+	}
+
+	// Combine all lineup rows into a single formatted string and clean up spacing
+	const completeLineupString = completeLineup.join("\n").replaceAll("\xa0"," ").replace(/\t+/g, "").replace("[muzycy-byli]", "\n[muzycy-byli]").replace(/\n*\[muzycy-live\]/, "\n\n[muzycy-live]");
+
+	// Regex to detect an existing lineup block in the output message
+	// Looks for end of live musicians list; if not found - past musicians list; if not found - shortest string containing double new line
+	const lineupPatternToUpdate = /\[t\](?:Skład:|Ostatni skład:)\[\/t\](?:(?:[\s\S]*?\[\/muzycy-live\]\n\n)|(?:[\s\S]*?\[\/muzycy-byli\]\n\n)|(?:[\s\S]*?\n\n))/;
+
+	// If update mode is enabled and an existing lineup block is found, replace it; otherwise, append the lineup
+	if ( update && output.value.match(lineupPatternToUpdate) ) {
+		showBandInfoStatus("Updating lineup...");
+		console.log(output.value.match(lineupPatternToUpdate)[0]);
+		output.value = output.value.replace(lineupPatternToUpdate, completeLineupString + "\n\n");
+	} else {
+		output.value += "\n\n" + completeLineupString;
+		showBandInfoStatus("Adding lineup...");
+	}
+
+	console.log(completeLineupString);
 }
 
 /** ADD DISCOGRAPHY
@@ -697,105 +690,98 @@ let fetchDiscography = 0;
 async function addDiscography(bandId, output, update) {
 	"use strict";
 
-	try {
-		// Build the discography table URL by modifying the base band URL
-		const urlDiscography = `https://www.metal-archives.com/band/discography/id/${bandId}/tab/all/`;
-		console.log("Discography URL:", urlDiscography);
+	// Build the discography table URL by modifying the base band URL
+	const urlDiscography = `https://www.metal-archives.com/band/discography/id/${bandId}/tab/all/`;
+	console.log("Discography URL:", urlDiscography);
 
-		// Record the start time for fetching the discography
-		const fetchStart = performance.now();
+	// Record the start time for fetching the discography
+	const fetchStart = performance.now();
 
-		// Fetch the discography page via the CORS proxy
-		const docDiscography = await fetchPage(urlDiscography);
+	// Fetch the discography page via the CORS proxy
+	const docDiscography = await fetchPage(urlDiscography);
 
-		// Compute and log the fetch duration
-		const fetchEnd = performance.now();
-		fetchDiscography = fetchEnd - fetchStart;
-		console.log(`Fetch discography execution time: ${fetchEnd - fetchStart} ms`);
+	// Compute and log the fetch duration
+	const fetchEnd = performance.now();
+	fetchDiscography = fetchEnd - fetchStart;
+	console.log(`Fetch discography execution time: ${fetchEnd - fetchStart} ms`);
 
-		// Locate the discography table in the document and checking if it's not empty
-		const discographyTable = docDiscography.querySelector(".discog");
-		if ( !discographyTable ) {
- 			showBandInfoStatus("Discography table not found.", "warning");
-			return;
-		} else if ( discographyTable.querySelectorAll("tbody td").length === 1 ) {
- 			showBandInfoStatus("No discography found.", "warning");
-			return;
-		}
-
-		const completeDiscography = [];
-		const discographyRows = discographyTable.querySelectorAll("tbody tr");
-
-		// Mapping release types to corresponding BBCode tags
-		const releaseTypeBBCode = {
-			"Full-length": "w-album",
-			"Demo": "w-demo",
-			"EP": "w-norm",
-			"Collaboration": "w-norm"
-		};
-
-		// Replacements to clean up specific text patterns in the output
-		const replacements = {
-			"[ep]": "[EP]",
-			"[live album]": "[live]",
-			"[collaboration]": "[kolaboracja]",
-			"[compilation]": "[kompilacja]"
-		};
-
-		// Add a header for the discography section
-		completeDiscography.push("[t]Dyskografia:[/t]");
-
-		// Process each row in the discography table
-		discographyRows.forEach(discographyRow => {
-
-			// Trim any leading/trailing whitespace from the row's HTML and extract trimmed text from each cell in the row
-			discographyRow.innerHTML = discographyRow.innerHTML.trim();
-			const discographyCells = getTrimmedCellValues(discographyRow);
-
-			// Extract release details: year, title and type
-			const releaseYear = discographyCells[2];
-			const releaseTitle = discographyCells[0];
-			const releaseType = discographyCells[1];
-
-			// Determine the appropriate BBCode tag for the release type
-			const bbcode = releaseTypeBBCode[releaseType] || "w-other";
-			// If not a full-length album, add the release type in lowercase
-			const type = ( bbcode === "w-album" ) ? "" : ` [${releaseType.toLowerCase()}]`
-
-			// Construct the formatted release string
-			const release = `[${bbcode}]${releaseYear} - ${releaseTitle}${type}[/${bbcode}]`;
-
-			completeDiscography.push(release);
-
-		});
-
-		// Combine all release strings into a single discography string
-		let completeDiscographyString = completeDiscography.join("\n");
-		// Apply replacements for any legacy formatting issues
-		for ( const [search, replace] of Object.entries(replacements) ) {
-			completeDiscographyString = completeDiscographyString.replaceAll(search, replace);
-		}
-
-		// Regex to detect an existing discography block in the output message (*? - so it looks for shortest string match instead of longest)
-		const discographyPatternToUpdate = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/;
-
-		// If update mode is enabled and a discography block exists, replace it; otherwise, append the discography
-		if ( update && discographyPatternToUpdate.test(output.value) ) {
- 			showBandInfoStatus("Updating discography...");
-			console.log(output.value.match(discographyPatternToUpdate)[0]);
-			output.value = output.value.replace(discographyPatternToUpdate, completeDiscographyString + "\n\n");
-		} else {
-			output.value += "\n\n" + completeDiscographyString;
- 			showBandInfoStatus("Adding discography...");
-		}
-
-		console.log(completeDiscographyString);
-
-	} catch (error) {
-		// Log errors encountered during fetching or processing
-		console.error("Error fetching the page:", error);
-		throw error;
+	// Locate the discography table in the document and checking if it's not empty
+	const discographyTable = docDiscography.querySelector(".discog");
+	if ( !discographyTable ) {
+		showBandInfoStatus("Discography table not found.", "warning");
+		return;
+	} else if ( discographyTable.querySelectorAll("tbody td").length === 1 ) {
+		showBandInfoStatus("No discography found.", "warning");
+		return;
 	}
+
+	const completeDiscography = [];
+	const discographyRows = discographyTable.querySelectorAll("tbody tr");
+
+	// Mapping release types to corresponding BBCode tags
+	const releaseTypeBBCode = {
+		"Full-length": "w-album",
+		"Demo": "w-demo",
+		"EP": "w-norm",
+		"Collaboration": "w-norm"
+	};
+
+	// Replacements to clean up specific text patterns in the output
+	const replacements = {
+		"[ep]": "[EP]",
+		"[live album]": "[live]",
+		"[collaboration]": "[kolaboracja]",
+		"[compilation]": "[kompilacja]"
+	};
+
+	// Add a header for the discography section
+	completeDiscography.push("[t]Dyskografia:[/t]");
+
+	// Process each row in the discography table
+	discographyRows.forEach(discographyRow => {
+
+		// Trim any leading/trailing whitespace from the row's HTML and extract trimmed text from each cell in the row
+		//discographyRow.innerHTML = discographyRow.innerHTML.trim();
+		const discographyCells = getTrimmedCellValues(discographyRow);
+
+		// Extract release details: year, title and type
+		const releaseYear = discographyCells[2];
+		const releaseTitle = discographyCells[0];
+		const releaseType = discographyCells[1];
+
+		// Determine the appropriate BBCode tag for the release type
+		const bbcode = releaseTypeBBCode[releaseType] || "w-other";
+		// If not a full-length album, add the release type in lowercase
+		const type = ( bbcode === "w-album" ) ? "" : ` [${releaseType.toLowerCase()}]`
+
+		// Construct the formatted release string
+		const release = `[${bbcode}]${releaseYear} - ${releaseTitle}${type}[/${bbcode}]`;
+
+		completeDiscography.push(release);
+
+	});
+
+	// Combine all release strings into a single discography string
+	let completeDiscographyString = completeDiscography.join("\n");
+	// Apply replacements for any legacy formatting issues
+	for ( const [search, replace] of Object.entries(replacements) ) {
+		completeDiscographyString = completeDiscographyString.replaceAll(search, replace);
+	}
+
+	// Regex to detect an existing discography block in the output message (*? - so it looks for shortest string match instead of longest)
+	const discographyPatternToUpdate = /\[t\]Dyskografia:\[\/t\][\s\S]*?\n\n/;
+
+	// If update mode is enabled and a discography block exists, replace it; otherwise, append the discography
+	if ( update && discographyPatternToUpdate.test(output.value) ) {
+		showBandInfoStatus("Updating discography...");
+		console.log(output.value.match(discographyPatternToUpdate)[0]);
+		output.value = output.value.replace(discographyPatternToUpdate, completeDiscographyString + "\n\n");
+	} else {
+		output.value += "\n\n" + completeDiscographyString;
+		showBandInfoStatus("Adding discography...");
+	}
+
+	console.log(completeDiscographyString);
 }
 
 /** ADD LINK TO METAL ARCHIVES
