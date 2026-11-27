@@ -3,7 +3,8 @@ declare(strict_types=1);
 // metalarchivesproxy.php — cURL-based proxy for Metal Archives
 
 // Config
-const CACHE_TTL = 60;            // Browser cache in seconds
+const BROWSER_CACHE_TTL = 60;    // Browser cache in seconds
+const SERVER_CACHE_TTL = 3;      // Server-side APCu cache for valid HTML responses (3 sek)
 const RATE_WINDOW = 60;          // Rate limit window in seconds
 const RATE_LIMIT = 30;           // Max requests in rate window per IP
 
@@ -11,14 +12,19 @@ const ALLOWED_HOSTS = [
     'metal-archives.com'     => true,
     'www.metal-archives.com' => true,
 ];
+const CANONICAL_HOST = 'www.metal-archives.com';
 
 // Define maximum allowed upstream response size (in bytes)
 const MAX_RESPONSE_SIZE = 2 * 1024 * 1024; // 2 MB
 
 // User-Agent string and headers to use for outgoing cURL requests, mimicking a common browser
-const FP_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
-const FP_ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8";
-const FP_ACCEPT_LANGUAGE = "en-US,en;q=0.9";
+const FP_CHROME_MAJOR    = '158';
+const FP_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/' . FP_CHROME_MAJOR . '.0.0.0 Safari/537.36';
+// FP_SEC_CH_UA changes with each major Chrome release!
+const FP_SEC_CH_UA = '"Chromium";v="' . FP_CHROME_MAJOR . '", "Not.A/Brand";v="24", "Google Chrome";v="' . FP_CHROME_MAJOR . '"';
+const FP_ACCEPT_DOC = 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7';
+const FP_ACCEPT_AJAX = 'text/html, */*; q=0.01';
+const FP_ACCEPT_LANGUAGE = 'en-US,en;q=0.9';
 
 /**
  * Add security headers to the response.
@@ -54,7 +60,7 @@ function proxy_error(int $status, string $message): void {
     http_response_code($status);
     add_security_headers();
     add_content_headers("application/json; charset=UTF-8", "no-store, no-cache, must-revalidate");
-    echo json_encode(['error' => $message], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    echo json_encode(['error' => $message], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?: '{"error":"Internal error"}';
     exit;
 }
 
@@ -103,9 +109,9 @@ function enforce_rate_limit_apcu(): void {
             $requests = [];
         }
 
-        // Keep only timestamps within the sliding window (µs precision, monotonic)
+        // Keep only timestamps within the sliding window (µs precision, monotonic) and re-index cleanly
         $windowStart = $now - (RATE_WINDOW * 1_000_000);
-        $requests = array_filter($requests, fn($t) => is_int($t) && $t > $windowStart);
+        $requests = array_values(array_filter($requests, fn($t) => is_int($t) && $t > $windowStart));
 
         // --- Check limit *before* appending ---
         if (count($requests) >= RATE_LIMIT) {
@@ -115,17 +121,14 @@ function enforce_rate_limit_apcu(): void {
         // Record this request
         $requests[] = $now;
 
-        // --- Cap array length afterwards to avoid unbounded growth ---
-        if (count($requests) > RATE_LIMIT) {
-            $requests = array_slice($requests, -RATE_LIMIT);
-        }
-
         // Store back with TTL relative to RATE_WINDOW
         if (apcu_store($key, $requests, RATE_WINDOW)) {
             // Debug / monitoring headers
-            /*header("X-RateLimit-Limit: " . RATE_LIMIT);
+            /*
+            header("X-RateLimit-Limit: " . RATE_LIMIT);
             header("X-RateLimit-Remaining: " . max(0, RATE_LIMIT - count($requests)));
-            header("X-RateLimit-Reset: " . time() + RATE_WINDOW);*/ // Reset time should be reported in wall clock seconds, not monotonic
+            header("X-RateLimit-Reset: " . (time() + RATE_WINDOW));
+            */ // Reset time should be reported in wall clock seconds, not monotonic
             return;
         }
 
@@ -149,7 +152,7 @@ function get_raw_url_param(): string {
 
     $rawUrl = $_GET['url'] ?? null;
 
-    if ($rawUrl === null) {
+    if (!is_string($rawUrl) || $rawUrl === '') {
         proxy_error(400, "Missing url parameter");
     }
 
@@ -191,69 +194,103 @@ function validate_and_build_safe_url(string $rawUrl): string {
         proxy_error(400, "Userinfo not allowed in URL");
     }
 
-    unset($parts['fragment']);
-
     // Ensure path always starts with '/' and query is normalized
     $path = '/' . ltrim($parts['path'] ?? '', '/');
 
-    if ($path === '/' || !preg_match('#^/(bands|band/discography)/#', $path)) {
+    // Block dot-segments (/./ or /../) to prevent path traversal, while allowing bands like "...and Oceans"
+    if (preg_match('#/(?:\.\.?)(?:/|$)#', rawurldecode($path))) {
+        proxy_error(400, "Path traversal not allowed");
+    }
+
+    // Allow only exact band profile and discography table endpoints
+    $isBandPage = (bool) preg_match('#^/bands/[^/?#]+/\d+$#', $path);
+    $isDiscographyTab = (bool) preg_match('#^/band/discography/id/\d+/tab/all/?$#', $path);
+
+    if (!$isBandPage && !$isDiscographyTab) {
         proxy_error(400, "Path not allowed");
     }
 
-    $query = '';
-    if (!empty($parts['query'])) {
-        $queryArray = [];
-        parse_str($parts['query'], $queryArray);
-        if (!empty($queryArray)) {
-            $query = '?' . http_build_query($queryArray, '', '&', PHP_QUERY_RFC3986);
-        }
-    }
-
-    return "https://$host$path$query";
+    // Always normalize to canonical host (avoids redundant 301 redirects and duplicate cache keys)
+    return 'https://' . CANONICAL_HOST . $path;
 }
 
 /**
- * Fetch a URL from Metal Archives with standard proxy defaults.
+ * Fetch a URL from Metal Archives with consistent Chrome headers and HTTP/2.
  *
  * @param string $url - validated URL to fetch
  * @return array [string|false $body, int $httpcode, string $contentType, string $error] - response details
  */
 function fetch_with_curl(string $url): array {
     $maxSize = MAX_RESPONSE_SIZE;
-
     $proxyRequest = curl_init($url);
 
+    if ($proxyRequest === false) {
+        return [false, 500, '', 'Failed to initialize cURL'];
+    }
+
+    $isDiscography = str_contains($url, '/band/discography/');
+
+    // Build consistent Chrome Client Hints & Fetch Metadata headers
+    if ($isDiscography) {
+        $headers = [
+            'Accept: ' . FP_ACCEPT_AJAX,
+            'Accept-Language: ' . FP_ACCEPT_LANGUAGE,
+            'Referer: https://' . CANONICAL_HOST . '/',
+            'X-Requested-With: XMLHttpRequest',
+            'Sec-CH-UA: ' . FP_SEC_CH_UA,
+            'Sec-CH-UA-Mobile: ?0',
+            'Sec-CH-UA-Platform: "Windows"',
+            'Sec-Fetch-Dest: empty',
+            'Sec-Fetch-Mode: cors',
+            'Sec-Fetch-Site: same-origin',
+        ];
+    } else {
+        $headers = [
+            'Accept: ' . FP_ACCEPT_DOC,
+            'Accept-Language: ' . FP_ACCEPT_LANGUAGE,
+            'Upgrade-Insecure-Requests: 1',
+            'Sec-CH-UA: ' . FP_SEC_CH_UA,
+            'Sec-CH-UA-Mobile: ?0',
+            'Sec-CH-UA-Platform: "Windows"',
+            'Sec-Fetch-Dest: document',
+            'Sec-Fetch-Mode: navigate',
+            'Sec-Fetch-Site: none',
+            'Sec-Fetch-User: ?1',
+        ];
+    }
+
     curl_setopt_array($proxyRequest, [
-        CURLOPT_RETURNTRANSFER  => true,
-        CURLOPT_FOLLOWLOCATION  => true,
-        CURLOPT_MAXREDIRS       => 3,
-        CURLOPT_USERAGENT       => FP_USER_AGENT,
-        CURLOPT_SSL_VERIFYPEER  => true,
-        CURLOPT_SSL_VERIFYHOST  => 2,
-        CURLOPT_PROTOCOLS       => CURLPROTO_HTTPS,
-        CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
-        CURLOPT_TIMEOUT         => 10,
-        CURLOPT_CONNECTTIMEOUT  => 3,
-        CURLOPT_ENCODING        => '',
-        CURLOPT_HTTPHEADER      => [
-            "Accept: " . FP_ACCEPT,
-            "Accept-Language: " . FP_ACCEPT_LANGUAGE,
-        ],
+        CURLOPT_RETURNTRANSFER   => true,
+        CURLOPT_FOLLOWLOCATION   => true,
+        CURLOPT_MAXREDIRS        => 3,
+        CURLOPT_HTTP_VERSION     => CURL_HTTP_VERSION_2TLS,
+        CURLOPT_USERAGENT        => FP_USER_AGENT,
+        CURLOPT_SSL_VERIFYPEER   => true,
+        CURLOPT_SSL_VERIFYHOST   => 2,
+        CURLOPT_PROTOCOLS        => CURLPROTO_HTTPS,
+        CURLOPT_REDIR_PROTOCOLS  => CURLPROTO_HTTPS,
+        CURLOPT_TIMEOUT          => 10,
+        CURLOPT_CONNECTTIMEOUT   => 3,
+        CURLOPT_ENCODING         => '',
+        CURLOPT_HTTPHEADER       => $headers,
         // Enforce response size limit
-        CURLOPT_NOPROGRESS      => false,
+        CURLOPT_NOPROGRESS       => false,
         CURLOPT_PROGRESSFUNCTION => function ($ch, $dltotal, $dlnow) use ($maxSize) {
             return ($dlnow > $maxSize) ? 1 : 0;
         },
     ]);
 
     $response = curl_exec($proxyRequest);
-    $httpcode = curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
-    $contentType = trim(curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE) ?? '');
-    $finalUrl = curl_getinfo($proxyRequest, CURLINFO_EFFECTIVE_URL) ?: '';
+    $httpcode = (int) curl_getinfo($proxyRequest, CURLINFO_HTTP_CODE);
+    $rawContentType = curl_getinfo($proxyRequest, CURLINFO_CONTENT_TYPE);
+    $contentType = is_string($rawContentType) ? trim($rawContentType) : '';
+    $rawFinalUrl = curl_getinfo($proxyRequest, CURLINFO_EFFECTIVE_URL);
+    $finalUrl = is_string($rawFinalUrl) ? $rawFinalUrl : '';
     $err = curl_error($proxyRequest);
+    $errno = curl_errno($proxyRequest);
 
     // If callback aborted the transfer due to size limit, override error message
-    if (curl_errno($proxyRequest) === CURLE_ABORTED_BY_CALLBACK) {
+    if ($errno === CURLE_ABORTED_BY_CALLBACK) {
         $err = sprintf("Response exceeded size limit of %d bytes (%.3f MB).", $maxSize, $maxSize / 1048576);
     }
 
@@ -284,11 +321,20 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 require($phpbb_root_path . 'common.' . $phpEx);
 
-$user->session_begin(false); // false = doesn't rewrite "Who is online" table, since this is a proxy request
+$user->session_begin(false); // false = doesn't overwrite "Who is online" table, since this is a proxy request
 
 // Check if the user is logged in and not a bot
 if (!$user->data['is_registered'] || $user->data['is_bot']) {
     proxy_error(403, "Authentication required");
+}
+
+// Check server-side APCu cache before hitting Metal Archives
+$cacheKey = 'metalarchivesproxy:cache:' . hash('sha256', $safeUrl);
+$cached   = apcu_fetch($cacheKey, $cacheHit);
+
+if ($cacheHit && is_array($cached) && isset($cached['body'], $cached['contentType'])) {
+    proxy_output($cached['body'], $cached['contentType'], "private, max-age=" . BROWSER_CACHE_TTL);
+    exit;
 }
 
 [$response, $httpcode, $contentType, $err] = fetch_with_curl($safeUrl);
@@ -302,26 +348,33 @@ if ($response === false) {
 }
 
 if ($httpcode >= 400) {
-    proxy_error($httpcode, "Upstream server responded with an error");
+    $upstreamError = match ($httpcode) {
+        403, 503 => "Metal Archives temporarily blocked or unavailable (HTTP $httpcode)",
+        404      => "Band page not found on Metal Archives",
+        429      => "Metal Archives rate limit reached. Try again later.",
+        default  => "Metal Archives responded with HTTP $httpcode",
+    };
+    proxy_error($httpcode, $upstreamError);
 }
 
-// Determine content type and caching policy
+// Verify HTML content type (Metal Archives band/discography endpoints always return text/html) and set caching policy
 $mediaType = strtolower(trim(explode(';', $contentType, 2)[0]));
 
-switch ($mediaType) {
-    case 'text/html':
-        if (!str_contains(strtolower($contentType), 'charset=')) {
-            $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
-        }
-        $cacheControl = "private, max-age=" . CACHE_TTL;
-        break;
+if ($mediaType !== 'text/html') {
+    proxy_error(502, "Unexpected content type: $contentType");
+}
 
-    case 'application/json':
-        $cacheControl = "no-store, no-cache, must-revalidate";
-        break;
+if (!str_contains(strtolower($contentType), 'charset=')) {
+    $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
+}
+$cacheControl = "private, max-age=" . BROWSER_CACHE_TTL;
 
-    default:
-        proxy_error(502, "Unexpected content type: $contentType");
+// Store valid HTML response in APCu to reduce outgoing requests to Metal Archives
+if ($httpcode === 200 && SERVER_CACHE_TTL > 0) {
+    apcu_store($cacheKey, [
+        'body'        => $response,
+        'contentType' => $contentType,
+    ], SERVER_CACHE_TTL);
 }
 
 proxy_output($response, $contentType, $cacheControl);
