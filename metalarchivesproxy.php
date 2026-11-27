@@ -198,13 +198,13 @@ function validate_and_build_safe_url(string $rawUrl): string {
     $path = '/' . ltrim($parts['path'] ?? '', '/');
 
     // Block dot-segments (/./ or /../) to prevent path traversal, while allowing bands like "...and Oceans"
-    if (preg_match('#/(?:\.\.?)(?:/|\z)#', rawurldecode($path))) {
+    if (preg_match('~/(?:\.\.?)(?:/|\z)~', rawurldecode($path))) {
         proxy_error(400, "Path traversal not allowed");
     }
 
     // Allow only exact band profile and discography table endpoints
-    $isBandPage = (bool) preg_match('#^/bands/[^/?#\r\n]+/\d+\z#', $path);
-    $isDiscographyTab = (bool) preg_match('#^/band/discography/id/\d+/tab/all/?\z#', $path);
+    $isBandPage = (bool) preg_match('~^/bands/[^/?#\r\n]+/\d+\z~', $path);
+    $isDiscographyTab = (bool) preg_match('~^/band/discography/id/\d+/tab/all/?\z~', $path);
 
     if (!$isBandPage && !$isDiscographyTab) {
         proxy_error(400, "Path not allowed");
