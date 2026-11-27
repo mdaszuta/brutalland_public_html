@@ -93,7 +93,7 @@ function enforce_frontend_access(): void {
  * Retries on race conditions to reduce lost updates.
  */
 function enforce_rate_limit_apcu(): void {
-    if (!function_exists('apcu_fetch')) {
+    if (!function_exists('apcu_fetch') || !apcu_enabled()) {
         proxy_error(500, "Server error: APCu not available");
     }
 

@@ -471,9 +471,13 @@ function checkForBandcampLinks(output) {
 		const finalUrl = baseUrl + "/music";
 		const bandcampPage = "BC: " + finalUrl;
 
-		// Regex to find partial versions: e.g., "BC: https://band.bandcamp.com" or with trailing slash
-		// Pattern starts (^) with "BC: ", then replace slash with escaped slash for regex, escaped \/? for optional trailing slash at the end of the line ($), "m" flag for ^ and $ in multiline string
-		const partialPattern = `^BC: ${baseUrl.replace(/\//g, "\\/")}\\/?$`;
+		// Regex to find partial versions - escape RegExp metacharacters in baseUrl ("\\$&" prefixes each matched special char with "\").
+		// Then build a multiline regex matching partial "BC: <baseUrl>" lines (with optional trailing slash "/"),
+		// Then upgrade to the full "/music" URL (without matching lines that already end with "/music").
+		// "m" flag allows ^ and $ to match the start and end of each line in a multiline string (not just the start and end of the entire message).
+		// Escaped characters include: . * + ? ^ $ { } ( ) | [ ] \
+		const escapedBaseUrl = baseUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+		const partialPattern = `^BC: ${escapedBaseUrl}/?$`;
 		const partialRegex = new RegExp(partialPattern, "m");
 
 		if ( partialRegex.test(messageValue) ) {
@@ -597,8 +601,9 @@ async function addBandInfo(update) {
 	fetchDiscography = 0;
 	isFetchingBandInfo = true;
 
-	// Show the progress cursor while processing
+	// Show the progress cursor while processing and make the input field read-only to prevent further edits during the fetch
 	showProgressCursor();
+	addBandInfoInput.readOnly = true;
 
 	try {
 		// Call sub-functions to fetch and add or update lineup and discography, and add MA and Bandcamp links then shows refresh button - in correct sequence
@@ -611,8 +616,9 @@ async function addBandInfo(update) {
 	} catch ( error ) {
 		showBandInfoStatus(error?.message || "Error fetching the page.", "error", error);
 	} finally {
-		// Change cursor to default regardless of success or failure
+		// Change cursor to default regardless of success or failure, and re-enable the input field for further edits
 		isFetchingBandInfo = false;
+		addBandInfoInput.readOnly = false;
 		hideProgressCursor();
 		scheduleHideBandInfoStatus(3000);
 	}
