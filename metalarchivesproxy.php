@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 // Config
 const BROWSER_CACHE_TTL = 60;    // Browser cache in seconds
-const SERVER_CACHE_TTL = 3;      // Server-side APCu cache for valid HTML responses (3 sek)
+const SERVER_CACHE_TTL = 90;     // Server-side APCu cache for valid HTML responses (3 sek)
 const RATE_WINDOW = 60;          // Rate limit window in seconds
 const RATE_LIMIT = 30;           // Max requests in rate window per IP
 
