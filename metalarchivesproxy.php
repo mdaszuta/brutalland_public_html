@@ -260,22 +260,22 @@ function fetch_with_curl(string $url): array {
     }
 
     curl_setopt_array($proxyRequest, [
-        CURLOPT_RETURNTRANSFER   => true,
-        CURLOPT_FOLLOWLOCATION   => true,
-        CURLOPT_MAXREDIRS        => 3,
-        CURLOPT_HTTP_VERSION     => CURL_HTTP_VERSION_2TLS,
-        CURLOPT_USERAGENT        => FP_USER_AGENT,
-        CURLOPT_SSL_VERIFYPEER   => true,
-        CURLOPT_SSL_VERIFYHOST   => 2,
-        CURLOPT_PROTOCOLS        => CURLPROTO_HTTPS,
-        CURLOPT_REDIR_PROTOCOLS  => CURLPROTO_HTTPS,
-        CURLOPT_TIMEOUT          => 10,
-        CURLOPT_CONNECTTIMEOUT   => 3,
-        CURLOPT_ENCODING         => '',
-        CURLOPT_HTTPHEADER       => $headers,
+        CURLOPT_RETURNTRANSFER      => true,
+        CURLOPT_FOLLOWLOCATION      => true,
+        CURLOPT_MAXREDIRS           => 3,
+        CURLOPT_HTTP_VERSION        => CURL_HTTP_VERSION_2TLS,
+        CURLOPT_USERAGENT           => FP_USER_AGENT,
+        CURLOPT_SSL_VERIFYPEER      => true,
+        CURLOPT_SSL_VERIFYHOST      => 2,
+        CURLOPT_PROTOCOLS_STR       => 'https',
+        CURLOPT_REDIR_PROTOCOLS_STR => 'https',
+        CURLOPT_TIMEOUT             => 10,
+        CURLOPT_CONNECTTIMEOUT      => 3,
+        CURLOPT_ENCODING            => '',
+        CURLOPT_HTTPHEADER          => $headers,
         // Enforce response size limit
-        CURLOPT_NOPROGRESS       => false,
-        CURLOPT_PROGRESSFUNCTION => function ($ch, $dltotal, $dlnow) use ($maxSize) {
+        CURLOPT_NOPROGRESS          => false,
+        CURLOPT_XFERINFOFUNCTION    => function ($ch, int $dltotal, int $dlnow) use ($maxSize): int {
             return ($dlnow > $maxSize) ? 1 : 0;
         },
     ]);
