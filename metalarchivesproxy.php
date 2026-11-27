@@ -194,17 +194,17 @@ function validate_and_build_safe_url(string $rawUrl): string {
         proxy_error(400, "Userinfo not allowed in URL");
     }
 
-    // Ensure path always starts with '/' and query is normalized
+    // Ensure path always starts with '/'
     $path = '/' . ltrim($parts['path'] ?? '', '/');
 
     // Block dot-segments (/./ or /../) to prevent path traversal, while allowing bands like "...and Oceans"
-    if (preg_match('#/(?:\.\.?)(?:/|$)#', rawurldecode($path))) {
+    if (preg_match('#/(?:\.\.?)(?:/|\z)#', rawurldecode($path))) {
         proxy_error(400, "Path traversal not allowed");
     }
 
     // Allow only exact band profile and discography table endpoints
-    $isBandPage = (bool) preg_match('#^/bands/[^/?#]+/\d+$#', $path);
-    $isDiscographyTab = (bool) preg_match('#^/band/discography/id/\d+/tab/all/?$#', $path);
+    $isBandPage = (bool) preg_match('#^/bands/[^/?#\r\n]+/\d+\z#', $path);
+    $isDiscographyTab = (bool) preg_match('#^/band/discography/id/\d+/tab/all/?\z#', $path);
 
     if (!$isBandPage && !$isDiscographyTab) {
         proxy_error(400, "Path not allowed");
@@ -330,11 +330,13 @@ if (!$user->data['is_registered'] || $user->data['is_bot']) {
 
 // Check server-side APCu cache before hitting Metal Archives
 $cacheKey = 'metalarchivesproxy:cache:' . hash('sha256', $safeUrl);
-$cached   = apcu_fetch($cacheKey, $cacheHit);
 
-if ($cacheHit && is_array($cached) && isset($cached['body'], $cached['contentType'])) {
-    proxy_output($cached['body'], $cached['contentType'], "private, max-age=" . BROWSER_CACHE_TTL);
-    exit;
+if (SERVER_CACHE_TTL > 0) {
+    $cached = apcu_fetch($cacheKey, $cacheHit);
+    if ($cacheHit && is_array($cached) && isset($cached['body'], $cached['contentType'])) {
+        proxy_output($cached['body'], $cached['contentType'], "private, max-age=" . BROWSER_CACHE_TTL);
+        exit;
+    }
 }
 
 [$response, $httpcode, $contentType, $err] = fetch_with_curl($safeUrl);
