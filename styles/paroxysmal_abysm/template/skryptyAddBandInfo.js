@@ -137,7 +137,7 @@ async function fetchPage(url) {
 	const text = await response.text();
 
 	// If the proxy returned JSON content, it indicates an error
-	if ( contentType.split(";")[0].trim() === "application/json" ) {
+	if ( contentType.split(";")[0].trim().toLowerCase() === "application/json" ) {
 		let errMsg = text;
 		try {
 			const err = JSON.parse(text);
@@ -316,7 +316,7 @@ async function addLineup(url, output, update) {
 	if ( update && output.value.match(lineupPatternToUpdate) ) {
 		showBandInfoStatus("Updating lineup...");
 		console.log(output.value.match(lineupPatternToUpdate)[0]);
-		output.value = output.value.replace(lineupPatternToUpdate, completeLineupString + "\n\n");
+		output.value = output.value.replace(lineupPatternToUpdate, () => completeLineupString + "\n\n");
 	} else {
 		output.value += "\n\n" + completeLineupString;
 		showBandInfoStatus("Adding lineup...");
@@ -396,7 +396,7 @@ async function addDiscography(bandId, output, update) {
 		// Determine the appropriate BBCode tag for the release type
 		const bbcode = releaseTypeBBCode[releaseType] || "w-other";
 		// If not a full-length album, add the release type in lowercase
-		const type = ( bbcode === "w-album" ) ? "" : ` [${releaseType.toLowerCase()}]`
+		const type = ( bbcode === "w-album" ) ? "" : ` [${releaseType.toLowerCase()}]`;
 
 		// Construct the formatted release string
 		const release = `[${bbcode}]${releaseYear} - ${releaseTitle}${type}[/${bbcode}]`;
@@ -419,7 +419,7 @@ async function addDiscography(bandId, output, update) {
 	if ( update && discographyPatternToUpdate.test(output.value) ) {
 		showBandInfoStatus("Updating discography...");
 		console.log(output.value.match(discographyPatternToUpdate)[0]);
-		output.value = output.value.replace(discographyPatternToUpdate, completeDiscographyString + "\n\n");
+		output.value = output.value.replace(discographyPatternToUpdate, () => completeDiscographyString + "\n\n");
 	} else {
 		output.value += "\n\n" + completeDiscographyString;
 		showBandInfoStatus("Adding discography...");
@@ -567,7 +567,7 @@ async function addBandInfo(update) {
 	 *   (?:https?:\/\/)?             - Optional non-capturing protocol ("http://" or "https://")
 	 *   (?:www\.)?                   - Optional non-capturing "www." subdomain
 	 *   metal-archives\.com\/bands\/ - Literal domain and required "/bands/" path segment
-	 *   ([^/?#]+)                    - Capture group 1 (bandName): band slug (1+ chars except "/", "?", "#")
+	 *   ([^/?#\s]+)                 - Capture group 1 (bandName): band slug (1+ chars except "/", "?", "#", or whitespace)
 	 *   \/                           - Literal "/" separator between band name and ID
 	 *   (\d+)                        - Capture group 2 (bandId): numeric band ID (1+ digits)
 	 *   (?:[/?#].*)?                 - Optional non-capturing trailing slash, query ("?..."), or hash ("#...")
@@ -575,7 +575,7 @@ async function addBandInfo(update) {
 	 *   $                            - End of string
 	 *   /i                           - Case-insensitive flag (allows e.g. "HTTPS://WWW.Metal-Archives.com/...")
 	 */
-	const metallumPattern = /^(?:https?:\/\/)?(?:www\.)?metal-archives\.com\/bands\/([^/?#]+)\/(\d+)(?:[/?#].*)?$/i;
+	const metallumPattern = /^(?:https?:\/\/)?(?:www\.)?metal-archives\.com\/bands\/([^/?#\s]+)\/(\d+)(?:[/?#].*)?$/i;
 	const matchMetallumUrl = rawInputMetallumUrl.match(metallumPattern);
 
 	if ( !matchMetallumUrl ) {

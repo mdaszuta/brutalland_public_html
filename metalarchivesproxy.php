@@ -203,7 +203,7 @@ function validate_and_build_safe_url(string $rawUrl): string {
     }
 
     // Allow only exact band profile and discography table endpoints
-    $isBandPage = (bool) preg_match('~^/bands/[^/?#\r\n]+/\d+\z~', $path);
+    $isBandPage = (bool) preg_match('~^/bands/[^/?#\s]+/\d+\z~', $path);
     $isDiscographyTab = (bool) preg_match('~^/band/discography/id/\d+/tab/all/?\z~', $path);
 
     if (!$isBandPage && !$isDiscographyTab) {
@@ -366,9 +366,7 @@ if ($mediaType !== 'text/html') {
     proxy_error(502, "Unexpected content type: $contentType");
 }
 
-if (!str_contains(strtolower($contentType), 'charset=')) {
-    $contentType = rtrim($contentType, " ;") . '; charset=UTF-8';
-}
+$contentType = 'text/html; charset=UTF-8';
 $cacheControl = "private, max-age=" . BROWSER_CACHE_TTL;
 
 // Store valid HTML response in APCu to reduce outgoing requests to Metal Archives
