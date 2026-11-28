@@ -8,7 +8,8 @@ use phpbb\request\request_interface;
 use phpbb\db\driver\driver_interface;
 use phpbb\user;
 use phpbb\auth\auth;
-use phpbb\cache\driver\driver_interface as cache_interface;
+use phpbb\config\config;
+use phpbb\content_visibility;
 
 class ajax_search
 {
@@ -16,30 +17,31 @@ class ajax_search
 	protected $request;
 	protected $user;
 	protected $auth;
-	protected $cache;
+	protected $config;
+	protected $content_visibility;
 
 	private const MIN_QUERY_LENGTH = 2;
 	private const MAX_QUERY_LENGTH = 100;
 	private const MAX_RESULTS = 20;
-	private const ALLOWED_FORUMS_CACHE_DURATION = 60; // seconds
-	private const ALLOWED_FORUMS_CACHE_PREFIX = 'mdaszuta_topicsearch_allowed_forums_user_';
 
 	/**
 	 * Constructor for the ajax_search class.
-	 * Initializes the database driver, request handler, user object, auth system, and cache.
+	 * Initializes the database driver, request handler, user object, auth system, configuration object, and content visibility handler.
 	 * @param driver_interface $db Database driver instance
 	 * @param request_interface $request Request handler instance
 	 * @param user $user User object
 	 * @param auth $auth Authentication system
-	 * @param cache_interface $cache Cache driver instance
+	 * @param config $config Configuration object
+	 * @param content_visibility $content_visibility Content visibility service for handling topic visibility based on user permissions
 	 */
-	public function __construct(driver_interface $db, request_interface $request, user $user, auth $auth, cache_interface $cache)
+	public function __construct(driver_interface $db, request_interface $request, user $user, auth $auth, config $config, content_visibility $content_visibility)
 	{
 		$this->db      = $db;
 		$this->request = $request;
 		$this->user    = $user;
 		$this->auth    = $auth;
-		$this->cache   = $cache;
+		$this->config  = $config;
+		$this->content_visibility = $content_visibility;
 	}
 
 	/**
@@ -95,53 +97,32 @@ class ajax_search
 	}
 
 	/**
-	 * Return true when the string contains only ASCII bytes (0x00‑0x7F).
-	 * Fastest method: strspn() counts the initial segment that matches the
-	 * allowed range; if that length equals strlen($s), every byte is ASCII.
-	 * Empty string is ASCII by definition.
+	 * Return true when the string contains only ASCII bytes (0x00-0x7F).
+	 * This is used to determine if the string can be normalized using simple lowercase conversion
+	 * or if it requires special character normalization.
+	 * @param string $str The input string
+	 * @return bool True if the string is ASCII (empty string is considered ASCII), false otherwise
 	 */
 	private static function is_ascii(string $str): bool
 	{
-		return $str === '' || strspn($str, "\0-\x7F") === strlen($str);
+		return mb_check_encoding($str, 'ASCII');
 	}
 
 	/**
 	 * Get the list of allowed forums for the current user.
-	 * This function checks the cache for allowed forums based on user ID.
-	 * If not cached, it retrieves the allowed forums from the auth system,
-	 * caches them, and returns the list.
+	 * It retrieves the allowed forums from the auth system and returns the list.
 	 * @return array<int> List of forum IDs that the user can read
 	 */
 	private function get_allowed_forums(): array
 	{
-		$prefix = self::ALLOWED_FORUMS_CACHE_PREFIX;
-		$user_id = (int) $this->user->data['user_id'];
-		$cache_key = ($user_id === ANONYMOUS)
-			? $prefix . 'guest'
-			: sprintf('%s%d', $prefix, $user_id);
-
-		$cached = $this->cache->get($cache_key);
-		if ($cached !== false && is_array($cached)) {
-			//error_log("[topicsearch] Cache HIT for {$cache_key}");
-			return $cached;
-		}
-			//error_log("[topicsearch] Cache MISS for {$cache_key}");
-
 		$allowed = array_keys($this->auth->acl_getf('f_read', true));
-		$this->cache->put($cache_key, $allowed, self::ALLOWED_FORUMS_CACHE_DURATION);
+		$passworded = $this->user->get_passworded_forums();
 
-		return $allowed;
-	}
+        if (!empty($passworded)) {
+            $allowed = array_diff($allowed, $passworded);
+        }
 
-	/**
-	 * Flatten an array of forum IDs into a comma-separated string.
-	 * This is used to construct the SQL IN clause for allowed forums.
-	 * @param array<int> $ids Array of forum IDs
-	 * @return string Comma-separated list of forum IDs
-	 */
-	private function flatten_forum_ids(array $ids): string
-	{
-		return implode(',', array_map('intval', $ids));
+        return array_values(array_map('intval', $allowed));
 	}
 
 	/**
@@ -157,13 +138,18 @@ class ajax_search
 			return new JsonResponse(['error' => 'Invalid request'], 400);
 		}
 
+		// Check if search is enabled, user has permission, and not a bot
+		if (!$this->config['load_search'] || !$this->auth->acl_get('u_search') || !empty($this->user->data['is_bot'])) {
+            return new JsonResponse(['error' => 'Search unavailable'], 403);
+        }
+
 		$query = trim((string) $this->request->variable('q', '', true));
 		$query_len = utf8_strlen($query);
 		if ($query_len < self::MIN_QUERY_LENGTH || $query_len > self::MAX_QUERY_LENGTH) {
 			return new JsonResponse([]);
 		}
 
-		// Cached allowed forums with read access
+		// Get list of allowed forums for current user
 		$allowed_forums = $this->get_allowed_forums();
 		if (empty($allowed_forums)) {
 			return new JsonResponse([]);
@@ -173,16 +159,10 @@ class ajax_search
 		// Escape user input for use in LIKE clause - neutralizes % and _ wildcards
 		$escaped_search = $this->db->sql_escape(addcslashes($normalized_search, '\\%_'));
 
-		$can_approve_forums = array_keys($this->auth->acl_getf('m_approve', true));
-		// Forums where the user can't approve, we must enforce topic_visibility = 1
-		$enforce_visibility_forums = array_diff($allowed_forums, $can_approve_forums);
+		// Build complete forum + topic visibility SQL (handles approved, unapproved, soft-deleted, and reapprove states)
+		$visibility_sql = $this->content_visibility->get_forums_visibility_sql('topic', $allowed_forums, 't.');
 
-		$allowed_forum_ids_sql = $this->flatten_forum_ids($allowed_forums);
-		$visibility_filter_sql = !empty($enforce_visibility_forums)
-			? ' AND (t.topic_visibility = 1 OR t.forum_id NOT IN (' . $this->flatten_forum_ids($enforce_visibility_forums) . '))'
-			: '';
-
-		$matched_topics = $this->get_topics($escaped_search, $allowed_forum_ids_sql, $visibility_filter_sql);
+		$matched_topics = $this->get_topics($escaped_search, $visibility_sql);
 		if (empty($matched_topics)) {
 			return new JsonResponse([]);
 		}
@@ -223,7 +203,7 @@ class ajax_search
 				'id'					=> $topic_id,
 				'title'					=> html_entity_decode($row['topic_title'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
 				'topic_last_post_id'	=> (int) $row['topic_last_post_id'],
-				'forum'					=> $row['forum_name'],
+				'forum'					=> html_entity_decode($row['forum_name'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
 				'forum_id'				=> $forum_id,
 				'unread'				=> $unread,
 			];
@@ -238,13 +218,12 @@ class ajax_search
 	 * that match the normalized search string, within allowed forums.
 	 * It returns an array of topic rows with relevant information.
 	 * @param string $escaped_search The normalized and escaped search string
-	 * @param string $allowed_forum_ids_sql Comma-separated list of allowed forum IDs
-	 * @param string $visibility_filter_sql Additional SQL conditions for topic visibility
+	 * @param string $visibility_sql Complete SQL condition for allowed forums and topic visibility
 	 * @return array Array of topic rows matching the search criteria
 	 */
-	private function get_topics(string $escaped_search, string $allowed_forum_ids_sql, string $visibility_filter_sql): array
+	private function get_topics(string $escaped_search, string $visibility_sql): array
 	{
-		$sql = $this->build_search_query($escaped_search, $allowed_forum_ids_sql, $visibility_filter_sql);
+		$sql = $this->build_search_query($escaped_search, $visibility_sql);
 
 		$result = $this->db->sql_query($sql);
 		$topic_rows = $this->db->sql_fetchrowset($result);
@@ -259,11 +238,10 @@ class ajax_search
 	 * match the normalized search string, within the allowed forums.
 	 * It uses LIKE patterns to find matches at the beginning or anywhere in the title.
 	 * @param string $escaped_search The normalized and escaped search string
-	 * @param string $allowed_forum_ids_sql Comma-separated list of allowed forum IDs
-	 * @param string $visibility_filter_sql Additional SQL conditions for topic visibility
+	 * @param string $visibility_sql Complete SQL condition for allowed forums and topic visibility
 	 * @return string The SQL query string
 	 */
-	private function build_search_query(string $escaped_search, string $allowed_forum_ids_sql, string $visibility_filter_sql): string
+	private function build_search_query(string $escaped_search, string $visibility_sql): string
 	{
 		// Prepare LIKE patterns
 		$like_prefix = $escaped_search . '%';
@@ -292,11 +270,9 @@ class ajax_search
 				JOIN " . FORUMS_TABLE . " f ON t.forum_id = f.forum_id
 				WHERE 
 					t.topic_status <> " . ITEM_MOVED . "
-					AND t.forum_id IN ($allowed_forum_ids_sql)
-					$visibility_filter_sql
+					AND ({$visibility_sql})
 			) sub
-			WHERE sub.normalized_title LIKE '$like_prefix'
-				OR (sub.normalized_title LIKE '$like_anywhere' AND sub.normalized_title NOT LIKE '$like_prefix')
+			WHERE sub.normalized_title LIKE '$like_anywhere'
 			ORDER BY 
 				CASE 
 					WHEN sub.normalized_title LIKE '$like_prefix' THEN 1

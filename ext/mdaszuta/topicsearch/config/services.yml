@@ -6,7 +6,8 @@ services:
       - '@request'
       - '@user'
       - '@auth'
-      - '@cache.driver'
+      - '@config'
+      - '@content.visibility'
 
   mdaszuta.topicsearch.event.listener:
     class: mdaszuta\topicsearch\event\main_listener
